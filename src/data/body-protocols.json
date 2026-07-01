@@ -1,0 +1,82 @@
+[
+  {
+    "planet": "Sun",
+    "breath": "expansive_diaphragmatic_breath",
+    "movement": "spinal_extension_arms_overhead",
+    "posture": "upright_chest_open",
+    "touch": "palm_on_heart_center",
+    "orientation": "face_the_sun_or_east"
+  },
+  {
+    "planet": "Moon",
+    "breath": "soft_wave_breath",
+    "movement": "slow_swaying_or_rocking",
+    "posture": "supine_or_supported_seated",
+    "touch": "self_holding_palms_on_belly",
+    "orientation": "supported_inward_facing"
+  },
+  {
+    "planet": "Mercury",
+    "breath": "alternate_nostril_breath",
+    "movement": "coordination_alternating_arm_leg",
+    "posture": "upright_neutral_spine",
+    "touch": "fingertip_tracing_collarbones",
+    "orientation": "rhythmic_left_right_tracking"
+  },
+  {
+    "planet": "Venus",
+    "breath": "long_smooth_exhale",
+    "movement": "slow_heart_opening_stretch",
+    "posture": "open_chest_relaxed_shoulders",
+    "touch": "palms_over_kidneys_or_throat",
+    "orientation": "soft_focus_on_beauty"
+  },
+  {
+    "planet": "Mars",
+    "breath": "controlled_exhale_4_count",
+    "movement": "isometric_hold_release",
+    "posture": "rooted_warrior_stance",
+    "touch": "firm_pressure_lower_back_kidneys",
+    "orientation": "forward_facing_grounded"
+  },
+  {
+    "planet": "Jupiter",
+    "breath": "full_three_part_breath",
+    "movement": "long_walking_or_expansive_stretching",
+    "posture": "tall_open_full_body",
+    "touch": "palm_over_liver_right_upper_abdomen",
+    "orientation": "outward_horizon_facing"
+  },
+  {
+    "planet": "Saturn",
+    "breath": "long_slow_exhale_6_to_8_count",
+    "movement": "stillness_or_slow_alignment",
+    "posture": "spine_vertical_seated_grounded",
+    "touch": "deep_pressure_along_spine",
+    "orientation": "stable_north_facing"
+  },
+  {
+    "planet": "Uranus",
+    "breath": "breath_of_fire_short_or_rapid_alternate_nostril",
+    "movement": "shaking_release_or_quick_dynamic_reset",
+    "posture": "free_standing_unbound",
+    "touch": "tapping_lightly_along_meridians",
+    "orientation": "open_unfixed_orientation"
+  },
+  {
+    "planet": "Neptune",
+    "breath": "soft_oceanic_breath",
+    "movement": "slow_flowing_water_movements",
+    "posture": "supine_or_floating_supported",
+    "touch": "feather_light_skin_contact",
+    "orientation": "eyes_soft_or_closed_inward"
+  },
+  {
+    "planet": "Pluto",
+    "breath": "deep_belly_breath_with_long_holds",
+    "movement": "deep_holds_compression_release",
+    "posture": "grounded_low_stance_or_squat",
+    "touch": "firm_pressure_on_sacrum_pelvic_bowl",
+    "orientation": "downward_into_earth"
+  }
+]

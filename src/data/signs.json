@@ -1,0 +1,294 @@
+[
+  {
+    "sign": "Aries",
+    "body_regions": [
+      "head",
+      "face",
+      "scalp"
+    ],
+    "organs_systems": [
+      "brain_signaling",
+      "cranial_zone"
+    ],
+    "element": "Fire",
+    "modality": "Cardinal",
+    "symptom_keywords": [
+      "head tension",
+      "pressure",
+      "acute flare"
+    ],
+    "sound_modulation": {
+      "bias_hz": 528,
+      "style": "sharp_initiating_percussive"
+    },
+    "color_bias": "green-gold"
+  },
+  {
+    "sign": "Taurus",
+    "body_regions": [
+      "throat",
+      "neck",
+      "jaw"
+    ],
+    "organs_systems": [
+      "thyroid_zone",
+      "vocal_tract"
+    ],
+    "element": "Earth",
+    "modality": "Fixed",
+    "symptom_keywords": [
+      "throat irritation",
+      "neck tightness",
+      "jaw tension"
+    ],
+    "sound_modulation": {
+      "bias_hz": 396,
+      "style": "slow_sustained_grounding"
+    },
+    "color_bias": "earthy red-brown"
+  },
+  {
+    "sign": "Gemini",
+    "body_regions": [
+      "shoulders",
+      "arms",
+      "hands",
+      "fingers",
+      "upper lungs"
+    ],
+    "organs_systems": [
+      "respiratory_exchange",
+      "nervous_relay"
+    ],
+    "element": "Air",
+    "modality": "Mutable",
+    "symptom_keywords": [
+      "restlessness",
+      "shallow breathing",
+      "nervous agitation"
+    ],
+    "sound_modulation": {
+      "bias_hz": 741,
+      "style": "alternating_dual_oscillating"
+    },
+    "color_bias": "electric blue"
+  },
+  {
+    "sign": "Cancer",
+    "body_regions": [
+      "chest",
+      "breasts",
+      "stomach"
+    ],
+    "organs_systems": [
+      "gastric_function",
+      "fluid_holding"
+    ],
+    "element": "Water",
+    "modality": "Cardinal",
+    "symptom_keywords": [
+      "stomach sensitivity",
+      "fluid retention",
+      "emotional flare"
+    ],
+    "sound_modulation": {
+      "bias_hz": 639,
+      "style": "wave_like_tidal_protective"
+    },
+    "color_bias": "pale aqua-silver"
+  },
+  {
+    "sign": "Leo",
+    "body_regions": [
+      "heart",
+      "upper back",
+      "spine"
+    ],
+    "organs_systems": [
+      "cardiovascular_vitality",
+      "circulatory_drive"
+    ],
+    "element": "Fire",
+    "modality": "Fixed",
+    "symptom_keywords": [
+      "palpitations",
+      "upper back tension",
+      "burnout"
+    ],
+    "sound_modulation": {
+      "bias_hz": 852,
+      "style": "radiant_centered_amplifying"
+    },
+    "color_bias": "solar gold"
+  },
+  {
+    "sign": "Virgo",
+    "body_regions": [
+      "abdomen",
+      "intestines",
+      "bowels"
+    ],
+    "organs_systems": [
+      "digestion",
+      "assimilation",
+      "intestinal_regulation"
+    ],
+    "element": "Earth",
+    "modality": "Mutable",
+    "symptom_keywords": [
+      "bloating",
+      "cramping",
+      "bowel irregularity",
+      "food sensitivity"
+    ],
+    "sound_modulation": {
+      "bias_hz": 417,
+      "style": "precise_corrective_pattern"
+    },
+    "color_bias": "emerald green"
+  },
+  {
+    "sign": "Libra",
+    "body_regions": [
+      "kidneys",
+      "lower back",
+      "lumbar region"
+    ],
+    "organs_systems": [
+      "filtration",
+      "fluid_balance"
+    ],
+    "element": "Air",
+    "modality": "Cardinal",
+    "symptom_keywords": [
+      "lower back tension",
+      "fluid imbalance",
+      "instability"
+    ],
+    "sound_modulation": {
+      "bias_hz": 432,
+      "style": "balancing_symmetrical_smoothing"
+    },
+    "color_bias": "blush rose"
+  },
+  {
+    "sign": "Scorpio",
+    "body_regions": [
+      "pelvis",
+      "reproductive organs",
+      "elimination channels"
+    ],
+    "organs_systems": [
+      "reproductive_function",
+      "deep_elimination"
+    ],
+    "element": "Water",
+    "modality": "Fixed",
+    "symptom_keywords": [
+      "pelvic tension",
+      "hormonal pressure",
+      "deep sensitivity"
+    ],
+    "sound_modulation": {
+      "bias_hz": 936,
+      "style": "deep_penetrating_pressure_release"
+    },
+    "color_bias": "crimson-burgundy"
+  },
+  {
+    "sign": "Sagittarius",
+    "body_regions": [
+      "hips",
+      "thighs",
+      "sciatic pathway"
+    ],
+    "organs_systems": [
+      "liver_association",
+      "mobility"
+    ],
+    "element": "Fire",
+    "modality": "Mutable",
+    "symptom_keywords": [
+      "hip tightness",
+      "sciatic irritation",
+      "flare from excess"
+    ],
+    "sound_modulation": {
+      "bias_hz": 963,
+      "style": "expanding_rising_outward"
+    },
+    "color_bias": "violet-purple"
+  },
+  {
+    "sign": "Capricorn",
+    "body_regions": [
+      "knees",
+      "bones",
+      "joints"
+    ],
+    "organs_systems": [
+      "structural_integrity",
+      "connective_endurance"
+    ],
+    "element": "Earth",
+    "modality": "Cardinal",
+    "symptom_keywords": [
+      "joint stiffness",
+      "knee issues",
+      "restriction"
+    ],
+    "sound_modulation": {
+      "bias_hz": 174,
+      "style": "compressed_minimal_structural"
+    },
+    "color_bias": "charcoal gray"
+  },
+  {
+    "sign": "Aquarius",
+    "body_regions": [
+      "calves",
+      "ankles",
+      "circulatory channels"
+    ],
+    "organs_systems": [
+      "circulation",
+      "electrical_signaling"
+    ],
+    "element": "Air",
+    "modality": "Fixed",
+    "symptom_keywords": [
+      "circulation issues",
+      "spasms",
+      "tingling"
+    ],
+    "sound_modulation": {
+      "bias_hz": 285,
+      "style": "irregular_electric_disruptive"
+    },
+    "color_bias": "electric indigo"
+  },
+  {
+    "sign": "Pisces",
+    "body_regions": [
+      "feet",
+      "toes",
+      "lymphatic-fluid zones"
+    ],
+    "organs_systems": [
+      "lymphatic_flow",
+      "fluid_sensitivity"
+    ],
+    "element": "Water",
+    "modality": "Mutable",
+    "symptom_keywords": [
+      "swelling",
+      "fatigue",
+      "hypersensitivity"
+    ],
+    "sound_modulation": {
+      "bias_hz": 528,
+      "style": "diffuse_ambient_dissolving"
+    },
+    "color_bias": "seafoam blue"
+  }
+]

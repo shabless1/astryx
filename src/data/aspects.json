@@ -1,0 +1,141 @@
+[
+  {
+    "aspect": "conjunction",
+    "type": "context",
+    "meaning": [
+      "fusion",
+      "amplification",
+      "density"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "stacked",
+        "clustered_or_unified"
+      ],
+      "chord_style": "dense",
+      "rhythm": "steady_or_heavy",
+      "resolution": "context_dependent"
+    },
+    "visual_behavior": {
+      "geometry": "concentric_circle",
+      "motion": "center_intensification",
+      "contrast": "medium_high"
+    }
+  },
+  {
+    "aspect": "square",
+    "type": "hard",
+    "meaning": [
+      "friction",
+      "tension",
+      "interruption"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "minor_2nd",
+        "tritone",
+        "minor_9th"
+      ],
+      "chord_style": "cluster",
+      "rhythm": "syncopated",
+      "resolution": "delayed"
+    },
+    "visual_behavior": {
+      "geometry": "square_grid",
+      "motion": "collision_pulse",
+      "contrast": "high"
+    }
+  },
+  {
+    "aspect": "opposition",
+    "type": "hard",
+    "meaning": [
+      "polarity",
+      "mirroring",
+      "split axis"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "dual_centers",
+        "mirrored"
+      ],
+      "chord_style": "alternating",
+      "rhythm": "call_response",
+      "resolution": "midpoint_merge"
+    },
+    "visual_behavior": {
+      "geometry": "mirrored_axis",
+      "motion": "oscillation",
+      "contrast": "high"
+    }
+  },
+  {
+    "aspect": "trine",
+    "type": "soft",
+    "meaning": [
+      "flow",
+      "harmony",
+      "support"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "major_3rd",
+        "perfect_5th",
+        "major_6th"
+      ],
+      "chord_style": "open",
+      "rhythm": "steady",
+      "resolution": "natural"
+    },
+    "visual_behavior": {
+      "geometry": "triangle_flow",
+      "motion": "continuous_expansion",
+      "contrast": "smooth"
+    }
+  },
+  {
+    "aspect": "sextile",
+    "type": "soft",
+    "meaning": [
+      "cooperation",
+      "opportunity",
+      "adaptable support"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "light_consonance"
+      ],
+      "chord_style": "airy_support",
+      "rhythm": "interactive",
+      "resolution": "supportive"
+    },
+    "visual_behavior": {
+      "geometry": "hexagon",
+      "motion": "harmonic_opening",
+      "contrast": "balanced"
+    }
+  },
+  {
+    "aspect": "quincunx",
+    "type": "advanced",
+    "meaning": [
+      "misalignment",
+      "adjustment",
+      "compensation"
+    ],
+    "music_behavior": {
+      "interval_style": [
+        "offset",
+        "non_standard"
+      ],
+      "chord_style": "skewed",
+      "rhythm": "corrective",
+      "resolution": "adaptive"
+    },
+    "visual_behavior": {
+      "geometry": "offset_spiral",
+      "motion": "skewed_adjustment",
+      "contrast": "unusual"
+    }
+  }
+]

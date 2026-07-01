@@ -1,0 +1,62 @@
+[
+  {
+    "planet": "Sun",
+    "hz": 126.22
+  },
+  {
+    "planet": "Moon",
+    "hz": 210.42
+  },
+  {
+    "planet": "Moon_sidereal",
+    "hz": 227.43
+  },
+  {
+    "planet": "Mercury",
+    "hz": 141.27
+  },
+  {
+    "planet": "Venus",
+    "hz": 221.23
+  },
+  {
+    "planet": "Mars",
+    "hz": 144.72
+  },
+  {
+    "planet": "Jupiter",
+    "hz": 183.58
+  },
+  {
+    "planet": "Saturn",
+    "hz": 147.85
+  },
+  {
+    "planet": "Uranus",
+    "hz": 207.36
+  },
+  {
+    "planet": "Neptune",
+    "hz": 211.44
+  },
+  {
+    "planet": "Pluto",
+    "hz": 140.25
+  },
+  {
+    "planet": "Earth_Year_Om",
+    "hz": 136.1
+  },
+  {
+    "planet": "Platonic_Year",
+    "hz": 172.06
+  },
+  {
+    "planet": "Sidereal_Day",
+    "hz": 194.71
+  },
+  {
+    "planet": "Mean_Solar_Day",
+    "hz": 194.18
+  }
+]

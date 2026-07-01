@@ -1,0 +1,72 @@
+[
+  {
+    "taste": "bitter",
+    "action": "clear",
+    "supports": [
+      "digestion",
+      "liver",
+      "detox"
+    ],
+    "common_herbs": [
+      "dandelion_root",
+      "gentian",
+      "wormwood"
+    ]
+  },
+  {
+    "taste": "sweet",
+    "action": "build",
+    "supports": [
+      "restoration",
+      "fluids",
+      "nourishment"
+    ],
+    "common_herbs": [
+      "licorice",
+      "marshmallow",
+      "shatavari"
+    ]
+  },
+  {
+    "taste": "pungent",
+    "action": "activate",
+    "supports": [
+      "circulation",
+      "movement",
+      "digestion"
+    ],
+    "common_herbs": [
+      "ginger",
+      "cinnamon",
+      "black_pepper"
+    ]
+  },
+  {
+    "taste": "astringent",
+    "action": "contain_regulate",
+    "supports": [
+      "drying",
+      "toning",
+      "holding"
+    ],
+    "common_herbs": [
+      "raspberry_leaf",
+      "oak_bark",
+      "witch_hazel"
+    ]
+  },
+  {
+    "taste": "sour",
+    "action": "stimulate_balance",
+    "supports": [
+      "secretion",
+      "appetite",
+      "rhythm"
+    ],
+    "common_herbs": [
+      "hibiscus",
+      "rosehips",
+      "lemon_balm"
+    ]
+  }
+]

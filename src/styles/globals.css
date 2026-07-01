@@ -1,0 +1,621 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═════════════════════════════════════════════════════════
+   HOLOGRAM PIVOT TOKENS (PR #2)
+   Medical-scanner aesthetic per dev critique + handoff doc.
+   Pure #020208 ground, saturated cyan structure, amber reserved
+   for active-signal pulses (viscera glow, "ACTIVE NOW" chips).
+   ═════════════════════════════════════════════════════════ */
+:root {
+  --bg-base:           #020208;
+  --cyan-core:         #22D3EE;
+  --cyan-rim:          #5EE0FF;
+  --cyan-deep:         #0A2540;
+  --cyan-hairline:     rgba(94, 224, 255, 0.35);
+  --cyan-hairline-lo:  rgba(94, 224, 255, 0.22);
+  --cyan-glow-inset:   rgba(255, 255, 255, 0.12);
+  --cyan-grid:         rgba(94, 224, 255, 0.04);
+  --cyan-scanline:     rgba(94, 224, 255, 0.025);
+  --amber-signal:      #F59E0B;
+  --planet-color:      #22D3EE;
+}
+
+/* ─── BASE RESET ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* v5 FIX 2 — stop iOS pull-to-refresh / overscroll reload from dumping the
+     user back to Home and wiping mid-session progress. */
+  overscroll-behavior-y: contain;
+}
+
+body {
+  background: var(--bg-base);
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;                 /* v5 FIX 3 — readable base, avoids iOS auto-zoom */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;  /* v5 FIX 2 */
+}
+
+/* v5 FIX 1 — responsive page container: centered + capped on desktop, full
+   single-column on mobile. Screens wrap content in this + responsive grids. */
+.astryx-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mono utility — every numeric readout uses JetBrains Mono */
+.font-mono-jb {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-feature-settings: 'tnum';
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+/* ─── INPUT OVERRIDES ────────────────────────────────────── */
+input, select, textarea {
+  font-family: 'Rajdhani', sans-serif;
+  color-scheme: dark;
+}
+input::placeholder { color: rgba(255,255,255,0.42); }  /* v5 FIX 3 — brighter placeholder */
+input:focus, select:focus, textarea:focus { outline: none; }
+/* v5 FIX 3 — ≥16px on mobile inputs prevents iOS focus auto-zoom + reads clearly */
+@media (max-width: 640px) {
+  input, select, textarea { font-size: 16px; }
+}
+
+/* ─── GLASSMORPHISM ──────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+}
+
+.glass-sm {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+.glass-dark {
+  background: rgba(5,7,20,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes cosmicBreath {
+  0%, 100% { transform: scale(1) translateY(0); opacity: 0.35; }
+  50% { transform: scale(1.02) translateY(-8px); opacity: 0.42; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.7; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes scanLines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes sessionPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── UTILITY CLASSES ────────────────────────────────────── */
+.animate-fade-in { animation: fadeIn 0.4s ease forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+.animate-rotate { animation: rotate 20s linear infinite; }
+.animate-counter-rotate { animation: counterRotate 12s linear infinite; }
+.animate-cosmic-breath { animation: cosmicBreath 8s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+.animate-ripple { animation: ripple 3s ease-out infinite; }
+
+/* ─── ACCENT GLOW ────────────────────────────────────────── */
+.accent-glow {
+  box-shadow: 0 0 30px var(--accent-color, rgba(139,92,246,0.4));
+}
+
+/* ─── SCAN LINE (analysis screen) ───────────────────────── */
+.scan-lines {
+  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
+  background-size: 100% 4px;
+  animation: scanLines 0.1s linear infinite;
+}
+
+/* ═════════════════════════════════════════════════════════
+   BUILD DIRECTIVE v2.0 · FIX 4 — GLOBAL DESIGN OVERHAUL
+   Impeccable + Emil Kowalski + TasteKill standards
+   ═════════════════════════════════════════════════════════ */
+
+/* ─── TYPOGRAPHY DISCIPLINE (directive non-negotiable) ─────────
+   Primary readable content: minimum text-white/87 (0.87 opacity)
+   Labels/captions: maximum text-white/55
+   Tertiary metadata: floor at text-white/40
+   Nothing below 40% white for any visible content
+   ─────────────────────────────────────────────────────────────── */
+
+/* ─── ANIMATION KEYFRAMES (additions) ──────────────────────── */
+@keyframes cosmicPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+@keyframes planetGlow {
+  0%, 100% { box-shadow: 0 0 12px var(--planet-color, #8B5CF6); }
+  50% { box-shadow: 0 0 28px var(--planet-color, #8B5CF6),
+                    0 0 60px var(--planet-color, #8B5CF6); }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes auroraDrift {
+  0%   { transform: translateX(-5%) translateY(0%); }
+  50%  { transform: translateX(5%)  translateY(-3%); }
+  100% { transform: translateX(-5%) translateY(0%); }
+}
+
+/* ─── Phase 3 — Chamber visual views (Color / Mandala / Combined) ─────
+   Gentle, breath-synced motion only. Duration is set inline per element
+   (= breath cycle / rotation speed). NEVER add flashing or fast motion. */
+@keyframes chamberBreathe {
+  0%, 100% { transform: scale(1);    opacity: 0.9; }
+  50%      { transform: scale(1.055); opacity: 1; }
+}
+.chamber-breathe {
+  animation-name: chamberBreathe;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+@keyframes chamberDrift {
+  0%, 100% { transform: translate(0%, 0%); }
+  50%      { transform: translate(2%, -1.5%); }
+}
+.chamber-drift {
+  animation-name: chamberDrift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* Phase 3B — slow particle shimmer (gentle twinkle, never a flash). */
+@keyframes mandalaTwinkle {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.85; }
+}
+
+/* Phase 3C — Platonic solid pseudo-3D tumble (gentle depth tilt, never a full
+   flip that would vanish the flat wireframe). */
+@keyframes platonicTumble {
+  0%, 100% { transform: rotateY(-42deg) rotateX(8deg); }
+  50%      { transform: rotateY(42deg) rotateX(-8deg); }
+}
+
+/* Phase 3C+ — LIVING geometry: pulsating colour, morph cross-fade, infinite
+   zoom-bloom. All slow + gentle — no flashing, no strobe. */
+@keyframes colorPulse {
+  0%, 100% { filter: hue-rotate(-12deg) saturate(0.95) brightness(0.9); }
+  50%      { filter: hue-rotate(12deg)  saturate(1.18) brightness(1.14); }
+}
+@keyframes morphFade {
+  0%, 100% { opacity: 0.28; }
+  50%      { opacity: 1; }
+}
+/* a layer is born at the core, expands outward, and dissolves — the "turning
+   into" / infinite-zoom effect. transform-origin centred by the parent. */
+@keyframes zoomBloom {
+  0%   { transform: scale(0.5)  rotate(0deg);   opacity: 0; }
+  18%  { opacity: 0.85; }
+  100% { transform: scale(1.7)  rotate(40deg);  opacity: 0; }
+}
+@keyframes burstPulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50%      { opacity: 1;    transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sg-color-pulse, .sg-morph, .sg-bloom, .sg-burst {
+    animation: none !important;
+  }
+}
+
+/* Accessibility + safety — reduced-motion: freeze rotation + lateral drift +
+   particle shimmer, but KEEP a gentle breath pulse (the directive's safe
+   soft-pulse version). */
+@media (prefers-reduced-motion: reduce) {
+  .chamber-drift,
+  .chamber-rotate {
+    animation: none !important;
+  }
+  .chamber-breathe {
+    animation-duration: 14s !important;   /* very slow, calm breath only */
+  }
+}
+
+@keyframes nebulaShift {
+  0%, 100% { background-position: 0% 0%; opacity: 0.18; }
+  50%      { background-position: 100% 50%; opacity: 0.25; }
+}
+
+/* ─── BACKGROUND DEPTH SYSTEM (TasteKill layered cosmos) ──── */
+/* Layer 1 (base):    body background #020208 — deep space
+   Layer 2 (nebula):  radial-gradient overlay in accent color, 20% opacity
+   Layer 3 (aurora):  CSS gradient bands, very low opacity (0.04)
+   Layer 4 (stars):   existing star field (separately rendered)
+   Layer 5 (glass):   card surfaces — rgba(5,7,20,0.65) + backdrop blur */
+
+.cosmic-bg {
+  position: relative;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+/* Top horizon glow only — drops purple nebulae per hologram pivot */
+.cosmic-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+              rgba(94, 224, 255, 0.08) 0%,
+              transparent 240px);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Ultra-faint grid mesh, always on */
+.cosmic-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--cyan-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cyan-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── HOLOGRAM SCANLINE OVERLAY (global, always-on) ────────── */
+.hologram-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    var(--cyan-scanline) 3px,
+    var(--cyan-scanline) 4px
+  );
+}
+
+/* ─── SCANNER BEZEL RAILS (vertical cyan lines, full viewport) ── */
+.scanner-rails::before,
+.scanner-rails::after {
+  content: '';
+  position: fixed;
+  top: 0; bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(94, 224, 255, 0.45) 30%,
+    rgba(94, 224, 255, 0.45) 70%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.scanner-rails::before { left: 24px; }
+.scanner-rails::after  { right: 24px; }
+@media (max-width: 768px) {
+  .scanner-rails::before { left: 8px; }
+  .scanner-rails::after  { right: 8px; }
+}
+
+/* ─── HOLOGRAM CARD RECIPE ─────────────────────────────────── */
+.hologram-card {
+  position: relative;
+  background: linear-gradient(180deg,
+    rgba(8, 14, 28, 0.72) 0%,
+    rgba(2, 2, 8, 0.92) 100%);
+  border: 1px solid var(--cyan-hairline-lo);
+  border-top: 1px solid var(--cyan-hairline);   /* scan-pass rim */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(94, 224, 255, 0.08),
+    0 24px 60px -24px rgba(94, 224, 255, 0.25);
+  border-radius: 12px;
+}
+.hologram-card-rail-left {
+  /* Channel-coding rail for per-planet tint without bleeding into body */
+  position: relative;
+}
+.hologram-card-rail-left::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 3px;
+  background: var(--planet-color);
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 0 12px var(--planet-color);
+}
+
+/* ─── SIGNAL-LOCK PATTERN (dominant card / active row) ───── */
+@keyframes signalSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes lockPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+}
+.signal-lock::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 24px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan-core), transparent);
+  animation: signalSweep 2.5s linear infinite;
+}
+.signal-dot {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan-core);
+  box-shadow: 0 0 12px var(--cyan-core);
+  animation: lockPulse 1.4s ease-in-out infinite;
+}
+
+/* ─── GLASSMORPHISM (premium card surface) ─────────────────── */
+.glass-premium {
+  background: rgba(5, 7, 20, 0.65);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow:
+    0 0 24px -10px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ─── EMIL KOWALSKI MICRO-INTERACTIONS ─────────────────────── */
+
+/* Card lift on hover with spring physics */
+.kowalski-card {
+  transition:
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 200ms ease;
+  will-change: transform;
+}
+.kowalski-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 24px -8px rgba(0, 0, 0, 0.4),
+    0 0 28px -12px rgba(139, 92, 246, 0.35);
+}
+
+/* Button press feedback */
+.kowalski-button {
+  transition: transform 100ms ease, opacity 150ms ease;
+  will-change: transform;
+}
+.kowalski-button:active {
+  transform: scale(0.97);
+}
+
+/* Icon hover subtle rotation (for planet glyphs etc.) */
+.kowalski-icon {
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+}
+.kowalski-icon:hover {
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* Input focus glow ring */
+.kowalski-input {
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+.kowalski-input:focus {
+  border-color: var(--accent-color, #8B5CF6);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* ─── PER-PLANET CARD IDENTITY ─────────────────────────────── */
+/* Use --planet-color CSS variable on card element to bleed in planet hue */
+
+.planet-card {
+  position: relative;
+  border: 1px solid var(--planet-color-faint, rgba(139, 92, 246, 0.4));
+  background:
+    var(--planet-color-bg, rgba(139, 92, 246, 0.06)),
+    rgba(5, 7, 20, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 20px 0 var(--planet-color-glow, rgba(139, 92, 246, 0.15));
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.planet-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 28px 0 var(--planet-color-glow, rgba(139, 92, 246, 0.25)),
+    0 0 36px -12px var(--planet-color, #8B5CF6);
+}
+
+.planet-card-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--planet-color, #8B5CF6);
+  animation: cosmicPulse 1.5s ease-in-out infinite;
+}
+
+/* ─── ANIMATION UTILITIES (additions) ──────────────────────── */
+.animate-cosmic-pulse { animation: cosmicPulse 1.5s ease-in-out infinite; }
+.animate-planet-glow  { animation: planetGlow 2.5s ease-in-out infinite; }
+.animate-slide-in-up  { animation: slideInUp 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* ─── READABLE TEXT UTILITIES ──────────────────────────────── */
+/* Use these utility classes in components to ensure WCAG-passable contrast */
+/* v5 FIX 3 — lifted for WCAG-AA legibility on the near-black ground. */
+.text-content    { color: rgba(255, 255, 255, 0.92); }       /* body content */
+.text-content-sm { color: rgba(255, 255, 255, 0.82); }       /* small body */
+.text-label      { color: rgba(255, 255, 255, 0.66); }       /* labels */
+.text-meta       { color: rgba(255, 255, 255, 0.52); }       /* metadata floor */
+
+/* ═════════════════════════════════════════════════════════
+   v3.0 · HOLOGRAPHIC BODY MAP + ETHEREAL GLASS UPGRADE
+   high-end-visual-design skill applied (Vibe + Layout)
+   ═════════════════════════════════════════════════════════ */
+
+/* ─── CHAKRA MERIDIAN FLOW (used inline + global fallback) ── */
+@keyframes meridianFlow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -32; }
+}
+
+@keyframes chakraPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.55; }
+  50%      { transform: scale(1.45); opacity: 0.05; }
+}
+
+@keyframes planetOrbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── SLIDE-IN-UP (used by BodyMap detail panel) ──────────── */
+@keyframes slideInUpFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in-up { animation: slideInUpFade 500ms cubic-bezier(0.32,0.72,0,1) forwards; }
+
+/* ─── MAGNETIC BUTTON (high-end-visual-design §5.B) ─────────
+   Inner trailing icon translates diagonally on group hover */
+.btn-magnetic-icon {
+  transition: transform 500ms cubic-bezier(0.32,0.72,0,1),
+              background 300ms ease;
+}
+.group:hover .btn-magnetic-icon {
+  transform: translateX(2px) translateY(-1px) scale(1.05);
+}
+
+/* ─── ETHEREAL DOUBLE-BEZEL UTILITIES ───────────────────── */
+.bezel-shell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 2rem;
+  padding: 0.375rem;
+  box-shadow:
+    0 24px 48px -24px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.bezel-core {
+  border-radius: calc(2rem - 0.375rem);
+  background: radial-gradient(ellipse at 50% 0%,
+              rgba(94,224,255,0.05) 0%,
+              rgba(2,2,8,0.92) 55%,
+              #020208 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+
+/* ─── EYEBROW PILL TAG (high-end-visual-design §4.C) ────── */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Hide scrollbar on the Dashboard horizontal tab strip (keeps scroll behavior). */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Chamber fork-placement dot — slow in/out glow pulse. */
+@keyframes forkDotPulse {
+  0%, 100% { transform: scale(0.85); opacity: 0.55; }
+  50%      { transform: scale(1.3);  opacity: 1; }
+}
+@keyframes forkDotCore {
+  0%, 100% { transform: scale(0.9); opacity: 0.9; }
+  50%      { transform: scale(1.12); opacity: 1; }
+}

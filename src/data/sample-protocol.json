@@ -1,0 +1,87 @@
+{
+  "subjective": {
+    "symptoms": [
+      "bloating",
+      "stress",
+      "tension"
+    ],
+    "emotional_state": [
+      "overwhelm"
+    ],
+    "lifestyle_flags": [
+      "irregular routines"
+    ]
+  },
+  "objective": {
+    "dominant_patterns": [
+      {
+        "planet_pair": "Mars-Saturn",
+        "aspect": "square",
+        "signs": [
+          "Virgo",
+          "Sagittarius"
+        ],
+        "houses": [
+          6,
+          9
+        ],
+        "element_modality": "Fire+Earth / Mutable+Mutable",
+        "confidence_score": 87
+      }
+    ]
+  },
+  "assessment": "This pattern may suggest tension between activation and restriction, with possible expression through digestive sensitivity and fluctuating stress responses.",
+  "plan": {
+    "sound": {
+      "mode": "tone_sequence",
+      "primary_anchors": [
+        144.72,
+        147.85
+      ],
+      "regulator": "Earth_Year_Om 136.10",
+      "style": "pulsed_to_regulated",
+      "duration": "5-10 min"
+    },
+    "scent": {
+      "action": "calm_clear",
+      "oils": [
+        "lavender",
+        "peppermint"
+      ],
+      "delivery": "direct inhale + diffuser",
+      "duration": "5-15 min"
+    },
+    "taste": {
+      "blend_type": "digestive regulation",
+      "taste_profile": [
+        "bitter",
+        "cooling",
+        "aromatic"
+      ],
+      "ingredients": [
+        "dandelion_root",
+        "peppermint",
+        "chamomile"
+      ],
+      "preparation": "tea",
+      "timing": "after meals"
+    },
+    "body": {
+      "breath": "slow exhale cycles",
+      "movement": "gentle abdominal release",
+      "posture": "upright alignment",
+      "touch": "lower abdomen pressure",
+      "orientation": "balance stabilization"
+    },
+    "sight": {
+      "colors": [
+        "red",
+        "charcoal",
+        "emerald"
+      ],
+      "geometry": "square_grid",
+      "motion": "pulse_to_stillness",
+      "delivery": "screen animation + ambient green light"
+    }
+  }
+}

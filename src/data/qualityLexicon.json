@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "title": "Complaint Quality → Planet (action) + State (the WHAT axis)",
+    "lineage": "Medical-astrology tradition — the planetary 'pathological action' (Hill's Code: the planet is the WHAT). Distilled, attributed to the tradition, never ingested verbatim.",
+    "sources": ["Medical-astrology tradition (planetary pathological action)"],
+    "axis": "PLANET = the pathological ACTION; STATE = the engine's imbalance axis (excess/deficiency/blocked). The complaint's QUALITY word decides which — note the Saturn-in-Pisces lesson: the same planet can read excess OR deficiency by quality, so the word, not the planet, sets the state.",
+    "note": "Resolver matches a quality word against `match` substrings; all matches feed the polarity engine, which ranks by weight (most-specific/strongest wins as primary). Disambiguation is by SPECIFIC keyword: 'swollen + warm/red' → Mars; 'puffy + soft/heavy' → Jupiter. 'electric/sudden/jolt' → Uranus (not Mercury). Order = most-specific first."
+  },
+  "qualities": [
+    { "quality": "inflammation", "match": ["inflam", "inflamed", "swollen and hot", "swollen red", "hot swelling", "red and swollen", "hot", "heat", "burning", "burn", "fever"], "planet": "Mars", "state": "excess", "weight": 3 },
+    { "quality": "irritation", "match": ["itch", "itchy", "rash", "irritat", "acute flare", "flare", "sharp pain", "stabbing"], "planet": "Mars", "state": "excess", "weight": 2 },
+    { "quality": "tension", "match": ["tension", "tense", "clenched", "knotted"], "planet": "Mars", "state": "excess", "weight": 2 },
+    { "quality": "stiffness", "match": ["stiff", "stiffness", "rigid", "rigidity", "frozen", "locked"], "planet": "Saturn", "state": "blocked", "weight": 3 },
+    { "quality": "calcification", "match": ["calcif", "bone spur", "hardening", "deposit"], "planet": "Saturn", "state": "blocked", "weight": 3 },
+    { "quality": "restriction", "match": ["restrict", "limited range", "tight", "tightness", "contracted", "cramp", "cramping"], "planet": "Saturn", "state": "blocked", "weight": 2 },
+    { "quality": "coldness", "match": ["cold", "poor circulation", "numb", "numbness"], "planet": "Saturn", "state": "blocked", "weight": 2 },
+    { "quality": "saturn_sluggish", "match": ["sluggish", "slow", "heavy", "stagnant", "leaden"], "planet": "Saturn", "state": "blocked", "weight": 2 },
+    { "quality": "depression", "match": ["heavy mood", "low mood", "flat", "despond", "melanchol"], "planet": "Saturn", "state": "deficiency", "weight": 2 },
+    { "quality": "scatter", "match": ["scatter", "scattered", "nervous", "fidgety", "restless mind", "racing thoughts", "can't focus", "anxious mind", "overthinking", "wired mind"], "planet": "Mercury", "state": "excess", "weight": 3 },
+    { "quality": "twitchy", "match": ["twitch", "chatty", "flighty"], "planet": "Mercury", "state": "excess", "weight": 2 },
+    { "quality": "electric", "match": ["electric", "sudden", "jolt", "jolting", "zap", "buzzing", "spasmodic", "erratic", "jittery", "jumpy", "wired and sudden", "shooting"], "planet": "Uranus", "state": "excess", "weight": 4 },
+    { "quality": "jupiter_fluid_fat", "match": ["puffy", "puffiness", "bloated", "bloating", "swollen with fluid", "soft swelling", "over-full", "overfull", "congested liver", "heavy and rich", "rich food", "waterlogged"], "planet": "Jupiter", "state": "excess", "weight": 3 },
+    { "quality": "jupiter_under", "match": ["under-nourished", "undernourished", "poor absorption", "can't gain", "faith flat"], "planet": "Jupiter", "state": "deficiency", "weight": 2 },
+    { "quality": "neptune_dissolving", "match": ["foggy", "brain fog", "hazy", "porous", "leaky", "oversensitive", "over-sensitive", "dissolving", "ungrounded", "spacey", "swollen lymph", "puffy lymph", "immune"], "planet": "Neptune", "state": "excess", "weight": 3 },
+    { "quality": "neptune_depleted", "match": ["faint", "depleted boundaries", "no boundaries", "washed out", "dreamy weak"], "planet": "Neptune", "state": "deficiency", "weight": 2 },
+    { "quality": "venus_sweet", "match": ["craving sweets", "sweet craving", "sugar craving", "craving sugar", "cloying", "sluggish sweet"], "planet": "Venus", "state": "excess", "weight": 3 },
+    { "quality": "venus_atonic", "match": ["limp", "toneless", "low pleasure", "dry skin", "lackluster", "depleted warmth", "no libido"], "planet": "Venus", "state": "deficiency", "weight": 2 },
+    { "quality": "pluto_gripping", "match": ["gripping", "can't let go", "cant let go", "obsessive", "held deep", "stuck deep", "purging", "eliminative", "won't release", "clenched deep"], "planet": "Pluto", "state": "blocked", "weight": 3 },
+    { "quality": "fluid_retention", "match": ["water retention", "fluid retention", "edema"], "planet": "Moon", "state": "blocked", "weight": 2 },
+    { "quality": "emotional_flood", "match": ["overwhelm", "tearful", "weepy", "tidal", "moody"], "planet": "Moon", "state": "excess", "weight": 2 },
+    { "quality": "depletion", "match": ["deplet", "weak", "weakness", "atonic", "exhaust", "fatigue", "tired", "weary", "drained", "low energy", "burnout"], "planet": "Sun", "state": "deficiency", "weight": 3 }
+  ]
+}

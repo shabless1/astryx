@@ -1,0 +1,292 @@
+{
+  "_meta": {
+    "title": "Endocrine System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "endocrine",
+    "name": "Endocrine System",
+    "alternateNames": ["Hormonal System", "Glandular System"],
+    "shortDescription": "Hormonal regulation across all 7 chakra-mapped glands. Each gland has its own planetary signature. The chemical messenger system that coordinates whole-body function over hours-to-decades timescales.",
+    "icon": "⚛",
+    "accentColor": "#C084FC",
+    "elementalProfile": "Multi-elemental — each gland carries its own elemental signature"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "Pineal gland (epithalamus — melatonin, possibly DMT)",
+      "Pituitary (anterior + posterior — master gland, controls others)",
+      "Hypothalamus (links nervous + endocrine — releasing hormones)",
+      "Thyroid (T3/T4 — metabolic rate)",
+      "Parathyroid (calcium regulation)",
+      "Thymus (immune-endocrine bridge — declines with age)",
+      "Adrenals (cortex: cortisol, aldosterone, DHEA; medulla: epinephrine, norepinephrine)",
+      "Pancreas (alpha: glucagon; beta: insulin; delta: somatostatin)",
+      "Gonads (ovaries: estrogen, progesterone; testes: testosterone)"
+    ],
+    "subStructures": {
+      "master_axis": ["Hypothalamus → Pituitary → Target gland", "HPA axis (adrenal)", "HPT axis (thyroid)", "HPG axis (gonadal)"],
+      "metabolic": ["Thyroid", "Pancreas", "Adrenal cortex"],
+      "reproductive": ["Ovaries / Testes", "Adrenal sex hormones"],
+      "stress_response": ["Adrenal medulla (acute)", "Adrenal cortex (chronic)", "HPA axis"]
+    },
+    "vertebralCorrelates": "Pineal: cranial. Pituitary: sphenoid bone. Thyroid: C7-T1. Thymus: T2-T4. Adrenals: T9-T11. Pancreas: T6-T8. Gonads: lumbar/sacral. Bodyworkers: spinal mobilization at glandular levels supports their function.",
+    "nervePlexus": "Cardiac plexus (thymus), celiac plexus (adrenals, pancreas), pelvic plexus (gonads). Vagal influence on most endocrine functions."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Multi-planetary",
+    "primaryPlanetRationale": "No single planet rules endocrine. Each gland has its own ruler. The system functions as a planetary committee.",
+    "primarySign": "Distributed across all 12",
+    "primaryHouse": null,
+    "glandPlanetaryMap": {
+      "pineal": {"planet": "Neptune", "chakra": "Crown (Sahasrara)", "rationale": "Neptune — expansive, melatonin/DMT, dreamstate. Cornell: 'The pineal is the seat of the soul (Descartes); Neptune rules the higher subtle perception.'"},
+      "pituitary": {"planet": "Mercury / Moon", "chakra": "Third Eye (Ajna)", "rationale": "Mercury — master communicator (controls other glands). Moon — fluid hormonal regulation."},
+      "thyroid": {"planet": "Mercury / Venus", "chakra": "Throat (Vishuddha)", "rationale": "Venus rules Taurus (throat). Mercury rules signaling. Thyroid sits in throat region."},
+      "parathyroid": {"planet": "Saturn", "chakra": "Throat (adjacent)", "rationale": "Saturn rules calcium regulation. Parathyroid governs serum Ca²⁺."},
+      "thymus": {"planet": "Sun", "chakra": "Heart (Anahata)", "rationale": "Sun = heart center. Thymus sits behind sternum, immune-endocrine bridge."},
+      "adrenals": {"planet": "Mars (medulla) / Saturn (cortex)", "chakra": "Solar Plexus / Root", "rationale": "Mars — fight/flight epinephrine. Saturn — chronic cortisol, the HPA stress axis."},
+      "pancreas": {"planet": "Jupiter / Moon", "chakra": "Solar Plexus (Manipura)", "rationale": "Jupiter — sugar metabolism. Moon — insulin response to food."},
+      "gonads_female": {"planet": "Venus / Moon", "chakra": "Sacral (Svadhisthana)", "rationale": "Venus — feminine reproductive hormones. Moon — cyclical regulation."},
+      "gonads_male": {"planet": "Mars", "chakra": "Sacral", "rationale": "Mars — testosterone, drive, male reproductive."}
+    },
+    "secondaryPlanets": [],
+    "houses": {"primary": [6, 12], "secondary": [], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {
+      "name": "Renal Axis (adrenal overlay)",
+      "polarity": "Aries ↔ Libra",
+      "source": "Minerva (2023)",
+      "interpretation": "Aries (adrenal medulla — Mars) opposite Libra (kidneys — Venus). HPA axis dysregulation = adrenal burnout pattern. Chronic Aries overactivation depletes the axis."
+    },
+    {
+      "name": "Emotional-Structural Axis (hormonal overlay)",
+      "polarity": "Cancer ↔ Capricorn",
+      "source": "Minerva (2023)",
+      "interpretation": "Cancer (Moon — feminine cyclical hormones) opposite Capricorn (Saturn — chronic structural/parathyroid). Female hormonal disorders often track this axis."
+    },
+    {
+      "name": "Cardio-Circulatory Axis (thyroid-heart overlay)",
+      "polarity": "Leo ↔ Aquarius",
+      "source": "Minerva (2023)",
+      "interpretation": "Thyroid (throat — Taurus border with Leo's chest) directly affects cardiac function. Hyperthyroid = tachycardia; hypothyroid = bradycardia."
+    }
+  ],
+  "energetics": {
+    "chakra": "All 7 chakras map 1:1 to endocrine glands — this is THE chakra system's somatic anchor",
+    "chakraColor": "Full rainbow spectrum",
+    "chakraHz": "Variable per chakra",
+    "nervousSystemPathway": "Hypothalamus is the nervous-endocrine bridge. Vagal input modulates most glands.",
+    "endocrineCorrespondence": "Self-referential — this IS the endocrine system",
+    "elementalCorrespondence": "Multi-elemental",
+    "brainwaveAffinity": "Variable",
+    "meridianCrossover_TCM": "Kidney meridian (essence/jing — adrenal-gonadal axis), Spleen (digestion-pancreas), Triple Burner (endocrine coordination)"
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Calc Fluor", "saltFullName": "Calcarea Fluorica", "sign": "Cancer", "epithet": "Elastic Tissue / Calcium-Fluoride balance affects parathyroid", "indicatedFor": "Parathyroid support; elastic tissue around glands", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Phos", "saltFullName": "Calcarea Phosphorica", "sign": "Capricorn", "epithet": "Foundation — parathyroid/calcium", "indicatedFor": "Parathyroid function, calcium-magnesium-phosphorus regulation", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Kali Mur", "saltFullName": "Kali Muriaticum", "sign": "Gemini", "epithet": "Thyroid lymphatic support", "indicatedFor": "Thyroid lymphatic drainage, swelling of thyroid", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "Adrenal acute support", "indicatedFor": "Acute adrenal stress response, inflammation of any gland", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Ashwagandha (Withania somnifera)", "classicalAttribution": "Saturn root — Capricorn/adrenal", "mechanism": "HPA axis modulator; reduces cortisol, supports thyroid", "indicatedFor": "Adrenal fatigue, hypothyroid support, chronic stress"},
+      {"name": "Rhodiola rosea", "classicalAttribution": "Saturn / Mars adaptogen", "mechanism": "HPA axis adaptation; supports performance under stress", "indicatedFor": "Acute stress, fatigue, mild depression"},
+      {"name": "Maca (Lepidium meyenii)", "classicalAttribution": "Mars / Venus (sex-hormone adaptogen)", "mechanism": "Adaptogen for HPG axis; supports both male and female reproductive hormones", "indicatedFor": "Hormonal imbalance, fertility support, energy"},
+      {"name": "Vitex (chasteberry, Vitex agnus-castus)", "classicalAttribution": "Moon / Venus", "mechanism": "Modulates pituitary; supports progesterone in PMS, fertility", "indicatedFor": "PMS, menstrual irregularity, mild infertility"},
+      {"name": "Holy basil / Tulsi", "classicalAttribution": "Jupiter / Mercury", "mechanism": "HPA adaptogen; supports blood sugar regulation", "indicatedFor": "Blood sugar instability, mild adrenal support"}
+    ],
+    "crystals": [
+      {"name": "Amethyst", "planet": "Neptune", "bodyPlacement": "Crown / pineal area", "classicalAttribution": "Pineal activation"},
+      {"name": "Lapis Lazuli", "planet": "Jupiter", "bodyPlacement": "Third eye / pituitary", "classicalAttribution": "Pituitary support"},
+      {"name": "Blue Lace Agate", "planet": "Mercury", "bodyPlacement": "Throat / thyroid", "classicalAttribution": "Thyroid soothing"},
+      {"name": "Citrine", "planet": "Sun", "bodyPlacement": "Solar plexus / pancreas", "classicalAttribution": "Pancreatic and adrenal support"},
+      {"name": "Carnelian", "planet": "Mars", "bodyPlacement": "Sacral / gonads", "classicalAttribution": "Reproductive hormonal support"}
+    ],
+    "tuningForks": [
+      {"planet": "Neptune", "hz": 211.44, "applicationPoint": "Crown/pineal"},
+      {"planet": "Mercury", "hz": 141.27, "applicationPoint": "Third eye/pituitary or throat/thyroid"},
+      {"planet": "Sun", "hz": 126.22, "applicationPoint": "Sternum/thymus"},
+      {"planet": "Mars", "hz": 144.72, "applicationPoint": "Lower back/adrenals"},
+      {"planet": "Jupiter", "hz": 183.58, "applicationPoint": "Pancreas/upper abdomen"}
+    ],
+    "scents": [
+      {"name": "Frankincense", "planet": "Sun", "delivery": "diffuser"},
+      {"name": "Vetiver", "planet": "Saturn", "delivery": "topical (cortisol support)"},
+      {"name": "Clary Sage (supplementary)", "delivery": "topical/diffuser", "mechanism": "Hormonal balancing — feminine"}
+    ],
+    "bodyProtocols": [{"breath": "Coherent breath (5-5)", "movement": "Yin yoga", "posture": "Restorative supported postures", "touch": "Light gland-region holding"}],
+    "modalityRecommendations": {
+      "individual": "Sleep regularity (most powerful endocrine intervention — pineal/cortisol/insulin all entrained to sleep). Morning sunlight (sets circadian for cortisol/melatonin). Blood sugar stability (protein at meals). Adaptogen support (ashwagandha, holy basil). Limit endocrine disruptors (plastic, pesticides, fragrances).",
+      "medical_astrologer": "Each gland queried independently. Pineal: Neptune + 12th house. Pituitary: Mercury + 3rd, 9th. Thyroid: Mercury/Venus in Taurus/Gemini. Adrenals: Mars + 1st/6th, Saturn for chronic. Pancreas: Jupiter + Moon for diabetes. Gonads: Venus (♀) / Mars (♂) + 5th/8th. Cross-reference dasha (Vedic) — endocrine events often dasha-triggered.",
+      "reiki": "All 7 chakras with extended time on the chakra-gland of focus. Crown (pineal) for sleep/dream. Third eye (pituitary) for master regulation. Throat (thyroid). Heart (thymus). Solar plexus (adrenals/pancreas). Sacral (gonads). Root (adrenal/gonadal base).",
+      "bodywork_general": "Suboccipital release (hypothalamic-pituitary indirect). Cervical work for thyroid. Mid-back T6-T11 for pancreas/adrenals. Sacral work for gonadal. Lymphatic drainage supports hormonal clearance.",
+      "bodywork_contraindications": "Known endocrine tumor (pituitary adenoma, adrenal mass): medical clearance. Pregnancy: trained prenatal only.",
+      "naturopathy": "Functional endocrinology framework. Comprehensive hormone panels. Adaptogens primary (ashwagandha, rhodiola, holy basil). Blood sugar stability protocols. Address endocrine disruptors. Bioidentical hormones (BHRT) for menopause/andropause — coordinate with prescribing MD.",
+      "acupuncture": "Kidney meridian (jing/essence — endocrine base). Triple Burner (endocrine coordination). Conception Vessel (Ren Mai) for reproductive.",
+      "ayurveda_phase2_placeholder": "Ojas (subtle essence — endocrine equivalent). Rasayanas — chyawanprash, ashwagandha. Phase 2.",
+      "pastoral_spiritual": "Chakra meditation. Endocrine glands as 'wheels of light.' Kundalini practices (caution — strong nervous-endocrine effects)."
+    }
+  },
+  "pathologies": [
+    {
+      "id": "endo_hypothyroid",
+      "name": "Hypothyroidism",
+      "icdReference": "E03",
+      "system": "endocrine",
+      "category": "thyroid",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Mercury (chronic restriction of signaling)", "Saturn in Taurus or Gemini", "Moon-Saturn (cold/sluggish)", "Hashimoto's: Neptune-Mars (autoimmune)"],
+        "signEmphasis": ["Taurus (throat)", "Gemini", "Capricorn"],
+        "houseEmphasis": ["6th house Saturn"],
+        "transitTriggers": ["Saturn return", "Pluto-Sun transits"]
+      },
+      "classicalReference": "Cornell (1933): 'Saturn in Taurus → sluggish thyroid function; chronic restriction of glandular signaling.'",
+      "cellSalts": ["Calc Phos", "Kali Mur", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Persistent fatigue, cold intolerance, weight gain, dry skin, hair loss, brain fog, or constipation may suggest thyroid function changes. A TSH + Free T4 + Free T3 + TPO antibody panel with your healthcare provider gives a clear picture.",
+        "practitioner": "Saturn-Mercury and Saturn in Taurus/Gemini are classically associated with hypothyroid patterns (Cornell, 1933). Workup: TSH + Free T4 + Free T3 + TPO/Tg antibodies (Hashimoto's screen). Selenium 200mcg, iodine (with caution — can worsen Hashimoto's), tyrosine, ashwagandha as supportive. Refer to endocrinologist for confirmed hypothyroidism — levothyroxine often necessary."
+      },
+      "modalityNotes": {
+        "bodywork": "Cervical work for thyroid circulation. Vagal stimulation. Gentle thyroid massage (if comfortable).",
+        "reiki": "Throat chakra extended sessions. Blue light visualization.",
+        "lifestyle": "Selenium, zinc, iron (often co-deficient), vitamin D, B-complex. Address gut health (Hashimoto's often gut-linked). Reduce gluten if Hashimoto's. Manage stress (cortisol affects T4→T3 conversion)."
+      },
+      "redFlags": ["Severe hypothyroidism (myxedema coma): hypothermia + altered mental status → ED"]
+    },
+    {
+      "id": "endo_diabetes_type2",
+      "name": "Type 2 Diabetes / Insulin Resistance",
+      "icdReference": "E11",
+      "system": "endocrine",
+      "category": "metabolic",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Jupiter-Moon (sugar excess + insulin response)", "Jupiter afflicted (metabolic excess)", "Venus-Saturn (sweet cravings + structural slowdown)"],
+        "signEmphasis": ["Sagittarius (Jupiter)", "Cancer (Moon — appetite)"],
+        "houseEmphasis": ["6th house Jupiter"],
+        "transitTriggers": ["Jupiter return", "Saturn-Jupiter combinations"]
+      },
+      "classicalReference": "Cornell (1933): 'Diabetes — Jupiter afflicted; excess in glandular function; involvement of pancreas under Jupiter.'",
+      "cellSalts": ["Nat Sulph", "Nat Phos", "Kali Phos"],
+      "indicatorLanguage": {
+        "individual": "Blood sugar regulation responds to: regular movement, balanced meals (protein + fat + fiber at each), stress management, sleep quality. HbA1c, fasting glucose, fasting insulin with your healthcare provider provide a clear baseline. Type 2 diabetes is largely reversible in early stages with intensive lifestyle change.",
+        "practitioner": "Jupiter excess/affliction classically associated with metabolic syndrome and diabetic patterns (Cornell, 1933). Functional medicine framework: insulin resistance precedes glucose elevation. Workup: HbA1c, fasting insulin (often missed), CMP, lipid panel, hsCRP. Berberine, chromium, alpha lipoic acid, cinnamon, fiber all evidence-supported. Refer to endocrinology for management; partner with lifestyle medicine."
+      },
+      "modalityNotes": {
+        "bodywork": "Caution with diabetic neuropathy (sensation impaired). Foot care critical.",
+        "reiki": "Solar plexus (pancreas) extended.",
+        "lifestyle": "Low refined-carb diet, intermittent fasting (per MD if on medication), strength training (improves insulin sensitivity), sleep optimization (poor sleep worsens insulin resistance), stress management."
+      },
+      "redFlags": ["Hyperglycemic crisis (HHS, DKA): severe thirst, polyuria, altered mental status → ED"]
+    },
+    {
+      "id": "endo_adrenal_fatigue",
+      "name": "HPA Axis Dysregulation (\"Adrenal Fatigue\")",
+      "icdReference": "Not in ICD — functional medicine concept",
+      "system": "endocrine",
+      "category": "stress_response",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Mars (chronic push under restriction)", "Mars in Aries afflicted long-term", "Saturn return manifestations"],
+        "signEmphasis": ["Aries (Mars/medulla)", "Capricorn (Saturn/cortex)"],
+        "houseEmphasis": ["6th, 12th house"],
+        "transitTriggers": ["Saturn return ages 28-30, 58-60 — classic adrenal burnout window"]
+      },
+      "classicalReference": "Modern functional medicine concept — not in Cornell. Saturn-Mars exhaustion patterns are the closest classical analogue.",
+      "cellSalts": ["Kali Phos", "Calc Phos", "Mag Phos"],
+      "indicatorLanguage": {
+        "individual": "Persistent exhaustion not improved by sleep, salt cravings, difficulty waking, second wind in evening, low stress tolerance may suggest HPA axis dysregulation. 4-point salivary cortisol with your healthcare provider can characterize the pattern.",
+        "practitioner": "Saturn-Mars chronic configurations align with HPA axis dysregulation (modern attribution). Note: 'adrenal fatigue' is not a formally recognized medical diagnosis (Addison's disease is the only true adrenal insufficiency in conventional medicine), but the functional pattern is real and addressable. Comprehensive cortisol assessment, blood sugar stability, sleep optimization, adaptogen protocol (ashwagandha, rhodiola, holy basil), pregnenolone/DHEA if indicated."
+      },
+      "modalityNotes": {
+        "bodywork": "Restorative work only — NOT deep tissue. Recovery requires parasympathetic dominance.",
+        "reiki": "Heart + solar plexus + root chakra grounding.",
+        "lifestyle": "REST is the intervention. Sleep priority. Lower stimulants. Adaptogen protocol. Address underlying chronic stressors. This is a long recovery (6-24 months for full)."
+      },
+      "redFlags": ["True Addison's disease (severe weakness, hyperpigmentation, hypotension, electrolyte abnormalities) → urgent endocrinology"]
+    },
+    {
+      "id": "endo_pcos",
+      "name": "Polycystic Ovary Syndrome (PCOS)",
+      "icdReference": "E28.2",
+      "system": "endocrine",
+      "category": "reproductive_metabolic",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Venus-Saturn (suppressed feminine)", "Mars-Venus (androgenic component)", "Jupiter-Moon (insulin-feminine interaction)", "Pluto-Moon"],
+        "signEmphasis": ["Cancer (Moon)", "Scorpio (deep reproductive)", "Sagittarius (Jupiter)"],
+        "houseEmphasis": ["5th, 8th house Venus/Mars/Pluto"],
+        "transitTriggers": ["Outer planet transits to Venus or Moon"]
+      },
+      "classicalReference": "Cornell (1933): 'Ovarian disorders — Venus or Mars afflicted in reproductive signs; excess androgenic Mars-Venus combinations.' Modern PCOS recognized as metabolic-reproductive syndrome.",
+      "cellSalts": ["Calc Fluor", "Nat Sulph", "Mag Phos"],
+      "indicatorLanguage": {
+        "individual": "Irregular cycles, acne, hair changes (excess or thinning), weight changes, fertility concerns benefit from comprehensive evaluation. PCOS is highly responsive to lifestyle intervention — insulin sensitivity is the master lever.",
+        "practitioner": "Venus-Saturn, Mars-Venus, Jupiter-Moon configurations classically associated with reproductive-metabolic patterns (Cornell, 1933; modern PCOS framework). Workup: comprehensive hormone panel (LH, FSH, free testosterone, DHEA-S, AMH), HbA1c, fasting insulin, lipid panel, ultrasound. Inositol (myo + d-chiro 40:1), berberine, NAC, vitamin D evidence-supported. Refer to endocrinology/reproductive endocrinology."
+      },
+      "modalityNotes": {
+        "bodywork": "Pelvic congestion techniques. Lymphatic drainage. Liver support (estrogen metabolism).",
+        "reiki": "Sacral chakra extended. Pelvic bowl healing.",
+        "lifestyle": "Insulin sensitivity is the master lever: low-glycemic eating, strength training, sleep, stress management. Inositol 4g daily (myo + DCI 40:1 ratio)."
+      },
+      "redFlags": ["Endometrial hyperplasia risk from anovulation → gyn follow-up", "Pregnancy: gestational diabetes risk increased"]
+    },
+    {
+      "id": "endo_menopause",
+      "name": "Perimenopause / Menopause Transition",
+      "icdReference": "N95",
+      "system": "endocrine",
+      "category": "reproductive_lifecycle",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Pluto-Moon transit (deep transformation of feminine cycle)", "Pluto-Venus", "Saturn return at age 58-60 often coincides", "Uranus opposition age 38-44 — perimenopause onset window"],
+        "signEmphasis": ["Cancer (Moon)", "Scorpio (reproductive transformation)"],
+        "houseEmphasis": ["5th, 8th houses activated"],
+        "transitTriggers": ["Uranus opposition (perimenopause), 2nd Saturn return (menopause completion)"]
+      },
+      "classicalReference": "Cornell (1933): 'Climacteric — Moon transits and progressions; Pluto involvement for transformation.'",
+      "cellSalts": ["Calc Fluor", "Kali Phos", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Menopause is a transition, not a disease. Hot flashes, sleep changes, mood shifts, vaginal changes are common. Lifestyle support: phytoestrogens (flax, soy if no contraindication), maca, vitex (perimenopause), regular movement, sleep hygiene. Bioidentical hormone therapy is appropriate for many women — discuss with menopause-trained provider.",
+        "practitioner": "Outer planet transits to natal Moon/Venus mark menopausal timing per Cornell and modern astrology. Symptoms vary widely — individualize protocols. Bioidentical hormone replacement (BHRT) is appropriate for many; coordinate with prescribing MD (gynecologist or NAMS-certified menopause specialist). Black cohosh, sage (hot flashes), maca, vitex evidence-supported herbals. Bone density baseline (DEXA) post-menopause critical."
+      },
+      "modalityNotes": {
+        "bodywork": "Hormone-related muscle/joint changes — adjust pressure for sensitivity. Lymphatic drainage helpful.",
+        "reiki": "Crown + sacral + heart chakra activation. Honoring transformation.",
+        "lifestyle": "Strength training (bone density), cardiovascular exercise (heart health post-estrogen decline), calcium + vitamin D + K2, sleep hygiene, stress management, social connection."
+      },
+      "redFlags": ["Heavy or prolonged bleeding > 7 days → gyn evaluation (rule out endometrial hyperplasia/cancer)", "Postmenopausal bleeding → urgent gyn (always abnormal)"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder",
+    "tridosha": {"primary": "Multi-doshic — varies per gland", "noteForPhase2": "Each gland mapped to dosha in Phase 2"},
+    "nakshatras_governing_endocrine": ["Pushya (nourishing/thymus)", "Magha (heart/Sun)", "Rohini (Moon-fertility)"],
+    "ayurvedicOrgans": ["Ojas (subtle hormonal essence)"],
+    "dashaRelevance": "Endocrine events often correlate with planetary dashas per Charak.",
+    "ayurvedicTreatments_phase2": "Chyawanprash (ojas rasayana), ashwagandha, shatavari (female), gokshura (male). Phase 2 expansion."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Each gland's ruling planet", "Outer planet transits to gonads/adrenals", "Dasha periods (Vedic)"], "outputDepth": "Full per-gland analysis"},
+    "reiki": {"focusPoints": ["7 chakras = 7 glands", "Full chakra alignment"], "outputDepth": "Comprehensive chakra protocols"},
+    "bodywork": {"focusPoints": ["Cervical (thyroid)", "Mid-back (adrenals/pancreas)", "Sacral (gonads)"], "contraindicationsCriticallity": "MODERATE — pregnancy precautions, known endocrine tumors", "outputDepth": "Glandular region work guide"},
+    "naturopath": {"focusPoints": ["Functional endocrinology", "Adaptogens", "Lifestyle medicine"], "outputDepth": "Full functional protocols"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Ojas", "Dhatus", "Rasayanas"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Kidney essence", "Triple Burner", "Conception Vessel"], "outputDepth": "TCM endocrine framework"},
+    "pastoral_spiritual": {"focusPoints": ["Chakra meditation", "Subtle body practices"], "outputDepth": "Energetic body work"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Endocrine disorders require medical diagnosis (lab confirmation) and often medical management. Holistic adjuncts complement; do not replace. Pregnancy is contraindication for many herbs.",
+    "indicatorLanguagePolicy": "Per COMPLIANCE.md §3. Hormones are individually variable — emphasize testing and professional guidance.",
+    "criticalReferralRules": [
+      "Hyperglycemic crisis (DKA, HHS) → ED",
+      "Suspected thyroid storm (severe hyperthyroid + fever + tachycardia + altered mental status) → ED",
+      "Addisonian crisis (severe weakness + hypotension + electrolyte abnormalities) → ED",
+      "Postmenopausal bleeding → urgent gyn (always abnormal)",
+      "Suspected pituitary tumor (severe headache + vision changes + galactorrhea) → urgent neurology"
+    ],
+    "redFlagKeywords": ["postmenopausal bleeding", "severe thirst polyuria", "thyroid storm", "vision loss"]
+  }
+}

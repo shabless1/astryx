@@ -1,0 +1,765 @@
+{
+  "_meta": {
+    "title": "The Twelve Cell Salts of the Zodiac",
+    "subtitle": "The missing mineral layer that ties Astryx together",
+    "lineage": "Dr. Wilhelm Schuessler (1873, biochemic system) → Dr. George W. Carey & Inez Perry (1919-1932, zodiacal mapping) → Santos Bonacci (modern syncretic teaching)",
+    "sourcesUsed": [
+      "Carey & Perry — The Zodiac and the Twelve Salts of Salvation (1932)",
+      "Universal Truth School — Cell/Tissue Salts framework",
+      "Book of Wisdom — Christ Oil & Gestation Deficiency rule",
+      "Carey — Chemistry of Human Life (1919)"
+    ],
+    "principle": "Each of the 12 zodiacal signs corresponds in vibration to one of the 12 inorganic cell salts present in every cell of the human body. A deficiency in the salt of your Sun sign (which is consumed more rapidly than other salts) is the chemical basis of physical, emotional, and mental dis-ease. Restoring the salt restores cellular homeostasis.",
+    "gestationDeficiencyRule": {
+      "summary": "Human gestation is 9 months. The 3 zodiac signs immediately AFTER your Sun sign (the 3 you did not gestate through) are your innate baseline mineral deficiencies for life.",
+      "example": "Sun in Scorpio → gestation covers the 9 signs ending at Scorpio. The 3 signs missed = Sagittarius, Capricorn, Aquarius → baseline deficiencies in Silica, Calc Phos, Nat Mur.",
+      "moonSignFactor": "Under emotional stress, the cell salts of your Moon sign and South Node are consumed more rapidly. Depletion presents as anxiety, panic, depression.",
+      "transitFactor": "When a major transit activates a sign, the salt of that sign is consumed more rapidly across the population.",
+      "fullTermNote": "Full-term cusp-to-cusp birth → typically 3 deficiencies. Mid-sign birth → 4+ deficiencies. Premature birth → 4+ deficiencies."
+    },
+    "safetyNote": "All Schuessler tissue salts at 6X-12X biochemic potency are non-toxic and safe for adults, children, pregnancy, and elderly. Standard form contains lactose — use spray or liquid form if lactose intolerant. Always consult a licensed healthcare provider or homeopath before beginning a new supplement regimen, especially when pregnant, nursing, or taking prescription medication.",
+    "schemaVersion": "1.0",
+    "lastUpdated": "2026-05-24"
+  },
+  "cellSalts": [
+    {
+      "sign": "Aries",
+      "signNumber": 1,
+      "dateRange": "March 21 – April 19",
+      "rulingPlanet": "Mars",
+      "element": "Fire",
+      "modality": "Cardinal",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Kali Phosphoricum",
+        "shortName": "Kali Phos",
+        "saltNumber": 6,
+        "chemicalName": "Potassium Phosphate",
+        "chemicalFormula": "K2HPO4",
+        "careyTitle": "Nerve Nutrient",
+        "epithet": "The Brain Cell Salt"
+      },
+      "biological": {
+        "primaryFunction": "Building block of brain and nerve cell tissue; cellular antiseptic that counteracts organic decay; supports neurotransmitter synthesis and gray matter integrity",
+        "mechanism": "Concentrated in tissues and fluids of brain and nerve cells. Has antiseptic action that prevents cellular decay. Essential constituent of nerve fluid — the chemical base of material expression and understanding itself per Carey.",
+        "bodySystems": ["central nervous system", "cerebrospinal axis", "brain"],
+        "organsGoverned": ["brain", "cerebrum", "optic thalamus", "head", "face", "scalp"],
+        "endocrineTarget": "Pineal gland and pituitary body (Carey's 'third eye / optic thalamus' axis)",
+        "nervousSystemRole": "Primary mineral basis of all nerve tissue. Critical for cortical function, signal transmission, and parasympathetic recovery. Pairs with Mag Phos for nervous system rescue."
+      },
+      "deficiency": {
+        "physical": ["nervous headaches", "insomnia (nervous origin)", "shingles", "nervous asthma", "nervous dyspepsia", "bleeding gums", "halitosis", "periodontosis", "dry tongue"],
+        "emotional": ["irritability", "grumpiness", "despondency", "groundless fears", "easily discouraged", "languid weariness", "absent expression"],
+        "mental": ["mental exhaustion", "brain fog", "lowered vitality", "inability to concentrate", "memory weakness", "burnout"],
+        "facialSigns": ["brown coating of tongue", "dry tongue", "grey ocular part", "sunken temples", "ash grey chin", "bleeding gums", "periodontosis", "halitosis"]
+      },
+      "plainLanguageSignal": "Your brain feels foggy and your nerves feel raw. Small things annoy you more than they should. You're mentally exhausted but can't sleep. This is your nerve cells running out of fuel — the body's #1 conductor mineral is depleted.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Aries",
+        "Mars or Sun transiting Aries",
+        "Sustained mental work, study, or grief",
+        "After emotional shock or burnout",
+        "When stress depletes Moon-sign salts"
+      ],
+      "complementarySalts": [
+        "Mag Phos (Leo) — for resulting nervous spasms and pain",
+        "Calc Phos (Capricorn) — for nutritional support during recovery",
+        "Nat Mur (Aquarius) — pairs for nervous-origin headaches"
+      ],
+      "esoteric": {
+        "careyName": "The Lamb of God",
+        "bibleAlchemy": "Gad, seventh son of Jacob — 'armed and prepared'",
+        "discipleCorrespondence": "Thomas — natural doubter until they figure things out for themselves",
+        "astralColors": ["white", "rose pink"],
+        "gems": ["amethyst", "diamond"],
+        "affirmation": "My nervous system is whole and bright. My mind is the clear temple of intelligence. I rest, I think clearly, I am armed and prepared."
+      },
+      "foodSources": ["raw cucumber", "celery", "tomatoes", "spinach", "lettuce", "olives", "walnuts", "almonds", "asparagus", "watercress"],
+      "homeopathicPotency": "6X",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
+      "color": "#FF6B35",
+      "kitEligible": true,
+      "kitProduct": "Aries Nerve Tonic Blend — Kali Phos foods + adaptogens"
+    },
+    {
+      "sign": "Taurus",
+      "signNumber": 2,
+      "dateRange": "April 20 – May 20",
+      "rulingPlanet": "Venus",
+      "element": "Earth",
+      "modality": "Fixed",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Natrum Sulphuricum",
+        "shortName": "Nat Sulph",
+        "saltNumber": 11,
+        "chemicalName": "Sodium Sulphate",
+        "chemicalFormula": "Na2SO4",
+        "careyTitle": "Water Eliminator",
+        "epithet": "The Liver Salt"
+      },
+      "biological": {
+        "primaryFunction": "Regulates the density of intercellular fluids by eliminating excess water; governs liver function and bile production; clears auto-intoxication from the system",
+        "mechanism": "One molecule of Nat Sulph removes two molecules of water from the body. Excess atmospheric water absorbed through the lungs is eliminated by this salt. Without it, waste fluids accumulate in blood and tissue causing self-poisoning.",
+        "bodySystems": ["hepatobiliary system", "lymphatic drainage", "intercellular fluid regulation"],
+        "organsGoverned": ["throat", "neck", "cerebellum (lower brain)", "thyroid zone", "liver", "gallbladder"],
+        "endocrineTarget": "Thyroid gland, liver-bile axis",
+        "nervousSystemRole": "Supports cerebellum function (Carey's 'lower brain') — coordination, balance, and the foundation of the spinal column. Liver congestion creates back-of-head tension extending down the spine."
+      },
+      "deficiency": {
+        "physical": ["biliousness", "liver congestion", "influenza", "watery infiltrations", "back-of-head pain extending down spine", "sandy urine deposits", "bitter taste in mouth", "throat irritation", "neck tightness", "rheumatic ailments"],
+        "emotional": ["sluggishness", "melancholy", "irritability with bile excess", "stubborn heaviness"],
+        "mental": ["mental dullness from toxic load", "morning grogginess", "hepatic depression"],
+        "facialSigns": ["green-yellow complexion (forehead, temples)", "bluish redness in nose", "bluish redness in front of ears", "redness in external corner of eye", "dirty greenish tongue"]
+      },
+      "plainLanguageSignal": "You feel heavy, swollen, and slow. Your skin and tongue look puffy. Your liver feels overworked — bitter taste in your mouth, brain fog after eating, fluid retention. This is your body's water-eliminator running on empty.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Taurus",
+        "Venus or Sun transiting Taurus",
+        "Hot weather (heavy aqueous atmosphere)",
+        "High alcohol or rich-food intake",
+        "Recovering from flu or liver stress"
+      ],
+      "complementarySalts": [
+        "Nat Mur (Aquarius) — water distribution counterpart",
+        "Nat Phos (Libra) — body fluid balance",
+        "Kali Mur (Gemini) — supports liver bile when stools are light-colored"
+      ],
+      "esoteric": {
+        "careyName": "The Winged Bull of the Zodiac",
+        "bibleAlchemy": "Asher, eighth son of Jacob — 'blessedness or happiness'",
+        "discipleCorrespondence": "Thaddeus — 'firmness, or led by love'",
+        "astralColors": ["red", "lemon yellow"],
+        "gems": ["moss-agate", "emerald"],
+        "affirmation": "I am the winged bull — grounded in earth, soaring in spirit. My liver is clear, my body releases what it does not need, my blood is the elixir of life."
+      },
+      "foodSources": ["radishes", "cauliflower", "spinach", "onions", "celery", "cucumber", "strawberries", "apples", "cranberries", "beets"],
+      "homeopathicPotency": "6X",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors",
+      "color": "#C19A6B",
+      "kitEligible": true,
+      "kitProduct": "Taurus Liver Cleanse Tea — Nat Sulph foods + dandelion + burdock"
+    },
+    {
+      "sign": "Gemini",
+      "signNumber": 3,
+      "dateRange": "May 21 – June 20",
+      "rulingPlanet": "Mercury",
+      "element": "Air",
+      "modality": "Mutable",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Kali Muriaticum",
+        "shortName": "Kali Mur",
+        "saltNumber": 5,
+        "chemicalName": "Potassium Chloride",
+        "chemicalFormula": "KCl",
+        "careyTitle": "Blood Purifier & Glandular Tonic",
+        "epithet": "The Fibrin Builder"
+      },
+      "biological": {
+        "primaryFunction": "Builds and diffuses fibrin throughout the body; produces saliva and supports early-stage digestion; cleanses blood and lymphatic discharge",
+        "mechanism": "Combines with organic fibrin. Deficiency causes fibrin to thicken and discharge as thick white catarrh, mucus, or coatings — the body's signal that fibrin is misfiring. Concerned with saliva production (digestion's first step) and works with Nat Mur to produce hydrochloric acid.",
+        "bodySystems": ["respiratory system", "lymphatic system", "blood (fibrin)", "mucous membranes"],
+        "organsGoverned": ["lungs", "bronchi", "shoulders", "arms", "hands", "nervous relay system"],
+        "endocrineTarget": "Thymus and lymphatic system",
+        "nervousSystemRole": "Supports the nervous relay — the upper-body wiring between brain and extremities. Restless mind + shallow breathing often signal Kali Mur depletion combined with Aries Kali Phos depletion."
+      },
+      "deficiency": {
+        "physical": ["thick white discharge (catarrh)", "coughs, colds, sore throats", "tonsillitis", "bronchitis", "swollen lymph glands", "white-coated tongue", "light-colored stools (low bile)", "infantile eczema", "soft glandular swellings", "shallow breathing"],
+        "emotional": ["restlessness", "nervous agitation", "scattered focus", "inability to settle"],
+        "mental": ["mental scattering", "thought looping", "communication block when sick", "racing thoughts with catarrhal symptoms"],
+        "facialSigns": ["milky skin", "blue-white skin color", "cheese-like skin", "swollen lymphatic knots", "white coating of tongue", "mealy skin dandruff", "stuck-together eyes"]
+      },
+      "plainLanguageSignal": "You're producing thick white mucus, your throat hurts, your glands are swollen. Your mind is scattered and your breathing is shallow. The fibrin in your blood — the stuff that should be cleanly woven through your tissue — is gumming up.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Gemini",
+        "Mercury or Sun transiting Gemini",
+        "Recurrent colds, bronchitis, or catarrh",
+        "Children's inflammatory illnesses (alternate with Ferr Phos)",
+        "After eating fatty or rich foods that aggravate symptoms"
+      ],
+      "complementarySalts": [
+        "Ferr Phos (Pisces) — alternate for inflammatory respiratory illness",
+        "Calc Sulph (Scorpio) — both cleanse and purify blood",
+        "Nat Mur (Aquarius) — partners for hydrochloric acid production"
+      ],
+      "esoteric": {
+        "careyName": "The Twins of the Zodiac",
+        "bibleAlchemy": "Issachar, ninth son of Jacob — 'price, reward, recompense'",
+        "discipleCorrespondence": "Judas — 'service or necessity' (true esoteric meaning, not the perverted dark-age reading)",
+        "astralColors": ["red", "white", "blue"],
+        "gems": ["beryl", "aquamarine", "dark blue stones"],
+        "affirmation": "My breath is clear, my words are clean, my lungs are open. The fibrin of my blood weaves perfectly through every tissue. I speak the truth that needs to be spoken."
+      },
+      "foodSources": ["green beans", "asparagus", "carrots", "celery", "spinach", "tomatoes", "blueberries", "peaches", "plums", "rye bread"],
+      "homeopathicPotency": "6X",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors. Alternate with Ferr Phos every 30 min during acute fever.",
+      "color": "#FFEB6B",
+      "kitEligible": true,
+      "kitProduct": "Gemini Clear Breath Tea — Kali Mur foods + mullein + thyme"
+    },
+    {
+      "sign": "Cancer",
+      "signNumber": 4,
+      "dateRange": "June 21 – July 22",
+      "rulingPlanet": "Moon",
+      "element": "Water",
+      "modality": "Cardinal",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Calcarea Fluorica",
+        "shortName": "Calc Fluor",
+        "saltNumber": 1,
+        "chemicalName": "Calcium Fluoride",
+        "chemicalFormula": "CaF2",
+        "careyTitle": "Elasticity Salt",
+        "epithet": "The Tissue Tone Builder"
+      },
+      "biological": {
+        "primaryFunction": "Provides elasticity to all connective tissue — skin, muscle, blood vessels, tooth enamel, bone surfaces; supports the meninges between cerebrum and cerebellum",
+        "mechanism": "Forms elastic fiber by uniting fluorine with lime and albuminoids. Found on the surface of bones, in tooth enamel, in elastic fibers of skin, muscular tissue, and blood vessels. Deficiency causes relaxed tissue throughout the system.",
+        "bodySystems": ["connective tissue", "vascular elasticity", "tooth enamel", "skeletal surface"],
+        "organsGoverned": ["chest", "breasts", "stomach", "uterus", "diaphragm", "mucous membranes of digestive tract"],
+        "endocrineTarget": "Reproductive glands (especially female), thymus indirectly",
+        "nervousSystemRole": "Holds elastic tone of the membrane between cerebrum and cerebellum. When deficient, the positive/negative brain poles 'sag apart' — Carey identifies this as the chemical signature of groundless fear of financial ruin."
+      },
+      "deficiency": {
+        "physical": ["varicose veins", "hemorrhoids", "sluggish circulation", "relaxed throat", "constipation from relaxed rectum", "backache with bearing-down pain", "cracked lips and skin", "poor tooth enamel", "synovitis", "stretch marks", "uterine prolapse"],
+        "emotional": ["groundless fear of financial ruin (Carey's hallmark sign)", "anxiety about security", "emotional cling", "fear of letting go"],
+        "mental": ["mental sagging between focus and rest", "inability to switch gears", "rigid thinking that breaks rather than flexes"],
+        "facialSigns": ["square folds around eyes", "diversified folds below eyes", "brown-black coloring around eyes", "burst veins", "scales in face", "cracked lips and corners of mouth", "periodontosis", "shining skin"]
+      },
+      "plainLanguageSignal": "You have a groundless fear about money or security that won't lift. Your skin is cracking, your veins are showing, your tissue feels loose and weak. This is your body's elastic fiber failing — the rubber that holds you together has lost its bounce.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Cancer",
+        "Mars or Mercury (or both) in Cancer at birth",
+        "Pregnancy or postpartum recovery (stretch marks, hemorrhoids)",
+        "Varicose veins or vein health concerns",
+        "Persistent financial anxiety with no actual cause"
+      ],
+      "complementarySalts": [
+        "Silica (Sagittarius) — both support connective tissue and bone",
+        "Calc Phos (Capricorn) — for skeletal nutrition",
+        "Ferr Phos (Pisces) — for vascular wall strength"
+      ],
+      "esoteric": {
+        "careyName": "The Chemistry of the Crab",
+        "bibleAlchemy": "Zebulun, tenth son of Jacob — 'dwelling place or habitation'",
+        "discipleCorrespondence": "Matthew",
+        "astralColors": ["green", "russet-brown"],
+        "gems": ["black onyx", "emerald"],
+        "affirmation": "My tissues hold their proper tone. My body is the elastic temple of my soul. I am held safely — my home is within me, and I am secure."
+      },
+      "foodSources": ["egg yolks (organic, pastured)", "watercress", "kale", "spinach", "cabbage", "rye bread", "oats", "seafood (high quality)", "yogurt", "cheese"],
+      "homeopathicPotency": "6X or 12X (12X for chronic tissue work)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
+      "color": "#E8E4D9",
+      "kitEligible": true,
+      "kitProduct": "Cancer Tissue Tone Blend — Calc Fluor foods + horsetail + nettle"
+    },
+    {
+      "sign": "Leo",
+      "signNumber": 5,
+      "dateRange": "July 23 – August 22",
+      "rulingPlanet": "Sun",
+      "element": "Fire",
+      "modality": "Fixed",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Magnesia Phosphorica",
+        "shortName": "Mag Phos",
+        "saltNumber": 8,
+        "chemicalName": "Magnesium Phosphate",
+        "chemicalFormula": "Mg3(PO4)2",
+        "careyTitle": "Nerve Relaxant / Anti-spasmodic Salt",
+        "epithet": "The Anti-Spasm Salt"
+      },
+      "biological": {
+        "primaryFunction": "Supplements Kali Phos as a nerve mineral; relaxes white nerve fibers and muscular tissue; relieves all forms of cramping, spasm, and shooting pain",
+        "mechanism": "Connected to the nervous system where it supplements Kali Phos. When deficient, white nerve fibers contract causing spasms, cramps, neuralgia, and shooting pains. Essential for the rhythmic, coherent movement of muscle. Pain relieved by heat, pressure, bending double; aggravated by cold and touch.",
+        "bodySystems": ["cardiovascular system (Leo = heart)", "motor nervous system", "muscular tissue"],
+        "organsGoverned": ["heart", "spine (upper back)", "spinal cord"],
+        "endocrineTarget": "Heart-thymus axis; the 'alchemical vase' of the cardiovascular endocrine system",
+        "nervousSystemRole": "Governs the motor nerves and the cardiac vagal response. The 'Lion's spring' — the impulse that throbs through the heart. Critical for rhythmic muscle action and heart coherence."
+      },
+      "deficiency": {
+        "physical": ["muscle cramps", "menstrual cramps", "neuralgia", "neuritis", "sciatica", "stomach cramps", "flatulence", "hiccups", "convulsive cough", "shooting/darting/spasmodic pain", "twitching", "writer's cramp", "leg cramps at night"],
+        "emotional": ["impulsivity", "spasmodic emotional reactions", "frustration that releases in bursts", "heart palpitations from emotion"],
+        "mental": ["scattered impulsive thinking", "sudden mental cramps (writers block, performance freeze)", "difficulty sustaining rhythm in thought"],
+        "facialSigns": ["red round spots on cheeks (always or temporarily)", "red spots in neck", "otherwise pale skin", "convulsions of corners of mouth", "twitch of eyelids"]
+      },
+      "plainLanguageSignal": "Sharp, shooting, cramping pain — anywhere. Muscle twitches. Menstrual cramps. Hiccups that won't stop. Heart palpitations. Whatever's spasming, the rhythm-keeper of your nervous system needs magnesium. Heat helps; cold makes it worse.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Leo",
+        "Sun or Mars transiting Leo",
+        "Acute cramping pain of any kind (take every 15-30 min until relieved)",
+        "Menstrual pain",
+        "Sciatica or neuralgic flares",
+        "Heart palpitations from emotional stress"
+      ],
+      "complementarySalts": [
+        "Kali Phos (Aries) — pairs for nervous asthma and insomnia",
+        "Ferr Phos (Pisces) — for cardiovascular support",
+        "Calc Phos (Capricorn) — for muscular spasm in skeletal context"
+      ],
+      "esoteric": {
+        "careyName": "The Heart of the Zodiac",
+        "bibleAlchemy": "Dinah, eleventh child of Jacob — 'judged'",
+        "discipleCorrespondence": "Simon",
+        "astralColors": ["red", "green"],
+        "gems": ["ruby", "diamond"],
+        "affirmation": "My heart beats in perfect rhythm. My nerves are relaxed and my muscles flow with ease. I am the heart of the zodiac — radiant, rhythmic, and at rest in motion."
+      },
+      "foodSources": ["whole grains (especially barley, oats)", "almonds", "walnuts", "lemons", "figs", "apples", "coconut", "blue plums", "asparagus", "spinach", "dark leafy greens"],
+      "homeopathicPotency": "6X (acute: take every 15-30 min until relief)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
+      "color": "#FFB700",
+      "kitEligible": true,
+      "kitProduct": "Leo Anti-Spasm Blend — Mag Phos foods + cramp bark + ginger"
+    },
+    {
+      "sign": "Virgo",
+      "signNumber": 6,
+      "dateRange": "August 23 – September 22",
+      "rulingPlanet": "Mercury",
+      "element": "Earth",
+      "modality": "Mutable",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Kali Sulphuricum",
+        "shortName": "Kali Sulph",
+        "saltNumber": 7,
+        "chemicalName": "Potassium Sulphate",
+        "chemicalFormula": "K2SO4",
+        "careyTitle": "Skin Balance / Oxygen Carrier",
+        "epithet": "The Oil Maker"
+      },
+      "biological": {
+        "primaryFunction": "Manufactures oil throughout the tissue; carries oxygen to cells in partnership with Ferr Phos; supports skin, scalp, and the lining of all internal organs",
+        "mechanism": "Special affinity for cells lining the skin and the internal mucous lining of all organs. Forms oil by uniting potash with albuminoids and aerial elements. Deficiency thickens the oil in tissue, clogging the seven million pores of the skin (Carey's count), turning heat and secretions inward. Together with Ferr Phos, carries oxygen to cells.",
+        "bodySystems": ["integumentary system (skin, scalp, nails, hair)", "digestive system", "respiratory mucous membranes", "oxygen transport"],
+        "organsGoverned": ["solar plexus", "bowels (small intestine)", "spleen", "pancreas (digestive function)"],
+        "endocrineTarget": "Pancreas (digestive enzymes), adrenal cortex indirectly",
+        "nervousSystemRole": "Solar plexus = great receiving station of energy from the back brain (Carey). Kali Sulph keeps the skin pores open as 'safety valves of the human engine' — when blocked, heat returns inward and disturbs the autonomic nervous system."
+      },
+      "deficiency": {
+        "physical": ["psoriasis", "athlete's foot", "dandruff (yellowish/scaling)", "yellow slimy tongue coating", "yellow-green mucous discharge", "epidermal scaling", "brittle nails", "falling hair", "chilliness alternating with heat flashes", "wandering pains in limbs", "bad colds"],
+        "emotional": ["irritability from suppressed elimination", "anxiety from gut-skin axis", "perfectionistic frustration with own body"],
+        "mental": ["mental dullness from poor cellular oxygenation", "critical and analytical to the point of paralysis", "obsessive over health detail"],
+        "facialSigns": ["brown-yellow skin", "dark eyelids", "yellowish around mouth", "freckles", "dandruff on viscous base", "sticking head dandruff", "yellow slimy tongue coating"]
+      },
+      "plainLanguageSignal": "Your skin is breaking out — yellow, scaling, oily and irritated. Dandruff that won't quit. Your bowels feel sluggish. You alternate between feeling chilly and flushed. The oil-making machinery of your body is jammed, and oxygen isn't reaching your cells properly.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Virgo",
+        "Mercury or Sun transiting Virgo",
+        "Persistent skin conditions (psoriasis, eczema, athlete's foot)",
+        "Chronic dandruff or scalp issues",
+        "Digestive issues with skin manifestation"
+      ],
+      "complementarySalts": [
+        "Ferr Phos (Pisces) — partners for oxygen transport",
+        "Silica (Sagittarius) — both support skin, hair, nails",
+        "Nat Mur (Aquarius) — for hair and scalp health"
+      ],
+      "esoteric": {
+        "careyName": "The Virgin Mary (Pure Sea)",
+        "bibleAlchemy": "Joseph, twelfth son of Jacob — 'to increase power' or 'son of the right hand'",
+        "discipleCorrespondence": "Bartholomew",
+        "astralColors": ["gold", "black"],
+        "gems": ["pink jasper", "hyacinth"],
+        "affirmation": "My skin is clear, my breath gives oxygen to every cell. My discrimination serves me — I analyze with love, not criticism. I am the pure sea from which life is made."
+      },
+      "foodSources": ["chicory", "endive", "lettuce", "carrots", "almonds", "oats", "rye", "lemons", "figs", "raw cucumber"],
+      "homeopathicPotency": "6X",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Best taken away from sulfur-rich meals so absorption isn't competed against.",
+      "color": "#7FB069",
+      "kitEligible": true,
+      "kitProduct": "Virgo Skin Balance Blend — Kali Sulph foods + burdock + calendula"
+    },
+    {
+      "sign": "Libra",
+      "signNumber": 7,
+      "dateRange": "September 23 – October 22",
+      "rulingPlanet": "Venus",
+      "element": "Air",
+      "modality": "Cardinal",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Natrum Phosphoricum",
+        "shortName": "Nat Phos",
+        "saltNumber": 10,
+        "chemicalName": "Sodium Phosphate",
+        "chemicalFormula": "Na2HPO4",
+        "careyTitle": "Acid Neutraliser",
+        "epithet": "The pH Balancer"
+      },
+      "biological": {
+        "primaryFunction": "Holds the balance between acid and alkaline in blood, nerve, brain, and intercellular fluids; emulsifies fatty acids; regulates bile consistency",
+        "mechanism": "Present in blood, muscle, nerve and brain cells, plus intercellular fluids. Promotes water absorption via lactic acid decomposition. Distinct from Nat Mur (water distribution) and Nat Sulph (water elimination) — these three together control all body fluid behavior. Deficiency allows uric acid to crystallize around joints.",
+        "bodySystems": ["pH/acid-alkaline balance", "kidneys", "renal-adrenal axis", "fluid balance"],
+        "organsGoverned": ["kidneys", "lumbar spine", "adrenal glands", "ovaries", "buttocks"],
+        "endocrineTarget": "Adrenal glands, kidneys (renin-aldosterone system)",
+        "nervousSystemRole": "Acid blood = irritated brain cells = hate, envy, jealousy, war, murder per Carey. Nat Phos restores 'divine harmony' to the brain's chemistry. Critical for nervous system pH and the calm-clarity baseline."
+      },
+      "deficiency": {
+        "physical": ["acidic conditions throughout body", "rheumatic pain and joint stiffness from uric acid", "jaundice", "colic", "sick headaches", "gastric disturbances", "dyspepsia from fatty foods", "creamy golden-yellow tongue coating and discharge", "indigestion"],
+        "emotional": ["hate, envy, jealousy, criticism (Carey's hallmark — caused by acid brain chemistry)", "competitive irritability", "imbalance and disharmony in relationships"],
+        "mental": ["inability to find the middle path", "either/or thinking", "obsessive comparison", "mental restlessness from acidity"],
+        "facialSigns": ["greasy dull shine on forehead", "greasy nose", "large skin pores", "blackheads", "pimples", "pale mucous membranes", "hanging cheeks", "double chin", "yellowish back of tongue"]
+      },
+      "plainLanguageSignal": "Your face is greasy and breaking out. Your joints ache, your stomach is sour, you feel critical and jealous of others. Your body is too acidic. The alkaline balancer is missing — and Carey says this is the chemical root of disharmony, envy, and competitive irritation.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Libra",
+        "Venus or Sun transiting Libra",
+        "Persistent acid reflux or gastric acidity",
+        "Joint pain attributed to uric acid (gout, rheumatism)",
+        "Emotional state of envy, jealousy, comparison",
+        "After high-protein or high-fat meals"
+      ],
+      "complementarySalts": [
+        "Nat Sulph (Taurus) — fluid balance partner",
+        "Nat Mur (Aquarius) — fluid balance partner (the trio controls all body fluids)",
+        "Ferr Phos (Pisces) — for inflammatory acidic pain"
+      ],
+      "esoteric": {
+        "careyName": "The Loins / The Scales",
+        "bibleAlchemy": "Reuben, first son of Jacob — 'Vision of the Sun'",
+        "discipleCorrespondence": "Peter — from Petra meaning 'stone or mineral' ('On thee, Peter [mineral], will I build my church')",
+        "astralColors": ["black", "crimson", "light blue"],
+        "gems": ["diamond", "opal"],
+        "affirmation": "I am perfectly balanced — acid and alkaline, giving and receiving, self and other. My brain chemistry holds harmony. I see clearly, judge fairly, love freely."
+      },
+      "foodSources": ["wheat", "strawberries", "apples", "raisins", "figs", "almonds", "asparagus", "spinach", "carrots", "cabbage"],
+      "homeopathicPotency": "6X",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food. For acid reflux, take 15 min before meals.",
+      "color": "#FF85A1",
+      "kitEligible": true,
+      "kitProduct": "Libra pH Balance Blend — Nat Phos foods + dandelion + slippery elm"
+    },
+    {
+      "sign": "Scorpio",
+      "signNumber": 8,
+      "dateRange": "October 23 – November 21",
+      "rulingPlanet": "Mars",
+      "modernRuler": "Pluto (Phase 2)",
+      "element": "Water",
+      "modality": "Fixed",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Calcarea Sulphurica",
+        "shortName": "Calc Sulph",
+        "saltNumber": 3,
+        "chemicalName": "Calcium Sulphate",
+        "chemicalFormula": "CaSO4",
+        "careyTitle": "Cell Healer / Blood Purifier",
+        "epithet": "The Wound Healer"
+      },
+      "biological": {
+        "primaryFunction": "Removes waste products from blood via the liver; cleanses non-functional organic matter from tissue; resolves abscesses and slow-healing wounds; purifies and renews blood",
+        "mechanism": "Found in the liver where it eliminates waste from the bloodstream. Cleans accumulated non-functional organic matter from connective tissue, causing infiltrated parts to discharge before they injure surrounding tissue. Crude form is gypsum; alchemically transmuted to 'plaster of Paris' — Carey's symbol for Scorpio transformation.",
+        "bodySystems": ["liver detoxification", "blood purification", "reproductive/eliminative organs", "lymph and connective tissue cleansing"],
+        "organsGoverned": ["sexual organs", "reproductive system", "rectum", "bladder", "colon (lower)", "nasal passages"],
+        "endocrineTarget": "Gonads (ovaries/testes), prostate, liver detox enzymes",
+        "nervousSystemRole": "The 'transformation salt' — supports the nervous system through periods of intense regeneration. Critical when the system is detoxifying or recovering from suppressed elimination."
+      },
+      "deficiency": {
+        "physical": ["abscesses and boils that won't heal", "acne (especially cystic)", "gumboils", "skin eruptions turning to ulcers", "frontal headaches", "neuralgia in elderly", "slow-healing wounds", "persistent catarrh", "pimples in adolescence"],
+        "emotional": ["intense emotional suppression manifesting in skin", "feelings of being 'unclean' that won't lift", "rage that turns inward into illness"],
+        "mental": ["obsessive rumination", "inability to release old grievances", "transformative crises stuck in stagnation"],
+        "facialSigns": ["whiteness/alabaster-like skin coloring (gypsum-like)", "only few signs in face", "liver spots", "brown spots"]
+      },
+      "plainLanguageSignal": "You have wounds, abscesses, or acne that won't heal. Your skin won't clear. Old emotional stuff is trying to come out and getting stuck. This is your body's deep cleaner — the salt that pulls poison up and out — running on empty.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Scorpio",
+        "Mars or Pluto transiting Scorpio",
+        "Stubborn skin conditions with slow healing",
+        "Recovering from suppressed illness or emotional suppression",
+        "Adolescent or hormonal acne",
+        "Periods of intense transformation/letting go"
+      ],
+      "complementarySalts": [
+        "Kali Mur (Gemini) — both cleanse and purify blood (treat catarrh, acne together)",
+        "Silica (Sagittarius) — for pus formation and discharge",
+        "Calc Fluor (Cancer) — for tissue restoration after eruption"
+      ],
+      "esoteric": {
+        "careyName": "From Scorpion to White Eagle",
+        "bibleAlchemy": "Simeon, second son of Jacob — 'hears and obeys'",
+        "discipleCorrespondence": "Andrew — 'to create or ascend'",
+        "astralColors": ["golden-brown", "black"],
+        "gems": ["topaz", "malachite (polished/sealed only — see safety)"],
+        "affirmation": "I transmute the lower into the higher. My wounds become my wisdom. I am the White Eagle, risen from the scorpion. My blood is pure, my body is renewed."
+      },
+      "foodSources": ["radishes", "asparagus", "cauliflower", "leeks", "onions", "garlic", "figs", "prunes", "tomatoes", "watercress"],
+      "homeopathicPotency": "6X or 12X (12X for chronic skin work)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food.",
+      "safetyNote": "Carey lists malachite as a Scorpio gem. In Astryx the rule is absolute: malachite gets a red warning badge everywhere. Raw malachite contains toxic copper carbonate dust. Only polished and sealed malachite is safe for body contact, and never for elixirs or ingestion.",
+      "color": "#8B0000",
+      "kitEligible": true,
+      "kitProduct": "Scorpio Deep Cleanse Blend — Calc Sulph foods + red clover + burdock"
+    },
+    {
+      "sign": "Sagittarius",
+      "signNumber": 9,
+      "dateRange": "November 22 – December 21",
+      "rulingPlanet": "Jupiter",
+      "element": "Fire",
+      "modality": "Mutable",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Silicea",
+        "shortName": "Silica",
+        "saltNumber": 12,
+        "chemicalName": "Silicon Dioxide",
+        "chemicalFormula": "SiO2",
+        "careyTitle": "Cell Cleanser / The Surgeon",
+        "epithet": "The Internal Surgeon"
+      },
+      "biological": {
+        "primaryFunction": "Cellular surgeon — sharp-edged molecules cut passages through tissue to discharge pus and decay; strengthens connective tissue, bone covering, nerve sheath, hair, skin, nails",
+        "mechanism": "Found in hair, skin, nails, periosteum (bone covering), neurilemma (nerve sheath), with traces in bone tissue. Its molecules remain sharp and pointed even when triturated — they act like microscopic lancets, pushing decaying organic matter out through suppuration. The body's natural surgeon — no scalpel required.",
+        "bodySystems": ["skeletal connective tissue", "skin/hair/nails", "nerve sheath protection", "lymphatic discharge"],
+        "organsGoverned": ["hips", "thighs", "femurs", "sciatic nerve", "liver (Jupiter-ruled)"],
+        "endocrineTarget": "Liver (Jupiter), pituitary indirectly",
+        "nervousSystemRole": "Protects the neurilemma — the sheath around every nerve. When deficient, nerves become exposed and over-reactive. Long-term Silica deficiency = nervous oversensitivity and connective tissue weakness simultaneously."
+      },
+      "deficiency": {
+        "physical": ["boils, abscesses, styes, gumboils", "tonsillitis with pus", "slow-healing wounds with discharge", "brittle nails", "thin lifeless hair", "weakness in connective tissue", "stomach pains worse at night, better with heat", "dyspepsia", "weak hip and thigh muscles"],
+        "emotional": ["oversensitivity to stimulation", "lack of stamina/grit", "wilting under pressure"],
+        "mental": ["mental sharpness lost", "loss of conviction", "prophetic vision dulled (Sagittarius's gift)"],
+        "facialSigns": ["shining/varnished skin (polished shine)", "waxy yellow or pale skin", "deep recumbent eyes", "slip eyelids", "laughter lines", "crow's feet", "convulsions of eyelids", "small skin pores", "vertical wrinkles in front of ears", "brittle hair", "dry nose"]
+      },
+      "plainLanguageSignal": "You have a boil, abscess, or wound full of pus that won't drain. Your hair and nails are brittle. Your nerves feel exposed — every sound is too loud, every light too bright. You need your body's internal surgeon to come back online.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Sagittarius",
+        "Jupiter or Sun transiting Sagittarius",
+        "Recurring boils, abscesses, styes, gumboils",
+        "Brittle hair, nails, thin/weak connective tissue",
+        "Nervous oversensitivity — auditory, visual, tactile",
+        "Slow-healing wounds with pus"
+      ],
+      "complementarySalts": [
+        "Calc Sulph (Scorpio) — for suppuration and pus",
+        "Nat Mur (Aquarius) — partners for healthy hair, skin",
+        "Kali Sulph (Virgo) — for skin and nail health"
+      ],
+      "esoteric": {
+        "careyName": "The Archer's Arrowhead",
+        "bibleAlchemy": "Levi, third son of Jacob — 'joined or associated'",
+        "discipleCorrespondence": "James, son of Alpheus",
+        "astralColors": ["gold", "red", "green"],
+        "gems": ["carbuncle", "diamond", "turquoise"],
+        "affirmation": "I am the archer — my aim is true, my arrow is silica-tipped, my vision pierces the distance. My body's internal surgeon does its work perfectly. I am strong, sharp, and clear."
+      },
+      "foodSources": ["whole oats", "barley", "millet", "horsetail (herbal)", "strawberries", "figs", "apples", "leafy greens", "cucumber skin", "bell pepper", "asparagus"],
+      "homeopathicPotency": "6X or 12X (long-acting; deep action)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Caution: do NOT use Silica if you have surgical implants, pins, or pacemakers — Silica's discharge action can theoretically work to expel foreign objects from tissue.",
+      "color": "#9D4EDD",
+      "kitEligible": true,
+      "kitProduct": "Sagittarius Connective Tonic — Silica foods + horsetail + bamboo"
+    },
+    {
+      "sign": "Capricorn",
+      "signNumber": 10,
+      "dateRange": "December 22 – January 19",
+      "rulingPlanet": "Saturn",
+      "element": "Earth",
+      "modality": "Cardinal",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Calcarea Phosphorica",
+        "shortName": "Calc Phos",
+        "saltNumber": 2,
+        "chemicalName": "Calcium Phosphate",
+        "chemicalFormula": "Ca3(PO4)2",
+        "careyTitle": "General Tonic / Nutrition Salt / Bone Health",
+        "epithet": "The Builder / The White Stone"
+      },
+      "biological": {
+        "primaryFunction": "Builds bone, teeth, and connective tissue; unites with albumin as cement for skeletal structure; restores tone to weakened organs; primary cell-builder of the body",
+        "mechanism": "Bone is 57% calcium phosphate. Uses albumin as cement to build bone, teeth, blood corpuscles, and gastric juices. Promotes healthy cellular activity and restores tone to weakened tissues. Carey's 'White Stone' that the builders rejected — biochemistry as the cornerstone of the temple of the body.",
+        "bodySystems": ["skeletal system", "dental", "cellular structure", "digestive (gastric juice)", "circulatory (blood corpuscles)"],
+        "organsGoverned": ["bones", "joints", "knees", "teeth", "skin (Saturn-ruled)", "gallbladder"],
+        "endocrineTarget": "Parathyroid (calcium regulation), pituitary (Saturn-pituitary axis)",
+        "nervousSystemRole": "Foundational nutrition for the entire nervous system. The deep restorer when the system is depleted. Pairs with Kali Phos for nervous-system rebuilding after chronic stress."
+      },
+      "deficiency": {
+        "physical": ["bone weakness", "tooth decay", "delayed growth in children", "anemia (with Ferr Phos)", "chilblains", "slow circulation with coldness/numbness", "enlarged tonsils", "nasal polyps", "Bright's disease (albumin via kidneys)", "rheumatism", "senile itching (pruritus)", "non-functional albumin causing abscesses/catarrh"],
+        "emotional": ["deep solitude of the soul (Carey's phrase)", "Saturn-style melancholy", "feeling 'foundation' is missing", "dwelling in air castles unable to manifest"],
+        "mental": ["depleted base of operations", "inability to build/finish what one starts", "discouragement from structural exhaustion"],
+        "facialSigns": ["waxy skin", "skin color like cheese", "white coating of tongue", "halitosis", "white noses and auricles", "sweaty hair", "rough voice"]
+      },
+      "plainLanguageSignal": "Your bones feel weak. Your teeth are brittle. You're tired down to the foundation. You build elaborate plans in your mind but can't manifest them. Your body's primary builder is missing — the white stone the foundation rests on.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Capricorn",
+        "Saturn or Sun transiting Capricorn",
+        "Bone, tooth, or joint issues",
+        "Children's growth issues",
+        "Convalescence after illness (intercurrent remedy)",
+        "Anemia (combine with Ferr Phos)",
+        "Skin issues from Saturn pathology (Carey notes skin)"
+      ],
+      "complementarySalts": [
+        "Ferr Phos (Pisces) — for anemia",
+        "Kali Phos (Aries) — for senile itching, nervous-skeletal pairing",
+        "Calc Fluor (Cancer) — both calcium-based, complementary tissue work"
+      ],
+      "esoteric": {
+        "careyName": "The Goat of the Zodiac / The White Stone",
+        "bibleAlchemy": "Judah, fourth son of Jacob — 'the praise of the Lord'",
+        "discipleCorrespondence": "John",
+        "astralColors": ["garnet", "brown", "silver-gray", "black"],
+        "gems": ["white onyx", "moonstone"],
+        "affirmation": "I am the white stone — the foundation of my own temple. My bones are strong, my structure is sound, I build what I envision. The Great Work commences in the Goat."
+      },
+      "foodSources": ["whole grains (especially oats, rye)", "almonds", "broccoli", "kale", "spinach", "watercress", "dairy (high quality, organic)", "egg yolks", "bone broth", "sesame seeds"],
+      "homeopathicPotency": "6X (general tonic — can be taken long-term as foundational support)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
+      "color": "#36454F",
+      "kitEligible": true,
+      "kitProduct": "Capricorn Foundation Blend — Calc Phos foods + horsetail + nettle"
+    },
+    {
+      "sign": "Aquarius",
+      "signNumber": 11,
+      "dateRange": "January 20 – February 18",
+      "rulingPlanet": "Saturn",
+      "modernRuler": "Uranus",
+      "element": "Air",
+      "modality": "Fixed",
+      "polarity": "Positive",
+      "cellSalt": {
+        "commonName": "Natrum Muriaticum",
+        "shortName": "Nat Mur",
+        "saltNumber": 9,
+        "chemicalName": "Sodium Chloride",
+        "chemicalFormula": "NaCl",
+        "careyTitle": "Fluid Balancer / Water Distributing Salt",
+        "epithet": "The Water Bearer's Salt"
+      },
+      "biological": {
+        "primaryFunction": "Distributes water throughout every fluid and solid of the body; controls moisture ebb and flow; essential for cell division, growth, and glandular activity; produces hydrochloric acid",
+        "mechanism": "Enters into the composition of every body fluid and solid. Powerful affinity for water — controls the moisture balance of the entire system. Without it, cell division and normal growth cannot proceed. Common table salt CANNOT do this work — it is too coarse for mucous membrane absorbents. Only triturated biochemic Nat Mur works.",
+        "bodySystems": ["fluid distribution (lymph, blood plasma, intercellular)", "digestive (HCl production)", "glandular system", "skin moisture"],
+        "organsGoverned": ["ankles", "calves", "circulatory system (Saturn rules circulation classically)", "shins"],
+        "endocrineTarget": "Adrenal cortex (aldosterone/sodium regulation), pituitary posterior (ADH)",
+        "nervousSystemRole": "Critical for nerve signal transmission (sodium channels). Depletion mirrors emotional dehydration — 'low spirits with feeling of hopelessness'. Hay fever and watery discharges signal Nat Mur deficiency."
+      },
+      "deficiency": {
+        "physical": ["low spirits with hopelessness", "headache with constipation", "watery mucus discharge with sneezing", "great thirst", "toothache with tear/saliva flow", "weak eyes that water in wind", "hay fever", "drowsiness with muscular weakness", "chafing skin", "unrefreshing sleep", "loss of taste and smell", "salt cravings", "insect bites (apply locally)"],
+        "emotional": ["sustained grief held in body", "hopelessness without cause", "watery emotion that won't release", "feeling 'dried out' emotionally"],
+        "mental": ["unable to think clearly when dehydrated at the cellular level", "morning grogginess", "feeling 'flooded' or 'parched' alternately"],
+        "facialSigns": ["humid shine on upper eyelid (gelatin/snail-mucus appearance)", "bright eyelids", "large skin pores", "bloated face", "swollen spongy cheeks", "head dandruff", "white seclusions of eyes", "clear coating of tongue", "salivary vesicles on tongue edges", "skin rash upper forehead", "itch", "dry skin"]
+      },
+      "plainLanguageSignal": "You're either too wet or too dry — somewhere in your body, the water is misdistributed. You crave salt. Your eyes water in wind. You feel hopeless without reason. The thing that should be balancing every fluid in your body has dropped below threshold.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Aquarius",
+        "Saturn or Uranus transiting Aquarius",
+        "Hay fever or allergic rhinitis",
+        "Sustained grief or unprocessed emotional water",
+        "Hypothyroid presentations with fluid issues",
+        "Strong salt cravings",
+        "Use INSTEAD of table salt — different action entirely"
+      ],
+      "complementarySalts": [
+        "Nat Sulph (Taurus) and Nat Phos (Libra) — the trio that controls all body fluids",
+        "Kali Mur (Gemini) — partners for hydrochloric acid production",
+        "Ferr Phos (Pisces) — for inflammatory watery conditions"
+      ],
+      "esoteric": {
+        "careyName": "The Sign of the Son of Man / The Water Bearer",
+        "bibleAlchemy": "Dan, fifth son of Jacob — 'judgment' or 'he that judges'",
+        "discipleCorrespondence": "James",
+        "astralColors": ["blue", "pink", "Nile green"],
+        "gems": ["sapphire", "opal", "turquoise"],
+        "affirmation": "I am the Water Bearer. The waters within me flow in perfect balance — every cell receives its share, no part is parched, no part is flooded. I judge with clarity, I love with all my fluid being."
+      },
+      "foodSources": ["sea vegetables (kelp, dulse, nori)", "celery", "raw spinach", "cucumber", "cabbage", "radishes", "lentils", "strawberries", "oysters (mineral-rich)"],
+      "homeopathicPotency": "6X or 12X (12X for emotional/grief work)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Can be used even when on a salt-free diet — biochemic Nat Mur is fundamentally different from table salt in the way the body receives it.",
+      "color": "#5DADE2",
+      "kitEligible": true,
+      "kitProduct": "Aquarius Water Balance Blend — Nat Mur foods + nettle + oat straw"
+    },
+    {
+      "sign": "Pisces",
+      "signNumber": 12,
+      "dateRange": "February 19 – March 20",
+      "rulingPlanet": "Jupiter",
+      "modernRuler": "Neptune",
+      "element": "Water",
+      "modality": "Mutable",
+      "polarity": "Negative",
+      "cellSalt": {
+        "commonName": "Ferrum Phosphoricum",
+        "shortName": "Ferr Phos",
+        "saltNumber": 4,
+        "chemicalName": "Iron Phosphate",
+        "chemicalFormula": "FePO4",
+        "careyTitle": "First Aid Salt / Oxygen Carrier",
+        "epithet": "The Magnetic Mineral"
+      },
+      "biological": {
+        "primaryFunction": "Carries oxygen via hemoglobin; first-aid salt for all acute inflammation, fever, congestion, bleeding, and the early stages of any disease; strengthens vascular walls",
+        "mechanism": "Enters into the composition of hemoglobin. Takes oxygen from inhaled air and carries it through the blood to every cell. Strengthens circular walls of blood vessels, especially arteries. Should be considered SUPPLEMENTARY to whatever other treatment is indicated — oxygen is required for all healing. Carey calls iron the 'magnetic mineral' due to its oxygen affinity.",
+        "bodySystems": ["circulatory system", "respiratory oxygen transport", "immune response (acute inflammation)", "lymphatic (in feet)"],
+        "organsGoverned": ["feet", "toes", "lymph in extremities", "pituitary indirectly"],
+        "endocrineTarget": "Bone marrow (hematopoiesis), spleen",
+        "nervousSystemRole": "Acute inflammation is the nervous system's alarm response. Ferr Phos calms the system by oxygenating tissue where blood is congested. Pisces people have great magnetic healing power in hands (Carey) — Ferr Phos amplifies this magnetic transmission."
+      },
+      "deficiency": {
+        "physical": ["fever (any cause, early stage)", "congestion (any organ)", "inflammatory pain", "quickened pulse", "anemia with low red blood cells", "muscular strains and sprains (acute)", "bleeding from cuts (can apply powder directly)", "childhood ailments (frequently needed)", "ailments of advancing years"],
+        "emotional": ["weariness from chronic oxygen deficit", "feeling drained without cause", "low energy reservoir"],
+        "mental": ["mental dullness from poor cellular oxygenation", "fogginess during illness", "difficulty staying present"],
+        "facialSigns": ["reddened forehead and cheeks", "red hot ears", "red chin", "red tongue", "blue-black shade in nasal root and under eyes", "grey-black coloring around nose", "pale gums"]
+      },
+      "plainLanguageSignal": "You have a fever, an inflammation, an acute injury, or you just feel oxygen-starved and exhausted. Whatever is happening, your blood needs more oxygen NOW. This is the FIRST salt to reach for in any acute episode — and the salt to keep on hand always.",
+      "whenToConsider": [
+        "Sun, Moon, or Rising in Pisces",
+        "Jupiter or Neptune transiting Pisces",
+        "ANY acute illness — first aid response (take every 30 min while symptoms acute)",
+        "Onset of fever or inflammation",
+        "Anemia (combine with Calc Phos)",
+        "Recovery from injury or trauma",
+        "Children's acute ailments (combine with Kali Mur)"
+      ],
+      "complementarySalts": [
+        "Calc Phos (Capricorn) — for anemia",
+        "Kali Mur (Gemini) — alternate every 30 min for inflammation/fever",
+        "ALL OTHER SALTS — Ferr Phos is universal supplementary remedy because oxygen is required for any healing"
+      ],
+      "esoteric": {
+        "careyName": "The Fish That Swim in the Pure Sea",
+        "bibleAlchemy": "Naphtali, sixth son of Jacob — 'wrestling of God' (Pisces natives worry because they cannot do more for those in trouble)",
+        "discipleCorrespondence": "Simon Peter (in some lineages) / Philip",
+        "astralColors": ["white", "pink", "emerald-green", "black"],
+        "gems": ["chrysolite", "pink-shell", "moonstone"],
+        "affirmation": "I am the magnetic one. My blood drinks oxygen freely, my body heals quickly, my hands carry healing magnetism. I am the fish that swims in the pure sea — fluid, oxygenated, alive."
+      },
+      "foodSources": ["spinach", "kale", "lentils", "beets", "raisins", "dried apricots", "pumpkin seeds", "lean grass-fed beef (occasional)", "blackstrap molasses", "almonds"],
+      "homeopathicPotency": "6X (acute: every 30 min) or 12X (chronic)",
+      "dosing": "Traditionally taken as 4 tablets under the tongue. For acute episodes — fever, injury, inflammation — take every 30 minutes for first 2 hours, then 3x daily until resolved. Note: Ferr Phos is NOT an iron tonic in the conventional sense — its action is nutritional with no side effects, easily assimilated.",
+      "color": "#4A90E2",
+      "kitEligible": true,
+      "kitProduct": "Pisces First Aid Blend — Ferr Phos foods + nettle + yellow dock"
+    }
+  ],
+  "deficiencyAlgorithm": {
+    "description": "For each Sun sign, this lookup returns the 3 cell salts most likely to be in deficiency from birth (Bonacci's gestation rule). These are the 3 zodiac signs immediately AFTER the Sun sign in the wheel — the 3 months of gestation the embryo did not complete.",
+    "deficienciesBySunSign": {
+      "Aries": ["Taurus (Nat Sulph)", "Gemini (Kali Mur)", "Cancer (Calc Fluor)"],
+      "Taurus": ["Gemini (Kali Mur)", "Cancer (Calc Fluor)", "Leo (Mag Phos)"],
+      "Gemini": ["Cancer (Calc Fluor)", "Leo (Mag Phos)", "Virgo (Kali Sulph)"],
+      "Cancer": ["Leo (Mag Phos)", "Virgo (Kali Sulph)", "Libra (Nat Phos)"],
+      "Leo": ["Virgo (Kali Sulph)", "Libra (Nat Phos)", "Scorpio (Calc Sulph)"],
+      "Virgo": ["Libra (Nat Phos)", "Scorpio (Calc Sulph)", "Sagittarius (Silica)"],
+      "Libra": ["Scorpio (Calc Sulph)", "Sagittarius (Silica)", "Capricorn (Calc Phos)"],
+      "Scorpio": ["Sagittarius (Silica)", "Capricorn (Calc Phos)", "Aquarius (Nat Mur)"],
+      "Sagittarius": ["Capricorn (Calc Phos)", "Aquarius (Nat Mur)", "Pisces (Ferr Phos)"],
+      "Capricorn": ["Aquarius (Nat Mur)", "Pisces (Ferr Phos)", "Aries (Kali Phos)"],
+      "Aquarius": ["Pisces (Ferr Phos)", "Aries (Kali Phos)", "Taurus (Nat Sulph)"],
+      "Pisces": ["Aries (Kali Phos)", "Taurus (Nat Sulph)", "Gemini (Kali Mur)"]
+    }
+  }
+}

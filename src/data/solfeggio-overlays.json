@@ -1,0 +1,46 @@
+[
+  {
+    "hz": 174,
+    "role": "structural_grounding_overlay"
+  },
+  {
+    "hz": 285,
+    "role": "reset_overlay"
+  },
+  {
+    "hz": 396,
+    "role": "release_overlay"
+  },
+  {
+    "hz": 417,
+    "role": "corrective_overlay"
+  },
+  {
+    "hz": 432,
+    "role": "balancing_overlay"
+  },
+  {
+    "hz": 528,
+    "role": "coherence_overlay"
+  },
+  {
+    "hz": 639,
+    "role": "relational_overlay"
+  },
+  {
+    "hz": 741,
+    "role": "signal_clearing_overlay"
+  },
+  {
+    "hz": 852,
+    "role": "amplification_overlay"
+  },
+  {
+    "hz": 936,
+    "role": "depth_overlay"
+  },
+  {
+    "hz": 963,
+    "role": "expansion_overlay"
+  }
+]

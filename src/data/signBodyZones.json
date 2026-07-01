@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "title": "Sign → Body Zones (the WHERE axis)",
+    "lineage": "Medical-astrology tradition — the classical sign→body rulerships (public-domain, predating any single author by centuries); system distilled, never ingested verbatim. Attribute to the tradition.",
+    "sources": ["Medical-astrology tradition (sign rulership of the body)"],
+    "axis": "SIGN = the body PART (the WHERE). PLANET = the pathological ACTION (the WHAT). This file holds the WHERE.",
+    "note": "Used by the body-zone intake resolver to map a held/afflicted zone to its sign + that sign's ruling planet (the zone-only default action), and by the Reflex engine for opposite/square reflex zones."
+  },
+  "zones": [
+    { "sign": "Aries", "ruling_planet": "Mars", "body_zones": ["head", "skull", "face", "eyes", "brain"], "systems": ["cerebral", "sensory_head"] },
+    { "sign": "Taurus", "ruling_planet": "Venus", "body_zones": ["neck", "throat", "ears", "thyroid", "vocal cords"], "systems": ["throat", "thyroid"] },
+    { "sign": "Gemini", "ruling_planet": "Mercury", "body_zones": ["hands", "arms", "shoulders", "fingers", "lungs", "nerves"], "systems": ["respiratory", "nervous"] },
+    { "sign": "Cancer", "ruling_planet": "Moon", "body_zones": ["stomach", "breasts", "chest", "ribs"], "systems": ["digestive_upper", "fluids"] },
+    { "sign": "Leo", "ruling_planet": "Sun", "body_zones": ["heart", "spine", "upper back"], "systems": ["cardiovascular", "spinal"] },
+    { "sign": "Virgo", "ruling_planet": "Mercury", "body_zones": ["gut", "intestines", "bowels", "pancreas", "abdomen"], "systems": ["digestive_lower", "assimilation"] },
+    { "sign": "Libra", "ruling_planet": "Venus", "body_zones": ["kidneys", "lower back", "lumbar", "adrenals"], "systems": ["renal", "fluid_balance"] },
+    { "sign": "Scorpio", "ruling_planet": "Mars", "body_zones": ["pelvis", "colon", "sacrum", "reproductive organs", "elimination channels"], "systems": ["reproductive", "elimination"] },
+    { "sign": "Sagittarius", "ruling_planet": "Jupiter", "body_zones": ["hips", "thighs", "sciatic", "liver"], "systems": ["hepatic", "locomotion"] },
+    { "sign": "Capricorn", "ruling_planet": "Saturn", "body_zones": ["knees", "bones", "joints", "skin", "teeth"], "systems": ["skeletal", "structural"] },
+    { "sign": "Aquarius", "ruling_planet": "Saturn", "body_zones": ["ankles", "calves", "circulation", "shins"], "systems": ["circulatory", "electrical_signaling"] },
+    { "sign": "Pisces", "ruling_planet": "Jupiter", "body_zones": ["feet", "toes", "lymph", "blood", "lymphatic-fluid zones"], "systems": ["lymphatic", "immune_fluid"] }
+  ]
+}

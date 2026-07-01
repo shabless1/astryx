@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ASTRYX — Liquid Neon Sacred Geometry Proof</title>
+<style>
+  :root { --ink:#eaf0ff; --muted:#9aa3c4; --line:rgba(255,255,255,0.14); }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:#06070f; color:var(--ink);
+    font-family:'Exo 2',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; overflow:hidden; }
+  #c { position:fixed; inset:0; width:100%; height:100%; display:block; }
+  #ui { position:fixed; left:0; right:0; top:0; padding:15px 18px; z-index:5;
+    background:linear-gradient(180deg, rgba(6,7,15,0.82) 0%, rgba(6,7,15,0) 100%); }
+  .row { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  h1 { margin:0; font-size:15px; letter-spacing:.3em; font-weight:600; }
+  .sub { color:var(--muted); font-size:11px; letter-spacing:.03em; margin-top:3px; max-width:660px; line-height:1.5; }
+  .group { display:flex; gap:6px; align-items:center; }
+  .lbl { font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); margin-right:4px; }
+  button { font-family:inherit; cursor:pointer; color:#c7d0f0;
+    background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:999px;
+    padding:7px 13px; font-size:11px; letter-spacing:.05em; transition:all .18s; backdrop-filter:blur(6px); }
+  button:hover { border-color:rgba(255,255,255,0.35); }
+  button.on { color:#06070f; font-weight:700; border-color:transparent; }
+  button.leap { padding:8px 20px; letter-spacing:.16em; font-weight:700; text-transform:uppercase; color:#06070f; }
+  #readout { position:fixed; left:18px; bottom:16px; z-index:5; pointer-events:none;
+    background:rgba(6,7,15,0.5); border:1px solid var(--line); border-radius:14px;
+    padding:11px 14px; backdrop-filter:blur(10px); font-size:11px; line-height:1.7; }
+  #readout .big { font-size:14px; font-weight:600; letter-spacing:.06em; }
+  #readout .k { color:var(--muted); }
+  .sw { display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:-1px; margin-left:3px; box-shadow:0 0 8px currentColor; }
+  .pill-wrap { display:flex; gap:6px; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="ui">
+  <div class="row" style="justify-content:space-between">
+    <div>
+      <h1>ASTRYX · LIQUID NEON SACRED GEOMETRY</h1>
+      <div class="sub">The original per-planet sacred forms — Seed &amp; Flower of Life, Metatron's Cube, Rose of Venus, Star fields, spirals — rendered in soft neon glow that flows like liquid. No hard wireframe. Flip planets or press <b>Leap</b> to dissolve and re-bloom into the next.</div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:12px">
+    <div class="group"><span class="lbl">Planet</span><span class="pill-wrap" id="pills"></span></div>
+    <button class="leap" id="leap">✦ Leap</button>
+  </div>
+</div>
+<div id="readout"></div>
+
+<script>
+"use strict";
+const TAU = Math.PI*2;
+
+// ── Planets: fork Hz + a multi-neon palette + sacred-form recipe ──
+// Forms match the app's planetSacredGeometryMap (the shapes SHA had).
+// Per-planet 5-colour palettes (SHA-specified families). Ordered to blend across
+// the gradient sweep; whites/silvers/golds carry the glow on the darker planets.
+const PLANETS = [
+  { name:'Sun',     glyph:'☉', hz:126.22, cols:['#E0431F','#FF7A1A','#FFC23D','#FFE9A8','#FFF6E6'], forms:['seed','spiral'] },
+  { name:'Moon',    glyph:'☽', hz:210.42, cols:['#6E86A8','#9FB8D6','#C7D4E6','#E3ECF7','#FFFFFF'], forms:['vesica','flower'] },
+  { name:'Mercury', glyph:'☿', hz:141.27, cols:['#2FB46A','#7FD84B','#E7E25A','#CFD8D0','#F4FAF2'], forms:['metatron','rose6'] },
+  { name:'Venus',   glyph:'♀', hz:221.23, cols:['#1FA978','#69D5A6','#F08CB6','#F8C2D8','#FFF5F9'], forms:['flower','rose5'] },
+  { name:'Mars',    glyph:'♂', hz:144.72, cols:['#8E1B2E','#C92535','#FF3B30','#D86A2C','#F6E0D8'], forms:['hexagram','ring'] },
+  { name:'Jupiter', glyph:'♃', hz:183.58, cols:['#1E3A8A','#2F5FD0','#7E9AD8','#E6B422','#FBF3DA'], forms:['rose6','spiral'] },
+  { name:'Saturn',  glyph:'♄', hz:147.85, cols:['#1A1712','#4A3B2A','#7A6E5E','#ADA79C','#EDEAE2'], forms:['metatron','ring'] },
+  { name:'Uranus',  glyph:'♅', hz:207.36, cols:['#1C3FA8','#2D8CFF','#5BC8FF','#B8C2CE','#EAF2FB'], forms:['metatron','rose8'] },
+  { name:'Neptune', glyph:'♆', hz:211.44, cols:['#241B5E','#4A36A8','#8A6CE0','#2F74C0','#ECE8FB'], forms:['flower','spiral'] },
+  { name:'Pluto',   glyph:'♇', hz:140.25, cols:['#100C0E','#5A0F1E','#A11D2E','#8C8790','#F0E6C8'], forms:['hexagram','starburst'] },
+];
+
+// Palettes are authored directly (5 tones each, SHA-specified) — used as-is so
+// whites/silvers/blacks stay true. Softness comes from the low-alpha gradient
+// rendering + breathing glow, not from darkening the colors.
+function _h2(x){ return ('0'+Math.round(Math.max(0,Math.min(255,x))).toString(16)).slice(-2); }
+
+// frequency → light (octave law) for the auditable readout
+const C_LIGHT=299792458, LO=4.30e14, HI=7.70e14, MID=5.60e14;
+function foldHz(hz){ let n=Math.round(Math.log2(MID/hz)); let f=hz*2**n; while(f<LO)f*=2; while(f>HI)f/=2; return f; }
+
+const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+let W=0,H=0,DPR=1;
+function resize(){ DPR=Math.min(2,window.devicePixelRatio||1); cv.width=Math.floor(innerWidth*DPR); cv.height=Math.floor(innerHeight*DPR);
+  cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; W=cv.width; H=cv.height; }
+addEventListener('resize',resize); resize();
+
+// ── clean geometry paths (crisp lines, as originally) ──
+let glowPulse = 1; // breathing glow factor (fades in/out), set per frame
+function wRing(cx,cy,r){ const N=80,p=[]; for(let i=0;i<=N;i++){ const a=i/N*TAU;
+  p.push([cx+Math.cos(a)*r, cy+Math.sin(a)*r]); } return p; }
+function wLine(x1,y1,x2,y2){ return [[x1,y1],[x2,y2]]; }
+
+// soft neon stroke — wide glow pass + soft core. When gStroke (a multi-color
+// gradient) is set, every line is painted by that shared gradient so colors blend
+// smoothly across the whole mandala (no solid flat strokes). Glow breathes via
+// glowPulse; geometry stays crisp. Alphas kept low → soft, not bright.
+let gStroke=null, gGlow='#ffffff', gPrimary=false;
+function neon(pts,color,coreW,glowW,a,closed){
+  a = a * glowPulse;
+  const sc = gStroke || color, gl = gStroke ? gGlow : color;
+  ctx.globalCompositeOperation='lighter';
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  ctx.strokeStyle=sc; ctx.shadowColor=gl;
+  ctx.beginPath(); pts.forEach((q,i)=> i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])); if(closed)ctx.closePath();
+  // wide soft halo
+  ctx.shadowBlur=glowW*2.4; ctx.globalAlpha=a*0.18; ctx.lineWidth=glowW; ctx.stroke();
+  // mid
+  ctx.globalAlpha=a*0.30; ctx.lineWidth=coreW*2.6; ctx.shadowBlur=glowW; ctx.stroke();
+  // soft core (translucent, gradient-coloured — not a solid bright line)
+  ctx.globalAlpha=a*0.60; ctx.lineWidth=coreW*1.3; ctx.shadowBlur=glowW*0.6; ctx.stroke();
+  ctx.globalAlpha=1; ctx.shadowBlur=0;
+}
+
+// ── sacred forms (centered at 0,0; R = base radius) ──
+function ringAt(cx,cy,r,col,t,seed,a){ neon(wRing(cx,cy,r,t,seed),col,DPR*1.6,DPR*9,a,true); }
+
+function formSeed(R,cols,t,a){ // Seed of Life — 7 circles
+  const r=R*0.5, n=cols.length;
+  ringAt(0,0,r,cols[2%n],t,0.0,a);
+  for(let k=0;k<6;k++){ const ang=k/6*TAU; ringAt(Math.cos(ang)*r,Math.sin(ang)*r,r,cols[k%n],t,k*0.6,a); }
+}
+function formFlower(R,cols,t,a){ // Flower of Life — center + 6 + 12
+  const r=R*0.34, n=cols.length;
+  ringAt(0,0,r,cols[2%n],t,0.0,a);
+  for(let k=0;k<6;k++){ const ang=k/6*TAU; ringAt(Math.cos(ang)*r,Math.sin(ang)*r,r,cols[k%n],t,k*0.5,a); }
+  for(let k=0;k<12;k++){ const ang=k/12*TAU; const d=(k%2? r*Math.sqrt(3): r*2);
+    ringAt(Math.cos(ang)*d,Math.sin(ang)*d,r,cols[(k+1)%n],t,k*0.4,a*0.8); }
+}
+function fruitCenters(R){ const r=R*0.32, c=[[0,0]];
+  for(let k=0;k<6;k++){ const ang=k/6*TAU; c.push([Math.cos(ang)*r,Math.sin(ang)*r]); }
+  for(let k=0;k<6;k++){ const ang=k/6*TAU; c.push([Math.cos(ang)*r*2,Math.sin(ang)*r*2]); }
+  return {c, r}; }
+function formMetatron(R,cols,t,a){ // Fruit of Life + connecting lines
+  const {c,r}=fruitCenters(R);
+  for(let i=0;i<c.length;i++) for(let j=i+1;j<c.length;j++){
+    neon(wLine(c[i][0],c[i][1],c[j][0],c[j][1],t,(i*3+j)*0.3),cols[0],DPR*0.7,DPR*4,a*0.18,false);
+  }
+  c.forEach((p,i)=> ringAt(p[0],p[1],r*0.5,cols[i%cols.length],t,i*0.5,a));
+}
+function formVesica(R,cols,t,a){ // Vesica Piscis + soft surrounding ring
+  const r=R*0.5;
+  ringAt(-r*0.5,0,r,cols[0],t,0.2,a);
+  ringAt( r*0.5,0,r,cols[1],t,1.1,a);
+  ringAt(0,0,R*0.95,cols[2],t,2.0,a*0.5);
+}
+function formHexagram(R,cols,t,a){ // two triangles (Star) + ring
+  const tri=(rot,col,seed)=>{ const pts=[]; for(let k=0;k<3;k++){ const ang=rot+k/3*TAU; pts.push([Math.cos(ang)*R*0.9,Math.sin(ang)*R*0.9]); }
+    for(let k=0;k<3;k++){ neon(wLine(pts[k][0],pts[k][1],pts[(k+1)%3][0],pts[(k+1)%3][1],t,seed+k),col,DPR*1.6,DPR*9,a,false); } };
+  tri(-Math.PI/2,cols[0],0.0); tri(Math.PI/2,cols[1],3.0);
+  ringAt(0,0,R*0.95,cols[2],t,2.0,a*0.45);
+}
+function formRose(petals){ return (R,cols,t,a)=>{ // rose curve r=R*cos(petals*θ)
+  const N=240,p=[]; for(let i=0;i<=N;i++){ const th=i/N*TAU; const rr=R*Math.abs(Math.cos(petals*th));
+    const wob=1+0.05*Math.sin(th*4+t*0.9); p.push([Math.cos(th)*rr*wob,Math.sin(th)*rr*wob]); }
+  neon(p,cols[0],DPR*1.6,DPR*10,a,false);
+  // inner echo in 2nd color
+  const p2=p.map(q=>[q[0]*0.6,q[1]*0.6]); neon(p2,cols[1],DPR*1.3,DPR*8,a*0.8,false);
+}; }
+function formSpiral(R,cols,t,a){ // double golden spiral (vortex)
+  const n=cols.length, big=gPrimary;
+  // big (hero, e.g. Pluto) emanates outward to fill the field; secondary stays modest
+  const growth = big ? 2.95 : 1.5, r0 = big ? 0.05 : 0.12, spin = big ? 0.12 : 0.06;
+  const arm=(dir)=>{ const p=[]; for(let i=0;i<=260;i++){ const s=i/260; const th=dir*s*3.4*TAU + t*spin;
+    const rr=R*r0*Math.exp(growth*s); p.push([Math.cos(th)*rr,Math.sin(th)*rr]); }
+    neon(p,cols[2%n],DPR*1.6,DPR*9,a,false); };
+  arm(1); arm(-1);
+  // expanding ripple rings — the vortex emanates OUTWARD, never locked in centre
+  if(big){
+    const RINGS=5;
+    for(let k=0;k<RINGS;k++){ const ph=((t*0.16 + k/RINGS)%1); const fade=Math.sin(ph*Math.PI);
+      ringAt(0,0, ph*R*0.98, cols[k%n], t, k, a*fade*0.85); }
+  } else {
+    ringAt(0,0,R*0.96,cols[2%n],t,1.0,a*0.4);
+  }
+}
+function formRing(R,cols,t,a){ const n=cols.length; ringAt(0,0,R*0.95,cols[2%n],t,0.0,a*0.7); ringAt(0,0,R*0.6,cols[1%n],t,1.5,a*0.6); }
+
+// Light-gradient starburst — soft rays radiating from the centre, gently breathing
+// in slow motion (no swirl). Calm, radiant, not dizzying.
+function formStarburst(R,cols,t,a){
+  // SMALL light-gradient starburst glowing from the exact centre — delicate rays,
+  // slow breath. Sits at the heart of the planet's sacred shape. No circles.
+  const n=cols.length, rays=16;
+  const pulse=0.9+0.1*Math.sin(t*0.5);                   // slow gentle breath
+  for(let k=0;k<rays;k++){ const ang=k/rays*TAU; const long=(k%2===0);
+    const twinkle=0.75+0.25*Math.sin(t*0.6+k*0.7);
+    const len=R*(long?0.34:0.20)*pulse;                  // SMALL — a centre glow, not big sticks
+    neon(wLine(0,0, Math.cos(ang)*len, Math.sin(ang)*len), cols[k%n], DPR*1.1, DPR*6, a*(long?0.85:0.5)*twinkle, false);
+  }
+}
+
+const FORMS={ seed:formSeed, flower:formFlower, metatron:formMetatron, vesica:formVesica,
+  hexagram:formHexagram, rose5:formRose(5), rose6:formRose(6), rose8:formRose(8),
+  spiral:formSpiral, ring:formRing, starburst:formStarburst };
+
+// soft starfield (gentle, not foggy)
+const STARS=Array.from({length:70},(_,i)=>({x:((i*9301+49297)%233280)/233280, y:((i*1597+51749)%233280)/233280, r:0.4+((i*31)%100)/100*1.4, ph:(i%7)*0.5}));
+
+// ── state + leap ──
+let cur=3, nxt=3, morph=1, morphing=false;
+function leapTo(i){ if(i===cur&&!morphing)return; nxt=i; morph=0; morphing=true; }
+function leapNext(){ leapTo((cur+1)%PLANETS.length); }
+
+const pills=document.getElementById('pills'), readout=document.getElementById('readout');
+PLANETS.forEach((p,i)=>{ const b=document.createElement('button'); b.textContent=p.glyph+' '+p.name; b.dataset.i=i; b.onclick=()=>leapTo(i); pills.appendChild(b); });
+document.getElementById('leap').onclick=leapNext;
+function syncUI(){ [...pills.children].forEach(b=>{ const on=(+b.dataset.i===cur); b.classList.toggle('on',on); b.style.background=on?PLANETS[cur].cols[0]:''; });
+  document.getElementById('leap').style.background=PLANETS[cur].cols[0];
+  const p=PLANETS[cur], f=foldHz(p.hz), nm=C_LIGHT/f*1e9;
+  readout.innerHTML=`<div class="big">${p.glyph} ${p.name}</div>`+
+    `<div><span class="k">Fork</span> ${p.hz.toFixed(2)} Hz <span class="k">→</span> ${(f/1e12).toFixed(0)} THz <span class="k">·</span> ${nm.toFixed(0)} nm`+
+    p.cols.map(c=>`<span class="sw" style="background:${c};color:${c}"></span>`).join('')+`</div>`+
+    `<div class="k" style="font-size:10px">sacred geometry · neon · liquid flow</div>`; }
+
+function drawForms(P,R,t,alpha){
+  P.forms.forEach((fk,idx)=>{ const fn=FORMS[fk]; if(fn){ gPrimary=(idx===0); fn(R*(idx?0.78:1.0), P.cols, t+idx*1.7, alpha); gPrimary=false; } });
+}
+// One animated multi-stop gradient (all 5 tones) swept across the mandala, so the
+// colour blends smoothly over the whole form instead of solid per-line colours.
+function gradFor(P,R,t){
+  const ang=t*0.07, dx=Math.cos(ang)*R, dy=Math.sin(ang)*R;
+  const g=ctx.createLinearGradient(-dx,-dy,dx,dy);
+  const n=P.cols.length; P.cols.forEach((c,i)=> g.addColorStop(i/(n-1), c));
+  return g;
+}
+function drawPlanet(i, t, alpha, scaleMul){
+  const P=PLANETS[i]; const R=Math.min(W,H)*0.30*scaleMul;
+  const breathe=1+0.04*Math.sin(t*0.5);
+  gGlow = P.cols[2];
+  ctx.save(); ctx.translate(W/2,H/2);
+  // KALEIDOSCOPE — two counter-rotating copies of the same symmetric form;
+  // their slow interplay over the shifting colour ground reads as a kaleidoscope.
+  ctx.save(); ctx.rotate(t*0.045);  ctx.scale(breathe,breathe);       gStroke=gradFor(P,R,t); drawForms(P,R,t,alpha);       ctx.restore();
+  ctx.save(); ctx.rotate(-t*0.062); ctx.scale(breathe*0.985,breathe*0.985); gStroke=gradFor(P,R,t); drawForms(P,R,t,alpha*0.42); ctx.restore();
+  gStroke=null;
+  // flushed centre — a soft diffused color bloom, never a solid bright core
+  const cg=ctx.createRadialGradient(0,0,0,0,0,R*0.62);
+  cg.addColorStop(0,   hexA(P.cols[3],0.30*alpha*glowPulse));
+  cg.addColorStop(0.35,hexA(P.cols[1],0.15*alpha*glowPulse));
+  cg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.globalCompositeOperation='lighter'; ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(0,0,R*0.62,0,TAU); ctx.fill();
+  ctx.restore();
+}
+function hexA(hex,a){ const n=hex.replace('#',''); const r=parseInt(n.slice(0,2),16),g=parseInt(n.slice(2,4),16),b=parseInt(n.slice(4,6),16); return `rgba(${r},${g},${b},${a})`; }
+function hexRGB(hex){ const n=hex.replace('#',''); return [parseInt(n.slice(0,2),16),parseInt(n.slice(2,4),16),parseInt(n.slice(4,6),16)]; }
+function rgbaArr(c,a){ return `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`; }
+// slowly cycle through a palette (loops) → "colors that slowly change"
+function cycleColor(cols,p){ p=(p%1+1)%1; const n=cols.length; const f=p*n; const i=Math.floor(f)%n; const fr=f-Math.floor(f);
+  const a=hexRGB(cols[i]), b=hexRGB(cols[(i+1)%n]); return [a[0]+(b[0]-a[0])*fr, a[1]+(b[1]-a[1])*fr, a[2]+(b[2]-a[2])*fr]; }
+
+// Glowing, slowly colour-shifting background — soft drifting light blooms that
+// cycle through the planet's neon palette. Glowing, not foggy; behind the mandala.
+function drawBackground(t){
+  ctx.globalCompositeOperation='source-over'; ctx.globalAlpha=1;
+  ctx.fillStyle='#06070f'; ctx.fillRect(0,0,W,H);
+  ctx.globalCompositeOperation='lighter';
+  const P=PLANETS[cur];
+  const blobs=3, rad=Math.min(W,H)*0.42;
+  for(let k=0;k<blobs;k++){
+    const ang=t*0.05 + k/blobs*TAU;
+    const x=W/2+Math.cos(ang)*rad*0.55, y=H/2+Math.sin(ang*0.8+1.0)*rad*0.45;
+    const col=cycleColor(P.cols, t*0.045 + k*0.30);     // slow colour change
+    const r=Math.min(W,H)*(0.46+0.10*Math.sin(t*0.25+k));
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    // dimmed so the ground is a soft rich wash, never overpowering the mandala
+    g.addColorStop(0, rgbaArr(col,0.11)); g.addColorStop(0.5, rgbaArr(col,0.038)); g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,TAU); ctx.fill();
+  }
+}
+
+let last=performance.now();
+function frame(now){
+  const t=now/1000; const dt=Math.min(0.05,(now-last)/1000); last=now;
+  glowPulse = 0.36 + 0.22*(0.5+0.5*Math.sin(t*0.8));   // breathing glow, softer, fades in/out
+  drawBackground(t);
+  // stars
+  ctx.globalCompositeOperation='lighter';
+  STARS.forEach((s,i)=>{ const tw=0.3+0.4*(0.5+0.5*Math.sin(t*1.1+s.ph*3)); ctx.globalAlpha=tw*0.4;
+    ctx.fillStyle='#cfe0ff'; ctx.beginPath(); ctx.arc(s.x*W,s.y*H,s.r*DPR,0,TAU); ctx.fill(); });
+  ctx.globalAlpha=1;
+
+  if(morphing){
+    morph=Math.min(1,morph+dt/1.5); const e=morph*morph*(3-2*morph);
+    drawPlanet(cur, t, (1-e), 1+ e*0.25);                 // outgoing dissolves & expands
+    drawPlanet(nxt, t, e,     0.8 + e*0.2);               // incoming blooms in
+    if(morph>=1){ morphing=false; cur=nxt; syncUI(); }
+  } else {
+    drawPlanet(cur, t, 1, 1);
+  }
+  requestAnimationFrame(frame);
+}
+syncUI(); requestAnimationFrame(frame);
+</script>
+</body>
+</html>

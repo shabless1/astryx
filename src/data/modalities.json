@@ -1,0 +1,51 @@
+[
+  {
+    "modality": "Cardinal",
+    "qualities": [
+      "initiating",
+      "triggering",
+      "acute"
+    ],
+    "pattern_behavior": [
+      "sudden_flare",
+      "fast_start"
+    ],
+    "plan_bias": [
+      "early intervention",
+      "trigger awareness"
+    ]
+  },
+  {
+    "modality": "Fixed",
+    "qualities": [
+      "persistent",
+      "entrenched",
+      "resistant"
+    ],
+    "pattern_behavior": [
+      "chronicity",
+      "congestion"
+    ],
+    "plan_bias": [
+      "slow release",
+      "consistency",
+      "long-term protocols"
+    ]
+  },
+  {
+    "modality": "Mutable",
+    "qualities": [
+      "variable",
+      "reactive",
+      "fluctuating"
+    ],
+    "pattern_behavior": [
+      "inconsistent_symptoms",
+      "sensitivity_to_change"
+    ],
+    "plan_bias": [
+      "stabilize_rhythm",
+      "reduce_variability"
+    ]
+  }
+]

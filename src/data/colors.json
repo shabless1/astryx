@@ -1,0 +1,147 @@
+[
+  {
+    "planet": "Sun",
+    "primary_colors": [
+      "gold",
+      "yellow"
+    ],
+    "regulator_colors": [
+      "soft green",
+      "white"
+    ],
+    "light_use": [
+      "centering",
+      "coherence"
+    ]
+  },
+  {
+    "planet": "Moon",
+    "primary_colors": [
+      "silver",
+      "pale blue"
+    ],
+    "regulator_colors": [
+      "soft white",
+      "seafoam"
+    ],
+    "light_use": [
+      "soothing",
+      "restoration"
+    ]
+  },
+  {
+    "planet": "Mercury",
+    "primary_colors": [
+      "yellow-green",
+      "electric yellow"
+    ],
+    "regulator_colors": [
+      "soft blue"
+    ],
+    "light_use": [
+      "clarity",
+      "focus"
+    ]
+  },
+  {
+    "planet": "Venus",
+    "primary_colors": [
+      "emerald",
+      "rose"
+    ],
+    "regulator_colors": [
+      "gold"
+    ],
+    "light_use": [
+      "balance",
+      "repair"
+    ]
+  },
+  {
+    "planet": "Mars",
+    "primary_colors": [
+      "red"
+    ],
+    "regulator_colors": [
+      "green",
+      "blue"
+    ],
+    "light_use": [
+      "activation",
+      "circulation"
+    ]
+  },
+  {
+    "planet": "Jupiter",
+    "primary_colors": [
+      "royal blue",
+      "purple"
+    ],
+    "regulator_colors": [
+      "gold"
+    ],
+    "light_use": [
+      "uplift",
+      "expansion"
+    ]
+  },
+  {
+    "planet": "Saturn",
+    "primary_colors": [
+      "charcoal",
+      "dark gray"
+    ],
+    "regulator_colors": [
+      "green",
+      "white"
+    ],
+    "light_use": [
+      "containment",
+      "structure"
+    ]
+  },
+  {
+    "planet": "Uranus",
+    "primary_colors": [
+      "electric blue",
+      "white"
+    ],
+    "regulator_colors": [
+      "soft gray"
+    ],
+    "light_use": [
+      "reset",
+      "pattern_break"
+    ]
+  },
+  {
+    "planet": "Neptune",
+    "primary_colors": [
+      "seafoam",
+      "violet"
+    ],
+    "regulator_colors": [
+      "silver"
+    ],
+    "light_use": [
+      "diffusion",
+      "softening"
+    ]
+  },
+  {
+    "planet": "Pluto",
+    "primary_colors": [
+      "deep red",
+      "black"
+    ],
+    "regulator_colors": [
+      "white",
+      "green"
+    ],
+    "light_use": [
+      "purge",
+      "depth",
+      "regeneration"
+    ]
+  }
+]

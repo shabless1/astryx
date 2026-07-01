@@ -1,0 +1,247 @@
+[
+  {
+    "scent": "lavender",
+    "actions": [
+      "calm"
+    ],
+    "systems": [
+      "nervous",
+      "emotional"
+    ],
+    "planetary_affinities": [
+      "Moon",
+      "Neptune",
+      "Venus"
+    ],
+    "delivery": [
+      "diffuser",
+      "inhale",
+      "topical"
+    ],
+    "best_for": [
+      "anxiety",
+      "restlessness",
+      "overwhelm"
+    ]
+  },
+  {
+    "scent": "peppermint",
+    "actions": [
+      "clear",
+      "activate"
+    ],
+    "systems": [
+      "mental",
+      "respiratory"
+    ],
+    "planetary_affinities": [
+      "Mercury",
+      "Mars"
+    ],
+    "delivery": [
+      "inhale",
+      "diffuser"
+    ],
+    "best_for": [
+      "brain_fog",
+      "fatigue",
+      "blocked_breath"
+    ]
+  },
+  {
+    "scent": "frankincense",
+    "actions": [
+      "build",
+      "center"
+    ],
+    "systems": [
+      "breath",
+      "focus",
+      "presence"
+    ],
+    "planetary_affinities": [
+      "Sun",
+      "Saturn"
+    ],
+    "delivery": [
+      "diffuser",
+      "resin",
+      "topical"
+    ],
+    "best_for": [
+      "scattered_focus",
+      "centering"
+    ]
+  },
+  {
+    "scent": "rose",
+    "actions": [
+      "build",
+      "harmonize"
+    ],
+    "systems": [
+      "emotional",
+      "heart"
+    ],
+    "planetary_affinities": [
+      "Venus",
+      "Moon"
+    ],
+    "delivery": [
+      "diffuser",
+      "topical",
+      "bath"
+    ],
+    "best_for": [
+      "depletion",
+      "emotional_hardness",
+      "grief"
+    ]
+  },
+  {
+    "scent": "vetiver",
+    "actions": [
+      "ground",
+      "contain"
+    ],
+    "systems": [
+      "nervous",
+      "somatic grounding"
+    ],
+    "planetary_affinities": [
+      "Saturn"
+    ],
+    "delivery": [
+      "topical",
+      "diffuser"
+    ],
+    "best_for": [
+      "ungroundedness",
+      "dissociation",
+      "sleep_support"
+    ]
+  },
+  {
+    "scent": "eucalyptus",
+    "actions": [
+      "clear"
+    ],
+    "systems": [
+      "respiratory",
+      "mental"
+    ],
+    "planetary_affinities": [
+      "Mercury",
+      "Sun"
+    ],
+    "delivery": [
+      "steam",
+      "diffuser",
+      "inhale"
+    ],
+    "best_for": [
+      "stagnant_breath",
+      "mental_clutter"
+    ]
+  },
+  {
+    "scent": "ginger",
+    "actions": [
+      "activate"
+    ],
+    "systems": [
+      "circulation",
+      "digestive"
+    ],
+    "planetary_affinities": [
+      "Mars",
+      "Sun"
+    ],
+    "delivery": [
+      "topical",
+      "diffuser"
+    ],
+    "best_for": [
+      "cold_stagnation",
+      "slow_start"
+    ]
+  },
+  {
+    "scent": "myrrh",
+    "actions": [
+      "dissolve",
+      "deepen"
+    ],
+    "systems": [
+      "emotional",
+      "respiratory",
+      "traditional"
+    ],
+    "planetary_affinities": [
+      "Neptune",
+      "Pluto",
+      "Moon"
+    ],
+    "delivery": [
+      "resin",
+      "diffuser"
+    ],
+    "best_for": [
+      "deep_release",
+      "practice",
+      "inward_work"
+    ]
+  },
+  {
+    "scent": "clove",
+    "actions": [
+      "expand",
+      "warm"
+    ],
+    "systems": [
+      "metabolic",
+      "hepatic",
+      "circulatory"
+    ],
+    "planetary_affinities": [
+      "Jupiter",
+      "Mars"
+    ],
+    "delivery": [
+      "diffuser",
+      "topical_diluted",
+      "inhale"
+    ],
+    "best_for": [
+      "low_metabolism",
+      "stagnant_liver",
+      "loss_of_optimism"
+    ]
+  },
+  {
+    "scent": "lemongrass",
+    "actions": [
+      "reset",
+      "clear"
+    ],
+    "systems": [
+      "nervous_electrical",
+      "lymphatic",
+      "mental"
+    ],
+    "planetary_affinities": [
+      "Uranus",
+      "Mercury"
+    ],
+    "delivery": [
+      "diffuser",
+      "inhale",
+      "topical_diluted"
+    ],
+    "best_for": [
+      "nervous_overload",
+      "stuck_patterns",
+      "electrical_overstimulation"
+    ]
+  }
+]

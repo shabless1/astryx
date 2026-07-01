@@ -1,0 +1,245 @@
+{
+  "_meta": {
+    "title": "Skeletal System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "skeletal",
+    "name": "Skeletal System",
+    "alternateNames": ["Osseous System", "Bone System"],
+    "shortDescription": "206 bones forming the body's structural framework. Plus joints, cartilage, ligaments, bone marrow (hematopoiesis), tooth enamel. Saturn's primary domain.",
+    "icon": "🦴",
+    "accentColor": "#36454F",
+    "elementalProfile": "Earth primary (Capricorn, Saturn)"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "Skull (cranial + facial bones, 22 total)",
+      "Spine (33 vertebrae — 7 cervical, 12 thoracic, 5 lumbar, 5 fused sacral, 4 fused coccygeal)",
+      "Thorax (ribs, sternum)",
+      "Upper extremity (clavicle, scapula, humerus, radius, ulna, carpals, metacarpals, phalanges)",
+      "Pelvis (ilium, ischium, pubis)",
+      "Lower extremity (femur, patella, tibia, fibula, tarsals, metatarsals, phalanges)",
+      "Joints (synovial, cartilaginous, fibrous)",
+      "Cartilage (hyaline, fibrocartilage, elastic)",
+      "Ligaments (bone-to-bone)",
+      "Bone marrow (red — hematopoiesis; yellow — fat storage)",
+      "Tooth enamel + dentin"
+    ],
+    "subStructures": {
+      "axial": ["Skull", "Vertebral column", "Ribs", "Sternum"],
+      "appendicular": ["Pectoral girdle", "Upper limb", "Pelvic girdle", "Lower limb"],
+      "joint_types": ["Synovial (most movable — knees, hips, shoulders)", "Cartilaginous (intervertebral discs, pubic symphysis)", "Fibrous (skull sutures)"],
+      "weight_bearing": ["Spine", "Pelvis", "Femur", "Tibia", "Calcaneus"]
+    },
+    "vertebralCorrelates": "ENTIRE SPINAL COLUMN is part of this system. Per Cornell + osteopathic tradition: each vertebral level affects downstream organs through its emerging nerve roots. C1 (atlas) - sometimes considered most influential single bone.",
+    "nervePlexus": "All major plexus pass through skeletal structure. Vertebral foramina protect nerve roots."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Saturn",
+    "primaryPlanetRationale": "Saturn rules structure, time, restriction, and density — all defining qualities of bone. Cornell (1933): 'Saturn rules the skeletal system, the bones, the joints, the teeth.'",
+    "primarySign": "Capricorn",
+    "primaryHouse": 10,
+    "secondaryPlanets": [
+      {"planet": "Saturn", "rules": "All bones, all joints, tooth enamel, cartilage, ligaments", "rationale": "Cornell (1933): 'Saturn rules everything that structures and lasts.'"},
+      {"planet": "Mars", "rules": "Acute bone trauma, fractures, inflammatory arthritis", "rationale": "Cornell: 'Mars in Saturn-ruled signs → fracture risk.'"},
+      {"planet": "Jupiter", "rules": "Bone growth, hip bones, marrow expansion", "rationale": "Cornell: 'Jupiter rules Sagittarius (hips, thighs, femur).'"},
+      {"planet": "Sun", "rules": "Spine structure, vitality of bone, vitamin D activation", "rationale": "Cornell: 'The Sun in Leo rules the spine.'"},
+      {"planet": "Moon", "rules": "Bone marrow (Pluto modern attribution overlaps), bone mineral fluid balance", "rationale": "Classical attribution."},
+      {"planet": "Venus", "rules": "Lumbar spine, beauty of bone structure, joint smoothness", "rationale": "Cornell: 'Venus rules the lumbar region.'"},
+      {"planet": "Mercury", "rules": "Spinal nerves emerging from bone, fine bones of hands", "rationale": "Mercury rules Gemini (hands, arms)."},
+      {"planet": "Uranus", "rules": "Sudden fractures, joint dislocations, bone-electrical anomalies", "rationale": "Modern attribution — sudden bone events."}
+    ],
+    "fixedCrossInfluence": "Less direct than for soft tissues. Capricorn (cardinal earth) is the primary skeletal sign.",
+    "secondarySigns": ["Each sign rules specific bones per medical astrology body map: Aries (skull), Taurus (cervical vertebrae C1-C7), Gemini (clavicle, shoulder blade, ribs, arm bones), Cancer (sternum, breast bone), Leo (thoracic spine, heart bone), Virgo (mid-back, lower thoracic), Libra (lumbar, kidney region), Scorpio (pelvis, sacrum), Sagittarius (hips, femur), Capricorn (knees, patella), Aquarius (calf bones — tibia/fibula), Pisces (feet bones — tarsals)"],
+    "houses": {"primary": [10], "secondary": [4, 6], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {"name": "Emotional-Structural Axis", "polarity": "Cancer ↔ Capricorn", "source": "Minerva (2023)", "interpretation": "Cancer (emotional, fluid) opposite Capricorn (structural, dense). Bone density loss often tracks chronic emotional weight not metabolized. Calcium leaches from bone under chronic cortisol (Saturn) excess."},
+    {"name": "Renal Axis (calcium-skeletal overlay)", "polarity": "Aries ↔ Libra", "source": "Minerva (2023)", "interpretation": "Kidney function affects calcium regulation (active vitamin D conversion). Renal-skeletal axis important for bone health."}
+  ],
+  "energetics": {
+    "chakra": "Root (Muladhara) primary — grounding, structural stability",
+    "chakraColor": "Red (root) + black (earth)",
+    "chakraHz": 396.0,
+    "nervousSystemPathway": "Spinal cord housed within vertebral column — direct relationship",
+    "endocrineCorrespondence": "Parathyroid (calcium regulation), thyroid (calcitonin), pituitary (growth hormone), gonads (estrogen/testosterone — bone density)",
+    "elementalCorrespondence": "Earth primary",
+    "brainwaveAffinity": "Delta — deep stability, foundational",
+    "meridianCrossover_TCM": "Kidney meridian (governs bones in TCM — 'Kidney rules bones'). Bladder meridian along spine."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Calc Phos", "saltFullName": "Calcarea Phosphorica", "sign": "Capricorn", "epithet": "THE Bone Salt", "indicatedFor": "Bone density, tooth health, slow bone healing, growing pains, calcium-phosphorus balance. Foundation cell salt.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Fluor", "saltFullName": "Calcarea Fluorica", "sign": "Cancer", "epithet": "Elastic Tissue / Ligament Salt", "indicatedFor": "Ligament laxity, joint instability, dental enamel, surface of bones, varicose patterns.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Silica", "saltFullName": "Silicea", "sign": "Sagittarius", "epithet": "Connective Tissue Strength", "indicatedFor": "Bone covering (periosteum), joint cartilage, nerve sheath protection.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Mag Phos", "saltFullName": "Magnesia Phosphorica", "sign": "Leo", "epithet": "Bone-Muscle Interface", "indicatedFor": "Cramping from low magnesium (affects bone calcium uptake too).", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Horsetail (Equisetum)", "classicalAttribution": "Saturn / Sagittarius", "mechanism": "High in silica — supports bone, hair, nails, connective tissue", "indicatedFor": "Brittle bones, weak nails, hair loss"},
+      {"name": "Nettle leaf (Urtica)", "classicalAttribution": "Mars / Saturn", "mechanism": "Mineral-rich, supports bone mineral density", "indicatedFor": "Mineral deficiency, post-stress mineral rebuilding"},
+      {"name": "Boswellia (frankincense resin)", "classicalAttribution": "Sun / Saturn", "mechanism": "Anti-inflammatory for joints (5-LOX inhibitor)", "indicatedFor": "Osteoarthritis, joint inflammation"},
+      {"name": "Cissus quadrangularis", "classicalAttribution": "Mars / Saturn", "mechanism": "Ayurvedic bone-strengthening herb — supports osteoblast activity", "indicatedFor": "Bone healing, fracture recovery, osteoporosis support"}
+    ],
+    "crystals": [
+      {"name": "Black Tourmaline", "planet": "Saturn", "bodyPlacement": "Sacrum, feet, base of spine", "classicalAttribution": "Grounding, supports skeletal structure energetically"},
+      {"name": "Onyx", "planet": "Saturn", "bodyPlacement": "Base of spine, hold during meditation", "classicalAttribution": "Saturn stone — strengthens resolve and structure"},
+      {"name": "Apatite", "planet": "Saturn", "bodyPlacement": "Throat or hold", "classicalAttribution": "Calcium phosphate composition — direct bone resonance"}
+    ],
+    "tuningForks": [
+      {"planet": "Saturn", "hz": 147.85, "applicationPoint": "Directly on bone (sternum, spine, sacrum)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Earth Year Om", "hz": 136.10, "applicationPoint": "Feet (grounding)"}
+    ],
+    "scents": [
+      {"name": "Vetiver", "planet": "Saturn", "delivery": "topical (feet) or diffuser", "dataRef": "scents.json"},
+      {"name": "Cedarwood", "delivery": "topical or diffuser", "mechanism": "Earthing"},
+      {"name": "Patchouli", "delivery": "topical or diffuser", "mechanism": "Grounding"}
+    ],
+    "bodyProtocols": [{"breath": "Long slow grounding breath", "movement": "Weight-bearing exercise", "posture": "Aligned spine", "touch": "Bone compression-decompression"}],
+    "modalityRecommendations": {
+      "individual": "Bone health is built through: weight-bearing exercise (walking, dancing, jumping, strength training), adequate protein, calcium + magnesium + D + K2 (the bone matrix nutrients), avoiding excess alcohol/smoking, sleep, addressing chronic stress (cortisol leaches calcium from bone).",
+      "medical_astrologer": "Saturn + Capricorn primary. Saturn-Moon for hormonal-bone interaction. Sign-by-sign bone attribution. Saturn return (28-30, 58-60) often manifests bone events. Long Saturn transits to natal placements warrant bone density attention.",
+      "reiki": "Root chakra grounding extended. Bone-direct intention. Distance reiki appropriate for elderly fragile clients.",
+      "bodywork_general": "Spinal mobilization (gentle, age-appropriate). Joint mobilization. Myofascial release affecting bone alignment. NEVER force a stuck joint.",
+      "bodywork_contraindications": "Osteoporosis: NO HIGH-VELOCITY MANIPULATION (HVLA). Recent fracture: refer. Suspected fracture: refer. Bone metastasis history: gentle techniques only with medical clearance. Pregnancy: trained prenatal only for lumbar/pelvic work.",
+      "naturopathy": "Calcium (food-first — dark greens, sardines, sesame), magnesium glycinate, vitamin D3 (test 25(OH)D, target 50-80 ng/mL), vitamin K2 (MK-7), boron, silica (horsetail), strontium (controversial), weight-bearing exercise prescription.",
+      "acupuncture": "Kidney meridian (KD 3 Taixi — Kidney rules bones in TCM). Bladder back-shu points along spine. Du Mai for spinal support.",
+      "ayurveda_phase2_placeholder": "Asthi Dhatu (bone tissue — 5th of 7 dhatus). Majja inside bone (marrow → nervous tissue). Asthi tonics. Phase 2.",
+      "pastoral_spiritual": "Bones as the body's memory. Ancestral connection through bone. 'May this body remember its strength.'"
+    }
+  },
+  "pathologies": [
+    {
+      "id": "skel_osteoporosis",
+      "name": "Osteoporosis / Osteopenia",
+      "icdReference": "M80 / M81",
+      "system": "skeletal",
+      "category": "bone_density",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Moon (chronic mineral loss)", "Saturn-Venus (post-estrogen decline)", "Saturn in 6th house"], "transitTriggers": ["Saturn return (especially 2nd — age 58-60)", "Pluto-Moon (deep hormonal transformation)"]},
+      "classicalReference": "Cornell (1933): 'Atrophy of bone — Saturn afflictions over time; deficiency of bone-building cell salts.' Carey: 'Calc Phos deficiency = bone weakness.'",
+      "cellSalts": ["Calc Phos (PRIMARY)", "Calc Fluor", "Silica"],
+      "indicatorLanguage": {
+        "individual": "Bone health benefits from weight-bearing exercise (most important), adequate calcium + D + K2 + magnesium, sufficient protein, and addressing risk factors (smoking, excess alcohol, low body weight). DEXA scan after age 50 (women) or 70 (men) gives baseline; earlier if risk factors.",
+        "practitioner": "Saturn-Moon and Saturn-Venus configurations classically align with bone density loss patterns. Modern: DEXA T-score, FRAX risk assessment. Calcium, D3, K2, magnesium, strontium, boron supportive. Refer for endocrinology/rheumatology — bisphosphonates, denosumab, parathyroid hormone analogs may be appropriate."
+      },
+      "modalityNotes": {
+        "bodywork": "NO HVLA manipulation. Gentle mobilization only. Postural work to reduce fall risk.",
+        "reiki": "Bone-direct intention. Root chakra activation.",
+        "lifestyle": "Weight-bearing + resistance exercise (most evidence-based). Adequate protein. Comprehensive bone nutrient stack. Fall prevention. Address contributing factors."
+      },
+      "redFlags": ["Suspected vertebral compression fracture (sudden back pain after minor trauma in elderly) → urgent imaging"]
+    },
+    {
+      "id": "skel_osteoarthritis",
+      "name": "Osteoarthritis",
+      "icdReference": "M15-M19",
+      "system": "skeletal",
+      "category": "degenerative_joint",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn afflicted in cardinal signs (joints)", "Saturn-Mars (long-term wear with inflammatory component)"], "transitTriggers": ["Saturn transit"]},
+      "classicalReference": "Cornell (1933): 'Saturn in joints → restriction, hardening, degenerative change over time.'",
+      "cellSalts": ["Calc Fluor", "Silica", "Nat Phos (acid component)"],
+      "indicatorLanguage": {
+        "individual": "Joint pain that worsens with use and improves with rest, morning stiffness < 30 min — gentle movement is medicine. Strengthening surrounding muscles, maintaining healthy weight, addressing biomechanics, anti-inflammatory diet, glucosamine/chondroitin (modest evidence), turmeric all supportive. Severe pain or joint deformity → orthopedics.",
+        "practitioner": "Saturn-cardinal sign configurations classically associated with degenerative joint patterns. Differentiate OA (mechanical) from RA (autoimmune — different signature). Boswellia, turmeric/curcumin, omega-3, glucosamine sulfate, MSM all evidence-supported adjuncts. Refer for orthopedics for severe joint destruction (joint replacement consideration)."
+      },
+      "modalityNotes": {
+        "bodywork": "Gentle joint mobilization, surrounding muscle release, fascial work. Avoid aggressive on inflamed joint.",
+        "reiki": "Joint-specific healing.",
+        "lifestyle": "Movement (not rest — joints need motion to stay healthy), weight management, anti-inflammatory diet, supplements above."
+      },
+      "redFlags": ["Hot red swollen joint with fever → rule out septic arthritis (ED)", "Sudden severe pain disproportionate to history → urgent evaluation"]
+    },
+    {
+      "id": "skel_fracture",
+      "name": "Fracture (Acute)",
+      "icdReference": "S00-T88 (by site)",
+      "system": "skeletal",
+      "category": "acute_trauma",
+      "astrologicalSignature": {"planetaryCombinations": ["Mars transit through natal Saturn (or vice versa)", "Mars-Uranus (sudden trauma)", "Saturn-Mars in cardinal signs"], "transitTriggers": ["Active Mars transit"]},
+      "classicalReference": "Cornell (1933): 'Fractures — Mars-Saturn afflictions; Mars-Uranus for sudden traumatic fracture.'",
+      "cellSalts": ["Calc Phos", "Ferr Phos (acute inflammation phase)", "Silica (later healing)"],
+      "indicatorLanguage": {
+        "individual": "Suspected fracture (severe pain, swelling, deformity, inability to use the part) requires urgent medical evaluation and imaging. Healing support: protein, calcium, magnesium, vitamin D, vitamin C (collagen), vitamin K2, comfrey topical (root, not internal).",
+        "practitioner": "Mars-Saturn transits classically associated with fracture timing. Acute: refer for imaging/orthopedics. Healing phase: support with nutrient stack above. Comfrey (Symphytum, classical bone-knit) topical for closed fractures. AVOID stimulating modalities over acute fracture."
+      },
+      "modalityNotes": {
+        "bodywork": "AVOID over acute fracture. Recovery phase (post-immobilization): gentle scar tissue work, joint mobilization, surrounding muscle work for strength rebuilding.",
+        "reiki": "Excellent for healing support — non-touching distance reiki ideal for casted limbs.",
+        "lifestyle": "Comprehensive bone nutrient stack. Protein adequacy. Avoid NSAIDs (impair bone healing — evidence). Movement of unaffected areas to maintain conditioning."
+      },
+      "redFlags": ["Open fracture (bone through skin) → 911", "Spine fracture suspected → don't move, 911", "Loss of pulse distal to fracture → ED (vascular compromise)"]
+    },
+    {
+      "id": "skel_rheumatoid_arthritis",
+      "name": "Rheumatoid Arthritis (RA)",
+      "icdReference": "M05-M06",
+      "system": "skeletal",
+      "category": "autoimmune_inflammatory",
+      "astrologicalSignature": {"planetaryCombinations": ["Mars-Saturn-Neptune (autoimmune joint pattern)", "Pluto-Saturn (deep transformation of structure)"], "transitTriggers": ["Outer planet transits to natal Saturn"]},
+      "classicalReference": "Cornell (1933): 'Rheumatism — Saturn-Mars-Mercury afflictions; chronic inflammatory joint pattern.'",
+      "cellSalts": ["Nat Phos", "Calc Fluor", "Ferr Phos (flares)"],
+      "indicatorLanguage": {
+        "individual": "Symmetric joint pain (especially small joints of hands/feet) with morning stiffness > 30 min and fatigue requires rheumatology evaluation. RA is a serious autoimmune condition requiring medical management.",
+        "practitioner": "Mars-Saturn-Neptune complexes classically associated with autoimmune inflammatory joint patterns. RA is rheumatology territory — DMARDs, biologics. Holistic adjuncts: anti-inflammatory diet (Mediterranean, autoimmune protocol), omega-3, turmeric, vitamin D, gut health (gut-joint axis), stress management. NEVER replace rheumatology care."
+      },
+      "modalityNotes": {
+        "bodywork": "Active flare: gentle only. Remission: more active work appropriate. Always within client tolerance.",
+        "reiki": "Supportive throughout. Joint-specific + immune intention.",
+        "lifestyle": "AIP (autoimmune protocol) diet trial. Anti-inflammatory foods. Address gut health. Stress management. Movement within tolerance."
+      },
+      "redFlags": ["Cervical spine RA involvement → urgent (atlantoaxial instability)", "Vasculitis features (skin, eyes, lungs) → urgent rheumatology"]
+    },
+    {
+      "id": "skel_back_disc",
+      "name": "Lumbar Disc Herniation",
+      "icdReference": "M51",
+      "system": "skeletal",
+      "category": "discogenic",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Mars in Libra/Scorpio", "Uranus-Mars (sudden disc rupture)"], "transitTriggers": ["Uranus transit", "Saturn-Mars combinations"]},
+      "classicalReference": "Cornell (1933): 'Lumbar region — Saturn in Libra; disc + nerve compression patterns.'",
+      "cellSalts": ["Calc Fluor (disc tissue)", "Mag Phos (muscular spasm)", "Kali Phos (nerve component)"],
+      "indicatorLanguage": {
+        "individual": "Acute disc-pattern pain (often with sciatic radiation down the leg) typically improves with: avoiding aggravating positions, gentle movement (walking), nerve glides, and time. Severe weakness, bowel/bladder symptoms, or saddle anesthesia require immediate medical evaluation.",
+        "practitioner": "Saturn-Mars in Libra/Scorpio classically associated with lumbar disc patterns. Most disc herniations resolve with conservative care (movement, PT, time). Imaging (MRI) only changes management for surgical candidates or red flags. Refer for ortho/neuro if red flags or refractory > 6 weeks."
+      },
+      "modalityNotes": {
+        "bodywork": "AVOID flexion-rotation forces. Gentle traction, nerve glides, surrounding musculature. McKenzie extension approach for many disc patterns.",
+        "reiki": "Sacral + root chakras.",
+        "lifestyle": "Movement (not bed rest). McGill big 3 (curl-up, side plank, bird dog) for spine stability. Hip mobility. Address ergonomics."
+      },
+      "redFlags": ["Bowel/bladder dysfunction → cauda equina, ED", "Saddle anesthesia → ED", "Progressive motor weakness → urgent neurosurgical"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder",
+    "tridosha": {"primary": "Vata (degenerative, dry joint patterns)", "secondary": "Kapha (calcification, density excess)", "tertiary": "Pitta (inflammatory arthritis)"},
+    "nakshatras_governing_skeletal": ["Uttara Ashadha (Capricorn — bones)", "Shravana"],
+    "ayurvedicOrgans": ["Asthi Dhatu (bone — 5th dhatu)", "Majja Dhatu (marrow — 6th dhatu)"],
+    "ayurvedicTreatments_phase2": "Asthi rasayanas. Lakshadi guggulu. Cissus quadrangularis. Mahanarayana taila external. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Saturn + Capricorn", "Sign-by-sign bone map", "Saturn return events", "Saturn-Moon for hormonal bone"], "outputDepth": "Full bone-by-sign attribution"},
+    "reiki": {"focusPoints": ["Root chakra", "Bone-direct intention"], "outputDepth": "Grounding protocols"},
+    "bodywork": {"focusPoints": ["Spinal/joint mobilization", "Postural alignment", "Surrounding muscle work"], "contraindicationsCriticallity": "HIGH — osteoporosis, fracture, RA cervical, anticoagulants", "outputDepth": "Joint-by-joint reference + contraindication panel"},
+    "naturopath": {"focusPoints": ["Bone nutrient stack (Ca/Mg/D/K2)", "Weight-bearing exercise", "Anti-inflammatory protocols"], "outputDepth": "Comprehensive supplement guide"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Asthi Dhatu", "Vata-Kapha balance"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Kidney meridian (bones)", "Bladder shu points", "Du Mai"], "outputDepth": "Spinal + meridian map"},
+    "pastoral_spiritual": {"focusPoints": ["Body as temple", "Bone as ancestral memory"], "outputDepth": "Contemplative bone practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Bone density assessment requires DEXA (medical). Fracture care is medical/orthopedic. RA is rheumatology. Holistic adjuncts complement; never replace.",
+    "criticalReferralRules": [
+      "Open fracture → 911",
+      "Suspected spine fracture → don't move, 911",
+      "Bowel/bladder dysfunction with back pain → ED (cauda equina)",
+      "Hot red swollen joint + fever → ED (septic arthritis)",
+      "Suspected vertebral compression in elderly → urgent imaging"
+    ],
+    "redFlagKeywords": ["sudden bone break", "saddle numbness", "septic joint", "spine trauma"]
+  }
+}

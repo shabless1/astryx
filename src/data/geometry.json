@@ -1,0 +1,38 @@
+[
+  {
+    "aspect": "conjunction",
+    "geometry": "circle",
+    "motion": "center_intensification",
+    "kaleidoscope_mode": "dense_bloom"
+  },
+  {
+    "aspect": "opposition",
+    "geometry": "mirrored_axis",
+    "motion": "oscillation",
+    "kaleidoscope_mode": "dual_reflection"
+  },
+  {
+    "aspect": "square",
+    "geometry": "square_grid",
+    "motion": "collision_pulse",
+    "kaleidoscope_mode": "structured_tension"
+  },
+  {
+    "aspect": "trine",
+    "geometry": "triangle",
+    "motion": "continuous_expansion",
+    "kaleidoscope_mode": "flow_symmetry"
+  },
+  {
+    "aspect": "sextile",
+    "geometry": "hexagon",
+    "motion": "harmonic_opening",
+    "kaleidoscope_mode": "harmonic_weave"
+  },
+  {
+    "aspect": "quincunx",
+    "geometry": "offset_spiral",
+    "motion": "skewed_adjustment",
+    "kaleidoscope_mode": "adaptive_misalignment"
+  }
+]

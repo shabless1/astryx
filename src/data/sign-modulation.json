@@ -1,0 +1,74 @@
+[
+  {
+    "sign": "Aries",
+    "bias_hz": 528,
+    "color": "green-gold",
+    "modulation": "sharp_initiating_percussive"
+  },
+  {
+    "sign": "Taurus",
+    "bias_hz": 396,
+    "color": "earthy red-brown",
+    "modulation": "slow_sustained_grounding"
+  },
+  {
+    "sign": "Gemini",
+    "bias_hz": 741,
+    "color": "electric blue",
+    "modulation": "alternating_dual_oscillating"
+  },
+  {
+    "sign": "Cancer",
+    "bias_hz": 639,
+    "color": "pale aqua-silver",
+    "modulation": "wave_like_tidal_protective"
+  },
+  {
+    "sign": "Leo",
+    "bias_hz": 852,
+    "color": "solar gold",
+    "modulation": "radiant_centered_amplifying"
+  },
+  {
+    "sign": "Virgo",
+    "bias_hz": 417,
+    "color": "emerald green",
+    "modulation": "precise_corrective_pattern"
+  },
+  {
+    "sign": "Libra",
+    "bias_hz": 432,
+    "color": "blush rose",
+    "modulation": "balancing_symmetrical_smoothing"
+  },
+  {
+    "sign": "Scorpio",
+    "bias_hz": 936,
+    "color": "crimson-burgundy",
+    "modulation": "deep_penetrating_pressure_release"
+  },
+  {
+    "sign": "Sagittarius",
+    "bias_hz": 963,
+    "color": "violet-purple",
+    "modulation": "expanding_rising_outward"
+  },
+  {
+    "sign": "Capricorn",
+    "bias_hz": 174,
+    "color": "charcoal gray",
+    "modulation": "compressed_minimal_structural"
+  },
+  {
+    "sign": "Aquarius",
+    "bias_hz": 285,
+    "color": "electric indigo",
+    "modulation": "irregular_electric_disruptive"
+  },
+  {
+    "sign": "Pisces",
+    "bias_hz": 528,
+    "color": "seafoam blue",
+    "modulation": "diffuse_ambient_dissolving"
+  }
+]

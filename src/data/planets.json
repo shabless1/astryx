@@ -1,0 +1,373 @@
+[
+  {
+    "planet": "Sun",
+    "anchor_hz": 126.22,
+    "function": [
+      "vitality",
+      "central coherence",
+      "core identity"
+    ],
+    "systems": [
+      "heart",
+      "circulation",
+      "overall vitality"
+    ],
+    "taste_bias": [
+      "pungent",
+      "bitter"
+    ],
+    "color_bias": [
+      "gold",
+      "yellow"
+    ],
+    "sound_role": [
+      "pulse",
+      "center_tone"
+    ],
+    "body_role": [
+      "upright posture",
+      "expansive breathing"
+    ],
+    "scent_bias": [
+      "rosemary",
+      "frankincense",
+      "orange"
+    ]
+  },
+  {
+    "planet": "Moon",
+    "anchor_hz": 210.42,
+    "alt_anchor_hz": 227.43,
+    "function": [
+      "cycles",
+      "fluids",
+      "emotion",
+      "nervous receptivity"
+    ],
+    "systems": [
+      "digestive",
+      "lymphatic",
+      "hormonal",
+      "fluid regulation"
+    ],
+    "taste_bias": [
+      "sweet",
+      "mild bitter"
+    ],
+    "color_bias": [
+      "silver",
+      "pale blue"
+    ],
+    "sound_role": [
+      "wave_pad",
+      "ambient_motion"
+    ],
+    "body_role": [
+      "rocking",
+      "slow breathing",
+      "gentle touch"
+    ],
+    "scent_bias": [
+      "chamomile",
+      "jasmine",
+      "sandalwood"
+    ]
+  },
+  {
+    "planet": "Mercury",
+    "anchor_hz": 141.27,
+    "function": [
+      "communication",
+      "signaling",
+      "cognition",
+      "patterning"
+    ],
+    "systems": [
+      "nervous",
+      "respiratory",
+      "thyroid",
+      "sensory relay"
+    ],
+    "taste_bias": [
+      "pungent",
+      "aromatic"
+    ],
+    "color_bias": [
+      "yellow-green",
+      "electric yellow"
+    ],
+    "sound_role": [
+      "lead",
+      "pattern_pulse"
+    ],
+    "body_role": [
+      "coordination drills",
+      "alternating movement",
+      "rhythmic breath"
+    ],
+    "scent_bias": [
+      "peppermint",
+      "eucalyptus",
+      "basil"
+    ]
+  },
+  {
+    "planet": "Venus",
+    "anchor_hz": 221.23,
+    "function": [
+      "harmony",
+      "binding",
+      "receptivity",
+      "softening"
+    ],
+    "systems": [
+      "kidneys",
+      "skin",
+      "reproductive",
+      "hormonal balance"
+    ],
+    "taste_bias": [
+      "sweet",
+      "aromatic"
+    ],
+    "color_bias": [
+      "soft green",
+      "rose"
+    ],
+    "sound_role": [
+      "pad",
+      "consonant lead"
+    ],
+    "body_role": [
+      "open chest",
+      "slow stretch",
+      "soft release"
+    ],
+    "scent_bias": [
+      "rose",
+      "vanilla",
+      "ylang-ylang"
+    ]
+  },
+  {
+    "planet": "Mars",
+    "anchor_hz": 144.72,
+    "function": [
+      "activation",
+      "movement",
+      "pressure",
+      "heat"
+    ],
+    "systems": [
+      "muscular",
+      "circulatory",
+      "inflammatory"
+    ],
+    "taste_bias": [
+      "pungent",
+      "heating"
+    ],
+    "color_bias": [
+      "red"
+    ],
+    "sound_role": [
+      "pulse",
+      "sharp lead"
+    ],
+    "body_role": [
+      "controlled exertion",
+      "tension release",
+      "slow-exhale control"
+    ],
+    "scent_bias": [
+      "ginger",
+      "black pepper",
+      "cinnamon"
+    ]
+  },
+  {
+    "planet": "Jupiter",
+    "anchor_hz": 183.58,
+    "function": [
+      "growth",
+      "expansion",
+      "amplification",
+      "abundance"
+    ],
+    "systems": [
+      "liver",
+      "metabolic",
+      "growth regulation"
+    ],
+    "taste_bias": [
+      "sweet",
+      "bitter"
+    ],
+    "color_bias": [
+      "royal blue",
+      "purple"
+    ],
+    "sound_role": [
+      "rising pad",
+      "expansion lead"
+    ],
+    "body_role": [
+      "full-body expansion",
+      "broad breathing"
+    ],
+    "scent_bias": [
+      "clove",
+      "nutmeg",
+      "sweet orange"
+    ]
+  },
+  {
+    "planet": "Saturn",
+    "anchor_hz": 147.85,
+    "function": [
+      "structure",
+      "restriction",
+      "compression",
+      "endurance"
+    ],
+    "systems": [
+      "skeletal",
+      "connective",
+      "deep tissue"
+    ],
+    "taste_bias": [
+      "bitter",
+      "astringent"
+    ],
+    "color_bias": [
+      "charcoal",
+      "dark gray"
+    ],
+    "sound_role": [
+      "bass",
+      "drone"
+    ],
+    "body_role": [
+      "alignment",
+      "stillness",
+      "containment"
+    ],
+    "scent_bias": [
+      "vetiver",
+      "cedarwood",
+      "patchouli"
+    ]
+  },
+  {
+    "planet": "Uranus",
+    "anchor_hz": 207.36,
+    "function": [
+      "reset",
+      "electrical shift",
+      "pattern disruption",
+      "awakening"
+    ],
+    "systems": [
+      "nervous",
+      "electrical signaling",
+      "sudden spasmodic states"
+    ],
+    "taste_bias": [
+      "sharp",
+      "volatile"
+    ],
+    "color_bias": [
+      "electric blue",
+      "white"
+    ],
+    "sound_role": [
+      "glitch_pulse",
+      "irregular_texture"
+    ],
+    "body_role": [
+      "shaking",
+      "quick reset drills",
+      "light stimulation"
+    ],
+    "scent_bias": [
+      "lemongrass",
+      "sage",
+      "camphor"
+    ]
+  },
+  {
+    "planet": "Neptune",
+    "anchor_hz": 211.44,
+    "function": [
+      "diffusion",
+      "permeability",
+      "subtle field",
+      "sensitivity"
+    ],
+    "systems": [
+      "fluids",
+      "immune",
+      "lymphatic",
+      "subtle states"
+    ],
+    "taste_bias": [
+      "cooling",
+      "slightly bitter"
+    ],
+    "color_bias": [
+      "seafoam",
+      "violet"
+    ],
+    "sound_role": [
+      "ambient_wash",
+      "drift_texture"
+    ],
+    "body_role": [
+      "slow flow",
+      "soft sensory awareness"
+    ],
+    "scent_bias": [
+      "myrrh",
+      "lavender",
+      "lotus"
+    ]
+  },
+  {
+    "planet": "Pluto",
+    "anchor_hz": 140.25,
+    "function": [
+      "deep purge",
+      "transformation",
+      "pressure",
+      "regeneration"
+    ],
+    "systems": [
+      "cellular",
+      "deep eliminative",
+      "reproductive",
+      "entrenched states"
+    ],
+    "taste_bias": [
+      "deep bitter",
+      "astringent"
+    ],
+    "color_bias": [
+      "deep red",
+      "black"
+    ],
+    "sound_role": [
+      "sub_bass",
+      "deep_drone"
+    ],
+    "body_role": [
+      "deep holds",
+      "compression-release",
+      "grounded stance"
+    ],
+    "scent_bias": [
+      "deep resins",
+      "palo santo",
+      "myrrh"
+    ]
+  }
+]

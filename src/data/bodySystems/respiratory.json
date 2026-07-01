@@ -1,0 +1,351 @@
+{
+  "_meta": {
+    "title": "Respiratory System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "respiratory",
+    "name": "Respiratory System",
+    "alternateNames": ["Pulmonary System", "Breathing Apparatus"],
+    "shortDescription": "Lungs, airways, and respiratory muscles — gas exchange (O₂ in, CO₂ out) and breath as the body's primary autonomic interface",
+    "icon": "🜁",
+    "accentColor": "#9EC832",
+    "elementalProfile": "Air primary (Gemini); Fire bridging via diaphragm (Sagittarius)"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "Nasal cavity, sinuses, pharynx (upper airway)",
+      "Larynx (voice box) and trachea (windpipe)",
+      "Bronchi (primary, secondary, tertiary) and bronchioles",
+      "Lungs — right (3 lobes) and left (2 lobes)",
+      "Alveoli (gas exchange units, ~300 million per adult)",
+      "Pleura (parietal + visceral) and pleural fluid",
+      "Diaphragm (primary breathing muscle)",
+      "Accessory muscles: intercostals, scalenes, SCM, abdominals (forced breathing)"
+    ],
+    "subStructures": {
+      "upper_airway": ["Nasal cavity", "Paranasal sinuses", "Pharynx", "Larynx"],
+      "lower_airway": ["Trachea", "Right + left main bronchus", "Lobar bronchi", "Segmental bronchi", "Bronchioles", "Alveolar ducts", "Alveoli"],
+      "gas_exchange": ["Alveolar epithelium", "Pulmonary capillary", "Diffusion barrier (~0.5 μm)"],
+      "breathing_muscles": ["Diaphragm", "External + internal intercostals", "Scalenes (accessory)", "SCM (accessory)", "Abdominal wall (forced exhale)"]
+    },
+    "vertebralCorrelates": "Per Cornell: 3rd-5th dorsal vertebrae relate to lungs and bronchi. T1-T5 thoracic mobility critical for full breath expansion. Cervical spine C3-C5 supplies phrenic nerve (diaphragm innervation). Bodyworkers: T1-T8 mobilization + cervical decompression directly supports breathing capacity.",
+    "nervePlexus": "Pulmonary plexus (sympathetic + parasympathetic via vagus nerve). Phrenic nerve (C3-C5) controls diaphragm. Vagal regulation = parasympathetic bronchoconstriction baseline."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Mercury",
+    "primaryPlanetRationale": "Mercury governs breath, signal transmission, and the respiratory-cognitive bridge. Per Cornell (1933): 'Physiologically Mercury rules Respiration. In the Astral Body Jupiter has direct relation to the Breath.'",
+    "primarySign": "Gemini",
+    "primaryHouse": 3,
+    "secondaryPlanets": [
+      {"planet": "Jupiter", "rules": "Veins of the respiratory system; full-breath expansion (astral breath)", "rationale": "Cornell (1933): 'Veins of the respiratory system [are ruled by Jupiter]. Jupiter has direct relation to the Breath.'"},
+      {"planet": "Mercury", "rules": "Air cells, tidal air, bronchi, breathing rhythm, voice", "rationale": "Cornell (1933): 'Mercury afflicted in Taurus, Gemini, or Cancer tends to disturbances of the air cells in lungs.'"},
+      {"planet": "Moon", "rules": "Mucous membranes of respiratory tract, fluid retention in lungs (pleural effusion)", "rationale": "Cornell (1933): 'The Moon, the fluids of the body... mucous membranes [of the respiratory tract].'"},
+      {"planet": "Saturn", "rules": "Chronic respiratory restriction, fibrosis, atrophy of lung tissue, asthma (cold/dry type)", "rationale": "Cornell (1933): 'Saturn afflicted in Gemini tends to chronic, restricted breath; asthma of the cold, dry type.'"},
+      {"planet": "Neptune", "rules": "Idiopathic respiratory states, hypersensitivity, drug-induced respiratory depression", "rationale": "Modern attribution — diffuse, mysterious respiratory presentations."},
+      {"planet": "Uranus", "rules": "Spasmodic asthma, sudden respiratory events, electrical disturbance of breathing rhythm", "rationale": "Cornell (1933): 'Uranus afflicted in Gemini, Cancer, or fixed signs — spasmodic asthma.'"},
+      {"planet": "Mars", "rules": "Inflammatory respiratory conditions (acute bronchitis, pneumonia), pleural pain", "rationale": "Cornell (1933): 'Mars in Gemini or Cancer afflicted tends to inflammatory disorders of lungs and pleura.'"}
+    ],
+    "fixedCrossInfluence": "Per Cornell, 'The Breath is affected by afflictions in Taurus, Gemini, and Cancer.' These signs cover throat → upper lungs → diaphragmatic relation.",
+    "secondarySigns": ["Sagittarius (diaphragm, hips — respiratory polarity opposite of Gemini)", "Cancer (chest cavity, pleura)", "Taurus (throat upper-airway)"],
+    "houses": {
+      "primary": [3],
+      "primaryRationale": "3rd house = Gemini's natural house; rules breath, lungs, shoulders, arms",
+      "secondary": [9, 4],
+      "diseaseHouses": [6, 8, 12],
+      "vedicNote": "Vedic: 4th house = chest cavity. To be refined Phase 2."
+    }
+  },
+  "axes": [
+    {
+      "name": "Respiratory Axis",
+      "polarity": "Gemini ↔ Sagittarius",
+      "source": "Minerva (2023), Axa respiratorie",
+      "interpretation": "Gemini governs the upper lungs and bronchi (inhalation, intake, signal); Sagittarius governs the diaphragm and lower lung capacity (exhalation, expansion, broad breath). The axis represents breath as both intake AND release. Imbalance toward Gemini may manifest as shallow rapid breathing, upper-chest tension, anxiety-pattern breath. Imbalance toward Sagittarius may manifest as diaphragmatic restriction, full-chest collapse, breath that won't deepen.",
+      "indicatorPattern": {
+        "gemini_dominant": "Shallow upper-chest breathing, rapid rate, anxiety-pattern hyperventilation, bronchial irritability",
+        "sagittarius_dominant": "Diaphragmatic restriction, sighing repeatedly, breath that won't deepen, mid-back/diaphragm tension",
+        "balanced": "Smooth full diaphragmatic breath cycle, balanced inhalation/exhalation rhythm"
+      }
+    },
+    {
+      "name": "Digestive-Immune Axis (respiratory overlay)",
+      "polarity": "Virgo ↔ Pisces",
+      "source": "Minerva (2023), Axa digestivă-imunitară",
+      "interpretation": "The immune component of respiratory health (allergies, asthma, recurrent infection) sits on the Virgo-Pisces axis. Compromised immune function manifests in the lungs as chronic catarrh, asthma, susceptibility to bronchitis."
+    }
+  ],
+  "energetics": {
+    "chakra": "Throat (Vishuddha) + Heart (Anahata)",
+    "chakraColor": "Sky blue (throat) / green (heart)",
+    "chakraHz": 384.0,
+    "nervousSystemPathway": "Phrenic nerve (C3-C5) → diaphragm; vagal parasympathetic = bronchial relaxation baseline; cervico-thoracic sympathetic = bronchial irritability under stress",
+    "endocrineCorrespondence": "Thymus (immune-respiratory bridge); adrenals (cortisol bronchodilation)",
+    "elementalCorrespondence": "Air primary; Fire bridge (Sagittarius diaphragm)",
+    "brainwaveAffinity": "Alpha-Theta — coherent breath cycle entrains brainwaves toward calm focus",
+    "meridianCrossover_TCM": "Lung meridian (LU), Large Intestine meridian (LI). Metal element."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Kali Mur", "saltFullName": "Kali Muriaticum", "sign": "Gemini", "epithet": "Fibrin Builder / Respiratory Mucus Regulator", "indicatedFor": "Thick white catarrh, bronchitis with white discharge, sluggish lymph in respiratory tract. Alternate with Ferr Phos in acute respiratory inflammation per Carey.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "First Aid / Oxygen Carrier", "indicatedFor": "First salt for ANY acute respiratory inflammation, fever, congestion. Take every 30 min during acute episodes.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Silica", "saltFullName": "Silicea", "sign": "Sagittarius", "epithet": "The Internal Surgeon", "indicatedFor": "Chronic respiratory suppuration (pus formation), tonsillitis with pus, supports pleural connective tissue, nerve sheath of phrenic.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Blood Purifier / Wound Healer", "indicatedFor": "Chronic catarrh that won't clear, persistent post-infectious mucus, sluggish respiratory cleansing.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [
+      {"name": "Lavender", "planet": "Mercury", "dataRef": "sacredBotanicals.json", "mechanism": "Calms scattered nervous-respiratory system; supports parasympathetic bronchial relaxation"}
+    ],
+    "supplementaryHerbs": [
+      {"name": "Mullein leaf (Verbascum)", "classicalAttribution": "Saturn / Jupiter", "mechanism": "Expectorant, demulcent, supports bronchial lining repair", "indicatedFor": "Chronic bronchitis, dry cough, lung tissue tone"},
+      {"name": "Thyme (Thymus vulgaris)", "classicalAttribution": "Mercury / Venus", "mechanism": "Antimicrobial expectorant, supports respiratory clearance", "indicatedFor": "Productive cough, bronchitis, sinus congestion"},
+      {"name": "Elecampane (Inula helenium)", "classicalAttribution": "Mercury / Jupiter", "mechanism": "Warming expectorant, supports deep bronchial clearing", "indicatedFor": "Stubborn productive cough, chronic respiratory weakness"},
+      {"name": "Lobelia (Lobelia inflata)", "classicalAttribution": "Neptune / Uranus", "mechanism": "Antispasmodic bronchodilator (PROFESSIONAL USE ONLY — narrow therapeutic window)", "indicatedFor": "Asthmatic spasm. NOT for individual self-administration — professional herbalist guidance required."}
+    ],
+    "crystals": [
+      {"name": "Blue Lace Agate", "planet": "Mercury", "bodyPlacement": "Throat / upper sternum", "classicalAttribution": "Respiratory-vocal soothing"},
+      {"name": "Amazonite", "planet": "Mercury", "bodyPlacement": "Throat / upper chest", "classicalAttribution": "Calms electrical-respiratory overstimulation"},
+      {"name": "Pyrite", "planet": "Sun", "bodyPlacement": "Sternum", "classicalAttribution": "Lung capacity, vital force in breath"}
+    ],
+    "tuningForks": [
+      {"planet": "Mercury", "hz": 141.27, "applicationPoint": "Sternum, clavicles, throat", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Jupiter", "hz": 183.58, "applicationPoint": "Diaphragm (subcostal margin)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Earth Year Om", "hz": 136.10, "applicationPoint": "Grounding regulator — feet or base of spine"}
+    ],
+    "scents": [
+      {"name": "Eucalyptus", "planet": "Mercury", "delivery": "steam, diffuser, inhale", "dataRef": "scents.json"},
+      {"name": "Peppermint", "planet": "Mercury", "delivery": "inhale, diffuser", "dataRef": "scents.json"},
+      {"name": "Frankincense", "planet": "Sun", "delivery": "diffuser, resin burn", "dataRef": "scents.json"},
+      {"name": "Pine / Spruce (supplementary)", "delivery": "diffuser", "mechanism": "Opens airways, supports oxygen perfusion"}
+    ],
+    "bodyProtocols": [
+      {"ref": "body-protocols.json → planet='Mercury'", "breath": "Alternate nostril breath (nadi shodhana)", "movement": "Coordination alternating arm-leg", "posture": "Upright neutral spine", "touch": "Fingertip tracing collarbones"}
+    ],
+    "modalityRecommendations": {
+      "individual": "Daily diaphragmatic breath practice (5 min am + pm). Steam inhalation with eucalyptus during congestion. Stay hydrated. Mullein tea evenings for chronic dry cough.",
+      "medical_astrologer": "Examine: Mercury, Gemini placements, 3rd house contents and ruler, transits to natal Mercury. Saturn-Mercury and Saturn in Gemini are classically associated with chronic respiratory restriction. Uranus-Mercury and Uranus in Gemini classically associated with spasmodic asthma. Note Jupiter transits (expansion of breath capacity) and Neptune transits (subtle/idiopathic patterns).",
+      "reiki": "Throat chakra (Vishuddha) and Heart chakra (Anahata) activation. Hand position 4 (over upper chest) primary, hand position 3 (sternum/thymus) supporting. Blue light visualization at throat, green at heart. Sky-blue Hz: ~384 Hz reference.",
+      "bodywork_general": "Thoracic mobilization T1-T8. Intercostal release. Diaphragmatic release (subcostal approach — gentle pressure under rib margin while client exhales). SCM and scalene release (accessory breathing muscles). Cervical decompression supports phrenic nerve function.",
+      "bodywork_contraindications": "Recent rib fracture: avoid. Active pneumonia or pleurisy: defer to medical care. Pneumothorax history: caution with deep chest work. Pacemaker: avoid TENS or deep vibration over chest.",
+      "naturopathy": "Mullein, thyme, elecampane for chronic respiratory tone. N-acetylcysteine (NAC) for mucolytic support. Vitamin C, zinc, vitamin D for immune-respiratory baseline. Refer to MD for any acute or persistent respiratory symptoms — especially if hemoptysis (blood in sputum), prolonged fever, or progressive dyspnea.",
+      "acupuncture": "Lung meridian (LU 1 Zhongfu, LU 7 Lieque, LU 9 Taiyuan). Large Intestine meridian (LI 4 Hegu, LI 20 Yingxiang for sinus). Metal element tonification or sedation depending on excess/deficiency pattern.",
+      "ayurveda_phase2_placeholder": "Prana Vata (breath subtype of Vata governing intake), Udana Vata (upward-moving Vata governing speech, exhalation). Pranayama practices central. Rasayanas: vasaka (Adhatoda), tulsi (Ocimum sanctum). Phase 2 expansion.",
+      "pastoral_spiritual": "Breath as the soul's bridge to embodiment. Contemplation on each breath as gift. 'I breathe in life, I breathe out gratitude.' Pranayama and contemplative breath work."
+    }
+  },
+  "pathologies": [
+    {
+      "id": "resp_asthma",
+      "name": "Asthma (Reactive Airway Disease)",
+      "icdReference": "J45",
+      "system": "respiratory",
+      "category": "obstructive_reactive",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Uranus afflicted in Gemini (spasmodic type)", "Saturn afflicted in Gemini (cold/dry type)", "Mercury-Uranus square", "Mars afflicted in Cancer (allergic-inflammatory type)"],
+        "signEmphasis": ["Gemini afflicted", "Sagittarius (polarity) stressed", "Pisces (immune-allergic) afflicted"],
+        "houseEmphasis": ["3rd house afflictions", "6th house Mars or Uranus"],
+        "transitTriggers": ["Uranus transit to natal Mercury", "Saturn transit to natal Mercury (chronic compression onset)", "Outer-planet transits to natal Gemini placements"]
+      },
+      "classicalReference": "Cornell (1933): 'Asthma — affliction in Taurus, Gemini, or Cancer; Spasmodic Asthma: Uranus afflicted in Gemini, Cancer, or fixed signs; Saturn afflicted in Gemini tends to chronic dry asthma; Bronchial Asthma: affliction in 3rd H.; Hay Asthma: Mercury-Uranus aspects.'",
+      "cellSalts": ["Kali Mur", "Mag Phos", "Nat Sulph"],
+      "indicatorLanguage": {
+        "individual": "Your chart shows a configuration classical sources associate with respiratory reactivity patterns. If you experience persistent wheezing, shortness of breath, or coughing — particularly with exertion or exposure to triggers — please work with your healthcare provider on a management plan.",
+        "practitioner": "Mercury-Uranus aspects and Uranus/Saturn in Gemini are classically associated with asthmatic patterns (Cornell, 1933). Differentiate spasmodic (Uranus) from chronic-restrictive (Saturn) presentations. Acute asthma exacerbation is a medical emergency — refer to MD/ED. Holistic support is adjunctive to medical management of confirmed asthma."
+      },
+      "modalityNotes": {
+        "bodywork": "Active wheezing or peak-flow drop = refer to MD. Stable asthma: thoracic mobilization, diaphragmatic release, accessory muscle work supportive. Avoid deep abdominal work during acute exacerbation.",
+        "reiki": "Throat + heart + thymus chakra activation. Blue and green light visualization. NEVER replace rescue inhaler — supportive only.",
+        "lifestyle": "Trigger identification (allergens, cold air, exercise), peak-flow monitoring per MD, magnesium-rich foods (bronchodilation support), omega-3, vitamin D."
+      },
+      "redFlags": ["Acute asthma attack with peak flow < 50% personal best → 911 or ED", "Cyanosis (blue lips) during attack → 911", "Inability to speak in full sentences → 911"]
+    },
+    {
+      "id": "resp_bronchitis_acute",
+      "name": "Acute Bronchitis",
+      "icdReference": "J20",
+      "system": "respiratory",
+      "category": "infectious_inflammatory",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars afflicted in Gemini (acute inflammation)", "Mars-Mercury", "Moon in Gemini afflicted (fluid + mucus excess)"],
+        "signEmphasis": ["Gemini afflicted (current transit or natal)"],
+        "houseEmphasis": ["3rd house Mars"],
+        "transitTriggers": ["Mars transit through Gemini", "Mars-Mercury exact aspect"]
+      },
+      "classicalReference": "Cornell (1933): 'Bronchitis — Mars afflicted in Gemini; inflammation of bronchial mucous membrane. Alternates with Kali Mur per Carey.'",
+      "cellSalts": ["Ferr Phos (first aid)", "Kali Mur (thick white catarrh)"],
+      "indicatorLanguage": {
+        "individual": "Productive cough with chest congestion of recent onset may benefit from steam, mullein tea, rest, and hydration. If fever > 101°F (38.3°C), cough lasting > 3 weeks, or any blood in sputum, see your healthcare provider.",
+        "practitioner": "Mars-Gemini configurations classically associated with acute bronchial inflammation (Cornell, 1933). Most acute bronchitis is viral and self-limiting. Alarm signs: fever > 101°F > 3 days, hemoptysis, dyspnea at rest → refer for medical evaluation (rule out pneumonia, pulmonary embolism)."
+      },
+      "modalityNotes": {
+        "bodywork": "Acute illness: defer hands-on work. Recovery phase: gentle thoracic mobilization, postural drainage techniques.",
+        "reiki": "Supportive throughout. Throat + heart chakra activation. Distance reiki appropriate during acute phase.",
+        "lifestyle": "Steam inhalation, hot fluids, mullein/thyme tea, vitamin C, zinc, rest. Honey for cough (NOT for children < 1 year)."
+      },
+      "redFlags": ["Hemoptysis (blood in sputum)", "Dyspnea at rest", "Fever > 101°F lasting > 3 days"]
+    },
+    {
+      "id": "resp_pneumonia",
+      "name": "Pneumonia",
+      "icdReference": "J18",
+      "system": "respiratory",
+      "category": "infectious_serious",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars-Saturn in Gemini or Cancer (deep inflammatory consolidation)", "Mars in Cancer afflicted (water-fire — fluid in lung)", "Pluto-Mars transits"],
+        "signEmphasis": ["Cancer afflicted (water sign, lung consolidation)", "Gemini (acute respiratory)"],
+        "houseEmphasis": ["3rd, 6th house heavily afflicted"],
+        "transitTriggers": ["Outer-planet stations on natal respiratory placements"]
+      },
+      "classicalReference": "Cornell (1933): 'Pneumonia — Mars afflicted in Cancer; affliction in 3rd H.; combined affliction of Mars and Saturn in respiratory signs. Lobar pneumonia: heavier Mars; bronchopneumonia: distributed affliction.'",
+      "cellSalts": ["Ferr Phos (acute)", "Kali Mur", "Calc Sulph (resolution phase)"],
+      "indicatorLanguage": {
+        "individual": "Pneumonia is a serious medical condition requiring immediate evaluation by your healthcare provider. If you have fever with productive cough, shortness of breath, and chest pain that worsens with breathing — please seek medical care.",
+        "practitioner": "Mars-Saturn afflictions in Cancer/Gemini are classically associated with pneumonic patterns (Cornell, 1933). Confirmed or suspected pneumonia is OUT OF SCOPE for holistic-only management. Refer to MD/ED. Holistic support is strictly adjunctive to antibiotic/antiviral management when indicated."
+      },
+      "modalityNotes": {
+        "bodywork": "DO NOT WORK on a client with active pneumonia. Refer immediately. Post-recovery (with MD clearance): gentle thoracic work, postural drainage support.",
+        "reiki": "Distance reiki appropriate as supportive complement. Never replacement.",
+        "lifestyle": "Strictly per medical guidance. Rest, hydration, completion of any prescribed antibiotic course."
+      },
+      "redFlags": ["Suspected pneumonia is a medical emergency, especially in elderly, immunocompromised, or with O₂ saturation < 92% → ED"]
+    },
+    {
+      "id": "resp_copd",
+      "name": "COPD / Emphysema",
+      "icdReference": "J44 / J43",
+      "system": "respiratory",
+      "category": "chronic_obstructive",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Mercury (chronic restriction)", "Saturn in Gemini (chronic dry pattern)", "Uranus in Gemini (alveolar distention per Cornell)", "Long Saturn transit through natal respiratory placements"],
+        "signEmphasis": ["Gemini chronically afflicted", "Saturn-ruled signs in stress"],
+        "houseEmphasis": ["6th house Saturn", "3rd house Saturn-Uranus"],
+        "transitTriggers": ["Saturn return (age 28-30, 58-60) — pattern often crystallizes", "Uranus opposition (age 38-42)"]
+      },
+      "classicalReference": "Cornell (1933): 'Emphysema — distention of the tissues with air. Uranus afflicted; affliction in Gemini. Often follows long-term chronic bronchial irritation under Saturn affliction.'",
+      "cellSalts": ["Calc Phos (deep restoration)", "Silica (connective tissue tone)", "Kali Sulph (oxygenation support)"],
+      "indicatorLanguage": {
+        "individual": "Chronic shortness of breath, persistent productive cough, or progressive exercise intolerance warrants pulmonary function testing by your healthcare provider. Smoking cessation is the most powerful intervention for any chronic respiratory condition.",
+        "practitioner": "Saturn-Mercury chronic configurations are classically associated with COPD-pattern restriction (Cornell, 1933). Disease management is medical. Holistic adjuncts: pulmonary rehab support, breath training, immune support during infection-risk seasons, smoking cessation support."
+      },
+      "modalityNotes": {
+        "bodywork": "Thoracic mobilization critical — chronic chest wall stiffness compounds COPD. Diaphragmatic release. Postural training. Pulmonary rehab partnerships valuable.",
+        "reiki": "Supportive — chronic conditions benefit from ongoing energetic support. Throat + heart chakras.",
+        "lifestyle": "Smoking cessation (#1 intervention). Pulmonary rehab. Nutrition support. Immune support during flu/COVID/RSV seasons.",
+        "referral": "Pulmonologist for confirmed COPD. Smoking cessation programs."
+      },
+      "redFlags": ["COPD exacerbation: increased dyspnea + sputum + change in sputum color → MD same day"]
+    },
+    {
+      "id": "resp_sinusitis",
+      "name": "Sinusitis (Chronic + Acute)",
+      "icdReference": "J32 / J01",
+      "system": "respiratory",
+      "category": "upper_airway",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn in Taurus or Gemini (chronic congestion)", "Moon-Mars (acute inflammatory sinus)", "Jupiter-Moon (excess mucus production)"],
+        "signEmphasis": ["Taurus (sinuses border throat)", "Gemini (upper airway)"],
+        "houseEmphasis": ["3rd house Moon-Mars"],
+        "transitTriggers": ["Saturn transit through Taurus/Gemini", "Acute Mars transits through respiratory signs"]
+      },
+      "classicalReference": "Cornell (1933): 'Sinusitis — Saturn afflicted in Taurus or Gemini for chronic; Mars in same signs for acute inflammatory presentations.'",
+      "cellSalts": ["Kali Mur (white discharge)", "Nat Mur (watery discharge)", "Silica (chronic pus)"],
+      "indicatorLanguage": {
+        "individual": "Sinus congestion, facial pressure, or postnasal drip lasting more than 10 days, or accompanied by fever > 102°F, severe facial pain, or vision changes, requires medical evaluation.",
+        "practitioner": "Saturn-Taurus/Gemini classically associated with chronic sinusitis patterns (Cornell, 1933). Chronic sinusitis often has structural or allergic components requiring ENT consultation."
+      },
+      "modalityNotes": {
+        "bodywork": "Sinus drainage massage (gentle pressure along sinus borders). Suboccipital release. Lymphatic drainage of head/neck.",
+        "reiki": "Third eye + throat chakra activation. Cool blue/violet visualization at sinus areas.",
+        "lifestyle": "Saline nasal irrigation, steam, identification of triggers (allergens, mold, sensitivities), adequate hydration, dairy/sugar reduction often helps chronic mucus."
+      },
+      "redFlags": ["Vision changes + facial pain → urgent (rule out orbital cellulitis)", "High fever + severe headache + neck stiffness → ED"]
+    },
+    {
+      "id": "resp_allergic_rhinitis",
+      "name": "Allergic Rhinitis (Hay Fever)",
+      "icdReference": "J30",
+      "system": "respiratory",
+      "category": "allergic_immune",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mercury-Uranus (hypersensitivity reactivity)", "Neptune-Mercury (immune confusion)", "Moon in air signs afflicted"],
+        "signEmphasis": ["Gemini, Aquarius (air signs hypersensitive)", "Pisces (immune)"],
+        "houseEmphasis": ["3rd, 12th house"],
+        "transitTriggers": ["Uranus transit to natal Mercury", "Seasonal — coincides with peak allergen exposure regardless of transit"]
+      },
+      "classicalReference": "Cornell (1933): 'Hay Asthma — Mercury-Uranus aspects; affliction to Mercury by malefics.'",
+      "cellSalts": ["Nat Mur (watery discharge)", "Kali Mur (thick discharge)", "Calc Phos (chronic predisposition)"],
+      "indicatorLanguage": {
+        "individual": "Seasonal congestion, sneezing, itchy eyes may respond to antihistamine support and allergen avoidance. Persistent or severe symptoms benefit from allergist consultation for testing and management plan.",
+        "practitioner": "Mercury-Uranus configurations classically associated with hypersensitivity reactivity (Cornell, 1933). Immune-respiratory axis (Virgo-Pisces) is the constitutional frame. Holistic support: quercetin, nettle leaf, local honey (controversial), nasal irrigation. Refer to allergist for severe or refractory cases."
+      },
+      "modalityNotes": {
+        "bodywork": "Lymphatic drainage of head/neck. Sinus drainage. Cervical decompression. Skull-base release.",
+        "reiki": "Throat + third eye chakras. Cooling intentions. Immune system visualization.",
+        "lifestyle": "HEPA filtration, dust mite covers, shower after outdoor exposure, identify and reduce triggers, nettle/quercetin/vitamin C, local honey trial."
+      },
+      "redFlags": ["Anaphylactic reaction → 911 immediately"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder — full Vedic respiratory layer per Charak (2005) Phase 2",
+    "tridosha": {
+      "primary": "Vata (Prana Vata — breath subtype; Udana Vata — upward speech/exhale)",
+      "secondary": "Kapha involvement in mucus/congestion patterns",
+      "tertiary": "Pitta involvement in inflammatory respiratory (acute bronchitis, pneumonia)"
+    },
+    "nakshatras_governing_respiratory": ["Punarvasu (chest, lungs)", "Pushya (chest, breath)", "Ardra (storm, breath disturbance)"],
+    "ayurvedicOrgans": ["Pranavaha Srotas (channels of breath)", "Phupphusa (lung)"],
+    "dashaRelevance": "Dasha periods of Mercury, Saturn, or Rahu often correlate with respiratory events in Vedic medical astrology per Charak (2005).",
+    "ayurvedicTreatments_phase2": "Vasaka (Adhatoda), tulsi (Ocimum sanctum), pippali (Piper longum), sitopaladi churna. Pranayama central. Phase 2 expansion."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {
+      "focusPoints": ["Mercury + Gemini", "3rd house + ruler", "Saturn-Mercury for chronic", "Uranus-Mercury for spasmodic", "Transits to respiratory placements"],
+      "techniquesUsed": ["Decumbiture for acute events", "Solar Return analysis", "Profections (Mercury periods)", "Critical degree check for Mercury and 3rd cusp"],
+      "outputDepth": "Full clinical signatures with Cornell source citations"
+    },
+    "reiki": {
+      "focusPoints": ["Throat (Vishuddha)", "Heart (Anahata)", "Thymus gate"],
+      "techniquesUsed": ["Hand position 4 (upper chest)", "Hand position 3 (sternum)", "Blue + green light visualization", "Breath-synchronized energy flow"],
+      "outputDepth": "Chakra activation map, hand positions, intention prompts"
+    },
+    "bodywork": {
+      "focusPoints": ["Thoracic spine T1-T8", "Intercostals", "Diaphragm subcostal", "SCM + scalenes", "Phrenic nerve / cervical decompression"],
+      "techniquesUsed": ["Thoracic mobilization", "Subcostal diaphragmatic release", "Accessory muscle release", "Postural drainage"],
+      "contraindicationsCriticallity": "MODERATE — active pneumonia/pleurisy is referral; acute asthma is referral; recent rib trauma defer",
+      "outputDepth": "Muscle-resolution map, contraindication panel, breath training protocols"
+    },
+    "naturopath": {
+      "focusPoints": ["Mucolytics (NAC)", "Demulcents (mullein, marshmallow)", "Antimicrobials (thyme)", "Immune support"],
+      "techniquesUsed": ["Herbal protocols (mullein, thyme, elecampane)", "Steam inhalation guidance", "Nasal irrigation", "Immune nutritional support (Vit C/D/zinc)"],
+      "outputDepth": "Herbal protocols + drug interaction warnings"
+    },
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Prana Vata", "Udana Vata", "Pranavaha Srotas"], "outputDepth": "TO BE BUILT PHASE 2"},
+    "acupuncturist_tcm": {
+      "focusPoints": ["Lung meridian (LU)", "Large Intestine (LI)", "Metal element"],
+      "techniquesUsed": ["LU 1 Zhongfu, LU 7 Lieque, LU 9 Taiyuan", "LI 4 Hegu, LI 20 Yingxiang for sinus", "Metal tonification/sedation"],
+      "outputDepth": "Meridian map + Five-Element framework"
+    },
+    "pastoral_spiritual": {
+      "focusPoints": ["Breath as soul-body bridge", "Pranayama", "Contemplative breath"],
+      "techniquesUsed": ["Conscious breath practice", "Breath-prayer integration", "Breath affirmations"],
+      "outputDepth": "Affirmations + contemplative practices"
+    }
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Respiratory conditions range from minor (mild cold) to life-threatening (pneumonia, severe asthma attack, pulmonary embolism). Holistic practice is adjunctive to medical care. Individual tier emphasizes monitoring + referral; Practitioner tier provides clinical signatures with explicit deferral to MD for confirmed pathology.",
+    "indicatorLanguagePolicy": "All output respects COMPLIANCE.md §3. Specific pathology names rendered to Practitioner+ tiers only; Individual tier sees 'respiratory patterns', 'breath tendencies'.",
+    "criticalReferralRules": [
+      "Acute severe dyspnea → 911",
+      "Hemoptysis → urgent MD",
+      "Asthma attack with peak flow < 50% → 911 or ED",
+      "Suspected pulmonary embolism (sudden dyspnea + chest pain + leg swelling) → 911",
+      "O₂ saturation < 92% → urgent medical evaluation",
+      "Cyanosis (blue lips/fingertips) → 911"
+    ],
+    "redFlagKeywords": ["can't breathe", "blue lips", "coughing blood", "chest pain breathing", "severe shortness of breath"]
+  }
+}

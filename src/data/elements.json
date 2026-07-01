@@ -1,0 +1,104 @@
+[
+  {
+    "element": "Fire",
+    "qualities": [
+      "heat",
+      "speed",
+      "activation"
+    ],
+    "pattern_behavior": [
+      "overdrive",
+      "inflammation_tendency"
+    ],
+    "sound_behavior": [
+      "bright",
+      "fast_attack"
+    ],
+    "visual_behavior": [
+      "sharp_rays",
+      "high_intensity"
+    ],
+    "body_bias": [
+      "movement",
+      "cooling_needed"
+    ]
+  },
+  {
+    "element": "Earth",
+    "qualities": [
+      "density",
+      "structure",
+      "materialization"
+    ],
+    "pattern_behavior": [
+      "stagnation",
+      "accumulation",
+      "slow_processes"
+    ],
+    "sound_behavior": [
+      "dense",
+      "low_register"
+    ],
+    "visual_behavior": [
+      "solid_polygons",
+      "grid_blocks"
+    ],
+    "body_bias": [
+      "mobilize",
+      "ground"
+    ]
+  },
+  {
+    "element": "Air",
+    "qualities": [
+      "movement",
+      "signal",
+      "distribution"
+    ],
+    "pattern_behavior": [
+      "instability",
+      "nervous_activity",
+      "dispersion"
+    ],
+    "sound_behavior": [
+      "light",
+      "higher_register",
+      "flicker"
+    ],
+    "visual_behavior": [
+      "lattice",
+      "thin_lines",
+      "wave_mesh"
+    ],
+    "body_bias": [
+      "stabilize",
+      "breath_regulate"
+    ]
+  },
+  {
+    "element": "Water",
+    "qualities": [
+      "fluid",
+      "sensitivity",
+      "containment"
+    ],
+    "pattern_behavior": [
+      "retention",
+      "permeability",
+      "emotional_linkage"
+    ],
+    "sound_behavior": [
+      "smooth_release",
+      "ambient"
+    ],
+    "visual_behavior": [
+      "curved_petals",
+      "fluid_rings"
+    ],
+    "body_bias": [
+      "drainage",
+      "soften",
+      "boundary_strengthening"
+    ]
+  }
+]

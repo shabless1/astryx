@@ -1,0 +1,184 @@
+{
+  "_meta": {"title": "Reproductive System", "schemaVersion": "1.0", "complianceVersion": "1.0", "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"], "lastUpdated": "2026-05-24"},
+  "system": {"id": "reproductive", "name": "Reproductive System", "alternateNames": ["Genital System", "Generative System"], "shortDescription": "Female: ovaries, uterus, fallopian tubes, vagina, breast tissue. Male: testes, prostate, seminal vesicles, penis. The system of regeneration, fertility, and intimate function.", "icon": "♀♂", "accentColor": "#FF006E", "elementalProfile": "Water (Scorpio depth) + Fire (Mars drive) + Earth (Taurus pleasure body)"},
+  "anatomy": {
+    "primaryStructures": {
+      "female": ["Ovaries (gamete + hormone production)", "Fallopian tubes (fertilization site)", "Uterus (gestation)", "Cervix", "Vagina", "Vulva", "Bartholin glands", "Breast tissue (mammary glands)"],
+      "male": ["Testes (sperm + testosterone)", "Epididymis (sperm maturation)", "Vas deferens", "Seminal vesicles", "Prostate gland", "Bulbourethral glands", "Penis", "Scrotum"]
+    },
+    "subStructures": {
+      "female_cycle": ["Hypothalamic-Pituitary-Gonadal (HPG) axis", "Follicular phase", "Ovulation", "Luteal phase", "Menstruation"],
+      "male_production": ["Spermatogenesis (continuous)", "Testosterone production (diurnal)"],
+      "pelvic_floor_common": ["Levator ani", "Coccygeus", "Perineum"]
+    },
+    "vertebralCorrelates": "Per Cornell: L1-L5 + sacrum innervates pelvic organs. T10-T12 for ovaries/testes. Bodyworkers: sacral mobilization + L5/S1 freedom supports pelvic function.",
+    "nervePlexus": "Hypogastric plexus (sympathetic), pelvic splanchnic nerves (parasympathetic — erection, vaginal lubrication, uterine), pudendal nerve."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Mars (male) / Venus (female), Pluto (deep reproductive transformation), Moon (cyclical)",
+    "primaryPlanetRationale": "Scorpio is the primary sign for reproductive — both Mars (traditional) and Pluto (modern) rule. Cornell (1933): 'Scorpio rules the sexual functions, the reproductive organs.'",
+    "primarySign": "Scorpio",
+    "primaryHouse": 8,
+    "secondaryPlanets": [
+      {"planet": "Mars", "rules": "Male reproductive primary, external genitals both sexes, libido, testosterone", "rationale": "Cornell: 'Mars rules the external genitals and the male reproductive function.'"},
+      {"planet": "Venus", "rules": "Female reproductive primary, ovaries, internal female organs, estrogen, breasts (with Moon)", "rationale": "Cornell: 'Venus rules the female generative organs.'"},
+      {"planet": "Moon", "rules": "Uterus, menstrual cycle, breast tissue, motherhood/nurturing, fertility cycles", "rationale": "Cornell: 'The Moon rules the female cycle, the breasts, the uterus.'"},
+      {"planet": "Pluto", "rules": "Deep transformation of reproductive function — menopause, andropause, fertility/infertility, hormonal restructuring", "rationale": "Modern: Pluto = deep transformation; Pluto rules Scorpio = reproductive"},
+      {"planet": "Saturn", "rules": "Reproductive aging, menopause structural changes, low libido (chronic), prostate enlargement", "rationale": "Cornell: 'Saturn restricts; reproductive function may decline.'"},
+      {"planet": "Jupiter", "rules": "Reproductive expansion, pregnancy/gestation, growth of fetus, multiple births", "rationale": "Cornell: 'Jupiter rules expansion, pregnancy.'"},
+      {"planet": "Neptune", "rules": "Idiopathic reproductive symptoms, unexplained infertility, fibrocystic patterns", "rationale": "Modern attribution"},
+      {"planet": "Uranus", "rules": "Sudden reproductive events, irregular cycles, unexpected pregnancy", "rationale": "Modern attribution"}
+    ],
+    "secondarySigns": ["Cancer (Moon — uterus, breasts)", "Taurus (Venus — pleasure body)", "Libra (Venus — partnership reproductive)"],
+    "houses": {"primary": [8], "secondary": [5, 7], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {"name": "Regeneration / Reproductive Axis", "polarity": "Taurus ↔ Scorpio", "source": "Minerva (2023), Axa regenerării şi procrerii", "interpretation": "THE primary reproductive axis. Taurus (Venus pleasure body, hormonal physical) opposite Scorpio (Pluto deep regenerative, transformation through sexual energy). This axis governs the entire arc from pleasure → fertility → transformation."}
+  ],
+  "energetics": {
+    "chakra": "Sacral (Svadhisthana) primary — sexuality, creativity, pleasure. Root (Muladhara) for grounding sexuality. Heart for intimacy.",
+    "chakraColor": "Orange (sacral)",
+    "chakraHz": 417.0,
+    "nervousSystemPathway": "Pelvic splanchnic parasympathetic (engorgement, lubrication, uterine), hypogastric sympathetic (orgasm), pudendal sensory",
+    "endocrineCorrespondence": "HPG axis (hypothalamus → pituitary → gonads). Estrogen, progesterone, testosterone, FSH, LH, prolactin, oxytocin",
+    "elementalCorrespondence": "Water + Fire",
+    "brainwaveAffinity": "Alpha-Theta for intimacy/orgasm",
+    "meridianCrossover_TCM": "Kidney meridian (essence/jing — reproductive substance). Ren Mai (Conception Vessel) — directly named for this function. Chong Mai (Penetrating Vessel) — Sea of Blood."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Calc Fluor", "saltFullName": "Calcarea Fluorica", "sign": "Cancer", "epithet": "Tissue Elasticity — Reproductive Support", "indicatedFor": "Uterine prolapse, vaginal laxity (postpartum), hemorrhoid/varicose patterns, fibrotic changes.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Mag Phos", "saltFullName": "Magnesia Phosphorica", "sign": "Leo", "epithet": "Antispasmodic — Menstrual Cramping", "indicatedFor": "Menstrual cramps (PRIMARY), uterine spasm, dysmenorrhea.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Deep Cleanser — Pelvic Detox", "indicatedFor": "Pelvic congestion, chronic vaginal/prostate inflammation.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "Anemia from Menstrual Loss", "indicatedFor": "Heavy menstrual bleeding → anemia, postpartum iron support.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [
+      {"name": "Damiana", "planet": "Pluto / Venus", "dataRef": "sacredBotanicals.json", "mechanism": "Reproductive aphrodisiac; supports both male and female"}
+    ],
+    "supplementaryHerbs": [
+      {"name": "Vitex (chasteberry)", "classicalAttribution": "Moon / Venus", "mechanism": "Supports progesterone via pituitary modulation", "indicatedFor": "PMS, irregular cycles, mild infertility — perimenopause + reproductive years"},
+      {"name": "Red raspberry leaf", "classicalAttribution": "Venus / Moon", "mechanism": "Uterine tonic; high in minerals", "indicatedFor": "Menstrual support, pregnancy preparation, postpartum"},
+      {"name": "Black cohosh", "classicalAttribution": "Pluto / Saturn", "mechanism": "Estrogenic — hot flash relief (mechanism debated)", "indicatedFor": "Menopausal hot flashes. AVOID with liver disease."},
+      {"name": "Maca", "classicalAttribution": "Mars / Venus", "mechanism": "Adaptogen for HPG axis", "indicatedFor": "Both male and female hormonal balance, fertility, libido"},
+      {"name": "Saw palmetto", "classicalAttribution": "Mars / Pluto", "mechanism": "5-alpha reductase modulation — supports prostate", "indicatedFor": "BPH (benign prostate enlargement), male hair loss"},
+      {"name": "Tribulus terrestris", "classicalAttribution": "Mars", "mechanism": "Supports testosterone (controversial — mixed evidence)", "indicatedFor": "Male libido, sports performance"},
+      {"name": "Shatavari (Asparagus racemosus)", "classicalAttribution": "Moon / Venus — Ayurvedic feminine tonic", "mechanism": "Adaptogen — female reproductive support", "indicatedFor": "Female fertility, menstrual irregularity, menopause, lactation"},
+      {"name": "Dong quai (Angelica sinensis)", "classicalAttribution": "Venus / Moon (TCM)", "mechanism": "Blood-builder + hormonal modulator", "indicatedFor": "Menstrual irregularity, blood deficiency patterns (TCM framework)"}
+    ],
+    "crystals": [
+      {"name": "Moonstone", "planet": "Moon", "bodyPlacement": "Lower abdomen", "dataRef": "crystalsExpanded.json", "classicalAttribution": "Female cycle, fertility — traditional"},
+      {"name": "Carnelian", "planet": "Mars", "bodyPlacement": "Sacral (below navel)", "classicalAttribution": "Reproductive vitality, fertility"},
+      {"name": "Rose Quartz", "planet": "Venus", "bodyPlacement": "Heart + sacral", "classicalAttribution": "Self-love, sexual healing"},
+      {"name": "Garnet", "planet": "Mars / Pluto", "bodyPlacement": "Sacral", "classicalAttribution": "Reproductive vitality, deep sexual healing"}
+    ],
+    "tuningForks": [
+      {"planet": "Venus", "hz": 221.23, "applicationPoint": "Lower abdomen (female reproductive)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Mars", "hz": 144.72, "applicationPoint": "Sacral / external genitals near", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Moon", "hz": 210.42, "applicationPoint": "Uterine area"},
+      {"planet": "Pluto", "hz": 140.25, "applicationPoint": "Sacral / pelvic bowl"}
+    ],
+    "scents": [
+      {"name": "Rose", "planet": "Venus", "delivery": "topical diluted, bath", "dataRef": "scents.json"},
+      {"name": "Ylang-ylang (supplementary)", "delivery": "diffuser, topical", "mechanism": "Aphrodisiac, hormonal balance"},
+      {"name": "Clary sage", "delivery": "topical diluted (lower abdomen for menstrual)", "mechanism": "Hormonal balance, menstrual support"}
+    ],
+    "bodyProtocols": [{"breath": "Pelvic floor breath (down on inhale, up on exhale)", "movement": "Hip opening, sacral mobility", "posture": "Pelvic neutrality", "touch": "Self-massage abdomen/sacrum"}],
+    "modalityRecommendations": {
+      "individual": "Reproductive health responds to: cycle awareness (track if menstruating), hormone-supportive nutrition, stress management (cortisol disrupts sex hormones), sleep, pleasure as medicine. Address concerns with gynecologist/urologist as appropriate. Sexual function concerns benefit from sex-positive therapy + medical evaluation if persistent.",
+      "medical_astrologer": "Scorpio + 8th house primary. Venus (female) / Mars (male). Moon for cycle. Pluto for deep transformations (menopause, fertility journeys, sexual healing). Outer planet transits to Venus/Mars/Moon often mark significant reproductive events.",
+      "reiki": "Sacral chakra PRIMARY extended (sometimes whole session). Trauma-informed approach essential — sexual energy work requires consent + safety. Distance reiki often preferred. Pelvic bowl meditation.",
+      "bodywork_general": "Pelvic floor (SPECIALIZED training required). Visceral pelvic work (advanced — Barral). Maya abdominal massage. Sacral mobilization. Always trauma-informed for this region.",
+      "bodywork_contraindications": "Pregnancy: TRAINED prenatal/postpartum massage only. Sexual trauma history: explicit consent + ongoing communication. Active PID, recent surgery, IUD insertion < 6 weeks: caution. Cancer: oncology massage cert.",
+      "naturopathy": "Hormone testing (cycle-timed for women). Vitex, maca, shatavari (female). Saw palmetto, tribulus (male). Address gut (estrogen metabolism). Manage stress (cortisol steals from progesterone — 'pregnenolone steal'). Vitamin D, zinc, omega-3.",
+      "acupuncture": "Conception Vessel (Ren Mai). Kidney meridian (essence). Spleen 6 (Sanyinjiao — three yin crossing, female reproductive master point). LV 3, SP 6, KD 3 — classical reproductive trio.",
+      "ayurveda_phase2_placeholder": "Shukra Dhatu (reproductive — 7th dhatu, ultimate essence). Apana Vata (downward — menstruation, ejaculation). Shatavari, ashoka, ashwagandha. Phase 2.",
+      "pastoral_spiritual": "Sacred sexuality. Body as temple. Sexual energy as creative energy. Trauma-informed sexual healing work. Yoni/lingam reverence practices."
+    }
+  },
+  "pathologies": [
+    {"id": "rep_pms_pmdd", "name": "PMS / PMDD", "icdReference": "N94.3", "system": "reproductive", "category": "menstrual_cyclic",
+      "astrologicalSignature": {"planetaryCombinations": ["Moon afflicted (cycle disturbance)", "Venus-Pluto (intense feminine)", "Mars-Moon (PMS irritability)"], "transitTriggers": ["Moon transits each month"]},
+      "classicalReference": "Cornell (1933): 'Moon afflictions → menstrual irregularity, premenstrual distress.'",
+      "cellSalts": ["Calc Fluor", "Mag Phos (cramping)", "Nat Mur (water retention)"],
+      "indicatorLanguage": {
+        "individual": "PMS symptoms benefit from: vitex (chasteberry), magnesium, B6, calcium, omega-3, regular exercise, stress reduction, blood sugar stability. Severe PMS or PMDD (with significant mood disruption) benefits from medical evaluation — many effective interventions available.",
+        "practitioner": "Moon-Venus-Mars configurations classically associated with menstrual cyclic patterns (Cornell, 1933). Vitex evidence-supported for PMS. PMDD is a more serious diagnosis — refer to psychiatry/gyn for SSRI consideration in severe cases."
+      },
+      "modalityNotes": {"bodywork": "Pre-menstrual: pelvic congestion work, lower back release", "lifestyle": "Vitex, magnesium, B6, omega-3, exercise, stress reduction"},
+      "redFlags": ["Severe mood disturbance with suicidal ideation → urgent mental health"]
+    },
+    {"id": "rep_endometriosis", "name": "Endometriosis", "icdReference": "N80", "system": "reproductive", "category": "chronic_inflammatory",
+      "astrologicalSignature": {"planetaryCombinations": ["Pluto-Moon (deep cyclical inflammation)", "Mars-Saturn in reproductive signs", "Neptune-Mars (autoimmune component)"], "transitTriggers": ["Outer planet transits to Moon/Venus"]},
+      "classicalReference": "Cornell (1933): 'Chronic pelvic congestion + inflammation patterns with malefic afflictions in 8th house.' Modern endometriosis recognized as estrogen-driven inflammatory condition.",
+      "cellSalts": ["Calc Sulph", "Ferr Phos", "Mag Phos"],
+      "indicatorLanguage": {
+        "individual": "Endometriosis is a chronic condition requiring proper diagnosis (laparoscopy is gold standard) and often specialty care. Severe period pain that disrupts your life is not normal. Pelvic pain specialist or endometriosis-knowledgeable gynecologist makes a significant difference.",
+        "practitioner": "Pluto-Moon and Mars-Saturn reproductive configurations align. Endometriosis is gynecology/pelvic pain specialty. Holistic adjuncts: anti-inflammatory diet, address gut-estrogen axis (DIM, calcium D-glucarate), magnesium, omega-3, pelvic floor PT, stress management. Surgical excision (not ablation) for moderate-severe."
+      },
+      "modalityNotes": {"bodywork": "Pelvic floor PT (specialty), visceral mobilization (specialty), gentle abdominal work. Avoid during flares.", "lifestyle": "Anti-inflammatory diet, gluten/dairy trial, gut health, omega-3, pelvic floor PT"},
+      "redFlags": ["Severe acute pelvic pain → ED (rule out cyst rupture, torsion)"]
+    },
+    {"id": "rep_infertility", "name": "Infertility (general)", "icdReference": "N97 / N46", "system": "reproductive", "category": "fertility",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn in 5th house", "Saturn-Venus or Saturn-Moon (suppressed feminine)", "Pluto-Venus (transformation through fertility journey)", "Neptune in 5th (mysterious infertility)"]},
+      "classicalReference": "Cornell (1933): 'Sterility — Saturn afflictions in 5th house or to reproductive significators.'",
+      "cellSalts": ["Calc Phos", "Ferr Phos", "Mag Phos"],
+      "indicatorLanguage": {
+        "individual": "Fertility journeys are deeply personal. Standard workup at 12 months trying (6 months if > 35yo): hormone panel, semen analysis, imaging. Lifestyle support is real and meaningful: nutrition, weight optimization, stress management, environmental toxin reduction. Reproductive endocrinology offers many options.",
+        "practitioner": "Saturn in 5th or to reproductive significators classically associated with fertility challenges (Cornell, 1933). Both partners need workup. Refer to reproductive endocrinology if appropriate. Holistic adjuncts: comprehensive nutrition (CoQ10, vitamin D, methylated folate, omega-3), stress management, acupuncture (evidence-supported), maca, shatavari (women), tribulus (men)."
+      },
+      "modalityNotes": {"bodywork": "Maya abdominal massage (specialty), fertility-focused massage protocols", "lifestyle": "Comprehensive nutrition, lifestyle, environmental factors, stress management"},
+      "redFlags": ["Sudden severe pelvic pain in pregnancy (ectopic) → 911"]
+    },
+    {"id": "rep_bph_prostate", "name": "BPH (Benign Prostate Enlargement)", "icdReference": "N40", "system": "reproductive", "category": "male_age_related",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Mars in Scorpio (chronic prostate enlargement)", "Jupiter (overgrowth pattern)"], "transitTriggers": ["Saturn-Jupiter combinations late in life"]},
+      "classicalReference": "Cornell (1933): 'Prostatic enlargement — Saturn-Jupiter combination; chronic male organ change with age.'",
+      "cellSalts": ["Calc Fluor", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Common in men over 50. Symptoms (slow stream, dribbling, nighttime urination) often respond to: saw palmetto, pygeum, zinc, lifestyle. Sudden urinary retention or blood in urine requires medical evaluation. Annual prostate health discussion with healthcare provider after 50 (or 45 if African-American or family history).",
+        "practitioner": "Saturn-Jupiter male reproductive configurations classically associated with prostatic enlargement (Cornell, 1933). Saw palmetto, pygeum, beta-sitosterol, zinc, pumpkin seed evidence-supported. Refer urology for medication or procedural consideration in severe symptoms. PSA + DRE annually."
+      },
+      "modalityNotes": {"bodywork": "Pelvic floor (specialty)", "lifestyle": "Saw palmetto 320mg/day, zinc, lycopene, reduce alcohol, regular ejaculation may be protective"},
+      "redFlags": ["Acute urinary retention → ED", "Blood in urine → urology workup (rule out cancer)"]
+    },
+    {"id": "rep_menopause", "name": "Menopause Transition", "icdReference": "N95", "system": "reproductive", "category": "lifecycle",
+      "astrologicalSignature": {"planetaryCombinations": ["Pluto-Moon transit", "Uranus opposition (perimenopause)", "Second Saturn return"], "transitTriggers": ["Uranus opposition age 38-44 (perimenopause onset)", "Second Saturn return age 58-60 (post-menopause integration)"]},
+      "classicalReference": "Cornell (1933): 'Climacteric — outer planet transits to Moon, profound feminine transformation.'",
+      "cellSalts": ["Calc Fluor (tissue), Kali Phos (nervous), Nat Mur (emotional)"],
+      "indicatorLanguage": {
+        "individual": "Menopause is a transition, not a disease. Symptoms vary widely. Many options exist: lifestyle (movement, diet, stress, sleep), herbs (black cohosh, sage, maca), bioidentical hormone therapy (discuss with menopause-trained provider). Post-menopause bone density (DEXA) and cardiovascular monitoring important.",
+        "practitioner": "Outer planet transits to Moon/Venus mark menopausal timing. Symptom-specific protocols: vasomotor (black cohosh, sage, BHRT), GU syndrome (vaginal estrogen, ospemifene), mood (consider SSRI vs SNRI, HRT), sleep, bone, cardio. Refer to NAMS-certified menopause specialist for comprehensive care."
+      },
+      "modalityNotes": {"bodywork": "Hormone-related joint/muscle changes — adjust pressure", "lifestyle": "Strength training, calcium/D/K2, sleep, stress, social connection, BHRT consideration"},
+      "redFlags": ["Postmenopausal bleeding → urgent gyn (always abnormal)"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2, "_status": "placeholder",
+    "tridosha": {"primary": "Pitta-Kapha (reproductive)", "secondary": "Vata in menopause"},
+    "nakshatras_governing_reproductive": ["Mula (deep transformation)", "Vishakha (Scorpio)"],
+    "ayurvedicOrgans": ["Shukra Dhatu (reproductive — 7th dhatu)", "Apana Vata"],
+    "ayurvedicTreatments_phase2": "Shatavari (female), ashwagandha (male), ashoka, kapikacchu. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Scorpio + 8th house", "Venus (♀) Mars (♂)", "Moon for cycle", "Pluto for deep transformation"], "outputDepth": "Full reproductive signatures"},
+    "reiki": {"focusPoints": ["Sacral chakra extended", "Trauma-informed"], "outputDepth": "Pelvic bowl healing protocols"},
+    "bodywork": {"focusPoints": ["Pelvic floor (SPECIALTY)", "Maya abdominal", "Visceral pelvic"], "contraindicationsCriticallity": "HIGH — pregnancy, trauma, IUD, PID", "outputDepth": "Specialty reproductive bodywork"},
+    "naturopath": {"focusPoints": ["Hormone testing", "Adaptogens", "Reproductive nutrients"], "outputDepth": "Full hormonal protocols"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Shukra Dhatu", "Apana Vata"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Ren + Chong Mai", "Kidney essence", "SP 6 master"], "outputDepth": "TCM reproductive framework"},
+    "pastoral_spiritual": {"focusPoints": ["Sacred sexuality", "Trauma-informed sexual healing", "Body as temple"], "outputDepth": "Sacred reproductive practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Reproductive issues are intimate and often require specialty medical care (gyn, urology, repro endocrinology). Pregnancy is its own scope. Sexual trauma requires trauma-informed care.",
+    "criticalReferralRules": [
+      "Postmenopausal bleeding → urgent gyn",
+      "Sudden severe pelvic pain → ED (ovarian torsion, cyst rupture, ectopic)",
+      "Pregnancy + bleeding → MD same day",
+      "Suspected ectopic pregnancy → 911",
+      "Acute urinary retention → ED",
+      "Blood in urine male over 50 → urology workup",
+      "Pelvic mass → urgent gyn"
+    ],
+    "redFlagKeywords": ["postmenopausal bleeding", "severe pelvic pain", "ectopic", "urinary retention", "blood in urine"]
+  }
+}

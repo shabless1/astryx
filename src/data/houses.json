@@ -1,0 +1,176 @@
+[
+  {
+    "house": 1,
+    "expression_type": "constitutional_baseline",
+    "health_meaning": [
+      "physical body identity",
+      "vitality baseline"
+    ],
+    "intensity_modifier": 3,
+    "timing_bias": "constant_baseline",
+    "plan_bias": [
+      "whole-body regulation",
+      "foundational support"
+    ]
+  },
+  {
+    "house": 2,
+    "expression_type": "resource_support",
+    "health_meaning": [
+      "nutrition",
+      "intake",
+      "material support"
+    ],
+    "intensity_modifier": 1,
+    "timing_bias": "gradual_accumulation",
+    "plan_bias": [
+      "nutritional support",
+      "stabilizing intake"
+    ]
+  },
+  {
+    "house": 3,
+    "expression_type": "communication_signaling",
+    "health_meaning": [
+      "nervous system signaling",
+      "short-cycle responses"
+    ],
+    "intensity_modifier": 2,
+    "timing_bias": "frequent_reactive",
+    "plan_bias": [
+      "nervous system regulation",
+      "reduce overstimulation"
+    ]
+  },
+  {
+    "house": 4,
+    "expression_type": "root_internal_environment",
+    "health_meaning": [
+      "emotional foundation",
+      "ancestral patterns"
+    ],
+    "intensity_modifier": 2,
+    "timing_bias": "deep_ongoing",
+    "plan_bias": [
+      "emotional regulation",
+      "home adjustments"
+    ]
+  },
+  {
+    "house": 5,
+    "expression_type": "creative_output",
+    "health_meaning": [
+      "joy expression",
+      "creative energy flow"
+    ],
+    "intensity_modifier": 1,
+    "timing_bias": "cyclical",
+    "plan_bias": [
+      "creative outlets",
+      "joy restoration"
+    ]
+  },
+  {
+    "house": 6,
+    "expression_type": "active_health",
+    "health_meaning": [
+      "daily symptoms",
+      "routine-based patterns",
+      "chronic management"
+    ],
+    "intensity_modifier": 4,
+    "timing_bias": "repeating_habit_linked",
+    "plan_bias": [
+      "daily protocol",
+      "consistency",
+      "tracking"
+    ]
+  },
+  {
+    "house": 7,
+    "expression_type": "external_relational_influence",
+    "health_meaning": [
+      "external triggers",
+      "mirror patterns"
+    ],
+    "intensity_modifier": 1,
+    "timing_bias": "situational",
+    "plan_bias": [
+      "boundary work",
+      "external stress regulation"
+    ]
+  },
+  {
+    "house": 8,
+    "expression_type": "deep_chronic_transformational",
+    "health_meaning": [
+      "deep patterns",
+      "detox themes",
+      "entrenched conditions"
+    ],
+    "intensity_modifier": 3,
+    "timing_bias": "long_term_deep_cycle",
+    "plan_bias": [
+      "detox support",
+      "long-term protocols"
+    ]
+  },
+  {
+    "house": 9,
+    "expression_type": "expansion_overextension",
+    "health_meaning": [
+      "stress from excess",
+      "overreach patterns"
+    ],
+    "intensity_modifier": 2,
+    "timing_bias": "episodic_expansion_cycles",
+    "plan_bias": [
+      "moderation",
+      "lifestyle correction"
+    ]
+  },
+  {
+    "house": 10,
+    "expression_type": "pressure_performance",
+    "health_meaning": [
+      "responsibility load",
+      "performance stress"
+    ],
+    "intensity_modifier": 2,
+    "timing_bias": "sustained_pressure",
+    "plan_bias": [
+      "reduce pressure",
+      "pacing"
+    ]
+  },
+  {
+    "house": 11,
+    "expression_type": "systemic_network_flow",
+    "health_meaning": [
+      "environmental influence",
+      "distributed stress"
+    ],
+    "intensity_modifier": 1,
+    "timing_bias": "variable",
+    "plan_bias": [
+      "optimize environment",
+      "circulation support"
+    ]
+  },
+  {
+    "house": 12,
+    "expression_type": "hidden_diffuse_draining",
+    "health_meaning": [
+      "subtle conditions",
+      "depletion",
+      "background weakness"
+    ],
+    "intensity_modifier": 3,
+    "timing_bias": "slow_hidden_onset",
+    "plan_bias": [
+      "restoration",
+      "deep recovery",
+      "energy protection"
+    ]
+  }
+]

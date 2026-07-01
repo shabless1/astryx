@@ -1,0 +1,154 @@
+{
+  "planets": [
+    {
+      "planet": "Sun",
+      "glyph": "☉",
+      "hz": 126.22,
+      "color": "#F59E0B",
+      "domain": "Vitality & Core Identity",
+      "bodyArea": "Heart · Spine · Vital Force",
+      "questionKey": "sun",
+      "questions": [
+        { "key": "sun_identity", "text": "I've been feeling less like myself lately", "symptomTag": "depleted identity" },
+        { "key": "sun_energy", "text": "My energy and life force feel low or inconsistent", "symptomTag": "low energy" },
+        { "key": "sun_purpose", "text": "I'm questioning my direction, confidence, or purpose", "symptomTag": "loss of purpose" }
+      ],
+      "keywords": ["vitality", "energy", "purpose", "identity", "confidence", "self", "heart", "spine", "back", "depleted", "exhausted", "lost", "will", "life force", "depression", "tired", "fatigue", "hollow", "empty", "ego", "sun", "solar"]
+    },
+    {
+      "planet": "Moon",
+      "glyph": "☽",
+      "hz": 210.42,
+      "color": "#C084FC",
+      "domain": "Emotions & Cycles",
+      "bodyArea": "Stomach · Breasts · Fluid Body",
+      "questionKey": "moon",
+      "questions": [
+        { "key": "moon_emotional", "text": "My emotions feel unstable, overwhelming, or raw", "symptomTag": "emotional instability" },
+        { "key": "moon_sleep", "text": "My sleep, dreams, or subconscious feel disturbed", "symptomTag": "sleep disruption" },
+        { "key": "moon_nurture", "text": "I feel emotionally depleted, unsupported, or unsafe", "symptomTag": "emotional depletion" }
+      ],
+      "keywords": ["emotional", "emotions", "mood", "sleep", "dreams", "sensitive", "nurture", "mother", "home", "family", "gut", "stomach", "fluid", "cycle", "rhythm", "intuition", "cry", "feeling", "fluctuate", "hormone", "anxious", "anxiety", "worry", "moon", "lunar", "womb", "feminine"]
+    },
+    {
+      "planet": "Mercury",
+      "glyph": "☿",
+      "hz": 141.27,
+      "color": "#38BDF8",
+      "domain": "Mind & Communication",
+      "bodyArea": "Nervous System · Lungs · Hands",
+      "questionKey": "mercury",
+      "questions": [
+        { "key": "mercury_mind", "text": "My mind is racing, foggy, or scattered", "symptomTag": "mental fog" },
+        { "key": "mercury_comm", "text": "I'm struggling to communicate clearly or be heard", "symptomTag": "communication blocks" },
+        { "key": "mercury_nerve", "text": "I feel overstimulated, nervous, or mentally overwhelmed", "symptomTag": "nervous system overstimulation" }
+      ],
+      "keywords": ["mind", "mental", "anxiety", "overthinking", "communicate", "communication", "speak", "voice", "nervous", "scattered", "foggy", "brain", "nervous system", "respiratory", "lungs", "breathe", "hands", "busy", "messages", "words", "confused", "think", "racing thoughts", "mercury", "intellect", "analyze"]
+    },
+    {
+      "planet": "Venus",
+      "glyph": "♀",
+      "hz": 221.23,
+      "color": "#F472B6",
+      "domain": "Love, Harmony & Worth",
+      "bodyArea": "Kidneys · Throat · Skin",
+      "questionKey": "venus",
+      "questions": [
+        { "key": "venus_relationship", "text": "I'm experiencing tension, loneliness, or disconnection in my relationships", "symptomTag": "relationship tension" },
+        { "key": "venus_worth", "text": "I've lost connection with pleasure, beauty, or my sense of worth", "symptomTag": "low self-worth" },
+        { "key": "venus_finance", "text": "Financial stress or scarcity thinking is affecting my wellbeing", "symptomTag": "financial stress" }
+      ],
+      "keywords": ["love", "relationship", "harmony", "beauty", "pleasure", "money", "finance", "worth", "deserve", "skin", "kidney", "throat", "aesthetic", "feminine", "sensual", "creative", "connect", "balance", "art", "joy", "lonely", "alone", "unlovable", "pretty", "ugly", "venus", "attraction", "desire"]
+    },
+    {
+      "planet": "Mars",
+      "glyph": "♂",
+      "hz": 144.72,
+      "color": "#EF4444",
+      "domain": "Drive, Energy & Action",
+      "bodyArea": "Muscles · Blood · Head",
+      "questionKey": "mars",
+      "questions": [
+        { "key": "mars_stagnant", "text": "I feel stuck, blocked, or unable to move forward", "symptomTag": "stagnant drive" },
+        { "key": "mars_anger", "text": "I'm carrying anger, frustration, or inflammation in my body", "symptomTag": "anger inflammation" },
+        { "key": "mars_depleted", "text": "My physical energy, libido, or motivation is depleted", "symptomTag": "depleted drive" }
+      ],
+      "keywords": ["anger", "frustrated", "frustration", "inflammation", "drive", "motivation", "action", "stuck", "blocked", "warrior", "blood", "muscles", "head", "fever", "rush", "compete", "desire", "passion", "push", "force", "fight", "aggression", "libido", "sex", "mars", "warrior", "fire", "rage", "heat"]
+    },
+    {
+      "planet": "Jupiter",
+      "glyph": "♃",
+      "hz": 183.58,
+      "color": "#10B981",
+      "domain": "Expansion & Abundance",
+      "bodyArea": "Liver · Hips · Thighs",
+      "questionKey": "jupiter",
+      "questions": [
+        { "key": "jupiter_scarcity", "text": "I feel trapped in scarcity, limitation, or a lack of vision", "symptomTag": "scarcity mindset" },
+        { "key": "jupiter_excess", "text": "Overindulgence, excess, or over-extension is a current pattern", "symptomTag": "excess overextension" },
+        { "key": "jupiter_belief", "text": "I've lost faith, optimism, or my bigger sense of meaning", "symptomTag": "loss of faith" }
+      ],
+      "keywords": ["abundance", "expand", "grow", "excess", "overdo", "liver", "hips", "thighs", "philosophy", "belief", "religion", "faith", "optimism", "vision", "travel", "knowledge", "big", "more", "blessing", "luck", "generosity", "opportunity", "jupiter", "growth", "prosperity", "overextend", "overindulge"]
+    },
+    {
+      "planet": "Saturn",
+      "glyph": "♄",
+      "hz": 147.85,
+      "color": "#94A3B8",
+      "domain": "Structure, Discipline & Boundaries",
+      "bodyArea": "Bones · Teeth · Joints",
+      "questionKey": "saturn",
+      "questions": [
+        { "key": "saturn_fear", "text": "I feel weighed down by fear, duty, or heavy responsibility", "symptomTag": "fear burden" },
+        { "key": "saturn_boundary", "text": "I struggle with boundaries — giving too much or shutting down", "symptomTag": "boundary issues" },
+        { "key": "saturn_chronic", "text": "I'm dealing with chronic tension, restriction, or stiffness in my body", "symptomTag": "chronic tension" }
+      ],
+      "keywords": ["fear", "restriction", "limit", "boundary", "structure", "discipline", "bones", "teeth", "skin", "chronic", "heavy", "responsible", "duty", "time", "karma", "control", "work", "burden", "pressure", "rigid", "cold", "isolation", "alone", "blocked", "saturn", "discipline", "authority", "rules", "contraction"]
+    },
+    {
+      "planet": "Uranus",
+      "glyph": "♅",
+      "hz": 207.36,
+      "color": "#22D3EE",
+      "domain": "Awakening & Liberation",
+      "bodyArea": "Nervous System · Ankles · Electricity",
+      "questionKey": "uranus",
+      "questions": [
+        { "key": "uranus_disruption", "text": "Sudden changes or unexpected disruptions are destabilizing my life", "symptomTag": "sudden disruption" },
+        { "key": "uranus_electric", "text": "I feel electric, anxious, or unable to settle and rest", "symptomTag": "electric restlessness" },
+        { "key": "uranus_freedom", "text": "There's a deep urge to break free from a situation or identity", "symptomTag": "liberation urge" }
+      ],
+      "keywords": ["change", "sudden", "unexpected", "electric", "nervous", "shock", "lightning", "ankles", "rebellion", "freedom", "technology", "revolution", "awakening", "unstable", "erratic", "unique", "break free", "restless", "chaos", "uranus", "disruption", "electricity", "awakening", "revolution", "liberation"]
+    },
+    {
+      "planet": "Neptune",
+      "glyph": "♆",
+      "hz": 211.44,
+      "color": "#818CF8",
+      "domain": "Intuition, Dreams & Dissolution",
+      "bodyArea": "Lymph System · Feet · Pineal",
+      "questionKey": "neptune",
+      "questions": [
+        { "key": "neptune_fog", "text": "I feel confused, foggy, spiritually unmoored, or ungrounded", "symptomTag": "spiritual fog" },
+        { "key": "neptune_dreams", "text": "My dream life, intuition, or inner visions feel chaotic or absent", "symptomTag": "disrupted intuition" },
+        { "key": "neptune_dissolve", "text": "I'm losing myself in others, in escapism, or in confusion", "symptomTag": "dissolution loss of self" }
+      ],
+      "keywords": ["confusion", "fog", "illusion", "dream", "intuition", "spirit", "dissolve", "boundaries", "feet", "lymph", "immune", "addiction", "escape", "fantasy", "transcend", "expansive", "unseen", "psychic", "collective", "grounded", "unmoored", "neptune", "spiritual", "dissolution", "surrender", "mystery"]
+    },
+    {
+      "planet": "Pluto",
+      "glyph": "♇",
+      "hz": 140.25,
+      "color": "#FF006E",
+      "domain": "Transformation & Power",
+      "bodyArea": "Reproductive · Colon · Unconscious",
+      "questionKey": "pluto",
+      "questions": [
+        { "key": "pluto_transform", "text": "I'm in a deep period of transformation, loss, or total rebirth", "symptomTag": "deep transformation" },
+        { "key": "pluto_power", "text": "Power struggles, control dynamics, or manipulation are present", "symptomTag": "power control dynamics" },
+        { "key": "pluto_shadow", "text": "Something in me or my life needs to end so something new can emerge", "symptomTag": "death rebirth cycle" }
+      ],
+      "keywords": ["transform", "transformation", "power", "control", "death", "rebirth", "deep", "shadow", "intense", "sexual", "obsessive", "crisis", "elimination", "colon", "reproductive", "unconscious", "hidden", "secret", "endings", "beginnings", "pluto", "purge", "release", "underworld", "regenerate", "destroy", "create"]
+    }
+  ]
+}

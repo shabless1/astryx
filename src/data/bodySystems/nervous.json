@@ -1,0 +1,335 @@
+{
+  "_meta": {
+    "title": "Nervous System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "nervous",
+    "name": "Nervous System",
+    "alternateNames": ["Neural System", "Central + Peripheral Nervous System"],
+    "shortDescription": "Brain, spinal cord, peripheral nerves, autonomic nervous system. The body's signal-conducting and processing network — sensation, motor control, cognition, autonomic regulation.",
+    "icon": "⚡",
+    "accentColor": "#9EC832",
+    "elementalProfile": "Air primary (Gemini, Aquarius) — signal as movement; Fire bridge via Aries (head/brain)"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "Brain (cerebrum, cerebellum, brainstem, diencephalon)",
+      "Spinal cord (31 segments — 8 cervical, 12 thoracic, 5 lumbar, 5 sacral, 1 coccygeal)",
+      "Cranial nerves (12 pairs — CN I-XII)",
+      "Peripheral nerves (sensory + motor)",
+      "Autonomic nervous system (sympathetic + parasympathetic + enteric)",
+      "Neuroglia (astrocytes, oligodendrocytes, microglia, ependymal, Schwann)",
+      "Cerebrospinal fluid (CSF — ~150ml circulating)",
+      "Meninges (dura, arachnoid, pia mater)"
+    ],
+    "subStructures": {
+      "central": ["Cerebral cortex (frontal, parietal, temporal, occipital)", "Limbic system (amygdala, hippocampus, hypothalamus)", "Basal ganglia", "Thalamus", "Cerebellum", "Brainstem (midbrain, pons, medulla)", "Spinal cord"],
+      "peripheral_motor": ["Anterior horn cells → spinal motor nerves → muscles"],
+      "peripheral_sensory": ["Dorsal root ganglia → posterior horn → ascending tracts → thalamus → cortex"],
+      "autonomic_sympathetic": ["Thoracolumbar outflow", "Paravertebral chain", "Adrenal medulla connection"],
+      "autonomic_parasympathetic": ["Cranial + sacral outflow", "Vagus nerve (CN X) — primary parasympathetic"],
+      "enteric": ["Myenteric plexus", "Submucosal plexus", "~500 million neurons in gut"]
+    },
+    "vertebralCorrelates": "ENTIRE SPINE. Per Cornell: each vertebral level corresponds to specific nerve roots and downstream organ systems. C1-C7 → head/neck/upper limb + cardiac/respiratory parasympathetic (vagus). T1-T12 → thoracic organs + sympathetic chain. L1-L5 → lower limb + pelvic. S1-S5 → pelvic parasympathetic. Bodyworkers: spinal mobilization is nervous system intervention.",
+    "nervePlexus": "All major plexus — cervical, brachial, cardiac, pulmonary, celiac (solar), superior + inferior mesenteric, hypogastric, sacral, lumbar. Multiple regional governance."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Mercury",
+    "primaryPlanetRationale": "Mercury IS the planet of signaling — the messenger. Cornell (1933): 'Mercury rules the nervous system, the cerebrospinal axis, signal transmission, and cognitive function.' Carey (1932): Aries-ruled Kali Phos is the chemical basis of all nerve fluid.",
+    "primarySign": "Gemini",
+    "primaryHouse": 3,
+    "secondaryPlanets": [
+      {"planet": "Mercury", "rules": "Cerebrospinal axis, nerve signal transmission, cognition, speech, fine motor coordination", "rationale": "Cornell (1933): 'Mercury rules the nerves, the spinal cord, the brain in its rational functions.'"},
+      {"planet": "Sun", "rules": "Vital force feeding nervous system, vital current, brain as receiver of solar energy", "rationale": "Cornell (1933): 'The Sun gives vital force to the nerves.'"},
+      {"planet": "Moon", "rules": "Limbic emotional brain, parasympathetic rest function, intuition, dream/sleep cycles, mother imprint stored in nervous system", "rationale": "Cornell (1933): 'The Moon rules the receptive functions, the emotions, the sympathetic nervous system in its vegetative aspect.'"},
+      {"planet": "Mars", "rules": "Motor cortex, fight-or-flight sympathetic activation, muscular innervation, reactivity threshold", "rationale": "Cornell (1933): 'Mars rules the motor cortex, the impulsive nervous action, the sudden response.'"},
+      {"planet": "Saturn", "rules": "Spinal column structure, chronic neuropathy, cervical/lumbar restriction, fear-based nervous patterns, melatonin/pineal aging", "rationale": "Cornell (1933): 'Saturn rules the bones and structures of the nervous system; afflictions tend to chronic neurological restriction.'"},
+      {"planet": "Uranus", "rules": "Electrical conduction across synapses, sudden nerve firing, panic, seizure potential, kundalini awakening, breakthrough insight", "rationale": "Cornell (1933): 'Uranus rules the electric, sudden, and spasmodic nervous action.'"},
+      {"planet": "Neptune", "rules": "Subtle nervous perception, intuition, psychic openness, dissociative states, addiction-vulnerable nervous patterns, anesthesia response", "rationale": "Cornell (1933): 'Neptune rules the higher nervous centers, the subtle sensitivities, the boundary states.'"},
+      {"planet": "Jupiter", "rules": "Expansive brain function, optimistic neurochemistry, dopaminergic abundance, cerebral capacity for growth", "rationale": "Cornell (1933): 'Jupiter expands; in the nervous system, expansion of perception, optimism, expansive thought.'"},
+      {"planet": "Venus", "rules": "Pleasure-reward neural pathways, oxytocin bonding, peripheral sensory pleasure", "rationale": "Modern attribution — Venus governs the brain's reward and bonding circuitry."},
+      {"planet": "Pluto", "rules": "Deep transformation of nervous patterns, kundalini deep awakening, trauma-bound nervous reactivity, psychological depth", "rationale": "Modern attribution — Pluto governs the deepest layers of psychological-neurological transformation."}
+    ],
+    "fixedCrossInfluence": "Less direct than for cardiovascular — nervous system more associated with Air signs (Mercury's element). However, Aquarius (electrical conduction) is the fixed Air sign critical to nervous function.",
+    "secondarySigns": ["Aries (head, brain proper)", "Aquarius (electrical signal, peripheral nerves, ankles for autonomic reflex)", "Sagittarius (sciatic nerve, hip nerves, broad nervous expansion)"],
+    "houses": {
+      "primary": [3],
+      "primaryRationale": "3rd house = mental/communication = Mercury's house",
+      "secondary": [1, 9, 11],
+      "diseaseHouses": [6, 8, 12]
+    }
+  },
+  "axes": [
+    {
+      "name": "Respiratory-Nervous Axis (signal + breath)",
+      "polarity": "Gemini ↔ Sagittarius",
+      "source": "Minerva (2023) — Axa respiratorie (overlaps nervous via breath as nervous regulator)",
+      "interpretation": "Breath rhythm directly regulates nervous system state (vagal tone). Gemini side: rapid shallow breath + scattered nervous activation. Sagittarius side: deep slow breath + parasympathetic settling. The breath-nerve axis is THE accessible intervention point for nervous regulation."
+    },
+    {
+      "name": "Renal-Nervous Axis (adrenal-nerve overlay)",
+      "polarity": "Aries ↔ Libra",
+      "source": "Minerva (2023) — Axa renală",
+      "interpretation": "Aries (Mars/adrenal medulla) opposite Libra (Venus/kidney). Adrenaline release is sympathetic nervous activation. Chronic Aries overactivation = HPA axis dysregulation = nervous burnout. Libra-side imbalance = nervous fatigue from sustained pressure."
+    },
+    {
+      "name": "Emotional-Structural Axis (nervous overlay)",
+      "polarity": "Cancer ↔ Capricorn",
+      "source": "Minerva (2023) — Axa emoţională şi structurală",
+      "interpretation": "Cancer = limbic emotional brain; Capricorn = spinal/structural nervous tissue. The emotional weight of unprocessed feeling crystallizes as structural nervous tension (T-spine tightness, neck holding, jaw clenching)."
+    }
+  ],
+  "energetics": {
+    "chakra": "ALL chakras (nervous system threads through all). Crown (Sahasrara) primary for CNS; Root (Muladhara) for sacral parasympathetic; Throat (Vishuddha) for cranial nerves",
+    "chakraColor": "Full spectrum (rainbow body)",
+    "chakraHz": "Variable per sub-system",
+    "nervousSystemPathway": "This IS the nervous system. Sympathetic vs parasympathetic balance is the master regulator.",
+    "endocrineCorrespondence": "Pineal (Neptune-Crown), pituitary (Mercury-Third Eye), adrenal medulla (Mars-Aries), thyroid (Venus-Throat) — all endocrine glands are nervous-system-modulated",
+    "elementalCorrespondence": "Air primary (signal); Fire (Aries head/brain); Water (Moon emotional limbic); Earth (Saturn structural)",
+    "brainwaveAffinity": "Full spectrum — Delta (deep sleep) → Theta (meditation) → Alpha (relaxed alert) → Beta (active thinking) → Gamma (peak processing)",
+    "meridianCrossover_TCM": "Du Mai (Governing Vessel — runs along spine = central nervous system in TCM). Ren Mai (Conception Vessel — front midline). Heart meridian for shen/spirit. Kidney meridian for jing/essence (nervous-reproductive)."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Kali Phos", "saltFullName": "Kali Phosphoricum", "sign": "Aries", "epithet": "THE Nerve Cell Salt", "indicatedFor": "Nervous exhaustion, mental fatigue, insomnia of nervous origin, depression with nervous component, irritability, neuralgia, shingles. Carey: 'The chemical basis of nerve fluid itself.'", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Mag Phos", "saltFullName": "Magnesia Phosphorica", "sign": "Leo", "epithet": "Antispasmodic — Nerve Cramping", "indicatedFor": "Muscle spasms, neuralgia, shooting/darting nerve pain, hiccups, twitches, charley horses, sciatica. Pairs with Kali Phos for full nervous support.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Phos", "saltFullName": "Calcarea Phosphorica", "sign": "Capricorn", "epithet": "Foundation Salt — Bone-Nerve Support", "indicatedFor": "Convalescent nervous fatigue, spinal nervous strain, growing-pains in children, structural support of nervous-skeletal interface.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Mur", "saltFullName": "Natrum Muriaticum", "sign": "Aquarius", "epithet": "Water Distribution — CSF Balance", "indicatedFor": "Emotional grief held in nervous system, hopelessness, fluid imbalance affecting CNS (cerebral edema patterns), headache with watery discharge.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [
+      {"name": "Lavender", "planet": "Mercury", "dataRef": "sacredBotanicals.json", "mechanism": "Calms scattered nervous system; parasympathetic activation"},
+      {"name": "Skullcap", "planet": "Uranus", "dataRef": "sacredBotanicals.json", "mechanism": "Lightning-tamer — calms electrical-nervous surge without sedation"}
+    ],
+    "supplementaryHerbs": [
+      {"name": "Oat straw (Avena sativa)", "classicalAttribution": "Venus / Sun", "mechanism": "Trophorestorative — nourishes depleted nervous system over time", "indicatedFor": "Nervous exhaustion, burnout recovery, long-term nervous tonic"},
+      {"name": "Passionflower (Passiflora)", "classicalAttribution": "Venus / Neptune", "mechanism": "GABAergic — gentle anxiolytic, supports sleep", "indicatedFor": "Anxiety, insomnia, nervous agitation"},
+      {"name": "Lemon balm (Melissa)", "classicalAttribution": "Moon / Mercury", "mechanism": "GABAergic + serotonergic; gentle uplift + calm", "indicatedFor": "Anxiety with mild depression, ADHD-type scattered focus, child nervous support"},
+      {"name": "Holy basil / Tulsi (Ocimum sanctum)", "classicalAttribution": "Jupiter / Mercury", "mechanism": "Adaptogen — modulates HPA axis", "indicatedFor": "Stress adaptation, cognitive support, mild mood support"},
+      {"name": "Ashwagandha (Withania somnifera)", "classicalAttribution": "Saturn (root)", "mechanism": "Adaptogen — modulates cortisol, supports nervous endurance", "indicatedFor": "Chronic stress, nervous depletion, cortisol dysregulation"},
+      {"name": "Reishi (Ganoderma lucidum)", "classicalAttribution": "Saturn / Pluto", "mechanism": "Adaptogenic medicinal mushroom — deep nervous-immune restoration", "indicatedFor": "Long-arc nervous depletion, post-illness recovery"}
+    ],
+    "crystals": [
+      {"name": "Amethyst", "planet": "Neptune / Jupiter", "bodyPlacement": "Third eye or crown", "classicalAttribution": "Calms nervous overstimulation, supports sleep, traditional 'nerve crystal'"},
+      {"name": "Lepidolite", "planet": "Mercury / Venus", "bodyPlacement": "Hold in hand or wear", "classicalAttribution": "Contains natural lithium — calms electrical-nervous overload"},
+      {"name": "Selenite", "planet": "Moon", "bodyPlacement": "Crown or above head", "classicalAttribution": "Clears nervous system, supports CSF flow energetically"},
+      {"name": "Labradorite", "planet": "Uranus", "bodyPlacement": "Base of skull", "classicalAttribution": "Buffers electrical-nervous surge"}
+    ],
+    "tuningForks": [
+      {"planet": "Mercury", "hz": 141.27, "applicationPoint": "Cervical spine, base of skull, temples", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Moon", "hz": 210.42, "applicationPoint": "Forehead (limbic-calming)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Sun", "hz": 126.22, "applicationPoint": "Sternum (vagal activation)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Earth Year Om", "hz": 136.10, "applicationPoint": "Universal regulator"}
+    ],
+    "scents": [
+      {"name": "Lavender", "planet": "Moon/Neptune", "delivery": "diffuser, topical to temples", "dataRef": "scents.json"},
+      {"name": "Frankincense", "planet": "Sun", "delivery": "diffuser, resin burn", "dataRef": "scents.json"},
+      {"name": "Vetiver", "planet": "Saturn", "delivery": "topical (soles of feet)", "dataRef": "scents.json"},
+      {"name": "Lemongrass", "planet": "Uranus", "delivery": "diffuser", "dataRef": "scents.json"}
+    ],
+    "bodyProtocols": [
+      {"ref": "body-protocols.json → planet='Mercury'", "breath": "Alternate nostril (nadi shodhana) — directly balances autonomic", "movement": "Cross-lateral coordination (brain integration)", "posture": "Spinal alignment", "touch": "Cranial holds, vagal-point pressure"}
+    ],
+    "modalityRecommendations": {
+      "individual": "Daily nervous system practices: alternate nostril breath (5 min), cold exposure (face splash or end-of-shower 30 sec cold), 20-min walk outside, sleep before midnight when possible. Magnesium supplementation evenings (200-400mg glycinate or threonate). Reduce screen time after 9pm. Lavender + chamomile tea evenings.",
+      "medical_astrologer": "Examine: Mercury, Gemini, 3rd house, Aries (head/brain), Aquarius (electrical), Uranus aspects (panic/electrical), Saturn-Mercury (chronic restriction). Transits to Mercury are primary nervous-system timing. Outer planet transits to natal Sun/Moon affect deep nervous restructuring. Critical degrees on Mercury or in 3rd cusp warrant attention.",
+      "reiki": "FULL CHAKRA SESSION — nervous system threads through all 7. Particular focus on Crown (CNS), Third Eye (pineal/pituitary), Throat (cranial nerves), Solar Plexus (vagal). Hand position 1 (crown) for 5-10 min, position 2 (third eye), position 4 (throat). Distance reiki excellent for nervous system — many clients prefer minimal touch when nervous system is dysregulated.",
+      "bodywork_general": "ENTIRE SPINE is nervous-system access. Specific techniques: suboccipital release (vagal stimulation), craniosacral therapy (CSF flow), cervical decompression, thoracolumbar mobilization, sacral release (parasympathetic). Avoid aggressive techniques on dysregulated nervous systems — slower is faster.",
+      "bodywork_contraindications": "Active seizure disorder: medical guidance before deep work. Acute neurological symptoms (sudden weakness, numbness, vision changes) → STOP and refer immediately (rule out stroke). Pacemaker: avoid TENS/EMS over upper body. Recent spinal surgery: clearance required. Severe osteoporosis: gentle techniques only.",
+      "naturopathy": "Adaptogens for chronic burnout (ashwagandha, rhodiola, reishi). Nervines for acute anxiety (passionflower, skullcap, lemon balm). Trophorestoratives for long-arc rebuild (oat straw, milky oats). Magnesium (glycinate for calming, threonate for cognitive). B-complex with active forms. Omega-3 EPA/DHA. Address sleep, gut-brain axis, blood sugar stability, light exposure.",
+      "acupuncture": "Du Mai (Governing Vessel) along spine. Heart meridian (HT 7 Shenmen — calms shen/spirit). Kidney meridian (KD 3 Taixi for nervous-jing essence). Pericardium meridian (PC 6 Neiguan for anxiety). Yintang (between brows). Si Shen Cong (4 points around crown).",
+      "ayurveda_phase2_placeholder": "Vata-dominant nervous system. Prana Vata (head, breath, mind). Vyana Vata (peripheral nervous circulation). Brahmi (Bacopa monnieri) primary nervine. Shankhpushpi (Convolvulus pluricaulis). Jatamansi (Nardostachys jatamansi). Phase 2 expansion.",
+      "pastoral_spiritual": "Meditation as direct nervous system intervention. Contemplative prayer. Yoga nidra. Loving-kindness practice. Body scan. The nervous system IS the bridge to spiritual experience — calming it opens the contemplative space."
+    }
+  },
+  "pathologies": [
+    {
+      "id": "neuro_anxiety_generalized",
+      "name": "Generalized Anxiety Disorder (GAD)",
+      "icdReference": "F41.1",
+      "system": "nervous",
+      "category": "psycho_neurological",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mercury-Saturn (chronic mental worry)", "Mercury-Uranus (electrical/panic component)", "Moon-Neptune (emotional flooding/dissolution)", "Mars in nervous signs afflicted (sympathetic overactivation)"],
+        "signEmphasis": ["Gemini afflicted (mental loop)", "Virgo afflicted (rumination)", "Aquarius (electrical)"],
+        "houseEmphasis": ["3rd house Mercury-Saturn", "12th house planets (hidden anxieties)", "6th house Mars-Mercury"],
+        "transitTriggers": ["Saturn transit to natal Mercury", "Uranus transit to natal Moon or Mercury", "Pluto transit during deep restructuring"]
+      },
+      "classicalReference": "Cornell (1933): 'Mental anxiety — Saturn afflicting Mercury; Mercury afflicted in 3rd or 12th house; Moon-Neptune for diffuse worry; Mars-Mercury for agitated nervous anxiety.' Carey (1932): 'Kali Phos deficiency manifests as nervous anxiety, sleeplessness, dread.'",
+      "cellSalts": ["Kali Phos (PRIMARY)", "Mag Phos (when somatic tension)", "Nat Mur (grief component)"],
+      "indicatorLanguage": {
+        "individual": "Persistent worry, restlessness, or anxiety patterns benefit from a combination of: nervous-system practices (breath work, movement, sleep hygiene), trigger identification, and professional support when needed. If anxiety significantly impairs your daily function, working with a mental health professional offers tools beyond what holistic practice alone can address.",
+        "practitioner": "Mercury-Saturn, Mercury-Uranus, Moon-Neptune are classically associated with anxiety patterns (Cornell, 1933). Holistic adjuncts complement but do not replace mental health care for clinical anxiety disorders. Refer to licensed mental health provider for moderate-severe symptoms, panic disorder, or comorbid depression. Adaptogens, magnesium, nervine herbs, breath training all evidence-supported as complements."
+      },
+      "modalityNotes": {
+        "bodywork": "Vagal-stimulating techniques: suboccipital release, gentle cranial work. AVOID aggressive techniques on hyperaroused nervous system. Slower = faster.",
+        "reiki": "Full chakra balancing with extended crown + third eye + heart. Distance reiki often preferred by anxious clients.",
+        "lifestyle": "Sleep hygiene (#1 nervous-system intervention). Magnesium glycinate evenings. Reduce caffeine. Daily movement. Sunlight exposure mornings. Limit alcohol. Address blood sugar instability. Consider therapy (CBT especially evidence-based for GAD)."
+      },
+      "redFlags": ["Suicidal ideation → see Crisis Resources, refer to mental health emergency immediately", "Psychotic symptoms (hallucinations, delusions) → urgent psychiatric evaluation"]
+    },
+    {
+      "id": "neuro_insomnia",
+      "name": "Insomnia (Chronic)",
+      "icdReference": "G47.0",
+      "system": "nervous",
+      "category": "sleep",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mercury-Uranus (wired-tired pattern)", "Moon-Uranus (electrical sleep disruption)", "Mars in nervous signs (nighttime activation)", "Saturn-Moon (heavy unrefreshing sleep)"],
+        "signEmphasis": ["Aquarius (electrical nighttime activation)", "Aries (mental racing)"],
+        "houseEmphasis": ["3rd, 12th house Uranus or Mercury"],
+        "transitTriggers": ["Uranus transits", "Saturn transit to natal Moon"]
+      },
+      "classicalReference": "Cornell (1933): 'Insomnia — Mercury-Uranus afflictions, especially in air signs; Saturn-Moon for sleep that doesn't refresh.'",
+      "cellSalts": ["Kali Phos (primary)", "Mag Phos (if physical tension)", "Calc Phos (deep restoration)"],
+      "indicatorLanguage": {
+        "individual": "Sleep is the #1 nervous-system intervention. Sleep hygiene fundamentals: consistent schedule, cool dark room, no screens 1hr before bed, magnesium evenings, no caffeine after noon. If insomnia persists > 2 weeks, consult your healthcare provider — chronic sleep deprivation has significant health consequences.",
+        "practitioner": "Mercury-Uranus and Moon-Uranus configurations classically associated with electrical-nervous insomnia (Cornell, 1933). Differentiate sleep-onset (often anxiety) vs sleep-maintenance (often hormonal/cortisol). Sleep study referral if suspected apnea (snoring, daytime fatigue, gasping). Behavioral interventions (CBT-I) most evidence-based; herbal/supplement adjuncts complement."
+      },
+      "modalityNotes": {
+        "bodywork": "Evening session preferred. Suboccipital release, foot rubs (very vagal-stimulating), cranial holds. Gentle work for chronic insomnia.",
+        "reiki": "Crown + third eye sleep induction protocol. Many clients fall asleep during reiki — that's appropriate.",
+        "lifestyle": "Sleep hygiene comprehensive. Magnesium glycinate 200-400mg evenings. Melatonin (low dose 0.3-1mg, not the 5-10mg typically sold). Lavender pillow spray. Bedroom temperature 65-68°F. No alcohol within 3hr of sleep."
+      },
+      "redFlags": ["Insomnia + depression + hopelessness → mental health referral", "Suspected sleep apnea → sleep study"]
+    },
+    {
+      "id": "neuro_migraine",
+      "name": "Migraine Headache",
+      "icdReference": "G43",
+      "system": "nervous",
+      "category": "headache",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars in Aries (head inflammation)", "Mars-Saturn in Aries", "Moon-Uranus (hormonal migraine — menstrual cycle linked)", "Neptune in Aries (visual aura, sensory hypersensitivity component)"],
+        "signEmphasis": ["Aries (head)", "Cancer (hormonal-Moon component)"],
+        "houseEmphasis": ["1st house Mars or Saturn"],
+        "transitTriggers": ["Mars transit through Aries", "Lunar phase triggers (menstrual migraine)"]
+      },
+      "classicalReference": "Cornell (1933): 'Headache, Migraine — Mars or Saturn in Aries; Mars-Moon for periodic headache; Moon afflicted by Mars for menstrual headache.'",
+      "cellSalts": ["Kali Phos", "Mag Phos (cramping vascular component)", "Nat Mur (water/grief component)"],
+      "indicatorLanguage": {
+        "individual": "Migraine patterns benefit from trigger identification (often food, hormonal, stress, sleep-related), magnesium supplementation (research-supported), and stress management. If migraines are new, increasing in frequency, or accompanied by neurological symptoms (vision changes, weakness, confusion), see your healthcare provider promptly.",
+        "practitioner": "Mars-Aries and Mars-Moon configurations classically associated with migraine patterns (Cornell, 1933). Differentiate migraine (with/without aura) from cluster (Saturn-Pluto in Aries), tension (Mars-Saturn neck/jaw), medication-overuse (chronic rebound). Magnesium, riboflavin, CoQ10, butterbur (caution with PA), feverfew evidence-supported preventives. Refer for neurology if frequency increases, status migrainosus, or any focal neurological deficits."
+      },
+      "modalityNotes": {
+        "bodywork": "Suboccipital release (CENTRAL for migraine). Cervical decompression. Trigger point work in trapezius, SCM, temporalis. Cranial sacral therapy. AVOID during acute attack (worsens).",
+        "reiki": "Third eye + crown chakra focus during attack (gentle distance preferred during acute), full chakra session preventatively.",
+        "lifestyle": "Trigger diary (food, hormonal, stress, sleep, weather). Magnesium 400-600mg daily (citrate, glycinate, or threonate). Riboflavin 400mg daily. CoQ10 100-300mg. Hydration. Sleep regularity. Stress management."
+      },
+      "redFlags": ["Worst headache of life (thunderclap) → 911 (rule out subarachnoid hemorrhage)", "Headache + fever + neck stiffness → ED", "New focal neurological deficit → 911 (rule out stroke)", "Headache + vision loss → urgent"]
+    },
+    {
+      "id": "neuro_neuropathy",
+      "name": "Peripheral Neuropathy",
+      "icdReference": "G62",
+      "system": "nervous",
+      "category": "peripheral_nerve",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Mercury (chronic peripheral nerve restriction)", "Saturn in air signs (signal degradation)", "Jupiter afflicted (diabetic neuropathy — Jupiter-pancreas relationship)"],
+        "signEmphasis": ["Aquarius (peripheral nerves)", "Pisces (feet — Pisces rules feet, common neuropathy site)"],
+        "houseEmphasis": ["6th house Saturn-Mercury"],
+        "transitTriggers": ["Long Saturn transits"]
+      },
+      "classicalReference": "Cornell (1933): 'Neuralgia, peripheral — Saturn afflicting Mercury; chronic restriction of peripheral nerve function.'",
+      "cellSalts": ["Kali Phos", "Mag Phos", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Numbness, tingling, burning, or weakness in hands or feet warrants medical evaluation. Causes range widely (diabetes, B12 deficiency, autoimmune, toxic, hereditary) and proper diagnosis directs treatment.",
+        "practitioner": "Saturn-Mercury configurations classically associated with peripheral nerve restriction. Workup: HbA1c, B12, thyroid, autoimmune panel, heavy metal screen if indicated. Alpha lipoic acid, B-complex (especially methylcobalamin), benfotiamine evidence-supported. Refer to neurology for confirmed neuropathy."
+      },
+      "modalityNotes": {
+        "bodywork": "Gentle peripheral nerve glides. Diabetic neuropathy: contraindicated to use moderate-deep pressure on feet (sensation impaired, injury risk).",
+        "reiki": "Hand-foot focused energy work. Distance reiki for chronic.",
+        "lifestyle": "Address underlying cause. Blood sugar optimization (diabetic). B-complex with active forms. Alpha lipoic acid. Foot care (especially diabetic — daily inspection)."
+      },
+      "redFlags": ["Sudden onset weakness/numbness → 911 (rule out stroke)", "Bowel/bladder dysfunction with leg weakness → ED (cauda equina)", "Rapidly progressive ascending weakness → ED (Guillain-Barré)"]
+    },
+    {
+      "id": "neuro_depression",
+      "name": "Depression (Major / Persistent)",
+      "icdReference": "F32 / F33",
+      "system": "nervous",
+      "category": "psycho_neurological",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Sun (vital force compression)", "Saturn-Moon (emotional weight)", "Pluto-Moon (deep grief/transformation)", "Neptune-Sun (identity dissolution)", "12th house Sun or Moon afflicted"],
+        "signEmphasis": ["Capricorn afflicted", "Pisces (when Neptune component)"],
+        "houseEmphasis": ["12th house", "8th house outer planets"],
+        "transitTriggers": ["Saturn return", "Pluto-Moon transits", "Neptune-Sun transits"]
+      },
+      "classicalReference": "Cornell (1933): 'Melancholia — Saturn afflicting Sun or Moon; 12th house afflictions; Neptune for diffuse depressive state without clear cause.' Modern: Saturn-Sun for structural depression; Pluto-Moon for transformative grief; Neptune-Sun for identity-dissolution depression.",
+      "cellSalts": ["Kali Phos (depleted nervous baseline)", "Nat Mur (grief held in body)", "Calc Phos (foundation depletion)"],
+      "indicatorLanguage": {
+        "individual": "Persistent low mood, loss of interest, sleep changes, appetite changes, or hopelessness lasting more than 2 weeks warrants evaluation by a mental health professional. Holistic supports (movement, sunlight, nutrition, supportive practices) complement but do not replace mental health care.",
+        "practitioner": "Saturn, Pluto, Neptune configurations with Sun/Moon classically associated with depressive patterns (Cornell, 1933). Holistic adjuncts (St. John's Wort — caution with drug interactions, SAMe, omega-3, vitamin D, B-complex, exercise prescription) complement but do not replace mental health care. Suicide risk assessment is essential — refer to mental health professional for moderate-severe depression."
+      },
+      "modalityNotes": {
+        "bodywork": "Touch itself is therapeutic — oxytocin release. Gentle, nurturing approach. AVOID confrontational/painful work on depressed clients.",
+        "reiki": "Full chakra session with extended heart + crown. Loving-kindness intention.",
+        "lifestyle": "Movement (most evidence-based holistic intervention). Sunlight exposure mornings. Sleep regulation. Social connection. Nutrition (omega-3, B12, D, folate). Therapy (CBT, IFS, psychodynamic — varies by need). Spiritual practice. Acceptance & Commitment Therapy elements."
+      },
+      "redFlags": ["Suicidal ideation with plan or means → 988 Crisis Lifeline or 911", "Psychotic features → urgent psychiatric evaluation", "Inability to care for self → mental health emergency"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder",
+    "tridosha": {
+      "primary": "Vata (Prana Vata — head/brain; Udana Vata — speech/cognition)",
+      "secondary": "Pitta involvement in inflammatory neuro (migraine acute)",
+      "tertiary": "Kapha involvement in chronic depression with somatic heaviness"
+    },
+    "nakshatras_governing_nervous": ["Ardra (storm — nervous turbulence)", "Mrigashira (curiosity — Mercury-like)", "Hasta (hands, fine motor)"],
+    "ayurvedicOrgans": ["Majja Dhatu (nervous tissue/marrow)", "Mastiska (brain)"],
+    "dashaRelevance": "Mercury, Saturn, Rahu, Ketu dashas significant per Charak (2005, Ch. XI on Mental Illness).",
+    "ayurvedicTreatments_phase2": "Brahmi, shankhpushpi, jatamansi, ashwagandha (nervine adaptogen). Shirodhara (oil pour on forehead) — classical nervous-system treatment. Phase 2 expansion."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {
+      "focusPoints": ["Mercury + Gemini", "3rd house", "Aries (head)", "Aquarius (electrical)", "Outer planet transits to Sun/Moon/Mercury", "Critical degrees"],
+      "techniquesUsed": ["Decumbiture for acute neurological events", "Progressed Moon for emotional weather", "Solar Return for annual nervous arc", "Profections of Mercury periods"],
+      "outputDepth": "Full clinical signatures with citations"
+    },
+    "reiki": {
+      "focusPoints": ["ALL 7 chakras (nervous threads through all)", "Crown PRIMARY (CNS)", "Third Eye (pineal/pituitary)", "Throat (cranial nerves)"],
+      "techniquesUsed": ["Full chakra balancing", "Crown extended hold", "Distance reiki (often preferred by anxious clients)"],
+      "outputDepth": "Full chakra protocol, sleep induction protocol"
+    },
+    "bodywork": {
+      "focusPoints": ["Entire spine", "Suboccipital release", "Cervical decompression", "Cranial sacral", "Sacral parasympathetic", "Vagal stimulation"],
+      "techniquesUsed": ["Suboccipital release", "Craniosacral therapy", "Spinal mobilization", "Vagal-tone activation"],
+      "contraindicationsCriticallity": "HIGH — acute neurological symptoms refer immediately",
+      "outputDepth": "Spinal map + cranial nerve reference"
+    },
+    "naturopath": {
+      "focusPoints": ["Adaptogens", "Nervines", "Trophorestoratives", "Magnesium", "B-complex active forms"],
+      "techniquesUsed": ["Ashwagandha, rhodiola, reishi", "Passionflower, skullcap, lemon balm", "Oat straw long-term", "Mg glycinate/threonate"],
+      "outputDepth": "Herbal + supplement protocols"
+    },
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Prana Vata", "Majja Dhatu", "Shirodhara"], "outputDepth": "TO BE BUILT PHASE 2"},
+    "acupuncturist_tcm": {
+      "focusPoints": ["Du Mai (Governing Vessel — spine)", "Heart meridian", "Kidney (jing)", "Pericardium"],
+      "techniquesUsed": ["HT 7 Shenmen", "KD 3 Taixi", "PC 6 Neiguan", "Yintang", "Si Shen Cong"],
+      "outputDepth": "Meridian map + shen/jing framework"
+    },
+    "pastoral_spiritual": {
+      "focusPoints": ["Meditation", "Contemplative prayer", "Yoga nidra", "Loving-kindness"],
+      "techniquesUsed": ["Daily contemplative practice", "Body scan", "Breath awareness"],
+      "outputDepth": "Contemplative practices + spiritual companionship"
+    }
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Nervous system pathology spans acute emergencies (stroke, seizure, status migrainosus) to chronic conditions (anxiety, depression, neuropathy). Crisis keyword detection is CRITICAL for this system. Mental health particularly requires referral to licensed mental health professionals — holistic practice is adjunctive only.",
+    "indicatorLanguagePolicy": "Per COMPLIANCE.md §3. Mental health specifically: avoid pathologizing language for Individual tier — frame as 'patterns' rather than diagnosed conditions.",
+    "criticalReferralRules": [
+      "Suicidal ideation → 988 Suicide & Crisis Lifeline immediately",
+      "Sudden severe headache (worst of life) → 911 (rule out hemorrhage)",
+      "Focal neurological deficit (sudden weakness, numbness, vision/speech changes) → 911 (rule out stroke — FAST protocol)",
+      "Active seizure → 911 if first-time, > 5 min, or recovery delayed",
+      "Severe acute mental health crisis (psychosis, mania, danger to self/others) → mental health emergency",
+      "Severe depression with hopelessness → mental health referral within 24-48 hours"
+    ],
+    "redFlagKeywords": ["suicide", "want to die", "kill myself", "worst headache", "can't move", "vision loss", "seizure", "hallucinations", "hearing voices"]
+  }
+}

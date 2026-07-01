@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ASTRYX — Cymatics Proof Sheet</title>
+<style>
+  :root { --bg:#05060d; --panel:#0d0f1a; --line:#1b2030; --ink:#e7ecf5; --muted:#8a93a8; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:'Exo 2',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  header { padding:22px 26px 14px; border-bottom:1px solid var(--line); }
+  h1 { margin:0 0 4px; font-size:20px; letter-spacing:.16em; font-weight:600; }
+  .sub { color:var(--muted); font-size:12.5px; line-height:1.6; max-width:880px; }
+  .controls { display:flex; gap:24px; flex-wrap:wrap; margin-top:14px; align-items:center; }
+  .toggle { display:flex; gap:6px; align-items:center; }
+  .toggle .lbl { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-right:4px; }
+  button.t { background:#11131f; border:1px solid var(--line); color:var(--muted);
+             padding:7px 14px; border-radius:9px; font-size:11px; letter-spacing:.08em;
+             cursor:pointer; transition:all .15s; font-family:inherit; }
+  button.t.on { background:#1d2742; border-color:#3a5bd0; color:#dce6ff; }
+  .meta { font-size:11px; color:var(--muted); margin-top:10px; }
+  .meta b { color:var(--ink); font-weight:600; }
+  #grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+          gap:16px; padding:20px 26px 60px; }
+  .cell { background:var(--panel); border:1px solid var(--line); border-radius:14px;
+          padding:12px; }
+  .cell.collide { border-color:#b4452e; box-shadow:0 0 0 1px rgba(232,107,69,.25); }
+  .cell canvas { width:100%; height:auto; display:block; border-radius:9px; background:#04040a; }
+  .name { font-size:14px; font-weight:600; letter-spacing:.05em; margin-top:9px; }
+  .freq { font-size:11px; color:var(--muted); }
+  .mode { font-size:11px; margin-top:2px; }
+  .mode .k { color:#9fb2ff; font-variant-numeric:tabular-nums; }
+  .flag { display:inline-block; margin-top:6px; font-size:10px; letter-spacing:.06em;
+          color:#ffb4a0; background:rgba(232,107,69,.12); border:1px solid rgba(232,107,69,.4);
+          padding:3px 8px; border-radius:999px; }
+  .ok { color:#6fcf97; font-size:10px; letter-spacing:.06em; margin-top:6px; display:inline-block; }
+  footer { padding:0 26px 50px; color:var(--muted); font-size:11px; line-height:1.7; max-width:900px; }
+  code { color:#9fb2ff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ASTRYX · CYMATICS PROOF SHEET</h1>
+  <div class="sub">
+    Each pattern is <b>computed live</b> from its fork frequency — circular-membrane Bessel eigenmodes
+    <code>u(r,θ)=J<sub>m</sub>(λ<sub>mn</sub>·r/a)·cos(mθ)</code> or square Chladni
+    <code>cos(pπx)cos(qπy)−cos(qπx)cos(pπy)</code>. Nodal lines (u=0) are the cymatic figure.
+    No AI, no art — if it isn't calculated from the frequency, it isn't here. The <b>(m,n)/(p,q)</b> shown
+    on each cell is the resolved mode, so the mapping is auditable.
+  </div>
+  <div class="controls">
+    <div class="toggle"><span class="lbl">Model</span>
+      <button class="t" id="m-circular">Circular (water)</button>
+      <button class="t" id="m-square">Square (plate)</button>
+    </div>
+    <div class="toggle"><span class="lbl">View</span>
+      <button class="t" id="v-raw">Raw lines</button>
+      <button class="t" id="v-styled">Styled</button>
+    </div>
+  </div>
+  <div class="meta" id="tuneInfo"></div>
+</header>
+<div id="grid"></div>
+<footer>
+  <b>How the mapping works:</b> the membrane fundamental is auto-tuned (scanning a scale factor K so that
+  resonant frequency f ∝ eigenvalue) to spread the ten frequencies across <em>distinct</em> modes while
+  keeping the modes legible. Several forks cluster within ~8&nbsp;Hz (Pluto 140.25 · Mercury 141.27 ·
+  Mars 144.72 · Saturn 147.85) — that cluster is the stress test. <b>Any two planets that land on the same
+  mode are flagged, not hidden</b> — surfacing collisions is the reason this sheet exists.
+</footer>
+
+<script>
+"use strict";
+
+// ── Canonical fork frequencies (Cousto audible octave) + sensible planet colors ──
+const PLANETS = [
+  { name:'Sun',     hz:126.22, color:'#F5B301' },
+  { name:'Moon',    hz:210.42, color:'#A8C4D0' },
+  { name:'Mercury', hz:141.27, color:'#5BC0EB' },
+  { name:'Venus',   hz:221.23, color:'#50E3A4' },
+  { name:'Mars',    hz:144.72, color:'#FF4D4D' },
+  { name:'Jupiter', hz:183.58, color:'#B388FF' },
+  { name:'Saturn',  hz:147.85, color:'#F59E0B' },
+  { name:'Uranus',  hz:207.36, color:'#7DF9FF' },
+  { name:'Neptune', hz:211.44, color:'#2DD4BF' },
+  { name:'Pluto',   hz:140.25, color:'#C084FC' },
+];
+
+// ── Hardcoded Bessel J_m zeros λ_mn (rows m=0..8, cols n=1..8) — known constants ──
+const BZ = [
+  [2.4048,5.5201,8.6537,11.7915,14.9309,18.0711,21.2116,24.3525], // m0
+  [3.8317,7.0156,10.1735,13.3237,16.4706,19.6159,22.7601,25.9037], // m1
+  [5.1356,8.4172,11.6198,14.7960,17.9598,21.1170,24.2701,27.4206], // m2
+  [6.3802,9.7610,13.0152,16.2235,19.4094,22.5827,25.7482,28.9084], // m3
+  [7.5883,11.0647,14.3725,17.6160,20.8269,24.0190,27.1991,30.3710],// m4
+  [8.7715,12.3386,15.7002,18.9801,22.2178,25.4303,28.6266,31.8117],// m5
+  [9.9361,13.5893,17.0038,20.3208,23.5861,26.8202,30.0337,33.2330],// m6
+  [11.0864,14.8213,18.2876,21.6415,24.9349,28.1912,31.4228,34.6371],// m7
+  [12.2251,16.0378,19.5545,22.9452,26.2668,29.5457,32.7958,36.0150],// m8
+];
+
+// ── Bessel J_m(x) via the stable iterative power series ──
+function jm(m, x){
+  if (x === 0) return m === 0 ? 1 : 0;
+  const xh = x/2;
+  let term = 1;                       // term0 = xh^m / m!
+  for (let i=1;i<=m;i++) term *= xh/i;
+  let sum = term;
+  const f = -xh*xh;
+  for (let k=1;k<=80;k++){
+    term *= f/(k*(k+m));
+    sum += term;
+    if (Math.abs(term) < 1e-12*Math.abs(sum)) break;
+  }
+  return sum;
+}
+
+// ── Mode catalogs ──
+const circModes = [];
+for (let m=0;m<=8;m++) for (let n=1;n<=8;n++) circModes.push({ m, n, eig: BZ[m][n-1] });
+const sqModes = [];
+for (let p=1;p<=8;p++) for (let q=p+1;q<=8;q++) sqModes.push({ p, q, eig: Math.sqrt(p*p+q*q) });
+
+// ── Auto-tune K and assign each frequency to its nearest eigenmode ──
+// Objective: maximize DISTINCT modes; tie-break toward legible (low eigenvalue),
+// then minimum total relative error. Collisions are reported, never hidden.
+function autoMap(freqs, modes){
+  const eigs = modes.map(d=>d.eig);
+  const emin = Math.min(...eigs), emax = Math.max(...eigs);
+  const fmin = Math.min(...freqs), fmax = Math.max(...freqs);
+  const Klo = fmin/emax, Khi = fmax/emin;
+  let best = null;
+  const STEPS = 1200;
+  for (let i=0;i<=STEPS;i++){
+    const K = Klo * Math.pow(Khi/Klo, i/STEPS);
+    const assign = freqs.map(f=>{
+      let bi=0, bd=Infinity;
+      for (let j=0;j<modes.length;j++){ const d=Math.abs(f-K*eigs[j]); if (d<bd){bd=d;bi=j;} }
+      return bi;
+    });
+    const distinct = new Set(assign).size;
+    let err=0, maxEig=0;
+    for (let idx=0;idx<freqs.length;idx++){ err += Math.abs(freqs[idx]-K*eigs[assign[idx]])/freqs[idx]; maxEig=Math.max(maxEig,eigs[assign[idx]]); }
+    const cand = { K, assign, distinct, err, maxEig };
+    if (!best
+        || cand.distinct > best.distinct
+        || (cand.distinct === best.distinct && cand.maxEig < best.maxEig - 1e-9)
+        || (cand.distinct === best.distinct && Math.abs(cand.maxEig-best.maxEig) < 1e-9 && cand.err < best.err)) {
+      best = cand;
+    }
+  }
+  // collision map: planet index -> [other planet indices on the same mode]
+  const byMode = {};
+  best.assign.forEach((j,idx)=>{ (byMode[j]=byMode[j]||[]).push(idx); });
+  const collide = {};
+  Object.values(byMode).forEach(list=>{ if (list.length>1) list.forEach(idx=>{ collide[idx]=list.filter(x=>x!==idx); }); });
+  return { K:best.K, assign:best.assign, distinct:best.distinct, collide };
+}
+
+const MAPS = {
+  circular: autoMap(PLANETS.map(p=>p.hz), circModes),
+  square:   autoMap(PLANETS.map(p=>p.hz), sqModes),
+};
+
+// ── Field evaluation ──
+function uCirc(mode, rNorm, theta){ return jm(mode.m, mode.eig*rNorm) * Math.cos(mode.m*theta); }
+function uSq(mode, x, y){
+  const P=Math.PI*mode.p, Q=Math.PI*mode.q;
+  return Math.cos(P*x)*Math.cos(Q*y) - Math.cos(Q*x)*Math.cos(P*y);
+}
+
+// ── Render one cell's canvas ──
+const RES = 240;
+function renderCell(canvas, planet, model, style){
+  canvas.width = RES; canvas.height = RES;
+  const ctx = canvas.getContext('2d');
+  const mode = (model==='circular' ? circModes : sqModes)[ MAPS[model].assign[planet._i] ];
+
+  // background
+  ctx.fillStyle = '#04040a'; ctx.fillRect(0,0,RES,RES);
+
+  const cx=RES/2, cy=RES/2, a=RES*0.46;
+  const U = new Float32Array(RES*RES);
+  const mask = new Uint8Array(RES*RES);
+  let maxAbs = 1e-9;
+
+  for (let py=0;py<RES;py++){
+    for (let px=0;px<RES;px++){
+      let val=0, inside=true;
+      if (model==='circular'){
+        const dx=px-cx, dy=py-cy, rr=Math.sqrt(dx*dx+dy*dy);
+        if (rr>a){ inside=false; }
+        else { val = uCirc(mode, rr/a, Math.atan2(dy,dx)); }
+      } else {
+        const mx=RES*0.07, span=RES*0.86;
+        if (px<mx||px>mx+span||py<mx||py>mx+span){ inside=false; }
+        else { val = uSq(mode, (px-mx)/span, (py-mx)/span); }
+      }
+      const idx=py*RES+px;
+      if (inside){ U[idx]=val; mask[idx]=1; const av=Math.abs(val); if (av>maxAbs) maxAbs=av; }
+    }
+  }
+
+  const img = ctx.getImageData(0,0,RES,RES);
+  const data = img.data;
+  const col = hexRgb(style==='styled' ? planet.color : '#cfd8e6');
+
+  // nodal lines via sign change with right/bottom neighbor
+  for (let py=0;py<RES-1;py++){
+    for (let px=0;px<RES-1;px++){
+      const i=py*RES+px;
+      if (!mask[i]) continue;
+      const v=U[i], rI=i+1, dI=i+RES;
+      let node=false;
+      if (mask[rI] && v*U[rI]<0) node=true;
+      if (mask[dI] && v*U[dI]<0) node=true;
+      if (node){
+        const k=i*4;
+        data[k]=col.r; data[k+1]=col.g; data[k+2]=col.b; data[k+3]=255;
+      }
+    }
+  }
+  ctx.putImageData(img,0,0);
+
+  if (style==='styled'){
+    // soft outer glow
+    ctx.globalCompositeOperation='screen';
+    const g=ctx.createRadialGradient(cx,cy,a*0.2,cx,cy,a*1.15);
+    g.addColorStop(0, rgba(col,0.10)); g.addColorStop(0.6, rgba(col,0.05)); g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,RES,RES);
+
+    // particles settle on the still nodes (|u| small) — the real phenomenon
+    const eps = 0.05*maxAbs;
+    const nodes=[];
+    for (let i=0;i<U.length;i++) if (mask[i] && Math.abs(U[i])<eps) nodes.push(i);
+    ctx.fillStyle = rgba(col,0.9);
+    const want=Math.min(900, nodes.length);
+    for (let s=0;s<want;s++){
+      const i = nodes[(s*2654435761>>>0) % nodes.length]; // deterministic spread
+      const px=i%RES, py=(i/RES)|0;
+      ctx.fillRect(px, py, 1, 1);
+      if (s%4===0){ ctx.fillStyle=rgba(col,0.35); ctx.fillRect(px-1,py,1,1); ctx.fillRect(px+1,py,1,1); ctx.fillStyle=rgba(col,0.9); }
+    }
+    ctx.globalCompositeOperation='source-over';
+  }
+
+  // membrane boundary
+  ctx.strokeStyle = style==='styled' ? rgba(col,0.4) : 'rgba(120,130,150,0.35)';
+  ctx.lineWidth=1;
+  if (model==='circular'){ ctx.beginPath(); ctx.arc(cx,cy,a,0,Math.PI*2); ctx.stroke(); }
+  else { const mx=RES*0.07, span=RES*0.86; ctx.strokeRect(mx,mx,span,span); }
+}
+
+function hexRgb(h){ const n=h.replace('#',''); return { r:parseInt(n.slice(0,2),16), g:parseInt(n.slice(2,4),16), b:parseInt(n.slice(4,6),16) }; }
+function rgba(c,a){ return `rgba(${c.r},${c.g},${c.b},${a})`; }
+
+// ── State + build ──
+let model='circular', style='styled';
+function build(){
+  const grid=document.getElementById('grid');
+  grid.innerHTML='';
+  const map=MAPS[model];
+  PLANETS.forEach((p,i)=>{
+    p._i=i;
+    const mode=(model==='circular'?circModes:sqModes)[map.assign[i]];
+    const modeLabel = model==='circular' ? `(m,n) = (${mode.m}, ${mode.n})` : `(p,q) = (${mode.p}, ${mode.q})`;
+    const collidesWith = (map.collide[i]||[]).map(j=>PLANETS[j].name);
+    const cell=document.createElement('div');
+    cell.className='cell'+(collidesWith.length?' collide':'');
+    const cv=document.createElement('canvas');
+    cell.appendChild(cv);
+    const info=document.createElement('div');
+    info.innerHTML =
+      `<div class="name" style="color:${style==='styled'?p.color:'#e7ecf5'}">${p.name}</div>`+
+      `<div class="freq">${p.hz.toFixed(2)} Hz</div>`+
+      `<div class="mode"><span class="k">${modeLabel}</span></div>`+
+      (collidesWith.length
+        ? `<div class="flag">⚠ collides with ${collidesWith.join(', ')}</div>`
+        : `<div class="ok">✓ distinct mode</div>`);
+    cell.appendChild(info);
+    grid.appendChild(cell);
+    renderCell(cv,p,model,style);
+  });
+  const map2=MAPS[model];
+  const collisions = Object.keys(map2.collide).length;
+  document.getElementById('tuneInfo').innerHTML =
+    `Model: <b>${model==='circular'?'Circular membrane':'Square Chladni plate'}</b> · `+
+    `distinct modes: <b>${map2.distinct} / 10</b> · `+
+    `tuning K = <b>${map2.K.toFixed(3)}</b> · `+
+    (collisions ? `<b style="color:#ffb4a0">${collisions} planet(s) in a collision</b>` : `<b style="color:#6fcf97">no collisions</b>`);
+  // sync buttons
+  setOn('m-circular', model==='circular'); setOn('m-square', model==='square');
+  setOn('v-raw', style==='raw'); setOn('v-styled', style==='styled');
+}
+function setOn(id,on){ document.getElementById(id).classList.toggle('on',on); }
+
+document.getElementById('m-circular').onclick=()=>{ model='circular'; build(); };
+document.getElementById('m-square').onclick  =()=>{ model='square';   build(); };
+document.getElementById('v-raw').onclick     =()=>{ style='raw';      build(); };
+document.getElementById('v-styled').onclick  =()=>{ style='styled';   build(); };
+
+build();
+</script>
+</body>
+</html>

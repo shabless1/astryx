@@ -1,0 +1,259 @@
+[
+  {
+    "planet": "Sun",
+    "featuredCrystal": "Amber",
+    "existingGems": [
+      "Amber",
+      "Tiger's Eye",
+      "Chrysolite",
+      "Sunstone",
+      "Citrine"
+    ],
+    "metal": "Gold",
+    "hex": "#F59E0B",
+    "featuredCrystalData": {
+      "name": "Amber",
+      "mineralComposition": "Fossilized tree resin — succinic acid (up to 8%)",
+      "biologicalMechanism": "Succinic acid is a natural energizer at the cellular level — a key intermediate in the Krebs cycle (cellular energy production). When worn, amber's electrostatic charge interacts with skin to release trace succinic acid. Tiger's Eye is piezoelectric — generates measurable charge under compression.",
+      "biologicalSystem": "Mitochondrial energy + Immune system",
+      "endocrineTarget": "Thymus gland (heart-immune axis), adrenal cortex (vitality)",
+      "nervousSystem": "Solar plexus nerve plexus activation; supports celiac plexus regulation through warmth and electromagnetic resonance",
+      "bodyPlacement": "Solar plexus (navel area) or heart center",
+      "placementNote": "Place flat tumbled Amber over the navel. Hold for 15-20 minutes. Warm in your hands first to activate succinic charge.",
+      "safetyNote": "Safe for all skin types. Ensure authentic amber — many 'amber' pieces are synthetic copal. Authentic amber is slightly warm to the touch.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Moon",
+    "featuredCrystal": "Moonstone",
+    "existingGems": [
+      "Moonstone",
+      "Pearl",
+      "Clear Quartz",
+      "Cat's Eye",
+      "Selenite"
+    ],
+    "metal": "Silver",
+    "hex": "#E2E8F0",
+    "featuredCrystalData": {
+      "name": "Moonstone",
+      "mineralComposition": "Feldspar group — potassium aluminum silicate with adularescence (light diffraction)",
+      "biologicalMechanism": "Moonstone's lamellar structure creates an internal light interference pattern. The crystal's stable electromagnetic field resonates with the cyclical nature of the pineal-pituitary hormonal axis. Silicon dioxide in its structure interacts with cerebrospinal fluid's crystalline properties.",
+      "biologicalSystem": "Neuro-Endocrine (Pineal-Pituitary axis, circadian rhythm)",
+      "endocrineTarget": "Pineal gland (melatonin regulation), pituitary (FSH/LH feminine cycle hormones)",
+      "nervousSystem": "Crown and third eye plexus resonance; supports hypothalamic regulation of the biological clock",
+      "bodyPlacement": "Lower abdomen (uterus/sacral area for cycle regulation) OR third eye (between brows for sleep and pineal activation)",
+      "placementNote": "For sleep: place on third eye at bedtime. For hormonal balance: place on lower abdomen 2 inches below navel. Hold 15-20 minutes.",
+      "safetyNote": "Safe. Avoid prolonged exposure to water as it can affect surface quality.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Mercury",
+    "featuredCrystal": "Blue Lace Agate",
+    "existingGems": [
+      "Agate",
+      "Aquamarine",
+      "Iceland Spar",
+      "Yellow Topaz",
+      "Fire Opal"
+    ],
+    "addCrystals": [
+      "Blue Lace Agate"
+    ],
+    "metal": "Mercury (Quicksilver)",
+    "hex": "#A78BFA",
+    "featuredCrystalData": {
+      "name": "Blue Lace Agate",
+      "mineralComposition": "Microcrystalline quartz (chalcedony) — silicon dioxide with fine banding",
+      "biologicalMechanism": "Blue Lace Agate vibrates at a gentle, highly stable frequency. Its steady mineral matrix acts as a tuning fork for the vagus nerve — signaling the brain to slow electrical impulses and shift from sympathetic to parasympathetic. Chalcedony's silicon dioxide interacts with the body's liquid crystal cell membrane structures.",
+      "biologicalSystem": "Central & Autonomic Nervous System (vagal regulation)",
+      "endocrineTarget": "Thyroid gland (inflammation reduction, metabolic hormone balance), parathyroid",
+      "nervousSystem": "Vagus nerve calibration (most direct crystal application to CN X); cervical plexus calming; reduces jaw and throat tension",
+      "bodyPlacement": "Hollow of the throat (over thyroid/larynx) OR mastoid process (behind the ear — primary vagal bone access point)",
+      "placementNote": "Use flat tumbled stone. Place in the hollow of the throat or rest behind the ear at the mastoid bone. The mastoid placement directly activates the vagal pathway. Hold 15 minutes.",
+      "safetyNote": "Safe for all skin contact. Ensure stone is polished smooth for throat placement.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Venus",
+    "featuredCrystal": "Rose Quartz",
+    "existingGems": [
+      "Emerald",
+      "Lapis Lazuli",
+      "Turquoise",
+      "Rose Quartz",
+      "Opal"
+    ],
+    "metal": "Copper",
+    "hex": "#34D399",
+    "featuredCrystalData": {
+      "name": "Rose Quartz",
+      "mineralComposition": "Silicon dioxide with trace titanium, iron, or manganese (pink color)",
+      "biologicalMechanism": "Rose Quartz contains traces of copper and manganese — both cardiovascular cofactors. Its silicon dioxide lattice resonates with the heart's electromagnetic field (the strongest in the body, extending 3-4 feet beyond the chest). Clinically, placement on the heart center correlates with HRV improvement in bioresonance studies.",
+      "biologicalSystem": "Cardiovascular & Limbic (oxytocin pathway)",
+      "endocrineTarget": "Thymus gland (immune-heart bridge), ovaries (via vagus-limbic circuit)",
+      "nervousSystem": "Cardiac plexus resonance; activates vagal tone through heart-brain coherence; the heart's electromagnetic field is the body's dominant field and Rose Quartz amplifies its coherence",
+      "bodyPlacement": "Heart center (center of sternum) or thymus point (upper sternum, just below collar bones)",
+      "placementNote": "Place over the center of the sternum. Weight of the stone alone on bare skin for 15-20 minutes. Combine with conscious deep breathing for maximum cardiac vagal effect.",
+      "safetyNote": "Safe for all skin contact and extended wear.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Mars",
+    "featuredCrystal": "Bloodstone",
+    "existingGems": [
+      "Ruby",
+      "Bloodstone",
+      "Red Jasper",
+      "Garnet",
+      "Red Tourmaline"
+    ],
+    "metal": "Iron",
+    "hex": "#F87171",
+    "featuredCrystalData": {
+      "name": "Bloodstone",
+      "mineralComposition": "Heliotrope — dark green chalcedony with iron oxide inclusions (red spots)",
+      "biologicalMechanism": "Bloodstone is named for its application to blood health — iron oxide deposits give it a direct mineral resonance with hemoglobin and erythrocytes (red blood cells). Mars rules the blood. Historically used by Roman soldiers as a battle stone for stamina. The iron-silica combination activates the body's hematopoietic (blood-making) energy centers.",
+      "biologicalSystem": "Hematopoietic (blood) & Immune System",
+      "endocrineTarget": "Adrenal medulla (adrenaline), bone marrow (red blood cell production)",
+      "nervousSystem": "Lumbar plexus activation; stimulates sympathetic nervous system for physical mobilization and energy; sacral plexus for root vitality",
+      "bodyPlacement": "Lower abdomen (sacral area) OR base of spine (root grounding)",
+      "placementNote": "Place over the sacral area (below navel) for blood vitality or at the base of spine for grounding energy activation. Use before physical exertion or when energy is depleted.",
+      "safetyNote": "Safe for all skin contact.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Jupiter",
+    "featuredCrystal": "Lapis Lazuli",
+    "existingGems": [
+      "Amethyst",
+      "Sapphire",
+      "Turquoise",
+      "Lapis Lazuli",
+      "Sodalite"
+    ],
+    "metal": "Tin",
+    "hex": "#818CF8",
+    "featuredCrystalData": {
+      "name": "Lapis Lazuli",
+      "mineralComposition": "Sodium calcium aluminosilicate with sulfur and pyrite inclusions — lazurite, pyrite, calcite",
+      "biologicalMechanism": "Lapis Lazuli contains sulfur (which supports neurotransmitter synthesis) and aluminum silicates. The pyrite inclusions are piezoelectric — generating charge under compression. Placement at the brow targets the pituitary gland (the master gland of the endocrine system) and the pineal gland via the cranial bone vibration.",
+      "biologicalSystem": "Neuro-Endocrine Axis (Pituitary-Pineal)",
+      "endocrineTarget": "Pituitary gland (master endocrine regulator), pineal gland, hypothalamus",
+      "nervousSystem": "Third eye plexus activation; piezoelectric interaction with cerebrospinal fluid and cranial bone; supports hypothalamic-pituitary regulation",
+      "bodyPlacement": "Third eye (directly between eyebrows) OR throat (for truth-speaking and thyroid regulation)",
+      "placementNote": "Place between the eyebrows while lying flat. The pyrite inclusions create gentle piezoelectric pressure. Hold 15-20 minutes. For thyroid: place at the hollow of the throat.",
+      "safetyNote": "Safe. Keep away from water — pyrite inclusions can rust.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Saturn",
+    "featuredCrystal": "Shungite",
+    "existingGems": [
+      "Jet",
+      "Obsidian",
+      "Onyx",
+      "Black Tourmaline",
+      "Smoky Quartz"
+    ],
+    "addCrystals": [
+      "Shungite"
+    ],
+    "metal": "Lead",
+    "hex": "#94A3B8",
+    "featuredCrystalData": {
+      "name": "Shungite",
+      "mineralComposition": "Ancient carbon mineral from Russia — contains unique hollow carbon molecules (fullerenes/C60)",
+      "biologicalMechanism": "Fullerenes in Shungite are the most potent naturally occurring antioxidants known. They neutralize free radicals via electron donation with no self-destruction (unlike vitamin C). Shungite absorbs and neutralizes EMF radiation, which chronically elevates cortisol. Its dense carbon matrix creates a grounding bioelectrical field that calms adrenal hyperactivation.",
+      "biologicalSystem": "Adrenal, Immune & Cellular Detoxification",
+      "endocrineTarget": "Adrenal glands (cortisol reduction), kidneys (filtration organ of Saturn), lymphatic system",
+      "nervousSystem": "Deep parasympathetic — grounds the nervous system via EMF absorption and adrenal calming; reduces systemic inflammation that dysregulates the autonomic nervous system",
+      "bodyPlacement": "Lower back (over kidneys — adrenal and renal targeting) OR lower abdomen (general grounding and detox)",
+      "placementNote": "Place two flat Shungite stones under the lower back where kidneys sit. Or place on lower abdomen below navel. Hold 20-30 minutes. Shungite also works on a nightstand near the body to absorb ambient EMF during sleep.",
+      "safetyNote": "Safe. Use polished Shungite for skin contact — raw Shungite leaves black carbon residue. Authentic Shungite is only from Karelia, Russia.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Neptune",
+    "featuredCrystal": "Labradorite",
+    "existingGems": [
+      "Labradorite",
+      "Aquamarine",
+      "Amethyst",
+      "Fluorite",
+      "Selenite"
+    ],
+    "metal": "Neptune / Platinum",
+    "hex": "#38BDF8",
+    "featuredCrystalData": {
+      "name": "Labradorite",
+      "mineralComposition": "Feldspar group — calcium sodium aluminosilicate with labradorescence (iridescent light play)",
+      "biologicalMechanism": "Labradorite's internal light interference (labradorescence) creates a complex photonic interaction with the skin's biophotonic field (the body's own light emission). Placement at the temporal bones accesses the limbic-vagal circuit, which governs emotional memory, spiritual experience, and the integration of conscious and subconscious nervous system states.",
+      "biologicalSystem": "Limbic System & Pineal-Hypothalamic Axis",
+      "endocrineTarget": "Pineal gland (melatonin, DMT precursors), hypothalamus (emotional and spiritual setpoint)",
+      "nervousSystem": "Limbic-vagal circuit activation; temporal bone placement accesses the same vagal pathway as Neptune's Egyptian Blue Lotus; promotes theta brainwave states",
+      "bodyPlacement": "Temples (temporal bones — limbic-vagal access) OR third eye (pineal activation for dreaming and spiritual vision)",
+      "placementNote": "Hold flat against the temples bilaterally (both sides simultaneously) for maximum limbic-vagal activation. Or place on third eye at bedtime for lucid dreaming work. Hold 15-20 minutes.",
+      "safetyNote": "Safe for all skin contact.",
+      "kitEligible": true
+    }
+  },
+  {
+    "planet": "Pluto",
+    "featuredCrystal": "Malachite",
+    "existingGems": [
+      "Malachite",
+      "Black Obsidian",
+      "Jet",
+      "Garnet",
+      "Black Tourmaline"
+    ],
+    "metal": "Plutonium / Lead (transformational metals)",
+    "hex": "#4ADE80",
+    "featuredCrystalData": {
+      "name": "Malachite",
+      "mineralComposition": "Copper carbonate hydroxide — Cu2CO3(OH)2",
+      "biologicalMechanism": "Malachite is dense with copper — a vital biological trace mineral and cofactor for enzymes regulating iron metabolism, tissue growth, and neurotransmitter synthesis (dopamine, norepinephrine). The copper-resonant field interacts with the dense pelvic nerve plexuses, stimulating deep cellular release and smooth muscle relaxation in reproductive tissues.",
+      "biologicalSystem": "Reproductive Endocrine & Circulatory",
+      "endocrineTarget": "Gonads (ovaries/testes — deep pelvic plexus), liver (copper-dependent enzyme support)",
+      "nervousSystem": "Deep pelvic plexus (inferior hypogastric plexus) activation; sacral parasympathetic stimulation; smooth muscle relaxation in reproductive cavity",
+      "bodyPlacement": "Pelvic bowl (2-3 inches below navel, over reproductive organs)",
+      "placementNote": "Place polished Malachite 2-3 inches below the navel over the pelvic cavity while lying flat. Hold 15-20 minutes. ALWAYS use polished and sealed Malachite only.",
+      "safetyNote": "CRITICAL — Only polished/sealed Malachite on skin. Raw Malachite contains toxic copper carbonate dust that must NOT contact moisture or bare skin. Never use raw Malachite in a layout. Do not use internally or in water.",
+      "kitEligible": true,
+      "safetyLevel": "Handle with care"
+    }
+  },
+  {
+    "planet": "Uranus",
+    "featuredCrystal": "Labradorite",
+    "existingGems": [
+      "Labradorite",
+      "Smoky Quartz",
+      "Hematite",
+      "Spectrolite",
+      "Tibetan Quartz"
+    ],
+    "metal": "Aluminum / Uranium (lightning-conductor metals)",
+    "hex": "#38BDF8",
+    "featuredCrystalData": {
+      "name": "Labradorite",
+      "mineralComposition": "Plagioclase feldspar — sodium calcium aluminum silicate with characteristic schiller (lamellar light interference)",
+      "biologicalMechanism": "Labradorite's internal lamellar twinning produces the schiller effect — a real optical interference pattern that scatters incoming light at the quantum level. This same lamellar geometry creates a stable piezoelectric field that buffers sudden electrical surges in the autonomic nervous system. The aluminum-silicate matrix shields the energy field against ungrounded electrical states, calming the sympathetic spike pattern characteristic of Uranian activation.",
+      "biologicalSystem": "Autonomic nervous system (electrical buffer), Subtle electrical body, Aura/biofield",
+      "endocrineTarget": "Parathyroid (electrical-calcium regulation), pineal gland (subtle electrical perception)",
+      "nervousSystem": "Cervical sympathetic chain buffering; autonomic stabilization during electrical overload; supports vagal return after panic or sudden shock",
+      "bodyPlacement": "Base of skull / top of spine (atlas-axis junction), OR third eye for subtle perception integration",
+      "placementNote": "Place at the base of skull while lying down for 15-20 minutes to buffer electrical overstimulation. For psychic shielding during high-electrical environments, carry in pocket or wear as pendant on heart center. Charge under moonlight, not sunlight (Labradorite's schiller responds to moon-frequency light).",
+      "safetyNote": "Safe for all body placements. Cleanse weekly with smoke or moonlight — Labradorite absorbs electrical-field stress and benefits from regular discharge. Avoid exposure to direct intense sunlight which can dim the schiller over years.",
+      "kitEligible": true
+    }
+  }
+]

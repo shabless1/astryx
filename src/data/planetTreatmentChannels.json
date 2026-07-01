@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "title": "Planet → Treatment Channel (the 5-sense spine under the composer)",
+    "lineage": "Medical-astrology tradition — each planet's classical mode of remedy (its 'treatment type'). Distilled, attributed to the tradition. Sound/vibration therapy is classically a Neptune–Uranus practice — the whole instrument has a documented home.",
+    "sources": ["Medical-astrology tradition (planetary treatment modes)"],
+    "note": "Maps the corrective/regulator planet to the sense channels Astryx already calibrates (Sound · Scent · Taste · Body · Sight). Surfaced behind Astryx, never as a clinical claim."
+  },
+  "channels": [
+    { "planet": "Venus", "channels": ["scent", "comfort", "massage", "sweet taste"], "five_sense": ["scent", "body"], "note": "comfort, ease, softening — the cooling hand" },
+    { "planet": "Mars", "channels": ["movement", "heat", "vigorous breath"], "five_sense": ["body"], "note": "warming, mobilizing — used to thaw the cold/blocked" },
+    { "planet": "Mercury", "channels": ["breath", "cognitive", "nervine", "light aromatics"], "five_sense": ["body", "scent"], "note": "nervous-system pacing — breath and nervine herbs" },
+    { "planet": "Neptune", "channels": ["sound", "vibration", "aroma", "water"], "five_sense": ["sound", "scent"], "note": "sound/vibration therapy is a Neptune–Uranus practice — the tuning fork's own home" },
+    { "planet": "Uranus", "channels": ["vibration", "frequency", "electrical"], "five_sense": ["sound"], "note": "frequency/vibration — co-home of sound therapy with Neptune" },
+    { "planet": "Saturn", "channels": ["mineral", "grounding", "cold", "structure"], "five_sense": ["body", "taste"], "note": "mineral and grounding — the master regulator, the balance wheel" },
+    { "planet": "Moon", "channels": ["fluids", "hydration", "rest"], "five_sense": ["taste", "body"], "note": "fluids and rhythm — hydration and settling" },
+    { "planet": "Sun", "channels": ["light", "warmth", "vitality"], "five_sense": ["sight", "body"], "note": "light and warmth — restoring vitality to the depleted" },
+    { "planet": "Jupiter", "channels": ["oils", "fats", "expansion", "nourishment"], "five_sense": ["taste", "scent"], "note": "nourishing oils — expansion and replenishment" },
+    { "planet": "Pluto", "channels": ["deep release", "elimination", "transformation"], "five_sense": ["body"], "note": "deep release — for the held/stagnant, gently" }
+  ]
+}

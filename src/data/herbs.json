@@ -1,0 +1,321 @@
+[
+  {
+    "herb": "chamomile",
+    "actions": [
+      "calm",
+      "regulate"
+    ],
+    "systems": [
+      "digestive",
+      "nervous"
+    ],
+    "taste_profile": [
+      "bitter",
+      "sweet_mild"
+    ],
+    "delivery": [
+      "tea",
+      "infusion"
+    ],
+    "planetary_affinities": [
+      "Moon",
+      "Sun"
+    ],
+    "best_for": [
+      "irritation",
+      "restlessness",
+      "digestive_tension"
+    ]
+  },
+  {
+    "herb": "peppermint",
+    "actions": [
+      "clear",
+      "activate"
+    ],
+    "systems": [
+      "digestive",
+      "respiratory",
+      "mental clarity"
+    ],
+    "taste_profile": [
+      "pungent",
+      "cooling"
+    ],
+    "delivery": [
+      "tea",
+      "infusion",
+      "essential_oil"
+    ],
+    "planetary_affinities": [
+      "Mercury",
+      "Moon"
+    ],
+    "best_for": [
+      "bloating",
+      "brain_fog",
+      "nervous_digestive_tension"
+    ]
+  },
+  {
+    "herb": "dandelion_root",
+    "actions": [
+      "clear"
+    ],
+    "systems": [
+      "digestive",
+      "liver"
+    ],
+    "taste_profile": [
+      "bitter"
+    ],
+    "delivery": [
+      "decoction",
+      "tea"
+    ],
+    "planetary_affinities": [
+      "Jupiter",
+      "Mars"
+    ],
+    "best_for": [
+      "sluggishness",
+      "digestive_load",
+      "congestion"
+    ]
+  },
+  {
+    "herb": "rose",
+    "actions": [
+      "build",
+      "calm"
+    ],
+    "systems": [
+      "emotional",
+      "heart",
+      "reproductive"
+    ],
+    "taste_profile": [
+      "sweet",
+      "aromatic"
+    ],
+    "delivery": [
+      "tea",
+      "glycerite",
+      "aromatic"
+    ],
+    "planetary_affinities": [
+      "Venus",
+      "Moon"
+    ],
+    "best_for": [
+      "depletion",
+      "heart_heaviness",
+      "dryness"
+    ]
+  },
+  {
+    "herb": "ginger",
+    "actions": [
+      "activate",
+      "clear"
+    ],
+    "systems": [
+      "circulation",
+      "digestive"
+    ],
+    "taste_profile": [
+      "pungent",
+      "warming"
+    ],
+    "delivery": [
+      "tea",
+      "decoction",
+      "compress"
+    ],
+    "planetary_affinities": [
+      "Mars",
+      "Sun"
+    ],
+    "best_for": [
+      "cold_stagnation",
+      "slow_digestion",
+      "circulatory_sluggishness"
+    ]
+  },
+  {
+    "herb": "nettle",
+    "actions": [
+      "build",
+      "clear"
+    ],
+    "systems": [
+      "mineral_support",
+      "circulatory",
+      "urinary"
+    ],
+    "taste_profile": [
+      "green_mineral",
+      "mild_astringent"
+    ],
+    "delivery": [
+      "tea",
+      "infusion"
+    ],
+    "planetary_affinities": [
+      "Saturn",
+      "Jupiter"
+    ],
+    "best_for": [
+      "depletion",
+      "mineral_loss",
+      "post_stress_rebuilding"
+    ]
+  },
+  {
+    "herb": "marshmallow_root",
+    "actions": [
+      "build",
+      "calm"
+    ],
+    "systems": [
+      "mucosal",
+      "digestive",
+      "urinary"
+    ],
+    "taste_profile": [
+      "sweet",
+      "demulcent"
+    ],
+    "delivery": [
+      "cold_infusion",
+      "tea"
+    ],
+    "planetary_affinities": [
+      "Moon",
+      "Venus"
+    ],
+    "best_for": [
+      "dryness",
+      "irritation",
+      "inflamed_mucosa"
+    ]
+  },
+  {
+    "herb": "rosemary",
+    "actions": [
+      "activate",
+      "clear"
+    ],
+    "systems": [
+      "circulatory",
+      "cognitive"
+    ],
+    "taste_profile": [
+      "pungent",
+      "aromatic"
+    ],
+    "delivery": [
+      "tea",
+      "essential_oil"
+    ],
+    "planetary_affinities": [
+      "Sun",
+      "Mercury"
+    ],
+    "best_for": [
+      "low_focus",
+      "circulatory_sluggishness",
+      "mental_fatigue"
+    ]
+  },
+  {
+    "herb": "skullcap",
+    "actions": [
+      "calm",
+      "settle"
+    ],
+    "systems": [
+      "nervous_electrical",
+      "muscular"
+    ],
+    "taste_profile": [
+      "bitter",
+      "cooling"
+    ],
+    "delivery": [
+      "tea",
+      "tincture"
+    ],
+    "planetary_affinities": [
+      "Uranus",
+      "Mercury"
+    ],
+    "best_for": [
+      "panic",
+      "muscle_twitching",
+      "wired_insomnia",
+      "electrical_nervous_overload"
+    ]
+  },
+  {
+    "herb": "mugwort",
+    "actions": [
+      "open",
+      "dream"
+    ],
+    "systems": [
+      "subtle_nervous",
+      "reproductive",
+      "psychic"
+    ],
+    "taste_profile": [
+      "bitter",
+      "aromatic"
+    ],
+    "delivery": [
+      "tea",
+      "infusion",
+      "smoke_bundle"
+    ],
+    "planetary_affinities": [
+      "Neptune",
+      "Moon"
+    ],
+    "best_for": [
+      "dream_recall",
+      "subtle_perception",
+      "menstrual_irregularity",
+      "psychic_dryness"
+    ]
+  },
+  {
+    "herb": "damiana",
+    "actions": [
+      "transform",
+      "kindle"
+    ],
+    "systems": [
+      "reproductive",
+      "nervous",
+      "emotional_release"
+    ],
+    "taste_profile": [
+      "aromatic",
+      "slightly_bitter"
+    ],
+    "delivery": [
+      "tea",
+      "tincture"
+    ],
+    "planetary_affinities": [
+      "Pluto",
+      "Venus"
+    ],
+    "best_for": [
+      "reproductive_depletion",
+      "emotional_armoring",
+      "transformation_support",
+      "depression_with_libido_loss"
+    ]
+  }
+]

@@ -1,0 +1,174 @@
+{
+  "_meta": {"title": "Lymphatic & Immune System", "schemaVersion": "1.0", "complianceVersion": "1.0", "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"], "lastUpdated": "2026-05-24"},
+  "system": {"id": "lymphatic-immune", "name": "Lymphatic & Immune System", "alternateNames": ["Lymphatic System", "Immune System", "Defense System"], "shortDescription": "Lymphatic drainage network + immune defense. Lymph nodes, vessels, spleen, thymus, tonsils, MALT/GALT. Innate + adaptive immunity. The body's surveillance and clearance system.", "icon": "🛡", "accentColor": "#9B5DE5", "elementalProfile": "Water primary (lymph flow); Air (immune signaling)"},
+  "anatomy": {
+    "primaryStructures": [
+      "Lymphatic vessels (parallel network to vascular)",
+      "Lymph nodes (~600 throughout body — clusters: cervical, axillary, inguinal, mesenteric)",
+      "Spleen (largest secondary lymphoid organ)",
+      "Thymus (T-cell maturation — atrophies after puberty)",
+      "Tonsils + adenoids (oropharyngeal immune)",
+      "Mucosa-associated lymphoid tissue (MALT) — GALT (gut), BALT (bronchi)",
+      "Bone marrow (B-cell maturation, all blood cells)",
+      "White blood cells: neutrophils, lymphocytes (T, B, NK), monocytes/macrophages, eosinophils, basophils"
+    ],
+    "subStructures": {
+      "primary_lymphoid": ["Bone marrow", "Thymus"],
+      "secondary_lymphoid": ["Spleen", "Lymph nodes", "Tonsils", "MALT/GALT"],
+      "lymph_flow": ["Capillaries → collecting vessels → trunks → ducts (right lymphatic + thoracic) → venous return"],
+      "innate_immunity": ["Physical barriers", "Neutrophils", "Macrophages", "NK cells", "Complement"],
+      "adaptive_immunity": ["T cells (cellular)", "B cells / antibodies (humoral)", "Memory cells"]
+    },
+    "vertebralCorrelates": "Thymus: T2-T4. Spleen: T6-T9 (left side). Major lymph clusters supplied by adjacent spinal nerves.",
+    "nervePlexus": "Sympathetic innervation of spleen, thymus, lymph nodes. Vagal influence on GALT and immune-gut signaling."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Neptune / Moon",
+    "primaryPlanetRationale": "Neptune rules dissolution boundary (immune self/non-self discrimination); Moon rules fluid (lymph). Cornell (1933): 'Lymphatic system — under fluid signs (Water) and Jupiter/Moon dominion.'",
+    "primarySign": "Pisces",
+    "primaryHouse": 12,
+    "secondaryPlanets": [
+      {"planet": "Neptune", "rules": "Immune self/non-self boundary, autoimmune patterns, idiopathic immune", "rationale": "Modern: Neptune dissolves boundaries — exactly the immune problem when malfunctioning"},
+      {"planet": "Moon", "rules": "Lymphatic fluid, lymph flow, mother's antibody transfer", "rationale": "Cornell: 'Moon rules body fluids.'"},
+      {"planet": "Jupiter", "rules": "Lymphatic expansion (swelling), generous immune response", "rationale": "Cornell: 'Jupiter rules the blood and its constituents.'"},
+      {"planet": "Sun", "rules": "Thymus gland, vital immune force, heart-immune axis", "rationale": "Sun rules Leo (heart area where thymus sits)"},
+      {"planet": "Mars", "rules": "Acute inflammatory immune response, infection-fighting, fever", "rationale": "Cornell: 'Mars + acute infection.'"},
+      {"planet": "Saturn", "rules": "Chronic suppressed immunity, immunodeficiency, autoimmune chronic", "rationale": "Cornell: 'Saturn restricts vital functions including immune.'"},
+      {"planet": "Pluto", "rules": "Deep immune transformation, cancer immunology, profound immune reset", "rationale": "Modern attribution"},
+      {"planet": "Mercury", "rules": "Immune signaling (cytokines), allergic respiratory", "rationale": "Mercury = signal"}
+    ],
+    "secondarySigns": ["Cancer (lymph in breast, mother-baby antibody)", "Scorpio (deep eliminative immune)", "Virgo (immune-digestive axis)"],
+    "houses": {"primary": [12], "secondary": [6, 8], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {"name": "Digestive-Immune Axis", "polarity": "Virgo ↔ Pisces", "source": "Minerva (2023)", "interpretation": "THE primary immune axis. ~70% of immune tissue lives in gut (GALT). Virgo: discriminating gut-immune surveillance. Pisces: immune boundary dissolution. Most autoimmune and allergic conditions track this axis."},
+    {"name": "Renal Axis (immune-allergic overlay)", "polarity": "Aries ↔ Libra", "source": "Minerva (2023)", "interpretation": "Adrenal cortisol (Aries-Mars) suppresses inflammation. Kidney filtration (Libra) clears immune complexes. Chronic stress = HPA dysregulation = immune dysfunction."}
+  ],
+  "energetics": {
+    "chakra": "Heart (Anahata) — thymus / Third Eye (Ajna) — pineal-immune / Sacral (Svadhisthana) — GALT",
+    "chakraColor": "Green (thymus), violet (immune subtle)",
+    "chakraHz": 341.3,
+    "nervousSystemPathway": "Vagus → spleen → immune anti-inflammatory reflex (cholinergic anti-inflammatory pathway). Sympathetic adrenal → immune modulation.",
+    "endocrineCorrespondence": "Thymus (immune-endocrine bridge), adrenal cortex (cortisol immunosuppression)",
+    "elementalCorrespondence": "Water + Air",
+    "brainwaveAffinity": "Alpha-Theta — parasympathetic state supports immune function",
+    "meridianCrossover_TCM": "Lung meridian (defensive Qi / Wei Qi — immune in TCM). Large Intestine. Spleen (immune-digestive)."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "First Aid Immune", "indicatedFor": "Acute infection onset, fever first 24-48hr, inflammatory immune response.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Kali Mur", "saltFullName": "Kali Muriaticum", "sign": "Gemini", "epithet": "Lymphatic Drainage / Glandular", "indicatedFor": "Swollen lymph glands, white catarrh, lymphatic stagnation.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Deep Cleanser", "indicatedFor": "Chronic immune burden, slow-clearing infections, persistent lymphadenopathy.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Sulph", "saltFullName": "Natrum Sulphuricum", "sign": "Taurus", "epithet": "Liver-Immune Detox", "indicatedFor": "Liver-mediated immune clearance, post-viral recovery.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Echinacea", "classicalAttribution": "Mars / Mercury", "mechanism": "Innate immune stimulant; macrophage + NK cell activation", "indicatedFor": "Acute viral/bacterial — early infection onset; short course only"},
+      {"name": "Elderberry (Sambucus)", "classicalAttribution": "Venus / Mercury", "mechanism": "Anti-viral (especially influenza); supports immune response", "indicatedFor": "Viral prevention + acute viral"},
+      {"name": "Astragalus", "classicalAttribution": "Sun / Jupiter", "mechanism": "Adaptogenic immunomodulator; long-term support", "indicatedFor": "Chronic low immunity, post-illness rebuild. AVOID during acute illness."},
+      {"name": "Reishi (Ganoderma)", "classicalAttribution": "Saturn / Pluto", "mechanism": "Beta-glucan immunomodulator; deep immune support", "indicatedFor": "Chronic immune dysregulation, autoimmune balance, cancer immune support (adjunctive only)"},
+      {"name": "Cleavers (Galium aparine)", "classicalAttribution": "Moon", "mechanism": "Lymphatic mover", "indicatedFor": "Lymphatic stagnation, swollen glands"},
+      {"name": "Calendula", "classicalAttribution": "Sun", "mechanism": "Lymphatic + tissue support", "indicatedFor": "Lymphatic support, wound immune"}
+    ],
+    "crystals": [
+      {"name": "Amethyst", "planet": "Neptune", "bodyPlacement": "Crown", "classicalAttribution": "Immune boundary support energetically"},
+      {"name": "Bloodstone", "planet": "Mars", "bodyPlacement": "Thymus", "classicalAttribution": "Traditional immune-strengthening"},
+      {"name": "Jade", "planet": "Venus / Moon", "bodyPlacement": "Hold", "classicalAttribution": "Lymphatic support (jade rollers traditional)"}
+    ],
+    "tuningForks": [
+      {"planet": "Neptune", "hz": 211.44, "applicationPoint": "Crown (immune subtle field)"},
+      {"planet": "Sun", "hz": 126.22, "applicationPoint": "Thymus (sternum)"},
+      {"planet": "Moon", "hz": 210.42, "applicationPoint": "Spleen (left mid-back)"}
+    ],
+    "scents": [
+      {"name": "Eucalyptus", "delivery": "diffuser/inhale", "mechanism": "Respiratory immune"},
+      {"name": "Tea tree", "delivery": "topical diluted", "mechanism": "Antimicrobial topical"},
+      {"name": "Myrrh", "delivery": "diffuser", "mechanism": "Immune-respiratory support"}
+    ],
+    "bodyProtocols": [{"breath": "Deep breathing (lymph pump)", "movement": "Rebounding (mini-trampoline — lymph movement)", "posture": "Inversions (gentle)", "touch": "Lymphatic drainage strokes"}],
+    "modalityRecommendations": {
+      "individual": "Daily immune support: sleep (THE most powerful immune intervention), movement (lymph has no pump — muscles move it), nutrition (zinc, D, C, glutamine), stress management, gut health. Acute illness: rest, hydrate, elderberry/echinacea early, monitor for warning signs.",
+      "medical_astrologer": "Neptune + Pisces primary. Moon for lymph fluid. Thymus = Sun-Leo. Virgo-Pisces axis for chronic immune. Mars for acute inflammatory response. Outer planet transits to natal Neptune significant for autoimmune timing.",
+      "reiki": "Thymus chakra extended (sternum). Crown for immune subtle. Distance reiki especially appropriate during acute illness.",
+      "bodywork_general": "Manual Lymphatic Drainage (MLD — Vodder method) is THE specialty technique. Gentle, rhythmic, light pressure following lymph pathways. Dry brushing. Compression. Inversions (legs up wall).",
+      "bodywork_contraindications": "Active acute infection with fever: avoid (can spread). Active cancer with metastasis: SPECIAL CERTIFICATION required (oncology massage). DVT: never. Cardiac/renal failure: caution with fluid mobilization.",
+      "naturopathy": "Acute: elderberry, echinacea (short course), zinc, vitamin C, vitamin D, rest. Chronic immune support: astragalus, reishi (medicinal mushrooms), adaptogens, gut healing. Autoimmune: AIP framework, gut-immune axis, stress.",
+      "acupuncture": "Lung meridian (Wei Qi defensive energy). LU 7 Lieque. ST 36 Zusanli (immune boost). LI 4 Hegu.",
+      "ayurveda_phase2_placeholder": "Ojas (immune essence). Rasayanas (chyawanprash). Amalaki. Tulsi. Guduchi. Phase 2.",
+      "pastoral_spiritual": "Self as boundaried being. Discernment as immune intelligence. Prayer for protection and clearing."
+    }
+  },
+  "pathologies": [
+    {"id": "imm_autoimmune_general", "name": "Autoimmune Conditions (general)", "icdReference": "Multiple (varies by specific condition)", "system": "lymphatic-immune", "category": "autoimmune",
+      "astrologicalSignature": {"planetaryCombinations": ["Neptune-Mars (immune confusion + inflammation)", "Neptune-Saturn", "Virgo-Pisces axis stress", "Pluto-Mars (deep autoimmune)"], "houseEmphasis": ["12th house outer planets"]},
+      "classicalReference": "Modern attribution — Neptune rules immune boundary confusion. Cornell pre-dates autoimmune concept formally but described similar patterns as 'self-poisoning,' 'altered blood diathesis.'",
+      "cellSalts": ["Calc Sulph", "Kali Mur", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Autoimmune conditions are increasingly common and have a strong lifestyle/environmental component. Functional medicine, AIP diet trial, gut healing, stress management, sleep, and stress reduction often produce significant improvement alongside medical management. Work with rheumatology or relevant specialty for diagnosis and core treatment.",
+        "practitioner": "Neptune-Mars and Virgo-Pisces axis configurations classically align with autoimmune patterns (modern attribution). Functional medicine framework: address gut, stress, sleep, food sensitivities, environmental toxins. NEVER replace specialty medical care for autoimmune."
+      },
+      "modalityNotes": {"bodywork": "Gentle. Pacing aware. Trauma-informed.", "lifestyle": "AIP/anti-inflammatory diet, gut healing, sleep, stress, vitamin D, omega-3"},
+      "redFlags": ["Flare with neurological symptoms, vision changes → urgent"]
+    },
+    {"id": "imm_allergies", "name": "Allergic Disorders (general)", "icdReference": "T78", "system": "lymphatic-immune", "category": "hypersensitivity",
+      "astrologicalSignature": {"planetaryCombinations": ["Mercury-Uranus (hypersensitivity)", "Neptune-Mercury"]},
+      "classicalReference": "Cornell (1933): 'Mercury-Uranus → hypersensitive reactivity.'",
+      "cellSalts": ["Nat Mur", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Allergies range from minor (seasonal sneezing) to life-threatening (anaphylaxis). Identify triggers, avoid when possible, support with antihistamines + nervines. Severe reactions require epinephrine and emergency care.",
+        "practitioner": "Mercury-Uranus configurations align with hypersensitivity. Quercetin, nettle, vitamin C supportive. Refer to allergist for testing, immunotherapy options."
+      },
+      "modalityNotes": {"bodywork": "Lymphatic drainage helpful", "lifestyle": "Trigger avoidance, gut healing, quercetin, nettle, local honey trial"},
+      "redFlags": ["Anaphylaxis (throat swelling, BP drop, wheezing) → 911 + epinephrine"]
+    },
+    {"id": "imm_chronic_fatigue", "name": "Chronic Fatigue Syndrome / ME-CFS", "icdReference": "G93.3", "system": "lymphatic-immune", "category": "post_viral_syndrome",
+      "astrologicalSignature": {"planetaryCombinations": ["Neptune-Sun (vitality dissolution)", "Saturn-Sun (compression)", "12th house Sun/Moon"]},
+      "classicalReference": "Modern syndrome. Saturn-Neptune-Sun patterns align.",
+      "cellSalts": ["Kali Phos", "Calc Phos", "Ferr Phos"],
+      "indicatorLanguage": {
+        "individual": "Post-viral chronic fatigue (including long COVID) is real and increasingly recognized. Pacing (do less than you think you can), avoiding post-exertional malaise, mitochondrial support, addressing co-infections, sleep optimization — gradual recovery is possible for many.",
+        "practitioner": "Neptune-Sun configurations align with vitality-dissolution patterns. ME-CFS criteria specific (post-exertional malaise central). Pacing primary intervention. Mitochondrial cofactors (CoQ10, ribose, magnesium). Reactivated viral testing (EBV, HHV-6). Refer to ME-CFS-knowledgeable physicians."
+      },
+      "modalityNotes": {"bodywork": "VERY gentle — clients have post-exertional malaise. Short sessions.", "lifestyle": "Pacing, energy envelope, sleep, gentle movement (within tolerance), nutritional support"},
+      "redFlags": ["New cardiac symptoms (POTS often comorbid) → cardiology"]
+    },
+    {"id": "imm_lymphedema", "name": "Lymphedema", "icdReference": "I89", "system": "lymphatic-immune", "category": "lymphatic_obstruction",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Moon (chronic fluid restriction)", "Neptune-Moon"]},
+      "classicalReference": "Cornell (1933): 'Lymphatic obstruction — Saturn afflicting fluid signs.'",
+      "cellSalts": ["Kali Mur", "Nat Sulph"],
+      "indicatorLanguage": {
+        "individual": "Lymphedema (chronic limb swelling, often post-surgery or post-radiation) requires specialized care — Complete Decongestive Therapy (CDT) is gold standard. Find a Certified Lymphedema Therapist (CLT). Compression garments. Daily care.",
+        "practitioner": "MLD specialty certification required for therapeutic lymphedema work. Standard massage contraindicated (worsens). Refer to Certified Lymphedema Therapist."
+      },
+      "modalityNotes": {"bodywork": "Manual Lymphatic Drainage (Vodder) specialty cert required. Standard massage CONTRAINDICATED.", "lifestyle": "Compression garments, skin care (cellulitis risk), elevation, exercise within compression"},
+      "redFlags": ["Sudden warm red swelling → cellulitis, urgent MD"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2, "_status": "placeholder",
+    "tridosha": {"primary": "Kapha (lymph, mucus, immune mass)", "secondary": "Vata in autoimmune"},
+    "ayurvedicOrgans": ["Rasa Dhatu (plasma, lymph — 1st dhatu)", "Ojas (immune essence)"],
+    "ayurvedicTreatments_phase2": "Rasayanas. Chyawanprash. Guduchi. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Neptune", "Pisces + 12th house", "Virgo-Pisces axis", "Thymus = Sun"], "outputDepth": "Full immune signatures"},
+    "reiki": {"focusPoints": ["Thymus chakra", "Crown for boundary"], "outputDepth": "Immune-energetic protocols"},
+    "bodywork": {"focusPoints": ["Manual Lymphatic Drainage (specialty)", "Dry brushing", "Rebounding"], "contraindicationsCriticallity": "HIGH for active infection/cancer (specialty cert)", "outputDepth": "Specialized lymphatic guide"},
+    "naturopath": {"focusPoints": ["Acute vs chronic immune protocols", "Adaptogens", "Functional medicine"], "outputDepth": "Comprehensive immune support"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Ojas", "Rasayanas"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Wei Qi (defensive)", "Lung meridian"], "outputDepth": "TCM immune framework"},
+    "pastoral_spiritual": {"focusPoints": ["Boundary practices", "Discernment as immune intelligence"], "outputDepth": "Spiritual immune practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Acute serious infection, suspected cancer, autoimmune disease all require medical care. Holistic adjunctive.",
+    "criticalReferralRules": [
+      "Anaphylaxis → 911",
+      "Cellulitis spreading → urgent MD",
+      "Lymph nodes hard, fixed, > 1cm persistent → urgent oncology workup",
+      "Fever > 102°F with other signs of serious infection → urgent",
+      "Suspected sepsis → ED",
+      "Active cancer + bodywork → specialty oncology massage cert required"
+    ],
+    "redFlagKeywords": ["anaphylaxis", "lymph node hard", "spreading red", "high fever sepsis"]
+  }
+}

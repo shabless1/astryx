@@ -1,0 +1,1579 @@
+{
+  "_meta": {
+    "version": 1,
+    "description": "Astryx Remedy Polarity Engine — corrective directions per planet per state. Planet detected = pattern active. State determines remedy. Planet ≠ Remedy.",
+    "states": [
+      "excess",
+      "deficiency",
+      "blocked",
+      "balanced"
+    ],
+    "rule": "The remedy should balance the pattern, not amplify it."
+  },
+  "Sun": {
+    "excess": {
+      "indicators": [
+        "burnout",
+        "ego inflation",
+        "overheating",
+        "excessive pride",
+        "domination",
+        "inflammation",
+        "overexertion",
+        "feverish"
+      ],
+      "corrective_direction": [
+        "cool",
+        "humble",
+        "recover",
+        "nourish"
+      ],
+      "avoid": [
+        "excessive stimulation",
+        "excessive heat",
+        "high tempo",
+        "red overload"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Moon"
+      ],
+      "color_palette": [
+        "#5DADEC",
+        "#A8C4D0",
+        "#B388FF",
+        "#43E66A"
+      ],
+      "herbs": [
+        "chamomile",
+        "rose",
+        "marshmallow",
+        "lemon balm"
+      ],
+      "scents": [
+        "lavender",
+        "rose",
+        "chamomile",
+        "sandalwood"
+      ],
+      "breath": "extended_exhale",
+      "sound_character": "soft_cooling_recovery",
+      "visual_motion": "wave_drift",
+      "scale_override": "major_soft",
+      "support_style": "cooling recovery"
+    },
+    "deficiency": {
+      "indicators": [
+        "low vitality",
+        "poor confidence",
+        "fatigue",
+        "lack of direction",
+        "weak willpower",
+        "depression"
+      ],
+      "corrective_direction": [
+        "activate",
+        "warm",
+        "motivate"
+      ],
+      "avoid": [
+        "heavy sedation",
+        "isolation"
+      ],
+      "regulator_planets": [
+        "Mars",
+        "Jupiter"
+      ],
+      "color_palette": [
+        "#FFD166",
+        "#FFF3B0",
+        "#FFB000"
+      ],
+      "herbs": [
+        "calendula",
+        "rosemary",
+        "ginseng",
+        "ashwagandha"
+      ],
+      "scents": [
+        "frankincense",
+        "rosemary",
+        "bergamot",
+        "orange"
+      ],
+      "breath": "balanced_activating",
+      "sound_character": "gentle_rising_warm",
+      "visual_motion": "bloom",
+      "scale_override": "major_bright",
+      "support_style": "warm activation"
+    },
+    "blocked": {
+      "indicators": [
+        "lack of self-expression",
+        "creative blockage",
+        "stuck pride",
+        "suppressed identity"
+      ],
+      "corrective_direction": [
+        "release",
+        "express",
+        "open"
+      ],
+      "avoid": [
+        "forced exposure",
+        "criticism"
+      ],
+      "regulator_planets": [
+        "Jupiter",
+        "Venus"
+      ],
+      "color_palette": [
+        "#FFD166",
+        "#9B5DE5",
+        "#FFB000"
+      ],
+      "herbs": [
+        "calendula",
+        "St John's Wort",
+        "tulsi"
+      ],
+      "scents": [
+        "frankincense",
+        "neroli",
+        "bergamot"
+      ],
+      "breath": "open_chest_expansion",
+      "sound_character": "opening_warm_release",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "lydian",
+      "support_style": "open release"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy vitality",
+        "steady confidence"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#FFD166",
+        "#FFF3B0"
+      ],
+      "herbs": [
+        "calendula",
+        "rosemary"
+      ],
+      "scents": [
+        "frankincense",
+        "orange"
+      ],
+      "breath": "balanced",
+      "sound_character": "centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Moon": {
+    "excess": {
+      "indicators": [
+        "emotional overwhelm",
+        "mood instability",
+        "hypersensitivity",
+        "fluid retention",
+        "dependency",
+        "tearfulness",
+        "weepiness"
+      ],
+      "corrective_direction": [
+        "ground",
+        "structure",
+        "stabilize"
+      ],
+      "avoid": [
+        "excessive emotional stimulation",
+        "sad music"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Mars"
+      ],
+      "color_palette": [
+        "#3A3A3A",
+        "#8A6F3D",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "nettle",
+        "rosemary",
+        "ginger",
+        "skullcap"
+      ],
+      "scents": [
+        "vetiver",
+        "cedarwood",
+        "patchouli"
+      ],
+      "breath": "box_breathing",
+      "sound_character": "grounded_structured",
+      "visual_motion": "structured_geometry",
+      "scale_override": "phrygian_grounded",
+      "support_style": "grounding stabilization"
+    },
+    "deficiency": {
+      "indicators": [
+        "emotional numbness",
+        "poor connection to feelings",
+        "dryness",
+        "isolation"
+      ],
+      "corrective_direction": [
+        "nourish",
+        "hydrate",
+        "soften"
+      ],
+      "avoid": [
+        "over-analysis",
+        "harsh structure"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Moon"
+      ],
+      "color_palette": [
+        "#C9E7FF",
+        "#FF8FB7",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "chamomile",
+        "lemon balm",
+        "passionflower",
+        "linden"
+      ],
+      "scents": [
+        "jasmine",
+        "chamomile",
+        "sandalwood"
+      ],
+      "breath": "4-7-8",
+      "sound_character": "soft_nourishing",
+      "visual_motion": "tidal_wave",
+      "scale_override": "aeolian_soft",
+      "support_style": "nourishing softness"
+    },
+    "blocked": {
+      "indicators": [
+        "stuck emotions",
+        "unable to cry",
+        "frozen grief",
+        "emotional rigidity"
+      ],
+      "corrective_direction": [
+        "release",
+        "soften",
+        "permit"
+      ],
+      "avoid": [
+        "forced catharsis",
+        "judgment"
+      ],
+      "regulator_planets": [
+        "Mars",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#A8C4D0",
+        "#B388FF",
+        "#FF8FB7"
+      ],
+      "herbs": [
+        "hawthorn",
+        "rose",
+        "motherwort"
+      ],
+      "scents": [
+        "rose",
+        "jasmine",
+        "ylang ylang"
+      ],
+      "breath": "gentle_sighing",
+      "sound_character": "permission_to_release",
+      "visual_motion": "fluid_rings",
+      "scale_override": "dorian",
+      "support_style": "permitted release"
+    },
+    "balanced": {
+      "indicators": [
+        "steady emotional flow"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#C9E7FF",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "chamomile"
+      ],
+      "scents": [
+        "jasmine"
+      ],
+      "breath": "balanced",
+      "sound_character": "tidal_natural",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Mercury": {
+    "excess": {
+      "indicators": [
+        "anxiety",
+        "overthinking",
+        "nervous tension",
+        "insomnia",
+        "scattered attention",
+        "racing thoughts",
+        "mental chatter"
+      ],
+      "corrective_direction": [
+        "ground",
+        "slow",
+        "regulate"
+      ],
+      "avoid": [
+        "overstimulation",
+        "caffeine",
+        "fast tempo",
+        "complex visuals"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#3A3A3A",
+        "#8A6F3D",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "chamomile",
+        "lemon balm",
+        "skullcap",
+        "passionflower",
+        "lavender"
+      ],
+      "scents": [
+        "lavender",
+        "sandalwood",
+        "vetiver"
+      ],
+      "breath": "4-7-8",
+      "sound_character": "grounded_slow_regulation",
+      "visual_motion": "wave_drift_slow",
+      "scale_override": "aeolian_grounded",
+      "support_style": "grounding regulation"
+    },
+    "deficiency": {
+      "indicators": [
+        "sluggish thinking",
+        "poor communication",
+        "mental fog",
+        "low adaptability",
+        "brain fog"
+      ],
+      "corrective_direction": [
+        "stimulate",
+        "clarify",
+        "lighten"
+      ],
+      "avoid": [
+        "heavy sedation"
+      ],
+      "regulator_planets": [
+        "Mercury",
+        "Sun"
+      ],
+      "color_palette": [
+        "#B8FFEA",
+        "#7DF9FF",
+        "#F6E05E"
+      ],
+      "herbs": [
+        "peppermint",
+        "rosemary",
+        "ginkgo",
+        "gotu kola"
+      ],
+      "scents": [
+        "peppermint",
+        "eucalyptus",
+        "lemon"
+      ],
+      "breath": "alternate_nostril",
+      "sound_character": "bright_clarifying",
+      "visual_motion": "light_arpeggio",
+      "scale_override": "lydian_bright",
+      "support_style": "clarifying stimulation"
+    },
+    "blocked": {
+      "indicators": [
+        "communication blockage",
+        "stuck thoughts",
+        "inability to articulate",
+        "silenced expression"
+      ],
+      "corrective_direction": [
+        "release",
+        "express",
+        "mobilize"
+      ],
+      "avoid": [
+        "pressure",
+        "forced output"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Neptune"
+      ],
+      "color_palette": [
+        "#7DF9FF",
+        "#9B5DE5"
+      ],
+      "herbs": [
+        "peppermint",
+        "fennel",
+        "ginger"
+      ],
+      "scents": [
+        "peppermint",
+        "rosemary"
+      ],
+      "breath": "humming_voiced",
+      "sound_character": "vocal_release",
+      "visual_motion": "alternating_oscillation",
+      "scale_override": "dorian",
+      "support_style": "vocal mobilization"
+    },
+    "balanced": {
+      "indicators": [
+        "clear thinking"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#B8FFEA"
+      ],
+      "herbs": [
+        "peppermint"
+      ],
+      "scents": [
+        "peppermint"
+      ],
+      "breath": "balanced",
+      "sound_character": "clear_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Venus": {
+    "excess": {
+      "indicators": [
+        "indulgence",
+        "stagnation",
+        "excess comfort",
+        "fluid heaviness",
+        "avoidance",
+        "sluggishness",
+        "lymph stagnation"
+      ],
+      "corrective_direction": [
+        "move",
+        "circulate",
+        "activate gently"
+      ],
+      "avoid": [
+        "excessive sweetness",
+        "passivity",
+        "lush music"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Mars"
+      ],
+      "color_palette": [
+        "#FF6B35",
+        "#FFB000",
+        "#F6E05E"
+      ],
+      "herbs": [
+        "nettle",
+        "dandelion",
+        "ginger",
+        "burdock"
+      ],
+      "scents": [
+        "ginger",
+        "black pepper",
+        "rosemary"
+      ],
+      "breath": "balanced_activating",
+      "sound_character": "moving_circulating",
+      "visual_motion": "spiral_motion",
+      "scale_override": "mixolydian",
+      "support_style": "gentle activation"
+    },
+    "deficiency": {
+      "indicators": [
+        "lack of pleasure",
+        "lack of self-worth",
+        "isolation",
+        "emotional dryness",
+        "anhedonia"
+      ],
+      "corrective_direction": [
+        "nourish",
+        "beautify",
+        "soften"
+      ],
+      "avoid": [
+        "criticism",
+        "harsh activation"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Moon"
+      ],
+      "color_palette": [
+        "#50E3A4",
+        "#FF8FB7",
+        "#FFD166"
+      ],
+      "herbs": [
+        "hibiscus",
+        "rose hip",
+        "damiana",
+        "ashwagandha"
+      ],
+      "scents": [
+        "rose",
+        "geranium",
+        "ylang ylang"
+      ],
+      "breath": "soft_extended",
+      "sound_character": "lush_nourishing",
+      "visual_motion": "harmonic_bloom",
+      "scale_override": "lydian_warm",
+      "support_style": "nourishing beauty"
+    },
+    "blocked": {
+      "indicators": [
+        "unable to receive love",
+        "stagnant relationships",
+        "blocked sensuality",
+        "heart restriction"
+      ],
+      "corrective_direction": [
+        "open",
+        "permit",
+        "soften restriction"
+      ],
+      "avoid": [
+        "pressure to perform"
+      ],
+      "regulator_planets": [
+        "Mars",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#FF8FB7",
+        "#50E3A4",
+        "#B388FF"
+      ],
+      "herbs": [
+        "hawthorn",
+        "rose",
+        "tulsi"
+      ],
+      "scents": [
+        "rose",
+        "jasmine",
+        "neroli"
+      ],
+      "breath": "heart_opening",
+      "sound_character": "permissive_opening",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "lydian",
+      "support_style": "heart opening"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy pleasure"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#50E3A4",
+        "#FF8FB7"
+      ],
+      "herbs": [
+        "rose hip"
+      ],
+      "scents": [
+        "rose"
+      ],
+      "breath": "balanced",
+      "sound_character": "warm_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Mars": {
+    "excess": {
+      "indicators": [
+        "inflammation",
+        "anger",
+        "irritation",
+        "heat",
+        "pressure",
+        "aggression",
+        "flare-ups",
+        "sharp pain",
+        "redness",
+        "impulsivity",
+        "burning"
+      ],
+      "corrective_direction": [
+        "cool",
+        "calm",
+        "regulate",
+        "drain heat"
+      ],
+      "avoid": [
+        "heat",
+        "overstimulation",
+        "aggressive pulse",
+        "red overload",
+        "breath of fire"
+      ],
+      "regulator_planets": [
+        "Moon",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#5DADEC",
+        "#43E66A",
+        "#A8C4D0",
+        "#2EC4B6"
+      ],
+      "herbs": [
+        "peppermint",
+        "chamomile",
+        "lemon balm",
+        "rose",
+        "marshmallow",
+        "nettle"
+      ],
+      "scents": [
+        "lavender",
+        "rose",
+        "chamomile",
+        "ylang ylang"
+      ],
+      "breath": "4-7-8",
+      "sound_character": "cooling_calm_regulation",
+      "visual_motion": "wave_or_bloom",
+      "scale_override": "major_soft",
+      "support_style": "cooling regulation"
+    },
+    "deficiency": {
+      "indicators": [
+        "low drive",
+        "poor motivation",
+        "weak circulation",
+        "coldness",
+        "low energy",
+        "no initiative"
+      ],
+      "corrective_direction": [
+        "warm",
+        "activate",
+        "stimulate",
+        "build momentum"
+      ],
+      "avoid": [
+        "heavy sedation",
+        "passivity"
+      ],
+      "regulator_planets": [
+        "Mars",
+        "Sun"
+      ],
+      "color_palette": [
+        "#FF3B3B",
+        "#FFB000",
+        "#FFD166"
+      ],
+      "herbs": [
+        "ginger",
+        "cayenne",
+        "nettle",
+        "yarrow"
+      ],
+      "scents": [
+        "black pepper",
+        "ginger",
+        "cinnamon",
+        "rosemary"
+      ],
+      "breath": "balanced_activating",
+      "sound_character": "warm_steady_pulse",
+      "visual_motion": "rising_expansion",
+      "scale_override": "lydian_bright",
+      "support_style": "warm activation"
+    },
+    "blocked": {
+      "indicators": [
+        "tension",
+        "pressure",
+        "tightness",
+        "stagnation",
+        "stuck action",
+        "frustration",
+        "tight muscles",
+        "clenched jaw"
+      ],
+      "corrective_direction": [
+        "release",
+        "mobilize",
+        "soften restriction"
+      ],
+      "avoid": [
+        "additional pressure",
+        "forced output"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Venus"
+      ],
+      "color_palette": [
+        "#FF8FB7",
+        "#5DADEC",
+        "#9B5DE5"
+      ],
+      "herbs": [
+        "kava",
+        "valerian",
+        "lobelia",
+        "rose"
+      ],
+      "scents": [
+        "ylang ylang",
+        "rose",
+        "lavender"
+      ],
+      "breath": "humming_release",
+      "sound_character": "release_softening",
+      "visual_motion": "compression_release",
+      "scale_override": "dorian",
+      "support_style": "tension release"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy drive"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#FF6B35"
+      ],
+      "herbs": [
+        "nettle"
+      ],
+      "scents": [
+        "rosemary"
+      ],
+      "breath": "balanced",
+      "sound_character": "steady_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Jupiter": {
+    "excess": {
+      "indicators": [
+        "excess appetite",
+        "swelling",
+        "indulgence",
+        "overexpansion",
+        "excess accumulation",
+        "weight gain",
+        "overcommitment"
+      ],
+      "corrective_direction": [
+        "contain",
+        "structure",
+        "moderate"
+      ],
+      "avoid": [
+        "excess growth stimulation",
+        "lush music",
+        "expansive visuals"
+      ],
+      "regulator_planets": [
+        "Mercury",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#3A3A3A",
+        "#8A6F3D",
+        "#43E66A"
+      ],
+      "herbs": [
+        "dandelion",
+        "burdock",
+        "milk thistle",
+        "yellow dock"
+      ],
+      "scents": [
+        "cedarwood",
+        "myrrh",
+        "vetiver"
+      ],
+      "breath": "box_breathing",
+      "sound_character": "contained_structured",
+      "visual_motion": "structured_geometry",
+      "scale_override": "phrygian_grounded",
+      "support_style": "structured moderation"
+    },
+    "deficiency": {
+      "indicators": [
+        "pessimism",
+        "lack of hope",
+        "contraction",
+        "poor confidence",
+        "narrow outlook"
+      ],
+      "corrective_direction": [
+        "expand",
+        "uplift",
+        "open"
+      ],
+      "avoid": [
+        "criticism",
+        "overstructure"
+      ],
+      "regulator_planets": [
+        "Jupiter",
+        "Sun"
+      ],
+      "color_palette": [
+        "#6C63FF",
+        "#9B5DE5",
+        "#FFD166"
+      ],
+      "herbs": [
+        "sage",
+        "tulsi",
+        "St John's Wort",
+        "ginger"
+      ],
+      "scents": [
+        "cedarwood",
+        "pine",
+        "frankincense"
+      ],
+      "breath": "expansive_inhale",
+      "sound_character": "expansive_uplifting",
+      "visual_motion": "expansion_outward",
+      "scale_override": "lydian_bright",
+      "support_style": "gentle expansion"
+    },
+    "blocked": {
+      "indicators": [
+        "stuck growth",
+        "blocked opportunity",
+        "feeling trapped",
+        "lack of perspective"
+      ],
+      "corrective_direction": [
+        "open",
+        "release",
+        "broaden"
+      ],
+      "avoid": [
+        "additional restriction"
+      ],
+      "regulator_planets": [
+        "Mercury",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#9B5DE5",
+        "#6C63FF"
+      ],
+      "herbs": [
+        "sage",
+        "tulsi",
+        "ginger"
+      ],
+      "scents": [
+        "frankincense",
+        "cedarwood"
+      ],
+      "breath": "expansive_inhale",
+      "sound_character": "perspective_opening",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "lydian",
+      "support_style": "perspective broadening"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy growth"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#6C63FF"
+      ],
+      "herbs": [
+        "sage"
+      ],
+      "scents": [
+        "cedarwood"
+      ],
+      "breath": "balanced",
+      "sound_character": "open_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Saturn": {
+    "excess": {
+      "indicators": [
+        "rigidity",
+        "restriction",
+        "fear",
+        "dryness",
+        "stiffness",
+        "isolation",
+        "depression",
+        "harshness toward self"
+      ],
+      "corrective_direction": [
+        "warm",
+        "soften",
+        "expand"
+      ],
+      "avoid": [
+        "excessive containment",
+        "criticism",
+        "isolation"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Jupiter"
+      ],
+      "color_palette": [
+        "#FF8FB7",
+        "#FFD166",
+        "#FFB000"
+      ],
+      "herbs": [
+        "ginger",
+        "chamomile",
+        "tulsi",
+        "rose"
+      ],
+      "scents": [
+        "rose",
+        "frankincense",
+        "ylang ylang"
+      ],
+      "breath": "warm_expansive",
+      "sound_character": "warming_softening",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "lydian_warm",
+      "support_style": "softening warmth"
+    },
+    "deficiency": {
+      "indicators": [
+        "lack of discipline",
+        "poor boundaries",
+        "instability",
+        "weak structure",
+        "chaos"
+      ],
+      "corrective_direction": [
+        "ground",
+        "order",
+        "contain"
+      ],
+      "avoid": [
+        "overstimulation"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Earth"
+      ],
+      "color_palette": [
+        "#3A3A3A",
+        "#8A6F3D"
+      ],
+      "herbs": [
+        "nettle",
+        "horsetail",
+        "comfrey",
+        "burdock"
+      ],
+      "scents": [
+        "vetiver",
+        "patchouli",
+        "cedarwood"
+      ],
+      "breath": "box_breathing",
+      "sound_character": "grounded_structured",
+      "visual_motion": "structured_geometry",
+      "scale_override": "phrygian_grounded",
+      "support_style": "structural grounding"
+    },
+    "blocked": {
+      "indicators": [
+        "frozen progress",
+        "stuck duty",
+        "blocked authority",
+        "calcification"
+      ],
+      "corrective_direction": [
+        "release",
+        "soften restriction",
+        "mobilize"
+      ],
+      "avoid": [
+        "additional pressure"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Mars"
+      ],
+      "color_palette": [
+        "#FF8FB7",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "ginger",
+        "rose",
+        "chamomile"
+      ],
+      "scents": [
+        "rose",
+        "lavender",
+        "frankincense"
+      ],
+      "breath": "gentle_release",
+      "sound_character": "soft_release",
+      "visual_motion": "compression_release",
+      "scale_override": "dorian",
+      "support_style": "restriction release"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy structure"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#3A3A3A"
+      ],
+      "herbs": [
+        "nettle"
+      ],
+      "scents": [
+        "vetiver"
+      ],
+      "breath": "balanced",
+      "sound_character": "structured_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Uranus": {
+    "excess": {
+      "indicators": [
+        "nervous overstimulation",
+        "instability",
+        "unpredictability",
+        "insomnia",
+        "scattered energy",
+        "tremors"
+      ],
+      "corrective_direction": [
+        "ground",
+        "stabilize",
+        "Earth"
+      ],
+      "avoid": [
+        "additional stimulation",
+        "high frequency tones",
+        "glitch effects"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Earth"
+      ],
+      "color_palette": [
+        "#3A3A3A",
+        "#8A6F3D",
+        "#43E66A"
+      ],
+      "herbs": [
+        "valerian",
+        "skullcap",
+        "passionflower",
+        "kava"
+      ],
+      "scents": [
+        "vetiver",
+        "patchouli",
+        "lavender"
+      ],
+      "breath": "box_breathing",
+      "sound_character": "grounded_stable",
+      "visual_motion": "structured_geometry",
+      "scale_override": "aeolian_grounded",
+      "support_style": "Earth stabilization"
+    },
+    "deficiency": {
+      "indicators": [
+        "stagnation",
+        "fear of change",
+        "rigidity",
+        "lack of innovation",
+        "stuck routine"
+      ],
+      "corrective_direction": [
+        "experiment",
+        "innovate",
+        "refresh"
+      ],
+      "avoid": [
+        "over-stabilization"
+      ],
+      "regulator_planets": [
+        "Uranus",
+        "Mercury"
+      ],
+      "color_palette": [
+        "#00D9FF",
+        "#7A5CFF",
+        "#B8FFEA"
+      ],
+      "herbs": [
+        "holy basil",
+        "gotu kola",
+        "ginkgo",
+        "ginseng"
+      ],
+      "scents": [
+        "tea tree",
+        "eucalyptus",
+        "peppermint"
+      ],
+      "breath": "alternate_nostril",
+      "sound_character": "fresh_innovative",
+      "visual_motion": "skewed_adjustment",
+      "scale_override": "lydian_bright",
+      "support_style": "fresh innovation"
+    },
+    "blocked": {
+      "indicators": [
+        "unable to break free",
+        "stuck pattern",
+        "suppressed individuality"
+      ],
+      "corrective_direction": [
+        "release",
+        "permit difference",
+        "open"
+      ],
+      "avoid": [
+        "additional conformity pressure"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Jupiter"
+      ],
+      "color_palette": [
+        "#7A5CFF",
+        "#00D9FF"
+      ],
+      "herbs": [
+        "holy basil",
+        "ginkgo"
+      ],
+      "scents": [
+        "eucalyptus",
+        "frankincense"
+      ],
+      "breath": "expansive_inhale",
+      "sound_character": "permission_innovate",
+      "visual_motion": "skewed_adjustment",
+      "scale_override": "lydian",
+      "support_style": "individuality permission"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy innovation"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#00D9FF"
+      ],
+      "herbs": [
+        "holy basil"
+      ],
+      "scents": [
+        "eucalyptus"
+      ],
+      "breath": "balanced",
+      "sound_character": "centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Neptune": {
+    "excess": {
+      "indicators": [
+        "confusion",
+        "fog",
+        "escapism",
+        "poor boundaries",
+        "dissociation",
+        "permeability",
+        "fatigue",
+        "addiction tendency"
+      ],
+      "corrective_direction": [
+        "clarify",
+        "structure",
+        "ground"
+      ],
+      "avoid": [
+        "excessive dreaminess",
+        "ambient overload",
+        "shimmer overload"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Mars"
+      ],
+      "color_palette": [
+        "#7DF9FF",
+        "#3A3A3A",
+        "#8A6F3D"
+      ],
+      "herbs": [
+        "peppermint",
+        "rosemary",
+        "ginger",
+        "gotu kola"
+      ],
+      "scents": [
+        "peppermint",
+        "eucalyptus",
+        "rosemary"
+      ],
+      "breath": "alternate_nostril",
+      "sound_character": "clarifying_structured",
+      "visual_motion": "structured_geometry",
+      "scale_override": "mixolydian_clear",
+      "support_style": "clarifying structure"
+    },
+    "deficiency": {
+      "indicators": [
+        "lack of imagination",
+        "poor intuition",
+        "creative blockage",
+        "spiritual dryness"
+      ],
+      "corrective_direction": [
+        "inspire",
+        "imagine",
+        "open"
+      ],
+      "avoid": [
+        "over-structure",
+        "harsh logic"
+      ],
+      "regulator_planets": [
+        "Neptune",
+        "Moon"
+      ],
+      "color_palette": [
+        "#6FFFE9",
+        "#B388FF",
+        "#A8C4D0"
+      ],
+      "herbs": [
+        "mugwort",
+        "blue lotus",
+        "valerian",
+        "tulsi"
+      ],
+      "scents": [
+        "lotus",
+        "jasmine",
+        "frankincense"
+      ],
+      "breath": "soft_extended",
+      "sound_character": "dreamy_inspiring",
+      "visual_motion": "fluid_rings",
+      "scale_override": "lydian_warm",
+      "support_style": "imaginative inspiration"
+    },
+    "blocked": {
+      "indicators": [
+        "stuck creativity",
+        "blocked intuition",
+        "unable to dream"
+      ],
+      "corrective_direction": [
+        "release",
+        "permit",
+        "soften"
+      ],
+      "avoid": [
+        "pressure to produce"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Venus"
+      ],
+      "color_palette": [
+        "#B388FF",
+        "#6FFFE9"
+      ],
+      "herbs": [
+        "mugwort",
+        "blue lotus"
+      ],
+      "scents": [
+        "lotus",
+        "jasmine"
+      ],
+      "breath": "soft_sighing",
+      "sound_character": "permission_dream",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "dorian",
+      "support_style": "dream permission"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy intuition"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#6FFFE9"
+      ],
+      "herbs": [
+        "tulsi"
+      ],
+      "scents": [
+        "jasmine"
+      ],
+      "breath": "balanced",
+      "sound_character": "centered_ambient",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  },
+  "Pluto": {
+    "excess": {
+      "indicators": [
+        "obsession",
+        "compulsion",
+        "control issues",
+        "intensity overload",
+        "fixation",
+        "paranoia",
+        "destructive impulses"
+      ],
+      "corrective_direction": [
+        "release",
+        "trust",
+        "soften"
+      ],
+      "avoid": [
+        "additional intensity",
+        "dark visuals",
+        "deep sub bass overload"
+      ],
+      "regulator_planets": [
+        "Venus",
+        "Saturn"
+      ],
+      "color_palette": [
+        "#FF8FB7",
+        "#FFD166",
+        "#9B5DE5"
+      ],
+      "herbs": [
+        "rose",
+        "tulsi",
+        "mullein",
+        "ashwagandha"
+      ],
+      "scents": [
+        "rose",
+        "frankincense",
+        "ylang ylang"
+      ],
+      "breath": "soft_extended",
+      "sound_character": "softening_perspective",
+      "visual_motion": "harmonic_opening",
+      "scale_override": "lydian_warm",
+      "support_style": "softening release"
+    },
+    "deficiency": {
+      "indicators": [
+        "avoidance of transformation",
+        "fear of change",
+        "lack of depth",
+        "powerlessness",
+        "surface-only living"
+      ],
+      "corrective_direction": [
+        "empower",
+        "deepen",
+        "courage"
+      ],
+      "avoid": [
+        "over-protection"
+      ],
+      "regulator_planets": [
+        "Pluto",
+        "Mars"
+      ],
+      "color_palette": [
+        "#5A0014",
+        "#9B5DE5",
+        "#FF3B3B"
+      ],
+      "herbs": [
+        "yarrow",
+        "wormwood",
+        "mullein",
+        "ginger"
+      ],
+      "scents": [
+        "patchouli",
+        "frankincense",
+        "vetiver"
+      ],
+      "breath": "deep_extended",
+      "sound_character": "deep_empowering",
+      "visual_motion": "compression_release",
+      "scale_override": "aeolian_deep",
+      "support_style": "depth empowerment"
+    },
+    "blocked": {
+      "indicators": [
+        "stuck transformation",
+        "blocked power",
+        "frozen change",
+        "unable to let go"
+      ],
+      "corrective_direction": [
+        "release",
+        "permit transformation",
+        "soften grip"
+      ],
+      "avoid": [
+        "forced change"
+      ],
+      "regulator_planets": [
+        "Saturn",
+        "Venus"
+      ],
+      "color_palette": [
+        "#9B5DE5",
+        "#FF8FB7"
+      ],
+      "herbs": [
+        "yarrow",
+        "mullein",
+        "rose"
+      ],
+      "scents": [
+        "frankincense",
+        "rose"
+      ],
+      "breath": "long_exhale_release",
+      "sound_character": "permitted_transformation",
+      "visual_motion": "compression_release",
+      "scale_override": "dorian",
+      "support_style": "transformation permission"
+    },
+    "balanced": {
+      "indicators": [
+        "healthy transformation"
+      ],
+      "corrective_direction": [
+        "maintain"
+      ],
+      "avoid": [],
+      "regulator_planets": [],
+      "color_palette": [
+        "#5A0014"
+      ],
+      "herbs": [
+        "mullein"
+      ],
+      "scents": [
+        "frankincense"
+      ],
+      "breath": "balanced",
+      "sound_character": "deep_centered",
+      "visual_motion": "natural_flow",
+      "scale_override": null,
+      "support_style": "maintenance"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "title": "The Six Sign Polarities (reflex pairs + co-governed systems)",
+    "lineage": "Medical-astrology tradition — the six axes of opposite signs and the body systems they jointly govern (Hill's reflex principle: an afflicted zone mirrors to its opposite). Distilled, attributed to the tradition.",
+    "sources": ["Medical-astrology tradition (sign polarity / reflex)"],
+    "note": "The opposite (180°) and two squares (90°) of an afflicted sign give its REFLEX zones. These pairs name the polarity + the system the two signs co-regulate."
+  },
+  "polarities": [
+    { "axis": "Aries–Libra", "signs": ["Aries", "Libra"], "co_system": "the cranial–renal / adrenal axis (head pressure mirrors to the kidneys and lower back)" },
+    { "axis": "Taurus–Scorpio", "signs": ["Taurus", "Scorpio"], "co_system": "the throat–pelvic axis (the upper and lower gates of the body)" },
+    { "axis": "Gemini–Sagittarius", "signs": ["Gemini", "Sagittarius"], "co_system": "the upper-limb / lung–hip / thigh axis (the body's reach and stride; nerves and sciatic)" },
+    { "axis": "Cancer–Capricorn", "signs": ["Cancer", "Capricorn"], "co_system": "the stomach–skeletal axis (soft holding mirrors to bone and joint; the knees reflex to the chest/stomach)" },
+    { "axis": "Leo–Aquarius", "signs": ["Leo", "Aquarius"], "co_system": "the heart–circulation axis (the central pump and the peripheral flow)" },
+    { "axis": "Virgo–Pisces", "signs": ["Virgo", "Pisces"], "co_system": "the gut–lymph axis (assimilation and elimination of fluids; digestion mirrors to the feet/lymph)" }
+  ],
+  "co_rulers": {
+    "_note": "Modern co-rulers, surfaced for completeness; the traditional ruler is primary for the WHERE→default-WHAT mapping.",
+    "Aquarius": ["Saturn", "Uranus"],
+    "Pisces": ["Jupiter", "Neptune"],
+    "Scorpio": ["Mars", "Pluto"]
+  }
+}

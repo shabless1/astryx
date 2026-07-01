@@ -1,0 +1,14 @@
+{
+  "user_mode": {
+    "subjective": "User-reported symptoms and state",
+    "objective": "Top 1 dominant pattern",
+    "assessment": "Short non-diagnostic pattern summary",
+    "plan": "Sound, scent, tea, body, sight"
+  },
+  "practitioner_mode": {
+    "subjective": "Expanded intake",
+    "objective": "Top 3 ranked patterns with scores",
+    "assessment": "Detailed pattern interpretation",
+    "plan": "Expanded sensory protocol + advanced tools"
+  }
+}

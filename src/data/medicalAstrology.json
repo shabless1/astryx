@@ -1,0 +1,747 @@
+{
+  "_meta": {
+    "title": "Medical Astrology — The Diagnostic Layer",
+    "subtitle": "Planet → body system → endocrine → nervous system → root cause symptom map",
+    "purpose": "This is the connective tissue of Astryx. It translates astrological data into clinical anatomy and plain-language symptom interpretation. Same birth data → same diagnostic output. The engine cross-references this file with cellSalts.json (sign-based mineral layer), sacredBotanicals.json (plant prescription), crystalsExpanded.json (mineral resonance), and sacredTones_nervousSystem.json (frequency intervention) to generate the complete five-sense protocol.",
+    "lineage": "Synthesizes Hippocratic medical astrology, Nicholas Culpeper (1652), Cornell's Encyclopaedia of Medical Astrology (1933), Charles Carter, Donna Cunningham, Eileen Nauman, and modern psychosomatic medicine. Cross-validated with Carey's biochemic system.",
+    "principle": "Every planet governs a specific anatomical territory, endocrine gland, and nervous-system pathway. When a natal planet is stressed (by aspect, transit, or progression) OR when a transiting planet activates a sensitive natal point, the symptom signature manifests in that territory. The root cause is never just 'astrological' — it is the planet's physiological correlate expressing dysregulation.",
+    "probabilisticFraming": "All output must use 'may suggest', 'may indicate', 'may correlate with'. Never 'you have' or 'you are'. This is calibration, not prediction. Always recommend consultation with licensed healthcare providers for medical concerns.",
+    "schemaVersion": "1.0",
+    "lastUpdated": "2026-05-24"
+  },
+  "planets": [
+    {
+      "planet": "Sun",
+      "glyph": "☉",
+      "classicalDomain": "Vital force, identity, central coherence",
+      "rulingSigns": ["Leo"],
+      "exaltationSign": "Aries",
+      "detrimentSign": "Aquarius",
+      "fallSign": "Libra",
+      "anatomy": {
+        "primaryBodySystems": ["cardiovascular system", "spine", "thymus-mediated immunity"],
+        "specificOrgans": ["heart", "aortic root", "right eye (in male charts)", "left eye (in female charts)", "thoracic spine", "thymus gland"],
+        "endocrineGlands": ["thymus", "heart-vagal axis"],
+        "nervousSystemPathway": {
+          "branch": "Cardiac plexus / vagal heart regulation",
+          "neurotransmitters": ["acetylcholine (vagal)", "norepinephrine (sympathetic balance)"],
+          "brainwaveAffinity": "Alpha — heart coherence, radiant presence"
+        },
+        "tissueExpression": ["arterial smooth muscle tone", "myocardial integrity", "spinal alignment"],
+        "cellSaltsViaRuledSigns": ["Leo → Magnesia Phosphorica (Mag Phos) — heart and motor nerve relaxant"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "Vitality is dimming. Identity feels uncertain. The center cannot hold.",
+          "physical": ["low vitality and fatigue not explained by sleep", "heart palpitations under emotional stress", "thoracic spine pain or tension", "sun sensitivity / heat intolerance", "low immunity from thymus underfunction", "pale complexion despite rest"],
+          "emotional": ["loss of confidence", "identity confusion", "joylessness", "pride/identity wound flare-ups", "feeling 'unseen' or 'invisible'"],
+          "mental": ["inability to hold central focus", "scattered authority", "imposter feelings", "creative blocks"]
+        },
+        "whenActivated": {
+          "headline": "Life force surges. You feel radiant, central, seen.",
+          "manifestations": ["renewed vitality", "heart coherence", "creative expression", "leadership capacity online", "magnetic presence"]
+        }
+      },
+      "transitInterpretation": {
+        "solarReturn": "Annual reset of vitality and identity — the natal Sun degree is exact once per year (your birthday). This is the highest-leverage day for setting the year's intentions.",
+        "transitToNatalPlanets": [
+          {"to": "Moon", "effect": "Emotional/physical re-centering. Hormonal and digestive recalibration over 2-3 days.", "intervention": "Gentle solar exposure, heart-opening practice, Red Lotus tea"},
+          {"to": "Mercury", "effect": "Mental clarity restored. Voice strengthens. Speech and writing flow.", "intervention": "Solar practice before important communications"},
+          {"to": "Saturn", "effect": "Authority and structure align. Long-term commitments crystallize.", "intervention": "Spinal alignment work; sun salutation on bare earth"}
+        ],
+        "transitDurationDays": "1-2 days exact per natal point",
+        "frequencyPerYear": "Touches every natal degree once annually"
+      },
+      "rootCauseSignatures": {
+        "vitality_collapse": "Sun afflicted by Saturn (compression) or in fall in Libra (other-orientation drains core)",
+        "identity_confusion": "Sun-Neptune contacts (dissolution of self-concept)",
+        "heart_disturbance": "Sun-Uranus (sudden arrhythmia) or Sun-Mars (inflammation)",
+        "spinal_alignment_loss": "Sun-Saturn (compression) or 5th house stress"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your central life force. Your heart, your spine, your sense of who you are. The part of you that says 'I am'.",
+        "whenItsBalanced": "You feel radiant, centered, and seen. Your heart is steady. Your back is strong. People look to you.",
+        "whenItsOff": "Your vitality dims. Your heart races or skips. You feel invisible or like an imposter. Your back hurts in the middle. You can't find the center of yourself.",
+        "howToRestore": "Direct sunlight on bare skin. Heart-opening movement. Frankincense, rosemary, or orange essential oil. Red Lotus or rose tea. 126.22 Hz (Sun fork) to the heart center. Citrine or sunstone on the thymus."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Red Lotus (cardiac, immune, thymus support)",
+        "featuredCrystal": "Citrine, Sunstone, Ruby",
+        "tuningForkHz": 126.22,
+        "scent": ["rosemary", "frankincense", "orange"],
+        "color": ["gold", "yellow"],
+        "associatedCellSalt": "Mag Phos (via ruling sign Leo) — for heart rhythm and motor nerve regulation"
+      }
+    },
+    {
+      "planet": "Moon",
+      "glyph": "☽",
+      "classicalDomain": "Cycles, fluids, emotional nervous system, the mother imprint",
+      "rulingSigns": ["Cancer"],
+      "exaltationSign": "Taurus",
+      "detrimentSign": "Capricorn",
+      "fallSign": "Scorpio",
+      "anatomy": {
+        "primaryBodySystems": ["digestive system", "lymphatic system", "fluid regulation", "limbic emotional system"],
+        "specificOrgans": ["stomach", "breasts", "uterus", "ovaries (with Venus)", "pancreas", "lymph nodes", "left eye (in male charts)", "right eye (in female charts)"],
+        "endocrineGlands": ["posterior pituitary (ADH/oxytocin)", "pancreas (insulin/glucagon)", "ovaries (cyclical)"],
+        "nervousSystemPathway": {
+          "branch": "Parasympathetic / vagal — digestive and emotional rest-and-digest",
+          "neurotransmitters": ["serotonin (gut-brain)", "oxytocin (bonding/emotional)", "melatonin (sleep)"],
+          "brainwaveAffinity": "Delta-Theta — restorative sleep, subconscious processing"
+        },
+        "tissueExpression": ["mucous membrane integrity", "lymphatic flow", "interstitial fluid balance"],
+        "cellSaltsViaRuledSigns": ["Cancer → Calcarea Fluorica (Calc Fluor) — tissue elasticity, the salt of groundless fear"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "Emotions are flooding. The body holds water. You can't digest what's happening.",
+          "physical": ["digestive upset (especially upper GI)", "breast tenderness or cysts", "menstrual irregularity", "fluid retention / bloating", "lymphatic stagnation", "sleep disturbance", "insulin/blood sugar swings", "moodiness tied to gut"],
+          "emotional": ["emotional flooding", "tearfulness without clear cause", "mother wound activation", "feeling 'unmothered' or unsafe", "nostalgia / clinging to the past", "moodiness that tracks the lunar cycle"],
+          "mental": ["inability to think clearly when emotionally flooded", "intuition overriding logic", "subconscious patterns surfacing"]
+        },
+        "whenActivated": {
+          "headline": "Emotional fluency. Deep rest. The body knows how to nourish itself.",
+          "manifestations": ["clear intuition", "good sleep", "smooth digestion", "emotional self-regulation", "feeling 'held' from within"]
+        }
+      },
+      "transitInterpretation": {
+        "lunarReturn": "The Moon returns to its natal degree once every 27.3 days. This is the monthly emotional/digestive reset point.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Emotional integration with identity. Heart-belly axis aligns.", "intervention": "Restorative rest, Moon-water hydration"},
+          {"to": "Saturn", "effect": "Emotional weight. Old grief surfaces. Skin and bones may feel heavier.", "intervention": "Calc Phos cell salt + warmth + boundaries against draining contact"},
+          {"to": "Mars", "effect": "Emotional reactivity spike. Inflammation tied to feeling overlooked.", "intervention": "Cooling foods, slow movement, do not make important decisions"}
+        ],
+        "transitDurationDays": "2-3 hours per natal degree (Moon moves fast)",
+        "frequencyPerMonth": "Touches every natal point every 27-29 days"
+      },
+      "rootCauseSignatures": {
+        "chronic_anxiety": "Moon afflicted by Saturn (emotional compression) or Neptune (boundary dissolution)",
+        "digestive_dysregulation": "Moon-Mercury stress or 6th house Moon afflictions",
+        "reproductive_irregularity": "Moon-Pluto (deep cycle disruption) or Moon-Uranus (sudden swings)",
+        "sleep_disturbance": "Moon in difficult aspect to Mars, Uranus, or transit through 12th house",
+        "emotional_eating": "Moon-Venus stress (comfort-seeking) or Moon in Taurus afflicted"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your emotional body. Your gut. Your fluids. Your monthly cycles. The part of you that feels and remembers.",
+        "whenItsBalanced": "You sleep well. Your digestion is smooth. Your emotions move through you without drowning you. You trust your intuition.",
+        "whenItsOff": "You're flooded with feelings you can't name. Your stomach is upset. You retain water. You can't sleep or you sleep too much. Old emotional patterns are running the show.",
+        "howToRestore": "Moon-water (water charged under moonlight). Warm rocking movement. Chamomile, jasmine, or sandalwood. White Lotus tea before sleep. 210.42 Hz (Moon fork) on the belly. Moonstone on the womb space or sacrum."
+      },
+      "crossReferences": {
+        "sacredBotanical": "White Lotus (sleep, hormonal balance, emotional clarity)",
+        "featuredCrystal": "Moonstone, Selenite, Pearl",
+        "tuningForkHz": 210.42,
+        "scent": ["chamomile", "jasmine", "sandalwood"],
+        "color": ["silver", "pale blue"],
+        "associatedCellSalt": "Calc Fluor (via ruling sign Cancer) — tissue elasticity and groundless fear of security loss"
+      }
+    },
+    {
+      "planet": "Mercury",
+      "glyph": "☿",
+      "classicalDomain": "Communication, cognition, signal transmission, breath",
+      "rulingSigns": ["Gemini", "Virgo"],
+      "exaltationSign": "Virgo",
+      "detrimentSign": "Sagittarius",
+      "fallSign": "Pisces",
+      "anatomy": {
+        "primaryBodySystems": ["central nervous system signal transmission", "upper respiratory", "thyroid/parathyroid axis", "sensory relay"],
+        "specificOrgans": ["brain (cognitive cortex)", "upper lungs", "bronchi", "tongue", "hands", "intestines (Virgo rulership)", "thyroid", "parathyroid"],
+        "endocrineGlands": ["thyroid", "parathyroid", "hypothalamic-pituitary signaling"],
+        "nervousSystemPathway": {
+          "branch": "Cervical sympathetic chain + respiratory rhythm regulation",
+          "neurotransmitters": ["acetylcholine (cognition, learning)", "glutamate (signal speed)", "GABA (signal modulation)"],
+          "brainwaveAffinity": "Beta — alert cognition, processing speed"
+        },
+        "tissueExpression": ["myelin sheath integrity", "synaptic plasticity", "respiratory smooth muscle"],
+        "cellSaltsViaRuledSigns": ["Gemini → Kali Muriaticum (Kali Mur) — respiratory and lymphatic", "Virgo → Kali Sulphuricum (Kali Sulph) — skin/scalp/oxygen carrier"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "The signaling system is overloaded. Thoughts race, words tangle, breath shallows.",
+          "physical": ["anxiety with respiratory shallowness", "thyroid swings (hyper or hypo)", "tinnitus or hearing distortion", "irritable bowel (Virgo-Mercury)", "hand tremor or coordination loss", "speech difficulties", "tension headache at temples"],
+          "emotional": ["nervous anxiety (mental loop type)", "irritability from sensory overload", "scattered emotional processing"],
+          "mental": ["racing thoughts", "thought looping", "inability to land on decisions", "communication blocks", "memory fragmentation", "analysis paralysis (Virgo)"]
+        },
+        "whenActivated": {
+          "headline": "Quick clear thinking. Words flow. The whole nervous system signals cleanly.",
+          "manifestations": ["mental sharpness", "communication ease", "fluent speech and writing", "good coordination", "smooth digestion (Virgo)"]
+        }
+      },
+      "transitInterpretation": {
+        "mercuryReturn": "Mercury returns to natal degree about once per year (with retrograde variations) — annual cognitive reset.",
+        "transitToNatalPlanets": [
+          {"to": "Moon", "effect": "Emotional articulation. Easier to name what you feel.", "intervention": "Journaling, therapy session, important conversations"},
+          {"to": "Saturn", "effect": "Serious thinking. Long-form writing. Decisions crystallize.", "intervention": "Strategic planning, contracts, documentation"},
+          {"to": "Neptune", "effect": "Imaginative but confusing. Boundary between thought and fantasy thins.", "intervention": "Avoid signing contracts; meditation; creative writing"}
+        ],
+        "mercuryRetrograde": "3 weeks, 3x per year. Communication, signing, and travel are more error-prone. Body responds with respiratory or nervous-system glitches. Use the period for REview, REvise, REflect — not new initiation.",
+        "transitDurationDays": "1-2 days exact per natal point"
+      },
+      "rootCauseSignatures": {
+        "chronic_anxiety_thinking_type": "Mercury afflicted by Saturn (compression of thought) or Uranus (electrical overstimulation)",
+        "respiratory_issues_upper": "Mercury-Saturn (cold, dry, asthma) or Mercury in Gemini afflicted",
+        "thyroid_dysregulation": "Mercury-Uranus or Mercury at angles in stress",
+        "IBS_anxiety_gut_axis": "Mercury (gut-brain) afflicted with 6th house Mercury",
+        "speech_communication_block": "Mercury-Mars (cutting words held back) or Mercury-Neptune (foggy expression)"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your thinking, speaking, and signaling. Your breath. Your hands. The part of you that names things, makes connections, communicates.",
+        "whenItsBalanced": "Your thoughts come clear. You speak what you mean. You breathe deeply and evenly. Your hands work skillfully.",
+        "whenItsOff": "Your thoughts race or loop. You can't find the words. Your breath is shallow. You feel anxious in a 'wired' way. Your thyroid may swing or your gut may rebel.",
+        "howToRestore": "Alternate nostril breathing. Peppermint, eucalyptus, or basil oil. Kali Mur or Kali Sulph cell salt depending on which Mercury-ruled sign is activated. 141.27 Hz (Mercury fork) at the throat. Blue lace agate or aquamarine on the throat."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Lavender (calms scattered nervous system)",
+        "featuredCrystal": "Blue Lace Agate, Aquamarine, Citrine (mental clarity)",
+        "tuningForkHz": 141.27,
+        "scent": ["peppermint", "eucalyptus", "basil"],
+        "color": ["yellow-green", "electric yellow"],
+        "associatedCellSalts": ["Kali Mur (Gemini)", "Kali Sulph (Virgo)"]
+      }
+    },
+    {
+      "planet": "Venus",
+      "glyph": "♀",
+      "classicalDomain": "Harmony, binding, receptivity, value, love",
+      "rulingSigns": ["Taurus", "Libra"],
+      "exaltationSign": "Pisces",
+      "detrimentSign": "Aries",
+      "fallSign": "Virgo",
+      "anatomy": {
+        "primaryBodySystems": ["renal system", "endocrine balance (especially female reproductive)", "skin (softness, moisture)", "throat (Taurus)", "venous return"],
+        "specificOrgans": ["kidneys", "ovaries", "uterus (with Moon)", "throat", "lumbar spine (Libra)", "internal genitals", "skin (softness, complexion)"],
+        "endocrineGlands": ["ovaries", "parathyroid (Venus rules calcium/balance)", "kidneys (renin)"],
+        "nervousSystemPathway": {
+          "branch": "Parasympathetic — rest, receive, bond",
+          "neurotransmitters": ["oxytocin (bonding)", "estrogen-mediated serotonin", "dopamine (pleasure)"],
+          "brainwaveAffinity": "Alpha — relaxed receptivity, pleasure states"
+        },
+        "tissueExpression": ["skin elasticity and moisture", "venous wall integrity", "hormonal smoothness"],
+        "cellSaltsViaRuledSigns": ["Taurus → Natrum Sulphuricum (Nat Sulph) — liver/water elimination", "Libra → Natrum Phosphoricum (Nat Phos) — acid/alkaline balance"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "The relational and harmonic field is off. The body holds, the heart contracts, the kidneys strain.",
+          "physical": ["lower back / lumbar pain", "kidney stress (puffy eyes, lower-back tension, urinary changes)", "menstrual irregularity", "skin issues — eczema, acne, dryness", "throat tension or sore throat (Taurus)", "hormonal imbalance", "varicose veins (poor venous return)"],
+          "emotional": ["relational anxiety", "people-pleasing exhaustion", "loss of self-worth", "comparison spiral", "loss of pleasure / anhedonia"],
+          "mental": ["can't see one's own worth", "obsessive comparison", "decision paralysis around values"]
+        },
+        "whenActivated": {
+          "headline": "Beauty, ease, magnetism. Pleasure is accessible. Relationships flow.",
+          "manifestations": ["soft skin", "hormonal balance", "magnetic presence", "easy receiving", "creative beauty"]
+        }
+      },
+      "transitInterpretation": {
+        "venusReturn": "Venus returns to natal degree about once per year (with retrograde variations) — annual reset of values, pleasure, relating.",
+        "transitToNatalPlanets": [
+          {"to": "Moon", "effect": "Emotional sweetness. Easier to receive love and comfort.", "intervention": "Self-care practices, time with loved ones"},
+          {"to": "Mars", "effect": "Magnetic attraction spike. Sexual energy active.", "intervention": "Move energy through dance, intimacy, creative work"},
+          {"to": "Saturn", "effect": "Mature love. Long-term commitment energy. Or contraction if love has been suppressed.", "intervention": "Have the hard relationship conversation"}
+        ],
+        "venusRetrograde": "Every 18 months for ~40 days. RE-view of values, RE-connect with old loves, RE-evaluate what you find beautiful. Body responds with hormonal shifts and skin recalibration.",
+        "transitDurationDays": "1-3 days exact per natal point"
+      },
+      "rootCauseSignatures": {
+        "money_block": "Venus afflicted (especially by Saturn — value compression) or 2nd house Venus in stress",
+        "kidney_issues_lower_back": "Venus in Libra afflicted, or Venus-Saturn",
+        "hormonal_imbalance_female": "Venus-Pluto (deep transformation) or Venus-Neptune (subtle dysregulation)",
+        "relational_anxiety": "Venus-Saturn (fear of love) or Venus-Uranus (commitment instability)",
+        "skin_eczema_dryness": "Venus afflicted with Saturn or Moon stress"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your sense of beauty, value, and pleasure. Your kidneys, ovaries, throat, and skin. The part of you that loves and receives love.",
+        "whenItsBalanced": "Your skin glows. Your hormones cycle smoothly. You receive easily. You see beauty everywhere. You know your worth.",
+        "whenItsOff": "Your lower back aches. Your kidneys feel strained. Your skin breaks out. Your hormones swing. You can't find pleasure. You compare yourself to others and lose.",
+        "howToRestore": "Time in nature. Beauty in any form. Rose, vanilla, or ylang-ylang. Nat Sulph or Nat Phos cell salt. Rose quartz on the heart or sacrum. 221.23 Hz (Venus fork) on the kidneys (lower back) or throat."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Damask Rose, Hibiscus",
+        "featuredCrystal": "Rose Quartz, Emerald, Green Aventurine",
+        "tuningForkHz": 221.23,
+        "scent": ["rose", "vanilla", "ylang-ylang"],
+        "color": ["soft green", "rose"],
+        "associatedCellSalts": ["Nat Sulph (Taurus)", "Nat Phos (Libra)"]
+      }
+    },
+    {
+      "planet": "Mars",
+      "glyph": "♂",
+      "classicalDomain": "Activation, drive, heat, defense, will",
+      "rulingSigns": ["Aries", "Scorpio (traditional)"],
+      "exaltationSign": "Capricorn",
+      "detrimentSign": "Taurus",
+      "fallSign": "Cancer",
+      "anatomy": {
+        "primaryBodySystems": ["muscular system", "adrenal HPA axis", "circulatory (red blood cells)", "inflammatory response", "external reproductive organs"],
+        "specificOrgans": ["adrenal glands", "muscles (skeletal)", "red blood cells / hemoglobin", "external genitals", "head (Aries — frontal injuries)", "gallbladder (with Jupiter)"],
+        "endocrineGlands": ["adrenal medulla (epinephrine)", "adrenal cortex (cortisol — with Saturn)", "testes (testosterone)"],
+        "nervousSystemPathway": {
+          "branch": "Sympathetic — fight-or-flight activation",
+          "neurotransmitters": ["epinephrine (adrenaline)", "norepinephrine", "dopamine (drive)"],
+          "brainwaveAffinity": "Beta-Gamma — alert action, decisive movement"
+        },
+        "tissueExpression": ["muscular contractility", "vascular inflammatory response", "wound healing speed"],
+        "cellSaltsViaRuledSigns": ["Aries → Kali Phosphoricum (Kali Phos) — nerve nutrient", "Scorpio → Calcarea Sulphurica (Calc Sulph) — cell healer/blood purifier"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "The activation system is overheating or burned out. Inflammation, accidents, rage.",
+          "physical": ["acute inflammation anywhere", "fevers (especially infectious)", "muscle injuries / strains", "headaches (Aries — frontal/temporal)", "high blood pressure", "anemia or iron disregulation", "adrenal exhaustion after sustained stress", "accidents / cuts / burns (Mars literal)", "gallbladder inflammation"],
+          "emotional": ["rage / anger flare", "frustration with sustained block", "competitive aggression", "burnout from over-drive"],
+          "mental": ["impulsive decisions", "mental aggression", "war-mind / combative thinking"]
+        },
+        "whenActivated": {
+          "headline": "Drive online. Courage. Focused action. The body moves with power and precision.",
+          "manifestations": ["athletic capability", "decisive action", "healthy assertiveness", "warrior energy"]
+        }
+      },
+      "transitInterpretation": {
+        "marsReturn": "Mars returns to natal degree about every 2 years — biennial activation reset.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Vitality and drive align. Excellent for athletic peaks.", "intervention": "Train hard, take action"},
+          {"to": "Moon", "effect": "Emotional reactivity spike. Stomach acid, irritability.", "intervention": "Cooling foods, slow breath, do not make emotional decisions"},
+          {"to": "Saturn", "effect": "Frustration meets restriction. Risk of injury from forcing through resistance.", "intervention": "Slow down, address structural issue, do not push"},
+          {"to": "Pluto", "effect": "Intensity to the maximum. Risk of accidents or surgery activation.", "intervention": "Avoid unnecessary risk, channel through deep training"}
+        ],
+        "marsRetrograde": "Every 2 years for ~10 weeks. RE-view of how you assert. Risk of suppressed anger surfacing as illness.",
+        "transitDurationDays": "2-3 days exact per natal point; full residence in a sign ~6-7 weeks (longer in retrograde)"
+      },
+      "rootCauseSignatures": {
+        "acute_inflammation_anywhere": "Mars-Uranus (sudden) or Mars in stress aspect",
+        "chronic_adrenal_burnout": "Sustained Mars activation, especially Mars-Saturn (push-pull burnout)",
+        "anger_management_issues": "Mars-Pluto (intensity) or Mars-Uranus (sudden eruption)",
+        "headaches_frontal_temporal": "Mars in Aries afflicted, or Mars transiting natal Sun/Mercury",
+        "muscle_injury_proneness": "Mars-Saturn (forcing through restriction) or Mars-Neptune (lack of awareness)",
+        "blood_iron_dysregulation": "Mars afflicted, especially with Sun or Moon"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your drive, your fight, your fire. Your adrenals. Your muscles. Your iron. The part of you that takes action and protects.",
+        "whenItsBalanced": "You move with energy and precision. You can say no. You take action. Inflammation resolves quickly. You sleep well after exertion.",
+        "whenItsOff": "You're inflamed, injured, or burnt out. You're either raging or numb. Your adrenals feel hammered. You've been pushing too long.",
+        "howToRestore": "Cooling. Slow movement (not collapse — restoration). Ginger, black pepper, cinnamon (warming when balanced; avoid when inflamed). Kali Phos (nerves) or Calc Sulph (deep cleanse). 144.72 Hz (Mars fork) on the adrenals (mid-back) or lower belly. Hematite or red jasper grounded."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Ginger (when balanced), Reishi (when burnt out)",
+        "featuredCrystal": "Red Jasper, Hematite, Garnet",
+        "tuningForkHz": 144.72,
+        "scent": ["ginger", "black pepper", "cinnamon"],
+        "color": "red",
+        "associatedCellSalts": ["Kali Phos (Aries)", "Calc Sulph (Scorpio)"]
+      }
+    },
+    {
+      "planet": "Jupiter",
+      "glyph": "♃",
+      "classicalDomain": "Expansion, growth, abundance, wisdom, faith",
+      "rulingSigns": ["Sagittarius", "Pisces (traditional)"],
+      "exaltationSign": "Cancer",
+      "detrimentSign": "Gemini",
+      "fallSign": "Capricorn",
+      "anatomy": {
+        "primaryBodySystems": ["hepatobiliary system", "metabolic regulation", "growth", "fat storage", "hip/thigh region"],
+        "specificOrgans": ["liver", "gallbladder", "pancreas (with Moon — blood sugar)", "hips", "thighs", "femurs", "right ear", "feet (Pisces rulership)"],
+        "endocrineGlands": ["liver (metabolic master gland)", "anterior pituitary (growth hormone)", "pancreas (insulin)"],
+        "nervousSystemPathway": {
+          "branch": "Parasympathetic — expansive rest, digestion of large meals",
+          "neurotransmitters": ["serotonin (optimism, satiety)", "dopamine (reward expansion)"],
+          "brainwaveAffinity": "Alpha-Theta bridge — expansive ease, optimistic states"
+        },
+        "tissueExpression": ["liver detox capacity", "fat metabolism", "lymphatic flow through groin/thighs"],
+        "cellSaltsViaRuledSigns": ["Sagittarius → Silicea (Silica) — connective tissue, internal surgeon", "Pisces → Ferrum Phosphoricum (Ferr Phos) — first aid / oxygen carrier"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "Expansion has tipped into excess. The liver is congested. Growth is out of regulation.",
+          "physical": ["liver congestion / fatty liver", "weight gain / metabolic syndrome", "high cholesterol", "diabetes risk (with afflicted Moon)", "hip pain or sciatica (Sagittarius)", "gallbladder issues", "hyperglycemia", "gout (Jupiter-Saturn)"],
+          "emotional": ["grandiosity / over-promising", "loss of faith / spiritual emptiness when blocked", "manic expansion followed by collapse"],
+          "mental": ["over-philosophizing", "scattered abundance focus", "inability to contain growth"]
+        },
+        "whenActivated": {
+          "headline": "Abundance. Optimism. Growth in healthy regulation. The body metabolizes life with ease.",
+          "manifestations": ["good liver function", "healthy weight", "optimism", "wisdom", "spiritual expansion", "lucky breaks"]
+        }
+      },
+      "transitInterpretation": {
+        "jupiterReturn": "Jupiter returns to natal degree every ~12 years — major expansion/wisdom cycle (ages 12, 24, 36, 48, 60, 72, 84).",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Vitality expansion. Confidence and recognition surge.", "intervention": "Take the opportunity, but watch overcommitment"},
+          {"to": "Moon", "effect": "Emotional abundance. Pregnancy fertility window for some.", "intervention": "Sweet teas, hold emotional space generously"},
+          {"to": "Saturn", "effect": "Discipline meets expansion. Long-form structure built that lasts.", "intervention": "Launch major projects with realistic scope"}
+        ],
+        "transitDurationDays": "5-10 days exact per natal point; full residence in a sign ~12 months"
+      },
+      "rootCauseSignatures": {
+        "liver_congestion_metabolic_syndrome": "Jupiter in Sagittarius/Pisces afflicted, especially with Saturn (slowed metabolism) or Moon (insulin)",
+        "weight_gain_unexplained": "Jupiter-Moon (emotional eating + slow metabolism)",
+        "blood_sugar_dysregulation": "Jupiter-Moon or Jupiter ruling 6th house",
+        "hip_sciatica_pain": "Jupiter in Sagittarius afflicted, or Jupiter-Saturn through hip area",
+        "spiritual_crisis_loss_of_faith": "Jupiter-Neptune (boundary dissolution) or Jupiter-Pluto (forced transformation of belief)"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your expansion, growth, optimism, faith. Your liver. Your hips and thighs. Your metabolism. The part of you that says yes to life.",
+        "whenItsBalanced": "Your liver is clean. You metabolize food and life events with ease. You feel abundant. You have faith without naivety.",
+        "whenItsOff": "Your liver is sluggish. You've gained weight that won't shift. Your hips ache. You've over-committed. You've lost faith or you have grandiose faith that ignores reality.",
+        "howToRestore": "Liver-supportive bitters (dandelion, milk thistle). Long walks. Clove, nutmeg, or sweet orange. Silica or Ferr Phos cell salt. 183.58 Hz (Jupiter fork) over the liver (right upper abdomen). Lapis lazuli or amethyst on the third eye for wisdom restoration."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Blue Lotus (HPA axis, dopaminergic regulation)",
+        "featuredCrystal": "Lapis Lazuli, Amethyst, Sapphire",
+        "tuningForkHz": 183.58,
+        "scent": ["clove", "nutmeg", "sweet orange"],
+        "color": ["royal blue", "purple"],
+        "associatedCellSalts": ["Silica (Sagittarius)", "Ferr Phos (Pisces)"]
+      }
+    },
+    {
+      "planet": "Saturn",
+      "glyph": "♄",
+      "classicalDomain": "Structure, restriction, time, mastery, gravity",
+      "rulingSigns": ["Capricorn", "Aquarius (traditional)"],
+      "exaltationSign": "Libra",
+      "detrimentSign": "Cancer",
+      "fallSign": "Aries",
+      "anatomy": {
+        "primaryBodySystems": ["skeletal system", "connective tissue", "skin (outer layer)", "spleen", "calcium regulation", "aging tissue"],
+        "specificOrgans": ["bones", "joints (especially knees — Capricorn)", "teeth", "skin (outer)", "spleen", "gallbladder (chronic)", "ears (left)", "ankles (Aquarius — traditional)"],
+        "endocrineGlands": ["parathyroid (calcium regulation)", "adrenal cortex (cortisol — chronic stress)", "pineal (with Neptune — aging/melatonin)"],
+        "nervousSystemPathway": {
+          "branch": "Sympathetic chronic — sustained cortisol, restriction state",
+          "neurotransmitters": ["cortisol (chronic)", "low serotonin (depression linkage)", "GABA-mediated inhibition"],
+          "brainwaveAffinity": "Beta-Delta — focused work, deep rest restoration"
+        },
+        "tissueExpression": ["bone density", "joint cartilage integrity", "skin tone and structure", "fascia tightness"],
+        "cellSaltsViaRuledSigns": ["Capricorn → Calcarea Phosphorica (Calc Phos) — bone, foundation, the White Stone", "Aquarius → Natrum Muriaticum (Nat Mur) — water distribution, emotional grief"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "The structure is compressing. Cortisol stays high. Joints lock. The body feels heavy and cold.",
+          "physical": ["chronic depression with somatic signs (cold extremities, heavy limbs)", "joint stiffness (knees, hips, lower back)", "osteopenia / bone density loss", "dental issues", "skin dryness, aging signs", "chronic constipation", "lymphatic sluggishness", "low cortisol after sustained depletion (Addisonian pattern)", "hearing loss"],
+          "emotional": ["chronic emotional weight without clear cause", "fear of failure / fear of time running out", "loneliness / isolation", "father wound activation", "grief that won't lift"],
+          "mental": ["pessimism / dark thinking", "rigid thought structures", "fear-based decisions", "feeling 'too late'"]
+        },
+        "whenActivated": {
+          "headline": "Mastery, integrity, deep structure. The body holds itself with dignity. Long-term work bears fruit.",
+          "manifestations": ["physical endurance", "structural integrity", "wisdom", "patience", "achieved goals", "respected authority"]
+        }
+      },
+      "transitInterpretation": {
+        "saturnReturn": "Saturn returns to natal degree every ~29.5 years (ages 28-30, 58-60, 87-90). Major life-restructuring period. Often health crises that demand structural change.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Compression of vitality. Possible spine/heart structural issues. Authority crisis.", "intervention": "Spinal alignment work, examine identity structures, consult cardiologist if any heart symptoms", "duration": "2-3 years"},
+          {"to": "Moon", "effect": "Cortisol dysregulation. Lymphatic sluggishness. Emotional heaviness with no clear source. Maternal/family weight surfacing.", "intervention": "Ashwagandha + Cleavers tea. Black Tourmaline on sacrum. 147.85 Hz Saturn fork. Calc Phos cell salt. No high-intensity movement.", "duration": "2-3 years"},
+          {"to": "Mercury", "effect": "Mental rigidity, serious thinking, but also potential for depression and respiratory restriction.", "intervention": "Long-form work that uses Saturn's discipline; respiratory practice", "duration": "1-2 years"},
+          {"to": "Venus", "effect": "Relationship reality check. Love must mature or release. Skin and kidney signs.", "intervention": "Honest relationship conversations, kidney support", "duration": "1-2 years"},
+          {"to": "Mars", "effect": "Restricted action. Risk of pushing through injury. Bone or joint stress.", "intervention": "Slow down, respect physical limits", "duration": "1-2 years"},
+          {"to": "Saturn (return)", "effect": "Total restructuring. Old self must die for new structure.", "intervention": "Major life decisions: career, relationship, location, health", "duration": "2-3 years"}
+        ],
+        "transitDurationDays": "2-3 years near exact (with 3 hits via direct/retrograde/direct motion); full residence in a sign ~2.5 years"
+      },
+      "rootCauseSignatures": {
+        "chronic_depression_somatic": "Saturn-Moon (emotional compression) or Saturn-Sun (vitality compression)",
+        "joint_pain_chronic": "Saturn natal in 6th house, or Saturn transit to natal joints' rulers",
+        "osteopenia_bone_density_loss": "Saturn-Moon (calcium loss with stress) or Saturn in earth sign afflicted",
+        "chronic_fatigue_cortisol_burnout": "Saturn-Sun-Mars triad in stress",
+        "skin_dryness_aging_premature": "Saturn-Venus or Saturn in 1st house",
+        "dental_issues_chronic": "Saturn afflicted, especially with Mars (infection) or Moon (calcium)"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your structure, your bones, your endurance, your time. Your skin. Your knees. Your cortisol response to long-term stress. The part of you that builds slowly and lasts.",
+        "whenItsBalanced": "You have integrity in body and life. Your bones are strong. Your skin holds its tone. You can hold a long commitment. You age with grace.",
+        "whenItsOff": "Everything feels heavy and cold. You're depressed without a clear reason. Your joints stiffen. You feel old before your time. You can't lift the weight you're carrying.",
+        "howToRestore": "Warmth — physically and emotionally. Bone broth. Calc Phos cell salt. Vetiver, cedarwood, or patchouli oil. Black tourmaline or onyx on the sacrum. 147.85 Hz (Saturn fork) on the spine or knees. Sleep more than you think you need."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Ashwagandha (adaptogen for cortisol), Reishi",
+        "featuredCrystal": "Black Tourmaline, Onyx, Hematite",
+        "tuningForkHz": 147.85,
+        "scent": ["vetiver", "cedarwood", "patchouli"],
+        "color": ["charcoal", "dark gray"],
+        "associatedCellSalts": ["Calc Phos (Capricorn)", "Nat Mur (Aquarius)"]
+      }
+    },
+    {
+      "planet": "Uranus",
+      "glyph": "♅",
+      "classicalDomain": "Reset, awakening, electrical shift, sudden change, freedom",
+      "rulingSigns": ["Aquarius (modern)"],
+      "exaltationSign": "Scorpio (some sources)",
+      "anatomy": {
+        "primaryBodySystems": ["autonomic nervous system (electrical)", "cardiac electrical conduction", "parathyroid (with Saturn)", "circulation extremities", "subtle electrical body"],
+        "specificOrgans": ["nervous system (electrical signaling)", "heart electrical conduction (sinoatrial node)", "ankles", "circulation in feet/hands", "pineal (subtle electrical)"],
+        "endocrineGlands": ["parathyroid (sudden calcium swings)", "adrenal medulla (with Mars — sudden adrenaline)"],
+        "nervousSystemPathway": {
+          "branch": "Sympathetic electrical — sudden activation, fight/flight surge",
+          "neurotransmitters": ["epinephrine surge", "glutamate (sudden firing)", "norepinephrine"],
+          "brainwaveAffinity": "Gamma — sudden insight, electrical breakthrough"
+        },
+        "tissueExpression": ["nerve conduction speed", "vascular sudden constriction/dilation", "skin electrical conductivity"],
+        "cellSaltsViaRuledSigns": ["Aquarius → Natrum Muriaticum (Nat Mur) — fluid distribution"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "The nervous system is firing electrically out of pattern. Sudden onset symptoms appear from nowhere.",
+          "physical": ["panic attacks", "heart arrhythmia / palpitations of sudden onset", "insomnia of electrical type (wired-tired)", "muscle twitches and spasms", "sudden allergic reactions", "blood pressure spikes", "sudden injuries (accidents)"],
+          "emotional": ["sudden emotional eruption", "rebellion / breaking constraints", "feeling of being trapped that explodes outward", "anxiety with electrical quality"],
+          "mental": ["sudden insights (positive)", "scattered electrical thinking", "racing mind unable to land"]
+        },
+        "whenActivated": {
+          "headline": "Awakening. Breakthrough. The system reorganizes at a higher level.",
+          "manifestations": ["sudden clarity", "liberation from old patterns", "innovative insight", "freedom"]
+        }
+      },
+      "transitInterpretation": {
+        "uranusReturn": "Uranus returns to natal degree once at age 84 — total awakening cycle.",
+        "uranusOpposition": "Age 38-42 — Uranus opposes its natal position. The midlife awakening. Major life restructuring.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Sudden identity shift. Possible heart arrhythmia. Career upheaval.", "intervention": "Allow the shift; cardiologist if heart symptoms; do not force stability", "duration": "1-2 years"},
+          {"to": "Moon", "effect": "Sudden emotional changes. Sleep disruption. Sudden moves or domestic changes.", "intervention": "Magnesium for nervous system; meditation for grounding", "duration": "1-2 years"},
+          {"to": "Saturn", "effect": "Structure breaks. Liberation from rigid patterns. Possible bone/joint surprise.", "intervention": "Allow what wants to fall; rebuild with new template", "duration": "1-2 years"}
+        ],
+        "transitDurationDays": "1-2 years near exact; full residence in a sign ~7 years"
+      },
+      "rootCauseSignatures": {
+        "panic_attacks": "Uranus-Mercury (mental electrical overload) or Uranus-Moon (emotional electrical)",
+        "heart_arrhythmia_sudden": "Uranus-Sun (electrical heart) or Uranus transiting natal Sun",
+        "insomnia_wired_tired": "Uranus-Moon (electrical sleep disruption)",
+        "sudden_allergic_reactions": "Uranus-Neptune (boundary dissolution + electrical reaction)",
+        "accident_proneness": "Uranus-Mars transit (sudden activation + electrical reflex)"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your electrical nervous system. Your sudden insights. The part of you that breaks free when constraint becomes intolerable.",
+        "whenItsBalanced": "Your mind has sudden useful insights. Your heart beats steadily. You sleep when you want to sleep. You can handle change.",
+        "whenItsOff": "Panic out of nowhere. Heart skips beats or races for no reason. You can't sleep — you're wired but exhausted. You feel like you're going to explode out of your life.",
+        "howToRestore": "Magnesium-rich foods. Grounding (literal bare feet on earth). Lemongrass, sage, or camphor. Hematite or smoky quartz at the feet. 207.36 Hz (Uranus fork) along the spine. Reduce screen time and EMF exposure. Mag Phos cell salt for spasms."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Skullcap (electrical nervous system calmer)",
+        "featuredCrystal": "Smoky Quartz, Hematite, Labradorite",
+        "tuningForkHz": 207.36,
+        "scent": ["lemongrass", "sage", "camphor"],
+        "color": ["electric blue", "white"],
+        "associatedCellSalt": "Nat Mur (via ruling sign Aquarius) — fluid balance under electrical stress"
+      }
+    },
+    {
+      "planet": "Neptune",
+      "glyph": "♆",
+      "classicalDomain": "Diffusion, dissolution, transcendence, sensitivity, the subtle field",
+      "rulingSigns": ["Pisces (modern)"],
+      "exaltationSign": "Leo (some sources)",
+      "anatomy": {
+        "primaryBodySystems": ["immune system", "lymphatic system", "fluids (subtle)", "pineal gland", "subtle nervous system / energetic body"],
+        "specificOrgans": ["pineal gland", "thymus (immune)", "feet (Pisces rulership)", "lymphatic vessels", "spinal CSF flow"],
+        "endocrineGlands": ["pineal (melatonin, DMT, subtle states)", "thymus (immune mediation)"],
+        "nervousSystemPathway": {
+          "branch": "Subtle / autonomic boundary — parasympathetic deep rest and dissociative states",
+          "neurotransmitters": ["melatonin (sleep, dream)", "endogenous DMT (deep states)", "endorphins"],
+          "brainwaveAffinity": "Theta-Delta — deep dream, meditative, altered states"
+        },
+        "tissueExpression": ["immune boundary integrity", "lymphatic clarity", "permeability of tissue membranes"],
+        "cellSaltsViaRuledSigns": ["Pisces → Ferrum Phosphoricum (Ferr Phos) — oxygen carrier / first aid"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "Boundaries are dissolving. The immune system can't tell self from other. The subtle field is leaking.",
+          "physical": ["chronic immune compromise / autoimmune", "lymphatic stagnation / swelling", "addiction susceptibility (substances, food, escape)", "chronic fatigue with no clear cause", "foot problems (Pisces literal)", "sensitivity to medication / unusual reactions", "mysterious illness with no diagnosis"],
+          "emotional": ["boundary collapse — feeling everyone else's feelings", "victim consciousness", "escapism / dissociation", "spiritual emergency without grounding", "addiction patterns"],
+          "mental": ["confusion / fog", "magical thinking without discernment", "inability to discern reality from fantasy", "psychic overwhelm"]
+        },
+        "whenActivated": {
+          "headline": "Subtle perception online. Compassion. Expansive insight. The body becomes permeable to grace.",
+          "manifestations": ["psychic sensitivity (healthy)", "compassion", "creative inspiration", "meditative depth", "healing presence"]
+        }
+      },
+      "transitInterpretation": {
+        "neptuneTransits": "Very slow — Neptune spends ~14 years in each sign. Generational transits to natal planets create multi-year dissolution/transcendence themes.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Identity dissolution. May feel 'lost' or like 'no one knows who I am anymore.' Possible immune compromise.", "intervention": "Spiritual practice; immune support; do not make permanent decisions during peak", "duration": "2-3 years"},
+          {"to": "Moon", "effect": "Emotional permeability. Psychic sensitivity surges. Sleep becomes vivid/dreamy.", "intervention": "Boundary practices; black tourmaline; reduce alcohol", "duration": "2-3 years"},
+          {"to": "Mercury", "effect": "Imaginative but confused thinking. Spiritual insight or delusion. Avoid contracts.", "intervention": "Meditation; creative writing; do not sign legal documents", "duration": "1-2 years"}
+        ],
+        "transitDurationDays": "2-3 years near exact; very slow movement"
+      },
+      "rootCauseSignatures": {
+        "autoimmune_conditions": "Neptune-Moon (immune-emotional confusion) or Neptune in 6th house",
+        "chronic_fatigue_no_diagnosis": "Neptune-Sun (vitality leak) or Neptune-Moon (emotional drain)",
+        "addiction_susceptibility": "Neptune-Venus (pleasure escape) or Neptune-Moon (emotional escape)",
+        "boundary_collapse_empath_overwhelm": "Neptune-Moon afflicted",
+        "mysterious_undiagnosed_illness": "Neptune in 6th house or Neptune-Mercury afflicted"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your immune system. Your subtle perception. Your dreams. Your boundaries — or lack of them. The part of you that touches what cannot be touched.",
+        "whenItsBalanced": "Your immunity is strong because you know what's yours and what isn't. You dream vividly and remember. You feel deeply without drowning. You access spiritual insight.",
+        "whenItsOff": "You're catching everything. You're exhausted from feeling everyone else's feelings. You're sleeping too much or having nightmares. You're confused about what's real. You may be escaping through substances or fantasy.",
+        "howToRestore": "Boundary practices. Myrrh, lavender, or lotus oil. Egyptian Blue Lotus tea (deepest pineal/theta support). Amethyst or selenite. 211.44 Hz (Neptune fork). REDUCE psychic intake — less media, less crowds. Sleep in absolute darkness."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Egyptian Blue Lotus (pineal, theta, dreamstate)",
+        "featuredCrystal": "Amethyst, Selenite, Aquamarine",
+        "tuningForkHz": 211.44,
+        "scent": ["myrrh", "lavender", "lotus"],
+        "color": ["seafoam", "violet"],
+        "associatedCellSalt": "Ferr Phos (via ruling sign Pisces) — oxygen for cellular respiration when subtle drain depletes"
+      }
+    },
+    {
+      "planet": "Pluto",
+      "glyph": "♇",
+      "classicalDomain": "Deep transformation, death-rebirth, hidden power, regeneration",
+      "rulingSigns": ["Scorpio (modern)"],
+      "exaltationSign": "Aries (some sources)",
+      "anatomy": {
+        "primaryBodySystems": ["reproductive system (deep)", "eliminative organs (colon, bladder)", "adrenal medulla (deep stress)", "cellular regeneration", "DNA-level processes"],
+        "specificOrgans": ["adrenal medulla", "reproductive organs (deep, internal)", "colon", "bladder", "regenerative tissue (stem cells)"],
+        "endocrineGlands": ["adrenal medulla (epinephrine in extremity)", "deep gonadal function", "pituitary (with Saturn — survival programming)"],
+        "nervousSystemPathway": {
+          "branch": "Deep survival response — beyond ordinary fight-flight; freeze-collapse-dissociation",
+          "neurotransmitters": ["catecholamine surge (extreme)", "endogenous opioids (survival numbing)"],
+          "brainwaveAffinity": "Delta — deep regenerative states, near-death experience research"
+        },
+        "tissueExpression": ["cellular regeneration capacity", "DNA repair", "tissue death and rebirth (necrosis/regeneration)"],
+        "cellSaltsViaRuledSigns": ["Scorpio → Calcarea Sulphurica (Calc Sulph) — deep blood purification, wound healing"]
+      },
+      "symptomSignatures": {
+        "whenStressed": {
+          "headline": "Deep transformation forced. Old patterns dying hard. The body is purging at the cellular level.",
+          "physical": ["reproductive system upheaval (cysts, fibroids, hormonal extremes)", "elimination crises (chronic constipation alternating with purge)", "deep adrenal collapse (different from Mars burnout — this is survival-level)", "cellular-level chronic illness", "cancer susceptibility (cell mutation theme)", "extreme detox crises"],
+          "emotional": ["obsession / compulsion", "deep grief or rage from past trauma", "power-and-control issues", "feeling 'destroyed' and unable to rebuild", "abandonment terror"],
+          "mental": ["obsessive thought patterns", "paranoia (in extremity)", "transformative crisis", "shadow material surfacing"]
+        },
+        "whenActivated": {
+          "headline": "Regeneration. Profound power. The body knows how to die and be reborn cell by cell.",
+          "manifestations": ["healing from incurable", "rebirth after collapse", "embodied power", "shadow integration"]
+        }
+      },
+      "transitInterpretation": {
+        "plutoTransits": "Extremely slow — Pluto spends 12-30 years in a sign. Generational and lifetime transformation transits.",
+        "transitToNatalPlanets": [
+          {"to": "Sun", "effect": "Identity rebirth. Old self dies. Often health crisis that demands total restructuring.", "intervention": "Allow the death; major medical consultation; surrender to transformation", "duration": "2-4 years"},
+          {"to": "Moon", "effect": "Emotional/family transformation. Reproductive system upheaval common. Old mother wounds resurface for healing.", "intervention": "Deep therapy; reproductive medical care; emotional bodywork", "duration": "2-4 years"},
+          {"to": "Venus", "effect": "Relationship death-rebirth. Old loves end. Sexual/hormonal deep changes.", "intervention": "Allow relationship transformations; reproductive support", "duration": "2-3 years"},
+          {"to": "Mars", "effect": "Compulsive action; possible accidents from deep drives; surgery activation.", "intervention": "Channel through intensive training; surgery decisions made with care", "duration": "2-3 years"}
+        ],
+        "transitDurationDays": "2-4 years near exact"
+      },
+      "rootCauseSignatures": {
+        "reproductive_system_chronic_issues": "Pluto-Moon (cyclical disruption) or Pluto-Venus (deep hormonal restructure)",
+        "compulsive_patterns_addiction_obsession": "Pluto-Mercury (obsessive thought) or Pluto-Mars (compulsive action)",
+        "cancer_cellular_disease": "Pluto natal in 6th/8th house, especially with afflicted Moon",
+        "trauma_PTSD_freeze_state": "Pluto-Moon or Pluto-Saturn (entrenched survival response)",
+        "power_control_psychological_crisis": "Pluto in stress with Sun (identity power) or Saturn (structural power)"
+      },
+      "plainLanguageBridge": {
+        "whatItGoverns": "Your power to transform. Your deepest survival programming. Your reproductive and eliminative organs. The cellular level of your body. The part of you that can die and be reborn.",
+        "whenItsBalanced": "You regenerate from anything. Your power is rooted and clean. Your reproductive system cycles healthily. You can let what needs to die, die — and rebuild what comes next.",
+        "whenItsOff": "You're in a death-rebirth crisis you didn't ask for. Old trauma is surfacing. Your reproductive system is upheaving. You feel obsessed, controlled, or destroyed. You can't see the rebirth from inside the death.",
+        "howToRestore": "Deep work — somatic therapy, breathwork, plant medicine in appropriate settings. Calc Sulph cell salt for deep cellular cleanse. Obsidian or black moonstone. 140.25 Hz (Pluto fork) on the sacrum / pelvic bowl. Deep resins — palo santo, myrrh. Allow the dying. Time is your medicine — Pluto transits ARE measured in years."
+      },
+      "crossReferences": {
+        "sacredBotanical": "Damiana, Sacred Tobacco (in traditional contexts), Mugwort",
+        "featuredCrystal": "Obsidian, Black Moonstone, Garnet",
+        "tuningForkHz": 140.25,
+        "scent": ["deep resins", "palo santo", "myrrh"],
+        "color": ["deep red", "black"],
+        "associatedCellSalt": "Calc Sulph (via ruling sign Scorpio) — deep blood purification and wound healing"
+      }
+    }
+  ],
+  "rootCauseIndex": {
+    "_description": "Reverse lookup — given a symptom or root cause, which planetary signatures may be involved. Used by the engine to combine user-reported symptom with their chart to generate a prescription. Always probabilistic.",
+    "anxiety_general": {
+      "primarySignatures": ["Mercury-Saturn", "Mercury-Uranus", "Moon afflicted by Saturn or Uranus", "Mars in stress", "12th house stress"],
+      "type_breakdown": {
+        "mental_loop_thinking": "Mercury afflicted (especially by Saturn or Uranus)",
+        "emotional_flooding": "Moon afflicted (especially by Neptune or Pluto)",
+        "wired_panic_electrical": "Uranus contacts to Mercury, Moon, or Sun",
+        "chronic_low_grade_dread": "Saturn-Moon or Saturn-Mercury sustained"
+      }
+    },
+    "depression_general": {
+      "primarySignatures": ["Saturn-Sun", "Saturn-Moon", "Neptune-Sun (loss of self)", "Pluto-Moon (deep grief)", "12th house Sun or Moon"],
+      "type_breakdown": {
+        "structural_heaviness": "Saturn-Sun or Saturn-Moon",
+        "dissolution_loss_of_meaning": "Neptune contacts",
+        "transformative_dark_night": "Pluto contacts",
+        "seasonal_affective": "Sun in winter signs (Capricorn/Aquarius) or Sun-Saturn natal"
+      }
+    },
+    "money_block": {
+      "primarySignatures": ["Venus-Saturn (value compression)", "2nd house stress", "Jupiter retrograde or afflicted", "Pluto in 2nd or 8th house"],
+      "type_breakdown": {
+        "scarcity_fear": "Saturn in 2nd or Saturn-Venus",
+        "self_worth_block": "Venus-Saturn (fall in Virgo signature)",
+        "compulsive_loss_gain_cycles": "Pluto-Venus or Pluto in 2nd/8th",
+        "lack_of_faith_in_abundance": "Jupiter-Saturn or Jupiter afflicted"
+      }
+    },
+    "exhaustion_burnout": {
+      "primarySignatures": ["Mars overactivated → adrenal collapse", "Sun-Saturn (vitality compression)", "Saturn return (28-30, 58-60)", "Pluto-Sun (deep depletion)"],
+      "type_breakdown": {
+        "wired_burnout": "Mars-Uranus sustained",
+        "structural_exhaustion": "Saturn transits to vitality points",
+        "subtle_drain": "Neptune-Sun or Neptune in 6th"
+      }
+    },
+    "inflammation_chronic": {
+      "primarySignatures": ["Mars in fire sign afflicted", "Mars-Pluto (deep tissue inflammation)", "Mars-Jupiter (expansive heat)", "Uranus-Mars (sudden inflammatory)"],
+      "type_breakdown": {
+        "joint_inflammation": "Mars-Saturn (forcing through restriction)",
+        "gut_inflammation": "Mars in Cancer/Virgo afflicted or Mars-Moon",
+        "skin_inflammation": "Mars-Venus or Mars in Libra"
+      }
+    },
+    "hormonal_imbalance": {
+      "primarySignatures": ["Moon-Pluto (deep cyclical change)", "Venus-Pluto (reproductive transformation)", "Moon-Neptune (subtle dysregulation)", "Saturn-Venus (suppressed reproduction)"],
+      "type_breakdown": {
+        "menstrual_irregularity": "Moon afflicted, especially by outer planets",
+        "thyroid_dysregulation": "Mercury-Uranus or Mercury at angles",
+        "adrenal_hormonal": "Mars-Saturn or sustained Mars activation"
+      }
+    },
+    "digestive_dysregulation": {
+      "primarySignatures": ["Moon afflicted (upper GI)", "Virgo Mercury afflicted (IBS, gut-brain)", "Jupiter-Moon (metabolic)", "Saturn-Moon (chronic constipation)"],
+      "type_breakdown": {
+        "upper_GI_emotional": "Moon-Mars or Moon-Saturn",
+        "IBS_anxiety_type": "Mercury in Virgo or Mercury-Uranus with 6th house",
+        "constipation_chronic": "Saturn in earth signs or Saturn-Moon",
+        "blood_sugar_swings": "Jupiter-Moon or Moon-Uranus"
+      }
+    },
+    "sleep_disturbance": {
+      "primarySignatures": ["Moon-Uranus (electrical sleep disruption)", "Moon-Saturn (heavy unrefreshing sleep)", "Mars-Moon (interrupted by night sweats/dreams)", "Neptune-Moon (vivid dreams, nightmares)"],
+      "type_breakdown": {
+        "insomnia_wired": "Uranus or Mars contacts",
+        "non_restorative_sleep": "Saturn-Moon or 12th house stress",
+        "nightmares_vivid_dreams": "Neptune-Moon or Pluto-Moon"
+      }
+    },
+    "skin_conditions": {
+      "primarySignatures": ["Saturn (dry, aging, eczema)", "Mars (inflammation, acne)", "Venus (eczema, hormonal acne)", "Neptune (mysterious skin issues, fungal)"],
+      "type_breakdown": {
+        "dry_aging": "Saturn-Venus or Saturn in 1st",
+        "inflammatory_acne": "Mars-Venus or Mars in Libra",
+        "eczema_hormonal": "Venus-Moon or Venus-Saturn",
+        "fungal_mysterious": "Neptune-Mars or Neptune in 6th"
+      }
+    },
+    "fertility_reproductive": {
+      "primarySignatures": ["Moon afflicted", "Venus-Saturn (suppressed)", "Pluto-Moon (deep transformation)", "5th house stress"],
+      "type_breakdown": {
+        "structural_block": "Saturn-Venus or Saturn-Moon",
+        "deep_transformation": "Pluto contacts to Moon, Venus, or 5th",
+        "subtle_dysregulation": "Neptune-Moon or Neptune-Venus"
+      }
+    }
+  },
+  "engineUsage": {
+    "_description": "How the Astryx engine should use this file alongside the other data files to produce the unified 5-sense prescription.",
+    "step1_inputCollection": "User reports: symptom OR feeling OR area of concern. Engine receives natal chart + current transits.",
+    "step2_diagnosticMatch": "Engine looks up symptom in rootCauseIndex → returns candidate planetary signatures. Cross-references with user's natal chart and current transits → ranks signatures by activation.",
+    "step3_anatomyResolution": "For top-ranked planetary signature, engine pulls anatomy block → body systems + organs + endocrine + nervous system pathway.",
+    "step4_plainLanguageBridge": "Engine pulls plainLanguageBridge → presents 3 layers: what's happening cosmically, what it's doing in your body, what to do.",
+    "step5_protocolGeneration": "Engine pulls crossReferences from this planet → links to: cellSalts.json (mineral via ruling sign), sacredBotanicals.json (plant ally), crystalsExpanded.json (mineral resonance), sacredTones_nervousSystem.json (frequency), scents.json (aroma), colors.json (visual), planets.json (taste/body movement). One unified prescription, five sensory channels.",
+    "step6_practitionerOverlay": "In Practitioner mode, all three layers (cosmic + body + protocol) are visible with timing data (transit duration, intervention notes). In free user mode, only middle (body) and bottom (protocol) layers shown — cosmic mechanism is the optional 'See Why' reveal."
+  }
+}

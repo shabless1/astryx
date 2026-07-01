@@ -1,0 +1,355 @@
+{
+  "_meta": {
+    "title": "Digestive System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "digestive",
+    "name": "Digestive System",
+    "alternateNames": ["Gastrointestinal System", "GI Tract", "Alimentary Canal"],
+    "shortDescription": "Mouth → esophagus → stomach → small intestine → colon → rectum, plus accessory organs (liver, gallbladder, pancreas). Processes food into absorbable nutrients and eliminates waste.",
+    "icon": "🜔",
+    "accentColor": "#7FB069",
+    "elementalProfile": "Earth primary (Virgo, Taurus); Water secondary (Cancer stomach)"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "Mouth, salivary glands, tongue, teeth",
+      "Esophagus (~25 cm tube)",
+      "Stomach (cardia, fundus, body, pylorus)",
+      "Small intestine (duodenum, jejunum, ileum) — ~6m total",
+      "Large intestine (cecum, ascending/transverse/descending/sigmoid colon)",
+      "Rectum and anus",
+      "Liver (largest gland in body) + biliary tree (gallbladder, bile ducts)",
+      "Pancreas (exocrine acini + endocrine islets)",
+      "Mesenteric vasculature + enteric nervous system (\"second brain\")"
+    ],
+    "subStructures": {
+      "upper_gi": ["Mouth", "Salivary glands (parotid, submandibular, sublingual)", "Esophagus", "Stomach"],
+      "small_intestine": ["Duodenum (digestion, bile/pancreatic juice entry)", "Jejunum (primary absorption)", "Ileum (B12 absorption, ileocecal valve)"],
+      "large_intestine": ["Cecum + appendix", "Ascending colon", "Transverse colon", "Descending colon", "Sigmoid colon", "Rectum", "Anal canal"],
+      "accessory_organs": ["Liver", "Gallbladder", "Bile ducts", "Pancreas (head/body/tail)"],
+      "enteric_nervous_system": ["Myenteric plexus (Auerbach's — motility)", "Submucosal plexus (Meissner's — secretion/blood flow)", "~500 million neurons"]
+    },
+    "vertebralCorrelates": "Per Cornell: 5th-9th dorsal vertebrae relate to upper GI (stomach, esophagus); 10th-12th dorsal relate to lower GI, small intestine, liver; lumbar L1-L5 relates to colon, bladder, kidneys. Bodyworkers: thoracolumbar mobilization + visceral manipulation directly supports digestive function.",
+    "nervePlexus": "Celiac plexus (solar plexus — sympathetic; major digestive innervation), Superior mesenteric plexus, Inferior mesenteric plexus. Vagus nerve (parasympathetic — rest-and-digest). Enteric nervous system semi-autonomous."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Mercury",
+    "primaryPlanetRationale": "Mercury rules Virgo (the digestive sign per Carey/Cornell) and governs the chemicalization/breakdown of food into absorbable form. Cornell (1933): 'Mercury rules the duodenum and the digestive process generally.'",
+    "primarySign": "Virgo",
+    "primaryHouse": 6,
+    "secondaryPlanets": [
+      {"planet": "Moon", "rules": "Stomach (Cancer sign), digestive juices, gastric mucosa, food absorption", "rationale": "Cornell (1933): 'The Moon rules the stomach, the breasts, and the digestive fluids. Cancer rules the stomach.'"},
+      {"planet": "Mercury", "rules": "Duodenum, small intestine, digestive process, peristalsis", "rationale": "Cornell (1933): 'Mercury rules the bowels, duodenum, and the digestive process.'"},
+      {"planet": "Mars", "rules": "Inflammatory digestive conditions, hyperacidity, ulceration, appendicitis", "rationale": "Cornell (1933): 'Mars in stomach or bowel signs tends to inflammation, ulceration, hyperacidity.'"},
+      {"planet": "Jupiter", "rules": "Liver, gallbladder, blood sugar regulation, weight/obesity tendencies", "rationale": "Cornell (1933): 'Jupiter rules the liver, the arterial blood, and the hepatic functions.'"},
+      {"planet": "Venus", "rules": "Throat, salivary function, gentle digestion, sweet-tooth/cravings", "rationale": "Cornell (1933): 'Venus rules the throat, the soft palate, salivary action.'"},
+      {"planet": "Saturn", "rules": "Chronic constipation, sluggish bowel, stricture, atrophy of digestive tissue", "rationale": "Cornell (1933): 'Saturn in digestive signs tends to chronic constipation, atrophy.'"},
+      {"planet": "Neptune", "rules": "Food sensitivities, leaky gut, idiopathic GI symptoms, addictive eating", "rationale": "Modern attribution — Neptune dissolves boundaries (intestinal barrier function)."},
+      {"planet": "Pluto", "rules": "Colon (Scorpio rules colon/rectum), deep elimination, GI transformations, IBD chronic course", "rationale": "Modern attribution — Pluto governs deep eliminative organs and chronic transformation patterns."}
+    ],
+    "fixedCrossInfluence": "Taurus (throat-upper digestive), Scorpio (colon-elimination) — both Fixed signs anchor the digestive tube at top and bottom.",
+    "secondarySigns": ["Cancer (stomach)", "Scorpio (colon, rectum)", "Pisces (immune-digestive axis)"],
+    "houses": {
+      "primary": [6],
+      "primaryRationale": "6th house = Virgo's natural house; governs digestion, daily health, work routines that affect eating",
+      "secondary": [2, 4, 8],
+      "diseaseHouses": [6, 8, 12],
+      "vedicNote": "Vedic: 5th house = stomach (in some traditions). To be refined Phase 2."
+    }
+  },
+  "axes": [
+    {
+      "name": "Digestive-Immune Axis",
+      "polarity": "Virgo ↔ Pisces",
+      "source": "Minerva (2023), Axa digestivă-imunitară",
+      "interpretation": "Virgo governs digestion and assimilation; Pisces governs immune function and dissolution. Modern medicine confirms: ~70% of immune tissue lives in the gut (GALT). Imbalance toward Virgo may manifest as analytical/picky digestion, IBS-anxiety patterns, hyperdigestion. Imbalance toward Pisces may manifest as food sensitivities, leaky gut, immune-mediated GI symptoms. The axis is THE foundation of modern functional medicine's gut-immune model.",
+      "indicatorPattern": {
+        "virgo_dominant": "Picky digestion, IBS-type symptoms, anxiety-gut axis, perfectionistic eating patterns, hyperacid burn",
+        "pisces_dominant": "Food sensitivities, leaky gut, immune-mediated GI, vague chronic digestive symptoms with no clear cause",
+        "balanced": "Smooth digestion, varied diet tolerated, robust immune-gut interface"
+      }
+    },
+    {
+      "name": "Regenerative Axis (digestive overlay — colon/elimination)",
+      "polarity": "Taurus ↔ Scorpio",
+      "source": "Minerva (2023), Axa regenerării",
+      "interpretation": "Taurus (throat, upper digestive intake) opposite Scorpio (colon, elimination, transformation). The axis describes the complete digestive tube from mouth to anus. Chronic constipation = Scorpio side underactive; over-elimination/diarrhea = Scorpio overactive."
+    }
+  ],
+  "energetics": {
+    "chakra": "Solar Plexus (Manipura) primary; Sacral (Svadhisthana) for lower GI",
+    "chakraColor": "Yellow (solar plexus) / orange (sacral)",
+    "chakraHz": 528.0,
+    "nervousSystemPathway": "Celiac plexus (solar plexus nerve cluster), vagal parasympathetic (rest-and-digest), enteric nervous system (the gut's own brain)",
+    "endocrineCorrespondence": "Pancreas (insulin, glucagon), gastric glands (gastrin), enteric hormones (ghrelin, leptin, CCK, secretin)",
+    "elementalCorrespondence": "Earth primary (Virgo); Water (Cancer stomach); Fire (Mars inflammatory)",
+    "brainwaveAffinity": "Alpha-Theta — parasympathetic dominance required for proper digestion",
+    "meridianCrossover_TCM": "Stomach (ST), Spleen (SP), Liver (LV), Gallbladder (GB), Large Intestine (LI). Earth + Wood elements."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Kali Sulph", "saltFullName": "Kali Sulphuricum", "sign": "Virgo", "epithet": "The Oil Maker / Digestive Lubricant", "indicatedFor": "Sluggish digestion, oily/greasy stool, bilious patterns, skin breakouts tied to gut dysfunction. Carey: 'The first element disturbed in Virgo natives is oil.'", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Sulph", "saltFullName": "Natrum Sulphuricum", "sign": "Taurus", "epithet": "Water Eliminator / Liver Salt", "indicatedFor": "Liver congestion, biliousness, alternating constipation/diarrhea, bitter taste, hepatic edema. Carey: 'Nat Sulph controls the liver and bile.'", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Phos", "saltFullName": "Natrum Phosphoricum", "sign": "Libra", "epithet": "Acid Neutralizer", "indicatedFor": "Hyperacidity, GERD, gastric burn, fatty-food intolerance (helps emulsify), dyspepsia from rich foods.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Cell Healer / Colon Cleanser", "indicatedFor": "Chronic colon stagnation, abscess formation, slow-healing intestinal lesions, IBD-pattern support.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "First Aid / Inflammation", "indicatedFor": "Acute gastritis, intestinal inflammation, fever from GI infection. First-line during acute episodes.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [
+      {"name": "Lavender", "planet": "Mercury", "dataRef": "sacredBotanicals.json", "mechanism": "Calms gut-brain axis; supports parasympathetic digestion"}
+    ],
+    "supplementaryHerbs": [
+      {"name": "Peppermint (Mentha piperita)", "classicalAttribution": "Mercury", "mechanism": "Antispasmodic, carminative; relaxes lower esophageal sphincter (caution with GERD)", "indicatedFor": "IBS, gas, bloating, indigestion. NOT with GERD."},
+      {"name": "Ginger (Zingiber officinale)", "classicalAttribution": "Mars / Sun", "mechanism": "Prokinetic, antiemetic, warming carminative", "indicatedFor": "Nausea, slow gastric emptying, motion sickness, morning sickness"},
+      {"name": "Marshmallow root (Althaea)", "classicalAttribution": "Moon / Venus", "mechanism": "Demulcent — coats and soothes inflamed mucosa", "indicatedFor": "Gastritis, GERD, IBD support, intestinal lining repair"},
+      {"name": "Dandelion root (Taraxacum)", "classicalAttribution": "Jupiter / Mars", "mechanism": "Bitter — stimulates digestive secretions, liver/gallbladder support", "indicatedFor": "Sluggish digestion, liver congestion, fat malabsorption"},
+      {"name": "Slippery elm (Ulmus fulva)", "classicalAttribution": "Moon / Saturn", "mechanism": "Demulcent mucilage", "indicatedFor": "GERD, IBD, gastritis"},
+      {"name": "Chamomile (Matricaria)", "classicalAttribution": "Sun / Moon", "mechanism": "Anti-inflammatory, antispasmodic, anxiolytic gut-brain", "indicatedFor": "IBS, anxiety-related GI, mild gastritis, colic"}
+    ],
+    "crystals": [
+      {"name": "Citrine", "planet": "Sun / Mercury", "bodyPlacement": "Solar plexus (just above navel)", "classicalAttribution": "Digestive fire, assimilation"},
+      {"name": "Carnelian", "planet": "Mars", "bodyPlacement": "Below navel (sacral)", "classicalAttribution": "Lower digestive vitality, elimination"},
+      {"name": "Green Aventurine", "planet": "Mercury / Venus", "bodyPlacement": "Solar plexus", "classicalAttribution": "Soothes inflamed gut, supports liver"}
+    ],
+    "tuningForks": [
+      {"planet": "Mercury", "hz": 141.27, "applicationPoint": "Solar plexus", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Jupiter", "hz": 183.58, "applicationPoint": "Right upper quadrant (liver region)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Moon", "hz": 210.42, "applicationPoint": "Stomach (epigastric)", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Earth Year Om", "hz": 136.10, "applicationPoint": "Grounding regulator — feet"}
+    ],
+    "scents": [
+      {"name": "Peppermint", "planet": "Mercury", "delivery": "inhale, topical-diluted on abdomen", "dataRef": "scents.json"},
+      {"name": "Ginger", "planet": "Mars", "delivery": "diffuse, topical-diluted", "dataRef": "scents.json"}
+    ],
+    "bodyProtocols": [
+      {"ref": "body-protocols.json → planet='Mercury'", "breath": "Diaphragmatic + parasympathetic (longer exhale)", "movement": "Gentle abdominal twists", "posture": "Open chest, soft belly", "touch": "Clockwise belly self-massage"}
+    ],
+    "modalityRecommendations": {
+      "individual": "Eat in parasympathetic state (sit, slow, no screens). Chew thoroughly. Bitter herbs before meals (dandelion, gentian) for sluggish digestion. Peppermint or ginger tea after meals. Address food sensitivities slowly with elimination diet under healthcare provider guidance.",
+      "medical_astrologer": "Examine: Mercury, Virgo placements, 6th house contents and ruler, Moon (stomach), Jupiter (liver), 2nd house (food/appetite). Transits to Mercury and Moon are primary timing indicators for digestive flare-ups. Virgo-Pisces axis tension = chronic gut-immune disturbance. Scorpio afflictions = colon/elimination focus.",
+      "reiki": "Solar plexus (Manipura) PRIMARY focus. Hand position 6 (over navel) for 10-15 min. Yellow light visualization. For lower GI: hand position 7 (lower abdomen) + orange light. Distance reiki effective for digestive — many clients prefer no hands-on belly.",
+      "bodywork_general": "Visceral manipulation (Barral approach — gentle, requires training). Diaphragmatic release (relieves stomach/esophagus tension). Iliopsoas release (psoas inflammation affects digestion). Abdominal massage clockwise (follows colon direction). Thoracolumbar mobilization T5-L2.",
+      "bodywork_contraindications": "Active IBD flare: avoid deep abdominal work. Pregnancy: trained prenatal massage only. Active GI bleeding, suspected appendicitis, severe diverticulitis: REFER. Recent abdominal surgery: clearance required.",
+      "naturopathy": "Functional medicine framework: gut-brain axis, microbiome support, food sensitivities, leaky gut protocol. Bitters before meals, digestive enzymes, probiotic strain selection, L-glutamine, zinc carnosine. Food-as-medicine: anti-inflammatory diet, FODMAP for IBS, elimination protocols.",
+      "acupuncture": "Stomach meridian (ST 25 Tianshu, ST 36 Zusanli — most-used digestive point in TCM, ST 44 Neiting), Spleen (SP 6 Sanyinjiao, SP 9 Yinlingquan), Liver (LV 3 Taichong), Pericardium (PC 6 for nausea). Earth element tonification (deficient digestion) or Liver-Wood sedation (Liver attacking Spleen pattern).",
+      "ayurveda_phase2_placeholder": "Agni (digestive fire) — the central concept. Samana Vata (middle Vata governing digestion), Pachaka Pitta (digestive Pitta), Kledaka Kapha (gastric mucus). Trikatu (ginger-pepper-pippali) for low agni. Triphala for elimination. Phase 2 expansion.",
+      "pastoral_spiritual": "Honoring food as sacred. Pre-meal blessing/intention. 'I receive nourishment with gratitude.' Sitting practice while eating. Food as the body's most intimate spiritual practice."
+    }
+  },
+  "pathologies": [
+    {
+      "id": "dig_ibs",
+      "name": "Irritable Bowel Syndrome (IBS)",
+      "icdReference": "K58",
+      "system": "digestive",
+      "category": "functional_motility",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mercury-Uranus (gut-brain electrical disruption)", "Mercury in Virgo afflicted (analytical anxiety + gut)", "Moon-Mars (emotional-inflammatory)", "Virgo-Pisces axis stress"],
+        "signEmphasis": ["Virgo afflicted", "Cancer (Moon) afflicted", "Pisces (immune-gut)"],
+        "houseEmphasis": ["6th house Mercury or Uranus", "12th house Moon"],
+        "transitTriggers": ["Uranus transit to natal Mercury", "Saturn transit through Virgo (chronic restriction onset)"]
+      },
+      "classicalReference": "Cornell (1933): 'Mercury-Uranus aspects → spasmodic intestinal action; Virgo afflictions → variable bowel function. Carey (1932): \"Virgo natives are discriminating, analytical, critical — these traits manifest in digestion as picky, variable function.\"'",
+      "cellSalts": ["Kali Sulph", "Mag Phos (cramping)", "Nat Phos (acid component)"],
+      "indicatorLanguage": {
+        "individual": "Your chart shows configurations classical sources associate with gut-brain reactivity patterns. Tracking food triggers, stress, and bowel patterns with your healthcare provider may help identify your personal pattern.",
+        "practitioner": "Mercury-Uranus and Virgo-Pisces axis configurations are classically associated with IBS-type functional bowel patterns (Cornell, 1933; modern functional medicine extension). Rule out IBD via referral if alarm signs present. IBS subtypes (IBS-D, IBS-C, IBS-M) may correlate with predominant planetary influences."
+      },
+      "modalityNotes": {
+        "bodywork": "Visceral manipulation, abdominal massage, vagal stimulation techniques (suboccipital release, cervical decompression). Address psoas (digestive-emotional bridge).",
+        "reiki": "Solar plexus (Manipura) extended sessions. Gut-brain axis intention. Yellow light + green light alternation.",
+        "lifestyle": "Stress reduction CENTRAL. FODMAP elimination trial. Identify personal food triggers. Probiotic strain selection (varies by subtype). Mindful eating, parasympathetic dining."
+      },
+      "redFlags": ["Blood in stool", "Unintentional weight loss", "Onset > 50 years", "Family history of colon cancer/IBD → urgent referral"]
+    },
+    {
+      "id": "dig_gerd",
+      "name": "GERD (Gastroesophageal Reflux Disease)",
+      "icdReference": "K21",
+      "system": "digestive",
+      "category": "upper_gi_acid",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars in Cancer afflicted (acid + stomach)", "Mars-Moon (gastric inflammation)", "Saturn-Mercury (chronic gastric stricture)", "Jupiter-Moon (overeating + reflux)"],
+        "signEmphasis": ["Cancer afflicted", "Taurus (LES + throat)"],
+        "houseEmphasis": ["6th house Mars or Moon"],
+        "transitTriggers": ["Mars transit through Cancer (acute flares)"]
+      },
+      "classicalReference": "Cornell (1933): 'Mars in Cancer afflicted → gastric inflammation, hyperacidity, eructation, heartburn. Mars-Moon → acute gastric pain.'",
+      "cellSalts": ["Nat Phos (PRIMARY for acid neutralization)", "Mag Phos (cramping)"],
+      "indicatorLanguage": {
+        "individual": "Persistent heartburn or acid reflux benefits from dietary trigger identification (coffee, alcohol, citrus, chocolate, fatty foods, spicy foods commonly trigger), eating earlier in evening, raising head of bed, and demulcent herbs (marshmallow, slippery elm). Persistent symptoms warrant medical evaluation to rule out structural causes.",
+        "practitioner": "Mars-Cancer and Mars-Moon configurations classically associated with hyperacid/inflammatory gastric patterns. Chronic GERD risks Barrett's esophagus and esophageal adenocarcinoma — refer for endoscopy if symptoms > 8 weeks despite lifestyle modification. PPI use long-term has tradeoffs (B12, magnesium, microbiome) — coordinate with prescribing MD."
+      },
+      "modalityNotes": {
+        "bodywork": "AVOID peppermint (relaxes LES). Diaphragmatic release. Avoid immediate post-meal supine work. Hiatal hernia self-release techniques (with training).",
+        "reiki": "Throat + solar plexus chakras. Cooling green light at esophagus.",
+        "lifestyle": "Smaller meals, last meal 3+ hours before bed, raise head of bed 6 inches, identify triggers (coffee, alcohol, citrus, chocolate, mint, fatty foods, spicy), maintain healthy weight, demulcent herbs (slippery elm, marshmallow, DGL)."
+      },
+      "redFlags": ["Difficulty swallowing", "Painful swallowing", "Vomiting blood", "Black tarry stool", "Unintentional weight loss → urgent referral"]
+    },
+    {
+      "id": "dig_gastric_ulcer",
+      "name": "Peptic Ulcer Disease (Gastric / Duodenal)",
+      "icdReference": "K25 / K26",
+      "system": "digestive",
+      "category": "structural_ulcerative",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars-Saturn in Cancer (chronic erosive inflammation)", "Saturn afflicted in Cancer (chronic gastric strain)", "Mars in Virgo (duodenal — Mercury-Mars)"],
+        "signEmphasis": ["Cancer", "Virgo (duodenum)"],
+        "houseEmphasis": ["6th house Mars-Saturn"],
+        "transitTriggers": ["Saturn transit through Cancer with Mars hard aspect"]
+      },
+      "classicalReference": "Cornell (1933): 'Gastric Ulcer — Mars + Saturn in Cancer; chronic erosive inflammation. Duodenal Ulcer — Mars in Virgo afflicted (Mercury's domain).'",
+      "cellSalts": ["Calc Phos", "Ferr Phos", "Nat Phos"],
+      "indicatorLanguage": {
+        "individual": "Persistent epigastric pain, especially burning pain relieved by food (gastric) or worsened by food (duodenal), warrants medical evaluation to test for H. pylori and rule out ulcer disease.",
+        "practitioner": "Mars-Saturn-Cancer configurations classically associated with ulcerative gastric patterns (Cornell, 1933). Modern: H. pylori testing + NSAID review essential. Ulcer disease is medical management territory; holistic adjuncts include mastic gum, DGL, zinc carnosine, marshmallow, mucosal-supportive nutrition."
+      },
+      "modalityNotes": {
+        "bodywork": "Active ulcer: avoid deep abdominal work. Recovery phase: visceral techniques with caution.",
+        "reiki": "Solar plexus healing, green light at gastric area.",
+        "lifestyle": "H. pylori treatment per MD if positive, NSAID elimination, alcohol/smoking cessation, DGL (deglycyrrhizinated licorice) before meals, mastic gum, zinc carnosine, stress reduction."
+      },
+      "redFlags": ["Vomiting blood", "Coffee-ground emesis", "Black tarry stool (melena)", "Severe sudden abdominal pain (perforation) → ED"]
+    },
+    {
+      "id": "dig_liver_congestion",
+      "name": "Liver Congestion / Fatty Liver (Steatosis)",
+      "icdReference": "K76",
+      "system": "digestive",
+      "category": "hepatobiliary",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Jupiter afflicted (excess — overgrowth of fat in hepatocytes)", "Jupiter-Saturn (slow chronic congestion)", "Jupiter-Neptune (alcohol involvement)", "Mars-Jupiter (hepatic inflammation)"],
+        "signEmphasis": ["Sagittarius (Jupiter's sign — hips, liver in some attributions)", "Pisces (Jupiter traditional ruler)"],
+        "houseEmphasis": ["6th house Jupiter"],
+        "transitTriggers": ["Jupiter transit return", "Saturn-Jupiter combinations"]
+      },
+      "classicalReference": "Cornell (1933): 'Jupiter rules the liver; afflictions to Jupiter or excess Jupiter → hepatic enlargement, fatty change, biliousness.' Charak (2005): Liver disease often shows in dasha of Jupiter or 6th-house lord.",
+      "cellSalts": ["Nat Sulph (PRIMARY for liver)", "Kali Sulph"],
+      "indicatorLanguage": {
+        "individual": "Liver health benefits from limiting alcohol, processed foods, refined sugars, and maintaining healthy weight. Bitter foods and herbs (dandelion, milk thistle, artichoke) support liver function. Elevated liver enzymes on bloodwork should be evaluated by your healthcare provider.",
+        "practitioner": "Jupiter excess or affliction classically associated with hepatic congestion (Cornell, 1933). Modern: NAFLD/NASH increasingly common. Functional medicine framework: insulin resistance, oxidative stress, gut-liver axis. Milk thistle (silymarin), NAC, choline, B-complex support. Refer for hepatology if persistent elevated enzymes or imaging abnormalities."
+      },
+      "modalityNotes": {
+        "bodywork": "Liver pump techniques (subcostal margin right side, gentle). Diaphragm release improves hepatic blood flow. Visceral manipulation.",
+        "reiki": "Solar plexus + right upper quadrant intention. Green light over liver.",
+        "lifestyle": "Alcohol reduction/elimination. Weight management (modest weight loss reverses early NAFLD). Mediterranean diet. Coffee (paradoxically protective per some studies). Bitter greens daily. Castor oil packs (traditional liver protocol)."
+      },
+      "redFlags": ["Jaundice (yellow skin/eyes)", "Ascites (abdominal fluid)", "Severe right upper quadrant pain", "Unexplained bruising/bleeding → urgent referral"]
+    },
+    {
+      "id": "dig_ibd",
+      "name": "Inflammatory Bowel Disease (Crohn's / Ulcerative Colitis)",
+      "icdReference": "K50 / K51",
+      "system": "digestive",
+      "category": "autoimmune_inflammatory",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars-Pluto in digestive signs (deep autoimmune inflammation)", "Neptune-Mars (immune confusion + inflammation)", "Pluto in 6th or 8th house affliction", "Virgo-Pisces axis under heavy stress"],
+        "signEmphasis": ["Virgo (small bowel — Crohn's predilection)", "Scorpio (colon — UC predilection)", "Pisces (immune)"],
+        "houseEmphasis": ["6th + 8th + 12th houses afflicted"],
+        "transitTriggers": ["Pluto-Mars transits", "Neptune transits to natal digestive placements"]
+      },
+      "classicalReference": "Cornell (1933): 'Chronic intestinal inflammation — Mars-Saturn afflictions in digestive signs; ulcerative bowel conditions correlate with malefic afflictions to 6th house. Modern extension: autoimmune component implicates Neptune-Pisces axis.'",
+      "cellSalts": ["Calc Sulph", "Ferr Phos (flare)", "Kali Phos (nerve component)"],
+      "indicatorLanguage": {
+        "individual": "Persistent diarrhea, blood in stool, abdominal pain, or unintentional weight loss require thorough medical evaluation. Inflammatory bowel disease, when present, is a serious chronic condition requiring gastroenterology care. Holistic support is adjunctive — never primary management.",
+        "practitioner": "Mars-Pluto and Neptune-Mars configurations in digestive signs are classically associated with deep inflammatory bowel patterns (Cornell, 1933; modern autoimmune attribution). Confirmed IBD is gastroenterology territory — biologics, 5-ASA, immunomodulators are standard of care. Holistic complementary support: SCD/low-FODMAP/specific carbohydrate diet, curcumin, omega-3, bone broth, glutamine, vitamin D optimization, stress management. DO NOT replace medical care."
+      },
+      "modalityNotes": {
+        "bodywork": "Active flare: AVOID deep abdominal work. Remission: gentle visceral techniques may support motility.",
+        "reiki": "Supportive throughout. Solar plexus + sacral chakra healing. Distance reiki excellent for flare periods.",
+        "lifestyle": "Anti-inflammatory diet (varies by individual — SCD, AIP, low-FODMAP, plant-based each have evidence). Microbiome support. Stress reduction. Sleep optimization. Vitamin D maintenance. Smoking cessation (UC paradoxical: smoking protective, do NOT recommend starting; Crohn's: cessation strongly beneficial)."
+      },
+      "redFlags": ["Severe abdominal pain", "Blood in stool", "High fever", "Signs of bowel obstruction", "Toxic megacolon symptoms → ED"]
+    },
+    {
+      "id": "dig_constipation_chronic",
+      "name": "Chronic Constipation",
+      "icdReference": "K59.0",
+      "system": "digestive",
+      "category": "motility",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn in earth signs (chronic slowing)", "Saturn-Moon (emotional-gut compression)", "Saturn in 6th house"],
+        "signEmphasis": ["Capricorn, Virgo, Taurus (earth signs)", "Scorpio (colon — when underactive)"],
+        "houseEmphasis": ["6th house Saturn"],
+        "transitTriggers": ["Saturn transits through earth signs"]
+      },
+      "classicalReference": "Cornell (1933): 'Constipation — Saturn in earth signs; Saturn afflicted in 6th house; sluggish bowel from Saturn excess.'",
+      "cellSalts": ["Nat Mur", "Calc Fluor (relaxed colon)", "Mag Phos (cramping component)"],
+      "indicatorLanguage": {
+        "individual": "Constipation responds to: adequate water (2L+/day), fiber (25-35g/day), regular movement, magnesium citrate at bedtime, and addressing stress. Persistent constipation despite these measures, or constipation with weight loss or blood in stool, warrants medical evaluation.",
+        "practitioner": "Saturn-earth sign configurations classically associated with sluggish bowel patterns (Cornell, 1933). Differentiate functional (most common — addressable with lifestyle) from structural (rule out obstruction in red-flag presentations). Magnesium oxide/citrate, triphala, psyllium, prokinetic herbs. Pelvic floor dysfunction component in some — refer to pelvic floor PT."
+      },
+      "modalityNotes": {
+        "bodywork": "Abdominal massage clockwise (follows colon direction). Visceral manipulation. Sacral release. Pelvic floor work (specialized training).",
+        "reiki": "Sacral chakra activation. Orange + red light visualization at lower abdomen.",
+        "lifestyle": "Hydration (often underestimated). Fiber (gradual increase). Magnesium citrate 200-400mg evening. Movement (walking after meals). Squatty potty (positional). Coffee (mild prokinetic for many). Triphala traditional formula."
+      },
+      "redFlags": ["Sudden change in bowel habits > 50 years", "Blood in stool", "Severe abdominal pain + distension (obstruction)", "Inability to pass gas → ED"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder",
+    "tridosha": {
+      "primary": "Pitta (digestive fire — Agni)",
+      "secondary": "Vata (motility disorders, IBS-D pattern)",
+      "tertiary": "Kapha (sluggish digestion, weight gain, mucus excess)"
+    },
+    "nakshatras_governing_digestive": ["Magha (stomach)", "Pushya (nourishment, digestion)", "Vishakha (transformation through digestion)"],
+    "ayurvedicOrgans": ["Annavaha Srotas (channels of food)", "Purishavaha Srotas (channels of feces)", "Yakrit (liver)", "Pleeha (spleen)", "Grahani (small intestine)"],
+    "dashaRelevance": "Mercury, Moon, Jupiter dashas relevant per Charak (2005, Ch. XV).",
+    "ayurvedicTreatments_phase2": "Trikatu, Triphala, hingvastak churna, avipattikar churna for hyperacidity. Phase 2 expansion."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {
+      "focusPoints": ["Mercury + Virgo", "Moon (stomach) + Cancer", "Jupiter (liver) + Sagittarius/Pisces", "6th house contents and ruler", "Virgo-Pisces axis"],
+      "techniquesUsed": ["Decumbiture for acute GI events", "Solar Return for annual digestive forecast", "Profections (especially Mercury, Moon, Jupiter periods)", "Transit tracking for Mars-Moon-Mercury combinations"],
+      "outputDepth": "Full clinical signatures with Cornell + Carey citations"
+    },
+    "reiki": {
+      "focusPoints": ["Solar plexus (Manipura) PRIMARY", "Sacral (Svadhisthana) for lower GI", "Gut-brain axis intention"],
+      "techniquesUsed": ["Hand position 6 (over navel) extended", "Hand position 7 (lower abdomen)", "Yellow + orange light visualization", "Distance reiki very effective for digestive"],
+      "outputDepth": "Chakra activation guide, hand positions, distance reiki protocol"
+    },
+    "bodywork": {
+      "focusPoints": ["Diaphragm subcostal release", "Visceral manipulation (Barral)", "Iliopsoas release", "Thoracolumbar T5-L2 mobilization", "Suboccipital release for vagal tone"],
+      "techniquesUsed": ["Abdominal clockwise massage", "Visceral techniques", "Diaphragmatic release", "Vagal stimulation"],
+      "contraindicationsCriticallity": "HIGH for active IBD/ulcer/diverticulitis; standard caution pregnancy",
+      "outputDepth": "Visceral technique guide, contraindication panel"
+    },
+    "naturopath": {
+      "focusPoints": ["Functional medicine framework", "Gut-brain axis", "Microbiome", "Food sensitivities", "Elimination diets"],
+      "techniquesUsed": ["Bitters, digestive enzymes, demulcents", "Probiotic strain selection", "L-glutamine, zinc carnosine", "DGL, marshmallow, slippery elm", "Triphala, dandelion, milk thistle"],
+      "outputDepth": "Herbal protocols + supplement guidance + dietary frameworks"
+    },
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Agni (digestive fire)", "Samana Vata", "Pachaka Pitta", "Kledaka Kapha"], "outputDepth": "TO BE BUILT PHASE 2"},
+    "acupuncturist_tcm": {
+      "focusPoints": ["Stomach (ST)", "Spleen (SP)", "Liver (LV)", "Gallbladder (GB)", "Earth element"],
+      "techniquesUsed": ["ST 36 Zusanli (master digestive point)", "SP 6 Sanyinjiao", "LV 3 Taichong", "PC 6 Neiguan (nausea)", "Earth tonification"],
+      "outputDepth": "Meridian map + Five-Element framework"
+    },
+    "pastoral_spiritual": {
+      "focusPoints": ["Food as sacred", "Pre-meal intention", "Mindful eating"],
+      "techniquesUsed": ["Meal blessings", "Eating in silence/presence", "Gratitude for nourishment", "Body as temple receiving offering"],
+      "outputDepth": "Contemplative eating practices + affirmations"
+    }
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Digestive symptoms range from minor (occasional indigestion) to life-threatening (perforated ulcer, bowel obstruction, GI bleeding). Holistic adjunctive role only — never replacement for medical care of confirmed pathology.",
+    "indicatorLanguagePolicy": "Per COMPLIANCE.md §3. Specific pathology names rendered to Practitioner+ tiers; Individual tier sees 'digestive patterns', 'gut tendencies'.",
+    "criticalReferralRules": [
+      "Vomiting blood / coffee-ground emesis → ED",
+      "Black tarry stool (melena) → ED or urgent MD",
+      "Severe sudden abdominal pain (rule out perforation, obstruction, appendicitis, pancreatitis) → ED",
+      "Jaundice → urgent MD",
+      "Blood in stool + weight loss → urgent referral (rule out malignancy/IBD)",
+      "Bowel habit change > 50 years → colonoscopy referral"
+    ],
+    "redFlagKeywords": ["vomiting blood", "black stool", "severe abdominal pain", "jaundice", "weight loss", "blood in stool"]
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "_meta": {
+    "title": "Cardiovascular System",
+    "schemaTemplate": true,
+    "description": "First of 11 body system files. This file establishes the schema for all body systems. Once approved, the other 10 (respiratory, digestive, nervous, endocrine, muscular, skeletal, integumentary, lymphatic-immune, urinary, reproductive) follow this same structure.",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": [
+      "Cornell, H.L. (1933) — Encyclopaedia of Medical Astrology (primary Western source)",
+      "Minerva (2023) — Iniţiere în astrologia medicală (health axes framework)",
+      "Carey & Perry (1932) — The Zodiac and the Twelve Salts of Salvation (cell salt layer)",
+      "Charak, K.S. (2005) — Essentials of Medical Astrology (Vedic placeholder reference)",
+      "Cousto, H. (1978) — The Cosmic Octave (Hz frequencies)"
+    ],
+    "lastUpdated": "2026-05-24"
+  },
+
+  "system": {
+    "id": "cardiovascular",
+    "name": "Cardiovascular System",
+    "alternateNames": ["Circulatory System", "Cardiac System"],
+    "shortDescription": "Heart, blood vessels, and blood — circulation of oxygen, nutrients, and waste throughout the body",
+    "icon": "♥",
+    "accentColor": "#E8453C",
+    "elementalProfile": "Fire (heart, central) + Air (circulation, peripheral)"
+  },
+
+  "anatomy": {
+    "primaryStructures": [
+      "Heart (myocardium, endocardium, pericardium)",
+      "Aorta and arterial tree (coronary, carotid, subclavian, brachial, femoral, iliac)",
+      "Venous tree (vena cava superior/inferior, jugular, subclavian, pulmonary veins)",
+      "Capillary beds",
+      "Blood (RBCs, WBCs, platelets, plasma)",
+      "Bone marrow (hematopoiesis)",
+      "Cardiac electrical conduction system (SA node, AV node, bundle of His, Purkinje fibers)"
+    ],
+    "subStructures": {
+      "heart_chambers": ["Right atrium", "Right ventricle", "Left atrium", "Left ventricle"],
+      "heart_valves": ["Tricuspid", "Pulmonary", "Mitral (bicuspid)", "Aortic"],
+      "great_vessels": ["Aorta", "Pulmonary artery", "Vena cava superior", "Vena cava inferior", "Pulmonary veins"],
+      "coronary_circulation": ["Left main coronary", "LAD (left anterior descending)", "Left circumflex", "Right coronary artery"],
+      "blood_components": ["Erythrocytes (RBCs)", "Leukocytes (WBCs)", "Thrombocytes (platelets)", "Plasma (water, proteins, electrolytes)"]
+    },
+    "vertebralCorrelates": "T1-T5 (cardiac segments); per Cornell: 5th-9th dorsal vertebrae relate to heart, upper stomach. Bodyworkers: thoracic spine T1-T5 mobilization supports cardiac autonomic balance.",
+    "nervePlexus": "Cardiac plexus (deep + superficial); vagal cardiac branches (parasympathetic); cervical + thoracic sympathetic chain (sympathetic)"
+  },
+
+  "astrologicalRulership": {
+    "primaryPlanet": "Sun",
+    "primaryPlanetRationale": "The Sun rules the heart as the central life force of the body — the pump that distributes vital force to every cell. Per Cornell (1933): 'The Heart is ruled by the Sun, the Leo sign, and the 5th house.'",
+    "primarySign": "Leo",
+    "primaryHouse": 5,
+    "secondaryPlanets": [
+      {
+        "planet": "Sun",
+        "rules": "Structure of the heart (when Sun is in Leo); arterial blood (gives oxygen to blood)",
+        "rationale": "Cornell (1933): 'The Sun in Leo rules the structure of the heart... The Sun gives oxygen to the blood.'"
+      },
+      {
+        "planet": "Moon",
+        "rules": "Functions of the heart, pericardium; blood as fluid; heart in female charts",
+        "rationale": "Cornell (1933): 'The Moon in Leo, the functions of the heart, and the pericardium... The heart in the female is strongly influenced by the Moon.'"
+      },
+      {
+        "planet": "Mars",
+        "rules": "Cardiac muscle (when in Leo); iron and hemoglobin; arterial blood pressure",
+        "rationale": "Cornell (1933): 'Mars in Leo rules the muscles [of the heart]... Mars gives the Iron and Haemoglobin... Activity of Mars in the blood tends to Hemorrhages, Rupture of Blood Vessels.'"
+      },
+      {
+        "planet": "Venus",
+        "rules": "Venous blood; right ventricle; depressor nerve",
+        "rationale": "Cornell (1933): 'Venus rules the Venous Blood... Venus in Leo, the depressor nerve... Venus rules the right ventricle.'"
+      },
+      {
+        "planet": "Jupiter",
+        "rules": "Arterial blood (primary); right auricle; arteries; left ventricle",
+        "rationale": "Cornell (1933): 'The Blood is ruled by Jupiter, although his main activities are confined to the arterial blood... Jupiter in Leo, the arteries and right auricle... The left ventricle and the arterial blood are ruled and influenced by Jupiter.'"
+      },
+      {
+        "planet": "Saturn",
+        "rules": "Left auricle; endocardium; arterial structure (atherosclerotic patterns)",
+        "rationale": "Cornell (1933): 'Saturn in Leo, the left auricle and the endocardium... Saturn in Leo tends to organic auricular weakness.'"
+      },
+      {
+        "planet": "Mercury",
+        "rules": "Cardiac nerves (when in Leo); autonomic regulation of heart rate",
+        "rationale": "Cornell (1933): 'Mercury in Leo, the nerves [of the heart].'"
+      },
+      {
+        "planet": "Uranus",
+        "rules": "Heart valves; sudden electrical disturbances (arrhythmia); cardiac conduction system",
+        "rationale": "Cornell (1933): 'Uranus in Leo, the valves... [Uranus] tends to disorders of dilatation' — modern attribution: SA/AV node electrical anomalies."
+      },
+      {
+        "planet": "Neptune",
+        "rules": "Subtle cardiac sensitivity; rheumatic fever heart involvement; idiopathic cardiomyopathy",
+        "rationale": "Modern attribution — Neptune in Leo associated with diffuse, mysterious cardiac conditions and rheumatic involvement."
+      },
+      {
+        "planet": "Pluto",
+        "rules": "Bone marrow / hematopoiesis; deep regenerative cardiac processes; cellular blood disorders",
+        "rationale": "Modern attribution — Pluto governs cellular-level processes including hematopoiesis and deep cardiac regeneration."
+      }
+    ],
+    "fixedCrossInfluence": "All Fixed signs (Taurus, Leo, Scorpio, Aquarius) influence the heart and its action — they form the Fixed Cross and stand in opposition or square aspect to each other. Cornell (1933): 'All the fixed signs... tend to affect and influence the heart and its action for good or ill.'",
+    "secondarySigns": ["Aquarius (peripheral circulation, oxygen exchange)", "Taurus (throat-cardio overlap)", "Scorpio (deep blood, hematopoiesis with Pluto)"],
+    "houses": {
+      "primary": [5],
+      "primaryRationale": "5th house = heart (classical Western); Sun's natural house",
+      "secondary": [1, 4],
+      "diseaseHouses": [6, 8, 12],
+      "vedicNote": "In Vedic, 4th house = chest cavity, heart organ. To be refined in Phase 2."
+    }
+  },
+
+  "axes": [
+    {
+      "name": "Cardio-Circulatory Axis",
+      "polarity": "Leo ↔ Aquarius",
+      "source": "Minerva (2023), Axa cardio-circulatorie",
+      "interpretation": "Leo governs the heart (the central pump); Aquarius governs peripheral circulation and oxygen exchange in tissues. The axis represents heart-pump versus tissue-perfusion. Imbalance toward Leo may manifest as central cardiac overactivity (hypertension, palpitation, angina). Imbalance toward Aquarius may manifest as peripheral circulation issues, cold extremities, tissue oxygen deficit.",
+      "indicatorPattern": {
+        "leo_dominant": "Heart palpitation, pounding pulse, hypertensive flush, central cardiac symptoms, chest tightness",
+        "aquarius_dominant": "Cold extremities, varicose veins, peripheral cyanosis, tissue hypoxia signs, ankle swelling",
+        "balanced": "Steady pulse, even peripheral perfusion, smooth cardiac rhythm"
+      }
+    },
+    {
+      "name": "Emotional / Structural Axis (cardiac overlay)",
+      "polarity": "Cancer ↔ Capricorn",
+      "source": "Minerva (2023), Axa emoţională şi structurală",
+      "interpretation": "Though primarily emotional/structural, this axis affects the cardiovascular system via the heart-mind connection. Cancer (Moon-ruled) governs the emotional component of cardiac response — palpitation under emotional stress. Capricorn (Saturn-ruled) governs structural integrity of vascular walls — atherosclerosis, vascular calcification. Together they describe the hypertension-from-suppressed-emotion pattern."
+    },
+    {
+      "name": "Renal Axis (cardio-renal overlay)",
+      "polarity": "Aries ↔ Libra",
+      "source": "Minerva (2023), Axa renală",
+      "interpretation": "The kidneys regulate blood pressure via renin-angiotensin-aldosterone. Aries (Mars/adrenal) and Libra (Venus/kidney) form the polarity that affects cardiovascular pressure. Hypertension often signals dysregulation on this axis as much as on the cardio-circulatory axis."
+    }
+  ],
+
+  "energetics": {
+    "chakra": "Heart (Anahata)",
+    "chakraColor": "Green",
+    "chakraHz": 341.3,
+    "nervousSystemPathway": "Cardiac plexus → vagal regulation (parasympathetic) and cervico-thoracic sympathetic chain (sympathetic)",
+    "endocrineCorrespondence": "Thymus (heart-immune axis); adrenal cortex (indirect via cortisol on vasculature); pancreatic alpha cells (glucagon-vasculature)",
+    "elementalCorrespondence": "Fire (Leo) + Air (Aquarius circulation)",
+    "brainwaveAffinity": "Alpha (8-12 Hz) — heart coherence, radiant presence",
+    "meridianCrossover_TCM": "Heart meridian (HT), Small Intestine meridian (SI), Pericardium meridian (PC), Triple Burner (SJ — partial)"
+  },
+
+  "prescriptions": {
+    "cellSalts": [
+      {
+        "saltShortName": "Mag Phos",
+        "saltFullName": "Magnesia Phosphorica",
+        "sign": "Leo",
+        "epithet": "Cardiac Rhythm Salt",
+        "indicatedFor": "Heart palpitations, motor nerve disturbance affecting cardiac muscle, cramping pain in the region of the heart, neuralgic chest pain. Relieves spasmodic cardiac action.",
+        "dataRef": "cellSalts.json → cellSalts[].sign='Leo'"
+      },
+      {
+        "saltShortName": "Nat Mur",
+        "saltFullName": "Natrum Muriaticum",
+        "sign": "Aquarius",
+        "epithet": "Water Distribution / Blood Volume",
+        "indicatedFor": "Blood volume regulation, fluid distribution within vessels, hypertensive patterns related to fluid imbalance, edema, salt-craving with cardiovascular signs.",
+        "dataRef": "cellSalts.json → cellSalts[].sign='Aquarius'"
+      },
+      {
+        "saltShortName": "Ferr Phos",
+        "saltFullName": "Ferrum Phosphoricum",
+        "sign": "Pisces",
+        "epithet": "Oxygen Carrier / First Aid",
+        "indicatedFor": "Oxygenation of blood, anemia, inflammation of vascular walls, congestive symptoms, first-aid response to any acute cardiovascular inflammation or fever.",
+        "dataRef": "cellSalts.json → cellSalts[].sign='Pisces'"
+      },
+      {
+        "saltShortName": "Calc Fluor",
+        "saltFullName": "Calcarea Fluorica",
+        "sign": "Cancer",
+        "epithet": "Vascular Elasticity",
+        "indicatedFor": "Loss of elasticity in vascular walls, varicose veins, hemorrhoidal varicosity, hardening of vessel walls (per Carey: 'relaxed tissue' patterns).",
+        "dataRef": "cellSalts.json → cellSalts[].sign='Cancer'"
+      }
+    ],
+
+    "sacredBotanicals": [
+      {
+        "name": "Red Lotus",
+        "planet": "Sun",
+        "dataRef": "sacredBotanicals.json → planet='Sun'",
+        "mechanism": "Neferine relaxes arterial smooth muscle; proanthocyanidins reduce cardiovascular inflammation; supports thymus gland (heart-immune axis)"
+      }
+    ],
+    "supplementaryHerbs": [
+      {
+        "name": "Hawthorn berry (Crataegus)",
+        "classicalAttribution": "Sun / Jupiter — classical cardiotonic",
+        "mechanism": "Procyanidins improve coronary blood flow and myocardial contractility; supports vascular tone",
+        "indicatedFor": "Long-term cardiac tonic; gentle inotrope. Practitioner reference — not for self-administration without provider consultation if on cardiac medication."
+      },
+      {
+        "name": "Motherwort (Leonurus cardiaca)",
+        "classicalAttribution": "Sun / Venus — 'lion-hearted'",
+        "mechanism": "Cardiac sedative; leonurine modulates rhythm; supports emotional-cardiac axis",
+        "indicatedFor": "Palpitation under emotional stress; cardiac symptoms linked to Cancer/Capricorn axis imbalance."
+      },
+      {
+        "name": "Linden flower (Tilia)",
+        "classicalAttribution": "Venus / Jupiter",
+        "mechanism": "Mild antihypertensive; diaphoretic; supports peripheral circulation",
+        "indicatedFor": "Mild hypertensive support; Aquarius-side circulation symptoms."
+      }
+    ],
+
+    "crystals": [
+      {
+        "name": "Amber",
+        "planet": "Sun",
+        "bodyPlacement": "Sternum / heart center",
+        "dataRef": "crystalsExpanded.json → planet='Sun'"
+      },
+      {
+        "name": "Rose Quartz",
+        "planet": "Venus",
+        "bodyPlacement": "Heart center (sternum)",
+        "classicalAttribution": "Heart chakra crystal; emotional-cardiac support"
+      },
+      {
+        "name": "Bloodstone (Heliotrope)",
+        "planet": "Mars",
+        "bodyPlacement": "Lower abdomen (for blood + circulation) or hold in palms",
+        "classicalAttribution": "Traditional 'blood purifier' — supports red blood cell function symbolically; piezoelectric green chalcedony with iron oxide inclusions"
+      }
+    ],
+
+    "tuningForks": [
+      {
+        "planet": "Sun",
+        "hz": 126.22,
+        "applicationPoint": "Sternum / heart center / thymus",
+        "dataRef": "sacredTones_nervousSystem.json → planet='Sun'"
+      },
+      {
+        "planet": "Mars",
+        "hz": 144.72,
+        "applicationPoint": "Lower back (adrenal points) for blood-pressure regulation; not directly on chest",
+        "dataRef": "sacredTones_nervousSystem.json → planet='Mars'"
+      },
+      {
+        "planet": "Earth Year Om",
+        "hz": 136.10,
+        "applicationPoint": "Grounding regulator — base of spine or feet",
+        "rationale": "Universal regulator that stabilizes any cardiac protocol"
+      }
+    ],
+
+    "scents": [
+      {"name": "Rose", "planet": "Venus", "delivery": "diffuse or topical heart center", "dataRef": "scents.json"},
+      {"name": "Frankincense", "planet": "Sun", "delivery": "diffuse", "dataRef": "scents.json"},
+      {"name": "Ylang-ylang (supplementary)", "delivery": "diffuse", "mechanism": "Mild antihypertensive aroma — supports parasympathetic cardiac regulation"}
+    ],
+
+    "bodyProtocols": [
+      {
+        "ref": "body-protocols.json → planet='Sun'",
+        "breath": "Expansive diaphragmatic breath",
+        "movement": "Spinal extension, arms overhead",
+        "posture": "Upright chest open",
+        "touch": "Palm on heart center"
+      }
+    ],
+
+    "modalityRecommendations": {
+      "individual": "Daily heart coherence breath (5 sec inhale, 5 sec exhale × 5 min). Frankincense diffusion morning + evening. Hawthorn or rose tea evenings.",
+      "medical_astrologer": "Examine: Sun, Leo placements, 5th house contents and ruler, fixed signs/cross afflictions, transits to natal Sun and Leo. Note any planet at critical degrees (0°, 13°, 26° cardinal; 8-9°, 21-22° fixed) in 5th house or aspecting Sun. Decumbiture chart recommended for acute cardiac events.",
+      "reiki": "Heart chakra (Anahata) activation as PRIMARY focus. Hand position 3 (over thymus/sternum) for 5-10 min. Pair with hand position 1 (crown) for energy descent. Frequency: 341.3 Hz green light visualization. Distance reiki: focus the green light on the client's heart space.",
+      "bodywork_general": "Thoracic spine mobilization T1-T5 (gentle, as tolerated). Intercostal massage with caution (rib pressure). Diaphragmatic release (subcostal approach). Sternocleidomastoid (SCM) and scalene release to free cardiac autonomic pathways via cervical sympathetic chain.",
+      "bodywork_contraindications": "ANY cardiac history requires medical clearance BEFORE deep work. Avoid deep work over chest with: known arrhythmia, pacemaker (work around it), recent cardiac event (< 6 months), uncontrolled hypertension (> 180/110), anticoagulant therapy (bruising risk). Pacemaker patients: avoid TENS, EMS, deep ultrasound over chest.",
+      "naturopathy": "Hawthorn, motherwort, linden — consider drug interactions with beta-blockers, ACE inhibitors, anticoagulants. CoQ10 commonly recommended for cardiac support; refer to ND for individualized dosing. Diet: Mediterranean pattern, omega-3 rich, low refined carb. Refer to MD for any acute symptoms.",
+      "acupuncture": "Heart meridian points (HT 3, HT 7), Pericardium meridian (PC 6 for palpitation), Lung meridian (LU 1 for chest opening). Five-Element: Fire phase tonification for deficient heart-yang; sedation for excess heart-fire.",
+      "ayurveda_phase2_placeholder": "Sadhaka Pitta (heart-mind connection), Vyana Vata (peripheral circulation). Hridya rasayanas — arjuna (Terminalia arjuna) primary cardiotonic. Pulse: Hridaya Nadi assessment. To be expanded Phase 2 — full Vedic overlay.",
+      "pastoral_spiritual": "Heart-opening contemplation; loving-kindness (metta) practice; gratitude journaling; affirmation: 'My heart beats in rhythm with the universe.'"
+    }
+  },
+
+  "pathologies": [
+    {
+      "id": "cv_hypertension",
+      "name": "Hypertension (High Blood Pressure)",
+      "icdReference": "I10 (essential hypertension)",
+      "system": "cardiovascular",
+      "category": "vascular",
+      "astrologicalSignature": {
+        "planetaryCombinations": [
+          "Mars-Jupiter (overactive arterial pressure)",
+          "Sun-Mars in fixed signs",
+          "Saturn in Leo with Mars affliction",
+          "Mars-Pluto (deep vascular pressure)"
+        ],
+        "signEmphasis": ["Leo afflicted", "Aquarius afflicted", "all Fixed signs in Mars/Sun stress"],
+        "houseEmphasis": ["6th house Mars or Jupiter", "8th house Saturn", "1st house Mars in fixed"],
+        "transitTriggers": ["Saturn transit to natal Sun", "Mars-Pluto transit to natal Sun/Mars", "Jupiter transit to natal Mars (expansion of pressure)"]
+      },
+      "classicalReference": "Cornell (1933): 'Blood Pressure, High — Mars or Jupiter afflicting in Leo or fixed signs; Saturn in 1st or 6th with Mars affliction; activity of Mars in the blood tends to vascular rupture.'",
+      "cellSalts": ["Nat Mur", "Mag Phos"],
+      "indicatorLanguage": {
+        "individual": "Your chart configuration may suggest patterns classical sources associate with circulatory pressure tendencies. Regular monitoring with your healthcare provider is recommended.",
+        "practitioner": "Mars-Jupiter, Sun-Mars in fixed signs, and Saturn-Mars combinations are classically associated with hypertensive patterns (per Cornell, 1933). Confirm with current BP measurement; refer to MD for clinical management. Bodywork contraindications apply if BP > 180/110."
+      },
+      "modalityNotes": {
+        "bodywork": "AVOID deep work without medical clearance. Light effleurage only if BP > 180/110. Suboccipital release (gentle) may support parasympathetic activation.",
+        "reiki": "Heart + root chakra balancing to ground excess fire; avoid crown chakra over-activation which can paradoxically raise BP in some constitutions.",
+        "lifestyle": "Stress reduction protocols, heart coherence breath, sodium consciousness (per healthcare provider guidance), regular movement.",
+        "referral": "Hypertensive crisis (>180/120 with symptoms): refer immediately to emergency care. Persistent elevated readings: refer to MD."
+      },
+      "redFlags": ["BP > 180/120 with chest pain, vision changes, severe headache → emergency"]
+    },
+
+    {
+      "id": "cv_angina",
+      "name": "Angina Pectoris",
+      "icdReference": "I20",
+      "system": "cardiovascular",
+      "category": "ischemic",
+      "astrologicalSignature": {
+        "planetaryCombinations": [
+          "Saturn afflicting Sun (compression of vital force)",
+          "Mars-Saturn in Leo",
+          "Sun-Saturn-Mars triad",
+          "Uranus afflicting Sun (electrical disturbance)"
+        ],
+        "signEmphasis": ["Leo (heart sign) afflicted", "Cancer (oppression)"],
+        "houseEmphasis": ["5th house affliction", "6th house Saturn-Mars"],
+        "transitTriggers": ["Saturn transit to natal Sun (compression)", "Mars-Pluto stationing on natal Sun"]
+      },
+      "classicalReference": "Cornell (1933): 'Angina — Pain and Oppression About the Heart. Saturn in Leo, Mars afflicting in Leo, oppression of cardiac action by malefics in the fixed cross.'",
+      "cellSalts": ["Mag Phos", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Your chart shows a configuration that classical sources associate with patterns of cardiac stress. Any chest pain, pressure, or radiating pain — particularly with exertion — requires immediate evaluation by your healthcare provider.",
+        "practitioner": "Saturn-Sun afflictions in fixed signs are classically associated with anginal patterns (Cornell, 1933). Any client reporting chest discomfort, radiating arm/jaw pain, or exertional dyspnea must be referred to MD/emergency immediately. This is not within scope of holistic practice for acute presentation."
+      },
+      "modalityNotes": {
+        "bodywork": "DO NOT WORK on a client with active or unresolved angina. Refer immediately.",
+        "reiki": "Distance reiki may be appropriate as supportive complement, never replacement. Hands-on only with cardiologist clearance.",
+        "lifestyle": "Stress reduction critical; nitroglycerine compliance per MD; avoid stimulants (caffeine, decongestants)."
+      },
+      "redFlags": ["Chest pain at rest", "Pain radiating to jaw/left arm", "Pain + diaphoresis + nausea → 911"]
+    },
+
+    {
+      "id": "cv_arrhythmia",
+      "name": "Cardiac Arrhythmia (general)",
+      "icdReference": "I49",
+      "system": "cardiovascular",
+      "category": "electrical",
+      "astrologicalSignature": {
+        "planetaryCombinations": [
+          "Uranus afflicting Sun (sudden electrical disturbance)",
+          "Uranus in Leo",
+          "Mercury-Uranus (signal disruption)",
+          "Moon-Uranus (emotional electrical surge)"
+        ],
+        "signEmphasis": ["Leo + Aquarius (Sun's polar opposite, electrical sign)", "Fixed cross under Uranus stress"],
+        "houseEmphasis": ["5th house Uranus", "11th house Uranus (Aquarius natural)"],
+        "transitTriggers": ["Uranus transit to natal Sun", "Uranus transit to natal Moon (emotional)", "Uranus return (age 84)"]
+      },
+      "classicalReference": "Cornell (1933): 'Arythmia Cordis — disturbance of the rhythm of the heart. Uranus in Leo, sudden disturbances; Mercury-Uranus afflictions, signal disruption.'",
+      "cellSalts": ["Mag Phos", "Kali Phos"],
+      "indicatorLanguage": {
+        "individual": "Your chart may suggest a configuration classical sources associate with patterns of rhythm variability. If you experience palpitations, skipped beats, or racing heart — particularly with dizziness, chest discomfort, or shortness of breath — please consult your healthcare provider.",
+        "practitioner": "Uranus-Sun or Uranus-Moon configurations are classically associated with cardiac rhythm variability (Cornell, 1933 + modern attribution). Atrial fibrillation, SVT, and PVCs may all present. EKG referral indicated for any new or symptomatic palpitations."
+      },
+      "modalityNotes": {
+        "bodywork": "Caution with positions that may trigger vasovagal response (sudden prone-supine changes, deep abdominal pressure). Gentle work if known arrhythmia. NEVER over implanted pacemaker.",
+        "reiki": "Magnesium-focused intention; calming green light at heart space; avoid sudden energetic surges.",
+        "lifestyle": "Magnesium-rich foods (per dietary guidance); reduce caffeine; sleep hygiene critical; address electrolyte balance with healthcare provider."
+      },
+      "redFlags": ["New-onset rapid pulse + dizziness/syncope", "Palpitations + chest pain"]
+    },
+
+    {
+      "id": "cv_varicose_veins",
+      "name": "Varicose Veins",
+      "icdReference": "I83",
+      "system": "cardiovascular",
+      "category": "venous",
+      "astrologicalSignature": {
+        "planetaryCombinations": [
+          "Venus afflicted in Cancer/Capricorn (venous return weakness)",
+          "Mars-Saturn in lower body signs",
+          "Saturn in 6th or 12th house"
+        ],
+        "signEmphasis": ["Capricorn (knees)", "Aquarius (ankles/circulation)", "Cancer (vascular elasticity)"],
+        "houseEmphasis": ["6th house Saturn-Venus"],
+        "transitTriggers": ["Saturn transit to natal Venus", "Slow outer planet transits across lower-body signs"]
+      },
+      "classicalReference": "Cornell (1933): 'Varicose Veins — Saturn afflictions to Venus; Venus weak in chart; deficient venous tone. Often shown by deficiency of Calc Fluor at the cellular level.'",
+      "cellSalts": ["Calc Fluor", "Ferr Phos"],
+      "indicatorLanguage": {
+        "individual": "Your chart configuration may suggest a tendency toward patterns of venous wall tone variability. Lifestyle support (movement, leg elevation, hydration) may benefit. Consult a vascular specialist for severe symptoms.",
+        "practitioner": "Venus-Saturn and Calc Fluor deficiency patterns are classically associated with venous insufficiency (Cornell, 1933; Carey). Lymphatic drainage massage indicated; refer to vascular specialist for severe varicosities, ulceration, or DVT signs."
+      },
+      "modalityNotes": {
+        "bodywork": "Manual lymphatic drainage (gentle, distal-to-proximal). NEVER deep work over varicose veins — risk of DVT mobilization. Inverted positions (legs up the wall) supportive between sessions.",
+        "reiki": "Root chakra grounding; circulation visualization upward through legs.",
+        "lifestyle": "Compression stockings (per medical guidance), regular movement, hydration, avoid prolonged standing/sitting."
+      },
+      "redFlags": ["Sudden unilateral leg swelling + warmth + pain → DVT, refer immediately"]
+    },
+
+    {
+      "id": "cv_aneurysm_aorta",
+      "name": "Aortic Aneurysm",
+      "icdReference": "I71",
+      "system": "cardiovascular",
+      "category": "vascular_structural",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars afflicted in Leo (vessel rupture risk)", "Mars-Uranus (sudden vascular events)", "Saturn-Mars in Leo (weakening + pressure)"],
+        "signEmphasis": ["Leo (cardiovascular center)"],
+        "houseEmphasis": ["5th, 6th house Mars-Saturn"],
+        "transitTriggers": ["Outer planet transits to natal Mars in Leo"]
+      },
+      "classicalReference": "Cornell (1933): 'Aneurysm of the Aorta — Mars afflicted in Leo. Activity of Mars in the blood tends to Hemorrhages, Rupture of Blood Vessels.'",
+      "cellSalts": ["Calc Fluor", "Ferr Phos"],
+      "indicatorLanguage": {
+        "individual": "Your chart may show classical sources associate with vascular structural patterns. Any persistent chest, back, or abdominal pain — particularly tearing or pulsating — requires immediate medical evaluation. This is not a self-managed concern.",
+        "practitioner": "Mars-Saturn-Uranus complexes in Leo are classically associated with aortic structural risk (Cornell, 1933). ANY suspicion of dissection, rupture, or known aneurysm is OUT OF SCOPE for holistic practice. Refer to cardiology/vascular surgery."
+      },
+      "modalityNotes": {
+        "bodywork": "ABSOLUTELY NO deep abdominal work, NO inversions, NO heavy lifting cueing. Known aneurysm: refer to MD/cardiologist for activity guidance before ANY bodywork.",
+        "reiki": "Distance reiki only for known cases. Gentle hands-off energy work; no pressure.",
+        "lifestyle": "Strictly per cardiologist guidance."
+      },
+      "redFlags": ["Tearing/ripping chest or abdominal pain → 911", "Pulsating abdominal mass → urgent MD evaluation"]
+    },
+
+    {
+      "id": "cv_anemia",
+      "name": "Anemia (general)",
+      "icdReference": "D50-D64",
+      "system": "cardiovascular",
+      "category": "blood",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars weak or afflicted (iron/hemoglobin deficit)", "Sun weak (vitality)", "Pluto-Mars (deep hematopoiesis issues)"],
+        "signEmphasis": ["Pisces (Ferr Phos sign)", "Scorpio (deep blood)"],
+        "houseEmphasis": ["6th house with Mars/Sun affliction"],
+        "transitTriggers": ["Saturn transit to natal Sun (vitality depletion)", "Pluto-Mars transits"]
+      },
+      "classicalReference": "Cornell (1933): 'Anemia — deficient iron-carrying capacity. Mars rules iron and hemoglobin. Mars weak or afflicted → tendency to deficient red blood cell function.' Carey (1932): 'Pisces governs Ferr Phos — first-aid for any inflammatory or anemic state.'",
+      "cellSalts": ["Ferr Phos", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Your chart configuration may suggest patterns classical sources associate with iron and oxygenation balance. Persistent fatigue, pallor, shortness of breath, or dizziness warrant a CBC and ferritin test with your healthcare provider.",
+        "practitioner": "Mars-Sun-Pluto configurations may indicate hematological vulnerability per Cornell (1933) and Carey. Refer for CBC + ferritin + B12/folate panel. Iron supplementation should only follow lab confirmation — excess iron is toxic. Practitioner-tier reminder: iron supplementation is OUT OF SCOPE without medical guidance."
+      },
+      "modalityNotes": {
+        "bodywork": "Gentle work — anemic clients fatigue quickly. Short sessions preferred. Avoid intense work that increases circulatory demand.",
+        "reiki": "Supportive — focus on root chakra (red, iron correspondence) and heart chakra (oxygenation).",
+        "lifestyle": "Iron-rich foods per dietary guidance: dark leafy greens, lean grass-fed meats, lentils, blackstrap molasses. Vitamin C with meals for absorption. AVOID iron supplements without medical guidance."
+      },
+      "redFlags": ["Severe fatigue + chest pain + tachycardia → emergent evaluation"]
+    }
+  ],
+
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder — full Vedic medical astrology layer per Charak (2005) to be built in Phase 2 after Western system is complete",
+    "tridosha": {
+      "primary": "Pitta (heart fire, blood, transformation)",
+      "secondary": "Vata involvement in arrhythmia, palpitation, anxiety-related cardiac",
+      "tertiary": "Kapha involvement in atherosclerosis, cholesterol, congestive patterns",
+      "noteForPhase2": "Tridosha calculation per chart's element distribution + planetary placements"
+    },
+    "nakshatras_governing_heart": ["Magha (Pitta, Lion's heart)", "Pushya (chest/breast)", "Vishakha (transformation through heart)"],
+    "ayurvedicOrgans": ["Hridaya (heart)", "Rakta (blood tissue/dhatu)", "Mamsa (cardiac muscle dhatu)"],
+    "dashaRelevance": "Dasha periods of Sun, Mars, or Saturn often correlate with cardiovascular events in Vedic medical astrology. Vimshottari Dasha of these planets, particularly during their antardasha sub-period, warrants increased monitoring per Charak (2005, Ch. XIV — Heart Disease).",
+    "ayurvedicTreatments_phase2": "Hridya rasayanas: arjuna (Terminalia arjuna primary), pushkarmoola, jatamansi. Panchakarma considerations for excess Pitta/Kapha. To be expanded.",
+    "vargas_phase2": "D9 Navamsha for inner constitution, D10 Dasamsha for vitality, D30 Trimshamsha for diseases — to be integrated."
+  },
+
+  "modalitySpecificGrid": {
+    "_description": "Per-practitioner-lens slice — what each modality sees when this body system is active in a chart. Pre-built for the Practitioner Lens Switcher.",
+    "medical_astrologer": {
+      "focusPoints": ["Sun + Leo placements", "5th house + ruler", "Fixed cross afflictions", "Saturn-Sun + Mars-Sun transits", "Aspects to natal Sun from outer planets"],
+      "techniquesUsed": ["Decumbiture for acute events", "Solar Return analysis", "Progressed Sun trajectory", "Critical degree check for Sun and 5th cusp", "Fixed star analysis (Regulus on Sun is significant)"],
+      "outputDepth": "Full clinical signatures with Cornell/Carey/Minerva source citations"
+    },
+    "reiki": {
+      "focusPoints": ["Heart chakra (Anahata) activation state", "Heart-thymus energetic gate", "Cardiac autonomic balance"],
+      "techniquesUsed": ["Hand position 3 (sternum/thymus)", "Green light visualization", "Heart-coherence intention setting", "Distance reiki for cardiac history clients"],
+      "outputDepth": "Chakra state, hand position guide, intention prompt, session timer"
+    },
+    "bodywork": {
+      "focusPoints": ["Thoracic spine T1-T5", "Intercostal muscles", "Diaphragm release", "SCM + scalene release for cervical sympathetic balance"],
+      "techniquesUsed": ["Subcostal diaphragmatic release", "Suboccipital decompression (vagal stimulation)", "Gentle thoracic mobilization"],
+      "contraindicationsCriticallity": "HIGH — cardiac history requires medical clearance",
+      "outputDepth": "Muscle-resolution map, contraindication panel, pre-session pain/ROM intake fields"
+    },
+    "naturopath": {
+      "focusPoints": ["Cardiotonic herbs", "Drug interaction screening", "Lifestyle protocols"],
+      "techniquesUsed": ["Hawthorn, motherwort, linden recommendations", "CoQ10, omega-3, magnesium guidance", "Mediterranean dietary pattern", "Stress reduction protocols"],
+      "outputDepth": "Herbal protocols + drug interaction warnings + dosing references"
+    },
+    "ayurvedic_phase2_placeholder": {
+      "focusPoints": ["Sadhaka Pitta", "Vyana Vata", "Hridaya pulse"],
+      "techniquesUsed": ["Hridya rasayanas", "Pulse diagnosis", "Panchakarma protocols"],
+      "outputDepth": "TO BE BUILT IN PHASE 2"
+    },
+    "acupuncturist_tcm": {
+      "focusPoints": ["Heart meridian (HT)", "Pericardium meridian (PC)", "Fire element"],
+      "techniquesUsed": ["HT 3, HT 7, PC 6 needling points", "Fire phase tonification or sedation", "Five-Element balancing"],
+      "outputDepth": "Meridian map + point references + Five-Element framework"
+    },
+    "pastoral_spiritual": {
+      "focusPoints": ["Heart-opening contemplation", "Loving-kindness practice", "Gratitude"],
+      "techniquesUsed": ["Heart affirmation: 'My heart beats in rhythm with the universe.'", "Metta meditation", "Gratitude journaling"],
+      "outputDepth": "Affirmations + traditional suggestions + contemplative practices"
+    }
+  },
+
+  "complianceNotes": {
+    "scopeOfPractice": "Cardiovascular conditions can be life-threatening. Output to Individual tier emphasizes monitoring and referral. Practitioner tier receives full clinical signatures with explicit deferral to MD for diagnosis/treatment. Verified Practitioner tier additionally receives detailed contraindication panels for bodywork.",
+    "indicatorLanguagePolicy": "All output respects COMPLIANCE.md §3 — uses approved phrasings only. Specific pathology names rendered to Practitioner+ tiers only; Individual tier sees generic descriptors ('circulatory patterns', 'vascular tendencies').",
+    "criticalReferralRules": [
+      "ANY acute chest pain → 911 (do not pass through normal app flow)",
+      "Sudden severe headache + cardiovascular signs → 911",
+      "BP > 180/120 with symptoms → emergency",
+      "Suspected DVT, dissection, or rupture → urgent MD",
+      "Bodywork on known cardiac history requires medical clearance"
+    ],
+    "redFlagKeywords": ["chest pain", "crushing", "tearing", "radiating arm", "diaphoresis", "fainting", "tachycardia at rest"]
+  }
+}

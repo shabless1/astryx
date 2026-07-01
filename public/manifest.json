@@ -1,0 +1,23 @@
+{
+  "name": "Astryx — Cosmic Resonance System",
+  "short_name": "Astryx",
+  "description": "Deterministic multi-sensory calibration system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050714",
+  "theme_color": "#050714",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/astryx logo b.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/astryx logo b.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

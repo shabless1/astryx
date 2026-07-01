@@ -1,0 +1,254 @@
+{
+  "_meta": {
+    "title": "Muscular System",
+    "schemaVersion": "1.0",
+    "complianceVersion": "1.0",
+    "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Tom Myers — Anatomy Trains (fascial lines reference)"],
+    "lastUpdated": "2026-05-24"
+  },
+  "system": {
+    "id": "muscular",
+    "name": "Muscular System",
+    "alternateNames": ["Skeletal Muscle System", "Myofascial System"],
+    "shortDescription": "~640 skeletal muscles producing movement, posture, and heat. Plus smooth muscle (organs) and cardiac muscle. The body's primary force-generating and locomotor tissue.",
+    "icon": "💪",
+    "accentColor": "#E8453C",
+    "elementalProfile": "Fire primary (Mars/Aries activation); Earth structural (Capricorn)"
+  },
+  "anatomy": {
+    "primaryStructures": [
+      "~640 skeletal muscles (voluntary, striated)",
+      "Smooth muscle (involuntary — organ walls, blood vessels, GI tract)",
+      "Cardiac muscle (heart — striated but involuntary)",
+      "Tendons (muscle to bone)",
+      "Fascia (connective tissue investing muscle — Tom Myers' Anatomy Trains)",
+      "Neuromuscular junctions",
+      "Muscle spindles (proprioception)",
+      "Golgi tendon organs (tension sensing)"
+    ],
+    "subStructures": {
+      "head_neck": ["Masseter (jaw)", "Temporalis", "Sternocleidomastoid (SCM)", "Scalenes", "Trapezius (upper)", "Levator scapulae", "Suboccipitals"],
+      "shoulder_girdle": ["Deltoids", "Rotator cuff (supraspinatus, infraspinatus, teres minor, subscapularis)", "Pectoralis major + minor", "Latissimus dorsi", "Rhomboids", "Serratus anterior"],
+      "core": ["Rectus abdominis", "Obliques (internal + external)", "Transverse abdominis", "Diaphragm", "Pelvic floor", "Multifidus", "Erector spinae"],
+      "lower_back_glute": ["Quadratus lumborum (QL)", "Gluteus maximus, medius, minimus", "Piriformis", "Deep 6 hip external rotators", "Iliopsoas"],
+      "thigh": ["Quadriceps (4)", "Hamstrings (3)", "Adductors (5)", "Sartorius", "Tensor fascia lata (TFL)"],
+      "lower_leg": ["Gastrocnemius", "Soleus", "Tibialis anterior + posterior", "Peroneals", "Plantar fascia"],
+      "fascial_lines_anatomy_trains": ["Superficial Back Line (SBL)", "Superficial Front Line (SFL)", "Lateral Line (LL)", "Spiral Line (SPL)", "Deep Front Line (DFL)", "Arm Lines (4)", "Functional Lines"]
+    },
+    "vertebralCorrelates": "Spinal nerves innervate all skeletal muscle. Myotomes (motor) and dermatomes (sensory) map root-by-root. Each muscle has a specific innervation pattern.",
+    "nervePlexus": "Brachial plexus (upper limb), lumbosacral plexus (lower limb), cervical plexus (neck/diaphragm via phrenic). Spinal motor anterior horn cells."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Mars",
+    "primaryPlanetRationale": "Mars = action, movement, force generation. Cornell (1933): 'Mars rules the muscular system, the motor function, the active contraction.'",
+    "primarySign": "Aries",
+    "primaryHouse": 1,
+    "secondaryPlanets": [
+      {"planet": "Mars", "rules": "All skeletal muscle activation, motor drive, force generation", "rationale": "Cornell (1933): 'Mars rules the muscles.'"},
+      {"planet": "Saturn", "rules": "Chronic muscle tension/tightness, structural musculo-skeletal restriction, age-related sarcopenia", "rationale": "Cornell (1933): 'Saturn restricts muscular freedom; chronic stiffness.'"},
+      {"planet": "Sun", "rules": "Vital force feeding muscle, cardiac muscle (heart), core muscular vitality", "rationale": "Cornell (1933): 'The Sun in Leo rules the muscles of the heart.'"},
+      {"planet": "Moon", "rules": "Smooth muscle (involuntary — gut, vessels), uterine muscle, breast tissue", "rationale": "Cornell: 'Moon rules involuntary functions, smooth muscle.'"},
+      {"planet": "Jupiter", "rules": "Muscle bulk (when balanced), hip/thigh musculature, expansive muscular growth", "rationale": "Cornell: 'Jupiter expands; muscular development in Sagittarius (hips/thighs).'"},
+      {"planet": "Mercury", "rules": "Fine motor coordination, muscle proprioception, neuromuscular signaling", "rationale": "Cornell: 'Mercury rules the nerves of muscle action.'"},
+      {"planet": "Venus", "rules": "Muscle softness/relaxation, lower-back/lumbar musculature, throat muscles", "rationale": "Cornell: 'Venus rules soft tissues, relaxation.'"},
+      {"planet": "Uranus", "rules": "Sudden muscle spasm, cramping, twitches, exercise-induced rhabdomyolysis", "rationale": "Modern: Uranus governs sudden electrical-muscular events."}
+    ],
+    "fixedCrossInfluence": "Less central for muscular than for cardiac. However, Scorpio (deep tissue) affects deep psoas/pelvic floor; Taurus (neck/throat muscles); Leo (cardiac muscle); Aquarius (calves, peripheral muscle).",
+    "secondarySigns": ["Each sign rules specific muscle groups per medical astrology body-map tradition", "Sagittarius (hips, thighs — gluteals, hip flexors, quadriceps, hamstrings)", "Capricorn (knees, joints)"],
+    "houses": {"primary": [1, 6], "secondary": [3, 9], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {
+      "name": "Renal Axis (lower back muscular)",
+      "polarity": "Aries ↔ Libra",
+      "source": "Minerva (2023)",
+      "interpretation": "Aries (head, neck activation) opposite Libra (lower back, kidneys). Lumbar QL + psoas tension often tracks this axis. Adrenal (Aries) overdrive depletes the structural support (Libra)."
+    },
+    {
+      "name": "Cardio-Circulatory Axis (cardiac + skeletal muscle)",
+      "polarity": "Leo ↔ Aquarius",
+      "source": "Minerva (2023)",
+      "interpretation": "Leo (heart muscle, thoracic spine) opposite Aquarius (calves, peripheral circulation to muscle). Cardiac muscle is part of muscular system."
+    }
+  ],
+  "energetics": {
+    "chakra": "Root (Muladhara) for grounding + structural; Solar Plexus (Manipura) for action/will",
+    "chakraColor": "Red (root) / yellow (solar)",
+    "chakraHz": 396.0,
+    "nervousSystemPathway": "Spinal motor → anterior horn cell → peripheral motor nerve → neuromuscular junction → muscle fiber",
+    "endocrineCorrespondence": "Adrenal medulla (acute Mars), adrenal cortex (cortisol affects muscle breakdown), testes (anabolic), pancreas (insulin for muscle glucose uptake)",
+    "elementalCorrespondence": "Fire primary",
+    "brainwaveAffinity": "Beta during action; Alpha during recovery",
+    "meridianCrossover_TCM": "Spleen meridian (governs muscle tissue per TCM). Liver meridian (tendons). Bladder meridian (back muscles)."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Mag Phos", "saltFullName": "Magnesia Phosphorica", "sign": "Leo", "epithet": "Antispasmodic — Cramping Salt", "indicatedFor": "Muscle cramps, spasms, charley horses, menstrual cramps, restless legs. Take in HOT water for fastest action.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Ferr Phos", "saltFullName": "Ferrum Phosphoricum", "sign": "Pisces", "epithet": "First Aid — Inflammation", "indicatedFor": "Acute muscle inflammation, strain/sprain (first 24-48hr), DOMS reduction, soft tissue trauma.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Fluor", "saltFullName": "Calcarea Fluorica", "sign": "Cancer", "epithet": "Elasticity / Connective Tissue", "indicatedFor": "Tendon weakness, ligament laxity, post-injury elastic tissue rebuild, varicose veins.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Phos", "saltFullName": "Calcarea Phosphorica", "sign": "Capricorn", "epithet": "Foundation — Muscle/Bone Interface", "indicatedFor": "Tendon insertion problems, slow muscle recovery from injury, growing pains in children.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Kali Phos", "saltFullName": "Kali Phosphoricum", "sign": "Aries", "epithet": "Nerve-Muscle Fatigue", "indicatedFor": "Post-exercise nervous exhaustion, weakness from depleted nerve fuel.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Cramp bark (Viburnum opulus)", "classicalAttribution": "Moon / Venus", "mechanism": "Smooth + skeletal muscle antispasmodic", "indicatedFor": "Menstrual cramps, muscle spasm, restless legs"},
+      {"name": "Turmeric (Curcuma longa)", "classicalAttribution": "Sun / Mars", "mechanism": "Anti-inflammatory (curcumin)", "indicatedFor": "Muscle inflammation, exercise recovery, chronic muscle pain"},
+      {"name": "Devil's claw (Harpagophytum)", "classicalAttribution": "Mars / Saturn", "mechanism": "Anti-inflammatory analgesic", "indicatedFor": "Muscular-skeletal pain, lower back pain"},
+      {"name": "Arnica (Arnica montana)", "classicalAttribution": "Mars", "mechanism": "Topical: reduces bruising, swelling (homeopathic preparations only — toxic if ingested concentrated)", "indicatedFor": "Acute strain/sprain, bruising — TOPICAL ONLY (or homeopathic)"}
+    ],
+    "crystals": [
+      {"name": "Red Jasper", "planet": "Mars", "bodyPlacement": "Lower back, painful muscle", "classicalAttribution": "Mars stone — muscular vitality"},
+      {"name": "Bloodstone", "planet": "Mars", "bodyPlacement": "Hold during recovery", "classicalAttribution": "Athletic recovery, blood-muscle"},
+      {"name": "Hematite", "planet": "Mars", "bodyPlacement": "Feet or holding", "classicalAttribution": "Grounding muscular tension"}
+    ],
+    "tuningForks": [
+      {"planet": "Mars", "hz": 144.72, "applicationPoint": "Directly on muscle belly of involved area", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Sun", "hz": 126.22, "applicationPoint": "Heart center for cardiac muscle"},
+      {"planet": "Earth Year Om", "hz": 136.10, "applicationPoint": "Grounding regulator — feet"}
+    ],
+    "scents": [
+      {"name": "Ginger", "planet": "Mars", "delivery": "topical diluted on muscle", "dataRef": "scents.json"},
+      {"name": "Black pepper", "delivery": "topical diluted (warming for muscle)"},
+      {"name": "Wintergreen (caution)", "delivery": "topical diluted only — contains methyl salicylate, never internal"}
+    ],
+    "bodyProtocols": [{"breath": "4-7-8 exhale (parasympathetic for recovery)", "movement": "Eccentric loading", "posture": "Aligned", "touch": "Deep pressure, trigger point release"}],
+    "modalityRecommendations": {
+      "individual": "Daily movement is non-negotiable for muscular health. Strength training 2-3x/week, mobility/stretching daily, hydration, protein adequate (~0.8-1.2g/kg bodyweight), magnesium (cramp prevention), sleep for muscle repair. Address chronic tension areas (neck, low back) with regular self-care or professional bodywork.",
+      "medical_astrologer": "Mars + Aries primary. Mars-Saturn for chronic stiffness/tendinopathy. Mars-Uranus for sudden injuries/cramps. Each sign rules specific muscle groups (Aries head/neck, Taurus throat/shoulders, Gemini arms/hands, Cancer chest/breast, Leo back/heart, Virgo abdomen, Libra lower back/kidneys, Scorpio pelvic floor/deep, Sagittarius hips/thighs, Capricorn knees, Aquarius calves/ankles, Pisces feet).",
+      "reiki": "Mars-active areas: cooling visualization. Chronically tense: red-to-orange-to-green warming. Hand position over involved muscle.",
+      "bodywork_general": "PRIMARY MODALITY for muscular system. Trigger point release (Travell-Simons). Myofascial release. Neuromuscular technique (NMT). Sports massage. Active release technique (ART). Fascial line work (Anatomy Trains framework). Specific to muscle: identify, palpate, release. Combine with mobilization and movement re-education.",
+      "bodywork_contraindications": "Acute strain/sprain (first 48-72hr): RICE protocol, no deep work over injury. DVT suspected: never massage. Anticoagulant therapy: bruising precautions. Recent surgery: clearance required.",
+      "naturopathy": "Magnesium glycinate or malate (cramping). Turmeric/curcumin (inflammation). Omega-3 (anti-inflammatory). Tart cherry (DOMS). Protein adequacy. Vitamin D (muscle function). Address underlying inflammatory drivers.",
+      "acupuncture": "Local + distal points for muscle pain. Trigger point dry needling. Bladder meridian (UB 23, 25 for back). Liver meridian (LV 3 for tendon/qi).",
+      "ayurveda_phase2_placeholder": "Mamsa Dhatu (muscle tissue). Vata excess = muscle tremor/cramping. Pitta excess = inflammation. Kapha excess = muscle heaviness. Abhyanga (oil massage) primary. Phase 2.",
+      "pastoral_spiritual": "Body as instrument. Movement as prayer. Yoga, tai chi, qigong as embodied practice."
+    }
+  },
+  "pathologies": [
+    {
+      "id": "musc_strain_acute",
+      "name": "Muscle Strain / Sprain (Acute)",
+      "icdReference": "S00-S99 (by location)",
+      "system": "muscular",
+      "category": "acute_injury",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Mars transit (current — high injury risk window)", "Mars-Uranus (sudden injury)", "Mars-Saturn (forcing through restriction → injury)"],
+        "signEmphasis": ["Sign ruling injured body part"],
+        "transitTriggers": ["Active Mars transit, especially through fire signs"]
+      },
+      "classicalReference": "Cornell (1933): 'Mars in stress → strain, sprain, sudden injury; Mars-Uranus → unexpected accident.'",
+      "cellSalts": ["Ferr Phos (acute)", "Calc Fluor (after 72hr for tissue repair)", "Mag Phos (cramping)"],
+      "indicatorLanguage": {
+        "individual": "Acute muscle strain responds to RICE (Rest, Ice, Compression, Elevation) for 48-72 hours, then gradual mobilization. Persistent pain > 1 week or inability to bear weight warrants medical evaluation.",
+        "practitioner": "Active Mars transits classically associated with increased injury risk. Acute strain: 48-72hr RICE, then progressive return. Differentiate strain (muscle) from sprain (ligament) from tear (partial vs complete). Refer for imaging if severe pain, inability to bear weight, or no improvement in 7-10 days."
+      },
+      "modalityNotes": {
+        "bodywork": "First 48-72hr: NO deep work over injury. Lymphatic drainage proximal to injury OK. Recovery phase: progressive bodywork, scar tissue prevention.",
+        "reiki": "Excellent for acute — distance or above-body work doesn't require physical contact. Cooling intention.",
+        "lifestyle": "RICE first 48-72hr. Arnica gel topical. Bromelain (pineapple enzyme) for swelling. Ginger anti-inflammatory."
+      },
+      "redFlags": ["Inability to bear weight or move joint → orthopedic evaluation", "Suspected tendon rupture (snap heard, immediate severe weakness) → urgent", "Compartment syndrome (severe pain disproportionate to injury, tense compartment) → ED"]
+    },
+    {
+      "id": "musc_fibromyalgia",
+      "name": "Fibromyalgia",
+      "icdReference": "M79.7",
+      "system": "muscular",
+      "category": "chronic_pain_syndrome",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Neptune-Mars (diffuse muscular sensitivity)", "Saturn-Moon (chronic emotional-muscular holding)", "Chiron involvement (wounded healer pattern)"],
+        "signEmphasis": ["Pisces (diffuse sensitivity)", "Capricorn (chronic structural)"],
+        "houseEmphasis": ["6th, 12th houses"]
+      },
+      "classicalReference": "Modern syndrome. Neptune-Mars patterns align with diffuse central sensitization (modern attribution).",
+      "cellSalts": ["Mag Phos", "Kali Phos", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Widespread muscular pain, fatigue, sleep difficulties, and cognitive fog characterize this condition. Multidisciplinary care — gentle movement, sleep optimization, stress management, nervous-system regulation — produces the best outcomes.",
+        "practitioner": "Neptune-Mars and Saturn-Moon configurations align with central sensitization patterns (modern attribution). Fibromyalgia is a real but poorly understood syndrome. Approach: gentle movement (graded), sleep hygiene critical, nervous system regulation (vagal practices, restorative bodywork), magnesium, low-dose naltrexone (rheumatology), CBT. Refer for rheumatology consultation to exclude other diagnoses."
+      },
+      "modalityNotes": {
+        "bodywork": "GENTLE only. Aggressive work worsens symptoms. Lymphatic drainage, light effleurage, craniosacral, gentle myofascial release. Trauma-informed approach.",
+        "reiki": "Excellent — non-touching distance reiki often preferred. Full chakra balancing.",
+        "lifestyle": "Sleep optimization #1. Graded movement (walking, water exercise, gentle yoga). Magnesium, D, B12, CoQ10. Stress management. Nervous system practices. Address comorbid depression/anxiety."
+      },
+      "redFlags": ["New severe focal weakness → rule out other diagnoses"]
+    },
+    {
+      "id": "musc_low_back_pain",
+      "name": "Chronic Low Back Pain",
+      "icdReference": "M54.5",
+      "system": "muscular",
+      "category": "chronic_pain_structural",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn in Libra (lower back)", "Mars-Saturn (chronic tension under structural pressure)", "Uranus in Libra (sudden disc issues)"],
+        "signEmphasis": ["Libra (lower back proper)", "Sagittarius (hips, sciatic)"],
+        "houseEmphasis": ["6th house Saturn"]
+      },
+      "classicalReference": "Cornell (1933): 'Lumbago — Saturn in Libra; chronic restriction of lumbar function.'",
+      "cellSalts": ["Calc Fluor (disc/ligament)", "Mag Phos (muscular spasm component)", "Kali Phos (nerve component if sciatic)"],
+      "indicatorLanguage": {
+        "individual": "Low back pain is extremely common. Most resolves with movement (not bed rest), targeted exercises (especially hip + core strengthening), and addressing posture. Persistent pain > 6 weeks, severe radiating pain, or any bowel/bladder dysfunction with back pain requires medical evaluation.",
+        "practitioner": "Saturn in Libra classically associated with chronic lumbar restriction (Cornell, 1933). Differential: muscular (myofascial), discogenic, facet joint, sacroiliac, hip referred. Address: core stability (transverse abdominis, multifidus), hip mobility (psoas, glutes), QL release, fascial work. Refer if red flags."
+      },
+      "modalityNotes": {
+        "bodywork": "QL release, psoas release, glute work, thoracolumbar mobilization. Address compensatory patterns (often shoulder/neck involvement). Fascial work along Superficial Back Line.",
+        "reiki": "Root + sacral chakras. Red-orange light at lumbar.",
+        "lifestyle": "Movement (not bed rest). Strengthening (McGill big 3: curl-up, side plank, bird dog). Hip mobility. Anti-inflammatory diet. Address ergonomics."
+      },
+      "redFlags": ["Bowel/bladder dysfunction with back pain → cauda equina, ED", "Saddle anesthesia → ED", "Progressive leg weakness → urgent", "Fever + back pain → rule out infection", "History of cancer + new back pain → rule out metastasis"]
+    },
+    {
+      "id": "musc_tendinopathy",
+      "name": "Tendinopathy (Tendinitis / Tendinosis)",
+      "icdReference": "M75-M77",
+      "system": "muscular",
+      "category": "overuse_injury",
+      "astrologicalSignature": {
+        "planetaryCombinations": ["Saturn-Mars (chronic strain under restriction)", "Mars in air signs afflicted (repetitive use)", "Saturn-Venus (connective tissue weakness)"],
+        "signEmphasis": ["Variable by site"],
+        "transitTriggers": ["Long Saturn transits"]
+      },
+      "classicalReference": "Cornell (1933): 'Saturn in muscular signs → chronic tendinous restriction.' Modern: tendinosis is degenerative, not inflammatory — different treatment than tendinitis.",
+      "cellSalts": ["Calc Fluor (PRIMARY for connective tissue)", "Silica (long-term healing)", "Ferr Phos (acute)"],
+      "indicatorLanguage": {
+        "individual": "Tendon pain (often with use, may improve with warming up) responds to: relative rest from aggravating activity, gentle progressive loading (NOT total rest — tendons need load to heal), eccentric exercises (gold standard), and addressing biomechanical factors.",
+        "practitioner": "Saturn-Mars combinations classically associated with chronic tendinous restriction. Modern: differentiate tendinitis (acute inflammatory) from tendinosis (chronic degenerative). Tendinosis treatment: eccentric loading, progressive return, address kinetic chain issues. PRP/prolotherapy for refractory cases. Avoid prolonged NSAIDs (impairs tendon healing)."
+      },
+      "modalityNotes": {
+        "bodywork": "Cross-fiber friction (controversial — some evidence for chronic). Eccentric exercise prescription. Address upstream/downstream kinetic chain. Cupping for fascial mobility.",
+        "reiki": "Local + chakra healing.",
+        "lifestyle": "Progressive loading (eccentric primary). Address contributing factors (form, ergonomics, equipment). Collagen + vitamin C (tendon synthesis). Patience — tendons heal slowly (12+ weeks often)."
+      },
+      "redFlags": ["Sudden snap with immediate weakness (suspected rupture) → urgent orthopedics"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2,
+    "_status": "placeholder",
+    "tridosha": {"primary": "Vata (movement)", "secondary": "Kapha (muscle bulk)"},
+    "nakshatras_governing_muscular": ["Bharani (Mars)", "Magha (Sun-cardiac)"],
+    "ayurvedicOrgans": ["Mamsa Dhatu", "Snayu (tendons)"],
+    "ayurvedicTreatments_phase2": "Abhyanga (oil massage) primary modality. Mahanarayana taila. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Mars + Aries", "Mars-Saturn for chronic", "Mars-Uranus for sudden injury", "Sign-specific muscle attribution"], "outputDepth": "Full sign-by-sign muscle map"},
+    "reiki": {"focusPoints": ["Root + Solar Plexus", "Local muscle area"], "outputDepth": "Chakra + local protocols"},
+    "bodywork": {"focusPoints": ["PRIMARY MODALITY for this system", "Trigger points", "Fascial lines", "Joint mobility", "Movement re-education"], "contraindicationsCriticallity": "MODERATE — acute injury, DVT, anticoagulants", "outputDepth": "Full muscle-resolution map, trigger point reference, fascial line guide"},
+    "naturopath": {"focusPoints": ["Anti-inflammatory protocols", "Magnesium", "Protein adequacy"], "outputDepth": "Supplement + nutrition protocols"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Mamsa Dhatu", "Abhyanga"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Trigger point dry needling", "Liver/tendons", "Spleen/muscle"], "outputDepth": "Meridian + local point map"},
+    "pastoral_spiritual": {"focusPoints": ["Embodied movement practices", "Yoga, tai chi, qigong"], "outputDepth": "Movement-as-prayer practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Muscular complaints are bodyworker's primary scope. Refer for: suspected fracture, tendon rupture, infection, neurological deficit, cancer history with new pain.",
+    "indicatorLanguagePolicy": "Per COMPLIANCE.md §3.",
+    "criticalReferralRules": [
+      "Bowel/bladder dysfunction + back pain → ED (cauda equina)",
+      "Sudden severe weakness or sensory loss → ED (rule out stroke/cord lesion)",
+      "Severe pain disproportionate to injury → rule out compartment syndrome",
+      "Fever + spine pain → rule out infection",
+      "History of cancer + new bone/muscle pain → rule out metastasis"
+    ],
+    "redFlagKeywords": ["sudden weakness", "can't move limb", "saddle numbness", "fever back pain"]
+  }
+}

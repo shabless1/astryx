@@ -1,0 +1,82 @@
+[
+  {
+    "kitId": "planetary-sign-kit",
+    "kitName": "Planetary Calibration Kit",
+    "tagline": "Your sign. Your medicine. Your stones.",
+    "description": "One kit per sun sign — each contains the ruling planet's Sacred Botanical tea, featured crystal (polished, tumbled), a printed mini Blueprint card with your sign's Hz frequency, plant ally, and body placement guide, and a sealed keepsake pouch.",
+    "variants": "12 variants — one per sun sign (Aries through Pisces)",
+    "contents": [
+      "Sacred Botanical herb (ruling planet) — 1 oz dried, sealed",
+      "Featured crystal — 1 polished tumbled stone",
+      "Mini Blueprint Card — printed, sign-specific: Hz frequency, plant ally, crystal, body placement",
+      "Organza or linen keepsake pouch",
+      "QR code linking to the user's Astryx blueprint"
+    ],
+    "shopLink": "https://sacredtea.net",
+    "proposedPrice": "$28-38 USD",
+    "appIntegration": "When user views their Cosmic Blueprint, a 'Shop Your Kit' card appears below Plant Allies with their sign-specific kit. One-click to sacredtea.net product page.",
+    "kitEligible": true
+  },
+  {
+    "kitId": "lotus-spectrum-collection",
+    "kitName": "The Lotus Spectrum Collection",
+    "tagline": "Four lotus. Five planets. One sacred lineage.",
+    "description": "The complete Lotus Spectrum — all four lotus varieties (Red, White, Blue, Egyptian Blue) as individual dried flower packets, plus four corresponding crystals (one per lotus), a Lotus Planetary Matrix card, and a four-cup brewing & intention guide.",
+    "contents": [
+      "Red Lotus petals — 0.5 oz dried (Mars/Sun)",
+      "White Lotus petals/stamens — 0.5 oz dried (Moon/Venus)",
+      "Blue Lotus flowers — 0.5 oz dried (Jupiter)",
+      "Egyptian Blue Lotus flowers — 0.5 oz dried (Neptune)",
+      "Four crystal set: Red Jasper, Moonstone, Lapis Lazuli, Labradorite (all tumbled)",
+      "Lotus Planetary Matrix card — full color, laminated",
+      "Brewing & Intention Guide — brewing temps, intentions, safety notes",
+      "Gift box packaging"
+    ],
+    "shopLink": "https://sacredtea.net",
+    "proposedPrice": "$58-72 USD",
+    "appIntegration": "Featured in the Plant Allies tab as 'The Lotus Collection — cross-planetary medicine.' Visible to all users regardless of sign. Prominent in the Welcome Screen shop section.",
+    "kitEligible": true
+  },
+  {
+    "kitId": "practitioner-calibration-bundle",
+    "kitName": "Practitioner Calibration Bundle",
+    "tagline": "The full system. For the professional practitioner.",
+    "description": "The complete physical toolkit for Astryx-certified practitioners — 7 planetary Sacred Botanical teas, 7 planetary crystals, a full-color Practitioner Body Layout Map, and a Sacred Tones Session Guide card listing all 13 planetary Hz frequencies and bone application points.",
+    "contents": [
+      "7 Sacred Botanical teas — one per traditional planet (Sun through Saturn): Red Lotus, White Lotus, Lavender, Rose, Red Hibiscus, Blue Lotus, Horsetail (0.5 oz each)",
+      "7 featured crystals — one per traditional planet: Amber, Moonstone, Blue Lace Agate, Rose Quartz, Bloodstone, Lapis Lazuli, Shungite (all polished, tumbled)",
+      "Practitioner Body Layout Map — full-color, laminated, 8.5x11 — shows crystal placement points over body outline",
+      "Sacred Tones Session Guide card — all 13 planetary Hz, bone application points, vagal strength indicators",
+      "Velvet or linen storage pouch for crystals",
+      "Wooden or bamboo herb storage box",
+      "QR code to Astryx Practitioner Portal"
+    ],
+    "shopLink": "https://sacredtea.net",
+    "proposedPrice": "$125-158 USD",
+    "appIntegration": "Promoted in Practitioner Portal dashboard as 'Complete your practice with the physical toolkit.' Shown in Session Mode alongside Sacred Tones fork map. Link in PDF Blueprint Report footer.",
+    "kitEligible": true
+  },
+  {
+    "kitId": "sacred-botanicals-tea-collection",
+    "kitName": "Sacred Botanicals Tea Collection",
+    "tagline": "Nine master plants. Nine planetary medicines.",
+    "description": "All nine Sacred Botanicals as individual tea samples — the complete cross-planetary botanical library in one collection. Includes brewing guide and planetary correspondence card.",
+    "contents": [
+      "Red Lotus (Sun/Mars) — 0.5 oz",
+      "White Lotus (Moon/Venus) — 0.5 oz",
+      "Lavender (Mercury) — 0.5 oz culinary grade",
+      "Rose petals (Venus) — 0.5 oz organic",
+      "Red Hibiscus (Mars) — 0.5 oz",
+      "Blue Lotus (Jupiter) — 0.5 oz",
+      "Horsetail (Saturn) — 0.5 oz",
+      "Egyptian Blue Lotus (Neptune) — 0.5 oz",
+      "Damiana (Pluto) — 0.5 oz",
+      "Sacred Botanicals Brewing Guide — temperatures, timing, intentions, safety",
+      "Planetary Correspondence Card"
+    ],
+    "shopLink": "https://sacredtea.net",
+    "proposedPrice": "$45-62 USD",
+    "appIntegration": "Accessible from all blueprint views as 'Explore the full Sacred Botanicals collection.' Primary upsell for individual users who want to go deeper.",
+    "kitEligible": true
+  }
+]

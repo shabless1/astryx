@@ -1,0 +1,161 @@
+{
+  "_meta": {"title": "Urinary System", "schemaVersion": "1.0", "complianceVersion": "1.0", "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"], "lastUpdated": "2026-05-24"},
+  "system": {"id": "urinary", "name": "Urinary System", "alternateNames": ["Renal System", "Excretory System"], "shortDescription": "Kidneys, ureters, bladder, urethra. Filters blood (~180L/day), maintains fluid/electrolyte/acid-base balance, regulates blood pressure (RAAS), produces erythropoietin and activates vitamin D.", "icon": "💧", "accentColor": "#5DADE2", "elementalProfile": "Water primary (Libra-Venus); Air balance (Aquarius)"},
+  "anatomy": {
+    "primaryStructures": [
+      "Kidneys (paired, retroperitoneal — T12-L3 level)",
+      "Renal cortex + medulla + pyramids",
+      "Nephrons (~1 million per kidney) — glomerulus, Bowman's capsule, proximal tubule, loop of Henle, distal tubule, collecting duct",
+      "Renal pelvis",
+      "Ureters (~25-30cm each — peristaltic)",
+      "Bladder (detrusor muscle, trigone)",
+      "Urethra (longer in male, shorter in female)",
+      "Sphincters (internal + external)",
+      "Renal vasculature (renal arteries 20-25% cardiac output)"
+    ],
+    "subStructures": {
+      "filtration_unit": ["Glomerulus (filtration)", "Bowman's capsule", "PCT (reabsorption)", "Loop of Henle (concentration)", "DCT (fine-tuning)", "Collecting duct (ADH-regulated)"],
+      "endocrine_functions": ["RAAS (renin-angiotensin-aldosterone — BP)", "Erythropoietin (RBC production)", "Calcitriol (active vitamin D)", "Prostaglandins"],
+      "voiding_path": ["Calyces → renal pelvis → ureter → bladder → urethra"]
+    },
+    "vertebralCorrelates": "Per Cornell: T11-L2 dorsal-lumbar relates to kidneys, ureters. L1-L2 → bladder. Bodyworkers: lumbar mobilization + psoas (which overlies kidneys) supports urinary function.",
+    "nervePlexus": "Renal plexus (sympathetic from celiac + aorticorenal). Hypogastric + vesical plexus (bladder). Pudendal nerve (external sphincter)."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Venus",
+    "primaryPlanetRationale": "Venus rules Libra, which rules the kidneys per Cornell. Cornell (1933): 'Venus rules the kidneys, the lumbar region.'",
+    "primarySign": "Libra",
+    "primaryHouse": 7,
+    "secondaryPlanets": [
+      {"planet": "Venus", "rules": "Kidneys (primary), renal function, balance/filtration as Venusian harmony", "rationale": "Cornell (1933)"},
+      {"planet": "Mars", "rules": "Bladder inflammation, UTI, hematuria, kidney stones (sharp Mars)", "rationale": "Cornell: 'Mars in Libra/Scorpio → inflammatory urinary.'"},
+      {"planet": "Moon", "rules": "Bladder, fluid output, urinary fluid balance", "rationale": "Cornell: 'Moon rules all fluids including urinary.'"},
+      {"planet": "Saturn", "rules": "Chronic renal disease, kidney stones (crystalline Saturn), urinary retention", "rationale": "Cornell: 'Saturn in Libra → chronic renal weakness.'"},
+      {"planet": "Mercury", "rules": "Ureter peristalsis (signal/motility), nervous bladder", "rationale": "Mercury = peristalsis"},
+      {"planet": "Pluto", "rules": "Bladder (Scorpio rules bladder), deep eliminative function, prostate-bladder interface", "rationale": "Pluto modern ruler of Scorpio = bladder/elimination"},
+      {"planet": "Neptune", "rules": "Idiopathic urinary symptoms, interstitial cystitis, urinary-emotional connection", "rationale": "Modern attribution"},
+      {"planet": "Jupiter", "rules": "Diuretic function expansion, polyuria patterns", "rationale": "Jupiter expands flow"}
+    ],
+    "secondarySigns": ["Scorpio (bladder, urethra)", "Libra (kidneys primary)"],
+    "houses": {"primary": [7], "secondary": [8], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {"name": "Renal Axis", "polarity": "Aries ↔ Libra", "source": "Minerva (2023), Axa renală", "interpretation": "THE primary axis for this system. Aries (adrenals — sit ON the kidneys anatomically) opposite Libra (kidneys proper). Adrenal-renal interface critical for blood pressure, fluid balance, stress-urinary connection.", "indicatorPattern": {"aries_dominant": "High BP, adrenal overdrive, sympathetic urinary irritability", "libra_dominant": "Low BP, renal weakness, fluid retention", "balanced": "Smooth renal function, balanced BP, healthy fluid distribution"}},
+    {"name": "Regenerative Axis (urinary-reproductive overlay)", "polarity": "Taurus ↔ Scorpio", "source": "Minerva (2023)", "interpretation": "Scorpio rules bladder + reproductive — close anatomical overlap. UTI vs vaginitis differential common. Pelvic floor governs both systems."}
+  ],
+  "energetics": {
+    "chakra": "Sacral (Svadhisthana) for bladder/lower; Heart's lower border for kidneys (some traditions)",
+    "chakraColor": "Orange (sacral)",
+    "chakraHz": 417.0,
+    "nervousSystemPathway": "Renal sympathetic = vasoconstriction; parasympathetic via pelvic nerves for voiding",
+    "endocrineCorrespondence": "RAAS axis (renin-angiotensin-aldosterone), erythropoietin, calcitriol",
+    "elementalCorrespondence": "Water primary",
+    "brainwaveAffinity": "Alpha for parasympathetic voiding",
+    "meridianCrossover_TCM": "Kidney meridian (CRITICAL in TCM — governs essence/jing, bones, will, fear). Bladder meridian (longest meridian, runs along entire back)."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Nat Phos", "saltFullName": "Natrum Phosphoricum", "sign": "Libra", "epithet": "Acid-Alkaline Balance / Kidney Filter", "indicatedFor": "Acidic urine, uric acid crystals, gout-tendency. Carey's PRIMARY salt for this system.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Mur", "saltFullName": "Natrum Muriaticum", "sign": "Aquarius", "epithet": "Fluid Distribution", "indicatedFor": "Water balance, edema, fluid retention.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Sulph", "saltFullName": "Natrum Sulphuricum", "sign": "Taurus", "epithet": "Water Eliminator", "indicatedFor": "Excess water, gallbladder-kidney axis, biliousness affecting urinary.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Bladder cleansing", "indicatedFor": "Chronic urinary clearing, post-infection support.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Cranberry", "classicalAttribution": "Venus / Mars", "mechanism": "Proanthocyanidins prevent E. coli adhesion to bladder wall", "indicatedFor": "UTI prevention (NOT acute treatment — too late at infection)"},
+      {"name": "D-Mannose", "classicalAttribution": "Modern", "mechanism": "Sugar that E. coli binds to instead of bladder wall", "indicatedFor": "UTI prevention + early treatment of E. coli UTI"},
+      {"name": "Uva ursi (bearberry)", "classicalAttribution": "Mars / Saturn", "mechanism": "Arbutin → hydroquinone antimicrobial in urine (works in alkaline urine — take with baking soda)", "indicatedFor": "Acute UTI — short course only (toxicity if prolonged)"},
+      {"name": "Marshmallow root", "classicalAttribution": "Moon / Venus", "mechanism": "Demulcent — soothes inflamed urinary mucosa", "indicatedFor": "Interstitial cystitis, irritated bladder, post-UTI"},
+      {"name": "Dandelion leaf", "classicalAttribution": "Jupiter", "mechanism": "Potassium-sparing diuretic", "indicatedFor": "Fluid retention, mild edema"},
+      {"name": "Nettle leaf", "classicalAttribution": "Mars / Saturn", "mechanism": "Mineral-rich diuretic", "indicatedFor": "Kidney support, mineral replenishment"},
+      {"name": "Horsetail", "classicalAttribution": "Saturn", "mechanism": "Silica + mild diuretic", "indicatedFor": "Kidney support, urinary mucosa"}
+    ],
+    "crystals": [
+      {"name": "Jade", "planet": "Venus / Moon", "bodyPlacement": "Lower back over kidneys", "classicalAttribution": "Traditional 'kidney stone' — supports renal function"},
+      {"name": "Bloodstone", "planet": "Mars", "bodyPlacement": "Bladder area", "classicalAttribution": "Supports clean urinary function"}
+    ],
+    "tuningForks": [
+      {"planet": "Venus", "hz": 221.23, "applicationPoint": "Lower back over kidneys", "dataRef": "sacredTones_nervousSystem.json"},
+      {"planet": "Moon", "hz": 210.42, "applicationPoint": "Bladder (lower abdomen)"}
+    ],
+    "scents": [
+      {"name": "Juniper (caution)", "delivery": "diluted topical", "mechanism": "Traditional urinary support — AVOID with active kidney disease"},
+      {"name": "Cypress", "delivery": "diffuser or diluted topical", "mechanism": "Fluid balance"}
+    ],
+    "bodyProtocols": [{"breath": "Diaphragmatic", "movement": "Hip circles, gentle lumbar mobility", "posture": "Spine neutral", "touch": "Lumbar palms over kidney area"}],
+    "modalityRecommendations": {
+      "individual": "Hydration is #1 (2L+ water/day for most adults). Cranberry/D-mannose for UTI prevention (especially if recurrent). Address pelvic floor (Kegels for both incontinence AND overactive bladder — opposite presentations, same muscles). UTI symptoms (burning, urgency, frequency) → MD if not resolved with home care in 24-48hr.",
+      "medical_astrologer": "Venus + Libra primary. Aries-Libra renal axis. Mars in urinary signs for acute UTI. Saturn for chronic renal. Pluto for bladder/deep elimination. Outer planet transits to natal Venus or Libra significant.",
+      "reiki": "Sacral chakra extended. Orange light visualization. Hand position over lower abdomen (bladder) and lower back (kidneys).",
+      "bodywork_general": "Psoas release (kidneys sit anteriorly on psoas). QL release. Lumbar mobilization. Pelvic floor (specialized training). Visceral kidney techniques (advanced).",
+      "bodywork_contraindications": "Active acute UTI: defer (fever risk). Known kidney disease: caution with deep work. Recent surgery, pregnancy: precautions.",
+      "naturopathy": "Hydration, cranberry/D-mannose prevention, uva ursi acute (short course), marshmallow for IC, dandelion/nettle for fluid balance. Address recurrent UTI patterns (post-coital, post-menopausal). Refer for nephrology if elevated creatinine/BUN.",
+      "acupuncture": "Kidney meridian (KD 3 Taixi master point). Bladder meridian (UB 23 Shenshu over kidneys). Ren Mai for bladder.",
+      "ayurveda_phase2_placeholder": "Mutravaha Srotas (urinary channels). Apana Vata (downward elimination). Phase 2.",
+      "pastoral_spiritual": "Kidneys hold fear (TCM). Release work for stored fear. 'I release what no longer serves.'"
+    }
+  },
+  "pathologies": [
+    {"id": "ren_uti", "name": "UTI (Urinary Tract Infection)", "icdReference": "N39.0", "system": "urinary", "category": "infection",
+      "astrologicalSignature": {"planetaryCombinations": ["Mars in Libra/Scorpio (acute inflammation)", "Mars-Moon (fluid + inflammation)", "Pluto-Mars in Scorpio"], "transitTriggers": ["Mars transit through Libra/Scorpio"]},
+      "classicalReference": "Cornell (1933): 'Mars in Libra/Scorpio → urinary inflammation, cystitis.'",
+      "cellSalts": ["Ferr Phos", "Calc Sulph", "Kali Mur"],
+      "indicatorLanguage": {
+        "individual": "UTI symptoms (burning urination, urgency, frequency, suprapubic pain) — early intervention with D-mannose, cranberry, increased fluids may help. If symptoms persist > 24-48 hours, fever develops, back pain occurs, or blood appears in urine — see your healthcare provider for evaluation and likely antibiotics.",
+        "practitioner": "Mars-urinary sign configurations classically associated with UTI patterns. Most uncomplicated UTI in healthy adult woman responds to short antibiotic course. Refer for: fever, back pain (rule out pyelonephritis), pregnancy, immunocompromise, men, children, recurrent. Holistic prevention strategies appropriate after acute resolution."
+      },
+      "modalityNotes": {"bodywork": "Defer during acute. Recovery: pelvic floor work helpful.", "lifestyle": "Hydration, D-mannose, cranberry, urinating after intercourse, front-to-back wiping, cotton underwear"},
+      "redFlags": ["Fever + back pain (pyelonephritis) → urgent MD", "UTI in pregnancy → MD same day", "Blood in urine + fever → urgent"]
+    },
+    {"id": "ren_kidney_stones", "name": "Kidney Stones (Nephrolithiasis)", "icdReference": "N20", "system": "urinary", "category": "structural",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Mars in Libra (crystalline obstruction)", "Saturn in Libra (mineral deposition)", "Jupiter-Saturn (gout-stone overlap)"], "transitTriggers": ["Saturn transit"]},
+      "classicalReference": "Cornell (1933): 'Renal calculi — Saturn in Libra; mineral deposition under restricted flow.'",
+      "cellSalts": ["Nat Phos (acid type stones)", "Calc Sulph"],
+      "indicatorLanguage": {
+        "individual": "Kidney stones produce some of the most severe pain in medicine (renal colic). Suspected kidney stone → urgent medical evaluation. Prevention (especially if recurrent): hydration (2-3L/day), reduce oxalate-rich foods if calcium oxalate type, address dietary triggers.",
+        "practitioner": "Saturn in Libra classically associated with renal calculi (Cornell, 1933). Acute stones are medical (CT imaging, pain control, possible urology intervention). Prevention: 24-hour urine collection identifies stone type → tailored intervention (low oxalate for Ca-oxalate, low purine for uric acid, etc.). Refer to urology/nephrology."
+      },
+      "modalityNotes": {"bodywork": "Active colic = ED. Prevention phase: lumbar work, lymphatic drainage.", "lifestyle": "Hydration MOST important. Dietary modifications per stone type."},
+      "redFlags": ["Severe flank pain + nausea/vomiting → ED", "Stone with fever → urgent (obstruction + infection)"]
+    },
+    {"id": "ren_incontinence", "name": "Urinary Incontinence", "icdReference": "N39.3-N39.4", "system": "urinary", "category": "functional",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn in Libra (weakened pelvic floor with age)", "Moon-Saturn (chronic fluid dysregulation)"], "transitTriggers": ["Outer planet transits with age-related onset"]},
+      "classicalReference": "Cornell (1933): 'Saturn afflictions in urinary signs → loss of control function.'",
+      "cellSalts": ["Calc Fluor (tissue tone)", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Urinary incontinence is COMMON and TREATABLE — please don't suffer in silence. Pelvic floor physical therapy is highly effective for most types. Specialized care available.",
+        "practitioner": "Saturn-urinary configurations align with sphincter weakness patterns. Differentiate: stress (effort/cough/sneeze), urge (overactive bladder), mixed, overflow. Pelvic floor PT first-line. Refer to urogynecology / urology for severe or refractory."
+      },
+      "modalityNotes": {"bodywork": "Pelvic floor specialized training. Sacral work. AVOID kegels if pelvic floor is HYPERtonic (common mistake — assess first).", "lifestyle": "Pelvic floor PT, bladder retraining, weight management, address constipation, avoid irritants (caffeine, alcohol, artificial sweeteners)"},
+      "redFlags": ["Sudden onset with neurological symptoms → urgent (rule out spinal cord)"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2, "_status": "placeholder",
+    "tridosha": {"primary": "Kapha-Vata (urinary)", "secondary": "Pitta in inflammatory UTI"},
+    "nakshatras_governing_urinary": ["Swati (Libra primary)", "Vishakha"],
+    "ayurvedicOrgans": ["Vrikka (kidneys)", "Mutravaha Srotas"],
+    "ayurvedicTreatments_phase2": "Gokshura, varun, punarnava. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Venus + Libra", "Aries-Libra renal axis", "Mars for acute"], "outputDepth": "Full renal signatures"},
+    "reiki": {"focusPoints": ["Sacral chakra", "Kidney area work"], "outputDepth": "Renal energetic"},
+    "bodywork": {"focusPoints": ["Psoas/QL release", "Lumbar mobility", "Pelvic floor (specialty)"], "contraindicationsCriticallity": "MODERATE — acute UTI, recent kidney surgery", "outputDepth": "Renal bodywork guide"},
+    "naturopath": {"focusPoints": ["Hydration", "Cranberry/D-mannose", "Stone prevention"], "outputDepth": "Comprehensive renal protocols"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Mutravaha Srotas"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Kidney meridian (jing)", "Bladder meridian"], "outputDepth": "Major TCM emphasis on Kidney essence"},
+    "pastoral_spiritual": {"focusPoints": ["Release of stored fear (TCM Kidney)", "Letting go"], "outputDepth": "Fear-release practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Acute renal failure, suspected stones, hematuria, complicated UTI all medical. Holistic adjunctive.",
+    "criticalReferralRules": [
+      "Severe flank pain + nausea → ED (kidney stone)",
+      "UTI + fever + back pain → urgent (pyelonephritis)",
+      "Hematuria (blood in urine) → urgent workup",
+      "Anuria (no urine output) → ED",
+      "Suspected acute kidney injury → urgent MD",
+      "UTI in pregnancy → MD same day"
+    ],
+    "redFlagKeywords": ["blood in urine", "severe flank pain", "no urine", "fever back pain"]
+  }
+}

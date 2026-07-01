@@ -1,0 +1,169 @@
+{
+  "_meta": {"title": "Integumentary System", "schemaVersion": "1.0", "complianceVersion": "1.0", "sources": ["Cornell (1933)", "Minerva (2023)", "Carey & Perry (1932)", "Charak (2005)"], "lastUpdated": "2026-05-24"},
+  "system": {"id": "integumentary", "name": "Integumentary System", "alternateNames": ["Skin System", "Cutaneous System"], "shortDescription": "Skin (largest organ, ~2 m²), hair, nails, sweat + sebaceous glands. The body's largest barrier organ — protection, temperature regulation, sensation, vitamin D synthesis, immune surveillance.", "icon": "🌿", "accentColor": "#C19A6B", "elementalProfile": "Earth + Air boundary"},
+  "anatomy": {
+    "primaryStructures": [
+      "Epidermis (5 layers — stratum basale, spinosum, granulosum, lucidum, corneum)",
+      "Dermis (papillary + reticular — collagen, elastin, vasculature, nerves)",
+      "Hypodermis (subcutaneous fat, larger vessels)",
+      "Hair (follicles, shafts, sebaceous glands attached)",
+      "Nails (matrix, plate, bed, cuticle)",
+      "Sweat glands (eccrine — cooling; apocrine — pheromones)",
+      "Sebaceous glands (sebum production)",
+      "Skin microbiome (resident bacteria, fungi)"
+    ],
+    "subStructures": {
+      "skin_layers": ["Stratum corneum (barrier)", "Stratum basale (regeneration)", "Dermal papillae"],
+      "skin_appendages": ["Hair follicles", "Nail matrix", "Sweat glands", "Sebaceous glands"],
+      "regional_variation": ["Thick (palms/soles)", "Thin (eyelids)", "Hairy (most body)", "Glabrous (palms, soles)"]
+    },
+    "vertebralCorrelates": "Dermatomes — each spinal nerve root supplies a specific skin region. Cervical: head/neck/upper limb. Thoracic: torso. Lumbar: lower limb anterior. Sacral: lower limb posterior + perineum.",
+    "nervePlexus": "Sensory: free nerve endings (pain, temp), Meissner corpuscles (light touch), Pacinian (deep pressure/vibration), Ruffini (stretch), Merkel (sustained touch)."
+  },
+  "astrologicalRulership": {
+    "primaryPlanet": "Saturn",
+    "primaryPlanetRationale": "Saturn rules the outer boundary (skin as body's edge) + chronic skin conditions + aging skin. Cornell (1933): 'Saturn rules the skin in its outer protective function.'",
+    "primarySign": "Capricorn",
+    "primaryHouse": 1,
+    "secondaryPlanets": [
+      {"planet": "Saturn", "rules": "Skin proper, aging skin, dryness, chronic conditions, eczema/psoriasis chronic", "rationale": "Cornell (1933)"},
+      {"planet": "Venus", "rules": "Skin beauty, complexion, soft texture, hormonal acne", "rationale": "Cornell: 'Venus rules the soft tissues, the complexion.'"},
+      {"planet": "Mars", "rules": "Inflammatory acne, rashes, cuts, burns, hot inflammatory skin", "rationale": "Cornell: 'Mars in skin signs → inflammation, redness, eruptions.'"},
+      {"planet": "Moon", "rules": "Skin fluid balance, hydration, emotional connection (skin as emotional canvas)", "rationale": "Cornell: 'The Moon rules the surface fluids.'"},
+      {"planet": "Mercury", "rules": "Skin sensitivity, allergic reactions, nervous skin (eczema with anxiety)", "rationale": "Cornell: 'Mercury rules nervous skin sensitivity.'"},
+      {"planet": "Aquarius (sign)", "rules": "Skin specifically per Cornell — Aquarius rules the skin and ankles", "rationale": "Cornell (1933): 'Aquarius rules the skin.'"},
+      {"planet": "Neptune", "rules": "Mysterious dermatological conditions, fungal skin issues, lupus-like", "rationale": "Modern attribution"},
+      {"planet": "Sun", "rules": "Sun-related skin issues, melanoma risk, vitiligo, healthy radiance", "rationale": "Cornell: 'The Sun on the skin — both health and harm.'"}
+    ],
+    "secondarySigns": ["Aquarius (skin per Cornell)", "Cancer (skin as protective boundary)", "Capricorn (Saturn)"],
+    "houses": {"primary": [1, 6], "secondary": [12], "diseaseHouses": [6, 8, 12]}
+  },
+  "axes": [
+    {"name": "Digestive-Immune Axis (gut-skin connection)", "polarity": "Virgo ↔ Pisces", "source": "Minerva (2023)", "interpretation": "The gut-skin axis is well-established. Eczema, acne, psoriasis often have gut/immune drivers. Address gut to clear skin."},
+    {"name": "Emotional-Structural Axis (skin as emotional canvas)", "polarity": "Cancer ↔ Capricorn", "source": "Minerva (2023)", "interpretation": "Emotional stress manifests in skin. Cancer side: emotional eruptions, hives. Capricorn side: chronic dry restricted skin, structural skin issues."}
+  ],
+  "energetics": {
+    "chakra": "All chakras express through skin tone/texture in that region",
+    "chakraColor": "Region-specific",
+    "chakraHz": "Variable",
+    "nervousSystemPathway": "Cutaneous sensory nerves throughout. Autonomic (sweat glands, vascular tone). Skin-brain connection bidirectional.",
+    "endocrineCorrespondence": "Pituitary (MSH), thyroid (skin texture), adrenals (cortisol affects skin), gonads (sex hormones — acne, body hair)",
+    "elementalCorrespondence": "Earth + Air boundary",
+    "brainwaveAffinity": "Sensory-rich — alpha during gentle touch, beta during pain",
+    "meridianCrossover_TCM": "Lung meridian (governs skin in TCM — 'Lung rules skin'). Large Intestine. Spleen."
+  },
+  "prescriptions": {
+    "cellSalts": [
+      {"saltShortName": "Kali Sulph", "saltFullName": "Kali Sulphuricum", "sign": "Virgo", "epithet": "Oil Maker / Skin Balance", "indicatedFor": "Psoriasis, athlete's foot, dandruff, scaling/oily skin patterns. Carey's PRIMARY skin salt.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Nat Mur", "saltFullName": "Natrum Muriaticum", "sign": "Aquarius", "epithet": "Skin Hydration", "indicatedFor": "Dry skin, hives, eczema with watery component, salt cravings + skin issues.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Silica", "saltFullName": "Silicea", "sign": "Sagittarius", "epithet": "Skin/Hair/Nail Strength", "indicatedFor": "Brittle nails, thinning hair, slow-healing skin, abscesses, suppuration.", "dataRef": "cellSalts.json"},
+      {"saltShortName": "Calc Sulph", "saltFullName": "Calcarea Sulphurica", "sign": "Scorpio", "epithet": "Cell Healer / Blood Purifier", "indicatedFor": "Acne, abscesses, slow-healing wounds, pus-forming conditions.", "dataRef": "cellSalts.json"}
+    ],
+    "sacredBotanicals": [],
+    "supplementaryHerbs": [
+      {"name": "Calendula", "classicalAttribution": "Sun", "mechanism": "Wound-healing, anti-inflammatory topical", "indicatedFor": "Topical: cuts, minor burns, eczema, diaper rash"},
+      {"name": "Burdock root", "classicalAttribution": "Venus / Saturn", "mechanism": "Blood + lymph cleanser; supports skin clearing via internal cleansing", "indicatedFor": "Chronic skin conditions (eczema, psoriasis, acne) — internal"},
+      {"name": "Red clover", "classicalAttribution": "Venus", "mechanism": "Blood purifier; mild estrogenic", "indicatedFor": "Skin conditions with hormonal component"},
+      {"name": "Yellow dock root", "classicalAttribution": "Mars", "mechanism": "Bitter, gentle laxative, supports liver-skin axis", "indicatedFor": "Chronic skin with constipation/sluggish elimination"},
+      {"name": "Tea tree (Melaleuca)", "classicalAttribution": "Mercury", "mechanism": "Antimicrobial topical", "indicatedFor": "Acne, fungal skin, minor wounds — TOPICAL ONLY"}
+    ],
+    "crystals": [
+      {"name": "Aquamarine", "planet": "Mercury / Neptune", "bodyPlacement": "Throat or affected skin area", "classicalAttribution": "Skin cooling, allergic reactions"},
+      {"name": "Moonstone", "planet": "Moon", "bodyPlacement": "Lower abdomen or facial skin", "classicalAttribution": "Hormonal skin balancing"}
+    ],
+    "tuningForks": [
+      {"planet": "Saturn", "hz": 147.85, "applicationPoint": "Boundary/grounding work"},
+      {"planet": "Venus", "hz": 221.23, "applicationPoint": "For skin beauty/complexion"}
+    ],
+    "scents": [
+      {"name": "Lavender", "planet": "Moon/Neptune", "delivery": "diluted topical for skin", "dataRef": "scents.json"},
+      {"name": "Rose", "planet": "Venus", "delivery": "diluted topical/hydrosol", "dataRef": "scents.json"},
+      {"name": "Frankincense", "planet": "Sun", "delivery": "diluted topical (aging skin support)"}
+    ],
+    "bodyProtocols": [{"breath": "Calming for stress-skin connection", "movement": "Sweating exercise (skin elimination)", "posture": "Open", "touch": "Gentle/nourishing only on inflamed skin"}],
+    "modalityRecommendations": {
+      "individual": "Skin reflects internal state. Hydration, sleep, gut health, stress management → skin health. Topical: gentle cleansing, moisturizing, sun protection. Avoid harsh products. Address chronic conditions with healthcare provider — many have effective treatments.",
+      "medical_astrologer": "Saturn + Aquarius (skin specifically per Cornell). Venus for beauty/hormonal. Mars for inflammatory. Mercury for nervous/allergic. Gut-skin axis (Virgo-Pisces).",
+      "reiki": "Throat (Aquarius rules ankles per Cornell — but skin overall) + crown for boundary. Skin-direct gentle intention.",
+      "bodywork_general": "Lymphatic drainage supports skin clearance. Dry brushing (with training). Cupping affects skin/fascia. AVOID over active rash/infection.",
+      "bodywork_contraindications": "Active herpes/shingles lesions, MRSA, weeping eczema, severe psoriasis flare → avoid local work, refer.",
+      "naturopathy": "Gut-skin axis primary. Address food sensitivities. Probiotics. Burdock, red clover, yellow dock 'blood purifiers' (alteratives). Zinc, vitamin A, omega-3, vitamin D. Topical: avoid harsh products, support microbiome.",
+      "acupuncture": "Lung meridian (LU governs skin TCM). Large Intestine (skin-bowel link).",
+      "ayurveda_phase2_placeholder": "Rakta + Mamsa + Meda dhatus affect skin. Bhrajaka Pitta (skin Pitta — complexion). Tikta (bitter) rasayanas. Phase 2.",
+      "pastoral_spiritual": "Skin as boundary, as touch-receiver. Self-touch as spiritual practice (self-massage)."
+    }
+  },
+  "pathologies": [
+    {"id": "skin_eczema", "name": "Atopic Dermatitis (Eczema)", "icdReference": "L20", "system": "integumentary", "category": "atopic_inflammatory",
+      "astrologicalSignature": {"planetaryCombinations": ["Mercury-Neptune (allergic-immune)", "Moon-Saturn (emotional-dry)", "Virgo-Pisces axis stress"], "signEmphasis": ["Aquarius (skin)", "Cancer (emotional skin)"]},
+      "classicalReference": "Cornell (1933): 'Eczema — Mercury-Mars-Saturn afflictions; Virgo-Pisces axis tension manifests in skin.'",
+      "cellSalts": ["Nat Mur", "Kali Sulph", "Calc Phos"],
+      "indicatorLanguage": {
+        "individual": "Eczema benefits from: identifying triggers (food, environmental, stress), excellent skin barrier care (gentle cleansing, moisturize while damp), addressing gut health, stress management. Severe or refractory eczema benefits from dermatology + functional medicine collaboration.",
+        "practitioner": "Mercury-Neptune and Virgo-Pisces configurations classically associated with atopic patterns. Gut-skin axis primary intervention. Refer for dermatology consultation for severe cases. Topical steroids appropriate when needed (steroid-phobia harms — guide clients)."
+      },
+      "modalityNotes": {"bodywork": "Avoid active lesions. Lymphatic drainage supportive.", "lifestyle": "Trigger identification (food: dairy/gluten common, environmental: dust mites/pollen), gut healing, stress management, omega-3, vitamin D, probiotics"},
+      "redFlags": ["Severe widespread eczema with secondary infection → MD"]
+    },
+    {"id": "skin_psoriasis", "name": "Psoriasis", "icdReference": "L40", "system": "integumentary", "category": "autoimmune_chronic",
+      "astrologicalSignature": {"planetaryCombinations": ["Saturn-Mars (chronic inflammatory)", "Saturn in Aquarius", "Neptune-Mars (autoimmune)"], "signEmphasis": ["Aquarius (skin)", "Capricorn"]},
+      "classicalReference": "Cornell (1933): 'Psoriasis — Saturn afflictions in skin signs; chronic restricted skin function.'",
+      "cellSalts": ["Kali Sulph (PRIMARY per Carey)", "Calc Sulph", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Psoriasis is a chronic autoimmune skin condition requiring ongoing management. Lifestyle factors significantly affect severity: diet (anti-inflammatory), stress management, sleep, alcohol moderation, smoking cessation. Dermatology partnership for moderate-severe cases — many effective treatments available.",
+        "practitioner": "Saturn-Mars autoimmune configurations classically associated with psoriatic patterns. Functional medicine framework: gut health, food sensitivities, stress, vitamin D. Refer for dermatology. Biologics revolutionary for severe disease. Holistic adjuncts complement."
+      },
+      "modalityNotes": {"bodywork": "Active plaques: gentle around. Stress-reduction primary.", "lifestyle": "AIP diet trial. Address gut health. Stress management critical. Sleep. Vitamin D optimization. Moderate alcohol."},
+      "redFlags": ["Psoriatic arthritis joint symptoms → rheumatology"]
+    },
+    {"id": "skin_acne", "name": "Acne Vulgaris", "icdReference": "L70", "system": "integumentary", "category": "follicular_inflammatory",
+      "astrologicalSignature": {"planetaryCombinations": ["Mars in skin signs (inflammatory)", "Venus afflicted (hormonal)", "Saturn-Venus (chronic adult acne)"], "signEmphasis": ["Cancer (hormonal)", "Aquarius (skin)"]},
+      "classicalReference": "Cornell (1933): 'Pimples, acne — Mars-Venus afflictions; adolescent under hormonal shift.'",
+      "cellSalts": ["Calc Sulph (PRIMARY for adolescent acne per Carey)", "Kali Mur", "Nat Phos (acid)"],
+      "indicatorLanguage": {
+        "individual": "Acne responds to: gentle cleansing (not over-cleansing), addressing dietary triggers (high-glycemic foods, dairy for some), gut health, stress management, addressing hormones (especially adult acne). Persistent or scarring acne benefits from dermatology consultation.",
+        "practitioner": "Mars-Venus configurations classically associated with acne patterns. Hormonal acne: address insulin sensitivity, androgens (PCOS workup if women), gut. Topical retinoids, BPO standard. Refer to dermatology for moderate-severe (isotretinoin life-changing for severe cystic)."
+      },
+      "modalityNotes": {"bodywork": "Facial work with care. Avoid spreading acne bacteria.", "lifestyle": "Low-glycemic diet trial, dairy elimination trial, zinc, vitamin A, gentle skincare, address hormones"},
+      "redFlags": ["Severe cystic acne with scarring → dermatology"]
+    },
+    {"id": "skin_dermatitis_contact", "name": "Contact Dermatitis", "icdReference": "L23-L25", "system": "integumentary", "category": "allergic_irritant",
+      "astrologicalSignature": {"planetaryCombinations": ["Mercury-Uranus (sudden allergic)", "Mars (acute irritant)"]},
+      "classicalReference": "Cornell (1933): 'Contact rash — Mars-Mercury sudden inflammatory.'",
+      "cellSalts": ["Ferr Phos", "Nat Mur"],
+      "indicatorLanguage": {
+        "individual": "Contact dermatitis (rash after touching something) requires identifying the trigger (poison ivy, nickel, fragrance, etc.) and avoiding it. Topical relief: cool compress, calendula, oat baths. Persistent or spreading rash, especially with fever, needs medical evaluation.",
+        "practitioner": "Mercury-Uranus configurations align with hypersensitivity reactivity. Patch testing for chronic. Avoidance is treatment."
+      },
+      "modalityNotes": {"bodywork": "Avoid affected area.", "lifestyle": "Identify trigger, avoid, topical soothing"},
+      "redFlags": ["Anaphylaxis → 911", "Stevens-Johnson Syndrome signs (skin sloughing, mucosal involvement) → ED"]
+    }
+  ],
+  "vedicOverlay": {
+    "_phase": 2, "_status": "placeholder",
+    "tridosha": {"primary": "Pitta (inflammatory skin)", "secondary": "Vata (dry skin)", "tertiary": "Kapha (oily skin)"},
+    "nakshatras_governing_skin": ["Chitra (skin)"],
+    "ayurvedicOrgans": ["Twak (skin)", "Bhrajaka Pitta"],
+    "ayurvedicTreatments_phase2": "Khadira, neem, manjistha, turmeric. Phase 2."
+  },
+  "modalitySpecificGrid": {
+    "medical_astrologer": {"focusPoints": ["Saturn", "Aquarius (skin)", "Venus (beauty)", "Mars (inflammation)", "Mercury (allergic)"], "outputDepth": "Full skin etiology map"},
+    "reiki": {"focusPoints": ["Boundary chakra work", "Skin-direct gentle"], "outputDepth": "Energetic boundary protocols"},
+    "bodywork": {"focusPoints": ["Lymphatic drainage", "Dry brushing", "Cupping"], "contraindicationsCriticallity": "MODERATE — avoid infectious/active lesion", "outputDepth": "Skin-supportive techniques"},
+    "naturopath": {"focusPoints": ["Gut-skin axis", "Alterative herbs", "Topical preparations"], "outputDepth": "Internal + topical protocols"},
+    "ayurvedic_phase2_placeholder": {"focusPoints": ["Bhrajaka Pitta", "Twak"], "outputDepth": "PHASE 2"},
+    "acupuncturist_tcm": {"focusPoints": ["Lung meridian (skin)", "Large Intestine"], "outputDepth": "Meridian skin map"},
+    "pastoral_spiritual": {"focusPoints": ["Self-massage", "Skin as receiver"], "outputDepth": "Embodied skin practices"}
+  },
+  "complianceNotes": {
+    "scopeOfPractice": "Skin lesions require visual inspection. ALWAYS refer suspicious lesions (asymmetry, irregular borders, multiple colors, large diameter, evolving — ABCDE) for dermatology evaluation. Holistic adjuncts complement.",
+    "criticalReferralRules": [
+      "Suspicious mole (ABCDE positive) → dermatology",
+      "Stevens-Johnson Syndrome (skin sloughing) → ED",
+      "Erythroderma (>90% body redness) → urgent dermatology",
+      "Cellulitis (red hot tender spreading) → urgent MD",
+      "Severe burns → ED"
+    ],
+    "redFlagKeywords": ["spreading redness", "skin peeling sheets", "mole changing", "severe burn"]
+  }
+}
