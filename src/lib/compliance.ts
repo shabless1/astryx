@@ -72,6 +72,13 @@ const BANNED_ALLOWLIST: ReadonlyArray<RegExp> = [
   /astro-medical diagnosis/i,                                // Charak preface usage
   /cell.?salt prescription/i,                                // Term of art, OK with disclaimer
   /Reiki .*treatment session/i,                              // Reiki term of art (TBD)
+  // Directive v4.0 Fix 5 — protective references to the USER'S OWN medication
+  // (safety warnings, not Astryx prescribing). Required by Key Rule 6:
+  // safety notes must never be weakened or omitted.
+  /prescri(?:bed|ption) (?:sleep )?medication(?:s)?/i,
+  // The legal posture statement itself (Universal Disclaimer / micro-copy).
+  /does not (?:diagnose, treat, cure, or )?prescribe/i,
+  /(?:doesn'?t|does not|will never) diagnose(?:,| or)? (?:treat|prescribe)?/i,
 ]
 
 /**

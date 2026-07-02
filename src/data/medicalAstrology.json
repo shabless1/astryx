@@ -303,7 +303,7 @@
           {"to": "Sun", "effect": "Vitality and drive align. Excellent for athletic peaks.", "intervention": "Train hard, take action"},
           {"to": "Moon", "effect": "Emotional reactivity spike. Stomach acid, irritability.", "intervention": "Cooling foods, slow breath, do not make emotional decisions"},
           {"to": "Saturn", "effect": "Frustration meets restriction. Risk of injury from forcing through resistance.", "intervention": "Slow down, address structural issue, do not push"},
-          {"to": "Pluto", "effect": "Intensity to the maximum. Risk of accidents or surgery activation.", "intervention": "Avoid unnecessary risk, channel through deep training"}
+          {"to": "Pluto", "effect": "Intensity at maximum — the body runs on deep reserves; move deliberately.", "intervention": "Avoid unnecessary risk, channel through deep training"}
         ],
         "marsRetrograde": "Every 2 years for ~10 weeks. RE-view of how you assert. Risk of suppressed anger surfacing as illness.",
         "transitDurationDays": "2-3 days exact per natal point; full residence in a sign ~6-7 weeks (longer in retrograde)"
@@ -367,7 +367,7 @@
         "jupiterReturn": "Jupiter returns to natal degree every ~12 years — major expansion/wisdom cycle (ages 12, 24, 36, 48, 60, 72, 84).",
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Vitality expansion. Confidence and recognition surge.", "intervention": "Take the opportunity, but watch overcommitment"},
-          {"to": "Moon", "effect": "Emotional abundance. Pregnancy fertility window for some.", "intervention": "Sweet teas, hold emotional space generously"},
+          {"to": "Moon", "effect": "Emotional abundance. A fertile, generous window.", "intervention": "Sweet teas, hold emotional space generously"},
           {"to": "Saturn", "effect": "Discipline meets expansion. Long-form structure built that lasts.", "intervention": "Launch major projects with realistic scope"}
         ],
         "transitDurationDays": "5-10 days exact per natal point; full residence in a sign ~12 months"
@@ -381,8 +381,8 @@
       },
       "plainLanguageBridge": {
         "whatItGoverns": "Your expansion, growth, optimism, faith. Your liver. Your hips and thighs. Your metabolism. The part of you that says yes to life.",
-        "whenItsBalanced": "Your liver is clean. You metabolize food and life events with ease. You feel abundant. You have faith without naivety.",
-        "whenItsOff": "Your liver is sluggish. You've gained weight that won't shift. Your hips ache. You've over-committed. You've lost faith or you have grandiose faith that ignores reality.",
+        "whenItsBalanced": "Your liver is clean. You metabolize food and life events with ease. You feel abundant. Faith comes naturally, without naivety.",
+        "whenItsOff": "Your liver is sluggish. You've gained weight that won't shift. Your hips ache. You've over-committed. Faith has drained away, or swung to grandiose faith that ignores reality.",
         "howToRestore": "Liver-supportive bitters (dandelion, milk thistle). Long walks. Clove, nutmeg, or sweet orange. Silica or Ferr Phos cell salt. 183.58 Hz (Jupiter fork) over the liver (right upper abdomen). Lapis lazuli or amethyst on the third eye for wisdom restoration."
       },
       "crossReferences": {
@@ -429,10 +429,10 @@
       "transitInterpretation": {
         "saturnReturn": "Saturn returns to natal degree every ~29.5 years (ages 28-30, 58-60, 87-90). Major life-restructuring period. Often health crises that demand structural change.",
         "transitToNatalPlanets": [
-          {"to": "Sun", "effect": "Compression of vitality. Possible spine/heart structural issues. Authority crisis.", "intervention": "Spinal alignment work, examine identity structures, consult cardiologist if any heart symptoms", "duration": "2-3 years"},
-          {"to": "Moon", "effect": "Cortisol dysregulation. Lymphatic sluggishness. Emotional heaviness with no clear source. Maternal/family weight surfacing.", "intervention": "Ashwagandha + Cleavers tea. Black Tourmaline on sacrum. 147.85 Hz Saturn fork. Calc Phos cell salt. No high-intensity movement.", "duration": "2-3 years"},
-          {"to": "Mercury", "effect": "Mental rigidity, serious thinking, but also potential for depression and respiratory restriction.", "intervention": "Long-form work that uses Saturn's discipline; respiratory practice", "duration": "1-2 years"},
-          {"to": "Venus", "effect": "Relationship reality check. Love must mature or release. Skin and kidney signs.", "intervention": "Honest relationship conversations, kidney support", "duration": "1-2 years"},
+          {"to": "Sun", "effect": "A compressed, heavier vitality — the spine and chest may ask for extra support. Questions of authority come into focus.", "intervention": "Spinal alignment work; examine identity structures. Any chest or heart sensation deserves prompt attention from your healthcare provider", "duration": "2-3 years"},
+          {"to": "Moon", "effect": "A slowed, taxed quality — the body's stress rhythm runs heavy and inner flow feels sluggish. Emotional heaviness with no clear source. Maternal/family weight surfacing.", "intervention": "Ashwagandha + Cleavers tea. Black Tourmaline on sacrum. 147.85 Hz Saturn fork. Calc Phos cell salt. No high-intensity movement.", "duration": "2-3 years"},
+          {"to": "Mercury", "effect": "Serious, structured thinking — with a heavier, compressed quality; the breath may run shallow.", "intervention": "Long-form work that uses Saturn's discipline; breath work and pacing support this transit", "duration": "1-2 years"},
+          {"to": "Venus", "effect": "Relationship reality check. Love must mature or release. The skin and lower back may speak up.", "intervention": "Honest relationship conversations; warmth over the lower back; hydrate well", "duration": "1-2 years"},
           {"to": "Mars", "effect": "Restricted action. Risk of pushing through injury. Bone or joint stress.", "intervention": "Slow down, respect physical limits", "duration": "1-2 years"},
           {"to": "Saturn (return)", "effect": "Total restructuring. Old self must die for new structure.", "intervention": "Major life decisions: career, relationship, location, health", "duration": "2-3 years"}
         ],
@@ -448,7 +448,7 @@
       },
       "plainLanguageBridge": {
         "whatItGoverns": "Your structure, your bones, your endurance, your time. Your skin. Your knees. Your cortisol response to long-term stress. The part of you that builds slowly and lasts.",
-        "whenItsBalanced": "You have integrity in body and life. Your bones are strong. Your skin holds its tone. You can hold a long commitment. You age with grace.",
+        "whenItsBalanced": "Integrity runs through body and life. Your bones are strong. Your skin holds its tone. You can hold a long commitment. You age with grace.",
         "whenItsOff": "Everything feels heavy and cold. You're depressed without a clear reason. Your joints stiffen. You feel old before your time. You can't lift the weight you're carrying.",
         "howToRestore": "Warmth — physically and emotionally. Bone broth. Calc Phos cell salt. Vetiver, cedarwood, or patchouli oil. Black tourmaline or onyx on the sacrum. 147.85 Hz (Saturn fork) on the spine or knees. Sleep more than you think you need."
       },
@@ -495,8 +495,8 @@
         "uranusReturn": "Uranus returns to natal degree once at age 84 — total awakening cycle.",
         "uranusOpposition": "Age 38-42 — Uranus opposes its natal position. The midlife awakening. Major life restructuring.",
         "transitToNatalPlanets": [
-          {"to": "Sun", "effect": "Sudden identity shift. Possible heart arrhythmia. Career upheaval.", "intervention": "Allow the shift; cardiologist if heart symptoms; do not force stability", "duration": "1-2 years"},
-          {"to": "Moon", "effect": "Sudden emotional changes. Sleep disruption. Sudden moves or domestic changes.", "intervention": "Magnesium for nervous system; meditation for grounding", "duration": "1-2 years"},
+          {"to": "Sun", "effect": "Sudden identity shift. The heart's rhythm may feel electric or jumpy. Career upheaval.", "intervention": "Allow the shift; do not force stability. A racing or irregular-feeling heartbeat deserves prompt attention from your healthcare provider", "duration": "1-2 years"},
+          {"to": "Moon", "effect": "Sudden emotional changes. Sleep disruption. Sudden moves or domestic changes.", "intervention": "Grounding breath and meditation; a warm evening cup of chamomile or oat straw tea; bare feet on the earth", "duration": "1-2 years"},
           {"to": "Saturn", "effect": "Structure breaks. Liberation from rigid patterns. Possible bone/joint surprise.", "intervention": "Allow what wants to fall; rebuild with new template", "duration": "1-2 years"}
         ],
         "transitDurationDays": "1-2 years near exact; full residence in a sign ~7 years"
@@ -544,7 +544,7 @@
       "symptomSignatures": {
         "whenStressed": {
           "headline": "Boundaries are dissolving. The immune system can't tell self from other. The subtle field is leaking.",
-          "physical": ["chronic immune compromise / autoimmune", "lymphatic stagnation / swelling", "addiction susceptibility (substances, food, escape)", "chronic fatigue with no clear cause", "foot problems (Pisces literal)", "sensitivity to medication / unusual reactions", "mysterious illness with no diagnosis"],
+          "physical": ["chronic immune compromise / autoimmune", "lymphatic stagnation / swelling", "addiction susceptibility (substances, food, escape)", "chronic fatigue with no clear cause", "foot problems (Pisces literal)", "sensitivity to medication / unusual reactions", "mysterious unwellness that evades explanation"],
           "emotional": ["boundary collapse — feeling everyone else's feelings", "victim consciousness", "escapism / dissociation", "spiritual emergency without grounding", "addiction patterns"],
           "mental": ["confusion / fog", "magical thinking without discernment", "inability to discern reality from fantasy", "psychic overwhelm"]
         },
@@ -556,7 +556,7 @@
       "transitInterpretation": {
         "neptuneTransits": "Very slow — Neptune spends ~14 years in each sign. Generational transits to natal planets create multi-year dissolution/transcendence themes.",
         "transitToNatalPlanets": [
-          {"to": "Sun", "effect": "Identity dissolution. May feel 'lost' or like 'no one knows who I am anymore.' Possible immune compromise.", "intervention": "Spiritual practice; immune support; do not make permanent decisions during peak", "duration": "2-3 years"},
+          {"to": "Sun", "effect": "Identity dissolution. May feel 'lost' or like 'no one knows who I am anymore.' The body's defenses may run lower than usual.", "intervention": "Spiritual practice; extra rest and warmth; do not make permanent decisions during the peak", "duration": "2-3 years"},
           {"to": "Moon", "effect": "Emotional permeability. Psychic sensitivity surges. Sleep becomes vivid/dreamy.", "intervention": "Boundary practices; black tourmaline; reduce alcohol", "duration": "2-3 years"},
           {"to": "Mercury", "effect": "Imaginative but confused thinking. Spiritual insight or delusion. Avoid contracts.", "intervention": "Meditation; creative writing; do not sign legal documents", "duration": "1-2 years"}
         ],
@@ -617,10 +617,10 @@
       "transitInterpretation": {
         "plutoTransits": "Extremely slow — Pluto spends 12-30 years in a sign. Generational and lifetime transformation transits.",
         "transitToNatalPlanets": [
-          {"to": "Sun", "effect": "Identity rebirth. Old self dies. Often health crisis that demands total restructuring.", "intervention": "Allow the death; major medical consultation; surrender to transformation", "duration": "2-4 years"},
-          {"to": "Moon", "effect": "Emotional/family transformation. Reproductive system upheaval common. Old mother wounds resurface for healing.", "intervention": "Deep therapy; reproductive medical care; emotional bodywork", "duration": "2-4 years"},
-          {"to": "Venus", "effect": "Relationship death-rebirth. Old loves end. Sexual/hormonal deep changes.", "intervention": "Allow relationship transformations; reproductive support", "duration": "2-3 years"},
-          {"to": "Mars", "effect": "Compulsive action; possible accidents from deep drives; surgery activation.", "intervention": "Channel through intensive training; surgery decisions made with care", "duration": "2-3 years"}
+          {"to": "Sun", "effect": "Identity rebirth. The old self composts. The body may demand a total restructuring of habits and pace.", "intervention": "Allow the ending; surrender to transformation. Anything persistent in the body deserves a licensed professional's attention", "duration": "2-4 years"},
+          {"to": "Moon", "effect": "Emotional/family transformation. Deep shifts may move through the reproductive center. Old mother wounds resurface to be met.", "intervention": "Deep therapy support; emotional bodywork; bring anything persistent to your healthcare provider", "duration": "2-4 years"},
+          {"to": "Venus", "effect": "Relationship death-rebirth. Old loves end. Deep change may move through desire and the body's inner chemistry.", "intervention": "Allow relationship transformations; tend the sacral center with warmth and rest", "duration": "2-3 years"},
+          {"to": "Mars", "effect": "Compulsive drive — the body runs hot and deep; move deliberately.", "intervention": "Channel through intensive training; make any major medical decision slowly, with your care team", "duration": "2-3 years"}
         ],
         "transitDurationDays": "2-4 years near exact"
       },

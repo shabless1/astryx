@@ -4,14 +4,20 @@
  * NextAuth v4 + Next.js 14 App Router: route files can ONLY export
  * route handlers (GET/POST/...). So `authOptions` lives here and the
  * route file in `/api/auth/[...nextauth]/route.ts` imports it.
+ *
+ * Directive v4.0 · Fix 1 — users now live in Supabase Postgres via Prisma
+ * (the old in-memory DEMO_USERS evaporated on every serverless cold start).
+ * Session strategy stays `jwt` so we never pay a DB read per request.
  */
 
 import { getServerSession } from 'next-auth/next'
 import { type NextAuthOptions, type DefaultSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcryptjs'
 import type { Session } from 'next-auth'
+import { prisma } from './db'
 
 // ─── TYPE AUGMENTATION ────────────────────────────────────────
 declare module 'next-auth' {
@@ -19,6 +25,7 @@ declare module 'next-auth' {
     user: {
       id: string
       isPremium: boolean
+      entitled: boolean
       xrpAddress?: string
     } & DefaultSession['user']
   }
@@ -33,21 +40,20 @@ declare module 'next-auth/jwt' {
   interface JWT {
     id: string
     isPremium: boolean
+    entitled?: boolean
     xrpAddress?: string
   }
 }
-
-// ─── DEMO USER STORE ─────────────────────────────────────────
-// In production replace this with a real DB lookup (Prisma, etc.)
-// For now, a simple in-memory map that survives the process lifetime.
-// On Vercel each cold start re-creates it — swap for DB when ready.
-
-const DEMO_USERS: Record<string, { passwordHash: string; isPremium: boolean }> = {}
 
 // ─── AUTH OPTIONS ────────────────────────────────────────────
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET || 'astryx-dev-secret-change-in-production',
+
+  // Prisma adapter persists OAuth users/accounts. Credentials sign-in is
+  // handled manually below (NextAuth v4 never persists credentials sessions
+  // through the adapter — JWT strategy carries them).
+  adapter: PrismaAdapter(prisma),
 
   providers: [
     // Google is only registered when credentials are provided — keeps
@@ -56,10 +62,13 @@ export const authOptions: NextAuthOptions = {
       ? [GoogleProvider({
           clientId:     process.env.GOOGLE_CLIENT_ID,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          // A returning Google user whose email already exists from a
+          // Credentials signup should link, not error out.
+          allowDangerousEmailAccountLinking: true,
         })]
       : []),
 
-    // ── Email / Password ──────────────────────────────────────
+    // ── Email / Password (DB-backed — Fix 1) ─────────────────
     CredentialsProvider({
       name: 'credentials',
       credentials: {
@@ -74,22 +83,28 @@ export const authOptions: NextAuthOptions = {
 
         // ── Sign Up ──
         if (credentials.action === 'signup') {
-          if (DEMO_USERS[email]) throw new Error('Email already registered')
-          const hash = await bcrypt.hash(credentials.password, 10)
-          DEMO_USERS[email] = { passwordHash: hash, isPremium: false }
-          return { id: email, email, name: email.split('@')[0], isPremium: false }
+          const existing = await prisma.user.findUnique({ where: { email } })
+          if (existing?.passwordHash) throw new Error('Email already registered')
+          const passwordHash = await bcrypt.hash(credentials.password, 10)
+          // A Google-created user adding a password keeps their row.
+          const user = existing
+            ? await prisma.user.update({ where: { email }, data: { passwordHash } })
+            : await prisma.user.create({
+                data: { email, name: email.split('@')[0], passwordHash },
+              })
+          return { id: user.id, email, name: user.name, isPremium: user.isPremium }
         }
 
         // ── Sign In ──
-        const user = DEMO_USERS[email]
-        if (!user) throw new Error('No account found with this email')
+        const user = await prisma.user.findUnique({ where: { email } })
+        if (!user || !user.passwordHash) throw new Error('No account found with this email')
         const valid = await bcrypt.compare(credentials.password, user.passwordHash)
         if (!valid) throw new Error('Incorrect password')
 
         return {
-          id: email,
+          id: user.id,
           email,
-          name: email.split('@')[0],
+          name: user.name,
           isPremium: user.isPremium,
         }
       },
@@ -104,6 +119,11 @@ export const authOptions: NextAuthOptions = {
         token.id         = user.id
         token.isPremium  = user.isPremium ?? false
         token.xrpAddress = user.xrpAddress
+        // Fix 2 — fork-buyer / allowlist entitlement, stamped ONCE at sign-in
+        // and cached in the JWT (no DB read per request). A user who buys the
+        // forks after signing in picks it up on their next sign-in.
+        const { hasEntitlement } = await import('./entitlement')
+        token.entitled = await hasEntitlement(user.email ?? token.email)
       }
       return token
     },
@@ -112,6 +132,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id         = token.id
         session.user.isPremium  = token.isPremium
+        session.user.entitled   = token.entitled ?? false
         session.user.xrpAddress = token.xrpAddress
       }
       return session
@@ -145,17 +166,18 @@ export async function isPremiumUser(): Promise<boolean> {
 }
 
 // ─── MARK PREMIUM (called after XRP payment confirmed) ────────
-// In production, this would update a DB record.
-// For now, we use a simple server-side map (same lifetime as auth store).
+// Fix 1 — now a DB write. Accepts a user id OR an email (the XRP route
+// historically passed either).
 
-const premiumUsers = new Set<string>()
-
-export function grantPremium(userId: string): void {
-  premiumUsers.add(userId)
+export async function grantPremium(userId: string): Promise<void> {
+  const where = userId.includes('@') ? { email: userId.toLowerCase() } : { id: userId }
+  await prisma.user.updateMany({ where, data: { isPremium: true } })
 }
 
-export function checkPremium(userId: string): boolean {
-  return premiumUsers.has(userId)
+export async function checkPremium(userId: string): Promise<boolean> {
+  const where = userId.includes('@') ? { email: userId.toLowerCase() } : { id: userId }
+  const user = await prisma.user.findFirst({ where, select: { isPremium: true } })
+  return user?.isPremium ?? false
 }
 
 // ─── CLIENT HELPERS (re-exported from next-auth/react) ────────

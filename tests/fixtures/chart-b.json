@@ -1,0 +1,357 @@
+{
+ "success": true,
+ "chart": {
+  "planets": [
+   {
+    "planet": "Sun",
+    "longitude": 219.072426,
+    "sign": "Scorpio",
+    "signDegree": 9.0724,
+    "house": 3,
+    "retrograde": false,
+    "speedDeg": 1.0012
+   },
+   {
+    "planet": "Moon",
+    "longitude": 199.448,
+    "sign": "Libra",
+    "signDegree": 19.448,
+    "house": 2,
+    "retrograde": false,
+    "speedDeg": 14.9564
+   },
+   {
+    "planet": "Mercury",
+    "longitude": 203.367267,
+    "sign": "Libra",
+    "signDegree": 23.3673,
+    "house": 2,
+    "retrograde": false,
+    "speedDeg": 1.5192
+   },
+   {
+    "planet": "Venus",
+    "longitude": 172.599327,
+    "sign": "Virgo",
+    "signDegree": 22.5993,
+    "house": 1,
+    "retrograde": false,
+    "speedDeg": 0.9645
+   },
+   {
+    "planet": "Mars",
+    "longitude": 92.529977,
+    "sign": "Cancer",
+    "signDegree": 2.53,
+    "house": 11,
+    "retrograde": false,
+    "speedDeg": 0.0609
+   },
+   {
+    "planet": "Jupiter",
+    "longitude": 17.151237,
+    "sign": "Aries",
+    "signDegree": 17.1512,
+    "house": 8,
+    "retrograde": true,
+    "speedDeg": 0.1154
+   },
+   {
+    "planet": "Saturn",
+    "longitude": 122.822389,
+    "sign": "Leo",
+    "signDegree": 2.8224,
+    "house": 12,
+    "retrograde": false,
+    "speedDeg": 0.0237
+   },
+   {
+    "planet": "Uranus",
+    "longitude": 213.214313,
+    "sign": "Scorpio",
+    "signDegree": 3.2143,
+    "house": 3,
+    "retrograde": false,
+    "speedDeg": 0.0626
+   },
+   {
+    "planet": "Neptune",
+    "longitude": 250.34441,
+    "sign": "Sagittarius",
+    "signDegree": 10.3444,
+    "house": 4,
+    "retrograde": false,
+    "speedDeg": 0.0332
+   },
+   {
+    "planet": "Pluto",
+    "longitude": 190.266534,
+    "sign": "Libra",
+    "signDegree": 10.2665,
+    "house": 2,
+    "retrograde": false,
+    "speedDeg": 0.0351
+   }
+  ],
+  "angles": {
+   "ascendant": 178.6925,
+   "midheaven": 88.2993,
+   "descendant": 358.6925,
+   "ic": 268.2993,
+   "ascSign": "Virgo",
+   "mcSign": "Gemini"
+  },
+  "houses": [
+   150,
+   180,
+   210,
+   240,
+   270,
+   300,
+   330,
+   0,
+   30,
+   60,
+   90,
+   120
+  ],
+  "aspects": [
+   {
+    "planet1": "Neptune",
+    "planet2": "Pluto",
+    "aspect": "sextile",
+    "angle": 60.0779,
+    "orb": 0.0779,
+    "exactness": 0.9805,
+    "applying": false
+   },
+   {
+    "planet1": "Saturn",
+    "planet2": "Uranus",
+    "aspect": "square",
+    "angle": 90.3919,
+    "orb": 0.3919,
+    "exactness": 0.9347,
+    "applying": false
+   },
+   {
+    "planet1": "Mars",
+    "planet2": "Uranus",
+    "aspect": "trine",
+    "angle": 120.6843,
+    "orb": 0.6843,
+    "exactness": 0.8859,
+    "applying": false
+   },
+   {
+    "planet1": "Moon",
+    "planet2": "Jupiter",
+    "aspect": "opposition",
+    "angle": 177.7032,
+    "orb": 2.2968,
+    "exactness": 0.7129,
+    "applying": true
+   },
+   {
+    "planet1": "Moon",
+    "planet2": "Mercury",
+    "aspect": "conjunction",
+    "angle": 3.9193,
+    "orb": 3.9193,
+    "exactness": 0.5101,
+    "applying": false
+   },
+   {
+    "planet1": "Sun",
+    "planet2": "Uranus",
+    "aspect": "conjunction",
+    "angle": 5.8581,
+    "orb": 5.8581,
+    "exactness": 0.2677,
+    "applying": false
+   },
+   {
+    "planet1": "Sun",
+    "planet2": "Venus",
+    "aspect": "semisquare",
+    "angle": 46.4731,
+    "orb": 1.4731,
+    "exactness": 0.2635,
+    "applying": false
+   },
+   {
+    "planet1": "Mercury",
+    "planet2": "Jupiter",
+    "aspect": "opposition",
+    "angle": 173.784,
+    "orb": 6.216,
+    "exactness": 0.223,
+    "applying": true
+   },
+   {
+    "planet1": "Jupiter",
+    "planet2": "Pluto",
+    "aspect": "opposition",
+    "angle": 173.1153,
+    "orb": 6.8847,
+    "exactness": 0.1394,
+    "applying": true
+   },
+   {
+    "planet1": "Mercury",
+    "planet2": "Neptune",
+    "aspect": "semisquare",
+    "angle": 46.9771,
+    "orb": 1.9771,
+    "exactness": 0.0114,
+    "applying": false
+   }
+  ]
+ },
+ "dominantPattern": {
+  "planet1": "Sun",
+  "planet2": "Uranus",
+  "aspect": "conjunction",
+  "signs": [
+   "Scorpio",
+   "Scorpio"
+  ],
+  "houses": [
+   3,
+   3
+  ],
+  "elementModality": "Water / Fixed + Fixed",
+  "confidenceScore": 70,
+  "orb": 5.8581
+ },
+ "symptomPlanets": [
+  "Sun",
+  "Moon"
+ ],
+ "transits": [
+  {
+   "transitingPlanet": "Pluto",
+   "transitingLongitude": 304.8488,
+   "transitingSign": "Aquarius",
+   "transitingDegree": 4.85,
+   "transitingRetrograde": true,
+   "natalPlanet": "Uranus",
+   "natalLongitude": 213.214313,
+   "natalSign": "Scorpio",
+   "aspect": "square",
+   "orb": 1.6345,
+   "exactness": 0.1827,
+   "applying": true,
+   "daysToExact": 78.62,
+   "weight": 113.54
+  },
+  {
+   "transitingPlanet": "Neptune",
+   "transitingLongitude": 4.414,
+   "transitingSign": "Aries",
+   "transitingDegree": 4.41,
+   "transitingRetrograde": false,
+   "natalPlanet": "Mars",
+   "natalLongitude": 92.529977,
+   "natalSign": "Cancer",
+   "aspect": "square",
+   "orb": 1.8841,
+   "exactness": 0.058,
+   "applying": true,
+   "daysToExact": 665.54,
+   "weight": 91.41
+  },
+  {
+   "transitingPlanet": "Neptune",
+   "transitingLongitude": 4.414,
+   "transitingSign": "Aries",
+   "transitingDegree": 4.41,
+   "transitingRetrograde": false,
+   "natalPlanet": "Saturn",
+   "natalLongitude": 122.822389,
+   "natalSign": "Leo",
+   "aspect": "trine",
+   "orb": 1.5916,
+   "exactness": 0.2042,
+   "applying": true,
+   "daysToExact": 562.25,
+   "weight": 78.03
+  },
+  {
+   "transitingPlanet": "Uranus",
+   "transitingLongitude": 63.7717,
+   "transitingSign": "Gemini",
+   "transitingDegree": 3.77,
+   "transitingRetrograde": false,
+   "natalPlanet": "Saturn",
+   "natalLongitude": 122.822389,
+   "natalSign": "Leo",
+   "aspect": "sextile",
+   "orb": 0.9494,
+   "exactness": 0.3671,
+   "applying": true,
+   "daysToExact": 19.19,
+   "weight": 65.62
+  },
+  {
+   "transitingPlanet": "Uranus",
+   "transitingLongitude": 63.7717,
+   "transitingSign": "Gemini",
+   "transitingDegree": 3.77,
+   "transitingRetrograde": false,
+   "natalPlanet": "Uranus",
+   "natalLongitude": 213.214313,
+   "natalSign": "Scorpio",
+   "aspect": "quincunx",
+   "orb": 0.5574,
+   "exactness": 0.6284,
+   "applying": true,
+   "daysToExact": 11.27,
+   "weight": 62.53
+  },
+  {
+   "transitingPlanet": "Sun",
+   "transitingLongitude": 100.438,
+   "transitingSign": "Cancer",
+   "transitingDegree": 10.44,
+   "transitingRetrograde": false,
+   "natalPlanet": "Pluto",
+   "natalLongitude": 190.266534,
+   "natalSign": "Libra",
+   "aspect": "square",
+   "orb": 0.1715,
+   "exactness": 0.9143,
+   "applying": true,
+   "daysToExact": 0.18,
+   "weight": 55.13
+  },
+  {
+   "transitingPlanet": "Neptune",
+   "transitingLongitude": 4.414,
+   "transitingSign": "Aries",
+   "transitingDegree": 4.41,
+   "transitingRetrograde": false,
+   "natalPlanet": "Uranus",
+   "natalLongitude": 213.214313,
+   "natalSign": "Scorpio",
+   "aspect": "quincunx",
+   "orb": 1.1997,
+   "exactness": 0.2002,
+   "applying": false,
+   "daysToExact": -423.8,
+   "weight": 43.21
+  }
+ ],
+ "meta": {
+  "calculatedAt": "2026-07-02T07:06:33.875Z",
+  "chartMode": "natal",
+  "transitDate": "2026-07-02T07:06:33.875Z",
+  "birthData": {
+   "date": "1975-11-02",
+   "time": "03:10",
+   "latitude": 51.5074,
+   "longitude": -0.1278,
+   "tzOffset": 0
+  }
+ }
+}

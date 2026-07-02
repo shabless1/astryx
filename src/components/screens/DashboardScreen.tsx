@@ -28,6 +28,7 @@ import { forkFor } from '@/lib/chamber/forkRite'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'
 import { useAppStore } from '@/lib/store'
+import { useAstryxVoice } from '@/lib/useAstryxVoice'
 import { GlassCard } from '@/components/ui'
 import type { DailyInput } from '@/components/screens/DailyCheckInScreen'
 import ResultsScreen from '@/components/screens/ResultsScreen'
@@ -62,7 +63,7 @@ const INTENTIONS = [
 
 export default function DashboardScreen({
   protocol, chartData, accentColor, mode, userName,
-  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast,
+  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast, onResumeSession,
 }: {
   protocol: ProtocolOutput
   chartData: any | null
@@ -73,6 +74,7 @@ export default function DashboardScreen({
   onCalibrate: (input: DailyInput) => void
   sessionLoggedToast?: boolean
   onClearToast?: () => void
+  onResumeSession?: () => void
 }) {
   const history          = useAppStore((s) => s.history)
   const sessionLog       = useAppStore((s) => s.sessionLog)
@@ -82,6 +84,9 @@ export default function DashboardScreen({
   const protocolDate     = useAppStore((s) => s.protocolDate)
   const pendingSession   = useAppStore((s) => s.pendingSession)
   const setPendingSession = useAppStore((s) => s.setPendingSession)
+  // v4.0 FIX 3 — interrupted-session pointer (set by the rehydrate override)
+  const interruptedSession    = useAppStore((s) => s.interruptedSession)
+  const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
 
   const todayKey = new Date().toLocaleDateString('en-CA')
   const isToday  = protocolDate === todayKey
@@ -120,6 +125,33 @@ export default function DashboardScreen({
                style={{ background: hexToRgba(accentColor, 0.12), border: `1px solid ${hexToRgba(accentColor, 0.4)}` }}>
             <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: accentColor, boxShadow: `0 0 8px ${accentColor}` }} />
             <span className="text-[13px] text-content">Session logged to your progress.</span>
+          </div>
+        )}
+
+        {/* v4.0 FIX 3 — resume an interrupted chamber session (24h window; the
+            rehydrate override discards older pointers before we get here). */}
+        {interruptedSession && (
+          <div className="mb-4 px-4 py-3 rounded-2xl flex flex-wrap items-center gap-3 animate-fade-in-up"
+               style={{ background: hexToRgba(accentColor, 0.10), border: `1px solid ${hexToRgba(accentColor, 0.35)}` }}>
+            <span className="text-[13px] text-content flex-1 min-w-[180px]">
+              Resume your session? · {Math.max(1, Math.round(interruptedSession.sessionTime / 60))} min in
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => onResumeSession?.()}
+                className="kowalski-button rounded-full px-3.5 py-1.5 text-[11.5px] font-medium"
+                style={{ background: hexToRgba(accentColor, 0.9), color: '#020208' }}
+              >
+                Resume
+              </button>
+              <button
+                onClick={() => setInterruptedSession(null)}
+                className="kowalski-button rounded-full px-3.5 py-1.5 text-[11.5px]"
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.75)' }}
+              >
+                Start fresh
+              </button>
+            </div>
           </div>
         )}
 
@@ -363,6 +395,8 @@ function PulseTab({
   onBeginSession: () => void
 }) {
   const transits = protocol.diagnostic?.activeTransits ?? []
+  // v4.0 Fix 6 — the Astryx voice reads the EXISTING rendered headline only.
+  const { speak, stop: stopVoice, speakingId } = useAstryxVoice()
   return (
     <div className="space-y-4">
       {/* Temperature */}
@@ -389,7 +423,26 @@ function PulseTab({
 
       {/* Headline */}
       <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-        <div className="text-[10px] uppercase tracking-[0.24em] mb-1.5" style={{ color: hexToRgba(accentColor, 0.85) }}>Today&apos;s Headline</div>
+        <div className="flex items-center justify-between mb-1.5">
+          <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: hexToRgba(accentColor, 0.85) }}>Today&apos;s Headline</div>
+          {/* v4.0 Fix 6 — speak the rendered headline (deterministic text; the LLM is not called) */}
+          <button
+            onClick={() =>
+              speakingId === 'daily-headline'
+                ? stopVoice()
+                : speak(`${today.headlineTitle}. ${today.headlineBody}`, 'daily-headline')
+            }
+            aria-label={speakingId === 'daily-headline' ? 'Stop reading aloud' : 'Read today’s headline aloud'}
+            className="kowalski-button text-[11px] px-2 py-0.5 rounded-full"
+            style={{
+              background: speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.25) : 'rgba(255,255,255,0.05)',
+              border: `1px solid ${speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.5) : 'rgba(255,255,255,0.12)'}`,
+              color: 'rgba(255,255,255,0.7)',
+            }}
+          >
+            {speakingId === 'daily-headline' ? '■ stop' : '🔊 listen'}
+          </button>
+        </div>
         <div className="font-cinzel text-[18px] text-white mb-2 leading-snug">{today.headlineTitle}</div>
         <p className="text-[13.5px] leading-relaxed text-content-sm">{today.headlineBody}</p>
       </div>

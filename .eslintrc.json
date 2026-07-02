@@ -1,0 +1,20 @@
+{
+  "extends": "next/core-web-vitals",
+  "overrides": [
+    {
+      "files": [
+        "src/lib/engine.ts",
+        "src/lib/*Engine.ts",
+        "src/lib/chamber/**/*.ts",
+        "src/lib/astryxAudioLibrary.ts"
+      ],
+      "rules": {
+        "no-restricted-properties": [
+          "error",
+          { "object": "Math", "property": "random", "message": "Determinism invariant (Directive v4.0): no Math.random in the engine/chamber/audio-selection path." },
+          { "object": "Date", "property": "now", "message": "Determinism invariant (Directive v4.0): no wall-clock branching in the engine/chamber/audio-selection path." }
+        ]
+      }
+    }
+  ]
+}

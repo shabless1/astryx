@@ -102,7 +102,7 @@
       "cellSalts": ["Calc Fluor", "Mag Phos (cramping)", "Nat Mur (water retention)"],
       "indicatorLanguage": {
         "individual": "PMS symptoms benefit from: vitex (chasteberry), magnesium, B6, calcium, omega-3, regular exercise, stress reduction, blood sugar stability. Severe PMS or PMDD (with significant mood disruption) benefits from medical evaluation — many effective interventions available.",
-        "practitioner": "Moon-Venus-Mars configurations classically associated with menstrual cyclic patterns (Cornell, 1933). Vitex evidence-supported for PMS. PMDD is a more serious diagnosis — refer to psychiatry/gyn for SSRI consideration in severe cases."
+        "practitioner": "Moon-Venus-Mars configurations classically associated with menstrual cyclic patterns (Cornell, 1933). Vitex evidence-supported for PMS. PMDD is a more serious clinical picture — refer to psychiatry/gyn for SSRI consideration in severe cases."
       },
       "modalityNotes": {"bodywork": "Pre-menstrual: pelvic congestion work, lower back release", "lifestyle": "Vitex, magnesium, B6, omega-3, exercise, stress reduction"},
       "redFlags": ["Severe mood disturbance with suicidal ideation → urgent mental health"]
@@ -112,7 +112,7 @@
       "classicalReference": "Cornell (1933): 'Chronic pelvic congestion + inflammation patterns with malefic afflictions in 8th house.' Modern endometriosis recognized as estrogen-driven inflammatory condition.",
       "cellSalts": ["Calc Sulph", "Ferr Phos", "Mag Phos"],
       "indicatorLanguage": {
-        "individual": "Endometriosis is a chronic condition requiring proper diagnosis (laparoscopy is gold standard) and often specialty care. Severe period pain that disrupts your life is not normal. Pelvic pain specialist or endometriosis-knowledgeable gynecologist makes a significant difference.",
+        "individual": "Endometriosis is a chronic condition requiring proper medical evaluation (laparoscopy is the gold standard) and often specialty care. Severe period pain that disrupts your life is not normal. Pelvic pain specialist or endometriosis-knowledgeable gynecologist makes a significant difference.",
         "practitioner": "Pluto-Moon and Mars-Saturn reproductive configurations align. Endometriosis is gynecology/pelvic pain specialty. Holistic adjuncts: anti-inflammatory diet, address gut-estrogen axis (DIM, calcium D-glucarate), magnesium, omega-3, pelvic floor PT, stress management. Surgical excision (not ablation) for moderate-severe."
       },
       "modalityNotes": {"bodywork": "Pelvic floor PT (specialty), visceral mobilization (specialty), gentle abdominal work. Avoid during flares.", "lifestyle": "Anti-inflammatory diet, gluten/dairy trial, gut health, omega-3, pelvic floor PT"},

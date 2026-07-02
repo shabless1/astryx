@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Directive v4.0 Fix 7 — the determinism ESLint ban runs as its own build
+  // gate (npm run lint:determinism, scoped to the engine/chamber/audio paths).
+  // The full-codebase lint stays advisory (`npm run lint`) — it was never a
+  // build gate before this sprint and turning it on wholesale is out of scope.
+  eslint: { ignoreDuringBuilds: true },
   // Force Tone.js through Next's bundler so the ESM wrapper issue can't
   // resurface. Pairs with the runtime unwrap in src/lib/soundEngine.ts.
   // See FIXES.md → Fix 2.

@@ -16,6 +16,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useAppStore } from '@/lib/store'
 import { hexToRgba } from '@/lib/utils'
 import { answerAstryx } from '@/lib/astryx/sovereignAstryx'
+import { useAstryxVoice } from '@/lib/useAstryxVoice'
 
 type Turn = { role: 'user' | 'model'; text: string; sources?: string[] }
 
@@ -45,6 +46,10 @@ export default function TeacherChat({
   const [crisis, setCrisis]   = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const seededRef = useRef<string | null>(null)
+
+  // v4.0 Fix 6 — the Astryx voice reads existing reply text (user-gesture only).
+  const { speak, stop: stopVoice, speakingId } = useAstryxVoice()
+  useEffect(() => { if (!open) stopVoice() }, [open, stopVoice])
 
   const send = useCallback(async (raw: string) => {
     const message = raw.trim()
@@ -175,6 +180,24 @@ export default function TeacherChat({
                 }
               >
                 {t.text}
+                {/* v4.0 Fix 6 — speaker toggle on each Astryx reply. Tapping
+                    another reply's speaker stops the current one (one voice). */}
+                {t.role === 'model' && (
+                  <div className="mt-1.5 -mb-0.5">
+                    <button
+                      onClick={() => (speakingId === `turn-${i}` ? stopVoice() : speak(t.text, `turn-${i}`))}
+                      aria-label={speakingId === `turn-${i}` ? 'Stop reading aloud' : 'Read aloud'}
+                      className="kowalski-button text-[11px] px-2 py-0.5 rounded-full"
+                      style={{
+                        background: speakingId === `turn-${i}` ? alpha(accentColor, 0.25) : 'rgba(255,255,255,0.05)',
+                        border: `1px solid ${speakingId === `turn-${i}` ? alpha(accentColor, 0.5) : 'rgba(255,255,255,0.12)'}`,
+                        color: 'rgba(255,255,255,0.7)',
+                      }}
+                    >
+                      {speakingId === `turn-${i}` ? '■ stop' : '🔊 listen'}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}

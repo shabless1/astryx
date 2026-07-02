@@ -71,6 +71,15 @@ interface AppState {
   setSessionTime: (time: number) => void
   sessionActive: boolean
   setSessionActive: (active: boolean) => void
+  // Directive v4.0 FIX 3 — when the chamber session began (ISO). Set on session
+  // start; read by the rehydrate override to build the interrupted-session
+  // pointer (24h resume window).
+  sessionStartedAt: string | null
+  setSessionStartedAt: (iso: string | null) => void
+  // Directive v4.0 FIX 3 — an interrupted mid-flow session preserved at
+  // rehydrate instead of being restored into. Dashboard offers Resume/discard.
+  interruptedSession: { screen: AppScreen; sessionTime: number; startedAt: string } | null
+  setInterruptedSession: (s: { screen: AppScreen; sessionTime: number; startedAt: string } | null) => void
   // FIX 1 — the chamber session/timer are ONE unit. The clock + session progression
   // run ONLY while chamberRunning (set by the chamber Play/Pause). Ephemeral.
   chamberRunning: boolean
@@ -277,6 +286,10 @@ export const useAppStore = create<AppState>()(
       setSessionTime: (time) => set({ sessionTime: time }),
       sessionActive: false,
       setSessionActive: (active) => set({ sessionActive: active }),
+      sessionStartedAt: null,
+      setSessionStartedAt: (iso) => set({ sessionStartedAt: iso }),
+      interruptedSession: null,
+      setInterruptedSession: (s) => set({ interruptedSession: s }),
       chamberRunning: false,
       setChamberRunning: (running) => set({ chamberRunning: running }),
 
@@ -473,6 +486,9 @@ export const useAppStore = create<AppState>()(
         // Persist elapsed session time so a mid-Chamber reload resumes the phase
         // (audio still requires a fresh Play gesture per browser autoplay policy).
         sessionTime:      state.sessionTime,
+        // FIX 3 (v4.0) — session start stamp + interrupted-session pointer
+        sessionStartedAt: state.sessionStartedAt,
+        interruptedSession: state.interruptedSession,
         history:          state.history,
         // Progress History — the post-session loop's persisted record.
         // (pendingSession is intentionally NOT persisted; it's transient.)
@@ -521,6 +537,37 @@ export const useAppStore = create<AppState>()(
         chamberAudioMode: state.chamberAudioMode,
         songOverrides:    state.songOverrides,
       }),
+      // ── Directive v4.0 FIX 3 — rehydrate override ─────────────────────
+      // Never restore INTO a mid-flow screen (the "lands mid-chamber" bug).
+      // A stale chamber session becomes a resume pointer the Dashboard offers
+      // back ("Resume / Start fresh"); everything else routes home.
+      merge: (persisted, current) => {
+        const merged = { ...current, ...(persisted as Partial<AppState>) }
+        const MID_FLOW: AppScreen[] = [
+          'session', 'post-session', 'analysis', 'daily-checkin',
+          'today-signal', 'auth', 'payment', 'subscribe-gate', 'fork-access',
+        ]
+        if (MID_FLOW.includes(merged.screen)) {
+          // Preserve an actually-started chamber session as a resume pointer
+          // (entered-but-never-played sessions are discarded silently).
+          if (merged.screen === 'session' && merged.sessionTime > 0) {
+            merged.interruptedSession = {
+              screen: 'session',
+              sessionTime: merged.sessionTime,
+              startedAt: merged.sessionStartedAt ?? new Date().toISOString(),
+            }
+          }
+          merged.screen = merged.protocol
+            ? (merged.mode === 'practitioner' ? 'results' : 'dashboard')
+            : (merged.intakeData?.birthDate ? 'intake' : 'landing')
+        }
+        // Older-than-24h pointers are discarded silently (directive §Fix 3.2).
+        if (merged.interruptedSession) {
+          const age = Date.now() - new Date(merged.interruptedSession.startedAt).getTime()
+          if (!(age >= 0 && age < 24 * 60 * 60 * 1000)) merged.interruptedSession = null
+        }
+        return merged
+      },
     }
   )
 )

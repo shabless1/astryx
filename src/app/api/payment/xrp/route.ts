@@ -73,8 +73,8 @@ export async function POST(req: NextRequest) {
       )
 
       if (result.verified) {
-        // Grant premium access
-        grantPremium(userId)
+        // Grant premium access (Fix 1 — now an async DB write)
+        await grantPremium(userId)
         session.status = 'confirmed'
         session.txHash = result.txHash
         activeSessions.delete(userId) // clean up

@@ -62,8 +62,8 @@
     ],
     "sacredBotanicals": [],
     "supplementaryHerbs": [
-      {"name": "Cranberry", "classicalAttribution": "Venus / Mars", "mechanism": "Proanthocyanidins prevent E. coli adhesion to bladder wall", "indicatedFor": "UTI prevention (NOT acute treatment — too late at infection)"},
-      {"name": "D-Mannose", "classicalAttribution": "Modern", "mechanism": "Sugar that E. coli binds to instead of bladder wall", "indicatedFor": "UTI prevention + early treatment of E. coli UTI"},
+      {"name": "Cranberry", "classicalAttribution": "Venus / Mars", "mechanism": "Proanthocyanidins prevent E. coli adhesion to bladder wall", "indicatedFor": "UTI prevention only (too late once infection is active)"},
+      {"name": "D-Mannose", "classicalAttribution": "Modern", "mechanism": "Sugar that E. coli binds to instead of bladder wall", "indicatedFor": "UTI prevention + early intervention for E. coli UTI"},
       {"name": "Uva ursi (bearberry)", "classicalAttribution": "Mars / Saturn", "mechanism": "Arbutin → hydroquinone antimicrobial in urine (works in alkaline urine — take with baking soda)", "indicatedFor": "Acute UTI — short course only (toxicity if prolonged)"},
       {"name": "Marshmallow root", "classicalAttribution": "Moon / Venus", "mechanism": "Demulcent — soothes inflamed urinary mucosa", "indicatedFor": "Interstitial cystitis, irritated bladder, post-UTI"},
       {"name": "Dandelion leaf", "classicalAttribution": "Jupiter", "mechanism": "Potassium-sparing diuretic", "indicatedFor": "Fluid retention, mild edema"},

@@ -11,6 +11,12 @@
  * server-side here also keeps its structure off the client (trade-secret posture).
  */
 import { NextResponse } from 'next/server'
+// Directive v4.0 Fix 4 — bundled manifest generated from the live bucket
+// inventory (scripts/probe-r2-catalog.mjs → scripts/generate-catalog-manifest.mjs).
+// Served whenever the bucket-root catalog.json is missing/unreachable, so the
+// app always gets a real track list. A bucket-root catalog.json still WINS when
+// present (that's the no-redeploy growth path — upload it when tracks change).
+import bundledManifest from '@/data/catalogManifest.json'
 
 export const runtime = 'nodejs'
 
@@ -19,25 +25,31 @@ export const runtime = 'nodejs'
 const AUDIO_BASE = (process.env.AUDIO_BASE_URL ?? process.env.NEXT_PUBLIC_AUDIO_BASE_URL ?? '')
   .replace(/\/$/, '')
 
+const CACHE_HEADERS = {
+  'Content-Type': 'application/json',
+  // Edge-cache 5 min, serve stale while revalidating.
+  'Cache-Control': 's-maxage=300, stale-while-revalidate=600',
+} as const
+
+function bundledResponse(reason: string) {
+  return new NextResponse(
+    JSON.stringify({ ...bundledManifest, source: 'bundled', upstream: reason }),
+    { status: 200, headers: CACHE_HEADERS },
+  )
+}
+
 export async function GET() {
   if (!AUDIO_BASE) {
-    return NextResponse.json({ error: 'audio base not configured', tracks: [] }, { status: 200 })
+    return bundledResponse('audio base not configured')
   }
   try {
     const res = await fetch(`${AUDIO_BASE}/catalog.json`, { cache: 'no-store' })
     if (!res.ok) {
-      return NextResponse.json({ error: `upstream ${res.status}`, tracks: [] }, { status: 200 })
+      return bundledResponse(`upstream ${res.status}`)
     }
     const data = await res.json()
-    return new NextResponse(JSON.stringify(data), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        // Edge-cache 5 min, serve stale while revalidating.
-        'Cache-Control': 's-maxage=300, stale-while-revalidate=600',
-      },
-    })
+    return new NextResponse(JSON.stringify(data), { status: 200, headers: CACHE_HEADERS })
   } catch (err) {
-    return NextResponse.json({ error: String(err), tracks: [] }, { status: 200 })
+    return bundledResponse(String(err))
   }
 }

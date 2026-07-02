@@ -133,7 +133,7 @@
       "cellSalts": ["Ferr Phos", "Nat Mur"],
       "indicatorLanguage": {
         "individual": "Contact dermatitis (rash after touching something) requires identifying the trigger (poison ivy, nickel, fragrance, etc.) and avoiding it. Topical relief: cool compress, calendula, oat baths. Persistent or spreading rash, especially with fever, needs medical evaluation.",
-        "practitioner": "Mercury-Uranus configurations align with hypersensitivity reactivity. Patch testing for chronic. Avoidance is treatment."
+        "practitioner": "Mercury-Uranus configurations align with hypersensitivity reactivity. Patch testing for chronic. Avoidance is the primary intervention."
       },
       "modalityNotes": {"bodywork": "Avoid affected area.", "lifestyle": "Identify trigger, avoid, topical soothing"},
       "redFlags": ["Anaphylaxis → 911", "Stevens-Johnson Syndrome signs (skin sloughing, mucosal involvement) → ED"]

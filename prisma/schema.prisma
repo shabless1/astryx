@@ -1,0 +1,118 @@
+// ASTRYX — Database schema (Directive v4.0 · Fix 1)
+// Supabase Postgres via Prisma. NextAuth v4 standard models + Astryx models.
+//
+// DATABASE_URL  = pooled connection (Supavisor, port 6543, pgbouncer=true) — runtime queries
+// DIRECT_URL    = session connection (port 5432) — migrations only
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── NextAuth v4 standard models (shapes per @next-auth/prisma-adapter) ───
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  // Astryx additions
+  passwordHash  String?   // Credentials provider (bcryptjs)
+  birthData     Json?     // natal input snapshot (name/date/time/location/coords)
+  isPremium     Boolean   @default(false) // XRP legacy rail (dormant)
+  createdAt     DateTime  @default(now())
+
+  accounts        Account[]
+  sessions        Session[]
+  readings        Reading[]
+  chamberSessions ChamberSession[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Astryx models (Directive v4.0) ───────────────────────────────────────
+
+// Fork-buyer / beta entitlement. Keyed by lowercase-normalized email so a
+// Shopify order can grant access before the account exists.
+model Entitlement {
+  id             String   @id @default(cuid())
+  email          String // ALWAYS lowercase-normalized before write
+  source         String // "shopify_fork_kit" | "manual" | "subscription"
+  shopifyOrderId String?  @unique
+  status         String   @default("active")
+  createdAt      DateTime @default(now())
+
+  @@index([email])
+}
+
+// A persisted reading — the full deterministic ProtocolOutput + the intake
+// that produced it. chartHash = stable hash of birth data + intake for
+// determinism verification.
+model Reading {
+  id          String   @id @default(cuid())
+  userId      String
+  intake      Json
+  protocol    Json // full ProtocolOutput
+  chartData   Json? // /api/chart result (chart wheel + body map rehydration)
+  accentColor String?
+  chartHash   String
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model ChamberSession {
+  id              String    @id @default(cuid())
+  userId          String
+  readingId       String?
+  kind            String // "reading" | "daily"
+  completedPhases Int       @default(0)
+  startedAt       DateTime
+  completedAt     DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}

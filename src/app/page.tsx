@@ -34,6 +34,7 @@ import BodyGridScreen from '@/components/screens/BodyGridScreen'
 import ClientRosterScreen from '@/components/screens/ClientRosterScreen'
 import HomeScreen from '@/components/screens/HomeScreen'
 import SubscribeGateScreen from '@/components/screens/SubscribeGateScreen'
+import ForkAccessScreen from '@/components/screens/ForkAccessScreen'
 import MusicLibraryScreen from '@/components/screens/MusicLibraryScreen'
 import PostSessionSummary from '@/components/screens/PostSessionSummary'
 import TeacherChat from '@/components/teacher/TeacherChat'
@@ -74,8 +75,13 @@ export default function AstryxApp() {
   const subscriptionStatus = useAppStore((s) => s.subscriptionStatus)
   const setSubscriptionStatus = useAppStore((s) => s.setSubscriptionStatus)
 
+  // Directive v4.0 Fix 2 — fork buyers (and allowlisted beta emails) have full
+  // beta access: entitlement acts as an active subscription. Stamped into the
+  // JWT at sign-in by the Shopify webhook → Entitlement pipeline.
+  const entitled = session?.user?.entitled === true
+
   // FIX 9 — trial/subscription clock (deliberate opt-in; Shopify billing).
-  const sub = computeSubscription(trialStartedAt, subscriptionStatus)
+  const sub = computeSubscription(trialStartedAt, entitled ? 'active' : subscriptionStatus)
   const [alertDismissed, setAlertDismissed] = useState(false)
   // Global Ask Astryx — a floating companion the user can open anywhere.
   const [astryxOpen, setAstryxOpen] = useState(false)
@@ -222,6 +228,47 @@ export default function AstryxApp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, screen])
 
+  // Directive v4.0 Fix 1 — server-side rehydration. A signed-in user on a fresh
+  // device (or after a cleared localStorage) pulls their latest persisted
+  // reading and rebuilds the local store. localStorage wins when both exist —
+  // we only fetch when the local store has NO protocol.
+  const hydratedFromServer = useRef(false)
+  useEffect(() => {
+    if (!session?.user || protocol || hydratedFromServer.current) return
+    hydratedFromServer.current = true
+    ;(async () => {
+      try {
+        const res = await fetch('/api/readings/latest')
+        if (!res.ok) return
+        const { reading } = await res.json()
+        if (!reading?.protocol) return
+        const intake = (reading.intake ?? {}) as Partial<typeof intakeData> & { birthCoords?: any }
+        setIntakeData({
+          name:          intake.name ?? '',
+          birthDate:     intake.birthDate ?? '',
+          birthTime:     intake.birthTime ?? '',
+          birthLocation: intake.birthLocation ?? '',
+        })
+        if (intake.birthCoords) setBirthCoords(intake.birthCoords)
+        if (reading.chartData) setChartData(reading.chartData)
+        setProtocol(reading.protocol)
+        setAccentColor(reading.accentColor || getAccentColor(reading.protocol))
+        // Stamp the reading's compute date (local) so the daily door governs:
+        // a reading from a prior day routes through the Check-In recompute.
+        setProtocolDate(new Date(reading.createdAt).toLocaleDateString('en-CA'))
+        setOnboarded(true)
+        // Land the restored user on their home, not the empty intake they were
+        // parked on while the store had no protocol.
+        const cur = useAppStore.getState().screen
+        if (cur === 'intake' || cur === 'landing' || cur === 'auth') setScreen('dashboard')
+        console.log('[readings] rehydrated latest reading from account')
+      } catch (e) {
+        console.warn('[readings] rehydrate failed (localStorage/guest flow unaffected):', e)
+      }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session, protocol])
+
   // FIX 9 — trial expired (and no active subscription) → lock the app behind the
   // subscribe gate. The door locks; natal/history/trends are preserved. When a
   // subscription becomes active, release back to the saved journey.
@@ -233,6 +280,27 @@ export default function AstryxApp() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sub.locked, screen])
+
+  // ── v4.0 FIX 3 — deep-link shim (hash → screen; screen → hash) ──────────
+  // A cheap forward-compatible URL layer until the full App Router migration:
+  // #dashboard / #chamber / #chat are linkable from notifications and emails.
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (!hash) return
+    if (hash === 'dashboard' && protocol) setScreen('dashboard')
+    else if (hash === 'chamber') { if (protocol) handleStartSession(); else setScreen('intake') }
+    else if (hash === 'chat') setAstryxOpen(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])   // mount only
+  useEffect(() => {
+    const HASH_FOR_SCREEN: Partial<Record<AppScreen, string>> = {
+      dashboard: 'dashboard',
+      session:   'chamber',
+    }
+    const h = HASH_FOR_SCREEN[screen]
+    const base = window.location.pathname + window.location.search
+    window.history.replaceState(null, '', h ? `${base}#${h}` : base)
+  }, [screen])
 
   // ── Audio overlap fix — single global controller ──────────────
   // panicStop on EVERY screen change (the app's "route change") so no screen
@@ -387,6 +455,20 @@ export default function AstryxApp() {
         accentColor: accent,
         protocol: result,
       })
+      // Directive v4.0 Fix 1 — persist the reading server-side for signed-in
+      // users (fire-and-forget; guests keep localStorage-only persistence).
+      if (session?.user) {
+        fetch('/api/readings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            intake:      { ...intake, birthCoords: resolvedCoords ?? null },
+            protocol:    result,
+            chartData:   freshChart ?? null,
+            accentColor: accent,
+          }),
+        }).catch((e) => console.warn('[readings] persist failed (localStorage still has it):', e))
+      }
       // FIX 4 — individuals land on the ONE-CARD Reading (today-signal): signal ·
       // carrier · why · fork sequence · element note · [Enter Chamber][Ask Astryx].
       // Depth lives behind "Go deeper" (Dashboard). Practitioners keep full Results.
@@ -404,10 +486,28 @@ export default function AstryxApp() {
     }
   }
 
+  const setSessionStartedAt = useAppStore((s) => s.setSessionStartedAt)
+  const interruptedSession = useAppStore((s) => s.interruptedSession)
+  const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
+
   const handleStartSession = () => {
     setSessionTime(0)
     setSessionActive(true)
     setChamberRunning(false)   // FIX 1 — idle on entry; the clock waits for Play
+    // v4.0 FIX 3 — stamp the start; a fresh session supersedes any stale pointer.
+    setSessionStartedAt(new Date().toISOString())
+    setInterruptedSession(null)
+    setScreen('session')
+  }
+
+  // v4.0 FIX 3 — resume an interrupted chamber session where it left off.
+  const handleResumeSession = () => {
+    const snap = interruptedSession
+    setInterruptedSession(null)
+    if (!snap || !protocol) return
+    setSessionTime(snap.sessionTime)
+    setSessionActive(true)
+    setChamberRunning(false)   // audio needs a fresh Play gesture (autoplay policy)
     setScreen('session')
   }
 
@@ -435,12 +535,13 @@ export default function AstryxApp() {
   }
 
   const handlePractitionerClick = () => {
-    // Premium gate — if no session or not premium, show payment screen
+    // Premium gate — Fix 8: the access door is the fork set, not the retired
+    // "Coming Soon" payment screen. (PaymentScreen + XRP route stay dormant.)
     if (!session?.user?.isPremium) {
       if (!session) {
         setScreen('auth')
       } else {
-        setScreen('payment')
+        setScreen('fork-access')
       }
       return
     }
@@ -448,7 +549,7 @@ export default function AstryxApp() {
   }
 
   const isSessionScreen = screen === 'session'
-  const hideNav = isSessionScreen || screen === 'analysis' || screen === 'auth' || screen === 'payment' || screen === 'subscribe-gate' || screen === 'landing'
+  const hideNav = isSessionScreen || screen === 'analysis' || screen === 'auth' || screen === 'payment' || screen === 'subscribe-gate' || screen === 'landing' || screen === 'fork-access'
 
   return (
     <div
@@ -469,8 +570,9 @@ export default function AstryxApp() {
           mode={mode}
           user={session?.user ?? null}
           hasProtocol={!!protocol}
+          entitled={entitled}
           onAuthClick={() => setScreen('auth')}
-          onUpgradeClick={() => setScreen(session ? 'payment' : 'auth')}
+          onUpgradeClick={() => setScreen('fork-access')}
           onAskAstryx={() => setAstryxOpen(true)}
           onBack={goBack}
           canGoBack={screenHistory.length > 0}
@@ -507,6 +609,16 @@ export default function AstryxApp() {
         {/* ── Subscribe gate (FIX 9 — trial expired; data preserved behind it) ── */}
         {screen === 'subscribe-gate' && (
           <SubscribeGateScreen accentColor={accentColor} onRestore={handleRestoreSubscription} />
+        )}
+
+        {/* ── Fork access (Directive v4.0 Fix 2/8 — beta access = fork set) ── */}
+        {screen === 'fork-access' && (
+          <ForkAccessScreen
+            accentColor={accentColor}
+            sessionEmail={session?.user?.email ?? null}
+            onSignIn={() => { setAuthInitialMode('signin'); setScreen('auth') }}
+            onBack={() => (screenHistory.length ? goBack() : goHome())}
+          />
         )}
 
         {/* ── Auth ── */}
@@ -580,6 +692,7 @@ export default function AstryxApp() {
             onCalibrate={handleDailyCalibrate}
             sessionLoggedToast={sessionLoggedToast}
             onClearToast={() => setSessionLoggedToast(false)}
+            onResumeSession={handleResumeSession}
           />
         )}
 
@@ -652,7 +765,7 @@ export default function AstryxApp() {
             chartData={chartData}
             onBack={() => setScreen('results')}
             onStartSession={handleStartSession}
-            onUpgrade={() => setScreen('payment')}
+            onUpgrade={() => setScreen('fork-access')}
             onClientRoster={() => setScreen('client-roster')}
           />
         )}
@@ -717,7 +830,7 @@ export default function AstryxApp() {
               accentColor={accentColor}
               title="Body Systems"
               blurb="The system-by-system medical-astrology breakdown is a Practitioner-tier surface. Your Chart and Body Grid are always available to you."
-              onUpgrade={() => setScreen(session ? 'payment' : 'auth')}
+              onUpgrade={() => setScreen('fork-access')}
               onBack={goHome}
             />
           )
@@ -759,7 +872,7 @@ export default function AstryxApp() {
           TOP bar (NavBar center on standard screens; the chamber's own top bar on
           the Session screen). No floating button. This just hosts the chat panel,
           opened from those top-bar launchers. (SHA 2026-06-28.) ── */}
-      {!['auth', 'payment', 'analysis', 'subscribe-gate'].includes(screen) && (
+      {!['auth', 'payment', 'analysis', 'subscribe-gate', 'fork-access'].includes(screen) && (
         <TeacherChat open={astryxOpen} onClose={() => setAstryxOpen(false)} accentColor={accentColor} seed={null} />
       )}
     </div>

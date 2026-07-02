@@ -1,0 +1,467 @@
+{
+  "version": 1,
+  "count": 176,
+  "tracks": [
+    "earthday/nat/EARTHDAY_NAT_01.mp3",
+    "earthday/nat/EARTHDAY_NAT_02.mp3",
+    "earthday/nat/EARTHDAY_NAT_03.mp3",
+    "earthday/nat/EARTHDAY_NAT_04.mp3",
+    "jupiter/blk/JUPITER_BLK_01.mp3",
+    "jupiter/blk/JUPITER_BLK_01b.mp3",
+    "jupiter/blk/JUPITER_BLK_02.mp3",
+    "jupiter/blk/JUPITER_BLK_02b.mp3",
+    "jupiter/blk/JUPITER_BLK_02c.mp3",
+    "jupiter/def/JUPITER_DEF_01.mp3",
+    "jupiter/def/JUPITER_DEF_01b.mp3",
+    "jupiter/exc/JUPITER_EXC_01.mp3",
+    "jupiter/exc/JUPITER_EXC_01b.mp3",
+    "jupiter/exc/JUPITER_EXC_01c.mp3",
+    "jupiter/exc/JUPITER_EXC_02.mp3",
+    "jupiter/exc/JUPITER_EXC_02b.mp3",
+    "jupiter/exc/JUPITER_EXC_02c.mp3",
+    "jupiter/exc/JUPITER_EXC_03.mp3",
+    "jupiter/exc/JUPITER_EXC_03b.mp3",
+    "jupiter/nat/JUPITER_NAT_01.mp3",
+    "jupiter/nat/JUPITER_NAT_01b.mp3",
+    "jupiter/nat/JUPITER_NAT_01c.mp3",
+    "jupiter/nat/JUPITER_NAT_02.mp3",
+    "jupiter/nat/JUPITER_NAT_02b.mp3",
+    "jupiter/nat/JUPITER_NAT_02c.mp3",
+    "jupiter/nat/JUPITER_NAT_03.mp3",
+    "jupiter/nat/JUPITER_NAT_03b.mp3",
+    "jupiter/nat/JUPITER_NAT_04b.mp3",
+    "mars/blk/MARS_BLK_01.mp3",
+    "mars/blk/MARS_BLK_01b.mp3",
+    "mars/blk/MARS_BLK_02.mp3",
+    "mars/blk/MARS_BLK_02b.mp3",
+    "mars/def/MARS_DEF_01.mp3",
+    "mars/def/MARS_DEF_01b.mp3",
+    "mars/def/MARS_DEF_02.mp3",
+    "mars/def/MARS_DEF_02b.mp3",
+    "mars/exc/MARS_EXC_01.mp3",
+    "mars/exc/MARS_EXC_01b.mp3",
+    "mars/exc/MARS_EXC_02.mp3",
+    "mars/exc/MARS_EXC_02b.mp3",
+    "mars/exc/MARS_EXC_03.mp3",
+    "mars/exc/MARS_EXC_03b.mp3",
+    "mars/nat/MARS_NAT_01.mp3",
+    "mars/nat/MARS_NAT_01b.mp3",
+    "mars/nat/MARS_NAT_02b.mp3",
+    "mercury/blk/MERCURY_BLK_01.mp3",
+    "mercury/blk/MERCURY_BLK_01b.mp3",
+    "mercury/blk/MERCURY_BLK_02.mp3",
+    "mercury/blk/MERCURY_BLK_02b.mp3",
+    "mercury/def/MERCURY_DEF_01.mp3",
+    "mercury/def/MERCURY_DEF_01b.mp3",
+    "mercury/def/MERCURY_DEF_02.mp3",
+    "mercury/exc/MERCURY_EXC_01.mp3",
+    "mercury/exc/MERCURY_EXC_01b.mp3",
+    "mercury/exc/MERCURY_EXC_02.mp3",
+    "mercury/exc/MERCURY_EXC_03.mp3",
+    "mercury/nat/MERCURY_NAT_01.mp3",
+    "mercury/nat/MERCURY_NAT_01b.mp3",
+    "mercury/nat/MERCURY_NAT_02.mp3",
+    "mercury/nat/MERCURY_NAT_03.mp3",
+    "moon/blk/MOON_BLK_01.mp3",
+    "moon/def/MOON_DEF_01.mp3",
+    "moon/def/MOON_DEF_02.mp3",
+    "moon/exc/MOON_EXC_01.mp3",
+    "moon/exc/MOON_EXC_01a.mp3",
+    "moon/exc/MOON_EXC_01b.mp3",
+    "moon/exc/MOON_EXC_02.mp3",
+    "moon/exc/MOON_EXC_02b.mp3",
+    "moon/exc/MOON_EXC_03.mp3",
+    "moon/exc/MOON_EXC_03b.mp3",
+    "moon/nat/MOON_NAT_01.mp3",
+    "moon/nat/MOON_NAT_02.mp3",
+    "moon/nat/MOON_NAT_03.mp3",
+    "moon/nat/MOON_NAT_03b.mp3",
+    "moon/nat/MOON_NAT_04b.mp3",
+    "neptune/blk/NEPTUNE_BLK_01.mp3",
+    "neptune/blk/NEPTUNE_BLK_01b.mp3",
+    "neptune/blk/NEPTUNE_BLK_02.mp3",
+    "neptune/blk/NEPTUNE_BLK_02b.mp3",
+    "neptune/def/NEPTUNE_DEF_01.mp3",
+    "neptune/def/NEPTUNE_DEF_01b.mp3",
+    "neptune/def/NEPTUNE_DEF_01c.mp3",
+    "neptune/def/NEPTUNE_DEF_02.mp3",
+    "neptune/def/NEPTUNE_DEF_02b.mp3",
+    "neptune/exc/NEPTUNE_EXC_01.mp3",
+    "neptune/exc/NEPTUNE_EXC_01b.mp3",
+    "neptune/exc/NEPTUNE_EXC_02.mp3",
+    "neptune/exc/NEPTUNE_EXC_02b.mp3",
+    "neptune/exc/NEPTUNE_EXC_03.mp3",
+    "neptune/exc/NEPTUNE_EXC_03b.mp3",
+    "neptune/nat/NEPTUNE_NAT_01.mp3",
+    "neptune/nat/NEPTUNE_NAT_01b.mp3",
+    "neptune/nat/NEPTUNE_NAT_02.mp3",
+    "neptune/nat/NEPTUNE_NAT_02b.mp3",
+    "neptune/nat/NEPTUNE_NAT_03.mp3",
+    "neptune/nat/NEPTUNE_NAT_03b.mp3",
+    "neptune/nat/NEPTUNE_NAT_04.mp3",
+    "neptune/nat/NEPTUNE_NAT_04b.mp3",
+    "pluto/blk/PLUTO_BLK_01.mp3",
+    "pluto/blk/PLUTO_BLK_01b.mp3",
+    "pluto/blk/PLUTO_BLK_02.mp3",
+    "pluto/blk/PLUTO_BLK_02b.mp3",
+    "pluto/def/PLUTO_DEF_02.mp3",
+    "pluto/def/PLUTO_DEF_02b.mp3",
+    "pluto/exc/PLUTO_EXC_02.mp3",
+    "pluto/exc/PLUTO_EXC_03.mp3",
+    "pluto/exc/PLUTO_EXC_03b.mp3",
+    "pluto/nat/PLUTO_NAT_01.mp3",
+    "pluto/nat/PLUTO_NAT_02.mp3",
+    "saturn/blk/SATURN_BLK_01.mp3",
+    "saturn/blk/SATURN_BLK_01b.mp3",
+    "saturn/blk/SATURN_BLK_02.mp3",
+    "saturn/blk/SATURN_BLK_02b.mp3",
+    "saturn/blk/SATURN_BLK_02c.mp3",
+    "saturn/def/SATURN_DEF_01.mp3",
+    "saturn/def/SATURN_DEF_01b.mp3",
+    "saturn/def/SATURN_DEF_01c.mp3",
+    "saturn/def/SATURN_DEF_02.mp3",
+    "saturn/def/SATURN_DEF_02b.mp3",
+    "saturn/exc/SATURN_EXC_01.mp3",
+    "saturn/exc/SATURN_EXC_01b.mp3",
+    "saturn/exc/SATURN_EXC_02.mp3",
+    "saturn/exc/SATURN_EXC_02b.mp3",
+    "saturn/exc/SATURN_EXC_03.mp3",
+    "saturn/exc/SATURN_EXC_03b.mp3",
+    "saturn/nat/SATURN_NAT_01.mp3",
+    "saturn/nat/SATURN_NAT_01b.mp3",
+    "saturn/nat/SATURN_NAT_02.mp3",
+    "saturn/nat/SATURN_NAT_03b.mp3",
+    "sun/blk/SUN_BLK_01.mp3",
+    "sun/blk/SUN_BLK_01b.mp3",
+    "sun/blk/SUN_BLK_02.mp3",
+    "sun/blk/SUN_BLK_02b.mp3",
+    "sun/def/SUN_DEF_01.mp3",
+    "sun/def/SUN_DEF_01b.mp3",
+    "sun/def/SUN_DEF_01c.mp3",
+    "sun/def/SUN_DEF_02.mp3",
+    "sun/exc/SUN_EXC_01.mp3",
+    "sun/exc/SUN_EXC_02.mp3",
+    "sun/exc/SUN_EXC_02b.mp3",
+    "sun/exc/SUN_EXC_03.mp3",
+    "sun/nat/SUN_NAT_01.mp3",
+    "sun/nat/SUN_NAT_02.mp3",
+    "sun/nat/SUN_NAT_03.mp3",
+    "sun/nat/SUN_NAT_04.mp3",
+    "sun/nat/SUN_NAT_04b.mp3",
+    "sun/nat/SUN_NAT_05.mp3",
+    "sun/nat/SUN_NAT_05b.mp3",
+    "uranus/blk/URANUS_BLK_01.mp3",
+    "uranus/blk/URANUS_BLK_01b.mp3",
+    "uranus/blk/URANUS_BLK_02.mp3",
+    "uranus/blk/URANUS_BLK_02b.mp3",
+    "uranus/def/URANUS_DEF_01.mp3",
+    "uranus/def/URANUS_DEF_02.mp3",
+    "uranus/def/URANUS_DEF_02b.mp3",
+    "uranus/exc/URANUS_EXC_02.mp3",
+    "uranus/exc/URANUS_EXC_02b.mp3",
+    "uranus/exc/URANUS_EXC_03.mp3",
+    "uranus/exc/URANUS_EXC_03b.mp3",
+    "uranus/exc/URANUS_EXC_03c.mp3",
+    "uranus/nat/URANUS_NAT_02.mp3",
+    "uranus/nat/URANUS_NAT_03.mp3",
+    "venus/blk/VENUS_BLK_01.mp3",
+    "venus/blk/VENUS_BLK_01b.mp3",
+    "venus/blk/VENUS_BLK_02.mp3",
+    "venus/blk/VENUS_BLK_02b.mp3",
+    "venus/def/VENUS_DEF_01.mp3",
+    "venus/exc/VENUS_EXC_01.mp3",
+    "venus/exc/VENUS_EXC_01b.mp3",
+    "venus/exc/VENUS_EXC_02.mp3",
+    "venus/exc/VENUS_EXC_03.mp3",
+    "venus/nat/VENUS_NAT_01.mp3",
+    "venus/nat/VENUS_NAT_01b.mp3",
+    "venus/nat/VENUS_NAT_02.mp3",
+    "venus/nat/VENUS_NAT_02b.mp3",
+    "venus/nat/VENUS_NAT_02c.mp3"
+  ],
+  "catalog": {
+    "earthday": {
+      "nat": [
+        "EARTHDAY_NAT_01",
+        "EARTHDAY_NAT_02",
+        "EARTHDAY_NAT_03",
+        "EARTHDAY_NAT_04"
+      ],
+      "exc": [],
+      "def": [],
+      "blk": []
+    },
+    "jupiter": {
+      "nat": [
+        "JUPITER_NAT_01",
+        "JUPITER_NAT_01b",
+        "JUPITER_NAT_01c",
+        "JUPITER_NAT_02",
+        "JUPITER_NAT_02b",
+        "JUPITER_NAT_02c",
+        "JUPITER_NAT_03",
+        "JUPITER_NAT_03b",
+        "JUPITER_NAT_04b"
+      ],
+      "exc": [
+        "JUPITER_EXC_01",
+        "JUPITER_EXC_01b",
+        "JUPITER_EXC_01c",
+        "JUPITER_EXC_02",
+        "JUPITER_EXC_02b",
+        "JUPITER_EXC_02c",
+        "JUPITER_EXC_03",
+        "JUPITER_EXC_03b"
+      ],
+      "def": [
+        "JUPITER_DEF_01",
+        "JUPITER_DEF_01b"
+      ],
+      "blk": [
+        "JUPITER_BLK_01",
+        "JUPITER_BLK_01b",
+        "JUPITER_BLK_02",
+        "JUPITER_BLK_02b",
+        "JUPITER_BLK_02c"
+      ]
+    },
+    "mars": {
+      "nat": [
+        "MARS_NAT_01",
+        "MARS_NAT_01b",
+        "MARS_NAT_02b"
+      ],
+      "exc": [
+        "MARS_EXC_01",
+        "MARS_EXC_01b",
+        "MARS_EXC_02",
+        "MARS_EXC_02b",
+        "MARS_EXC_03",
+        "MARS_EXC_03b"
+      ],
+      "def": [
+        "MARS_DEF_01",
+        "MARS_DEF_01b",
+        "MARS_DEF_02",
+        "MARS_DEF_02b"
+      ],
+      "blk": [
+        "MARS_BLK_01",
+        "MARS_BLK_01b",
+        "MARS_BLK_02",
+        "MARS_BLK_02b"
+      ]
+    },
+    "mercury": {
+      "nat": [
+        "MERCURY_NAT_01",
+        "MERCURY_NAT_01b",
+        "MERCURY_NAT_02",
+        "MERCURY_NAT_03"
+      ],
+      "exc": [
+        "MERCURY_EXC_01",
+        "MERCURY_EXC_01b",
+        "MERCURY_EXC_02",
+        "MERCURY_EXC_03"
+      ],
+      "def": [
+        "MERCURY_DEF_01",
+        "MERCURY_DEF_01b",
+        "MERCURY_DEF_02"
+      ],
+      "blk": [
+        "MERCURY_BLK_01",
+        "MERCURY_BLK_01b",
+        "MERCURY_BLK_02",
+        "MERCURY_BLK_02b"
+      ]
+    },
+    "moon": {
+      "nat": [
+        "MOON_NAT_01",
+        "MOON_NAT_02",
+        "MOON_NAT_03",
+        "MOON_NAT_03b",
+        "MOON_NAT_04b"
+      ],
+      "exc": [
+        "MOON_EXC_01",
+        "MOON_EXC_01a",
+        "MOON_EXC_01b",
+        "MOON_EXC_02",
+        "MOON_EXC_02b",
+        "MOON_EXC_03",
+        "MOON_EXC_03b"
+      ],
+      "def": [
+        "MOON_DEF_01",
+        "MOON_DEF_02"
+      ],
+      "blk": [
+        "MOON_BLK_01"
+      ]
+    },
+    "neptune": {
+      "nat": [
+        "NEPTUNE_NAT_01",
+        "NEPTUNE_NAT_01b",
+        "NEPTUNE_NAT_02",
+        "NEPTUNE_NAT_02b",
+        "NEPTUNE_NAT_03",
+        "NEPTUNE_NAT_03b",
+        "NEPTUNE_NAT_04",
+        "NEPTUNE_NAT_04b"
+      ],
+      "exc": [
+        "NEPTUNE_EXC_01",
+        "NEPTUNE_EXC_01b",
+        "NEPTUNE_EXC_02",
+        "NEPTUNE_EXC_02b",
+        "NEPTUNE_EXC_03",
+        "NEPTUNE_EXC_03b"
+      ],
+      "def": [
+        "NEPTUNE_DEF_01",
+        "NEPTUNE_DEF_01b",
+        "NEPTUNE_DEF_01c",
+        "NEPTUNE_DEF_02",
+        "NEPTUNE_DEF_02b"
+      ],
+      "blk": [
+        "NEPTUNE_BLK_01",
+        "NEPTUNE_BLK_01b",
+        "NEPTUNE_BLK_02",
+        "NEPTUNE_BLK_02b"
+      ]
+    },
+    "pluto": {
+      "nat": [
+        "PLUTO_NAT_01",
+        "PLUTO_NAT_02"
+      ],
+      "exc": [
+        "PLUTO_EXC_02",
+        "PLUTO_EXC_03",
+        "PLUTO_EXC_03b"
+      ],
+      "def": [
+        "PLUTO_DEF_02",
+        "PLUTO_DEF_02b"
+      ],
+      "blk": [
+        "PLUTO_BLK_01",
+        "PLUTO_BLK_01b",
+        "PLUTO_BLK_02",
+        "PLUTO_BLK_02b"
+      ]
+    },
+    "saturn": {
+      "nat": [
+        "SATURN_NAT_01",
+        "SATURN_NAT_01b",
+        "SATURN_NAT_02",
+        "SATURN_NAT_03b"
+      ],
+      "exc": [
+        "SATURN_EXC_01",
+        "SATURN_EXC_01b",
+        "SATURN_EXC_02",
+        "SATURN_EXC_02b",
+        "SATURN_EXC_03",
+        "SATURN_EXC_03b"
+      ],
+      "def": [
+        "SATURN_DEF_01",
+        "SATURN_DEF_01b",
+        "SATURN_DEF_01c",
+        "SATURN_DEF_02",
+        "SATURN_DEF_02b"
+      ],
+      "blk": [
+        "SATURN_BLK_01",
+        "SATURN_BLK_01b",
+        "SATURN_BLK_02",
+        "SATURN_BLK_02b",
+        "SATURN_BLK_02c"
+      ]
+    },
+    "sun": {
+      "nat": [
+        "SUN_NAT_01",
+        "SUN_NAT_02",
+        "SUN_NAT_03",
+        "SUN_NAT_04",
+        "SUN_NAT_04b",
+        "SUN_NAT_05",
+        "SUN_NAT_05b"
+      ],
+      "exc": [
+        "SUN_EXC_01",
+        "SUN_EXC_02",
+        "SUN_EXC_02b",
+        "SUN_EXC_03"
+      ],
+      "def": [
+        "SUN_DEF_01",
+        "SUN_DEF_01b",
+        "SUN_DEF_01c",
+        "SUN_DEF_02"
+      ],
+      "blk": [
+        "SUN_BLK_01",
+        "SUN_BLK_01b",
+        "SUN_BLK_02",
+        "SUN_BLK_02b"
+      ]
+    },
+    "uranus": {
+      "nat": [
+        "URANUS_NAT_02",
+        "URANUS_NAT_03"
+      ],
+      "exc": [
+        "URANUS_EXC_02",
+        "URANUS_EXC_02b",
+        "URANUS_EXC_03",
+        "URANUS_EXC_03b",
+        "URANUS_EXC_03c"
+      ],
+      "def": [
+        "URANUS_DEF_01",
+        "URANUS_DEF_02",
+        "URANUS_DEF_02b"
+      ],
+      "blk": [
+        "URANUS_BLK_01",
+        "URANUS_BLK_01b",
+        "URANUS_BLK_02",
+        "URANUS_BLK_02b"
+      ]
+    },
+    "venus": {
+      "nat": [
+        "VENUS_NAT_01",
+        "VENUS_NAT_01b",
+        "VENUS_NAT_02",
+        "VENUS_NAT_02b",
+        "VENUS_NAT_02c"
+      ],
+      "exc": [
+        "VENUS_EXC_01",
+        "VENUS_EXC_01b",
+        "VENUS_EXC_02",
+        "VENUS_EXC_03"
+      ],
+      "def": [
+        "VENUS_DEF_01"
+      ],
+      "blk": [
+        "VENUS_BLK_01",
+        "VENUS_BLK_01b",
+        "VENUS_BLK_02",
+        "VENUS_BLK_02b"
+      ]
+    }
+  }
+}

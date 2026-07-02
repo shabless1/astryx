@@ -30,6 +30,9 @@ interface NavBarProps {
   mode: AppMode
   user?: { name?: string | null; email?: string | null; image?: string | null; isPremium?: boolean } | null
   hasProtocol?: boolean
+  // Directive v4.0 Fix 8 — entitled beta users (fork buyers / allowlist) never
+  // see Upgrade; they already have everything the beta offers.
+  entitled?: boolean
   onAuthClick?: () => void
   onUpgradeClick?: () => void
   onAskAstryx?: () => void
@@ -64,7 +67,7 @@ const NAV_ITEMS: NavItem[] = [
 ]
 
 export default function NavBar({
-  onNav, current, accentColor, user, hasProtocol = false, onAuthClick, onUpgradeClick,
+  onNav, current, accentColor, user, hasProtocol = false, entitled = false, onAuthClick, onUpgradeClick,
   onAskAstryx, onBack, canGoBack = false, onLogoClick,
 }: NavBarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -206,6 +209,9 @@ export default function NavBar({
               />
               Premium
             </div>
+          ) : entitled ? (
+            /* Fix 8 — entitled beta users have full access; no Upgrade CTA. */
+            null
           ) : (
             <button
               onClick={onUpgradeClick}

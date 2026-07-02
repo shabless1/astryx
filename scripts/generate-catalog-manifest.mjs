@@ -7,6 +7,12 @@
  * Upload the output to the bucket root and NEW SONGS APPEAR WITH NO REDEPLOY —
  * the app merges the manifest over the built-in seed catalog at load time.
  *
+ * ⚠ RE-RUN + RE-UPLOAD `catalog.json` to the bucket root whenever tracks are
+ *   added/removed (Fix 4). No listing credentials? Use the sibling
+ *   `probe-r2-catalog.mjs` to build the listing from the public bucket, and
+ *   regenerate `src/data/catalogManifest.json` (the /api/catalog fallback)
+ *   with:  node scripts/generate-catalog-manifest.mjs scripts/r2-listing.txt src/data/catalogManifest.json
+ *
  * Node only (Python is not installed on this machine).
  *
  *   USAGE
