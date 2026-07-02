@@ -413,6 +413,30 @@ export default function SessionScreen({
   const visualChakra = visualPlacement.chakraOverlay?.[0]
   const visualCorrective = visualPolarity?.protocol?.corrective_direction ?? []
   const activeForkLabel = `${visualPlanet === 'Full Moon' ? 'Moon' : visualPlanet} Fork`
+
+  // ── v4.1 FIX 2 — ONE source of truth for "where am I": the active step. ──
+  // The "Now" header, the n/N counter, and the phase title all derive from
+  // `current` (stepIdx). The old header used the audio fallback planet, which
+  // showed e.g. "Mercury Fork" during Opening Ground (no fork on that step).
+  const nowLabel = !current ? activeForkLabel
+    : current.fork ? `${current.planet === 'Full Moon' ? 'Moon' : current.planet} Fork`
+    : current.planet === 'Earth' ? 'Earth Tone'
+    : current.planet === 'Silence' ? 'Silence'
+    : current.phaseLabel
+
+  // Persist the live phase pointer — this is what the rehydrate override turns
+  // into the Dashboard's Resume card, so Resume reopens THIS exact phase.
+  const setChamberPhase = useAppStore((s) => s.setChamberPhase)
+  useEffect(() => {
+    if (!current) return
+    setChamberPhase({
+      index:    stepIdx,
+      id:       current.role,
+      label:    stepTitle(current),
+      startSec: current.startSec,
+      count:    sequenceSteps.length,
+    })
+  }, [stepIdx, current, sequenceSteps.length, setChamberPhase])
   // Chamber phase (entry→integration) recomputes from the timer — cheap; the
   // engines below are memoised on phase id, not raw seconds, so they recompute
   // only when the phase or active planet actually changes.
@@ -611,7 +635,7 @@ export default function SessionScreen({
         <div className="pointer-events-auto min-w-0" style={topPanelStyle}>
           <div className="text-[10px] tracking-[0.3em] text-white/55 mb-0.5">RESONANCE CHAMBER</div>
           <div className="font-cinzel text-[15px] truncate" style={{ color: accentColor, lineHeight: 1.1 }}>
-            {sessionTime > 0 ? `Now · ${activeForkLabel}` : 'Ready — press play'}
+            {sessionTime > 0 ? `Now · ${nowLabel}` : 'Ready — press play'}
           </div>
         </div>
 

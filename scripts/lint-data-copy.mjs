@@ -73,7 +73,7 @@ const TRANSIT_FIELDS = new Set(['effect', 'intervention'])
 const CONDITION_TERMS =
   /\b(depression|anxiety disorder|arrhythmia|cancer|diabetes|fibromyalgia|insomnia disorder|disorder|disease|syndrome|dysregulation|compromise[sd]?|surgery|medical (?:consultation|care)|cardiologist|psychiatr(?:y|ist)|rheumatolog(?:y|ist)|gynecolog(?:y|ist)|neurolog(?:y|ist))\b/i
 const SUPPLEMENT_TERMS =
-  /\b(magnesium|vitamin [a-z0-9]+|b12|b-complex|coq10|zinc|melatonin|supplement(?:s|ation)?|5-htp|same\b|omega-3)\b/i
+  /\b(magnesium|vitamin [a-z0-9]+|b12|b-complex|coq10|zinc|melatonin|supplement(?:s|ation)?|5-htp|SAMe|omega-3)\b/
 
 function lintTransitCopy(value, key) {
   if (!TRANSIT_FIELDS.has(key) || typeof value !== 'string') return []
@@ -83,6 +83,40 @@ function lintTransitCopy(value, key) {
   const s = value.match(SUPPLEMENT_TERMS)
   if (s) hits.push(`supplement: ${s[0]}`)
   return hits
+}
+
+// ─── Transit coverage guard (Directive v4.1 · Fix 1) ────────────────────────
+// The owner's mandate: no bare transit entries, ever. The daily engine can
+// emit ANY transiting planet × ANY natal planet (10×10) × 6 aspect types.
+// The pair table in medicalAstrology.json must cover all 100 pairs with
+// non-empty effect + intervention, and all 6 aspectLenses must exist —
+// erasure (or a forgotten pair) is a build failure, permanently.
+function lintTransitCoverage() {
+  const PLANETS = ['Sun','Moon','Mercury','Venus','Mars','Jupiter','Saturn','Uranus','Neptune','Pluto']
+  const ASPECTS = ['conjunction','opposition','square','trine','sextile','quincunx']
+  const findings = []
+  let med
+  try {
+    med = JSON.parse(readFileSync(join(DATA_DIR, 'medicalAstrology.json'), 'utf8'))
+  } catch (e) {
+    return [`medicalAstrology.json unreadable: ${e.message}`]
+  }
+  for (const tp of PLANETS) {
+    const block = (med.planets ?? []).find((p) => p.planet === tp)
+    const list = block?.transitInterpretation?.transitToNatalPlanets ?? []
+    for (const np of PLANETS) {
+      const entry = list.find((t) => t.to === np)
+      if (!entry) findings.push(`transit pair MISSING: ${tp} → ${np}`)
+      else {
+        if (!String(entry.effect ?? '').trim()) findings.push(`transit pair EMPTY effect: ${tp} → ${np}`)
+        if (!String(entry.intervention ?? '').trim()) findings.push(`transit pair EMPTY intervention (Support line): ${tp} → ${np}`)
+      }
+    }
+  }
+  for (const a of ASPECTS) {
+    if (!String(med.aspectLenses?.[a] ?? '').trim()) findings.push(`aspectLenses MISSING/EMPTY: ${a}`)
+  }
+  return findings
 }
 
 // ─── Walk ───────────────────────────────────────────────────────────────────
@@ -139,9 +173,17 @@ for (const file of jsonFiles(DATA_DIR)) {
   }
 }
 
+// v4.1 — transit copy coverage (no bare entries, ever)
+const coverage = lintTransitCoverage()
+if (coverage.length) {
+  console.log('\ntransit coverage (medicalAstrology.json):')
+  for (const c of coverage) console.log(`  · ${c}`)
+  total += coverage.length
+}
+
 if (total) {
-  console.log(`\n✗ ${total} banned-phrase finding(s). Rewrite per COMPLIANCE.md §3 — name the energetic/somatic quality, not the condition; suggest a practice within the app's five layers, not a substance.`)
+  console.log(`\n✗ ${total} finding(s). Banned phrases: rewrite per COMPLIANCE.md §3 + the v4.1 VOICE SPEC (transmute, never erase). Coverage: every transit pair needs effect + Support copy.`)
   process.exit(1)
 } else {
-  console.log('✓ lint:copy — zero banned-phrase findings across src/data/*.json')
+  console.log('✓ lint:copy — zero banned-phrase findings, full transit-pair coverage (100 pairs × 6 lenses)')
 }

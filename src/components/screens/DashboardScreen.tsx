@@ -134,7 +134,9 @@ export default function DashboardScreen({
           <div className="mb-4 px-4 py-3 rounded-2xl flex flex-wrap items-center gap-3 animate-fade-in-up"
                style={{ background: hexToRgba(accentColor, 0.10), border: `1px solid ${hexToRgba(accentColor, 0.35)}` }}>
             <span className="text-[13px] text-content flex-1 min-w-[180px]">
-              Resume your session? · {Math.max(1, Math.round(interruptedSession.sessionTime / 60))} min in
+              {interruptedSession.phaseLabel != null && interruptedSession.phaseIndex != null
+                ? <>Resume your session? · {interruptedSession.phaseLabel} · Phase {interruptedSession.phaseIndex + 1} of {interruptedSession.phaseCount ?? 6}</>
+                : <>Resume your session? · {Math.max(1, Math.round(interruptedSession.sessionTime / 60))} min in</>}
             </span>
             <div className="flex items-center gap-2">
               <button

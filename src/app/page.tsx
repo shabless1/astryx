@@ -489,23 +489,29 @@ export default function AstryxApp() {
   const setSessionStartedAt = useAppStore((s) => s.setSessionStartedAt)
   const interruptedSession = useAppStore((s) => s.interruptedSession)
   const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
+  const setChamberPhase = useAppStore((s) => s.setChamberPhase)
 
   const handleStartSession = () => {
     setSessionTime(0)
     setSessionActive(true)
     setChamberRunning(false)   // FIX 1 — idle on entry; the clock waits for Play
-    // v4.0 FIX 3 — stamp the start; a fresh session supersedes any stale pointer.
+    // v4.0 FIX 3 / v4.1 FIX 2 — stamp the start; a fresh session supersedes any
+    // stale pointer AND stale phase state ("Start fresh" begins at phase 1).
     setSessionStartedAt(new Date().toISOString())
     setInterruptedSession(null)
+    setChamberPhase(null)
     setScreen('session')
   }
 
-  // v4.0 FIX 3 — resume an interrupted chamber session where it left off.
+  // v4.0 FIX 3 / v4.1 FIX 2 — resume an interrupted chamber session at the
+  // exact phase it was left on. The phase pointer wins over raw sessionTime:
+  // setting the clock to the phase's startSec re-lands the deterministic
+  // timeline on that phase, regardless of lost skip/linger/pause local state.
   const handleResumeSession = () => {
     const snap = interruptedSession
     setInterruptedSession(null)
     if (!snap || !protocol) return
-    setSessionTime(snap.sessionTime)
+    setSessionTime(snap.phaseStartSec ?? snap.sessionTime)
     setSessionActive(true)
     setChamberRunning(false)   // audio needs a fresh Play gesture (autoplay policy)
     setScreen('session')
@@ -514,6 +520,7 @@ export default function AstryxApp() {
   const handleExitSession = () => {
     setSessionActive(false)
     setChamberRunning(false)
+    setChamberPhase(null)   // v4.1 FIX 2 — a deliberate exit ends the run; no stale pointer
     // History is written at generation time (Phase 4) — no duplicate entry here.
     // Phase 1 consolidation — individuals return to the Dashboard; practitioners
     // keep returning to the full standalone Results report.
@@ -528,6 +535,7 @@ export default function AstryxApp() {
   const handleCompleteSession = (snapshot: SessionSummarySnapshot) => {
     setSessionActive(false)
     setChamberRunning(false)
+    setChamberPhase(null)   // v4.1 FIX 2 — completed runs leave no resume state
     // The session lands on the Dashboard; its Summary Report tab opens with this
     // snapshot for the post-session check-in + save (practitioners keep Results).
     setPendingSession(snapshot)

@@ -250,13 +250,29 @@ export function manifestStatus(): typeof manifestState {
   return manifestState
 }
 
+// ─── TRACK KEY CONVENTION (v4.1 Fix 3 — the single source of truth) ──────────
+// Catalog + bucket keys are `{planet}/{state}/{STEM}.mp3` where:
+//   • planet  = LOWERCASE canonical planet name ('sun'…'pluto'), plus the two
+//     app-played Earth layers 'earthday' / 'earthyear'. The PHYSICAL fork named
+//     "Full Moon" maps to the 'moon' folder — normalizePlanetKey() owns that
+//     mapping; never call .toLowerCase() directly on a planet for catalog work.
+//   • state   = 'nat' | 'exc' | 'def' | 'blk' (audioStateFromPolarity maps the
+//     engine's polarity states onto these folders).
+//   • STEM    = UPPERCASE `{PLANET}_{STATE}_{NN}[variant]` (e.g. MARS_EXC_01b) —
+//     except earthyear, which lives directly under earthyear/ with legacy
+//     space-named files (see buildTrackUrl's special case).
+export function normalizePlanetKey(planet: string): string {
+  const key = planet.trim().toLowerCase()
+  return key === 'full moon' ? 'moon' : key
+}
+
 /**
  * All version filename-stems available for a planet/state (the FULL pool —
  * seed + manifest). Directive I.4: the user can switch between versions of the
  * called-for aspect in the chamber.
  */
 export function versionsFor(planet: string, state: AudioFolderState): string[] {
-  return activeCatalog()[planet.toLowerCase()]?.[state] ?? []
+  return activeCatalog()[normalizePlanetKey(planet)]?.[state] ?? []
 }
 
 // ─── HUMAN-READABLE TRACK LABELS (Directive I-FIX Phase 6) ─────────────────────
@@ -326,7 +342,7 @@ export function selectTrackFilename(
   state: AudioFolderState,
   seed: number,
 ): string | null {
-  const key = planet.toLowerCase()
+  const key = normalizePlanetKey(planet)
   const planetCatalog = activeCatalog()[key]
   if (!planetCatalog) {
     console.warn(`[AstryxAudio] Unknown planet: "${planet}"`)
@@ -363,7 +379,7 @@ export function buildTrackUrl(
 ): string {
   const base = process.env.NEXT_PUBLIC_AUDIO_BASE_URL?.replace(/\/$/, '')
     ?? '/audio/library'
-  const folder = planet.toLowerCase()
+  const folder = normalizePlanetKey(planet)
   // encodeURIComponent leaves clean stems (EARTHDAY_NAT_01, MERCURY_EXC_01) intact
   // and turns spaces ("Earth Year") into %20 so messy R2 names still resolve.
   const file = `${encodeURIComponent(filename)}.mp3`

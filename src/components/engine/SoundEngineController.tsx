@@ -25,6 +25,7 @@ import { audioSession } from '@/lib/audioSession'
 import { useAppStore } from '@/lib/store'
 import {
   resolveTierTrack, ensureManifestLoaded, versionsFor, buildTrackUrl, variantOrdinal,
+  type AudioFolderState,
 } from '@/lib/astryxAudioLibrary'
 import { PLANET_COLORS } from '@/lib/engine'
 import { forkFor } from '@/lib/chamber/forkRite'
@@ -115,6 +116,12 @@ export default function SoundEngineController({
   const lastKeyRef = useRef<string>('')
   const skipRef = useRef<Record<string, number>>({})
   const triedRef = useRef<Set<string>>(new Set())
+  // v4.1 FIX 3 — deterministic fallback per phase key. When a phase's pool is
+  // exhausted (every variant errored, or a single-variant pool errored), the
+  // slot resolves to a FIXED fallback — the planet's own NAT pool first, then
+  // the Earth Day ground layer — instead of going dead. Sticky per key so the
+  // selection can't flip back to the broken track; cleared on phase change.
+  const fallbackRef = useRef<Record<string, { planet: string; state: AudioFolderState; file: string } | undefined>>({})
 
   // FIX 3 — pull the manifest (via the same-origin /api/catalog proxy) so every
   // version is selectable; falls back to the seed catalog on any failure.
@@ -162,6 +169,12 @@ export default function SoundEngineController({
   if (overrideKey && overrideKey !== lastKeyRef.current) {
     lastKeyRef.current = overrideKey
     visitsRef.current[overrideKey] = (visitsRef.current[overrideKey] ?? -1) + 1
+    // v4.1 FIX 3 — a fresh phase gets a fresh chance: clear this key's fallback
+    // and its tried-marks so one transient blip can't poison a later revisit.
+    delete fallbackRef.current[overrideKey]
+    for (const v of (activePlanet ? versionsFor(activePlanet, folderState) : [])) {
+      triedRef.current.delete(v)
+    }
   }
   // Earth layers (earthday/earthyear) always DEFAULT to the 1st track; other
   // planets keep their seed-deterministic default. Rotation still cycles from here.
@@ -172,8 +185,15 @@ export default function SoundEngineController({
     ? versions[(((variantBase + rotShift) % versions.length) + versions.length) % versions.length]
     : defaultTrack?.filename
   const selectedFile = override && versions.includes(override) ? override : autoFile
-  const selectedUrl  = activePlanet && selectedFile
-    ? buildTrackUrl(activePlanet, folderState, selectedFile)
+  // v4.1 FIX 3 — the EFFECTIVE selection honors a sticky per-phase fallback
+  // (set by the error handler below) so an exhausted pool resolves to the
+  // planet's NAT layer or the Earth ground tone — never a dead music slot.
+  const fbSel = fallbackRef.current[overrideKey]
+  const effPlanet = fbSel?.planet ?? activePlanet
+  const effState: AudioFolderState = fbSel?.state ?? folderState
+  const effFile = fbSel?.file ?? selectedFile
+  const selectedUrl  = effPlanet && effFile
+    ? buildTrackUrl(effPlanet, effState, effFile)
     : null
   const defaultIdx   = defaultTrack ? Math.max(0, versions.indexOf(defaultTrack.filename)) : 0
   const curVer       = selectedFile ? Math.max(0, versions.indexOf(selectedFile)) : -1
@@ -182,9 +202,10 @@ export default function SoundEngineController({
   // Patch — the player chrome follows the ACTIVE FORK's planet colour (changes
   // per phase), instead of staying the one dominant accent (e.g. Mars red).
   const accentColor = (activePlanet && PLANET_COLORS[activePlanet]) || baseAccent
-  // The song currently cued for this aspect (shown in the player).
-  const songLabel = activePlanet && selectedFile
-    ? variantOrdinal(activePlanet, folderState, selectedFile, seed)
+  // The song currently cued for this aspect (shown in the player). Reflects the
+  // EFFECTIVE selection so a fallback track is labeled honestly (v4.1 Fix 3).
+  const songLabel = effPlanet && effFile
+    ? variantOrdinal(effPlanet, effState, effFile, seed)
     : null
 
   // FIX 8 — conversion moment: the calibrated Hz of the active fork + whether the
@@ -229,17 +250,56 @@ export default function SoundEngineController({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedUrl, hasStarted, isPlaying])
 
-  // A track that fails to load auto-skips to the next version (routes around a
-  // catalog/bucket gap). Once per version; stops cleanly if none load.
+  // v4.1 FIX 3 — a track that fails to load routes around the gap:
+  //   1. rotate to the next untried variant in the SAME pool (as before),
+  //   2. pool exhausted / single-variant pool → DETERMINISTIC fallback:
+  //      the planet's own NAT pool, else the Earth Day ground layer,
+  //   3. the fallback itself failing escalates once to Earth Day.
+  // Fixed mapping, no randomness — same chart + same failures → same tracks.
+  // Every missed key is console.warn'd. The session never shows a dead slot.
   useEffect(() => {
-    if (!hasStarted || !isPlaying || !errored || !activePlanet || !selectedFile) return
-    if (versions.length < 2) return
-    if (triedRef.current.has(selectedFile)) return
+    if (!hasStarted || !isPlaying || !errored || !activePlanet) return
+
+    const fb = fallbackRef.current[overrideKey]
+    if (fb) {
+      // The fallback itself errored — escalate to the Earth ground layer once.
+      if (fb.planet !== 'earthday') {
+        console.warn(`[chamber-audio] fallback ${fb.planet}/${fb.state}/${fb.file} failed — grounding to earthday`)
+        const earth = versionsFor('earthday', 'nat')[0]
+        if (earth) {
+          fallbackRef.current[overrideKey] = { planet: 'earthday', state: 'nat', file: earth }
+          forceTick((x) => x + 1)
+        }
+      }
+      return
+    }
+
+    if (!selectedFile) return
     triedRef.current.add(selectedFile)
-    skipRef.current[overrideKey] = (skipRef.current[overrideKey] ?? 0) + 1
-    forceTick((x) => x + 1)
+
+    // Step 1 — rotate within the pool while untried variants remain.
+    if (versions.length >= 2 && versions.some((v) => !triedRef.current.has(v))) {
+      skipRef.current[overrideKey] = (skipRef.current[overrideKey] ?? 0) + 1
+      forceTick((x) => x + 1)
+      return
+    }
+
+    // Step 2 — pool exhausted: deterministic fallback chain.
+    const natPool = folderState !== 'nat' ? versionsFor(activePlanet, 'nat') : []
+    const natPick = natPool.find((v) => !triedRef.current.has(v))
+    const pick = natPick
+      ? { planet: activePlanet, state: 'nat' as AudioFolderState, file: natPick }
+      : (() => {
+          const earth = versionsFor('earthday', 'nat')[0]
+          return earth ? { planet: 'earthday', state: 'nat' as AudioFolderState, file: earth } : undefined
+        })()
+    if (pick) {
+      console.warn(`[chamber-audio] missed key ${overrideKey}/${selectedFile} — deterministic fallback → ${pick.planet}/${pick.state}/${pick.file}`)
+      fallbackRef.current[overrideKey] = pick
+      forceTick((x) => x + 1)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errored, selectedFile, hasStarted, isPlaying])
+  }, [errored, selectedFile, hasStarted, isPlaying, overrideKey])
 
   // Cleanup on unmount (leaving the chamber) — hard-stop ALL audio + freeze clock.
   useEffect(() => {

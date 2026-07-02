@@ -246,6 +246,12 @@ function shapeCellSaltPrescription(
 // matching effect/intervention text from medicalAstrology.json. The
 // transitInterpretation block on each planet has a transitToNatalPlanets
 // array — we match the transiting planet's entries by .to === natalPlanet.
+//
+// v4.1 Fix 1 — the pair table now covers ALL 10×10 planet pairs, and the
+// description is COMPOSED: an aspect lens (how the contact moves — friction,
+// flow, fusion…) leads the pair copy (what the combination means). Every
+// pair × aspect the transit engine can emit renders specific text; the
+// data-copy lint fails the build if a pair or lens ever goes missing.
 function lookupTransitInterpretation(transit: any) {
   if (!transit) return undefined
   const planetEntry = (medicalAstrologyData as any).planets?.find(
@@ -257,8 +263,16 @@ function lookupTransitInterpretation(transit: any) {
   const match = transitsList.find((t: any) => t.to === transit.natalPlanet)
   if (!match) return undefined
 
+  const lens = (medicalAstrologyData as any).aspectLenses?.[
+    String(transit.aspect ?? '').toLowerCase()
+  ]
+  const pairEffect = match.effect ?? ''
+  const effect = lens && pairEffect
+    ? `${lens} ${pairEffect.charAt(0).toLowerCase()}${pairEffect.slice(1)}`
+    : pairEffect
+
   return {
-    effect:       match.effect       ?? '',
+    effect,
     intervention: match.intervention ?? '',
     duration:     match.duration     ?? planetEntry.transitInterpretation?.transitDurationDays ?? '',
   }

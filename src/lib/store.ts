@@ -15,6 +15,28 @@ import type {
   ProgressEntry,
 } from '@/types'
 
+// v4.1 FIX 2 — the chamber's current-phase pointer (one state, three displays:
+// the "Now" label, the n/N counter, and the phase title all derive from it).
+export interface ChamberPhasePointer {
+  index: number      // 0-based step index in the fork sequence
+  id: string         // PhaseRole (e.g. 'primary') — stable across rebuilds
+  label: string      // display title, e.g. "Primary Signal · Saturn"
+  startSec: number   // the step's start second in the sequence timeline
+  count: number      // total steps in the sequence
+}
+
+export interface InterruptedSession {
+  screen: AppScreen
+  sessionTime: number
+  startedAt: string
+  // v4.1 — full phase pointer (present when the chamber wrote one)
+  phaseIndex?: number
+  phaseId?: string
+  phaseLabel?: string
+  phaseStartSec?: number
+  phaseCount?: number
+}
+
 interface AppState {
   // Navigation
   screen: AppScreen
@@ -76,10 +98,18 @@ interface AppState {
   // pointer (24h resume window).
   sessionStartedAt: string | null
   setSessionStartedAt: (iso: string | null) => void
-  // Directive v4.0 FIX 3 — an interrupted mid-flow session preserved at
-  // rehydrate instead of being restored into. Dashboard offers Resume/discard.
-  interruptedSession: { screen: AppScreen; sessionTime: number; startedAt: string } | null
-  setInterruptedSession: (s: { screen: AppScreen; sessionTime: number; startedAt: string } | null) => void
+  // Directive v4.0 FIX 3 / v4.1 FIX 2 — an interrupted mid-flow session
+  // preserved at rehydrate instead of being restored into. Carries the FULL
+  // phase pointer (index/id/label/startSec/count) so Resume reopens the exact
+  // phase — never the sequence start. Dashboard offers Resume/discard.
+  interruptedSession: InterruptedSession | null
+  setInterruptedSession: (s: InterruptedSession | null) => void
+  // v4.1 FIX 2 — the chamber's live phase pointer, written by SessionScreen on
+  // every phase change and PERSISTED. This is the single source of truth the
+  // rehydrate override reads to build the resume pointer (raw sessionTime alone
+  // can't recover the phase — skip/linger/pause history is local state).
+  chamberPhase: ChamberPhasePointer | null
+  setChamberPhase: (p: ChamberPhasePointer | null) => void
   // FIX 1 — the chamber session/timer are ONE unit. The clock + session progression
   // run ONLY while chamberRunning (set by the chamber Play/Pause). Ephemeral.
   chamberRunning: boolean
@@ -290,6 +320,8 @@ export const useAppStore = create<AppState>()(
       setSessionStartedAt: (iso) => set({ sessionStartedAt: iso }),
       interruptedSession: null,
       setInterruptedSession: (s) => set({ interruptedSession: s }),
+      chamberPhase: null,
+      setChamberPhase: (p) => set({ chamberPhase: p }),
       chamberRunning: false,
       setChamberRunning: (running) => set({ chamberRunning: running }),
 
@@ -489,6 +521,8 @@ export const useAppStore = create<AppState>()(
         // FIX 3 (v4.0) — session start stamp + interrupted-session pointer
         sessionStartedAt: state.sessionStartedAt,
         interruptedSession: state.interruptedSession,
+        // FIX 2 (v4.1) — live chamber phase pointer (source of the resume pointer)
+        chamberPhase: state.chamberPhase,
         history:          state.history,
         // Progress History — the post-session loop's persisted record.
         // (pendingSession is intentionally NOT persisted; it's transient.)
@@ -550,13 +584,27 @@ export const useAppStore = create<AppState>()(
         if (MID_FLOW.includes(merged.screen)) {
           // Preserve an actually-started chamber session as a resume pointer
           // (entered-but-never-played sessions are discarded silently).
-          if (merged.screen === 'session' && merged.sessionTime > 0) {
+          // v4.1 FIX 2 — carry the FULL phase pointer: raw sessionTime cannot
+          // recover the phase when the user skipped/lingered/paused (that
+          // history was local component state). Resume reopens the exact phase.
+          const phase = merged.chamberPhase
+          if (merged.screen === 'session' && (merged.sessionTime > 0 || (phase?.index ?? 0) > 0)) {
             merged.interruptedSession = {
               screen: 'session',
               sessionTime: merged.sessionTime,
               startedAt: merged.sessionStartedAt ?? new Date().toISOString(),
+              ...(phase ? {
+                phaseIndex:    phase.index,
+                phaseId:       phase.id,
+                phaseLabel:    phase.label,
+                phaseStartSec: phase.startSec,
+                phaseCount:    phase.count,
+              } : {}),
             }
           }
+          // The live pointer belongs to the interrupted run — never leak it
+          // into the next session.
+          merged.chamberPhase = null
           merged.screen = merged.protocol
             ? (merged.mode === 'practitioner' ? 'results' : 'dashboard')
             : (merged.intakeData?.birthDate ? 'intake' : 'landing')

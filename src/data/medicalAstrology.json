@@ -47,7 +47,14 @@
         "transitToNatalPlanets": [
           {"to": "Moon", "effect": "Emotional/physical re-centering. Hormonal and digestive recalibration over 2-3 days.", "intervention": "Gentle solar exposure, heart-opening practice, Red Lotus tea"},
           {"to": "Mercury", "effect": "Mental clarity restored. Voice strengthens. Speech and writing flow.", "intervention": "Solar practice before important communications"},
-          {"to": "Saturn", "effect": "Authority and structure align. Long-term commitments crystallize.", "intervention": "Spinal alignment work; sun salutation on bare earth"}
+          {"to": "Saturn", "effect": "Authority and structure align. Long-term commitments crystallize.", "intervention": "Spinal alignment work; sun salutation on bare earth"},
+          {"to": "Sun", "effect": "Your year's vitality cycle checks in with itself — identity and life force stand in the same light, and you can see yourself plainly.", "intervention": "Sunlight on skin, the Sun tone at the heart center, one honest look at what you want this year"},
+          {"to": "Venus", "effect": "Warmth turns toward what you love — affection, beauty, and self-worth feel lit from within.", "intervention": "Wear or make something beautiful on purpose; rose or hibiscus tea; let yourself be seen"},
+          {"to": "Mars", "effect": "Light hits the engine — drive, heat, and will come online together. Strong hours for decisive action; mind the temper of the flame.", "intervention": "Move first, decide second — a brisk walk or training session, then the long cooling exhale"},
+          {"to": "Jupiter", "effect": "Vitality expands toward optimism — the day runs generous and confident, and everything looks a size bigger in this light.", "intervention": "One bold move and one honest limit; celebrate with presence, not excess"},
+          {"to": "Uranus", "effect": "A jolt of light through the routine — sudden clarity, restlessness, the urge to break pattern. Insight arrives sideways.", "intervention": "Give the spark a channel — change the route, the playlist, the desk; then ground with bare feet and a long exhale"},
+          {"to": "Neptune", "effect": "The edges of self soften in the light — imagination and empathy rise while hard focus mists over. Beautiful for art, blurry for contracts.", "intervention": "Water, music, and the Neptune tone over big decisions; let the signature wait a day"},
+          {"to": "Pluto", "effect": "Light reaches the deep layer — power, truth, and what's been buried ask to be seen. Intensity with a purpose.", "intervention": "One honest journal page; the Pluto tone low on the body; keep any confrontation clean and brief"}
         ],
         "transitDurationDays": "1-2 days exact per natal point",
         "frequencyPerYear": "Touches every natal degree once annually"
@@ -110,7 +117,14 @@
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Emotional integration with identity. Heart-belly axis aligns.", "intervention": "Restorative rest, Moon-water hydration"},
           {"to": "Saturn", "effect": "Emotional weight. Old grief surfaces. Skin and bones may feel heavier.", "intervention": "Calc Phos cell salt + warmth + boundaries against draining contact"},
-          {"to": "Mars", "effect": "Emotional reactivity spike. Inflammation tied to feeling overlooked.", "intervention": "Cooling foods, slow movement, do not make important decisions"}
+          {"to": "Mars", "effect": "Feelings flare hot and quick — heat rises where you feel unseen.", "intervention": "Cooling foods, slow movement; name the need before the flare speaks for you"},
+          {"to": "Moon", "effect": "The monthly emotional reset — feelings return to their home water. A natural day to refill rather than spend.", "intervention": "Warm food, an early night, moonlit stillness; the Moon tone at the heart"},
+          {"to": "Mercury", "effect": "Feeling and thought share one channel — words carry more water than usual. Honest talk lands; sharp talk cuts deeper than intended.", "intervention": "Speak the feeling before analyzing it; chamomile or lemon-balm tea; write three unedited lines"},
+          {"to": "Venus", "effect": "Soft weather for the heart — tenderness, comfort, and closeness come easily. Receiving counts as much as giving today.", "intervention": "Shared food, soft textures, rose tea; let affection land without deflecting it"},
+          {"to": "Jupiter", "effect": "Feelings run generous and buoyant — emotional appetite grows, warmth expands, and so can overdoing.", "intervention": "Feed connection, not just appetite — invite someone to the table; sweet tea, open window"},
+          {"to": "Uranus", "effect": "Emotional static — moods flicker fast and the body wants novelty. Nothing is wrong; the water is simply electric for a few hours.", "intervention": "Shake it through the body — dance or a brisk walk; then the Earth tone to settle the charge"},
+          {"to": "Neptune", "effect": "High tide of sensitivity — dreams, moods, and other people's weather soak through. Rich inner life, thin boundaries.", "intervention": "A salt bath or a long shower rinse, quiet music, the Moon tone; choose gentle company"},
+          {"to": "Pluto", "effect": "Feelings run deep and undiluted for a few hours — old currents surface with force and want to move through, not take over.", "intervention": "A long-exhale practice, dark and quiet, one page of what's true; the wave passes by morning"}
         ],
         "transitDurationDays": "2-3 hours per natal degree (Moon moves fast)",
         "frequencyPerMonth": "Touches every natal point every 27-29 days"
@@ -174,7 +188,14 @@
         "transitToNatalPlanets": [
           {"to": "Moon", "effect": "Emotional articulation. Easier to name what you feel.", "intervention": "Journaling, therapy session, important conversations"},
           {"to": "Saturn", "effect": "Serious thinking. Long-form writing. Decisions crystallize.", "intervention": "Strategic planning, contracts, documentation"},
-          {"to": "Neptune", "effect": "Imaginative but confusing. Boundary between thought and fantasy thins.", "intervention": "Avoid signing contracts; meditation; creative writing"}
+          {"to": "Neptune", "effect": "Imaginative but confusing. Boundary between thought and fantasy thins.", "intervention": "Avoid signing contracts; meditation; creative writing"},
+          {"to": "Sun", "effect": "The mind turns toward the self — naming who you are and what you want gets easier. Clear-voice hours.", "intervention": "Say the important thing out loud once; morning light on the page while you write it down"},
+          {"to": "Mercury", "effect": "Mind meets mind — your natural thinking style runs amplified. Ideas breed fast; capturing beats polishing.", "intervention": "Keep a capture list, not a finished draft; peppermint or tulsi tea; single-task in short breath-length sprints"},
+          {"to": "Venus", "effect": "Words turn warm — charm, tact, and aesthetic sense flow into speech. The right sentence can open a heart today.", "intervention": "Write the note, make the call, choose the beautiful word; something floral in the cup while you do"},
+          {"to": "Mars", "effect": "Thought picks up an edge — fast, decisive, cutting. Sharp hours for debate and hard calls; the blade needs a sheath.", "intervention": "Draft hot, send cool — one full exhale between writing and sending; walk off the surplus"},
+          {"to": "Jupiter", "effect": "The mind zooms out — big-picture thinking, teaching, and persuasion swell. Details may slip beneath the vision.", "intervention": "Sketch the vision, then circle three facts to verify; a citrus scent at the desk keeps the mind bright"},
+          {"to": "Uranus", "effect": "Lightning in the wiring — sudden insights, fast connections, jumpy attention. Genius hours, if you catch them as they land.", "intervention": "Paper within reach all day; one slow breath to ground each burst before chasing the next"},
+          {"to": "Pluto", "effect": "Thought drills toward the root — research, undercurrents, and whole truths call. The mind stops accepting the polite version.", "intervention": "One deep question pursued fully; stop at sundown and empty what you found onto paper"}
         ],
         "mercuryRetrograde": "3 weeks, 3x per year. Communication, signing, and travel are more error-prone. Body responds with respiratory or nervous-system glitches. Use the period for REview, REvise, REflect — not new initiation.",
         "transitDurationDays": "1-2 days exact per natal point"
@@ -237,8 +258,15 @@
         "venusReturn": "Venus returns to natal degree about once per year (with retrograde variations) — annual reset of values, pleasure, relating.",
         "transitToNatalPlanets": [
           {"to": "Moon", "effect": "Emotional sweetness. Easier to receive love and comfort.", "intervention": "Self-care practices, time with loved ones"},
-          {"to": "Mars", "effect": "Magnetic attraction spike. Sexual energy active.", "intervention": "Move energy through dance, intimacy, creative work"},
-          {"to": "Saturn", "effect": "Mature love. Long-term commitment energy. Or contraction if love has been suppressed.", "intervention": "Have the hard relationship conversation"}
+          {"to": "Mars", "effect": "Magnetism runs high — creative and sensual current in the same channel, and both want expression.", "intervention": "Give it somewhere to go — movement, creative work, connection with a partner"},
+          {"to": "Saturn", "effect": "Mature love. Long-term commitment energy. Or contraction if love has been suppressed.", "intervention": "Have the hard relationship conversation"},
+          {"to": "Sun", "effect": "Grace moves toward the center — you are easier to love and easier to see today. Worth and identity warm each other.", "intervention": "Accept the compliment without deflecting; wear the good thing; rose tea taken in real light"},
+          {"to": "Mercury", "effect": "The heart finds its words — affection becomes sayable and agreements come kindly.", "intervention": "Have the tender conversation you've postponed; write it first if the voice catches"},
+          {"to": "Venus", "effect": "Your love nature returns to its birth position — an annual reset of taste, desire, and worth. What do you actually find beautiful now?", "intervention": "Curate one corner of your world to match who you've become; unhurried tea in the beautiful cup"},
+          {"to": "Jupiter", "effect": "Pleasure and abundance share the room — generous, indulgent, warm-hearted weather. Enjoy it with one anchor down.", "intervention": "Celebrate with presence over quantity; share the table; close the evening with the Earth tone"},
+          {"to": "Uranus", "effect": "Attraction goes electric — the unfamiliar glitters and freedom flirts with closeness. Thrilling weather; not a day for permanent vows.", "intervention": "Follow curiosity in low-stakes ways — new music, new route, new flavor; revisit binding choices next week"},
+          {"to": "Neptune", "effect": "Romance mist — longing, idealization, and beauty swell together. Exquisite for art and devotion; soft-focus for judgment.", "intervention": "Make something beautiful instead of deciding something binding; jasmine scent, water sounds"},
+          {"to": "Pluto", "effect": "Desire deepens past the surface — intimacy wants truth and attachments show their roots. Magnetic, and consequential.", "intervention": "Let closeness be honest rather than perfect; slow breath low in the belly; keep your center"}
         ],
         "venusRetrograde": "Every 18 months for ~40 days. RE-view of values, RE-connect with old loves, RE-evaluate what you find beautiful. Body responds with hormonal shifts and skin recalibration.",
         "transitDurationDays": "1-3 days exact per natal point"
@@ -301,9 +329,15 @@
         "marsReturn": "Mars returns to natal degree about every 2 years — biennial activation reset.",
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Vitality and drive align. Excellent for athletic peaks.", "intervention": "Train hard, take action"},
-          {"to": "Moon", "effect": "Emotional reactivity spike. Stomach acid, irritability.", "intervention": "Cooling foods, slow breath, do not make emotional decisions"},
+          {"to": "Moon", "effect": "Emotional heat rises fast — the belly tightens and patience shortens. The water is boiling, not broken.", "intervention": "Cooling foods and a slow exhale; let big decisions wait for calmer water"},
           {"to": "Saturn", "effect": "Frustration meets restriction. Risk of injury from forcing through resistance.", "intervention": "Slow down, address structural issue, do not push"},
-          {"to": "Pluto", "effect": "Intensity at maximum — the body runs on deep reserves; move deliberately.", "intervention": "Avoid unnecessary risk, channel through deep training"}
+          {"to": "Pluto", "effect": "Intensity at maximum — the body runs on deep reserves; move deliberately.", "intervention": "Avoid unnecessary risk, channel through deep training"},
+          {"to": "Mercury", "effect": "Heat in the wiring — speech quickens, patience thins, wit sharpens to a point. Words move faster than second thoughts.", "intervention": "Move the body before the meeting; one full breath between thought and speech"},
+          {"to": "Venus", "effect": "Drive meets desire — passion, pursuit, and creative heat run in one current. Magnetic hours; steer them somewhere worthy.", "intervention": "Give the current a form — dance, make, touch, build; cool water on the wrists after"},
+          {"to": "Mars", "effect": "Your engine returns to its birth setting — a two-year reset of drive and courage. How you pursue and how you defend are up for renewal.", "intervention": "Choose the next campaign consciously; train the body this week; the Mars tone at the thigh, Earth tone to close"},
+          {"to": "Jupiter", "effect": "Fuel meets amplifier — bold, expansive, competitive energy for days. Big pushes land; overreach is the shadow.", "intervention": "Pick ONE bold move and complete it; leave the second for tomorrow; a long exhale at the finish line"},
+          {"to": "Uranus", "effect": "Volatile spark — impulse and rebellion surge together. Reflexes run fast and patience runs low; brilliant or reckless by a hair.", "intervention": "No sudden irreversible moves; burn the charge physically first — sprint, drum, split wood"},
+          {"to": "Neptune", "effect": "The engine runs on mist — effort feels diffuse, targets blur, energy leaks toward escape. Not weakness; fogged fuel.", "intervention": "Lower the bar to one clear task; move like water — swim, stretch, breathe; guard sleep"}
         ],
         "marsRetrograde": "Every 2 years for ~10 weeks. RE-view of how you assert. Risk of suppressed anger surfacing as illness.",
         "transitDurationDays": "2-3 days exact per natal point; full residence in a sign ~6-7 weeks (longer in retrograde)"
@@ -354,8 +388,8 @@
       "symptomSignatures": {
         "whenStressed": {
           "headline": "Expansion has tipped into excess. The liver is congested. Growth is out of regulation.",
-          "physical": ["liver congestion / fatty liver", "weight gain / metabolic syndrome", "high cholesterol", "diabetes risk (with afflicted Moon)", "hip pain or sciatica (Sagittarius)", "gallbladder issues", "hyperglycemia", "gout (Jupiter-Saturn)"],
-          "emotional": ["grandiosity / over-promising", "loss of faith / spiritual emptiness when blocked", "manic expansion followed by collapse"],
+          "physical": ["liver congestion / fatty liver", "weight that accumulates around excess — the body storing more than it burns", "high cholesterol", "sweetness overload — blood-sugar weather that swings with indulgence (classically flagged with an afflicted Moon)", "hip pain or sciatica (Sagittarius)", "gallbladder issues", "hyperglycemia", "gout (Jupiter-Saturn)"],
+          "emotional": ["grandiosity / over-promising", "loss of faith / spiritual emptiness when blocked", "expansion that overshoots, then the crash after the high"],
           "mental": ["over-philosophizing", "scattered abundance focus", "inability to contain growth"]
         },
         "whenActivated": {
@@ -368,7 +402,14 @@
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Vitality expansion. Confidence and recognition surge.", "intervention": "Take the opportunity, but watch overcommitment"},
           {"to": "Moon", "effect": "Emotional abundance. A fertile, generous window.", "intervention": "Sweet teas, hold emotional space generously"},
-          {"to": "Saturn", "effect": "Discipline meets expansion. Long-form structure built that lasts.", "intervention": "Launch major projects with realistic scope"}
+          {"to": "Saturn", "effect": "Discipline meets expansion. Long-form structure built that lasts.", "intervention": "Launch major projects with realistic scope"},
+          {"to": "Mercury", "effect": "The mind is handed a wider map — learning, publishing, and persuasion swell for weeks. Optimism thinks in headlines; verify the fine print.", "intervention": "Start the course, the book, the pitch — and keep a small fact-checking ritual beside the vision"},
+          {"to": "Venus", "effect": "A season of sweetness — love, beauty, and receiving expand. Generosity flows both directions if you let it.", "intervention": "Say yes to the invitation; make room to receive; pass the abundance forward"},
+          {"to": "Mars", "effect": "Drive gets a tailwind — courage and capacity expand for weeks. Champion energy; pace it like a season, not a sprint.", "intervention": "Set a training arc instead of one heroic day; mark milestones with rest"},
+          {"to": "Jupiter", "effect": "The twelve-year expansion gate reopens — faith, growth, and horizon reset for the next cycle. Plant big, patient seeds.", "intervention": "Write the twelve-year wish once, plainly; then take its smallest first step this week"},
+          {"to": "Uranus", "effect": "Growth through breakthrough — luck favors the experiment and windows open suddenly. Stay loose enough to step through.", "intervention": "Keep one experiment running at all times this season; review it weekly, lightly"},
+          {"to": "Neptune", "effect": "Faith and imagination swell together — visionary, compassionate, boundary-soft weather for weeks.", "intervention": "Feed the vision daily with music or water or practice — and date-stamp big decisions for a second, clear-eyed read"},
+          {"to": "Pluto", "effect": "Expansion reaches the deep engine — ambition, influence, and resources want to scale. Power grows; keep it answerable.", "intervention": "Name what the ambition serves before feeding it; keep one trusted voice in the loop"}
         ],
         "transitDurationDays": "5-10 days exact per natal point; full residence in a sign ~12 months"
       },
@@ -417,7 +458,7 @@
       "symptomSignatures": {
         "whenStressed": {
           "headline": "The structure is compressing. Cortisol stays high. Joints lock. The body feels heavy and cold.",
-          "physical": ["chronic depression with somatic signs (cold extremities, heavy limbs)", "joint stiffness (knees, hips, lower back)", "osteopenia / bone density loss", "dental issues", "skin dryness, aging signs", "chronic constipation", "lymphatic sluggishness", "low cortisol after sustained depletion (Addisonian pattern)", "hearing loss"],
+          "physical": ["a long heaviness that settles into the body — cold extremities, heavy limbs", "joint stiffness (knees, hips, lower back)", "osteopenia / bone density loss", "dental issues", "skin dryness, aging signs", "chronic constipation", "lymphatic sluggishness", "low cortisol after sustained depletion (Addisonian pattern)", "hearing loss"],
           "emotional": ["chronic emotional weight without clear cause", "fear of failure / fear of time running out", "loneliness / isolation", "father wound activation", "grief that won't lift"],
           "mental": ["pessimism / dark thinking", "rigid thought structures", "fear-based decisions", "feeling 'too late'"]
         },
@@ -434,7 +475,11 @@
           {"to": "Mercury", "effect": "Serious, structured thinking — with a heavier, compressed quality; the breath may run shallow.", "intervention": "Long-form work that uses Saturn's discipline; breath work and pacing support this transit", "duration": "1-2 years"},
           {"to": "Venus", "effect": "Relationship reality check. Love must mature or release. The skin and lower back may speak up.", "intervention": "Honest relationship conversations; warmth over the lower back; hydrate well", "duration": "1-2 years"},
           {"to": "Mars", "effect": "Restricted action. Risk of pushing through injury. Bone or joint stress.", "intervention": "Slow down, respect physical limits", "duration": "1-2 years"},
-          {"to": "Saturn (return)", "effect": "Total restructuring. Old self must die for new structure.", "intervention": "Major life decisions: career, relationship, location, health", "duration": "2-3 years"}
+          {"to": "Saturn", "effect": "Total restructuring — the old architecture of a life is audited, and only what is load-bearing stays.", "intervention": "Make the structural decisions consciously — work, home, bonds; small daily disciplines carry you through the audit", "duration": "2-3 years"},
+          {"to": "Jupiter", "effect": "The auditor meets the optimist — growth is pruned to what can bear weight. Slower expansion, but the real kind.", "intervention": "Cut the plans to what you'd defend out loud; steady work rhythm; warm root tea"},
+          {"to": "Uranus", "effect": "Structure meets the lightning — the tested and the new negotiate terms. The tension between holding and breaking has a point on both sides.", "intervention": "Renovate instead of demolish — keep the frame, change one wall at a time"},
+          {"to": "Neptune", "effect": "The real and the ideal press against each other — dreams are asked for load-bearing plans, and plans are asked for meaning.", "intervention": "Give the dream one concrete container — a schedule, a page, a practice; the fog lifts through form"},
+          {"to": "Pluto", "effect": "Bedrock season — pressure meets depth and whatever is structural in you gets stress-tested. Slow, tectonic, formative.", "intervention": "Long-arc discipline over quick fixes; the Earth tone daily; keep counsel with the few who hold weight"}
         ],
         "transitDurationDays": "2-3 years near exact (with 3 hits via direct/retrograde/direct motion); full residence in a sign ~2.5 years"
       },
@@ -497,7 +542,14 @@
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Sudden identity shift. The heart's rhythm may feel electric or jumpy. Career upheaval.", "intervention": "Allow the shift; do not force stability. A racing or irregular-feeling heartbeat deserves prompt attention from your healthcare provider", "duration": "1-2 years"},
           {"to": "Moon", "effect": "Sudden emotional changes. Sleep disruption. Sudden moves or domestic changes.", "intervention": "Grounding breath and meditation; a warm evening cup of chamomile or oat straw tea; bare feet on the earth", "duration": "1-2 years"},
-          {"to": "Saturn", "effect": "Structure breaks. Liberation from rigid patterns. Possible bone/joint surprise.", "intervention": "Allow what wants to fall; rebuild with new template", "duration": "1-2 years"}
+          {"to": "Saturn", "effect": "Structure breaks. Liberation from rigid patterns. Possible bone/joint surprise.", "intervention": "Allow what wants to fall; rebuild with new template", "duration": "1-2 years"},
+          {"to": "Mercury", "effect": "Rewiring season for the mind — thought patterns update themselves, sometimes mid-sentence. Erratic brilliance over months.", "intervention": "A note-catching habit everywhere you think; single-task windows; ground after every deep-work burst"},
+          {"to": "Venus", "effect": "The heart's taste changes — attraction, values, and pleasure renegotiate over months. Freedom and closeness learn new terms.", "intervention": "Update agreements out loud instead of acting them out; beauty experiments welcome"},
+          {"to": "Mars", "effect": "High-voltage drive — action wants freedom and refuses micromanagement. Channel the charge or it discharges as haste.", "intervention": "Novel, intense, chosen exertion — new sport, new tempo; end each session with one full minute of stillness"},
+          {"to": "Jupiter", "effect": "Growth by lightning — sudden opportunities and belief-shifts arrive over months. The map redraws itself; travel light.", "intervention": "Say yes to the door that opens twice; keep commitments modular"},
+          {"to": "Uranus", "effect": "A life-stage awakening checkpoint — the authentic self audits the settled self. Restlessness with a purpose.", "intervention": "Change something structural on purpose before the restlessness chooses for you; ground daily"},
+          {"to": "Neptune", "effect": "The awakener moves through the dream — ideals modernize and old escapes lose their charm. Subtle weather, made personal.", "intervention": "Refresh the practices that connect you — new music for old meditation; keep water close"},
+          {"to": "Pluto", "effect": "Deep structures get shaken awake — long-buried patterns surface for renovation. Rare, slow, radical weather.", "intervention": "Change by increments you control; keep a steady witness — practitioner or friend — for what surfaces"}
         ],
         "transitDurationDays": "1-2 years near exact; full residence in a sign ~7 years"
       },
@@ -544,7 +596,7 @@
       "symptomSignatures": {
         "whenStressed": {
           "headline": "Boundaries are dissolving. The immune system can't tell self from other. The subtle field is leaking.",
-          "physical": ["chronic immune compromise / autoimmune", "lymphatic stagnation / swelling", "addiction susceptibility (substances, food, escape)", "chronic fatigue with no clear cause", "foot problems (Pisces literal)", "sensitivity to medication / unusual reactions", "mysterious unwellness that evades explanation"],
+          "physical": ["defenses that run low for long stretches — the body's boundaries as porous as the emotional ones", "lymphatic stagnation / swelling", "the pull toward escape — substances, food, fantasy — when feeling gets too loud", "chronic fatigue with no clear cause", "foot problems (Pisces literal)", "sensitivity to medication / unusual reactions", "mysterious unwellness that evades explanation"],
           "emotional": ["boundary collapse — feeling everyone else's feelings", "victim consciousness", "escapism / dissociation", "spiritual emergency without grounding", "addiction patterns"],
           "mental": ["confusion / fog", "magical thinking without discernment", "inability to discern reality from fantasy", "psychic overwhelm"]
         },
@@ -558,7 +610,14 @@
         "transitToNatalPlanets": [
           {"to": "Sun", "effect": "Identity dissolution. May feel 'lost' or like 'no one knows who I am anymore.' The body's defenses may run lower than usual.", "intervention": "Spiritual practice; extra rest and warmth; do not make permanent decisions during the peak", "duration": "2-3 years"},
           {"to": "Moon", "effect": "Emotional permeability. Psychic sensitivity surges. Sleep becomes vivid/dreamy.", "intervention": "Boundary practices; black tourmaline; reduce alcohol", "duration": "2-3 years"},
-          {"to": "Mercury", "effect": "Imaginative but confused thinking. Spiritual insight or delusion. Avoid contracts.", "intervention": "Meditation; creative writing; do not sign legal documents", "duration": "1-2 years"}
+          {"to": "Mercury", "effect": "Imaginative but confused thinking. Spiritual insight or delusion. Avoid contracts.", "intervention": "Meditation; creative writing; do not sign legal documents", "duration": "1-2 years"},
+          {"to": "Venus", "effect": "Love's focus softens for a long season — longing, artistry, and idealization deepen. Exquisite for devotion; soft ground for judgment.", "intervention": "Make beauty regularly; save binding choices for clearer weather; jasmine or lotus scent; sit near water"},
+          {"to": "Mars", "effect": "The will learns to swim — drive dissolves and reforms around something subtler. Effort stops pushing and starts flowing.", "intervention": "Water-led movement — swim, yoga, breath-paced walks; one clear task per day is a full day"},
+          {"to": "Jupiter", "effect": "Faith goes oceanic — meaning, compassion, and vision swell across a long arc. Generous and boundless; anchor the boat.", "intervention": "A grounded weekly ritual — same day, same hour — keeps the vision usable"},
+          {"to": "Saturn", "effect": "The dissolver meets the architecture — rigid certainties soften over a long season, and each structure is asked to hold meaning, not just weight.", "intervention": "Renew the why beneath each commitment; release the ones that answer with silence; form and water, daily"},
+          {"to": "Uranus", "effect": "Dream and awakening trade places slowly — a long, quiet recalibration of what freedom means to you.", "intervention": "Let the practices evolve; keep one wild hour and one still hour in every week"},
+          {"to": "Neptune", "effect": "The long tide turns — imagination, faith, and the ways you escape come up for life-stage review.", "intervention": "Trade one numbing dissolve for one nourishing one — music, water, breath; gently, over months"},
+          {"to": "Pluto", "effect": "The deepest waters move — surrender and power learn each other over years. Barely visible, profoundly formative.", "intervention": "A long-arc contemplative practice; mark the season in a journal you rarely reread"}
         ],
         "transitDurationDays": "2-3 years near exact; very slow movement"
       },
@@ -605,7 +664,7 @@
       "symptomSignatures": {
         "whenStressed": {
           "headline": "Deep transformation forced. Old patterns dying hard. The body is purging at the cellular level.",
-          "physical": ["reproductive system upheaval (cysts, fibroids, hormonal extremes)", "elimination crises (chronic constipation alternating with purge)", "deep adrenal collapse (different from Mars burnout — this is survival-level)", "cellular-level chronic illness", "cancer susceptibility (cell mutation theme)", "extreme detox crises"],
+          "physical": ["deep shifts moving through the reproductive center — cycles running to extremes", "elimination crises (chronic constipation alternating with purge)", "survival-level depletion — deeper than ordinary burnout, the reserves beneath the reserves", "depletion at the cellular level that outlasts ordinary rest", "the body's deepest renewal cycles asking for real attention", "intense clearing episodes"],
           "emotional": ["obsession / compulsion", "deep grief or rage from past trauma", "power-and-control issues", "feeling 'destroyed' and unable to rebuild", "abandonment terror"],
           "mental": ["obsessive thought patterns", "paranoia (in extremity)", "transformative crisis", "shadow material surfacing"]
         },
@@ -620,7 +679,13 @@
           {"to": "Sun", "effect": "Identity rebirth. The old self composts. The body may demand a total restructuring of habits and pace.", "intervention": "Allow the ending; surrender to transformation. Anything persistent in the body deserves a licensed professional's attention", "duration": "2-4 years"},
           {"to": "Moon", "effect": "Emotional/family transformation. Deep shifts may move through the reproductive center. Old mother wounds resurface to be met.", "intervention": "Deep therapy support; emotional bodywork; bring anything persistent to your healthcare provider", "duration": "2-4 years"},
           {"to": "Venus", "effect": "Relationship death-rebirth. Old loves end. Deep change may move through desire and the body's inner chemistry.", "intervention": "Allow relationship transformations; tend the sacral center with warmth and rest", "duration": "2-3 years"},
-          {"to": "Mars", "effect": "Compulsive drive — the body runs hot and deep; move deliberately.", "intervention": "Channel through intensive training; make any major medical decision slowly, with your care team", "duration": "2-3 years"}
+          {"to": "Mars", "effect": "Compulsive drive — the body runs hot and deep; move deliberately.", "intervention": "Channel through intensive training; make any major medical decision slowly, with your care team", "duration": "2-3 years"},
+          {"to": "Mercury", "effect": "The mind is taken to depth — thought turns forensic and words carry weight for a long season. Surface talk stops satisfying.", "intervention": "Study something worthy of obsession; speak less and mean more; empty the mind onto paper at night"},
+          {"to": "Jupiter", "effect": "Power meets purpose — beliefs and ambitions are composted and regrown over years. What you are FOR becomes non-negotiable.", "intervention": "Rewrite the mission once a year; let dead beliefs fall without ceremony"},
+          {"to": "Saturn", "effect": "The transformer meets the structure — long-held architecture is pressure-tested down to bedrock. What survives becomes permanent.", "intervention": "Maintain the body like infrastructure — sleep, breath, the Earth tone; decide slowly, build once"},
+          {"to": "Uranus", "effect": "A depth-charge under the rebel — your relationship to freedom and disruption transforms across years.", "intervention": "Choose your revolutions; finish one before starting the next"},
+          {"to": "Neptune", "effect": "Power moves through the dream — a generational tide made personal, where illusions compost into vision.", "intervention": "Keep one honest mirror — a practice or a person; let the vision be revised"},
+          {"to": "Pluto", "effect": "The root system regenerates — a life-stage power review at the deepest layer. Slow, total, quiet.", "intervention": "Tend the fundamentals for a season: sleep, breath, ground, truth"}
         ],
         "transitDurationDays": "2-4 years near exact"
       },
@@ -743,5 +808,13 @@
     "step4_plainLanguageBridge": "Engine pulls plainLanguageBridge → presents 3 layers: what's happening cosmically, what it's doing in your body, what to do.",
     "step5_protocolGeneration": "Engine pulls crossReferences from this planet → links to: cellSalts.json (mineral via ruling sign), sacredBotanicals.json (plant ally), crystalsExpanded.json (mineral resonance), sacredTones_nervousSystem.json (frequency), scents.json (aroma), colors.json (visual), planets.json (taste/body movement). One unified prescription, five sensory channels.",
     "step6_practitionerOverlay": "In Practitioner mode, all three layers (cosmic + body + protocol) are visible with timing data (transit duration, intervention notes). In free user mode, only middle (body) and bottom (protocol) layers shown — cosmic mechanism is the optional 'See Why' reveal."
+  },
+  "aspectLenses": {
+    "conjunction": "Fused and immediate —",
+    "opposition": "Stretched across a full axis, asking for balance —",
+    "square": "Under friction that wants movement —",
+    "trine": "In easy, open flow —",
+    "sextile": "A door standing open —",
+    "quincunx": "At an odd angle, asking for adjustment —"
   }
 }
