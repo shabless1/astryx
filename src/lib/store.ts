@@ -40,8 +40,10 @@ export interface InterruptedSession {
   mode?: SessionMode
 }
 
-// v4.3 — the two first-class session modes.
-export type SessionMode = 'calibrated' | 'full_body'
+// v4.3 / v4.3.1 — the three first-class session modes.
+export type SessionMode = 'calibrated' | 'full_body' | 'chakra'
+// v4.3.1 — the Chakra Recalibration's instrument set.
+export type ChakraInstrument = 'solfeggio' | 'planetary'
 
 interface AppState {
   // Navigation
@@ -125,6 +127,10 @@ interface AppState {
   setSessionMode: (m: SessionMode) => void
   rememberedSessionMode: 'ask' | SessionMode
   setRememberedSessionMode: (m: 'ask' | SessionMode) => void
+  // v4.3.1 — the Chakra session's instrument set (persisted; preselected from
+  // fork ownership, changeable in the picker).
+  chakraInstrument: ChakraInstrument
+  setChakraInstrument: (i: ChakraInstrument) => void
   // FIX 1 — the chamber session/timer are ONE unit. The clock + session progression
   // run ONLY while chamberRunning (set by the chamber Play/Pause). Ephemeral.
   chamberRunning: boolean
@@ -342,6 +348,8 @@ export const useAppStore = create<AppState>()(
       setSessionMode: (m) => set({ sessionMode: m }),
       rememberedSessionMode: 'ask',
       setRememberedSessionMode: (m) => set({ rememberedSessionMode: m }),
+      chakraInstrument: 'planetary',
+      setChakraInstrument: (i) => set({ chakraInstrument: i }),
       chamberRunning: false,
       setChamberRunning: (running) => set({ chamberRunning: running }),
 
@@ -546,6 +554,7 @@ export const useAppStore = create<AppState>()(
         // v4.3 — session mode + Settings preference
         sessionMode: state.sessionMode,
         rememberedSessionMode: state.rememberedSessionMode,
+        chakraInstrument: state.chakraInstrument,
         history:          state.history,
         // Progress History — the post-session loop's persisted record.
         // (pendingSession is intentionally NOT persisted; it's transient.)

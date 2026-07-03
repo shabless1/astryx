@@ -26,7 +26,7 @@
  */
 
 export type ChamberDurationKey =
-  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM' | 'FULL_BODY'
+  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM' | 'FULL_BODY' | 'CHAKRA'
 
 /** A phase slot in a container's fixed architecture. */
 export type PhaseRole =
@@ -73,6 +73,9 @@ export interface ChamberDurationPreset {
    *  ladder: ground → 12 up → crown turn → 12 down → ground). Chart-independent
    *  and canonical — runnable without a reading. */
   fullBody?: boolean
+  /** v4.3.1 — routes SessionScreen to buildChakraSequence() (7 centers,
+   *  root→crown→root; instrument = Solfeggio or Planetary forks). */
+  chakra?: boolean
 }
 
 // ── Full-Spectrum timing (OPEN ITEM for SHA — retune by ear) ─────────────────
@@ -144,6 +147,9 @@ export const CHAMBER_DURATIONS: ChamberDurationPreset[] = [
   { key: '60_PRACTITIONER', label: '60-Minute Practitioner Session',   description: 'The full client service protocol',         durationSec: 3600, minMode: 'practitioner', architecture: ARCH_60, forkCount: 8, reprise: true },
   { key: 'FULL_SPECTRUM',   label: 'Full-Spectrum Recalibration',      description: 'All ten planetary forks, feet to head — a full-body attunement', durationSec: FULL_SPECTRUM_SEC, minMode: 'user', architecture: ARCH_FULL_SPECTRUM, fullSpectrum: true },
   { key: 'FULL_BODY',       label: 'Full Body Recalibration',          description: 'The complete anatomical ladder — all twelve forks, ground to crown and back', durationSec: FULL_BODY_SEC, minMode: 'user', architecture: ARCH_FULL_BODY, fullBody: true },
+  // v4.3.1 — 1650s (27.5 min): ground 180 → 7 centers ×114 → crown turn 72 →
+  // 7 sweep centers ×60 → ground 180. Builder scales to any durationSec.
+  { key: 'CHAKRA',          label: 'Chakra Recalibration',             description: 'The seven centers, root to crown and back — Solfeggio or Planetary forks', durationSec: 1650, minMode: 'user', architecture: ARCH_FULL_BODY, chakra: true },
 ]
 
 export const DEFAULT_CHAMBER_DURATION: ChamberDurationKey = '15_PERSONAL'

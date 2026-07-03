@@ -49,7 +49,7 @@ import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
-import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
 
 // v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
 // selections for every user, every run (the ladder is chart-independent). Only
@@ -203,12 +203,16 @@ export default function SessionScreen({
   const chamberDurationSec = chamberContainer.durationSec
   // v4.3 — the Full Body ladder is chart-independent and guest-runnable.
   const isFullBody = chamberContainer.fullBody === true
+  // v4.3.1 — so is the Chakra Recalibration (7 centers, chosen instrument).
+  const isChakra = chamberContainer.chakra === true
+  const chakraInstrument = useAppStore((s) => s.chakraInstrument)
+  const isCanonicalSession = isFullBody || isChakra
 
   // Chamber Deploy 2 — build DNA + HarmonicPlan once per session.
   // v4.3 — the Full Body session uses ONE canonical DNA for every user (fixed
   // seed 0 → identical track selections; the ladder is the same for everyone).
   const chamberDNA = useMemo(
-    () => (isFullBody || !protocol)
+    () => (isCanonicalSession || !protocol)
       ? (FULL_BODY_CANONICAL_DNA as ChamberDNA)
       : generateChamberDNA({
           protocol,
@@ -220,7 +224,7 @@ export default function SessionScreen({
           },
           polarity: protocol.dominantPolarity,
         }),
-    [isFullBody, protocol, intakeData.birthDate, intakeData.birthTime, birthCoords?.lat, birthCoords?.lon],
+    [isCanonicalSession, protocol, intakeData.birthDate, intakeData.birthTime, birthCoords?.lat, birthCoords?.lon],
   )
   const isPractitionerSession = mode === 'practitioner' && !!activeClientId
   const activeClient = isPractitionerSession ? getActiveClient() : null
@@ -270,7 +274,9 @@ export default function SessionScreen({
   // containers run the composition engine (distinct forks per phase, J.6/J.7).
   const isFullSpectrum = chamberContainer.fullSpectrum === true
   const sequenceSteps: SequenceStep[] = useMemo(
-    () => isFullBody
+    () => isChakra
+      ? buildChakraSequence({ durationSec: chamberDurationSec, instrument: chakraInstrument })
+      : isFullBody
       ? buildFullBodySequence({ durationSec: chamberDurationSec })
       : isFullSpectrum
       ? buildFullSpectrumSequence({ durationSec: chamberDurationSec })
@@ -284,7 +290,7 @@ export default function SessionScreen({
           forkCount:        chamberContainer.forkCount,
           tier:             mode === 'practitioner' ? 'practitioner' : 'individual',
         }),
-    [isFullBody, isFullSpectrum, protocol?.signalHierarchy, protocol?.dominantPolarity, protocol?.polarityResults, protocol?.intentionPlanet, chamberContainer, mode, chamberDurationSec],
+    [isChakra, chakraInstrument, isFullBody, isFullSpectrum, protocol?.signalHierarchy, protocol?.dominantPolarity, protocol?.polarityResults, protocol?.intentionPlanet, chamberContainer, mode, chamberDurationSec],
   )
 
   // Botanical + crystal from sacred layer (close step references)
@@ -430,14 +436,25 @@ export default function SessionScreen({
   // v4.3 — the Full Body ladder reads BALANCED everywhere (it is an attunement,
   // not a correction) and places by the RUNG's sign territory.
   const visualPlanet = currentForkPlanet
-  const visualPolarity = isFullBody ? undefined : (protocol?.polarityResults ?? []).find((r) => r.planet === visualPlanet)
-  const visualStateRaw = isFullBody ? 'balanced' :
+  const visualPolarity = isCanonicalSession ? undefined : (protocol?.polarityResults ?? []).find((r) => r.planet === visualPlanet)
+  const visualStateRaw = isCanonicalSession ? 'balanced' :
     visualPolarity?.dominant_state ??
     protocol?.signalHierarchy?.primary.state ??
     protocol?.dominantPolarity?.dominant_state ??
     'balanced'
   const visualSignalWord = signalWord(visualPlanet, visualStateRaw)
-  const visualPlacement = resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
+  // v4.3.1 — the ladder's placement LABEL is the owner-canonical region for the
+  // active rung (distinct per rung, incl. the Mercury/Venus double-strikes);
+  // the sign still drives the body-map point machinery.
+  const rungRegion = isFullBody && current?.sign
+    ? FULL_BODY_LADDER.find((r) => r.sign === current.sign)?.region
+    : isChakra && current?.role === 'signalFork'
+    ? current.phaseLabel.split('·').pop()?.trim()
+    : undefined
+  const visualPlacementBase = resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
+  const visualPlacement = rungRegion
+    ? { ...visualPlacementBase, primaryLabel: rungRegion }
+    : visualPlacementBase
   const visualChakra = visualPlacement.chakraOverlay?.[0]
   const visualCorrective = visualPolarity?.protocol?.corrective_direction ?? []
   const activeForkLabel = `${visualPlanet === 'Full Moon' ? 'Moon' : visualPlanet} Fork`
@@ -508,7 +525,7 @@ export default function SessionScreen({
   // calls onComplete(), which routes to the post-session check-in. All "After"
   // data (questionnaire, continuation, client-session save) now lives there.
   const handleComplete = () => {
-    const dominantState = isFullBody ? 'balanced' :
+    const dominantState = isCanonicalSession ? 'balanced' :
       protocol?.signalHierarchy?.primary.state ??
       protocol?.dominantPolarity?.dominant_state ??
       'balanced'
@@ -541,7 +558,9 @@ export default function SessionScreen({
       protocol?.plan?.sight?.primary_colors?.[0] ??
       accentColor
 
-    const chamberFocus = isFullBody
+    const chamberFocus = isChakra
+      ? `The seven centers, root to crown and back — ${chakraInstrument === 'solfeggio' ? 'Solfeggio' : 'Planetary'} forks.`
+      : isFullBody
       ? 'The complete anatomical ladder — all twelve forks, ground to crown and back.'
       : dominantState !== 'balanced'
       ? `A ${element} session easing ${dominantPlanet} from ${signalStateWord.toLowerCase()} toward balance.`
@@ -833,7 +852,7 @@ export default function SessionScreen({
             versionOverrides={songOverrides}
             onSelectVersion={handleSelectVersion}
             onResetOverrides={clearSongOverrides}
-            naturalOnly={isFullSpectrum || isFullBody}
+            naturalOnly={isFullSpectrum || isCanonicalSession}
             defaultCollapsed={visualMode === 'body'}
           />
 

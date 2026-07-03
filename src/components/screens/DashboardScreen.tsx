@@ -512,7 +512,7 @@ function PulseTab({
         <button onClick={onRunFullBody}
           className="kowalski-button w-full text-center text-[12.5px] py-1.5 transition-colors"
           style={{ color: 'rgba(255,255,255,0.55)' }}>
-          or run a Full Body Recalibration →
+          or run a Full Body or Chakra Recalibration →
         </button>
       )}
     </div>

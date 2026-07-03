@@ -12,7 +12,7 @@ import { prisma } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
-const KINDS = new Set(['reading', 'daily', 'full_body'])
+const KINDS = new Set(['reading', 'daily', 'full_body', 'chakra_solfeggio', 'chakra_planetary'])
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions)

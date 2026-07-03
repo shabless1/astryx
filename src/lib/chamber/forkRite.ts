@@ -399,20 +399,23 @@ export function buildFullSpectrumSequence({ durationSec }: { durationSec: number
 //     session variant rotation advances their track deterministically.
 // ════════════════════════════════════════════════════════════════════════════
 
-/** The 12-rung anatomical ladder, feet → head (ascending order). */
+/** The 12-rung anatomical ladder, feet → head (ascending order).
+ *  v4.3.1 — OWNER-CANONICAL placement table (supersedes v4.3's regions).
+ *  Each rung is a DISTINCT body region; Mercury (Virgo/Gemini) and Venus
+ *  (Libra/Taurus) strike twice with different placements + instructions. */
 export const FULL_BODY_LADDER: { planet: string; sign: string; region: string; placement: string }[] = [
-  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet',                placement: 'rest the tone at the soles of the feet — the body’s furthest shore' },
-  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Ankles & calves',     placement: 'let the tone circle the ankles and calves — the current lines of the legs' },
-  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees & bones',       placement: 'settle the tone at the knees — the architecture that carries you' },
-  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips & thighs',       placement: 'open the tone across the hips and thighs — the long muscles of momentum' },
-  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis & sacrum',     placement: 'ground the tone low at the sacrum — the deep root of the spine' },
-  { planet: 'Venus',   sign: 'Libra',       region: 'Lower back & kidneys',placement: 'warm the tone across the lower back — the balance point of the torso' },
-  { planet: 'Mercury', sign: 'Virgo',       region: 'Gut & digestion',     placement: 'rest the tone over the abdomen — the body’s sorting center' },
-  { planet: 'Sun',     sign: 'Leo',         region: 'Heart & spine',       placement: 'bring the tone to the heart center — the hearth of the whole field' },
-  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest & stomach',     placement: 'soften the tone at the chest — where the inner tides gather' },
-  { planet: 'Mercury', sign: 'Gemini',      region: 'Lungs, arms & hands', placement: 'carry the tone along the arms to the hands — breath and reach' },
-  { planet: 'Venus',   sign: 'Taurus',      region: 'Neck & throat',       placement: 'rest the tone at the throat — the voice’s home ground' },
-  { planet: 'Mars',    sign: 'Aries',       region: 'Head & crown',        placement: 'crown the tone at the head — the summit of the ladder' },
+  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet',                   placement: 'rest the tone at the soles of the feet — the body’s furthest shore' },
+  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Shins',                  placement: 'let the tone travel the shins — the current lines of the lower legs' },
+  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees',                  placement: 'settle the tone at the knees — the architecture that carries you' },
+  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips',                   placement: 'open the tone across the hips — the wide gate of momentum' },
+  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis region',          placement: 'ground the tone low at the pelvis — the deep root of the spine' },
+  { planet: 'Venus',   sign: 'Libra',       region: 'Lower back',             placement: 'warm the tone across the lower back — the balance point of the torso' },
+  { planet: 'Mercury', sign: 'Virgo',       region: 'Intestines region',      placement: 'rest the tone over the lower abdomen — the body’s sorting channels' },
+  { planet: 'Sun',     sign: 'Leo',         region: 'Solar plexus region',    placement: 'bring the tone to the solar plexus — the body’s radiant center' },
+  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest region',           placement: 'soften the tone at the chest — where the inner tides gather' },
+  { planet: 'Mercury', sign: 'Gemini',      region: 'Shoulders & hands',      placement: 'carry the tone from the shoulders down to the hands — the lines of reach' },
+  { planet: 'Venus',   sign: 'Taurus',      region: 'Thymus & throat region', placement: 'rest the tone between the throat and the thymus — the voice’s home ground' },
+  { planet: 'Mars',    sign: 'Aries',       region: 'Head',                   placement: 'crown the tone at the head — the summit of the ladder' },
 ]
 
 /** Deterministic timing weights — pure proportions of durationSec.
@@ -470,6 +473,101 @@ export function buildFullBodySequence({ durationSec }: { durationSec: number }):
   // 5) Closing Ground — Earth tone bridge-back (Earth Year audio under it).
   //    Absorbs any rounding remainder so the timeline tiles exactly.
   push('earthClose', 'Earth Close', 'ground the ladder before completion', 'Earth', Math.max(10, total - cursor))
+
+  return steps
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// CHAKRA RECALIBRATION (Directive v4.3.1 · Feature 3) — 7 centers, root →
+// crown → sweep back down, with the user's instrument choice:
+//   • 'solfeggio' — the chakra Solfeggio tones (Root 396 … Crown 963), the
+//     values CLAUDE.md Rule 2 fixes and solfeggio-overlays.json carries
+//     (golden-tested against that file — never hardcoded from memory alone).
+//   • 'planetary' — the 7-center ↔ fork mapping READ FROM
+//     sacredTones_nervousSystem.json `chakra` fields (each center maps to
+//     exactly ONE fork in the data — no invented correspondences):
+//     Root→Earth Day · Sacral→Full Moon · Solar Plexus→Sun · Heart→Venus ·
+//     Throat→Mercury · Third Eye→Neptune · Crown→Jupiter.
+// The chamber MUSIC follows the center's planetary correspondence in BOTH
+// modes (the chamber is music-only; the instrument choice changes the fork
+// you strike + the displayed Hz, not the music layer). Chart-independent —
+// one canonical sequence per instrument, byte-identical every run.
+// ════════════════════════════════════════════════════════════════════════════
+
+export type ChakraInstrument = 'solfeggio' | 'planetary'
+
+/** The 7 centers, root → crown. solfeggioHz per CLAUDE.md Rule 2 /
+ *  solfeggio-overlays.json; fork + planetaryHz from sacredTones data. */
+export const CHAKRA_CENTERS: {
+  center: string; bodyPoint: string; solfeggioHz: number
+  /** music/visual planet (canonical name) + the physical fork's display name */
+  planet: string; forkName: string
+}[] = [
+  { center: 'Root',         bodyPoint: 'base of the spine',        solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day' },
+  { center: 'Sacral',       bodyPoint: 'below the navel',          solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon' },
+  { center: 'Solar Plexus', bodyPoint: 'upper abdomen',            solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun' },
+  { center: 'Heart',        bodyPoint: 'center of the chest',      solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus' },
+  { center: 'Throat',       bodyPoint: 'hollow of the throat',     solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury' },
+  { center: 'Third Eye',    bodyPoint: 'between the brows',        solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune' },
+  { center: 'Crown',        bodyPoint: 'top of the head',          solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter' },
+]
+
+const CHAKRA_WEIGHTS = { ground: 3.0, ascentCenter: 1.9, crownTurn: 1.2, descentCenter: 1.0 }
+const CHAKRA_TOTAL_WEIGHT =
+  CHAKRA_WEIGHTS.ground * 2 + CHAKRA_WEIGHTS.ascentCenter * 7 +
+  CHAKRA_WEIGHTS.crownTurn + CHAKRA_WEIGHTS.descentCenter * 7
+
+/** Planetary Hz for a center's fork (Earth Day is app-played, 194.18). */
+function chakraPlanetaryHz(c: (typeof CHAKRA_CENTERS)[number]): number {
+  const f = FORKS.find((x) => x.planet === c.forkName)
+  const parsed = f ? parseFloat(String(f.hz)) : NaN
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
+/**
+ * The Chakra Recalibration: Opening Ground → 7 centers root→crown → held
+ * breath at the crown → 7 centers crown→root (lighter sweep) → Closing
+ * Ground. 17 steps; pure function of (durationSec, instrument).
+ */
+export function buildChakraSequence(
+  { durationSec, instrument }: { durationSec: number; instrument: ChakraInstrument },
+): SequenceStep[] {
+  const total = durationSec && durationSec > 0 ? durationSec : 1650
+  const unit = total / CHAKRA_TOTAL_WEIGHT
+  const hold = (w: number) => Math.max(10, Math.round(w * unit))
+
+  const steps: SequenceStep[] = []
+  let cursor = 0
+  const pushRaw = (s: SequenceStep) => { steps.push(s); cursor += s.holdSec }
+
+  const centerStep = (c: (typeof CHAKRA_CENTERS)[number], descending: boolean, holdSec: number): SequenceStep => {
+    const hz = instrument === 'solfeggio' ? c.solfeggioHz : chakraPlanetaryHz(c)
+    const forkWord = instrument === 'solfeggio' ? `${c.solfeggioHz} Hz Solfeggio fork` : `${c.forkName} fork`
+    const purpose = descending
+      ? `returning — a lighter pass at the ${c.center.toLowerCase()} center`
+      : `sound the ${forkWord} at the ${c.bodyPoint} — let the ${c.center.toLowerCase()} center receive it`
+    return {
+      idx: steps.length,
+      role: 'signalFork',
+      phaseLabel: `${descending ? 'Descent' : 'Ascent'} · ${c.center}`,
+      purpose,
+      planet: c.planet,
+      // Physical fork object only in planetary mode (real Sacred Tones); the
+      // Solfeggio set + Earth Day are chamber-carried (fork: null → the
+      // existing "tone plays from the chamber" line, never a skipped center).
+      fork: instrument === 'planetary' ? forkFor(c.planet) : null,
+      hz,
+      startSec: cursor,
+      holdSec,
+      slotLabel: 'signal',
+    }
+  }
+
+  pushRaw(makeStep(0, 'ground', 'Opening Ground', 'settle the field and prepare the body', 'Earth', cursor, hold(CHAKRA_WEIGHTS.ground)))
+  for (const c of CHAKRA_CENTERS) pushRaw(centerStep(c, false, hold(CHAKRA_WEIGHTS.ascentCenter)))
+  pushRaw(makeStep(steps.length, 'breathwork', 'Crown Turn', 'hold at the crown — three slow breaths before the descent', 'Breath', cursor, hold(CHAKRA_WEIGHTS.crownTurn)))
+  for (const c of [...CHAKRA_CENTERS].reverse()) pushRaw(centerStep(c, true, hold(CHAKRA_WEIGHTS.descentCenter)))
+  pushRaw(makeStep(steps.length, 'earthClose', 'Earth Close', 'ground the centers before completion', 'Earth', cursor, Math.max(10, total - cursor)))
 
   return steps
 }

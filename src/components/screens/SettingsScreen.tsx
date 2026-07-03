@@ -175,6 +175,7 @@ function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
     { value: 'ask',        label: 'Ask each time' },
     { value: 'calibrated', label: 'Calibrated' },
     { value: 'full_body',  label: 'Full Body' },
+    { value: 'chakra',     label: 'Chakra' },
   ] as const
   return (
     <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>

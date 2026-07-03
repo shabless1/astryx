@@ -13,6 +13,7 @@
 import { useState } from 'react'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER } from '@/lib/compliance'
+import { useAppStore } from '@/lib/store'
 import type { SessionMode, InterruptedSession } from '@/lib/store'
 
 export default function SessionModePicker({
@@ -98,6 +99,7 @@ export default function SessionModePicker({
             accent: '#4CAF89',
             onClick: () => onPick('full_body', remember),
           })}
+          <ChakraCard remember={remember} onPick={onPick} />
         </div>
 
         <label className="flex items-center gap-2.5 justify-center mb-5 cursor-pointer select-none">
@@ -125,6 +127,64 @@ export default function SessionModePicker({
 
         <p className="mt-8 text-center text-[10px] text-white/40">{MICRO_DISCLAIMER}</p>
       </div>
+    </div>
+  )
+}
+
+// v4.3.1 — the Chakra card carries its instrument choice inline: Solfeggio
+// forks or Planetary forks. Preselects the set the user owns (ownedForks are
+// the planetary Sacred Tones); both are always selectable — the chamber
+// carries any tone the user doesn't hold in hand.
+function ChakraCard({
+  remember, onPick,
+}: {
+  remember: boolean
+  onPick: (mode: SessionMode, remember: boolean) => void
+}) {
+  const instrument = useAppStore((s) => s.chakraInstrument)
+  const setInstrument = useAppStore((s) => s.setChakraInstrument)
+  const ownedForks = useAppStore((s) => s.ownedForks)
+  const [touched, setTouched] = useState(false)
+  // Preselect from ownership once (planetary if they own Sacred Tones forks).
+  const effective = touched ? instrument : (ownedForks.length ? 'planetary' : instrument)
+  const accent = '#C084FC'
+  const pill = (v: 'solfeggio' | 'planetary', label: string) => (
+    <button
+      onClick={(e) => { e.stopPropagation(); setTouched(true); setInstrument(v) }}
+      className="kowalski-button text-[11px] px-3 py-1 rounded-full"
+      style={{
+        border: `1px solid ${effective === v ? hexToRgba(accent, 0.6) : 'rgba(255,255,255,0.14)'}`,
+        background: effective === v ? hexToRgba(accent, 0.18) : 'transparent',
+        color: effective === v ? accent : 'rgba(255,255,255,0.55)',
+      }}
+    >
+      {label}
+    </button>
+  )
+  return (
+    <div
+      className="w-full text-left rounded-[1.6rem] p-6"
+      style={{
+        background: `radial-gradient(ellipse at 50% 0%, ${hexToRgba(accent, 0.08)} 0%, rgba(2,2,8,0.92) 65%)`,
+        border: `1px solid ${hexToRgba(accent, 0.28)}`,
+      }}
+    >
+      <div className="font-cinzel text-[18px] text-white mb-1.5">Chakra Recalibration</div>
+      <p className="text-[13px] text-content-sm leading-relaxed mb-3">
+        The seven centers, root to crown and back. Choose your instrument set —
+        the chamber carries any tone you don&apos;t hold in hand.
+      </p>
+      <div className="flex items-center gap-2 mb-4">
+        {pill('solfeggio', 'Solfeggio forks')}
+        {pill('planetary', 'Planetary forks')}
+      </div>
+      <button
+        onClick={() => { setInstrument(effective); onPick('chakra', remember) }}
+        className="kowalski-button rounded-2xl px-4 py-2.5 text-[13px] font-medium"
+        style={{ background: `linear-gradient(135deg, ${hexToRgba(accent, 0.9)} 0%, ${hexToRgba(accent, 0.55)} 100%)`, color: '#020208' }}
+      >
+        Begin Chakra Recalibration →
+      </button>
     </div>
   )
 }

@@ -95,17 +95,22 @@
     {
       "id": "app-full-body-recalibration",
       "topic": "app",
-      "text": "The Full Body Recalibration is the chamber's second session mode — the complete anatomical ladder, all twelve forks, ground to crown and back. It opens with an Earth ground, climbs the zodiacal body feet to head (Pisces at the feet with the Neptune fork, up through each sign's territory to Aries at the head with the Mars fork), pauses for three slow breaths at the crown turn, then sweeps back down the same ladder to an Earth ground close. Every rung sounds its planet's natural tone — it is an attunement of the whole map, not a correction of one signal. It is the same sequence for every body and needs no reading."
+      "text": "The Full Body Recalibration is one of the chamber's three session modes — the complete anatomical ladder, all twelve forks, ground to crown and back. It opens with an Earth ground, climbs the zodiacal body feet to head, pauses for three slow breaths at the crown turn, then sweeps back down the same ladder to an Earth ground close. Every rung sounds its planet's natural tone — an attunement of the whole map, not a correction of one signal. It is the same sequence for every body and needs no reading."
     },
     {
       "id": "app-full-body-ladder-order",
       "topic": "app",
-      "text": "The Full Body ladder order, feet to head: Pisces (feet · Neptune), Aquarius (ankles and calves · Uranus), Capricorn (knees and bones · Saturn), Sagittarius (hips and thighs · Jupiter), Scorpio (pelvis and sacrum · Pluto), Libra (lower back and kidneys · Venus), Virgo (gut and digestion · Mercury), Leo (heart and spine · Sun), Cancer (chest and stomach · Moon), Gemini (lungs, arms and hands · Mercury), Taurus (neck and throat · Venus), Aries (head and crown · Mars). The descent retraces the same rungs as a lighter sweep. Mercury and Venus each sound twice — their two body territories."
+      "text": "The Full Body ladder order, feet to head: Pisces (feet · Neptune), Aquarius (shins · Uranus), Capricorn (knees · Saturn), Sagittarius (hips · Jupiter), Scorpio (pelvis region · Pluto), Libra (lower back · Venus), Virgo (intestines region · Mercury), Leo (solar plexus region · Sun), Cancer (chest region · Moon), Gemini (shoulders and hands · Mercury), Taurus (thymus and throat region · Venus), Aries (head · Mars). The descent retraces the same rungs as a lighter sweep. Mercury and Venus each strike twice — two distinct placements each."
     },
     {
       "id": "app-full-body-vs-calibrated",
       "topic": "app",
-      "text": "Choosing between the two session modes: a Calibrated Session is tuned to your chart and today's sky — the composition engine selects the forks your reading calls for, honoring the never-amplify rule. The Full Body Recalibration is the complete twelve-fork ladder, the same map for everyone — a whole-body attunement for days when you want full coverage rather than a targeted correction, or when there is no reading yet. Many keep a rhythm of Calibrated Sessions daily and a Full Body Recalibration as a weekly reset. Both live in the Resonance Chamber and both close on the Earth ground."
+      "text": "Choosing between the session modes: a Calibrated Session is tuned to your chart and today's sky — the composition engine selects the forks your reading calls for, honoring the never-amplify rule. The Full Body Recalibration is the complete twelve-fork anatomical ladder, the same map for everyone. The Chakra Recalibration works the seven centers, root to crown and back, with your choice of Solfeggio or Planetary forks. The whole-body and chakra modes suit full-coverage days or a weekly reset — and need no reading; the Calibrated Session is the targeted daily work. All three live in the Resonance Chamber and close on the Earth ground."
+    },
+    {
+      "id": "app-chakra-recalibration",
+      "topic": "app",
+      "text": "The Chakra Recalibration is a seven-center chamber session: Opening Ground, then Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown ascending, three slow breaths at the crown, the same centers swept back down, and an Earth ground close. At the start you choose your instrument set — Solfeggio forks (Root 396 Hz, Sacral 417, Solar Plexus 528, Heart 639, Throat 741, Third Eye 852, Crown 963) or Planetary forks (Root · Earth Day, Sacral · Full Moon, Solar Plexus · Sun, Heart · Venus, Throat · Mercury, Third Eye · Neptune, Crown · Jupiter). The chamber carries any tone you do not hold in hand, so no center is ever skipped. Both sets run the same deterministic sequence."
     }
   ]
 }

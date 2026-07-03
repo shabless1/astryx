@@ -514,8 +514,14 @@ export default function AstryxApp() {
       handleStartSession()
       return
     }
-    // Calibrated — never run the corrective flow on the FULL_BODY container.
-    if (useAppStore.getState().chamberDurationKey === 'FULL_BODY') {
+    if (m === 'chakra') {   // v4.3.1 — 7 centers; instrument set in the store
+      setChamberDurationKey('CHAKRA')
+      handleStartSession()
+      return
+    }
+    // Calibrated — never run the corrective flow on a canonical container.
+    const key = useAppStore.getState().chamberDurationKey
+    if (key === 'FULL_BODY' || key === 'CHAKRA') {
       setChamberDurationKey('15_PERSONAL')
     }
     if (!protocol) { setScreen('intake'); return }
@@ -547,10 +553,14 @@ export default function AstryxApp() {
     if (snap.mode === 'full_body') {
       setSessionMode('full_body')
       setChamberDurationKey('FULL_BODY')
+    } else if (snap.mode === 'chakra') {
+      setSessionMode('chakra')
+      setChamberDurationKey('CHAKRA')
     } else {
       if (!protocol) return
       setSessionMode('calibrated')
-      if (useAppStore.getState().chamberDurationKey === 'FULL_BODY') setChamberDurationKey('15_PERSONAL')
+      const key = useAppStore.getState().chamberDurationKey
+      if (key === 'FULL_BODY' || key === 'CHAKRA') setChamberDurationKey('15_PERSONAL')
     }
     setSessionTime(snap.phaseStartSec ?? snap.sessionTime)
     setSessionActive(true)
@@ -584,7 +594,9 @@ export default function AstryxApp() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          kind: sessionMode === 'full_body' ? 'full_body' : 'reading',
+          kind: sessionMode === 'chakra'
+            ? `chakra_${useAppStore.getState().chakraInstrument}`
+            : sessionMode === 'full_body' ? 'full_body' : 'reading',
           completedPhases: snapshot.forkSequence?.length ?? 0,
           startedAt: useAppStore.getState().sessionStartedAt ?? new Date().toISOString(),
           completedAt: new Date().toISOString(),
@@ -756,7 +768,7 @@ export default function AstryxApp() {
             sessionLoggedToast={sessionLoggedToast}
             onClearToast={() => setSessionLoggedToast(false)}
             onResumeSession={handleResumeSession}
-            onRunFullBody={() => beginSession('full_body')}
+            onRunFullBody={() => setScreen('session-mode')}
           />
         )}
 
@@ -800,7 +812,7 @@ export default function AstryxApp() {
 
         {/* ── Session ── */}
         {/* v4.3 — Full Body is chart-independent: renderable without a reading. */}
-        {screen === 'session' && (protocol || sessionMode === 'full_body') && (
+        {screen === 'session' && (protocol || sessionMode === 'full_body' || sessionMode === 'chakra') && (
           <SessionScreen
             protocol={protocol}
             accentColor={accentColor}
