@@ -27,7 +27,8 @@ import { getBlendedPhaseValues } from '@/lib/protocol/sessionPhaseMap'
 import { renderGeometry, type RenderContext } from '@/lib/visual/geometryEngine'
 
 interface VisualEngineCanvasProps {
-  protocol: ProtocolOutput
+  // v4.3 — null for the chart-independent Full Body ladder (neutral visuals).
+  protocol: ProtocolOutput | null
   accentColor: string
   /** Wall-clock elapsed seconds (drives phase progression) */
   sessionTime?: number
@@ -72,11 +73,13 @@ export default function VisualEngineCanvas({
   useEffect(() => { sessionTimeRef.current = sessionTime ?? 0 }, [sessionTime])
   useEffect(() => { totalDurationRef.current = totalDuration }, [totalDuration])
 
-  const pattern = protocol.dominant_pattern
-  const aspect  = pattern.aspect
-  const planet1 = pattern.planets[0] ?? 'Sun'
-  const planet2 = pattern.planets[1] ?? planet1
-  const elementModality = pattern.element_modality ?? 'air mutable'
+  // v4.3 — neutral defaults when no protocol (Full Body ladder): a calm
+  // Earth-toned trine field, identical for every user.
+  const pattern = protocol?.dominant_pattern
+  const aspect  = pattern?.aspect ?? 'trine'
+  const planet1 = pattern?.planets?.[0] ?? 'Sun'
+  const planet2 = pattern?.planets?.[1] ?? planet1
+  const elementModality = pattern?.element_modality ?? 'earth fixed'
   const [elementToken, modalityToken] = elementModality.split(/\s+/)
 
   useEffect(() => {

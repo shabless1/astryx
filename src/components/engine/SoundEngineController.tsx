@@ -55,7 +55,8 @@ const PHASE_FRACTIONS: { phase: PhaseKey; until: number }[] = [
 ]
 
 interface SoundEngineControllerProps {
-  protocol: ProtocolOutput
+  // v4.3 — null for the chart-independent Full Body ladder.
+  protocol: ProtocolOutput | null
   accentColor: string
   sessionActive: boolean
   chamberDurationSec?: number

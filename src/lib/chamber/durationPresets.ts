@@ -26,7 +26,7 @@
  */
 
 export type ChamberDurationKey =
-  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM'
+  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM' | 'FULL_BODY'
 
 /** A phase slot in a container's fixed architecture. */
 export type PhaseRole =
@@ -69,6 +69,10 @@ export interface ChamberDurationPreset {
   reprise?: boolean
   /** Routes SessionScreen to buildFullSpectrumSequence() (the 10-fork sweep). */
   fullSpectrum?: boolean
+  /** v4.3 — routes SessionScreen to buildFullBodySequence() (the 12-fork
+   *  ladder: ground → 12 up → crown turn → 12 down → ground). Chart-independent
+   *  and canonical — runnable without a reading. */
+  fullBody?: boolean
 }
 
 // ── Full-Spectrum timing (OPEN ITEM for SHA — retune by ear) ─────────────────
@@ -122,11 +126,24 @@ const ARCH_FULL_SPECTRUM: PhaseArchitectureStep[] = [
   { phase: 'Closing Breath', role: 'breathwork', durationMinutes: FULL_SPECTRUM_TIMING.closeBreathSec / 60, source: 'breath', purpose: 'seal the session and ground' },
 ]
 
+// ─── v4.3 Full Body Recalibration — the 12-fork ladder, up and back down ──────
+// 2100s (35 min) canonical: ground open → 12 ascending rungs → crown turn →
+// 12 descending sweep rungs → ground close. buildFullBodySequence() scales the
+// same proportions to ANY durationSec, so future Quick/Extended variants are a
+// durationSec change, not a refactor. Architecture lists only the bookends —
+// the builder fills the 24 rungs + turn (mirrors the FULL_SPECTRUM pattern).
+const FULL_BODY_SEC = 2100
+const ARCH_FULL_BODY: PhaseArchitectureStep[] = [
+  { phase: 'Opening Ground', role: 'ground', durationMinutes: 2.5, source: 'Earth', purpose: 'settle the field and prepare the body' },
+  { phase: 'Earth Close', role: 'earthClose', durationMinutes: 2.5, source: 'Earth', purpose: 'ground the ladder before completion' },
+]
+
 export const CHAMBER_DURATIONS: ChamberDurationPreset[] = [
   { key: '15_PERSONAL',     label: '15-Minute Personal Recalibration', description: 'A complete personal recalibration session', durationSec:  900, minMode: 'user',         architecture: ARCH_15, forkCount: 4, reprise: false },
   { key: '30_DEEP',         label: '30-Minute Deep Chamber',           description: 'A deeper, fuller chamber session',          durationSec: 1800, minMode: 'user',         architecture: ARCH_30, forkCount: 6, reprise: true },
   { key: '60_PRACTITIONER', label: '60-Minute Practitioner Session',   description: 'The full client service protocol',         durationSec: 3600, minMode: 'practitioner', architecture: ARCH_60, forkCount: 8, reprise: true },
   { key: 'FULL_SPECTRUM',   label: 'Full-Spectrum Recalibration',      description: 'All ten planetary forks, feet to head — a full-body attunement', durationSec: FULL_SPECTRUM_SEC, minMode: 'user', architecture: ARCH_FULL_SPECTRUM, fullSpectrum: true },
+  { key: 'FULL_BODY',       label: 'Full Body Recalibration',          description: 'The complete anatomical ladder — all twelve forks, ground to crown and back', durationSec: FULL_BODY_SEC, minMode: 'user', architecture: ARCH_FULL_BODY, fullBody: true },
 ]
 
 export const DEFAULT_CHAMBER_DURATION: ChamberDurationKey = '15_PERSONAL'

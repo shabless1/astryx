@@ -674,6 +674,7 @@ export type AppScreen =
   | 'body-grid'
   | 'library'
   | 'fork-access'
+  | 'session-mode'
 
 // ─── MUSIC LIBRARY (Directive I.5) ───────────────────────────
 // The audio folder-state a track lives under (mirrors AudioFolderState in astryxAudioLibrary).

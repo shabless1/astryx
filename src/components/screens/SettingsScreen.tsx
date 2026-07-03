@@ -111,6 +111,9 @@ export default function SettingsScreen({
           delay={0.2}
         />
 
+        {/* v4.3 — session mode preference (skips the chamber's mode picker) */}
+        <SessionModePreferenceRow accentColor={accentColor} />
+
         {/* Session duration */}
         <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
           <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Default Session Duration</div>
@@ -163,6 +166,46 @@ export default function SettingsScreen({
 
 // FIX 8 — mark which physical Sacred Tone forks you own. Owned forks no longer
 // show the "this is the simulated tone" prescription line in the Chamber.
+// v4.3 — Session Mode preference: Ask each time (default) shows the chamber's
+// two-card picker; a fixed mode starts sessions directly in that mode.
+function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
+  const remembered = useAppStore((s) => s.rememberedSessionMode)
+  const setRemembered = useAppStore((s) => s.setRememberedSessionMode)
+  const OPTIONS = [
+    { value: 'ask',        label: 'Ask each time' },
+    { value: 'calibrated', label: 'Calibrated' },
+    { value: 'full_body',  label: 'Full Body' },
+  ] as const
+  return (
+    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>
+      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Session Mode</div>
+      <div className="text-[12px] text-white/40 mb-3">
+        Calibrated — tuned to your chart and today&apos;s sky. Full Body — the complete
+        anatomical ladder, all twelve forks, ground to crown and back.
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {OPTIONS.map((o) => (
+          <button
+            key={o.value}
+            onClick={() => setRemembered(o.value)}
+            className="font-rajdhani text-[12px] transition-all duration-200"
+            style={{
+              padding: '7px 16px',
+              borderRadius: 10,
+              border: `1px solid ${remembered === o.value ? accentColor : 'rgba(255,255,255,0.1)'}`,
+              background: remembered === o.value ? hexToRgba(accentColor, 0.18) : 'transparent',
+              color: remembered === o.value ? accentColor : 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+            }}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </GlassCard>
+  )
+}
+
 function OwnedForksCard({ accentColor }: { accentColor: string }) {
   const ownedForks = useAppStore((s) => s.ownedForks)
   const toggleOwnedFork = useAppStore((s) => s.toggleOwnedFork)

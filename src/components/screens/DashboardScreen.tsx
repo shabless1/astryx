@@ -64,7 +64,7 @@ const INTENTIONS = [
 
 export default function DashboardScreen({
   protocol, chartData, accentColor, mode, userName,
-  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast, onResumeSession,
+  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast, onResumeSession, onRunFullBody,
 }: {
   protocol: ProtocolOutput
   chartData: any | null
@@ -76,6 +76,8 @@ export default function DashboardScreen({
   sessionLoggedToast?: boolean
   onClearToast?: () => void
   onResumeSession?: () => void
+  /** v4.3 — start the Full Body Recalibration directly (the 12-fork ladder). */
+  onRunFullBody?: () => void
 }) {
   const history          = useAppStore((s) => s.history)
   const sessionLog       = useAppStore((s) => s.sessionLog)
@@ -205,6 +207,7 @@ export default function DashboardScreen({
             <PulseTab
               protocol={protocol} accentColor={accentColor} tempColor={tempColor}
               today={today} fork={fork} onBeginSession={onBeginSession}
+              onRunFullBody={onRunFullBody}
             />
           )}
 
@@ -388,7 +391,7 @@ function CheckInTab({
 
 // ── TODAY'S PULSE TAB — temperature + today's transits vs natal + fork + begin ──
 function PulseTab({
-  protocol, accentColor, tempColor, today, fork, onBeginSession,
+  protocol, accentColor, tempColor, today, fork, onBeginSession, onRunFullBody,
 }: {
   protocol: ProtocolOutput
   accentColor: string
@@ -396,6 +399,7 @@ function PulseTab({
   today: ReturnType<typeof computeDailyTemperature>
   fork: ReturnType<typeof forkFor>
   onBeginSession: () => void
+  onRunFullBody?: () => void
 }) {
   const transits = protocol.diagnostic?.activeTransits ?? []
   // v4.0 Fix 6 — the Astryx voice reads the EXISTING rendered headline only.
@@ -502,6 +506,15 @@ function PulseTab({
         style={{ background: `linear-gradient(135deg, ${hexToRgba(tempColor, 0.95)} 0%, ${hexToRgba(tempColor, 0.6)} 100%)`, color: '#020208', boxShadow: `0 0 28px -4px ${hexToRgba(tempColor, 0.7)}` }}>
         Begin today&apos;s session →
       </button>
+
+      {/* v4.3 — the quieter second door: the complete 12-fork ladder. */}
+      {onRunFullBody && (
+        <button onClick={onRunFullBody}
+          className="kowalski-button w-full text-center text-[12.5px] py-1.5 transition-colors"
+          style={{ color: 'rgba(255,255,255,0.55)' }}>
+          or run a Full Body Recalibration →
+        </button>
+      )}
     </div>
   )
 }

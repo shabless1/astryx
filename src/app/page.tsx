@@ -35,6 +35,8 @@ import ClientRosterScreen from '@/components/screens/ClientRosterScreen'
 import HomeScreen from '@/components/screens/HomeScreen'
 import SubscribeGateScreen from '@/components/screens/SubscribeGateScreen'
 import ForkAccessScreen from '@/components/screens/ForkAccessScreen'
+import SessionModePicker from '@/components/screens/SessionModePicker'
+import type { SessionMode } from '@/lib/store'
 import MusicLibraryScreen from '@/components/screens/MusicLibraryScreen'
 import PostSessionSummary from '@/components/screens/PostSessionSummary'
 import TeacherChat from '@/components/teacher/TeacherChat'
@@ -121,7 +123,7 @@ export default function AstryxApp() {
   // specific transit rather than the stored reading is a v2 — see spec §4.)
   const handleBeginDailySession = () => {
     setChamberDurationKey('15_PERSONAL')
-    handleStartSession()
+    requestSession()   // v4.3 — mode picker (or the remembered preference)
   }
 
   // ── FIX 1 — the daily door: recompute FRESH from stored natal + today ────────
@@ -149,8 +151,9 @@ export default function AstryxApp() {
   //   • Dashboard tab → Intake when there's no reading yet (acts as home).
   const handleNav = (target: AppScreen) => {
     if (target === 'session') {
-      if (protocol) handleStartSession()
-      else setScreen('intake')
+      // v4.3 — the Chamber tab opens the mode picker; Full Body runs without a
+      // reading, so guests are no longer bounced straight to Intake.
+      requestSession()
       return
     }
     if (target === 'dashboard') {
@@ -490,6 +493,34 @@ export default function AstryxApp() {
   const interruptedSession = useAppStore((s) => s.interruptedSession)
   const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
   const setChamberPhase = useAppStore((s) => s.setChamberPhase)
+  // v4.3 — session mode (Calibrated vs Full Body Recalibration)
+  const sessionMode = useAppStore((s) => s.sessionMode)
+  const setSessionMode = useAppStore((s) => s.setSessionMode)
+  const rememberedSessionMode = useAppStore((s) => s.rememberedSessionMode)
+  const setRememberedSessionMode = useAppStore((s) => s.setRememberedSessionMode)
+
+  // v4.3 — where a session begins: the remembered preference skips the picker.
+  const requestSession = () => {
+    if (rememberedSessionMode !== 'ask') { beginSession(rememberedSessionMode); return }
+    setScreen('session-mode')
+  }
+
+  // v4.3 — begin a session in a specific mode. Full Body is chart-independent
+  // (guest-runnable); Calibrated needs a reading and falls back to the scan.
+  const beginSession = (m: SessionMode) => {
+    setSessionMode(m)
+    if (m === 'full_body') {
+      setChamberDurationKey('FULL_BODY')
+      handleStartSession()
+      return
+    }
+    // Calibrated — never run the corrective flow on the FULL_BODY container.
+    if (useAppStore.getState().chamberDurationKey === 'FULL_BODY') {
+      setChamberDurationKey('15_PERSONAL')
+    }
+    if (!protocol) { setScreen('intake'); return }
+    handleStartSession()
+  }
 
   const handleStartSession = () => {
     setSessionTime(0)
@@ -510,7 +541,17 @@ export default function AstryxApp() {
   const handleResumeSession = () => {
     const snap = interruptedSession
     setInterruptedSession(null)
-    if (!snap || !protocol) return
+    if (!snap) return
+    // v4.3 — restore the interrupted MODE: a Full Body ladder resumes as one
+    // (guest-runnable, no protocol needed); Calibrated still needs the reading.
+    if (snap.mode === 'full_body') {
+      setSessionMode('full_body')
+      setChamberDurationKey('FULL_BODY')
+    } else {
+      if (!protocol) return
+      setSessionMode('calibrated')
+      if (useAppStore.getState().chamberDurationKey === 'FULL_BODY') setChamberDurationKey('15_PERSONAL')
+    }
     setSessionTime(snap.phaseStartSec ?? snap.sessionTime)
     setSessionActive(true)
     setChamberRunning(false)   // audio needs a fresh Play gesture (autoplay policy)
@@ -536,6 +577,20 @@ export default function AstryxApp() {
     setSessionActive(false)
     setChamberRunning(false)
     setChamberPhase(null)   // v4.1 FIX 2 — completed runs leave no resume state
+    // v4.3 — record the completed run server-side for signed-in users
+    // (fire-and-forget; guests keep local-only history).
+    if (session?.user) {
+      fetch('/api/sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: sessionMode === 'full_body' ? 'full_body' : 'reading',
+          completedPhases: snapshot.forkSequence?.length ?? 0,
+          startedAt: useAppStore.getState().sessionStartedAt ?? new Date().toISOString(),
+          completedAt: new Date().toISOString(),
+        }),
+      }).catch((e) => console.warn('[sessions] record failed:', e))
+    }
     // The session lands on the Dashboard; its Summary Report tab opens with this
     // snapshot for the post-session check-in + save (practitioners keep Results).
     setPendingSession(snapshot)
@@ -557,7 +612,7 @@ export default function AstryxApp() {
   }
 
   const isSessionScreen = screen === 'session'
-  const hideNav = isSessionScreen || screen === 'analysis' || screen === 'auth' || screen === 'payment' || screen === 'subscribe-gate' || screen === 'landing' || screen === 'fork-access'
+  const hideNav = isSessionScreen || screen === 'analysis' || screen === 'auth' || screen === 'payment' || screen === 'subscribe-gate' || screen === 'landing' || screen === 'fork-access' || screen === 'session-mode'
 
   return (
     <div
@@ -701,6 +756,7 @@ export default function AstryxApp() {
             sessionLoggedToast={sessionLoggedToast}
             onClearToast={() => setSessionLoggedToast(false)}
             onResumeSession={handleResumeSession}
+            onRunFullBody={() => beginSession('full_body')}
           />
         )}
 
@@ -721,14 +777,30 @@ export default function AstryxApp() {
             mode={mode}
             accentColor={accentColor}
             chartData={chartData}
-            onStartSession={handleStartSession}
+            onStartSession={requestSession}
             onPractitioner={handlePractitionerClick}
             onNewIntake={resetIntake}
           />
         )}
 
+        {/* ── Session mode picker (v4.3 — Calibrated vs Full Body) ── */}
+        {screen === 'session-mode' && (
+          <SessionModePicker
+            accentColor={accentColor}
+            hasReading={!!protocol}
+            interrupted={interruptedSession}
+            onResume={handleResumeSession}
+            onPick={(m, remember) => {
+              if (remember) setRememberedSessionMode(m)
+              beginSession(m)
+            }}
+            onBack={() => (screenHistory.length ? goBack() : goHome())}
+          />
+        )}
+
         {/* ── Session ── */}
-        {screen === 'session' && protocol && (
+        {/* v4.3 — Full Body is chart-independent: renderable without a reading. */}
+        {screen === 'session' && (protocol || sessionMode === 'full_body') && (
           <SessionScreen
             protocol={protocol}
             accentColor={accentColor}

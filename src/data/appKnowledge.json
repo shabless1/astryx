@@ -4,25 +4,108 @@
     "subtitle": "How the app works, in Astryx's own reference voice",
     "lineage": "Astryx product canon (distilled from the user guide, capabilities manifest, and live app behavior)",
     "schemaVersion": "1.0",
-    "lastUpdated": "2026-06-28"
+    "lastUpdated": "2026-07-03"
   },
   "entries": [
-    { "id": "app-what-is-astryx", "topic": "app", "text": "Astryx is a deterministic multi-sensory calibration system. From birth data it reads a natal chart as a pattern-recognition map and generates a personalized five-sense protocol — Sound, Scent, Taste, Body, and Sight — plus a sixth channel, Mind (Astryx herself). Same birth data always produces the same output. It is calibration, not prediction; a blueprint, not a reading. It never diagnoses, treats, or prescribes." },
-    { "id": "app-flow", "topic": "app", "text": "The core flow: Intake (name, birth date, birth time or 'unknown', birth city, symptoms, emotional state, intention) → Analysis (a brief sacred-geometry loader while the engine computes) → Today's Reading (one card naming the signal, carrier, and today's fork sequence) → Resonance Chamber (the session) → Dashboard (the daily home with check-in, today's pulse, summary, explore-deeper, chart, body map, history)." },
-    { "id": "app-reading", "topic": "app", "text": "How to read the reading: the engine ranks a SIGNAL HIERARCHY — a primary signal (the surface, what you feel), a secondary (the chart root it traces to), and a tertiary (the current aggravator). Each carries a polarity state: excess (running hot), deficiency (running low), blocked (held/stuck), or balanced, with a confidence band. The five-sense protocol and the chamber are chosen to move the signal toward balance — never to amplify it." },
-    { "id": "app-planet-not-remedy", "topic": "app", "text": "The Planet is not the Remedy. A dominant planet is not automatically amplified. The Remedy Polarity engine first reads whether that planet runs excess, deficient, or blocked, then chooses a corrective direction — often borrowing a regulator planet's qualities — so the protocol cools an excess or warms a deficiency. This 'never amplify' rule runs through the whole system, including the chamber forks." },
-    { "id": "app-chamber", "topic": "app", "text": "The Resonance Chamber is a full guided session: a fullscreen visual field, layered planetary tuning-fork music, and a guided breath. A phase ribbon shows progress; the fork sequence advances phase by phase. Four visual modes — Body, Color, Mandala, Combined — are switched from a toggle at the top, and the choice never restarts the audio or the timer." },
-    { "id": "app-chamber-forks", "topic": "app", "text": "How the chamber chooses your forks (corrective sessions): a composition engine lays down several DISTINCT forks, one per phase, drawn from your signal hierarchy (primary, secondary, tertiary), your stated intention, and any planets you marked as already steady (resources). If a signal runs hot (excess or blocked), the chamber leads with its calming counterweight rather than repeating the loud planet. 15-minute sessions use 4 distinct forks, 30-minute use 6, 60-minute use 8." },
-    { "id": "app-earth-bookends", "topic": "app", "text": "Earth bookends: every chamber session opens with an Earth Day tone under the first phase and closes with an Earth Year tone under the last — a grounding open and a grounding close. These are audio only; the on-screen planet and visuals belong to the phase itself." },
-    { "id": "app-full-spectrum", "topic": "app", "text": "Full-Spectrum Recalibration is a fourth session type: a whole-body attunement (not a correction). It opens with breathwork (Earth Day underneath), then sounds all ten planetary forks from the feet upward — Neptune at the feet, then Uranus, Saturn, Jupiter, Pluto, Venus, Mercury, Sun, Moon, and Mars at the head — each at its natural, balanced tone, then closes with breathwork (Earth Year underneath). It does not target today's signal; it tones the whole field evenly." },
-    { "id": "app-five-senses", "topic": "app", "text": "The five-sense protocol: Sound (planetary tones from Hans Cousto's cosmic octave), Scent (essential oils mapped to the active planet), Taste (an herbal blend or tea), Body (a breath, posture, and orientation), and Sight (a color and a sacred-geometry form tied to the dominant aspect). Each is chosen by the corrective polarity, so the whole protocol moves toward balance." },
-    { "id": "app-body-map", "topic": "app", "text": "The Body Map shows where to hold each fork. Astryx renders two glowing orbs per fork: a TRADITIONAL placement (the planet's rulership home — the classical zodiacal-man body region) and a NATAL placement (where that planet actually sits in your chart, by its natal sign). When a planet is in its own ruling sign the two merge into one orb. Pelvic and reproductive placements always sit on the womb/sacral field — never the genitals — and intimate placements use an off-body sweep with no contact." },
-    { "id": "app-body-tones", "topic": "app", "text": "Body-Map play-tones: tapping a chakra plays its Solfeggio tone; tapping a planet's body region plays that planet's Cousto fork tone. One plays at a time; tapping another switches; closing the panel stops it." },
-    { "id": "app-solar-chart", "topic": "app", "text": "Solar Chart mode: when you don't know your birth time, Astryx places the Sun on the Ascendant and aligns the houses to sign boundaries. All ten planetary positions and aspects stay astronomically accurate; only house-based detail is approximate. It is always clearly labelled '☉ Solar Chart'. You can switch back any time by entering a birth time." },
-    { "id": "app-customize-songs", "topic": "app", "text": "The chamber music has a Default and a Customize chooser. Default lets Astryx pick the song for each fork's planet and state deterministically. Customize lets you pick a specific variant per planet+state; your choice is saved and persists across sessions, and a repeated fork in one session advances to a different variant rather than replaying the same track. '↺ Reset all' clears your custom choices." },
-    { "id": "app-tiers", "topic": "app", "text": "Three access tiers. Individual ($9.95/mo): plain-language diagnostics, prescriptions, transit weather, the daily home, and a metered daily allowance of Ask Astryx questions. Practitioner ($39.95/mo, self-attested): clinical terminology, classical citations, a client roster, session notes, PDF export, and unmetered Ask Astryx. Verified Practitioner ($59/mo): a verified badge, credential auto-fill, and insurance-grade SOAP. A legacy XRP payment (5 XRP) unlocks a year of equivalent access." },
-    { "id": "app-transit-weather", "topic": "app", "text": "Transit weather (Cosmic Weather): Astryx recomputes the live sky against your natal chart each day, surfacing today's temperature (cool/warm/hot), the headline transit, and the active transits — so the daily reading reflects what the sky is doing now, not just your birth chart." },
-    { "id": "app-ask-astryx", "topic": "app", "text": "Ask Astryx is the sixth sense — Mind. She is the living intelligence of the system: she explains your existing reading, defines terms, connects the frameworks, and teaches you to read your own chart over time. She never changes your reading, never diagnoses, and always speaks in probabilistic language. Her goal is fluency — a user who practices should need her less over time." },
-    { "id": "app-sacred-tones", "topic": "app", "text": "Sacred Tones are real physical tuning forks tuned to the Cousto cosmic-octave frequencies. The chamber's on-screen tones mirror them; with the physical forks a practitioner applies the named fork to the mapped body point for a client's chart. The fork-to-body-point intelligence is the Practitioner Portal's crown feature." }
+    {
+      "id": "app-what-is-astryx",
+      "topic": "app",
+      "text": "Astryx is a deterministic multi-sensory calibration system. From birth data it reads a natal chart as a pattern-recognition map and generates a personalized five-sense protocol — Sound, Scent, Taste, Body, and Sight — plus a sixth channel, Mind (Astryx herself). Same birth data always produces the same output. It is calibration, not prediction; a blueprint, not a reading. It never diagnoses, treats, or prescribes."
+    },
+    {
+      "id": "app-flow",
+      "topic": "app",
+      "text": "The core flow: Intake (name, birth date, birth time or 'unknown', birth city, symptoms, emotional state, intention) → Analysis (a brief sacred-geometry loader while the engine computes) → Today's Reading (one card naming the signal, carrier, and today's fork sequence) → Resonance Chamber (the session) → Dashboard (the daily home with check-in, today's pulse, summary, explore-deeper, chart, body map, history)."
+    },
+    {
+      "id": "app-reading",
+      "topic": "app",
+      "text": "How to read the reading: the engine ranks a SIGNAL HIERARCHY — a primary signal (the surface, what you feel), a secondary (the chart root it traces to), and a tertiary (the current aggravator). Each carries a polarity state: excess (running hot), deficiency (running low), blocked (held/stuck), or balanced, with a confidence band. The five-sense protocol and the chamber are chosen to move the signal toward balance — never to amplify it."
+    },
+    {
+      "id": "app-planet-not-remedy",
+      "topic": "app",
+      "text": "The Planet is not the Remedy. A dominant planet is not automatically amplified. The Remedy Polarity engine first reads whether that planet runs excess, deficient, or blocked, then chooses a corrective direction — often borrowing a regulator planet's qualities — so the protocol cools an excess or warms a deficiency. This 'never amplify' rule runs through the whole system, including the chamber forks."
+    },
+    {
+      "id": "app-chamber",
+      "topic": "app",
+      "text": "The Resonance Chamber is a full guided session: a fullscreen visual field, layered planetary tuning-fork music, and a guided breath. A phase ribbon shows progress; the fork sequence advances phase by phase. Four visual modes — Body, Color, Mandala, Combined — are switched from a toggle at the top, and the choice never restarts the audio or the timer."
+    },
+    {
+      "id": "app-chamber-forks",
+      "topic": "app",
+      "text": "How the chamber chooses your forks (corrective sessions): a composition engine lays down several DISTINCT forks, one per phase, drawn from your signal hierarchy (primary, secondary, tertiary), your stated intention, and any planets you marked as already steady (resources). If a signal runs hot (excess or blocked), the chamber leads with its calming counterweight rather than repeating the loud planet. 15-minute sessions use 4 distinct forks, 30-minute use 6, 60-minute use 8."
+    },
+    {
+      "id": "app-earth-bookends",
+      "topic": "app",
+      "text": "Earth bookends: every chamber session opens with an Earth Day tone under the first phase and closes with an Earth Year tone under the last — a grounding open and a grounding close. These are audio only; the on-screen planet and visuals belong to the phase itself."
+    },
+    {
+      "id": "app-full-spectrum",
+      "topic": "app",
+      "text": "Full-Spectrum Recalibration is a fourth session type: a whole-body attunement (not a correction). It opens with breathwork (Earth Day underneath), then sounds all ten planetary forks from the feet upward — Neptune at the feet, then Uranus, Saturn, Jupiter, Pluto, Venus, Mercury, Sun, Moon, and Mars at the head — each at its natural, balanced tone, then closes with breathwork (Earth Year underneath). It does not target today's signal; it tones the whole field evenly."
+    },
+    {
+      "id": "app-five-senses",
+      "topic": "app",
+      "text": "The five-sense protocol: Sound (planetary tones from Hans Cousto's cosmic octave), Scent (essential oils mapped to the active planet), Taste (an herbal blend or tea), Body (a breath, posture, and orientation), and Sight (a color and a sacred-geometry form tied to the dominant aspect). Each is chosen by the corrective polarity, so the whole protocol moves toward balance."
+    },
+    {
+      "id": "app-body-map",
+      "topic": "app",
+      "text": "The Body Map shows where to hold each fork. Astryx renders two glowing orbs per fork: a TRADITIONAL placement (the planet's rulership home — the classical zodiacal-man body region) and a NATAL placement (where that planet actually sits in your chart, by its natal sign). When a planet is in its own ruling sign the two merge into one orb. Pelvic and reproductive placements always sit on the womb/sacral field — never the genitals — and intimate placements use an off-body sweep with no contact."
+    },
+    {
+      "id": "app-body-tones",
+      "topic": "app",
+      "text": "Body-Map play-tones: tapping a chakra plays its Solfeggio tone; tapping a planet's body region plays that planet's Cousto fork tone. One plays at a time; tapping another switches; closing the panel stops it."
+    },
+    {
+      "id": "app-solar-chart",
+      "topic": "app",
+      "text": "Solar Chart mode: when you don't know your birth time, Astryx places the Sun on the Ascendant and aligns the houses to sign boundaries. All ten planetary positions and aspects stay astronomically accurate; only house-based detail is approximate. It is always clearly labelled '☉ Solar Chart'. You can switch back any time by entering a birth time."
+    },
+    {
+      "id": "app-customize-songs",
+      "topic": "app",
+      "text": "The chamber music has a Default and a Customize chooser. Default lets Astryx pick the song for each fork's planet and state deterministically. Customize lets you pick a specific variant per planet+state; your choice is saved and persists across sessions, and a repeated fork in one session advances to a different variant rather than replaying the same track. '↺ Reset all' clears your custom choices."
+    },
+    {
+      "id": "app-tiers",
+      "topic": "app",
+      "text": "Three access tiers. Individual ($9.95/mo): plain-language diagnostics, prescriptions, transit weather, the daily home, and a metered daily allowance of Ask Astryx questions. Practitioner ($39.95/mo, self-attested): clinical terminology, classical citations, a client roster, session notes, PDF export, and unmetered Ask Astryx. Verified Practitioner ($59/mo): a verified badge, credential auto-fill, and insurance-grade SOAP. A legacy XRP payment (5 XRP) unlocks a year of equivalent access."
+    },
+    {
+      "id": "app-transit-weather",
+      "topic": "app",
+      "text": "Transit weather (Cosmic Weather): Astryx recomputes the live sky against your natal chart each day, surfacing today's temperature (cool/warm/hot), the headline transit, and the active transits — so the daily reading reflects what the sky is doing now, not just your birth chart."
+    },
+    {
+      "id": "app-ask-astryx",
+      "topic": "app",
+      "text": "Ask Astryx is the sixth sense — Mind. She is the living intelligence of the system: she explains your existing reading, defines terms, connects the frameworks, and teaches you to read your own chart over time. She never changes your reading, never diagnoses, and always speaks in probabilistic language. Her goal is fluency — a user who practices should need her less over time."
+    },
+    {
+      "id": "app-sacred-tones",
+      "topic": "app",
+      "text": "Sacred Tones are real physical tuning forks tuned to the Cousto cosmic-octave frequencies. The chamber's on-screen tones mirror them; with the physical forks a practitioner applies the named fork to the mapped body point for a client's chart. The fork-to-body-point intelligence is the Practitioner Portal's crown feature."
+    },
+    {
+      "id": "app-full-body-recalibration",
+      "topic": "app",
+      "text": "The Full Body Recalibration is the chamber's second session mode — the complete anatomical ladder, all twelve forks, ground to crown and back. It opens with an Earth ground, climbs the zodiacal body feet to head (Pisces at the feet with the Neptune fork, up through each sign's territory to Aries at the head with the Mars fork), pauses for three slow breaths at the crown turn, then sweeps back down the same ladder to an Earth ground close. Every rung sounds its planet's natural tone — it is an attunement of the whole map, not a correction of one signal. It is the same sequence for every body and needs no reading."
+    },
+    {
+      "id": "app-full-body-ladder-order",
+      "topic": "app",
+      "text": "The Full Body ladder order, feet to head: Pisces (feet · Neptune), Aquarius (ankles and calves · Uranus), Capricorn (knees and bones · Saturn), Sagittarius (hips and thighs · Jupiter), Scorpio (pelvis and sacrum · Pluto), Libra (lower back and kidneys · Venus), Virgo (gut and digestion · Mercury), Leo (heart and spine · Sun), Cancer (chest and stomach · Moon), Gemini (lungs, arms and hands · Mercury), Taurus (neck and throat · Venus), Aries (head and crown · Mars). The descent retraces the same rungs as a lighter sweep. Mercury and Venus each sound twice — their two body territories."
+    },
+    {
+      "id": "app-full-body-vs-calibrated",
+      "topic": "app",
+      "text": "Choosing between the two session modes: a Calibrated Session is tuned to your chart and today's sky — the composition engine selects the forks your reading calls for, honoring the never-amplify rule. The Full Body Recalibration is the complete twelve-fork ladder, the same map for everyone — a whole-body attunement for days when you want full coverage rather than a targeted correction, or when there is no reading yet. Many keep a rhythm of Calibrated Sessions daily and a Full Body Recalibration as a weekly reset. Both live in the Resonance Chamber and both close on the Earth ground."
+    }
   ]
 }

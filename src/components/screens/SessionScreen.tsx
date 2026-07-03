@@ -48,8 +48,21 @@ import { resolveForkPlacement, type ForkPlacement } from '@/lib/BodyPlacementEng
 import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
-import { generateChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
-import { buildForkSequence, buildFullSpectrumSequence, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
+import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+
+// v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
+// selections for every user, every run (the ladder is chart-independent). Only
+// the fields the music/visual layer reads are meaningful; naturalOnly forces
+// every rung to its planet's NAT track regardless of tier states.
+const FULL_BODY_CANONICAL_DNA = {
+  seed: 0,
+  primaryPlanet: 'Neptune',
+  secondaryPlanet: 'Uranus',
+  tertiaryPlanet: undefined,
+  tierStates: undefined,
+  applyCorrective: false,
+} as unknown as ChamberDNA
 import sacredTonesData from '@/data/sacredTones_nervousSystem.json'
 import scentsData from '@/data/scents.json'
 import { MICRO_DISCLAIMER, lintForBannedPhrases } from '@/lib/compliance'
@@ -143,7 +156,9 @@ function vagusBadgeColor(vagusStrength: string): { bg: string; fg: string; label
 // ─── PROPS ───────────────────────────────────────────────────
 
 interface SessionScreenProps {
-  protocol: ProtocolOutput
+  /** v4.3 — null for a guest running the chart-independent Full Body ladder.
+   *  Calibrated sessions always receive a real protocol (page.tsx guards). */
+  protocol: ProtocolOutput | null
   accentColor: string
   sessionTime: number
   breathGuide: 'active' | 'passive' | 'off'
@@ -186,37 +201,43 @@ export default function SessionScreen({
   // phase architecture. durationSec comes from the container.
   const chamberContainer   = getDurationPreset(chamberDurationKey)
   const chamberDurationSec = chamberContainer.durationSec
+  // v4.3 — the Full Body ladder is chart-independent and guest-runnable.
+  const isFullBody = chamberContainer.fullBody === true
 
-  // Chamber Deploy 2 — build DNA + HarmonicPlan once per session
+  // Chamber Deploy 2 — build DNA + HarmonicPlan once per session.
+  // v4.3 — the Full Body session uses ONE canonical DNA for every user (fixed
+  // seed 0 → identical track selections; the ladder is the same for everyone).
   const chamberDNA = useMemo(
-    () => generateChamberDNA({
-      protocol,
-      birthData: {
-        birthDate: intakeData.birthDate,
-        birthTime: intakeData.birthTime || undefined,
-        birthLatitude: birthCoords?.lat,
-        birthLongitude: birthCoords?.lon,
-      },
-      polarity: protocol.dominantPolarity,
-    }),
-    [protocol, intakeData.birthDate, intakeData.birthTime, birthCoords?.lat, birthCoords?.lon],
+    () => (isFullBody || !protocol)
+      ? (FULL_BODY_CANONICAL_DNA as ChamberDNA)
+      : generateChamberDNA({
+          protocol,
+          birthData: {
+            birthDate: intakeData.birthDate,
+            birthTime: intakeData.birthTime || undefined,
+            birthLatitude: birthCoords?.lat,
+            birthLongitude: birthCoords?.lon,
+          },
+          polarity: protocol.dominantPolarity,
+        }),
+    [isFullBody, protocol, intakeData.birthDate, intakeData.birthTime, birthCoords?.lat, birthCoords?.lon],
   )
   const isPractitionerSession = mode === 'practitioner' && !!activeClientId
   const activeClient = isPractitionerSession ? getActiveClient() : null
 
   // ── The subject planet = the ONE source of truth (B.1 invariant) ──
-  const dominantPlanet = protocol.signalHierarchy?.primary.planet
-    ?? protocol.dominant_pattern.planets[0] ?? 'Saturn'
-  const dominantSign   = protocol.dominant_pattern.signs[0] ?? 'Capricorn'
+  const dominantPlanet = protocol?.signalHierarchy?.primary.planet
+    ?? protocol?.dominant_pattern?.planets?.[0] ?? 'Saturn'
+  const dominantSign   = protocol?.dominant_pattern?.signs?.[0] ?? 'Capricorn'
   const element        = SIGN_ELEMENT[dominantSign] ?? 'Earth'
   // Fix 9 — breath follows the CORRECTIVE direction, never re-activates an
   // already-activated signal. Breath of Fire (activating) is reserved for
   // genuinely under-active / depleted states that need rousing; any elevated /
   // amplified / overactivated signal gets the calming 4-7-8 instead. This is the
   // "no Breath of Fire on an anxious/overstimulated chamber" rule.
-  const primaryStateRaw = protocol.signalHierarchy?.primary.state
-    ?? protocol.dominantPolarity?.dominant_state ?? 'balanced'
-  const correctiveVerbs = (protocol.dominantPolarity?.protocol?.corrective_direction ?? [])
+  const primaryStateRaw = protocol?.signalHierarchy?.primary.state
+    ?? protocol?.dominantPolarity?.dominant_state ?? 'balanced'
+  const correctiveVerbs = (protocol?.dominantPolarity?.protocol?.corrective_direction ?? [])
     .join(' ').toLowerCase()
   const needsActivating = primaryStateRaw === 'deficiency'
     || /\b(warm|activate|stimulate|uplift|nourish|build|energi|rouse)\b/.test(correctiveVerbs)
@@ -249,29 +270,31 @@ export default function SessionScreen({
   // containers run the composition engine (distinct forks per phase, J.6/J.7).
   const isFullSpectrum = chamberContainer.fullSpectrum === true
   const sequenceSteps: SequenceStep[] = useMemo(
-    () => isFullSpectrum
+    () => isFullBody
+      ? buildFullBodySequence({ durationSec: chamberDurationSec })
+      : isFullSpectrum
       ? buildFullSpectrumSequence({ durationSec: chamberDurationSec })
       : buildForkSequence({
-          hierarchy:        protocol.signalHierarchy,
-          polarity:         protocol.dominantPolarity,
-          polarityResults:  protocol.polarityResults,     // per-candidate never-amplify + resourced
-          intentionPlanet:  protocol.intentionPlanet,     // J.5 — guaranteed intention fork
+          hierarchy:        protocol?.signalHierarchy,
+          polarity:         protocol?.dominantPolarity,
+          polarityResults:  protocol?.polarityResults,     // per-candidate never-amplify + resourced
+          intentionPlanet:  protocol?.intentionPlanet,     // J.5 — guaranteed intention fork
           architecture:     chamberContainer.architecture,
           durationSec:      chamberDurationSec,
           forkCount:        chamberContainer.forkCount,
           tier:             mode === 'practitioner' ? 'practitioner' : 'individual',
         }),
-    [isFullSpectrum, protocol.signalHierarchy, protocol.dominantPolarity, protocol.polarityResults, protocol.intentionPlanet, chamberContainer, mode, chamberDurationSec],
+    [isFullBody, isFullSpectrum, protocol?.signalHierarchy, protocol?.dominantPolarity, protocol?.polarityResults, protocol?.intentionPlanet, chamberContainer, mode, chamberDurationSec],
   )
 
   // Botanical + crystal from sacred layer (close step references)
-  const botanical = protocol.sacredLayer?.botanical as SacredBotanical | undefined
-  const crystal   = protocol.sacredLayer?.crystal as CrystalExpanded | undefined
+  const botanical = protocol?.sacredLayer?.botanical as SacredBotanical | undefined
+  const crystal   = protocol?.sacredLayer?.crystal as CrystalExpanded | undefined
   // A1.3 — LOCAL + REFLEX + planet-anatomy points for the fork body map (from the
   // Reflex engine). Empty when the reading carries no body-zone signals.
   const reflexPoints: ReflexPoint[] = useMemo(
-    () => reflexPointsFor(protocol.reflexPlacements ?? []),
-    [protocol.reflexPlacements],
+    () => reflexPointsFor(protocol?.reflexPlacements ?? []),
+    [protocol?.reflexPlacements],
   )
   void botanical
 
@@ -343,17 +366,20 @@ export default function SessionScreen({
 
   // Body Placement Intelligence — ranked placement (symptom → sign → planet →
   // chakra → state) for a fork planet, from the chart + polarity. Not planet-alone.
-  const resolvePlacement = (planet: string): ForkPlacement => {
+  const resolvePlacement = (planet: string, signOverride?: string): ForkPlacement => {
     const pos = (chartData?.planets ?? []).find((p: any) => p.planet === planet)
-    const pol = (protocol.polarityResults ?? []).find((r) => r.planet === planet)
+    const pol = (protocol?.polarityResults ?? []).find((r) => r.planet === planet)
+    // v4.3 — Full Body rungs place by the RUNG's sign territory (Pisces→feet…),
+    // never the user's natal sign: the ladder is the same map for everyone.
+    const sign = signOverride ?? pos?.sign
     return resolveForkPlacement({
       planet,
-      sign: pos?.sign,
-      natalSign: pos?.sign,   // K.1 — the planet's natal sign drives the natal orb
-      house: pos?.house,
-      engineState: pol?.dominant_state,
-      reportedSymptoms: intakeData.symptoms,
-      correctiveDirection: pol?.protocol?.corrective_direction,
+      sign,
+      natalSign: sign,   // K.1 — the placement sign drives the orb
+      house: signOverride ? undefined : pos?.house,
+      engineState: signOverride ? 'balanced' : pol?.dominant_state,
+      reportedSymptoms: signOverride ? [] : intakeData.symptoms,
+      correctiveDirection: signOverride ? undefined : pol?.protocol?.corrective_direction,
       bodyMapType: intakeData.bodyMapType ?? 'female',
     })
   }
@@ -401,15 +427,17 @@ export default function SessionScreen({
 
   // The visual subject follows the ACTIVE fork's planet (the same planet the
   // music is on), with that planet's polarity state + chart-ranked placement.
+  // v4.3 — the Full Body ladder reads BALANCED everywhere (it is an attunement,
+  // not a correction) and places by the RUNG's sign territory.
   const visualPlanet = currentForkPlanet
-  const visualPolarity = (protocol.polarityResults ?? []).find((r) => r.planet === visualPlanet)
-  const visualStateRaw =
+  const visualPolarity = isFullBody ? undefined : (protocol?.polarityResults ?? []).find((r) => r.planet === visualPlanet)
+  const visualStateRaw = isFullBody ? 'balanced' :
     visualPolarity?.dominant_state ??
-    protocol.signalHierarchy?.primary.state ??
-    protocol.dominantPolarity?.dominant_state ??
+    protocol?.signalHierarchy?.primary.state ??
+    protocol?.dominantPolarity?.dominant_state ??
     'balanced'
   const visualSignalWord = signalWord(visualPlanet, visualStateRaw)
-  const visualPlacement = resolvePlacement(visualPlanet)
+  const visualPlacement = resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
   const visualChakra = visualPlacement.chakraOverlay?.[0]
   const visualCorrective = visualPolarity?.protocol?.corrective_direction ?? []
   const activeForkLabel = `${visualPlanet === 'Full Moon' ? 'Moon' : visualPlanet} Fork`
@@ -480,13 +508,13 @@ export default function SessionScreen({
   // calls onComplete(), which routes to the post-session check-in. All "After"
   // data (questionnaire, continuation, client-session save) now lives there.
   const handleComplete = () => {
-    const dominantState =
-      protocol.signalHierarchy?.primary.state ??
-      protocol.dominantPolarity?.dominant_state ??
+    const dominantState = isFullBody ? 'balanced' :
+      protocol?.signalHierarchy?.primary.state ??
+      protocol?.dominantPolarity?.dominant_state ??
       'balanced'
     const signalStateWord = signalWord(dominantPlanet, dominantState)
 
-    const correctiveDir = protocol.dominantPolarity?.protocol?.corrective_direction ?? []
+    const correctiveDir = protocol?.dominantPolarity?.protocol?.corrective_direction ?? []
     const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
     const correctiveDirection = dominantState !== 'balanced' && correctiveDir.length
       ? correctiveDir.slice(0, 3).map(cap).join('. ') + '.'
@@ -506,14 +534,16 @@ export default function SessionScreen({
     ))
     const primaryPlacement = resolvePlacement(dominantPlanet)
 
-    const rx = protocol.prescriptions?.[0]
+    const rx = protocol?.prescriptions?.[0]
     const colorProtocol =
       rx?.fiveSenses.sight.colors?.[0] ??
-      protocol.plan?.sight?.colors?.[0] ??
-      protocol.plan?.sight?.primary_colors?.[0] ??
+      protocol?.plan?.sight?.colors?.[0] ??
+      protocol?.plan?.sight?.primary_colors?.[0] ??
       accentColor
 
-    const chamberFocus = dominantState !== 'balanced'
+    const chamberFocus = isFullBody
+      ? 'The complete anatomical ladder — all twelve forks, ground to crown and back.'
+      : dominantState !== 'balanced'
       ? `A ${element} session easing ${dominantPlanet} from ${signalStateWord.toLowerCase()} toward balance.`
       : `A ${element} session drawing on a steady ${dominantPlanet} signal.`
 
@@ -533,7 +563,7 @@ export default function SessionScreen({
       element,
       chakraOverlay:       primaryPlacement.chakraOverlay?.[0],
       tasteTea:            rx?.fiveSenses.taste.tea ?? botanical?.sacredBotanical,
-      tasteIngredients:    rx?.fiveSenses.taste.ingredients ?? protocol.plan?.taste?.ingredients ?? [],
+      tasteIngredients:    rx?.fiveSenses.taste.ingredients ?? protocol?.plan?.taste?.ingredients ?? [],
       breathProtocol:      breathPattern.name,
       colorProtocol,
       preSessionSymptoms:  intakeData.symptoms ?? [],
@@ -701,21 +731,45 @@ export default function SessionScreen({
             }}
           />
         </div>
-        <div className="flex justify-between mt-1 px-1">
-          {sequenceSteps.map((s, i) => (
-            <div
-              key={i}
-              className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
-              style={{
-                color: i <= stepIdx ? accentColor : 'rgba(255,255,255,0.25)',
-                fontWeight: (s.role === 'signalFork' || s.role === 'primaryReturn') ? 700 : 400,
-              }}
-              title={`${s.phaseLabel} · ${s.planet}`}
-            >
-              {s.planet === 'Earth' ? 'Ea' : s.planet === 'Silence' ? '··' : s.planet === 'Full Moon' ? 'Mo' : s.planet.slice(0, 2)}
-            </div>
-          ))}
-        </div>
+        {sequenceSteps.length <= 12 ? (
+          <div className="flex justify-between mt-1 px-1">
+            {sequenceSteps.map((s, i) => (
+              <div
+                key={i}
+                className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
+                style={{
+                  color: i <= stepIdx ? accentColor : 'rgba(255,255,255,0.25)',
+                  fontWeight: (s.role === 'signalFork' || s.role === 'primaryReturn') ? 700 : 400,
+                }}
+                title={`${s.phaseLabel} · ${s.planet}`}
+              >
+                {s.planet === 'Earth' ? 'Ea' : s.planet === 'Silence' ? '··' : s.planet === 'Full Moon' ? 'Mo' : s.planet.slice(0, 2)}
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* v4.3 — 27-step Full Body ladder: per-step glyphs would be illegible.
+             Group into the four macro-phases (Ground · Ascent · Descent · Ground)
+             with the crown turn as the hinge; the bar above stays the fine
+             progress readout and the "n / N" counter carries the exact rung. */
+          <div className="flex justify-between mt-1 px-1">
+            {[
+              { label: 'Ground',  test: (i: number) => i === 0 },
+              { label: 'Ascent',  test: (i: number) => i >= 1 && i <= 12 },
+              { label: 'Crown',   test: (i: number) => i === 13 },
+              { label: 'Descent', test: (i: number) => i >= 14 && i <= 25 },
+              { label: 'Ground',  test: (i: number) => i >= 26 },
+            ].map((m, k) => (
+              <div
+                key={k}
+                className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
+                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.25)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
+              >
+                {m.label}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
 
@@ -779,7 +833,7 @@ export default function SessionScreen({
             versionOverrides={songOverrides}
             onSelectVersion={handleSelectVersion}
             onResetOverrides={clearSongOverrides}
-            naturalOnly={isFullSpectrum}
+            naturalOnly={isFullSpectrum || isFullBody}
             defaultCollapsed={visualMode === 'body'}
           />
 

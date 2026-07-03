@@ -35,7 +35,13 @@ export interface InterruptedSession {
   phaseLabel?: string
   phaseStartSec?: number
   phaseCount?: number
+  // v4.3 — which session mode was interrupted; Resume restores the same mode
+  // (a Full Body ladder resumes as a Full Body ladder, at the same rung).
+  mode?: SessionMode
 }
+
+// v4.3 — the two first-class session modes.
+export type SessionMode = 'calibrated' | 'full_body'
 
 interface AppState {
   // Navigation
@@ -110,6 +116,15 @@ interface AppState {
   // can't recover the phase — skip/linger/pause history is local state).
   chamberPhase: ChamberPhasePointer | null
   setChamberPhase: (p: ChamberPhasePointer | null) => void
+
+  // ─── v4.3 — Session mode (Calibrated vs Full Body Recalibration) ─────
+  // sessionMode = what the CURRENT/next session runs as (persisted so a
+  // mid-session reload knows which builder to use). rememberedSessionMode =
+  // the Settings preference: 'ask' shows the picker; a mode skips it.
+  sessionMode: SessionMode
+  setSessionMode: (m: SessionMode) => void
+  rememberedSessionMode: 'ask' | SessionMode
+  setRememberedSessionMode: (m: 'ask' | SessionMode) => void
   // FIX 1 — the chamber session/timer are ONE unit. The clock + session progression
   // run ONLY while chamberRunning (set by the chamber Play/Pause). Ephemeral.
   chamberRunning: boolean
@@ -322,6 +337,11 @@ export const useAppStore = create<AppState>()(
       setInterruptedSession: (s) => set({ interruptedSession: s }),
       chamberPhase: null,
       setChamberPhase: (p) => set({ chamberPhase: p }),
+
+      sessionMode: 'calibrated',
+      setSessionMode: (m) => set({ sessionMode: m }),
+      rememberedSessionMode: 'ask',
+      setRememberedSessionMode: (m) => set({ rememberedSessionMode: m }),
       chamberRunning: false,
       setChamberRunning: (running) => set({ chamberRunning: running }),
 
@@ -523,6 +543,9 @@ export const useAppStore = create<AppState>()(
         interruptedSession: state.interruptedSession,
         // FIX 2 (v4.1) — live chamber phase pointer (source of the resume pointer)
         chamberPhase: state.chamberPhase,
+        // v4.3 — session mode + Settings preference
+        sessionMode: state.sessionMode,
+        rememberedSessionMode: state.rememberedSessionMode,
         history:          state.history,
         // Progress History — the post-session loop's persisted record.
         // (pendingSession is intentionally NOT persisted; it's transient.)
@@ -580,6 +603,7 @@ export const useAppStore = create<AppState>()(
         const MID_FLOW: AppScreen[] = [
           'session', 'post-session', 'analysis', 'daily-checkin',
           'today-signal', 'auth', 'payment', 'subscribe-gate', 'fork-access',
+          'session-mode',
         ]
         if (MID_FLOW.includes(merged.screen)) {
           // Preserve an actually-started chamber session as a resume pointer
@@ -600,6 +624,8 @@ export const useAppStore = create<AppState>()(
                 phaseStartSec: phase.startSec,
                 phaseCount:    phase.count,
               } : {}),
+              // v4.3 — a Full Body ladder resumes as a Full Body ladder.
+              mode: merged.sessionMode ?? 'calibrated',
             }
           }
           // The live pointer belongs to the interrupted run — never leak it

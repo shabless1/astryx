@@ -61,7 +61,10 @@ type NavItem = {
 // returning user (page.tsx coerces a no-protocol Dashboard tap to Intake).
 const NAV_ITEMS: NavItem[] = [
   { key: 'dashboard', label: 'Dashboard', short: 'Dashboard', glyph: '⊞' },
-  { key: 'session',   label: 'Chamber',   short: 'Chamber',   glyph: '◉', needsProtocol: true },
+  // v4.3 — the Chamber no longer needs a reading: the Full Body Recalibration
+  // (12-fork ladder) is chart-independent, and the mode picker routes the
+  // Calibrated path to the scan when no reading exists.
+  { key: 'session',   label: 'Chamber',   short: 'Chamber',   glyph: '◉' },
   { key: 'library',   label: 'Music',     short: 'Music',     glyph: '♫' },
   { key: 'settings',  label: 'Settings',  short: 'Settings',  glyph: '⚙' },
 ]

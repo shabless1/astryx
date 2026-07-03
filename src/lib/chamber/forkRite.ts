@@ -49,6 +49,9 @@ export interface SequenceStep {
   hz: number                // 136.10 for Earth, 0 for Silence/Breath
   startSec: number
   holdSec: number
+  /** v4.3 — the zodiac sign whose body territory this step works (ladder rungs
+   *  only). Drives the SIGN-based body-map placement in the Full Body session. */
+  sign?: string
   /** Short slot label for display: 'primary' | 'support' | 'integration' | … */
   slotLabel: string
 }
@@ -374,6 +377,100 @@ export function buildFullSpectrumSequence({ durationSec }: { durationSec: number
 
   // 3) Closing breath — no fork (Earth Year audio applied in SessionScreen).
   steps.push(makeStep(steps.length, 'breathwork', 'Closing Breath', 'seal the session and ground', 'Breath', cursor, Math.max(10, total - cursor)))
+  return steps
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// FULL BODY RECALIBRATION — the 12-fork ladder (Directive v4.3; the reverse
+// sweep Directive J deferred as "Phase 2"). CHART-INDEPENDENT: one canonical,
+// byte-identical sequence for every user, every run. No Math.random.
+//
+// Ladder resolution (documented per v4.3 STEP 0):
+//   • Body TERRITORIES come from data/signBodyZones.json (they agree with the
+//     FULL_SPECTRUM_SWEEP regions already validated against signs.json).
+//   • FORK ASSIGNMENT follows Directive J's LOCKED modern-rulership decision
+//     (Pisces→Neptune, Aquarius→Uranus, Scorpio→Pluto) — affirmed by the v4.3
+//     table — NOT signBodyZones' `ruling_planet` field, which carries the
+//     TRADITIONAL rulers used by the counterweight engine. Traditional-only
+//     forks would never sound Neptune/Uranus/Pluto, contradicting "all twelve
+//     forks" and the physical Sacred Tones set.
+//   • 12 rungs (v4.3) vs J's de-duplicated 10: v4.3 is the newer owner mandate —
+//     Mercury (Virgo + Gemini) and Venus (Libra + Taurus) each sound twice; the
+//     session variant rotation advances their track deterministically.
+// ════════════════════════════════════════════════════════════════════════════
+
+/** The 12-rung anatomical ladder, feet → head (ascending order). */
+export const FULL_BODY_LADDER: { planet: string; sign: string; region: string; placement: string }[] = [
+  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet',                placement: 'rest the tone at the soles of the feet — the body’s furthest shore' },
+  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Ankles & calves',     placement: 'let the tone circle the ankles and calves — the current lines of the legs' },
+  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees & bones',       placement: 'settle the tone at the knees — the architecture that carries you' },
+  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips & thighs',       placement: 'open the tone across the hips and thighs — the long muscles of momentum' },
+  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis & sacrum',     placement: 'ground the tone low at the sacrum — the deep root of the spine' },
+  { planet: 'Venus',   sign: 'Libra',       region: 'Lower back & kidneys',placement: 'warm the tone across the lower back — the balance point of the torso' },
+  { planet: 'Mercury', sign: 'Virgo',       region: 'Gut & digestion',     placement: 'rest the tone over the abdomen — the body’s sorting center' },
+  { planet: 'Sun',     sign: 'Leo',         region: 'Heart & spine',       placement: 'bring the tone to the heart center — the hearth of the whole field' },
+  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest & stomach',     placement: 'soften the tone at the chest — where the inner tides gather' },
+  { planet: 'Mercury', sign: 'Gemini',      region: 'Lungs, arms & hands', placement: 'carry the tone along the arms to the hands — breath and reach' },
+  { planet: 'Venus',   sign: 'Taurus',      region: 'Neck & throat',       placement: 'rest the tone at the throat — the voice’s home ground' },
+  { planet: 'Mars',    sign: 'Aries',       region: 'Head & crown',        placement: 'crown the tone at the head — the summit of the ladder' },
+]
+
+/** Deterministic timing weights — pure proportions of durationSec.
+ *  Descending rungs are a SWEEP (~half an ascending hold), not a second full
+ *  treatment. Ground bookends match the corrective containers' feel. */
+const FULL_BODY_WEIGHTS = {
+  ground: 3.0,        // ×2 (open + close)
+  ascentRung: 1.9,    // ×12
+  crownTurn: 1.2,     // ×1 — the held pause at the top
+  descentRung: 1.0,   // ×12
+}
+const FULL_BODY_TOTAL_WEIGHT =
+  FULL_BODY_WEIGHTS.ground * 2 +
+  FULL_BODY_WEIGHTS.ascentRung * 12 +
+  FULL_BODY_WEIGHTS.crownTurn +
+  FULL_BODY_WEIGHTS.descentRung * 12
+
+/**
+ * The Full Body Recalibration sequence: Opening Ground → 12 ascending rungs
+ * (Pisces→Aries) → Crown Turn (held breath at the top) → 12 descending rungs
+ * (Aries→Pisces) → Closing Ground. 27 steps. Pure function of durationSec —
+ * scales to any container length; holds tile the duration exactly.
+ */
+export function buildFullBodySequence({ durationSec }: { durationSec: number }): SequenceStep[] {
+  const total = durationSec && durationSec > 0 ? durationSec : 2100
+  const unit = total / FULL_BODY_TOTAL_WEIGHT
+  const hold = (w: number) => Math.max(10, Math.round(w * unit))
+
+  const steps: SequenceStep[] = []
+  let cursor = 0
+  const push = (role: PhaseRole, phaseLabel: string, purpose: string, planet: string, holdSec: number, sign?: string) => {
+    const s = makeStep(steps.length, role, phaseLabel, purpose, planet, cursor, holdSec)
+    if (sign) s.sign = sign
+    steps.push(s)
+    cursor += holdSec
+  }
+
+  // 1) Opening Ground — Earth tone, settle (Earth Day audio under it).
+  push('ground', 'Opening Ground', 'settle the field and prepare the body', 'Earth', hold(FULL_BODY_WEIGHTS.ground))
+
+  // 2) Ascending pass — feet to head, full holds.
+  for (const rung of FULL_BODY_LADDER) {
+    push('signalFork', `Ascent · ${rung.sign} · ${rung.region}`, rung.placement, rung.planet, hold(FULL_BODY_WEIGHTS.ascentRung), rung.sign)
+  }
+
+  // 3) Crown Turn — a held pause at the top; breath only, no fork. The previous
+  //    planet's music keeps flowing (non-fork steps never restart audio).
+  push('breathwork', 'Crown Turn', 'hold at the top — three slow breaths before the descent', 'Breath', hold(FULL_BODY_WEIGHTS.crownTurn))
+
+  // 4) Descending pass — head back to feet, lighter sweep holds.
+  for (const rung of [...FULL_BODY_LADDER].reverse()) {
+    push('signalFork', `Descent · ${rung.sign} · ${rung.region}`, `returning — a lighter pass at the ${rung.region.toLowerCase()}`, rung.planet, hold(FULL_BODY_WEIGHTS.descentRung), rung.sign)
+  }
+
+  // 5) Closing Ground — Earth tone bridge-back (Earth Year audio under it).
+  //    Absorbs any rounding remainder so the timeline tiles exactly.
+  push('earthClose', 'Earth Close', 'ground the ladder before completion', 'Earth', Math.max(10, total - cursor))
+
   return steps
 }
 
