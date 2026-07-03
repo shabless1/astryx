@@ -28,7 +28,7 @@ import { freshTransitInterpretation } from '@/lib/engine'
 import { forkFor } from '@/lib/chamber/forkRite'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'
-import { useAppStore } from '@/lib/store'
+import { useAppStore, type SessionMode, type ChakraInstrument } from '@/lib/store'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
 import { GlassCard } from '@/components/ui'
 import type { DailyInput } from '@/components/screens/DailyCheckInScreen'
@@ -64,7 +64,7 @@ const INTENTIONS = [
 
 export default function DashboardScreen({
   protocol, chartData, accentColor, mode, userName,
-  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast, onResumeSession, onRunFullBody,
+  onBeginSession, onCalibrate, sessionLoggedToast, onClearToast, onResumeSession, onRunFullBody, onLaunchSession,
 }: {
   protocol: ProtocolOutput
   chartData: any | null
@@ -78,6 +78,8 @@ export default function DashboardScreen({
   onResumeSession?: () => void
   /** v4.3 — start the Full Body Recalibration directly (the 12-fork ladder). */
   onRunFullBody?: () => void
+  /** v4.4 — launch a session by deep-link hash (the one routing vocabulary). */
+  onLaunchSession?: (sessionHash: string) => void
 }) {
   const history          = useAppStore((s) => s.history)
   const sessionLog       = useAppStore((s) => s.sessionLog)
@@ -90,6 +92,9 @@ export default function DashboardScreen({
   // v4.0 FIX 3 — interrupted-session pointer (set by the rehydrate override)
   const interruptedSession    = useAppStore((s) => s.interruptedSession)
   const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
+  // v4.4 FIX 1 — the Chakra tile's instrument toggle (remembered per user)
+  const chakraInstrument    = useAppStore((s) => s.chakraInstrument)
+  const setChakraInstrument = useAppStore((s) => s.setChakraInstrument)
 
   const todayKey = new Date().toLocaleDateString('en-CA')
   const isToday  = protocolDate === todayKey
@@ -137,9 +142,10 @@ export default function DashboardScreen({
           <div className="mb-4 px-4 py-3 rounded-2xl flex flex-wrap items-center gap-3 animate-fade-in-up"
                style={{ background: hexToRgba(accentColor, 0.10), border: `1px solid ${hexToRgba(accentColor, 0.35)}` }}>
             <span className="text-[13px] text-content flex-1 min-w-[180px]">
+              {/* v4.4 FIX 1.5 — the card names the mode it resumes */}
               {interruptedSession.phaseLabel != null && interruptedSession.phaseIndex != null
-                ? <>Resume your session? · {interruptedSession.phaseLabel} · Phase {interruptedSession.phaseIndex + 1} of {interruptedSession.phaseCount ?? 6}</>
-                : <>Resume your session? · {Math.max(1, Math.round(interruptedSession.sessionTime / 60))} min in</>}
+                ? <>Resume {RESUME_MODE_LABEL[interruptedSession.mode ?? 'calibrated']}? · {interruptedSession.phaseLabel} · Phase {interruptedSession.phaseIndex + 1} of {interruptedSession.phaseCount ?? 6}</>
+                : <>Resume {RESUME_MODE_LABEL[interruptedSession.mode ?? 'calibrated']}? · {Math.max(1, Math.round(interruptedSession.sessionTime / 60))} min in</>}
             </span>
             <div className="flex items-center gap-2">
               <button
@@ -167,6 +173,20 @@ export default function DashboardScreen({
             Daily Check-In{firstName ? <span className="text-white/45 text-[18px] sm:text-[22px]"> · {firstName}</span> : null}
           </h1>
         </div>
+
+        {/* v4.4 FIX 1 — Sessions launcher: one shared row, above the fold on
+            EVERY tab. Tiles launch their mode directly via the deep-link
+            vocabulary (#session/…) — they never route through the picker. */}
+        {onLaunchSession && (
+          <SessionLauncher
+            accentColor={accentColor}
+            forkPlanet={forkPlanet}
+            forkColor={fork?.color || accentColor}
+            chakraInstrument={chakraInstrument}
+            onSetChakraInstrument={setChakraInstrument}
+            onLaunch={onLaunchSession}
+          />
+        )}
 
         {/* Horizontal tab nav */}
         <div className="-mx-5 px-5 mb-5 overflow-x-auto no-scrollbar">
@@ -280,6 +300,100 @@ export default function DashboardScreen({
         </div>
 
         <p className="text-center text-[10px] tracking-[0.18em] text-white/30 mt-6">{MICRO_DISCLAIMER}</p>
+      </div>
+    </div>
+  )
+}
+
+// v4.4 FIX 1.5 — the resume card names the mode it resumes.
+const RESUME_MODE_LABEL: Record<SessionMode, string> = {
+  calibrated: 'your session',
+  full_body: 'Full Body Recalibration',
+  chakra: 'Chakra Recalibration',
+}
+
+// ── SESSIONS LAUNCHER (v4.4 FIX 1) — three tiles, every mode one tap away ──
+function SessionLauncher({
+  accentColor, forkPlanet, forkColor, chakraInstrument, onSetChakraInstrument, onLaunch,
+}: {
+  accentColor: string
+  forkPlanet: string
+  forkColor: string
+  chakraInstrument: ChakraInstrument
+  onSetChakraInstrument: (i: ChakraInstrument) => void
+  onLaunch: (sessionHash: string) => void
+}) {
+  const tileBase = 'kowalski-button rounded-[1.2rem] p-4 text-left transition w-full h-full flex flex-col gap-1.5'
+  return (
+    <div className="mb-5 animate-fade-in-up">
+      <div className="text-[10px] uppercase tracking-[0.28em] text-meta mb-2">Sessions</div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+
+        {/* Today's Calibration — straight into the calibrated session */}
+        <button
+          onClick={() => onLaunch('#session/custom')}
+          className={tileBase}
+          style={{
+            background: `linear-gradient(135deg, ${hexToRgba(accentColor, 0.14)} 0%, rgba(255,255,255,0.02) 70%)`,
+            border: `1px solid ${hexToRgba(accentColor, 0.35)}`,
+          }}
+        >
+          <span className="text-[14px] text-white font-medium leading-snug">Today&apos;s Calibration →</span>
+          <span className="text-[11.5px] text-white/50 leading-snug">Tuned to your chart and today&apos;s sky</span>
+          <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
+                style={{ background: hexToRgba(forkColor, 0.16), border: `1px solid ${hexToRgba(forkColor, 0.4)}`, color: forkColor }}>
+            {forkPlanet}-led today
+          </span>
+        </button>
+
+        {/* Full Body — straight into the 12-fork ladder */}
+        <button
+          onClick={() => onLaunch('#session/full-body')}
+          className={tileBase}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+        >
+          <span className="text-[14px] text-white font-medium leading-snug">Full Body →</span>
+          <span className="text-[11.5px] text-white/50 leading-snug">All twelve forks, ground to crown and back</span>
+          <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.6)' }}>
+            12 forks · ~35 min
+          </span>
+        </button>
+
+        {/* Chakra — remembered instrument set, toggle lives ON the tile */}
+        <button
+          onClick={() => onLaunch(`#session/chakra-${chakraInstrument}`)}
+          className={tileBase}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+        >
+          <span className="text-[14px] text-white font-medium leading-snug">Chakra →</span>
+          <span className="text-[11.5px] text-white/50 leading-snug">Seven centers, root to crown</span>
+          <span className="mt-auto flex rounded-full p-0.5 self-start"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)' }}>
+            {(['solfeggio', 'planetary'] as ChakraInstrument[]).map((inst) => {
+              const on = chakraInstrument === inst
+              return (
+                <span
+                  key={inst}
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => { e.stopPropagation(); onSetChakraInstrument(inst) }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); onSetChakraInstrument(inst) }
+                  }}
+                  className="px-2.5 py-0.5 rounded-full text-[10.5px] tracking-[0.05em] capitalize transition"
+                  style={{
+                    background: on ? hexToRgba(accentColor, 0.85) : 'transparent',
+                    color: on ? '#020208' : 'rgba(255,255,255,0.55)',
+                    fontWeight: on ? 600 : 400,
+                  }}
+                >
+                  {inst}
+                </span>
+              )
+            })}
+          </span>
+        </button>
       </div>
     </div>
   )

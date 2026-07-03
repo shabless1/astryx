@@ -111,6 +111,11 @@
       "id": "app-chakra-recalibration",
       "topic": "app",
       "text": "The Chakra Recalibration is a seven-center chamber session: Opening Ground, then Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown ascending, three slow breaths at the crown, the same centers swept back down, and an Earth ground close. At the start you choose your instrument set — Solfeggio forks (Root 396 Hz, Sacral 417, Solar Plexus 528, Heart 639, Throat 741, Third Eye 852, Crown 963) or Planetary forks (Root · Earth Day, Sacral · Full Moon, Solar Plexus · Sun, Heart · Venus, Throat · Mercury, Third Eye · Neptune, Crown · Jupiter). The chamber carries any tone you do not hold in hand, so no center is ever skipped. Both sets run the same deterministic sequence."
+    },
+    {
+      "id": "app-astryx-sets-up-chamber",
+      "topic": "app",
+      "text": "Astryx can set the chamber up for you. When you ask about today's transits, a session, the Full Body ladder, or the chakras, a button appears under her reply that carries the session directly — today's calibration already tuned by the engine, the Full Body ladder, or the Chakra Recalibration with your instrument set. Tapping it closes the chat and opens the chamber configured and ready. Astryx never computes or changes the session itself — the engine's deterministic output decides every fork; she only opens the door. If today's check-in hasn't happened yet, the button routes through the Daily Check-In first so the calibration is never skipped. The same tiles live on the Dashboard under Sessions."
     }
   ]
 }

@@ -30,6 +30,7 @@ import { buildAstryxSystem } from '@/lib/astryx/persona'
 import { getAstryxModel, modelConfigured } from '@/lib/astryx/modelAdapter'
 import { buildTransitContext } from '@/lib/astryx/transitContext'
 import { fetchWebContext, ASTRYX_WEB_ENABLED } from '@/lib/astryx/webSources'
+import { deriveAstryxActions } from '@/lib/astryx/actions'
 
 export const runtime = 'nodejs'
 
@@ -266,9 +267,14 @@ export async function POST(req: NextRequest) {
 
     // 6. Source attributions (deduped) + disclaimer.
     const sources = Array.from(new Set(chunks.map((c) => c.source))).slice(0, 4)
+    // v4.4 Fix 2 — the ACTION ENVELOPE: deterministic, server-derived from
+    // keyword intent + the engine's already-computed daily state. The LLM
+    // never generates or configures actions; its text just refers to them.
+    const actions = deriveAstryxActions(message, report)
     return NextResponse.json({
       reply,
       sources,
+      actions,
       disclaimer: MICRO_DISCLAIMER,
       tier,
       remaining: metered ? Math.max(0, INDIVIDUAL_DAILY_LIMIT - used) : null,

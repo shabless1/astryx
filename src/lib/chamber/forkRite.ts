@@ -504,11 +504,11 @@ export const CHAKRA_CENTERS: {
   planet: string; forkName: string
 }[] = [
   { center: 'Root',         bodyPoint: 'base of the spine',        solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day' },
-  { center: 'Sacral',       bodyPoint: 'below the navel',          solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon' },
+  { center: 'Sacral',       bodyPoint: 'point just below the navel', solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon' },
   { center: 'Solar Plexus', bodyPoint: 'upper abdomen',            solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun' },
   { center: 'Heart',        bodyPoint: 'center of the chest',      solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus' },
   { center: 'Throat',       bodyPoint: 'hollow of the throat',     solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury' },
-  { center: 'Third Eye',    bodyPoint: 'between the brows',        solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune' },
+  { center: 'Third Eye',    bodyPoint: 'point between the brows',  solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune' },
   { center: 'Crown',        bodyPoint: 'top of the head',          solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter' },
 ]
 

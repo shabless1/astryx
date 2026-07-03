@@ -17,8 +17,9 @@ import { useAppStore } from '@/lib/store'
 import { hexToRgba } from '@/lib/utils'
 import { answerAstryx } from '@/lib/astryx/sovereignAstryx'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
+import { deriveAstryxActions, type AstryxAction } from '@/lib/astryx/actions'
 
-type Turn = { role: 'user' | 'model'; text: string; sources?: string[] }
+type Turn = { role: 'user' | 'model'; text: string; sources?: string[]; actions?: AstryxAction[] }
 
 function alpha(color: string, a: number): string {
   if (color?.startsWith('#')) return hexToRgba(color, a)
@@ -26,12 +27,15 @@ function alpha(color: string, a: number): string {
 }
 
 export default function TeacherChat({
-  open, onClose, accentColor = '#C084FC', seed,
+  open, onClose, accentColor = '#C084FC', seed, onAction,
 }: {
   open: boolean
   onClose: () => void
   accentColor?: string
   seed?: string | null
+  /** v4.4 — tap a session action: closes the chat and routes to the
+   *  engine-computed session (deep-link vocabulary, e.g. #session/custom). */
+  onAction?: (sessionHash: string) => void
 }) {
   const protocol         = useAppStore((s) => s.protocol)
   const chartData        = useAppStore((s) => s.chartData)
@@ -64,7 +68,9 @@ export default function TeacherChat({
     const runLocal = () => {
       const ans = answerAstryx(message, { protocol, sessionLog, dailyElementNote: dailyElement?.note })
       if (ans.crisis) setCrisis(true)
-      setTurns([...nextTurns, { role: 'model', text: ans.reply }])
+      // v4.4 Fix 2 — the offline brain derives the SAME deterministic actions
+      // as the server (same pure function, local daily state).
+      setTurns([...nextTurns, { role: 'model', text: ans.reply, actions: ans.crisis ? undefined : deriveAstryxActions(message, protocol) }])
       if (ans.suggestedConcept?.key) addTaughtConcept(ans.suggestedConcept.key)
     }
 
@@ -80,7 +86,12 @@ export default function TeacherChat({
       const data = await res.json()
       if (data?.fallback || !data?.reply) { runLocal(); return }
       if (data?.crisis) setCrisis(true)
-      setTurns([...nextTurns, { role: 'model', text: data.reply, sources: Array.isArray(data.sources) ? data.sources : undefined }])
+      setTurns([...nextTurns, {
+        role: 'model',
+        text: data.reply,
+        sources: Array.isArray(data.sources) ? data.sources : undefined,
+        actions: Array.isArray(data.actions) && data.actions.length ? data.actions : undefined,
+      }])
     } catch {
       runLocal()
     } finally {
@@ -182,6 +193,23 @@ export default function TeacherChat({
                 {t.text}
                 {/* v4.0 Fix 6 — speaker toggle on each Astryx reply. Tapping
                     another reply's speaker stops the current one (one voice). */}
+                {/* v4.4 Fix 2 — the action card: Astryx sets up the chamber.
+                    Server/offline-derived, deterministic; tap → close chat →
+                    the chamber opens on the engine's session. */}
+                {t.role === 'model' && t.actions?.map((a, k) => (
+                  <button
+                    key={k}
+                    onClick={() => { onClose(); onAction?.(a.sessionHash) }}
+                    className="kowalski-button mt-2.5 w-full text-left rounded-xl px-3.5 py-2.5"
+                    style={{
+                      background: `linear-gradient(135deg, ${alpha(accentColor, 0.85)} 0%, ${alpha(accentColor, 0.5)} 100%)`,
+                      color: '#020208',
+                    }}
+                  >
+                    <span className="block text-[13px] font-semibold">{a.label}</span>
+                    <span className="block text-[11px] opacity-80">{a.context}</span>
+                  </button>
+                ))}
                 {t.role === 'model' && (
                   <div className="mt-1.5 -mb-0.5">
                     <button

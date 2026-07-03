@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deriveAstryxActions — deterministic, LLM-free > is byte-identical across identical calls 1`] = `
+[
+  {
+    "context": "Saturn-led · tuned to today’s sky",
+    "label": "Begin today’s calibration →",
+    "sessionHash": "#session/custom",
+  },
+]
+`;

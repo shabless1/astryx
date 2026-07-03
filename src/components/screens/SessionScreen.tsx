@@ -814,7 +814,23 @@ export default function SessionScreen({
                 breathGuidance={breathPattern.guidance}
                 accentColor={current.fork?.color ?? accentColor}
                 bodyMapType={intakeData.bodyMapType ?? 'female'}
-                placement={resolvePlacement(current.planet)}
+                placement={(() => {
+                  // v4.4 FIX 3.1 — canonical sessions are chart-independent:
+                  // rungs/centers place by the LADDER/CENTER territory only.
+                  // No natal orb, no natal labels, no chart-personalized
+                  // how/why copy. Calibrated sessions keep natal behavior.
+                  const base = resolvePlacement(current.planet, isFullBody ? current.sign : undefined)
+                  if (!isCanonicalSession) return base
+                  return {
+                    ...base,
+                    ...(rungRegion ? { primaryLabel: rungRegion } : {}),
+                    natalPlacement: { ...base.natalPlacement, sameAsTraditional: true },
+                    how: `${current.purpose.charAt(0).toUpperCase()}${current.purpose.slice(1)}.`,
+                    why: isFullBody
+                      ? 'The ladder places every body the same way — traditional territory, rung by rung.'
+                      : 'The seven centers share one map — the same placement for every body.',
+                  }
+                })()}
                 reflexPoints={reflexPoints}
                 onAskAstryx={onAskAstryx ? () => onAskAstryx() : undefined}
               />
@@ -1017,7 +1033,9 @@ function SequenceStepCard({
   const mins = Math.floor(step.holdSec / 60)
   const secs = step.holdSec % 60
   const holdLabel = mins > 0 ? `${mins}m${secs ? ` ${secs}s` : ''}` : `${secs}s`
-  const isEarth = step.planet === 'Earth'
+  // v4.4 FIX 3.2 — an Earth-planet CENTER step (chakra Root) is NOT a
+  // grounding card; only true ground/close phases carry the grounding title.
+  const isEarth = step.planet === 'Earth' && step.role !== 'signalFork'
   const cardTitle = isEarth ? 'Earth Om · Grounding'
     : fork ? `${step.planet === 'Full Moon' ? 'Moon' : step.planet} Fork`
     : step.phaseLabel
@@ -1092,6 +1110,35 @@ function SequenceStepCard({
               </div>
             </details>
           )}
+        </>
+      ) : step.role === 'signalFork' ? (
+        /* v4.4 FIX 3.2 — a fork-less CENTER step (chakra Root / any Solfeggio
+           center): its own strike copy + placement map — never the Opening
+           Ground text, never a duplicate of the grounding card. */
+        <>
+          <div className="mb-4">
+            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} />
+            <div className="mt-2 px-3 py-2 rounded-xl"
+                 style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
+              <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accentColor, 0.9) }}>
+                Placement · {placement.primaryLabel}
+              </div>
+              <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
+              <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
+            </div>
+          </div>
+          <div className="flex items-baseline gap-3 mb-4 flex-wrap">
+            <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>{step.hz} Hz</span>
+            <span className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
+                  style={{ background: hexToRgba(accentColor, 0.18), color: accentColor }}>
+              HOLD {holdLabel}
+            </span>
+          </div>
+          <p className="text-[13px] text-white/85 leading-relaxed mb-2">
+            The tone also plays from the chamber — sound your own fork here if you
+            hold one, or simply receive.
+            <span className="block mt-1 text-[12px] text-white/55 italic">{cue}</span>
+          </p>
         </>
       ) : (
         /* Opening Ground — app-played Earth Om (136.10 Hz), nothing to strike. */

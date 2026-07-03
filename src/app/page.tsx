@@ -287,23 +287,42 @@ export default function AstryxApp() {
   // ── v4.0 FIX 3 — deep-link shim (hash → screen; screen → hash) ──────────
   // A cheap forward-compatible URL layer until the full App Router migration:
   // #dashboard / #chamber / #chat are linkable from notifications and emails.
+  // v4.4 — sessionMode is read here (declared before the hash-sync effect's
+  // dependency array evaluates).
+  const sessionMode = useAppStore((s) => s.sessionMode)
   useEffect(() => {
     const hash = window.location.hash.replace('#', '')
     if (!hash) return
-    if (hash === 'dashboard' && protocol) setScreen('dashboard')
-    else if (hash === 'chamber') { if (protocol) handleStartSession(); else setScreen('intake') }
-    else if (hash === 'chat') setAstryxOpen(true)
+    // v4.4 — persist rehydration is ASYNC (zustand v4): route only after the
+    // store has hydrated, or the mid-flow merge lands after us and clobbers
+    // the deep-link's writes (observed: #session/chakra-planetary silently
+    // resuming an interrupted Full Body ladder instead). Protocol is read
+    // from getState() inside apply() — the mount closure predates hydration.
+    const apply = () => {
+      const hasProtocol = !!useAppStore.getState().protocol
+      if (hash === 'dashboard' && hasProtocol) setScreen('dashboard')
+      else if (hash === 'chamber') { if (hasProtocol) handleStartSession(); else setScreen('intake') }
+      else if (hash === 'chat') setAstryxOpen(true)
+      else if (hash.startsWith('session/')) handleSessionAction(hash)   // v4.4 mode deep-links
+    }
+    if (useAppStore.persist.hasHydrated()) { apply(); return }
+    const unsub = useAppStore.persist.onFinishHydration(() => { unsub(); apply() })
+    return unsub
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])   // mount only
   useEffect(() => {
+    // v4.4 — the session hash names the MODE (one vocabulary everywhere).
+    const sessionHash = sessionMode === 'full_body' ? 'session/full-body'
+      : sessionMode === 'chakra' ? `session/chakra-${useAppStore.getState().chakraInstrument}`
+      : 'session/custom'
     const HASH_FOR_SCREEN: Partial<Record<AppScreen, string>> = {
       dashboard: 'dashboard',
-      session:   'chamber',
+      session:   sessionHash,
     }
     const h = HASH_FOR_SCREEN[screen]
     const base = window.location.pathname + window.location.search
     window.history.replaceState(null, '', h ? `${base}#${h}` : base)
-  }, [screen])
+  }, [screen, sessionMode])
 
   // ── Audio overlap fix — single global controller ──────────────
   // panicStop on EVERY screen change (the app's "route change") so no screen
@@ -494,10 +513,32 @@ export default function AstryxApp() {
   const setInterruptedSession = useAppStore((s) => s.setInterruptedSession)
   const setChamberPhase = useAppStore((s) => s.setChamberPhase)
   // v4.3 — session mode (Calibrated vs Full Body Recalibration)
-  const sessionMode = useAppStore((s) => s.sessionMode)
   const setSessionMode = useAppStore((s) => s.setSessionMode)
   const rememberedSessionMode = useAppStore((s) => s.rememberedSessionMode)
   const setRememberedSessionMode = useAppStore((s) => s.setRememberedSessionMode)
+
+  // v4.4 — ONE routing vocabulary for tiles, deep links, and Astryx's action
+  // buttons: #session/custom · #session/full-body · #session/chakra-planetary
+  // · #session/chakra-solfeggio. The 'custom' door routes through the Daily
+  // Check-In when today's calibration hasn't run — never skips the pipeline.
+  const handleSessionAction = (hash: string) => {
+    const key = hash.replace(/^#?session\//, '')
+    if (key === 'full-body') { beginSession('full_body'); return }
+    if (key === 'chakra-planetary' || key === 'chakra-solfeggio') {
+      useAppStore.getState().setChakraInstrument(key === 'chakra-solfeggio' ? 'solfeggio' : 'planetary')
+      beginSession('chakra')
+      return
+    }
+    // custom — today's engine-computed calibration. Protocol is read from the
+    // store (not the render closure): this path also runs deferred, post-
+    // hydration, from the deep-link mount effect.
+    if (!useAppStore.getState().protocol) { setScreen('intake'); return }
+    if (useAppStore.getState().protocolDate !== todayKey()) {
+      setScreen('dashboard')   // opens on the Check-In tab when the day is stale
+      return
+    }
+    beginSession('calibrated')
+  }
 
   // v4.3 — where a session begins: the remembered preference skips the picker.
   const requestSession = () => {
@@ -524,7 +565,7 @@ export default function AstryxApp() {
     if (key === 'FULL_BODY' || key === 'CHAKRA') {
       setChamberDurationKey('15_PERSONAL')
     }
-    if (!protocol) { setScreen('intake'); return }
+    if (!useAppStore.getState().protocol) { setScreen('intake'); return }
     handleStartSession()
   }
 
@@ -769,6 +810,7 @@ export default function AstryxApp() {
             onClearToast={() => setSessionLoggedToast(false)}
             onResumeSession={handleResumeSession}
             onRunFullBody={() => setScreen('session-mode')}
+            onLaunchSession={handleSessionAction}
           />
         )}
 
@@ -965,7 +1007,7 @@ export default function AstryxApp() {
           the Session screen). No floating button. This just hosts the chat panel,
           opened from those top-bar launchers. (SHA 2026-06-28.) ── */}
       {!['auth', 'payment', 'analysis', 'subscribe-gate', 'fork-access'].includes(screen) && (
-        <TeacherChat open={astryxOpen} onClose={() => setAstryxOpen(false)} accentColor={accentColor} seed={null} />
+        <TeacherChat open={astryxOpen} onClose={() => setAstryxOpen(false)} accentColor={accentColor} seed={null} onAction={handleSessionAction} />
       )}
     </div>
   )
