@@ -278,6 +278,19 @@ function lookupTransitInterpretation(transit: any) {
   }
 }
 
+/**
+ * v4.2 FIX 3 — render-time transit copy. Display surfaces call this instead of
+ * reading the interpretation BAKED into the persisted protocol, so copy edits
+ * (compliance rewrites, register passes) reach every user on their next render
+ * — no regeneration needed. Falls back to the baked text for safety. The
+ * deterministic core (signal, sequence, frequencies) stays persisted untouched;
+ * this derives DISPLAY TEXT only, from the current data files.
+ */
+export function freshTransitInterpretation(transit: any):
+  { effect: string; intervention: string; duration: string } | undefined {
+  return lookupTransitInterpretation(transit) ?? transit?.interpretation ?? undefined
+}
+
 // ── Directive H.0.4 — landmark life events ──
 // A transiting planet returning to (or striking) a personal natal point on a
 // multi-year cycle is a RECKONING, not a generic transit. Detect and elevate.

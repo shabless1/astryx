@@ -34,6 +34,7 @@ import { GlassCard, PrimaryButton, SectionLabel, PlanetBadge, Tag } from '@/comp
 import { PLANET_COLORS } from '@/lib/engine'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER } from '@/lib/compliance'
+import { freshTransitInterpretation } from '@/lib/engine'
 import cellSaltsData from '@/data/cellSalts.json'
 
 // Local alpha helper for either #hex or rgba() strings
@@ -388,6 +389,8 @@ function TransitDailyCard({ transit }: { transit: ActiveTransit }) {
     ? `Applying · exact in ${Math.abs(transit.daysToExact).toFixed(0)}d`
     : `Separating · ${Math.abs(transit.daysToExact).toFixed(0)}d past`
 
+  // v4.2 FIX 3 — render-time copy from the current data files, not baked text.
+  const interp = freshTransitInterpretation(transit)
   return (
     <GlassCard accentColor={color} opacity={0.10} className="p-4">
       <div className="flex items-start gap-3">
@@ -413,17 +416,17 @@ function TransitDailyCard({ transit }: { transit: ActiveTransit }) {
             )}
           </div>
           <p className="text-[12px] text-white/70 leading-relaxed mb-1">
-            {transit.interpretation?.effect ?? 'Active transit window.'}
+            {interp?.effect ?? 'Active transit window.'}
           </p>
-          {transit.interpretation?.intervention && (
+          {interp?.intervention && (
             <p className="text-[11px] text-white/55 italic mb-1.5">
-              {transit.interpretation.intervention.split('.').slice(0, 1).join('.')}.
+              {interp.intervention.split('.').slice(0, 1).join('.')}.
             </p>
           )}
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] text-white/40 tracking-widest">{timing}</span>
-            {transit.interpretation?.duration && (
-              <Tag label={transit.interpretation.duration} accent="rgba(255,255,255,0.15)" small />
+            {interp?.duration && (
+              <Tag label={interp.duration} accent="rgba(255,255,255,0.15)" small />
             )}
           </div>
         </div>

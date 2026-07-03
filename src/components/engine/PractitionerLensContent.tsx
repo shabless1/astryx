@@ -27,6 +27,7 @@ import type { ProtocolOutput, CrystalExpanded } from '@/types'
 import { useAppStore } from '@/lib/store'
 import { GlassCard, SectionLabel, Tag } from '@/components/ui'
 import { hexToRgba } from '@/lib/utils'
+import { freshTransitInterpretation } from '@/lib/engine'
 import sacredTonesData from '@/data/sacredTones_nervousSystem.json'
 import cellSaltsData   from '@/data/cellSalts.json'
 import crystalsData    from '@/data/crystalsExpanded.json'
@@ -115,7 +116,8 @@ function ReikiLens({ protocol, accentColor }: LensContentProps) {
     : null
   const affirmation = sunSalt?.esoteric?.affirmation ?? 'Be present. Receive. Allow the flow.'
   const headlineTransit = protocol.diagnostic?.headlineTransit
-  const transitText = headlineTransit?.interpretation?.effect ?? 'this moment of recalibration'
+  // v4.2 FIX 3 — render-time copy (current data files, not the baked text)
+  const transitText = freshTransitInterpretation(headlineTransit)?.effect ?? 'this moment of recalibration'
 
   // Crystal placement — for dominant planet
   const dominantPlanet = protocol.dominant_pattern.planets[0]

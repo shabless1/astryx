@@ -267,6 +267,21 @@ export function normalizePlanetKey(planet: string): string {
 }
 
 /**
+ * v4.2 Fix 1 — THE canonical track key: `planet/state/STEM` (lowercase planet
+ * via normalizePlanetKey, lowercase state, STEM verbatim — uppercase with
+ * optional variant suffix like `_03b`; the manifest CARRIES variant suffixes,
+ * the selector requests them — both sides speak stems, never bare numbers).
+ * Every lookup, log line, and manifest row must round-trip through this format;
+ * scripts/generate-catalog-manifest.mjs writes the same shape (its parseKey
+ * lowercases planet/state and preserves the stem — keep them in lockstep).
+ * URL building adds `.mp3` + percent-encoding + the earthyear special case on
+ * top of this key (see buildTrackUrl) — keys never contain encoding.
+ */
+export function normalizeTrackKey(planet: string, state: AudioFolderState | string, stem: string): string {
+  return `${normalizePlanetKey(planet)}/${String(state).trim().toLowerCase()}/${stem.trim()}`
+}
+
+/**
  * All version filename-stems available for a planet/state (the FULL pool —
  * seed + manifest). Directive I.4: the user can switch between versions of the
  * called-for aspect in the chamber.

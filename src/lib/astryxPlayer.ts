@@ -45,7 +45,15 @@ class AstryxPlayerClass {
   // Fix 2 — REAL playback truth. _error flips on a load/decode error and resets
   // when a new track loads or starts playing. _stateCbs notify subscribers of
   // genuine state changes so the UI's LIVE badge + waveform reflect reality.
+  //
+  // v4.2 FIX 2 — errors are URL-ATTRIBUTED. _errorUrl records WHICH track
+  // failed, and only elements still in the live pipeline (current or pending)
+  // may set the flag. Previously, _kill()'s `src = ''` teardown fired the
+  // still-attached error listener on DISPOSED elements, flipping the global
+  // flag on every crossfade — the controller then "skipped" perfectly good
+  // tracks and cascaded whole phases down to the Earth fallback.
   private _error = false
+  private _errorUrl: string | null = null
   private _stateCbs: Set<() => void> = new Set()
 
   // Overlap safety — EVERY element + EVERY active rAF id are tracked so we can
@@ -70,6 +78,9 @@ class AstryxPlayerClass {
            this.audioEl.readyState >= 3 && !this._error
   }
   get hasError(): boolean { return this._error }
+  /** v4.2 — the URL whose load/decode actually failed (null when clean). The
+   *  controller reacts ONLY when this matches its currently selected track. */
+  getErrorUrl(): string | null { return this._error ? this._errorUrl : null }
   // Playback truth that IGNORES the _error flag — "is a track audibly playing
   // right now". Used by the UI so a stale error (e.g. a later probe 404 after a
   // good track already committed) can never make the player claim "unavailable"
@@ -116,10 +127,20 @@ class AstryxPlayerClass {
     el.volume = 0
     // crossOrigin intentionally NOT set — element is played directly, never
     // routed through Web Audio, so no R2 CORS policy is needed.
-    el.addEventListener('error', (e) => { this._error = true; console.error('[AstryxPlayer] load error:', e, el.src); this._notifyState() })
-    el.addEventListener('canplaythrough', () => { this._initialized = true; this._error = false; this._notifyState() })
-    el.addEventListener('canplay',  () => { this._error = false; this._notifyState() })
-    el.addEventListener('playing',  () => { this._error = false; this._notifyState() })
+    el.addEventListener('error', (e) => {
+      // v4.2 — disposed elements fire a spurious error when their src is
+      // cleared during teardown; those must NEVER set the global flag.
+      if ((el as any).__disposed) return
+      // Only the live pipeline (current track or the buffering probe) counts.
+      if (el !== this.audioEl && el !== this._pending) return
+      this._error = true
+      this._errorUrl = url
+      console.error('[AstryxPlayer] load error:', e, url)
+      this._notifyState()
+    })
+    el.addEventListener('canplaythrough', () => { this._initialized = true; this._error = false; this._errorUrl = null; this._notifyState() })
+    el.addEventListener('canplay',  () => { this._error = false; this._errorUrl = null; this._notifyState() })
+    el.addEventListener('playing',  () => { this._error = false; this._errorUrl = null; this._notifyState() })
     el.addEventListener('pause',    () => { this._notifyState() })
     el.addEventListener('waiting',  () => { this._notifyState() })
     el.addEventListener('stalled',  () => { this._notifyState() })
@@ -133,6 +154,7 @@ class AstryxPlayerClass {
   /** Hard-dispose a single element. Idempotent. */
   private _kill(el: HTMLAudioElement | null | undefined): void {
     if (!el) return
+    ;(el as any).__disposed = true   // v4.2 — mute the teardown error event
     try { el.pause() } catch { /* noop */ }
     try { el.src = ''; el.load() } catch { /* noop */ }
     this.els.delete(el)

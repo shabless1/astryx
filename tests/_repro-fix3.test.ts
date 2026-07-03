@@ -10,6 +10,8 @@
  */
 
 import { describe, it, expect, vi } from 'vitest'
+import { normalizeTrackKey } from '@/lib/astryxAudioLibrary'
+import manifest from '@/data/catalogManifest.json'
 
 const MANUAL = process.env.ASTRYX_MANUAL_REPRO === '1'
 import { runEngine } from '@/lib/engine'
@@ -108,6 +110,15 @@ describe.runIf(MANUAL)('fix3 repro — chamber track resolution for the Smoke Te
         if (!res.ok) misses.push(`${s.role} phase ${i + 1}: ${key}/${file} → ${status}`)
       } else {
         misses.push(`${s.role} phase ${i + 1}: ${key} → NO FILE RESOLVED (versions=${versions.length}, def=${def?.filename ?? 'null'})`)
+      }
+      // v4.2 Fix 1 — requested-vs-manifest reconciliation (canonical key format).
+      // earthyear is seed-only by design (legacy space-named files, no state
+      // subfolder in the bucket — see the buildTrackUrl special case).
+      if (file && audioPlanet !== 'earthyear') {
+        const reqKey = normalizeTrackKey(audioPlanet, folderState, file)
+        const inManifest = (manifest.tracks as string[]).includes(`${reqKey}.mp3`)
+        if (!inManifest) misses.push(`phase ${i + 1}: requested key NOT IN MANIFEST → ${reqKey}`)
+        rows.push(`  · requested ${reqKey} → manifest: ${inManifest ? '✓' : '✗'}`)
       }
       rows.push(`phase ${i + 1}/${steps.length} [${s.role}] planet=${s.planet} audio=${audioPlanet} state=${folderState} file=${file ?? '∅'} → ${status}`)
     }

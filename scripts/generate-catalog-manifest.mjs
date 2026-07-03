@@ -42,6 +42,10 @@ import { readFileSync, writeFileSync } from 'node:fs'
 
 const STATES = new Set(['nat', 'exc', 'def', 'blk'])
 
+// KEY CONVENTION (v4.2 Fix 1): output rows are `planet/state/STEM` — lowercase
+// planet + state, STEM verbatim (uppercase, variant suffixes like `_03b` kept).
+// This MUST match normalizeTrackKey() in src/lib/astryxAudioLibrary.ts — that
+// function is the canonical definition; keep this parser in lockstep with it.
 function parseKey(line) {
   const clean = line.trim().replace(/^\/+/, '').split('?')[0]
   if (!clean || !/\.mp3$/i.test(clean)) return null

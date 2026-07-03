@@ -24,7 +24,8 @@ import { astryxPlayer } from '@/lib/astryxPlayer'
 import { audioSession } from '@/lib/audioSession'
 import { useAppStore } from '@/lib/store'
 import {
-  resolveTierTrack, ensureManifestLoaded, versionsFor, buildTrackUrl, variantOrdinal,
+  resolveTierTrack, ensureManifestLoaded, versionsFor, buildTrackUrl, variantOrdinal, variantLabel,
+  normalizePlanetKey, normalizeTrackKey,
   type AudioFolderState,
 } from '@/lib/astryxAudioLibrary'
 import { PLANET_COLORS } from '@/lib/engine'
@@ -161,7 +162,8 @@ export default function SoundEngineController({
   const defaultTrack = activePlanet ? resolveTierTrack(activePlanet, polState, seed) : null
   const folderState  = defaultTrack?.state ?? 'nat'
   const versions     = activePlanet ? versionsFor(activePlanet, folderState) : []
-  const overrideKey  = activePlanet ? `${activePlanet.toLowerCase()}/${folderState}` : ''
+  // v4.2 Fix 1 — key strings go through the canonical normalizer ('Full Moon'→'moon').
+  const overrideKey  = activePlanet ? `${normalizePlanetKey(activePlanet)}/${folderState}` : ''
   const override     = audioMode === 'customize' ? versionOverrides?.[overrideKey] : undefined
 
   // A NEW visit to this planet/state advances the variant, so a fork repeated in
@@ -219,7 +221,12 @@ export default function SoundEngineController({
   const live       = astryxPlayer.isLive || audible    // MP3 genuinely playing
   // Never claim "unavailable" while audio is audibly playing — a stale error flag
   // from a later 404 probe must not contradict what the user hears (SHA 2026-06-28).
-  const errored    = hasStarted && astryxPlayer.hasError && !audible
+  // v4.2 FIX 2 — and never claim it for a track we're not even requesting:
+  // the error must be attributed to OUR currently selected URL. "Isn't
+  // available" now appears only when literally nothing plays AND our own
+  // track is the one that failed.
+  const errored    = hasStarted && astryxPlayer.hasError && !audible &&
+                     astryxPlayer.getErrorUrl() === selectedUrl
   // Patch — MUSIC-ONLY chamber: no synthesized tone fallback (SHA: only the song
   // plays). The frequency lives in the track itself.
   const realActive = live                              // sound is actually happening
@@ -250,15 +257,22 @@ export default function SoundEngineController({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedUrl, hasStarted, isPlaying])
 
-  // v4.1 FIX 3 — a track that fails to load routes around the gap:
+  // v4.1 FIX 3 / v4.2 FIX 2 — a track that fails to load routes around the gap:
   //   1. rotate to the next untried variant in the SAME pool (as before),
   //   2. pool exhausted / single-variant pool → DETERMINISTIC fallback:
   //      the planet's own NAT pool, else the Earth Day ground layer,
   //   3. the fallback itself failing escalates once to Earth Day.
   // Fixed mapping, no randomness — same chart + same failures → same tracks.
   // Every missed key is console.warn'd. The session never shows a dead slot.
+  //
+  // v4.2 — URL-ATTRIBUTED: this reacts ONLY when the player reports that OUR
+  // currently selected URL is the one that failed. The v4.1 version reacted to
+  // the bare hasError flag, which teardown events flipped on every crossfade —
+  // one spurious error cascaded entire phases (Saturn→Mars→Neptune→Venus) down
+  // to Earth Day even though every file was live. Never react to a stale flag.
   useEffect(() => {
     if (!hasStarted || !isPlaying || !errored || !activePlanet) return
+    if (!selectedUrl || astryxPlayer.getErrorUrl() !== selectedUrl) return
 
     const fb = fallbackRef.current[overrideKey]
     if (fb) {
@@ -294,12 +308,12 @@ export default function SoundEngineController({
           return earth ? { planet: 'earthday', state: 'nat' as AudioFolderState, file: earth } : undefined
         })()
     if (pick) {
-      console.warn(`[chamber-audio] missed key ${overrideKey}/${selectedFile} — deterministic fallback → ${pick.planet}/${pick.state}/${pick.file}`)
+      console.warn(`[chamber-audio] missed key ${normalizeTrackKey(activePlanet, folderState, selectedFile)} — deterministic fallback → ${normalizeTrackKey(pick.planet, pick.state, pick.file)}`)
       fallbackRef.current[overrideKey] = pick
       forceTick((x) => x + 1)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errored, selectedFile, hasStarted, isPlaying, overrideKey])
+  }, [errored, selectedFile, selectedUrl, hasStarted, isPlaying, overrideKey])
 
   // Cleanup on unmount (leaving the chamber) — hard-stop ALL audio + freeze clock.
   useEffect(() => {
@@ -388,9 +402,13 @@ export default function SoundEngineController({
         <div>
           <div className="text-[10px] tracking-[0.3em] text-white/60 mb-0.5">CHAMBER MUSIC</div>
           <div className="text-[13px] text-white/87">
+            {/* v4.2 FIX 2 — honest banner: a rerouted slot names what IS playing;
+                "isn't available" only when literally nothing plays. */}
             {!musicAvailable ? 'Music layer unavailable'
               : errored ? 'This track isn’t available yet — try another song.'
               : !hasStarted ? 'Press play when you’re ready to begin.'
+              : fbSel && live && effPlanet && effFile
+                ? `Rerouted — now playing ${variantLabel(effPlanet, effState, effFile)}.`
               : 'The frequency is in the music — each fork’s key, carried.'}
           </div>
         </div>

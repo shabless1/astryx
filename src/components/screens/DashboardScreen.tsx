@@ -24,6 +24,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import type { ProtocolOutput, AppMode, SessionRecord } from '@/types'
 import { computeDailyTemperature, type Temperature } from '@/lib/dailyTemperature'
+import { freshTransitInterpretation } from '@/lib/engine'
 import { forkFor } from '@/lib/chamber/forkRite'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'
@@ -456,16 +457,23 @@ function PulseTab({
         </div>
         {transits.length ? (
           <div className="space-y-3">
-            {transits.slice(0, 8).map((t, i) => (
-              <div key={i} className="border-b border-white/5 last:border-b-0 pb-2.5 last:pb-0">
-                <div className="text-[13px] text-white/90">
-                  {t.transitingPlanet} {t.aspect} {t.natalPlanet}
-                  {t.lifeEvent ? <span style={{ color: hexToRgba(accentColor, 0.9) }}> · {t.lifeEvent.label}</span> : null}
+            {/* v4.2 FIX 3 — copy derives at RENDER TIME from the current data
+                files (freshTransitInterpretation), never from the text baked
+                into the persisted protocol — compliance/register edits reach
+                pre-deploy users without a regeneration. */}
+            {transits.slice(0, 8).map((t, i) => {
+              const interp = freshTransitInterpretation(t)
+              return (
+                <div key={i} className="border-b border-white/5 last:border-b-0 pb-2.5 last:pb-0">
+                  <div className="text-[13px] text-white/90">
+                    {t.transitingPlanet} {t.aspect} {t.natalPlanet}
+                    {t.lifeEvent ? <span style={{ color: hexToRgba(accentColor, 0.9) }}> · {t.lifeEvent.label}</span> : null}
+                  </div>
+                  {interp?.effect && <div className="text-[12px] text-white/55 leading-snug mt-0.5">{interp.effect}</div>}
+                  {interp?.intervention && <div className="text-[12px] text-white/45 italic leading-snug mt-0.5">Support: {interp.intervention}</div>}
                 </div>
-                {t.interpretation?.effect && <div className="text-[12px] text-white/55 leading-snug mt-0.5">{t.interpretation.effect}</div>}
-                {t.interpretation?.intervention && <div className="text-[12px] text-white/45 italic leading-snug mt-0.5">Support: {t.interpretation.intervention}</div>}
-              </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <p className="text-[12.5px] text-white/45 italic">No strong transits to your natal chart today — a steady sky. A grounding session still supports your baseline.</p>

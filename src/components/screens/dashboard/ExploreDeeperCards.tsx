@@ -20,6 +20,7 @@ import { useState } from 'react'
 import type { ProtocolOutput } from '@/types'
 import { hexToRgba } from '@/lib/utils'
 import { GlassCard } from '@/components/ui'
+import { freshTransitInterpretation } from '@/lib/engine'
 
 const cap = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s)
 
@@ -61,16 +62,20 @@ export default function ExploreDeeperCards({
           <div className="pt-1">
             <div className="text-[9px] uppercase tracking-[0.2em] mb-1.5" style={{ color: hexToRgba(accent, 0.85) }}>Today&apos;s sky to your chart</div>
             <div className="space-y-2.5">
-              {d.activeTransits.slice(0, 5).map((t, i) => (
-                <div key={i} className="border-b border-white/5 last:border-b-0 pb-2 last:pb-0">
-                  <div className="text-[12px] text-white/85">
-                    {t.transitingPlanet} {t.aspect} {t.natalPlanet}
-                    {t.lifeEvent ? <span style={{ color: hexToRgba(accent, 0.9) }}> · {t.lifeEvent.label}</span> : null}
+              {/* v4.2 FIX 3 — render-time copy (current data files, not baked text) */}
+              {d.activeTransits.slice(0, 5).map((t, i) => {
+                const interp = freshTransitInterpretation(t)
+                return (
+                  <div key={i} className="border-b border-white/5 last:border-b-0 pb-2 last:pb-0">
+                    <div className="text-[12px] text-white/85">
+                      {t.transitingPlanet} {t.aspect} {t.natalPlanet}
+                      {t.lifeEvent ? <span style={{ color: hexToRgba(accent, 0.9) }}> · {t.lifeEvent.label}</span> : null}
+                    </div>
+                    {interp?.effect && <div className="text-[11.5px] text-white/55 leading-snug mt-0.5">{interp.effect}</div>}
+                    {interp?.intervention && <div className="text-[11.5px] text-white/45 italic leading-snug mt-0.5">Support: {interp.intervention}</div>}
                   </div>
-                  {t.interpretation?.effect && <div className="text-[11.5px] text-white/55 leading-snug mt-0.5">{t.interpretation.effect}</div>}
-                  {t.interpretation?.intervention && <div className="text-[11.5px] text-white/45 italic leading-snug mt-0.5">Support: {t.interpretation.intervention}</div>}
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}
