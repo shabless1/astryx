@@ -30,6 +30,11 @@ Ladder-order entry corrected to the owner regions; three-mode comparison entry u
 - Calibrated regression: engine goldens unchanged and green; `buildForkSequence` untouched.
 - Zero-warn audio runs + Mercury/Venus distinct-placement eyeballing: cowork's browser pass on the dev server (the placement labels are table-driven and golden-tested).
 
+## Owner feedback round (2026-07-03, applied same day)
+- **Either/or instrument sets enforced on screen:** in Solfeggio mode the planetary-fork conversion line ("your X fork resonates at … Hz") is suppressed — the two fork systems never appear together. The picker choice was already exclusive; now the session surface is too.
+- **One placement at a time:** canonical sessions (Full Body + Chakra) no longer render reading-derived reflex orbs on the body map — only the active rung/center's placement shows, advancing with the phases.
+- **Music:** planetary songs in both instrument modes, per owner ("use the planetary songs for now"); when the Solfeggio tracks are uploaded to the bucket + catalog, the music layer gains a solfeggio folder and the chakra builder points Solfeggio-mode steps at it — a contained follow-up.
+
 ## Flagged for owner review
 1. Leo rung body-map dot position (label says solar plexus; dot sits at the sign's chest-center zone).
 2. Chakra descending Root keeps the previous center's (Moon) music flowing rather than re-entering the Earth-Day layer — consistent with the "Earth steps keep prior music" chamber rule; say the word to special-case it.

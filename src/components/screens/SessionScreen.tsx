@@ -298,9 +298,12 @@ export default function SessionScreen({
   const crystal   = protocol?.sacredLayer?.crystal as CrystalExpanded | undefined
   // A1.3 — LOCAL + REFLEX + planet-anatomy points for the fork body map (from the
   // Reflex engine). Empty when the reading carries no body-zone signals.
+  // v4.3.1 owner feedback — canonical sessions (Full Body / Chakra) show ONE
+  // placement at a time: the active rung/center only. Reading-derived reflex
+  // orbs never render over the ladder or the chakra sequence.
   const reflexPoints: ReflexPoint[] = useMemo(
-    () => reflexPointsFor(protocol?.reflexPlacements ?? []),
-    [protocol?.reflexPlacements],
+    () => isCanonicalSession ? [] : reflexPointsFor(protocol?.reflexPlacements ?? []),
+    [isCanonicalSession, protocol?.reflexPlacements],
   )
   void botanical
 
@@ -853,6 +856,7 @@ export default function SessionScreen({
             onSelectVersion={handleSelectVersion}
             onResetOverrides={clearSongOverrides}
             naturalOnly={isFullSpectrum || isCanonicalSession}
+            suppressConversionLine={isChakra && chakraInstrument === 'solfeggio'}
             defaultCollapsed={visualMode === 'body'}
           />
 

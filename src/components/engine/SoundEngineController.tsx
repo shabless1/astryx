@@ -67,6 +67,10 @@ interface SoundEngineControllerProps {
   /** Fix 2 — the active fork's Hz, so the oscillator fallback can carry the
    *  calibrated frequency if the music track fails. */
   currentForkHz?: number
+  /** v4.3.1 owner feedback — the Chakra session's instrument sets are EITHER/OR:
+   *  in Solfeggio mode the planetary-fork conversion line must not appear
+   *  (never two fork systems on screen together). */
+  suppressConversionLine?: boolean
   // Default (session picks) vs Customize (user picks per aspect; persisted).
   audioMode?: 'default' | 'customize'
   onAudioModeChange?: (m: 'default' | 'customize') => void
@@ -88,6 +92,7 @@ export default function SoundEngineController({
   chamberDNA,
   currentForkPlanet,
   currentForkHz,
+  suppressConversionLine = false,
   audioMode = 'default',
   onAudioModeChange,
   versionOverrides,
@@ -215,7 +220,7 @@ export default function SoundEngineController({
   // user owns the physical fork. The line is a prescription, never a pitch.
   const ownForkHzRaw = activePlanet ? (currentForkHz ?? parseFloat(String(forkFor(activePlanet)?.hz ?? ''))) : NaN
   const ownForkHz = Number.isFinite(ownForkHzRaw) ? ownForkHzRaw : null
-  const showConversionLine = !!activePlanet && !ownedForks.includes(activePlanet) && ownForkHz !== null
+  const showConversionLine = !suppressConversionLine && !!activePlanet && !ownedForks.includes(activePlanet) && ownForkHz !== null
 
   // ── Fix 2 — REAL playback truth (never optimistic intent) ──
   const audible    = astryxPlayer.isAudiblyPlaying     // a track is actually sounding
