@@ -52,6 +52,12 @@ export interface SequenceStep {
   /** v4.3 — the zodiac sign whose body territory this step works (ladder rungs
    *  only). Drives the SIGN-based body-map placement in the Full Body session. */
   sign?: string
+  /** v4.5 — the chakra center's canonical glow color (chakra sessions only).
+   *  Mirrors the CHAKRAS palette in BodyMap.tsx so nothing conflicts. Drives the
+   *  fork-placement marker aura + the step card's accent, keyed to the active
+   *  center — deterministic per center, the SAME color on both the descent and
+   *  ascent pass (color is a property of the center, not the direction). */
+  centerColor?: string
   /** Short slot label for display: 'primary' | 'support' | 'integration' | … */
   slotLabel: string
 }
@@ -478,8 +484,10 @@ export function buildFullBodySequence({ durationSec }: { durationSec: number }):
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// CHAKRA RECALIBRATION (Directive v4.3.1 · Feature 3) — 7 centers, root →
-// crown → sweep back down, with the user's instrument choice:
+// CHAKRA RECALIBRATION (Directive v4.5) — Open · Centering at the crown → 7
+// centers struck CROWN→ROOT (descent) → 7 centers struck ROOT→CROWN (ascent) →
+// Close · Earth Grounding (relaxing 4-7-8 breath). The user's instrument choice
+// changes only the struck tone/fork + displayed Hz per center, never the order:
 //   • 'solfeggio' — the chakra Solfeggio tones (Root 396 … Crown 963), the
 //     values CLAUDE.md Rule 2 fixes and solfeggio-overlays.json carries
 //     (golden-tested against that file — never hardcoded from memory alone).
@@ -496,26 +504,34 @@ export function buildFullBodySequence({ durationSec }: { durationSec: number }):
 
 export type ChakraInstrument = 'solfeggio' | 'planetary'
 
-/** The 7 centers, root → crown. solfeggioHz per CLAUDE.md Rule 2 /
- *  solfeggio-overlays.json; fork + planetaryHz from sacredTones data. */
+/** The 7 centers, root → crown (canonical DATA order — traversal direction is
+ *  applied by the builder, not by re-ordering this array). solfeggioHz per
+ *  CLAUDE.md Rule 2 / solfeggio-overlays.json; fork + planetaryHz from
+ *  sacredTones data. `color` mirrors the CHAKRAS palette in BodyMap.tsx
+ *  (v4.5 — single source; a center's glow color is a property of the center). */
 export const CHAKRA_CENTERS: {
   center: string; bodyPoint: string; solfeggioHz: number
   /** music/visual planet (canonical name) + the physical fork's display name */
-  planet: string; forkName: string
+  planet: string; forkName: string; color: string
 }[] = [
-  { center: 'Root',         bodyPoint: 'base of the spine',        solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day' },
-  { center: 'Sacral',       bodyPoint: 'point just below the navel', solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon' },
-  { center: 'Solar Plexus', bodyPoint: 'upper abdomen',            solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun' },
-  { center: 'Heart',        bodyPoint: 'center of the chest',      solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus' },
-  { center: 'Throat',       bodyPoint: 'hollow of the throat',     solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury' },
-  { center: 'Third Eye',    bodyPoint: 'point between the brows',  solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune' },
-  { center: 'Crown',        bodyPoint: 'top of the head',          solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter' },
+  { center: 'Root',         bodyPoint: 'base of the spine',        solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day', color: '#FF3D5C' },
+  { center: 'Sacral',       bodyPoint: 'point just below the navel', solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon', color: '#FF8A1A' },
+  { center: 'Solar Plexus', bodyPoint: 'upper abdomen',            solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun',     color: '#FFD600' },
+  { center: 'Heart',        bodyPoint: 'center of the chest',      solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus',   color: '#43E66A' },
+  { center: 'Throat',       bodyPoint: 'hollow of the throat',     solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury', color: '#1FB6FF' },
+  { center: 'Third Eye',    bodyPoint: 'point between the brows',  solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune', color: '#5B47FF' },
+  { center: 'Crown',        bodyPoint: 'top of the head',          solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter', color: '#B447FF' },
 ]
 
-const CHAKRA_WEIGHTS = { ground: 3.0, ascentCenter: 1.9, crownTurn: 1.2, descentCenter: 1.0 }
+// v4.5 — weights for the Crown→Root→Crown traversal + Earth grounding close.
+//   open          — brief centering breath at the crown (no strike)
+//   descentCenter — first struck pass, crown down to root (primary contact)
+//   ascentCenter  — second struck pass, root up to crown (integration)
+//   earthClose    — the closing Earth grounding + relaxing 4-7-8 breath
+const CHAKRA_WEIGHTS = { open: 1.2, descentCenter: 1.7, ascentCenter: 1.3, earthClose: 3.0 }
 const CHAKRA_TOTAL_WEIGHT =
-  CHAKRA_WEIGHTS.ground * 2 + CHAKRA_WEIGHTS.ascentCenter * 7 +
-  CHAKRA_WEIGHTS.crownTurn + CHAKRA_WEIGHTS.descentCenter * 7
+  CHAKRA_WEIGHTS.open + CHAKRA_WEIGHTS.descentCenter * 7 +
+  CHAKRA_WEIGHTS.ascentCenter * 7 + CHAKRA_WEIGHTS.earthClose
 
 /** Planetary Hz for a center's fork (Earth Day is app-played, 194.18). */
 function chakraPlanetaryHz(c: (typeof CHAKRA_CENTERS)[number]): number {
@@ -525,9 +541,15 @@ function chakraPlanetaryHz(c: (typeof CHAKRA_CENTERS)[number]): number {
 }
 
 /**
- * The Chakra Recalibration: Opening Ground → 7 centers root→crown → held
- * breath at the crown → 7 centers crown→root (lighter sweep) → Closing
- * Ground. 17 steps; pure function of (durationSec, instrument).
+ * The Chakra Recalibration (v4.5 — Crown→Root→Crown, Earth grounding close):
+ *   Open · Centering (breath at the crown, nothing struck)
+ *   → Descent: 7 centers struck crown → root
+ *   → Ascent:  7 centers struck root → crown
+ *   → Close · Earth Grounding (relaxing 4-7-8 breath, Earth tone from the
+ *     chamber, nothing struck — the session ends here).
+ * 16 steps; pure function of (durationSec, instrument). The center ORDER is
+ * identical for both instruments — only the struck tone/fork + displayed Hz
+ * differ. Each struck center carries its canonical `centerColor` for the glow.
  */
 export function buildChakraSequence(
   { durationSec, instrument }: { durationSec: number; instrument: ChakraInstrument },
@@ -540,16 +562,18 @@ export function buildChakraSequence(
   let cursor = 0
   const pushRaw = (s: SequenceStep) => { steps.push(s); cursor += s.holdSec }
 
-  const centerStep = (c: (typeof CHAKRA_CENTERS)[number], descending: boolean, holdSec: number): SequenceStep => {
+  const centerStep = (c: (typeof CHAKRA_CENTERS)[number], direction: 'descent' | 'ascent', holdSec: number): SequenceStep => {
     const hz = instrument === 'solfeggio' ? c.solfeggioHz : chakraPlanetaryHz(c)
     const forkWord = instrument === 'solfeggio' ? `${c.solfeggioHz} Hz Solfeggio fork` : `${c.forkName} fork`
-    const purpose = descending
-      ? `returning — a lighter pass at the ${c.center.toLowerCase()} center`
-      : `sound the ${forkWord} at the ${c.bodyPoint} — let the ${c.center.toLowerCase()} center receive it`
+    // Both passes strike (v4.5): descent is first contact, ascent is the
+    // integrating return. Copy differs; the fork/Hz/center color do not.
+    const purpose = direction === 'descent'
+      ? `sound the ${forkWord} at the ${c.bodyPoint} — let the ${c.center.toLowerCase()} center receive it`
+      : `sound the ${forkWord} again at the ${c.bodyPoint} — the ${c.center.toLowerCase()} center answers on the way up`
     return {
       idx: steps.length,
       role: 'signalFork',
-      phaseLabel: `${descending ? 'Descent' : 'Ascent'} · ${c.center}`,
+      phaseLabel: `${direction === 'descent' ? 'Descent' : 'Ascent'} · ${c.center}`,
       purpose,
       planet: c.planet,
       // Physical fork object only in planetary mode (real Sacred Tones); the
@@ -557,17 +581,22 @@ export function buildChakraSequence(
       // existing "tone plays from the chamber" line, never a skipped center).
       fork: instrument === 'planetary' ? forkFor(c.planet) : null,
       hz,
+      centerColor: c.color,
       startSec: cursor,
       holdSec,
       slotLabel: 'signal',
     }
   }
 
-  pushRaw(makeStep(0, 'ground', 'Opening Ground', 'settle the field and prepare the body', 'Earth', cursor, hold(CHAKRA_WEIGHTS.ground)))
-  for (const c of CHAKRA_CENTERS) pushRaw(centerStep(c, false, hold(CHAKRA_WEIGHTS.ascentCenter)))
-  pushRaw(makeStep(steps.length, 'breathwork', 'Crown Turn', 'hold at the crown — three slow breaths before the descent', 'Breath', cursor, hold(CHAKRA_WEIGHTS.crownTurn)))
-  for (const c of [...CHAKRA_CENTERS].reverse()) pushRaw(centerStep(c, true, hold(CHAKRA_WEIGHTS.descentCenter)))
-  pushRaw(makeStep(steps.length, 'earthClose', 'Earth Close', 'ground the centers before completion', 'Earth', cursor, Math.max(10, total - cursor)))
+  // 1) Open · Centering — breath-only at the crown, nothing struck (Earth Day
+  //    audio plays underneath, as with every opening beat).
+  pushRaw(makeStep(0, 'breathwork', 'Open · Centering', 'settle at the crown with a few slow breaths before the descent', 'Breath', cursor, hold(CHAKRA_WEIGHTS.open)))
+  // 2) Descent — crown down to root (canonical array reversed).
+  for (const c of [...CHAKRA_CENTERS].reverse()) pushRaw(centerStep(c, 'descent', hold(CHAKRA_WEIGHTS.descentCenter)))
+  // 3) Ascent — root up to crown (canonical array order).
+  for (const c of CHAKRA_CENTERS) pushRaw(centerStep(c, 'ascent', hold(CHAKRA_WEIGHTS.ascentCenter)))
+  // 4) Close · Earth Grounding — the final step; relaxing breath + Earth tone.
+  pushRaw(makeStep(steps.length, 'earthClose', 'Close · Earth Grounding', 'ground the body and integrate — the session completes here', 'Earth', cursor, Math.max(10, total - cursor)))
 
   return steps
 }

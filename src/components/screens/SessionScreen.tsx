@@ -334,9 +334,18 @@ export default function SessionScreen({
      (current.role === 'integration' && isLast) ||
      // J.3 — the Full-Spectrum CLOSING breath is the last step → plays Earth Year.
      (current.role === 'breathwork' && isLast))
-  // J.3 — breathwork phases (Full-Spectrum bookends) render the breath guide, not
-  // a fork card, and carry no fork-placement dot.
+  // J.3 — breathwork phases (Full-Spectrum bookends + the chakra Open · Centering)
+  // render the breath guide, not a fork card, and carry no fork-placement dot.
   const isBreathwork = !!current && current.role === 'breathwork'
+  // v4.5 — the chakra session's FINAL step is the Earth Grounding close: a
+  // relaxing 4-7-8 breath over the body grid, with the Earth "why we ground"
+  // detail collapsed by default. It is a closing step but renders its own card
+  // (not the plain StepClose the Full Body / corrective containers use).
+  const isChakraEarthClose = !!current && isChakra && current.role === 'earthClose'
+  // v4.5 FIX 3 — a struck chakra center glows in ITS chakra color (the marker
+  // aura + the step card accent), the same color on both the descent and ascent
+  // pass. Non-chakra steps keep the fork's own color / the session accent.
+  const stepAccent = current?.centerColor ?? current?.fork?.color ?? accentColor
   // SHA tweak — grounding steps (Earth Day open / Earth Year close / any Earth Om
   // · silence · breath beat) carry NO fork, so they show ONLY breathing &
   // grounding: those steps render the grounding/breath card (no body map), so no
@@ -562,7 +571,7 @@ export default function SessionScreen({
       accentColor
 
     const chamberFocus = isChakra
-      ? `The seven centers, root to crown and back — ${chakraInstrument === 'solfeggio' ? 'Solfeggio' : 'Planetary'} forks.`
+      ? `The seven centers, crown to root and back, sealed with an Earth grounding — ${chakraInstrument === 'solfeggio' ? 'Solfeggio' : 'Planetary'} forks.`
       : isFullBody
       ? 'The complete anatomical ladder — all twelve forks, ground to crown and back.'
       : dominantState !== 'balanced'
@@ -665,7 +674,8 @@ export default function SessionScreen({
         >
           <div className="max-w-md mx-auto" style={{ animation: 'slideInUp 350ms cubic-bezier(0.34, 1.56, 0.64, 1)' }} key={stepIdx}>
             <BreathworkCard
-              title={isLast ? 'Breathe — sealing the session' : 'Breathe — settling the field'}
+              title={isChakra && stepIdx === 0 ? 'Center — settle at the crown'
+                : isLast ? 'Breathe — sealing the session' : 'Breathe — settling the field'}
               subtitle={current.phaseLabel}
               pattern={breathPattern}
               accentColor={accentColor}
@@ -769,6 +779,26 @@ export default function SessionScreen({
               </div>
             ))}
           </div>
+        ) : isChakra ? (
+          /* v4.5 — 16-step Chakra session: group into its macro-phases
+             (Center · Descent · Ascent · Ground). Descent = crown→root,
+             Ascent = root→crown, Ground = the Earth grounding close. */
+          <div className="flex justify-between mt-1 px-1">
+            {[
+              { label: 'Center',  test: (i: number) => i === 0 },
+              { label: 'Descent', test: (i: number) => i >= 1 && i <= 7 },
+              { label: 'Ascent',  test: (i: number) => i >= 8 && i <= 14 },
+              { label: 'Ground',  test: (i: number) => i >= 15 },
+            ].map((m, k) => (
+              <div
+                key={k}
+                className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
+                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.25)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
+              >
+                {m.label}
+              </div>
+            ))}
+          </div>
         ) : (
           /* v4.3 — 27-step Full Body ladder: per-step glyphs would be illegible.
              Group into the four macro-phases (Ground · Ascent · Descent · Ground)
@@ -812,7 +842,7 @@ export default function SessionScreen({
                 isPractitionerMode={isPractitionerSession || mode === 'practitioner'}
                 breathName={breathPattern.name}
                 breathGuidance={breathPattern.guidance}
-                accentColor={current.fork?.color ?? accentColor}
+                accentColor={stepAccent}
                 bodyMapType={intakeData.bodyMapType ?? 'female'}
                 placement={(() => {
                   // v4.4 FIX 3.1 — canonical sessions are chart-independent:
@@ -835,7 +865,16 @@ export default function SessionScreen({
                 onAskAstryx={onAskAstryx ? () => onAskAstryx() : undefined}
               />
             )}
-            {!isBreathwork && isClosingStep && (
+            {!isBreathwork && isChakraEarthClose && (
+              <ChakraEarthClose
+                phaseLabel={current.phaseLabel}
+                pattern={ELEMENT_BREATH.Water}
+                accentColor={accentColor}
+                bodyMapType={intakeData.bodyMapType ?? 'female'}
+                placement={resolvePlacement(dominantPlanet)}
+              />
+            )}
+            {!isBreathwork && isClosingStep && !isChakraEarthClose && (
               <StepClose
                 phaseLabel={current.phaseLabel}
                 silent={current.role === 'silentIntegration'}
@@ -977,7 +1016,7 @@ const topPanelStyle: React.CSSProperties = {
 function stepTitle(step: SequenceStep | undefined): string {
   if (!step) return ''
   if (step.planet === 'Earth')   return `${step.phaseLabel} · Earth tone`
-  if (step.planet === 'Silence') return step.phaseLabel
+  if (step.planet === 'Silence' || step.planet === 'Breath') return step.phaseLabel
   const p = step.planet === 'Full Moon' ? 'Moon' : step.planet
   return `${step.phaseLabel} · ${p}`
 }
@@ -1480,11 +1519,12 @@ function StepBreath({
  * J.3 — Breathwork bookend card (Full-Spectrum opening/closing breath). Reuses
  * the StepBreath pacer mechanics with calm bookend copy. No fork, no placement.
  */
-function BreathworkCard({
-  title, subtitle, pattern, accentColor,
+/** The animated breath pacer — expanding/contracting orb + per-phase countdown.
+ *  Shared by the Full-Spectrum bookend card and the chakra Earth grounding close
+ *  (v4.5). Presentational only; the cycle is fixed data, no randomness. */
+function BreathPacer({
+  pattern, accentColor,
 }: {
-  title: string
-  subtitle: string
   pattern: typeof ELEMENT_BREATH[string]
   accentColor: string
 }) {
@@ -1505,22 +1545,37 @@ function BreathworkCard({
 
   const phase = pattern.cycle[phaseIdx]
   return (
+    <div className="flex flex-col items-center">
+      <div
+        className="rounded-full mb-3 transition-all duration-1000"
+        style={{
+          width: 96, height: 96,
+          background: hexToRgba(accentColor, 0.15),
+          border: `2px solid ${accentColor}`,
+          transform: phase.label.toLowerCase().includes('inhale') ? 'scale(1.18)'
+                   : phase.label.toLowerCase().includes('exhale') ? 'scale(0.85)' : 'scale(1.05)',
+          boxShadow: `0 0 40px ${hexToRgba(accentColor, 0.5)}`,
+        }}
+      />
+      <div className="text-[10px] tracking-[0.3em] text-white/55 mb-1">{phase.label.toUpperCase()}</div>
+      <div className="font-cinzel text-[44px]" style={{ color: accentColor, lineHeight: 1 }}>{countdown}</div>
+    </div>
+  )
+}
+
+function BreathworkCard({
+  title, subtitle, pattern, accentColor,
+}: {
+  title: string
+  subtitle: string
+  pattern: typeof ELEMENT_BREATH[string]
+  accentColor: string
+}) {
+  return (
     <StepCard badge="BREATH" title={title} accentColor={accentColor}>
       <p className="text-[12px] text-white/60 italic mb-4">{subtitle} · {pattern.name}</p>
-      <div className="flex flex-col items-center mb-3">
-        <div
-          className="rounded-full mb-3 transition-all duration-1000"
-          style={{
-            width: 96, height: 96,
-            background: hexToRgba(accentColor, 0.15),
-            border: `2px solid ${accentColor}`,
-            transform: phase.label.toLowerCase().includes('inhale') ? 'scale(1.18)'
-                     : phase.label.toLowerCase().includes('exhale') ? 'scale(0.85)' : 'scale(1.05)',
-            boxShadow: `0 0 40px ${hexToRgba(accentColor, 0.5)}`,
-          }}
-        />
-        <div className="text-[10px] tracking-[0.3em] text-white/55 mb-1">{phase.label.toUpperCase()}</div>
-        <div className="font-cinzel text-[44px]" style={{ color: accentColor, lineHeight: 1 }}>{countdown}</div>
+      <div className="mb-3">
+        <BreathPacer pattern={pattern} accentColor={accentColor} />
       </div>
       <p className="text-[12px] text-white/70 leading-relaxed text-center">{pattern.guidance}</p>
     </StepCard>
@@ -1564,6 +1619,69 @@ function StepClose({
         Take a few unhurried breaths. Notice what has shifted — in the body, the
         mind, the emotional field. There is no rush to leave.
       </p>
+
+      <p className="text-[11px] text-white/65 italic text-center mt-4">
+        When ready, tap <span style={{ color: accentColor }}>Complete Session ✓</span> below —
+        you&apos;ll be guided to a short check-in.
+      </p>
+    </StepCard>
+  )
+}
+
+/**
+ * v4.5 — the CHAKRA Earth grounding close (the session's final step). Unlike the
+ * plain StepClose, this leads with the BODY GRID and runs a relaxing 4-7-8
+ * breath to down-regulate the nervous system; the Earth "why we ground" detail
+ * is COLLAPSED by default behind a disclosure. Earth tone plays from the
+ * chamber underneath — nothing is struck here.
+ */
+function ChakraEarthClose({
+  phaseLabel, pattern, accentColor, bodyMapType, placement,
+}: {
+  phaseLabel: string
+  pattern: typeof ELEMENT_BREATH[string]
+  accentColor: string
+  bodyMapType: BodyMapType
+  placement: ForkPlacement
+}) {
+  return (
+    <StepCard badge="CLOSE · EARTH GROUNDING" title="Earth grounding — completion" accentColor={accentColor}>
+      <p className="text-[11px] text-white/45 italic mb-3">{phaseLabel} — the centers are lit; let the body settle and integrate.</p>
+
+      {/* Body grid LEADS the close (SHA v4.5) — the whole body, no fork to place. */}
+      <div className="mb-4">
+        <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} hideForkDot />
+      </div>
+
+      {/* Relaxing 4-7-8 breath — extended exhale to down-regulate before you rise. */}
+      <div className="flex flex-col items-center mb-3">
+        <div className="text-[10px] tracking-[0.22em] uppercase mb-2" style={{ color: hexToRgba(accentColor, 0.85) }}>
+          Grounding breath · {pattern.name}
+        </div>
+        <BreathPacer pattern={pattern} accentColor={accentColor} />
+        <p className="text-[12px] text-white/70 leading-relaxed text-center mt-2">{pattern.guidance}</p>
+      </div>
+
+      <p className="text-[13px] text-white/85 leading-relaxed mb-2">
+        The Earth tone carries you home. Feel the weight of the body, the ground
+        beneath you. Notice what has shifted — there is no rush to leave.
+      </p>
+
+      {/* Earth information — COLLAPSED by default (SHA v4.5), expandable. */}
+      <details className="mt-3 rounded-xl overflow-hidden" style={{ background: hexToRgba(accentColor, 0.06), border: `1px solid ${hexToRgba(accentColor, 0.2)}` }}>
+        <summary className="cursor-pointer list-none px-3 py-2 text-[10px] uppercase tracking-[0.2em]" style={{ color: hexToRgba(accentColor, 0.9) }}>
+          Earth · why we ground →
+        </summary>
+        <div className="px-3 pb-3 pt-1">
+          <p className="text-[12.5px] text-white/80 leading-relaxed">
+            After the seven centers have been sounded and answered, the closing
+            Earth tone (136.10 Hz) draws the attention back down through the body
+            and into the ground. The extended exhale of the 4-7-8 breath supports
+            the shift toward rest, sealing the session in the body rather than the
+            head.
+          </p>
+        </div>
+      </details>
 
       <p className="text-[11px] text-white/65 italic text-center mt-4">
         When ready, tap <span style={{ color: accentColor }}>Complete Session ✓</span> below —

@@ -171,8 +171,9 @@ function ChakraCard({
     >
       <div className="font-cinzel text-[18px] text-white mb-1.5">Chakra Recalibration</div>
       <p className="text-[13px] text-content-sm leading-relaxed mb-3">
-        The seven centers, root to crown and back. Choose your instrument set —
-        the chamber carries any tone you don&apos;t hold in hand.
+        The seven centers, crown to root and back, sealed with an Earth
+        grounding. Choose your instrument set — the chamber carries any tone you
+        don&apos;t hold in hand.
       </p>
       <div className="flex items-center gap-2 mb-4">
         {pill('solfeggio', 'Solfeggio forks')}

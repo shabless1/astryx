@@ -367,7 +367,7 @@ function SessionLauncher({
           style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Chakra →</span>
-          <span className="text-[11.5px] text-white/50 leading-snug">Seven centers, root to crown</span>
+          <span className="text-[11.5px] text-white/50 leading-snug">Seven centers, crown to root and back</span>
           <span className="mt-auto flex rounded-full p-0.5 self-start"
                 style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)' }}>
             {(['solfeggio', 'planetary'] as ChakraInstrument[]).map((inst) => {

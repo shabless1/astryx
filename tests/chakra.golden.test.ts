@@ -24,29 +24,58 @@ describe('buildChakraSequence — the 7-center session', () => {
     })
   }
 
-  it('has the shape: ground → 7 up → crown turn → 7 down → ground (17 steps)', () => {
+  it('has the v4.5 shape: centering → 7 descent (crown→root) → 7 ascent (root→crown) → Earth close (16 steps)', () => {
     const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'planetary' })
-    expect(steps).toHaveLength(17)
-    expect(steps[0].role).toBe('ground')
-    expect(steps[8].role).toBe('breathwork')       // crown turn
-    expect(steps[16].role).toBe('earthClose')
-    const up = steps.slice(1, 8).map((s) => s.phaseLabel.replace('Ascent · ', ''))
-    expect(up).toEqual(CENTER_ORDER)
-    const down = steps.slice(9, 16).map((s) => s.phaseLabel.replace('Descent · ', ''))
-    expect(down).toEqual([...CENTER_ORDER].reverse())
-    // sweep is lighter than the ascent
-    expect(steps[9].holdSec).toBeLessThan(steps[1].holdSec)
+    expect(steps).toHaveLength(16)
+    // Open · Centering — breath-only at the crown, nothing struck.
+    expect(steps[0].role).toBe('breathwork')
+    expect(steps[0].fork).toBeNull()
+    // Close · Earth Grounding — the final step.
+    expect(steps[15].role).toBe('earthClose')
+    // Descent (crown → root) — the 7 struck centers, reversed order.
+    const descent = steps.slice(1, 8).map((s) => s.phaseLabel.replace('Descent · ', ''))
+    expect(descent).toEqual([...CENTER_ORDER].reverse())
+    // Ascent (root → crown) — the 7 struck centers, canonical order.
+    const ascent = steps.slice(8, 15).map((s) => s.phaseLabel.replace('Ascent · ', ''))
+    expect(ascent).toEqual(CENTER_ORDER)
+    // Every struck center is a signalFork.
+    for (const s of steps.slice(1, 15)) expect(s.role).toBe('signalFork')
     // timeline tiles exactly
     let cursor = 0
     for (const s of steps) { expect(s.startSec).toBe(cursor); cursor += s.holdSec }
     expect(cursor).toBe(CANONICAL_SEC)
   })
 
+  it('the SAME center glows the SAME chakra color on both descent and ascent', () => {
+    const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'planetary' })
+    const colorByCenter = new Map(CHAKRA_CENTERS.map((c) => [c.center, c.color]))
+    for (const s of steps.slice(1, 15)) {
+      const center = s.phaseLabel.replace(/^(Descent|Ascent) · /, '')
+      expect(s.centerColor, `color for ${center}`).toBe(colorByCenter.get(center))
+    }
+    // Crown appears on both passes (descent[0] and ascent[6]) — identical color.
+    expect(steps[1].centerColor).toBe(steps[14].centerColor)
+    expect(steps[1].phaseLabel).toBe('Descent · Crown')
+    expect(steps[14].phaseLabel).toBe('Ascent · Crown')
+  })
+
+  it('center ORDER is identical for both instruments (only the struck tone differs)', () => {
+    const solf = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'solfeggio' })
+    const plan = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'planetary' })
+    expect(solf.map((s) => s.phaseLabel)).toEqual(plan.map((s) => s.phaseLabel))
+  })
+
   it('Solfeggio frequencies all exist in solfeggio-overlays.json', () => {
     const available = new Set((solfeggioOverlays as { hz: number }[]).map((o) => o.hz))
     for (const c of CHAKRA_CENTERS) expect(available.has(c.solfeggioHz)).toBe(true)
     const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'solfeggio' })
-    expect(steps.slice(1, 8).map((s) => s.hz)).toEqual(CHAKRA_CENTERS.map((c) => c.solfeggioHz))
+    const solfByCenter = new Map(CHAKRA_CENTERS.map((c) => [c.center, c.solfeggioHz]))
+    // descent = reversed order, ascent = canonical order
+    expect(steps.slice(1, 8).map((s) => s.hz)).toEqual([...CHAKRA_CENTERS].reverse().map((c) => c.solfeggioHz))
+    expect(steps.slice(8, 15).map((s) => s.hz)).toEqual(CHAKRA_CENTERS.map((c) => c.solfeggioHz))
+    for (const s of steps.slice(1, 15)) {
+      expect(s.hz).toBe(solfByCenter.get(s.phaseLabel.replace(/^(Descent|Ascent) · /, '')))
+    }
   })
 
   it('Planetary mapping matches the sacredTones chakra fields exactly (no invented pairs)', () => {
@@ -57,8 +86,10 @@ describe('buildChakraSequence — the 7-center session', () => {
       expect(match!.planet).toBe(c.forkName)
     }
     const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'planetary' })
-    for (let i = 0; i < CHAKRA_CENTERS.length; i++) {
-      expect(steps[i + 1].hz).toBeCloseTo(parseFloat(String(forks.find((f) => f.chakra === CHAKRA_CENTERS[i].center)!.hz)), 2)
+    const hzForCenter = (center: string) =>
+      parseFloat(String(forks.find((f) => f.chakra === center)!.hz))
+    for (const s of steps.slice(1, 15)) {
+      expect(s.hz).toBeCloseTo(hzForCenter(s.phaseLabel.replace(/^(Descent|Ascent) · /, '')), 2)
     }
   })
 })

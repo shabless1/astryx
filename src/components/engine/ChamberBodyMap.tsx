@@ -66,7 +66,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
     <div>
       <div className="flex items-center justify-between mb-2">
         <span className="text-[9px] uppercase tracking-[0.25em]" style={{ color: hexToRgba(accentColor, 0.85) }}>
-          Where to hold the fork
+          {hideForkDot ? 'The body' : 'Where to hold the fork'}
         </span>
         <div className="inline-flex p-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
           {(['anterior', 'posterior'] as BodyView[]).map((v) => (
