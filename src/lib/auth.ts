@@ -47,8 +47,20 @@ declare module 'next-auth/jwt' {
 
 // ─── AUTH OPTIONS ────────────────────────────────────────────
 
+// Directive v1.1 · FIX 4 — never let a hardcoded secret be reachable in
+// production. Require NEXTAUTH_SECRET in prod (fail-closed on boot); allow a
+// clearly-labeled dev-only placeholder locally so `npm run dev` still works.
+function resolveNextAuthSecret(): string {
+  const s = process.env.NEXTAUTH_SECRET
+  if (s && s.length > 0) return s
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('NEXTAUTH_SECRET is required in production — set it in the server environment.')
+  }
+  return 'astryx-dev-only-secret-do-not-use-in-production'
+}
+
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET || 'astryx-dev-secret-change-in-production',
+  secret: resolveNextAuthSecret(),
 
   // Prisma adapter persists OAuth users/accounts. Credentials sign-in is
   // handled manually below (NextAuth v4 never persists credentials sessions
