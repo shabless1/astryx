@@ -95,4 +95,33 @@ No `Math.random` in the color path — the mapping is fixed data.
 - **Compliance voice** — new/edited strings use no named conditions and no supplement directives.
 - **v4.4 regressions hold** — Full Body ladder, Calibrated Session, Sessions launcher + Astryx actions, and the `#session/chakra-planetary` / `#session/chakra-solfeggio` deep-links all unchanged and green.
 
+---
+
+## v4.5.1 — owner correction (fork placement + colors)
+
+**Bug:** in the chakra session the body‑map orb was placing at the **fork planet's**
+body zone (Crown = Jupiter → "the liver", at the hip) instead of the **chakra's own
+fixed anatomical point.** Chakra placements are fixed per center — the same for
+every fork (planetary or solfeggio) and every body.
+
+**Fix:**
+- New `chakraCenterPlacement(center)` in `BodyPlacementEngine.ts` — one orb at the
+  chakra's fixed point, planet‑independent: Crown = top of the head · Third Eye =
+  forehead · Throat = throat · Heart = center of the chest · Solar Plexus = upper
+  abdomen · Sacral = lower abdomen · Root = base of the spine. `SessionScreen` routes
+  every chakra center step through it (step card + body map + mandala/color views).
+- `ChamberBodyMap` gains `chakraMode` → a clean single caption ("Crown · top of the
+  head" · "Chakra placement · same for every body"), no Traditional/Natal framing.
+- The APPLICATION line now references the chakra point ("sweeping over the top of the
+  head"), never the fork's bone point ("the liver").
+- **Colors corrected to the owner's spec:** Root red `#E53935` · Sacral orange
+  `#FB8C00` · Solar Plexus yellow `#FDD835` · Heart green `#43A047` · Throat blue
+  `#1E88E5` · Third Eye indigo `#3949AB` · **Crown white `#FFFFFF`.**
+
+**Verified live (all 16 steps):** orb vertical position matches anatomy on both passes
+(Crown 4% / top of head → Root 48% / base of spine), colors match the spec, caption is
+clean, application line references the chakra point, no "liver" anywhere. `tsc` 0 ·
+tests green · lint:copy + lint:determinism clean · production build green.
+
+---
 *Proprietary system architecture (Astryx / Cosmic Resonance System, SHA — Creations by Sacred Music).*

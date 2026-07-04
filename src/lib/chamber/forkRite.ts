@@ -507,20 +507,23 @@ export type ChakraInstrument = 'solfeggio' | 'planetary'
 /** The 7 centers, root → crown (canonical DATA order — traversal direction is
  *  applied by the builder, not by re-ordering this array). solfeggioHz per
  *  CLAUDE.md Rule 2 / solfeggio-overlays.json; fork + planetaryHz from
- *  sacredTones data. `color` mirrors the CHAKRAS palette in BodyMap.tsx
- *  (v4.5 — single source; a center's glow color is a property of the center). */
+ *  sacredTones data. `bodyPoint` is the FIXED anatomical chakra location — the
+ *  same for every fork and every body (see chakraCenterPlacement). `color` is
+ *  the canonical chakra color per SHA's spec (v4.5.1): Root red · Sacral orange ·
+ *  Solar Plexus yellow · Heart green · Throat blue · Third Eye indigo · Crown
+ *  WHITE. A center's glow color is a property of the center, not the fork. */
 export const CHAKRA_CENTERS: {
   center: string; bodyPoint: string; solfeggioHz: number
   /** music/visual planet (canonical name) + the physical fork's display name */
   planet: string; forkName: string; color: string
 }[] = [
-  { center: 'Root',         bodyPoint: 'base of the spine',        solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day', color: '#FF3D5C' },
-  { center: 'Sacral',       bodyPoint: 'point just below the navel', solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon', color: '#FF8A1A' },
-  { center: 'Solar Plexus', bodyPoint: 'upper abdomen',            solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun',     color: '#FFD600' },
-  { center: 'Heart',        bodyPoint: 'center of the chest',      solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus',   color: '#43E66A' },
-  { center: 'Throat',       bodyPoint: 'hollow of the throat',     solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury', color: '#1FB6FF' },
-  { center: 'Third Eye',    bodyPoint: 'point between the brows',  solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune', color: '#5B47FF' },
-  { center: 'Crown',        bodyPoint: 'top of the head',          solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter', color: '#B447FF' },
+  { center: 'Root',         bodyPoint: 'base of the spine',       solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day', color: '#E53935' },
+  { center: 'Sacral',       bodyPoint: 'lower abdomen',           solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon', color: '#FB8C00' },
+  { center: 'Solar Plexus', bodyPoint: 'upper abdomen',           solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun',     color: '#FDD835' },
+  { center: 'Heart',        bodyPoint: 'center of the chest',     solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus',   color: '#43A047' },
+  { center: 'Throat',       bodyPoint: 'throat',                  solfeggioHz: 741, planet: 'Mercury', forkName: 'Mercury', color: '#1E88E5' },
+  { center: 'Third Eye',    bodyPoint: 'forehead, between the brows', solfeggioHz: 852, planet: 'Neptune', forkName: 'Neptune', color: '#3949AB' },
+  { center: 'Crown',        bodyPoint: 'top of the head',         solfeggioHz: 963, planet: 'Jupiter', forkName: 'Jupiter', color: '#FFFFFF' },
 ]
 
 // v4.5 — weights for the Crown→Root→Crown traversal + Earth grounding close.

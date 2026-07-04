@@ -44,7 +44,7 @@ import { generateColorTherapy } from '@/lib/visual/ColorTherapyEngine'
 import { generateKaleidoscopeMandala } from '@/lib/visual/KaleidoscopeMandalaEngine'
 import { getPhaseForProgress } from '@/lib/protocol/sessionPhaseMap'
 import type { BodyMapType } from '@/lib/bodyMapPlacement'
-import { resolveForkPlacement, type ForkPlacement } from '@/lib/BodyPlacementEngine'
+import { resolveForkPlacement, chakraCenterPlacement, type ForkPlacement } from '@/lib/BodyPlacementEngine'
 import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
@@ -463,8 +463,15 @@ export default function SessionScreen({
     : isChakra && current?.role === 'signalFork'
     ? current.phaseLabel.split('·').pop()?.trim()
     : undefined
-  const visualPlacementBase = resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
-  const visualPlacement = rungRegion
+  // v4.5.1 — a CHAKRA center step places at the CHAKRA's own fixed anatomical
+  // point (Crown = top of the head …), never the fork planet's body zone.
+  const chakraCenterName = isChakra && current?.role === 'signalFork'
+    ? current.phaseLabel.split('·').pop()?.trim()
+    : undefined
+  const visualPlacementBase = chakraCenterName
+    ? chakraCenterPlacement(chakraCenterName)
+    : resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
+  const visualPlacement = rungRegion && !chakraCenterName
     ? { ...visualPlacementBase, primaryLabel: rungRegion }
     : visualPlacementBase
   const visualChakra = visualPlacement.chakraOverlay?.[0]
@@ -844,11 +851,14 @@ export default function SessionScreen({
                 breathGuidance={breathPattern.guidance}
                 accentColor={stepAccent}
                 bodyMapType={intakeData.bodyMapType ?? 'female'}
+                chakraMode={!!chakraCenterName}
                 placement={(() => {
-                  // v4.4 FIX 3.1 — canonical sessions are chart-independent:
-                  // rungs/centers place by the LADDER/CENTER territory only.
-                  // No natal orb, no natal labels, no chart-personalized
-                  // how/why copy. Calibrated sessions keep natal behavior.
+                  // v4.5.1 — a CHAKRA center places at the chakra's OWN fixed
+                  // anatomical point (Crown = top of head …), never the fork
+                  // planet's body zone. One orb, same for every fork + body.
+                  if (chakraCenterName) return chakraCenterPlacement(chakraCenterName)
+                  // v4.4 FIX 3.1 — other canonical sessions (Full Body) place by
+                  // the LADDER territory only. Calibrated sessions keep natal.
                   const base = resolvePlacement(current.planet, isFullBody ? current.sign : undefined)
                   if (!isCanonicalSession) return base
                   return {
@@ -856,9 +866,7 @@ export default function SessionScreen({
                     ...(rungRegion ? { primaryLabel: rungRegion } : {}),
                     natalPlacement: { ...base.natalPlacement, sameAsTraditional: true },
                     how: `${current.purpose.charAt(0).toUpperCase()}${current.purpose.slice(1)}.`,
-                    why: isFullBody
-                      ? 'The ladder places every body the same way — traditional territory, rung by rung.'
-                      : 'The seven centers share one map — the same placement for every body.',
+                    why: 'The ladder places every body the same way — traditional territory, rung by rung.',
                   }
                 })()}
                 reflexPoints={reflexPoints}
@@ -1038,8 +1046,11 @@ const ROLE_BADGE: Record<string, string> = {
 function applicationFor(
   setType: 'unweighted' | 'weighted',
   fork: SacredFork | null,
+  pointOverride?: string,
 ): { line: string; note?: string } {
-  const point = fork?.boneApplicationPoint?.split('.')[0] ?? 'the body midline'
+  // v4.5.1 — in a chakra session the application point is the CHAKRA's location
+  // (top of the head, throat …), never the fork's own bone point (Jupiter→liver).
+  const point = pointOverride ?? fork?.boneApplicationPoint?.split('.')[0] ?? 'the body midline'
   if (setType === 'weighted') {
     return { line: `On-body: strike, then place the stem at ${point} with steady, comfortable contact.` }
   }
@@ -1052,7 +1063,7 @@ function applicationFor(
 function SequenceStepCard({
   step, cue, forkSetType, onSetForkSetType, isPractitionerMode,
   breathName, breathGuidance, accentColor, bodyMapType, placement,
-  reflexPoints, onAskAstryx,
+  reflexPoints, onAskAstryx, chakraMode = false,
 }: {
   step: SequenceStep
   cue: string
@@ -1066,9 +1077,14 @@ function SequenceStepCard({
   placement: ForkPlacement
   reflexPoints?: ReflexPoint[]
   onAskAstryx?: (seed: string) => void
+  /** v4.5.1 — chakra center step: single orb at the chakra's fixed point, clean caption. */
+  chakraMode?: boolean
 }) {
   const fork = step.fork
-  const app = applicationFor(forkSetType, fork)
+  // v4.5.1 — chakra steps apply at the chakra's location (from the placement label
+  // "Crown · top of the head" → "the top of the head"), not the fork's bone point.
+  const chakraPoint = chakraMode ? placement.primaryLabel.split('·').pop()?.trim() : undefined
+  const app = applicationFor(forkSetType, fork, chakraPoint ? `the ${chakraPoint}` : undefined)
   const mins = Math.floor(step.holdSec / 60)
   const secs = step.holdSec % 60
   const holdLabel = mins > 0 ? `${mins}m${secs ? ` ${secs}s` : ''}` : `${secs}s`
@@ -1088,7 +1104,7 @@ function SequenceStepCard({
         <>
           {/* Body Map LEADS the fork step — WHERE to hold + the active zone. */}
           <div className="mb-4">
-            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} />
+            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
             <div className="mt-2 px-3 py-2 rounded-xl"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
               <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accentColor, 0.9) }}>
@@ -1156,7 +1172,7 @@ function SequenceStepCard({
            Ground text, never a duplicate of the grounding card. */
         <>
           <div className="mb-4">
-            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} />
+            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
             <div className="mt-2 px-3 py-2 rounded-xl"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
               <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accentColor, 0.9) }}>

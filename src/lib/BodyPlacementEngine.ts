@@ -369,6 +369,59 @@ export function resolveForkPlacement(input: ResolveInput): ForkPlacement {
   }
 }
 
+// ─── CHAKRA SESSION PLACEMENT (v4.5.1) ─────────────────────────────────
+// In a CHAKRA session the placement is the CHAKRA's own fixed anatomical point —
+// NOT the fork planet's body rulership. The same seven points for every fork
+// (planetary or solfeggio) and every body: Crown = top of the head, Third Eye =
+// forehead, Throat = throat, Heart = center of the chest, Solar Plexus = upper
+// abdomen, Sacral = lower abdomen, Root = base of the spine. One orb per center
+// (no traditional/natal split — chakra points are the same for everyone).
+const CHAKRA_CENTER_TO_KEY: Record<string, string> = {
+  'Crown': 'crown', 'Third Eye': 'third_eye', 'Throat': 'throat', 'Heart': 'heart',
+  'Solar Plexus': 'solar_plexus', 'Sacral': 'sacral', 'Root': 'root',
+}
+const CHAKRA_LOCATION_TEXT: Record<string, string> = {
+  crown: 'top of the head', third_eye: 'forehead, between the brows', throat: 'throat',
+  heart: 'center of the chest', solar_plexus: 'upper abdomen', sacral: 'lower abdomen',
+  root: 'base of the spine',
+}
+
+/**
+ * The fixed body-map placement for a chakra CENTER (chakra session only).
+ * Planet-independent, single orb, contact hover at the center's anatomical point.
+ */
+export function chakraCenterPlacement(center: string): ForkPlacement {
+  const key = CHAKRA_CENTER_TO_KEY[center] ?? 'heart'
+  const lib = chakraPlacementLibrary[key]
+  const region = lib.bodyMapRegion
+  const anchor = anchorFor(region)
+  const locationText = CHAKRA_LOCATION_TEXT[key] ?? region.replace(/_/g, ' ')
+  const label = `${lib.label} · ${locationText}`
+  const style = signalStateApplicationLibrary.coherent
+  // Chakra points are canonical midline hovers — no off-body intimate sweep; the
+  // anchors are already womb-safe (root/sacral sit on the lower-belly line).
+  const anchorObj: PlacementAnchor = { anchor, region, label, view: 'anterior', mode: 'contact' }
+  return {
+    planet: center,
+    applicationState: 'coherent',
+    primaryLabel: label,
+    primaryRegions: [region],
+    view: 'anterior',
+    anchor,
+    chakraOverlay: [key],
+    chakraAddress: lib.label,
+    mode: 'contact',
+    secondaryLabel: label,
+    applicationStyle: style,
+    how: lib.instruction,
+    why: 'The seven centers share one map — the same placement for every fork and every body.',
+    traditionalPlacement: anchorObj,
+    natalPlacement: { ...anchorObj, sameAsTraditional: true },
+    natalLabel: label,
+    natalHow: lib.instruction,
+  }
+}
+
 /** K.1 — build a single rendered placement (region → clamped anchor → delivery). */
 function buildPlacementAnchor(planet: string, regions: string[], label: string, view: BodyView): PlacementAnchor {
   const region = regions[0] ?? 'root'

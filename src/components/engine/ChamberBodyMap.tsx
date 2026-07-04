@@ -31,6 +31,9 @@ interface ChamberBodyMapProps {
   reflexPoints?: ReflexPoint[]
   /** Opens Astryx seeded with the reflex question (from the "Ask why" affordance). */
   onAskAstryx?: (seed: string) => void
+  /** v4.5.1 — CHAKRA session: one orb at the chakra's fixed anatomical point, and
+   *  a clean caption (the center + location), no Traditional/Natal framing. */
+  chakraMode?: boolean
 }
 
 // K.2 — orb styles in clearly-named constants so a restyle is ONE line, not a
@@ -46,7 +49,7 @@ const prettyRegion = (r: string) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hideForkDot = false, reflexPoints, onAskAstryx }: ChamberBodyMapProps) {
+export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hideForkDot = false, reflexPoints, onAskAstryx, chakraMode = false }: ChamberBodyMapProps) {
   const trad = placement.traditionalPlacement
   const natal = placement.natalPlacement
   const showNatal = !natal.sameAsTraditional
@@ -112,7 +115,19 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
       </div>
 
       {/* Captions + legend */}
-      {!hideForkDot && (
+      {!hideForkDot && chakraMode && (
+        /* v4.5.1 — chakra: ONE clean caption = the center + its fixed location. */
+        <div className="mt-2 space-y-1">
+          <div className="flex items-center gap-1.5 text-[11px]">
+            <span style={{ color: accentColor }}>◉</span>
+            <span className="text-content-sm">{placement.primaryLabel}</span>
+          </div>
+          <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/40">
+            <span><span style={{ color: accentColor }}>◉</span> Chakra placement · same for every body</span>
+          </div>
+        </div>
+      )}
+      {!hideForkDot && !chakraMode && (
         <div className="mt-2 space-y-1">
           <div className="flex items-center gap-1.5 text-[11px]">
             <span style={{ color: accentColor }}>◉</span>
