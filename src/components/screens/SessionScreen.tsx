@@ -49,7 +49,7 @@ import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
-import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
 
 // v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
 // selections for every user, every run (the ladder is chart-independent). Only
@@ -468,6 +468,11 @@ export default function SessionScreen({
   const chakraCenterName = isChakra && current?.role === 'signalFork'
     ? current.phaseLabel.split('·').pop()?.trim()
     : undefined
+  // v4.5.1 — in the PLANETARY chakra option, show the physical fork's NAME next to
+  // the Hz so the client knows which planetary fork to pick up (Heart → Venus …).
+  const chakraForkName = chakraCenterName && chakraInstrument === 'planetary'
+    ? CHAKRA_CENTERS.find((c) => c.center === chakraCenterName)?.forkName
+    : undefined
   const visualPlacementBase = chakraCenterName
     ? chakraCenterPlacement(chakraCenterName)
     : resolvePlacement(visualPlanet, isFullBody ? current?.sign : undefined)
@@ -852,6 +857,7 @@ export default function SessionScreen({
                 accentColor={stepAccent}
                 bodyMapType={intakeData.bodyMapType ?? 'female'}
                 chakraMode={!!chakraCenterName}
+                forkDisplayName={chakraForkName}
                 placement={(() => {
                   // v4.5.1 — a CHAKRA center places at the chakra's OWN fixed
                   // anatomical point (Crown = top of head …), never the fork
@@ -1063,7 +1069,7 @@ function applicationFor(
 function SequenceStepCard({
   step, cue, forkSetType, onSetForkSetType, isPractitionerMode,
   breathName, breathGuidance, accentColor, bodyMapType, placement,
-  reflexPoints, onAskAstryx, chakraMode = false,
+  reflexPoints, onAskAstryx, chakraMode = false, forkDisplayName,
 }: {
   step: SequenceStep
   cue: string
@@ -1079,6 +1085,8 @@ function SequenceStepCard({
   onAskAstryx?: (seed: string) => void
   /** v4.5.1 — chakra center step: single orb at the chakra's fixed point, clean caption. */
   chakraMode?: boolean
+  /** v4.5.1 — planetary chakra option: the physical fork's name, shown next to the Hz. */
+  forkDisplayName?: string
 }) {
   const fork = step.fork
   // v4.5.1 — chakra steps apply at the chakra's location (from the placement label
@@ -1117,6 +1125,8 @@ function SequenceStepCard({
 
           <div className="flex items-baseline gap-3 mb-4 flex-wrap">
             <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>{fork.hz} Hz</span>
+            {/* v4.5.1 — planetary chakra: the physical fork's name so the client picks the right one */}
+            {forkDisplayName && <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>· {forkDisplayName} fork</span>}
             <span className="text-[12px] text-white/65">{fork.note} · {fork.chakra}</span>
             <span className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
                   style={{ background: hexToRgba(accentColor, 0.18), color: accentColor }}>
@@ -1184,6 +1194,8 @@ function SequenceStepCard({
           </div>
           <div className="flex items-baseline gap-3 mb-4 flex-wrap">
             <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>{step.hz} Hz</span>
+            {/* v4.5.1 — planetary chakra (e.g. Root → Earth Day, no fork object): name the fork */}
+            {forkDisplayName && <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>· {forkDisplayName} fork</span>}
             <span className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
                   style={{ background: hexToRgba(accentColor, 0.18), color: accentColor }}>
               HOLD {holdLabel}
