@@ -31,6 +31,7 @@ import { getAstryxModel, modelConfigured } from '@/lib/astryx/modelAdapter'
 import { buildTransitContext } from '@/lib/astryx/transitContext'
 import { fetchWebContext, ASTRYX_WEB_ENABLED } from '@/lib/astryx/webSources'
 import { deriveAstryxActions } from '@/lib/astryx/actions'
+import { enforceRateLimit } from '@/lib/rateLimit'
 
 export const runtime = 'nodejs'
 
@@ -38,6 +39,9 @@ const INDIVIDUAL_DAILY_LIMIT = 20
 const MAX_MESSAGE_CHARS = 2000
 const RETRIEVE_K = 5   // leaner grounding → fewer tokens/request (free-tier-friendly)
 
+// FIX 3 — short-window burst cap (anti-scrape) layered over the daily allowance.
+const CHAT_BURST_LIMIT = 15
+const CHAT_BURST_WINDOW_SEC = 60
 // In-memory daily counters (backstop, resets on cold start — same as /api/teach).
 const dailyCounts = new Map<string, number>()
 const dayKey = () => new Date().toISOString().slice(0, 10)
@@ -168,7 +172,17 @@ export async function POST(req: NextRequest) {
     const isPremium = session?.user?.isPremium ?? false
     const tier: 'individual' | 'practitioner' = isPremium ? 'practitioner' : 'individual'
     const metered = tier === 'individual'
-    const key = `${identityFor(req, userId)}:${dayKey()}`
+    const identity = identityFor(req, userId)
+    // FIX 3 — short-window BURST cap (anti-scrape) on top of the daily allowance.
+    const burst = enforceRateLimit('astryx', identity, CHAT_BURST_LIMIT, CHAT_BURST_WINDOW_SEC)
+    if (!burst.ok) {
+      return NextResponse.json({
+        limited: true,
+        reply: 'You are sending messages very quickly — give it a few seconds and try again.',
+        disclaimer: MICRO_DISCLAIMER, tier, remaining: burst.remaining,
+      }, { status: 429, headers: { 'Retry-After': String(burst.retryAfterSec) } })
+    }
+    const key = `${identity}:${dayKey()}`
     let used = dailyCounts.get(key) ?? 0
     if (metered && used >= INDIVIDUAL_DAILY_LIMIT) {
       return NextResponse.json({

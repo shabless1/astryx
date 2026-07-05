@@ -28,6 +28,7 @@ import {
 } from '@/lib/compliance'
 import { callTeacher, type TeacherTurn } from '@/lib/teacher/teach'
 import { pickSuggestedConcept } from '@/lib/teacher/grounding'
+import { enforceRateLimit } from '@/lib/rateLimit'
 
 export const runtime = 'nodejs'
 
@@ -101,7 +102,16 @@ export async function POST(req: NextRequest) {
 
     // ── 4. Metering (Individual / anon) ───────────────────────────
     const metered = tier === 'individual'
-    const key = `${identityFor(req, userId)}:${dayKey()}`
+    const identity = identityFor(req, userId)
+    // FIX 3 — short-window BURST cap (anti-scrape) on top of the daily allowance.
+    const burst = enforceRateLimit('teach', identity, 15, 60)
+    if (!burst.ok) {
+      return NextResponse.json(
+        { reply: 'You are sending questions very quickly — give it a few seconds and try again.', disclaimer: MICRO_DISCLAIMER, tier, remaining: burst.remaining },
+        { status: 429, headers: { 'Retry-After': String(burst.retryAfterSec) } },
+      )
+    }
+    const key = `${identity}:${dayKey()}`
     let used = dailyCounts.get(key) ?? 0
     if (metered && used >= INDIVIDUAL_DAILY_LIMIT) {
       return NextResponse.json(

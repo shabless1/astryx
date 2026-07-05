@@ -15,7 +15,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { getSession } from '@/lib/auth'
 import { runEngine } from '@/lib/engine'
+import { enforceRateLimit, clientIdentity } from '@/lib/rateLimit'
 import type { IntakeData } from '@/types'
 
 interface ProtocolRequestBody {
@@ -23,8 +25,24 @@ interface ProtocolRequestBody {
   coords?: { lat: number; lon: number; tzOffset?: number }
 }
 
+// FIX 3 — burst caps per caller. Generous for humans (a reading is occasional),
+// tight enough to make scripted input→output scraping slow + visible.
+const PROTOCOL_LIMIT = 20
+const PROTOCOL_WINDOW_SEC = 300 // 5 minutes
+
 export async function POST(req: NextRequest) {
   try {
+    // FIX 3 — server-enforced rate limit on the engine oracle (per user, else IP).
+    const session = await getSession()
+    const id = clientIdentity(req, session?.user?.id ?? null)
+    const rl = enforceRateLimit('protocol', id, PROTOCOL_LIMIT, PROTOCOL_WINDOW_SEC)
+    if (!rl.ok) {
+      return NextResponse.json(
+        { success: false, error: 'Too many calibrations in a short window — please wait a moment and try again.' },
+        { status: 429, headers: { 'Retry-After': String(rl.retryAfterSec) } },
+      )
+    }
+
     const body = (await req.json()) as ProtocolRequestBody
     const intake = body?.intake
     const coords = body?.coords

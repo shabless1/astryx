@@ -112,4 +112,23 @@ Because `engine.ts` (client-reachable) statically imports the whole domain libra
 
 **Verification gates for every FIX 1 step:** `npm run build` (0 TS errors) · golden suite byte-identical (20/20) · bundle grep `"base of the spine"`/`"excessive stimulation"`/`medicalAstrology` prose → **0 matches** · `lint:determinism` clean.
 
+---
+
+## FIX 3 — ABUSE CONTROLS (rate limiting) · IMPLEMENTED
+
+**Named residual risk (accepted):** because the engine is deterministic, the API is an input→output **oracle** — a logged-in or guest caller could script it to reconstruct the model from pairs without ever seeing the code. FIX 1 relocated the code/data off the client; this **raises the cost** of scraping and makes heavy volume visible — it does **not** eliminate it.
+
+**Mechanism (`src/lib/rateLimit.ts`):** in-memory fixed-window burst limiter, keyed per caller (`user:<id>` when signed in, else `ip:<x-forwarded-for>`). Fails **open** on any internal error (a limiter bug can never lock out legitimate users). Heavy volume is `console.warn`-logged (visible in Vercel logs). Same backstop pattern as the existing chat/teach daily metering. Per-serverless-instance (resets on cold start) — a durable Postgres-backed limiter is a future hardening if abuse is observed.
+
+**Chosen limits (per caller):**
+| Route | Limit | Window | Layered with |
+|---|---|---|---|
+| `POST /api/protocol` (engine oracle) | 20 | 5 min | — (was fully open) |
+| `POST /api/astryx` (chat) | 15 | 60 s (burst) | existing 20/day individual metering |
+| `POST /api/teach` (teacher) | 15 | 60 s (burst) | existing 10/day individual metering |
+
+Over-limit → HTTP **429** + `Retry-After`. Generous for humans (a reading/question is occasional); tight enough to throttle scripted extraction. **Verified live:** 21st rapid `/api/protocol` call returns 429.
+
+**Tier roles (seeker/calibrated/practitioner):** intentionally deferred (SHA — "skip payment tiers for now"). Entitlement stays the existing server-verified boolean (`hasEntitlement`). Not a blocker for the abuse-control goal.
+
 *Proprietary — keep inside the project + MAHMAH_ECOSYSTEM relay only.*
