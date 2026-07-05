@@ -114,15 +114,17 @@ const CHAKRAS: { id: string; name: string; sanskrit: string; color: string; colo
   // Hz = the standard chakra SOLFEGGIO tones (from solfeggio-overlays.json /
   // accepted sound-healing mapping). NOTE: the chakra layer uses Solfeggio; the
   // PLANETARY protocol (forks/audio/anchors) stays on Cousto's Law of the Octave.
+  // v4.5.1 — y positions match the CHAKRA SESSION anchors exactly (the body
+  // image is 2:3 and fills the full height in both the session (2:3) and this
+  // Body Map (3:4) container, so anchor×100 transfers 1:1). Source of truth:
+  // chakraCenterPlacement / bodyMapAnchorLibrary in BodyPlacementEngine.
   { id: 'crown',     name: 'Crown',         sanskrit: 'Sahasrāra',    color: '#B447FF', colorName: 'Violet', hz: 963, y:  4 },
   { id: 'third-eye', name: 'Third Eye',     sanskrit: 'Ājñā',         color: '#5B47FF', colorName: 'Indigo', hz: 852, y: 10 },
   { id: 'throat',    name: 'Throat',        sanskrit: 'Viśuddha',     color: '#1FB6FF', colorName: 'Blue',   hz: 741, y: 16 },
-  { id: 'heart',     name: 'Heart',         sanskrit: 'Anāhata',      color: '#43E66A', colorName: 'Green',  hz: 639, y: 29 },
-  // Lower chakras nudged UP off the pelvic/genital area (SHA): plexus→navel,
-  // sacral→lower abdomen, root→pelvic bone (not between the legs).
-  { id: 'plexus',    name: 'Solar Plexus',  sanskrit: 'Maṇipūra',     color: '#FFD600', colorName: 'Yellow', hz: 528, y: 40 },
-  { id: 'sacral',    name: 'Sacral',        sanskrit: 'Svādhiṣṭhāna', color: '#FF8A1A', colorName: 'Orange', hz: 417, y: 45 },
-  { id: 'root',      name: 'Root',          sanskrit: 'Mūlādhāra',    color: '#FF3D5C', colorName: 'Red',    hz: 396, y: 50 },
+  { id: 'heart',     name: 'Heart',         sanskrit: 'Anāhata',      color: '#43E66A', colorName: 'Green',  hz: 639, y: 30 },
+  { id: 'plexus',    name: 'Solar Plexus',  sanskrit: 'Maṇipūra',     color: '#FFD600', colorName: 'Yellow', hz: 528, y: 37 },
+  { id: 'sacral',    name: 'Sacral',        sanskrit: 'Svādhiṣṭhāna', color: '#FF8A1A', colorName: 'Orange', hz: 417, y: 46 },
+  { id: 'root',      name: 'Root',          sanskrit: 'Mūlādhāra',    color: '#FF3D5C', colorName: 'Red',    hz: 396, y: 48 },
 ]
 
 // Planet → Sacred Tones fork name + Hz (for the body-map planet detail panel).
@@ -542,12 +544,13 @@ function ChakraMeridianOverlay({
     >
       <defs>
         <linearGradient id="chakra-meridian-grad" x1="0" y1="0" x2="0" y2="1">
+          {/* stops track the chakra fractions along the crown(4)→root(48) line */}
           <stop offset="0%"   stopColor="#B447FF" />
-          <stop offset="15%"  stopColor="#5B47FF" />
-          <stop offset="28%"  stopColor="#1FB6FF" />
-          <stop offset="48%"  stopColor="#43E66A" />
-          <stop offset="62%"  stopColor="#FFD600" />
-          <stop offset="78%"  stopColor="#FF8A1A" />
+          <stop offset="14%"  stopColor="#5B47FF" />
+          <stop offset="27%"  stopColor="#1FB6FF" />
+          <stop offset="59%"  stopColor="#43E66A" />
+          <stop offset="75%"  stopColor="#FFD600" />
+          <stop offset="95%"  stopColor="#FF8A1A" />
           <stop offset="100%" stopColor="#FF3D5C" />
         </linearGradient>
         <filter id="meridian-glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -561,7 +564,7 @@ function ChakraMeridianOverlay({
 
       {/* Solid glowing meridian core (crown → root) */}
       <line
-        x1="50" y1="4" x2="50" y2="58"
+        x1="50" y1="4" x2="50" y2="48"
         stroke="url(#chakra-meridian-grad)"
         strokeWidth="0.5"
         strokeLinecap="round"
@@ -570,7 +573,7 @@ function ChakraMeridianOverlay({
       />
       {/* Flowing dashed overlay */}
       <line
-        x1="50" y1="4" x2="50" y2="58"
+        x1="50" y1="4" x2="50" y2="48"
         stroke="url(#chakra-meridian-grad)"
         strokeWidth="0.9"
         strokeLinecap="round"
