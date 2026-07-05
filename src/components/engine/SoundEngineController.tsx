@@ -28,7 +28,7 @@ import {
   normalizePlanetKey, normalizeTrackKey,
   type AudioFolderState,
 } from '@/lib/astryxAudioLibrary'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { forkFor } from '@/lib/chamber/forkRite'
 import type { ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
 import type { PolarityStateLike } from '@/types'

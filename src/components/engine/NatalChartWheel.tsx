@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { NatalChart } from '@/lib/ephemeris'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { hexToRgba } from '@/lib/utils'
 import sacredTonesData from '@/data/sacredTones_nervousSystem.json'
 import crystalsData from '@/data/crystalsExpanded.json'

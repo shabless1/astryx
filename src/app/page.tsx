@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useAppStore } from '@/lib/store'
-import { runEngine, getAccentColor, geocodeLocation } from '@/lib/engine'
+// FIX 1A — the engine runs server-side (POST /api/protocol); the client keeps
+// only the small render helpers from the client-safe module.
+import { getAccentColor, geocodeLocation } from '@/lib/engineClient'
 import { computeDailyElement } from '@/lib/dailyElement'
 import { computeSubscription, verifySubscription } from '@/lib/subscription'
 import { signalWord } from '@/lib/signalCopy'
@@ -427,12 +429,20 @@ export default function AstryxApp() {
         console.warn('[analyze] no resolved coords or birthDate — engine will use fallback', { resolvedCoords, birthDate: intake.birthDate })
       }
 
-      console.log('[analyze] calling runEngine…')
-      const result = await runEngine(intake, resolvedCoords)
-      console.log('[analyze] runEngine returned:', result)
+      // FIX 1A — the engine + proprietary data run server-side. The client sends
+      // inputs and receives the computed protocol only (determinism unchanged).
+      console.log('[analyze] calling /api/protocol…')
+      const engineRes = await fetch('/api/protocol', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ intake, coords: resolvedCoords }),
+      })
+      const engineData = await engineRes.json()
+      console.log('[analyze] /api/protocol returned:', engineData)
+      const result = engineData?.success ? engineData.protocol : null
 
       if (!result) {
-        throw new Error('Engine returned no protocol — check console for upstream errors.')
+        throw new Error(engineData?.error || 'Engine returned no protocol — check console for upstream errors.')
       }
 
       const accent = getAccentColor(result)

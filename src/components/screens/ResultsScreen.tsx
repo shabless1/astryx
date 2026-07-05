@@ -25,7 +25,7 @@ import type {
   UnifiedPrescription, SymptomRouting,
 } from '@/types'
 import { GlassCard, PrimaryButton, Tag, PlanetBadge, SectionLabel, DataPoint } from '@/components/ui'
-import { PLANET_COLORS, feltStateLanguage } from '@/lib/engine'
+import { PLANET_COLORS, feltStateLanguage } from '@/lib/engineClient'
 import { signalWord, whyLine } from '@/lib/signalCopy'
 import { hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'

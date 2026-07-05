@@ -20,7 +20,7 @@
 
 import { useState, useMemo, useEffect, useRef } from 'react'
 import type { NatalChart, PlanetPosition } from '@/lib/ephemeris'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { hexToRgba } from '@/lib/utils'
 import sacredTonesData from '@/data/sacredTones_nervousSystem.json'
 import { playPureTone, stopPureTone, pureToneHz, onPureToneChange } from '@/lib/pureTone'

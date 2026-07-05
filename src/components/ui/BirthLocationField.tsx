@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { geocodeLocation, type GeoResult } from '@/lib/engine'
+import { geocodeLocation, type GeoResult } from '@/lib/engineClient'
 import { hexToRgba } from '@/lib/utils'
 
 interface BirthLocationFieldProps {

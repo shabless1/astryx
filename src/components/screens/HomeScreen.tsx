@@ -31,10 +31,10 @@
 import { useMemo } from 'react'
 import type { ProtocolOutput, ActiveTransit } from '@/types'
 import { GlassCard, PrimaryButton, SectionLabel, PlanetBadge, Tag } from '@/components/ui'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER } from '@/lib/compliance'
-import { freshTransitInterpretation } from '@/lib/engine'
+import { freshTransitInterpretation } from '@/lib/engineClient'
 import cellSaltsData from '@/data/cellSalts.json'
 
 // Local alpha helper for either #hex or rgba() strings

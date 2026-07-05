@@ -17,7 +17,7 @@ import { hexToRgba } from '@/lib/utils'
 import { resolveBodyMapAsset, fallbackBodyMapAsset, type BodyMapType, type BodyView } from '@/lib/bodyMapPlacement'
 import type { ForkPlacement, PlacementAnchor } from '@/lib/BodyPlacementEngine'
 import type { ReflexPoint } from '@/lib/ReflexEngine'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 
 interface ChamberBodyMapProps {
   placement: ForkPlacement

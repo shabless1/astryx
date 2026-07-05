@@ -51,6 +51,17 @@ import sacredTonesData      from '@/data/sacredTones_nervousSystem.json'
 import cellSaltsData        from '@/data/cellSalts.json'
 import medicalAstrologyData from '@/data/medicalAstrology.json'
 import type { DominantPatternData } from '@/lib/ephemeris'
+// FIX 1A — the small presentational helpers live in the client-safe module; the
+// heavy engine + proprietary data stay here (server-only).
+import { PLANET_COLORS, PLANET_ELEMENT, feltStateLanguage, type FeltLanguage } from '@/lib/engineClient'
+
+// FIX 1A (Security Directive v1.1) — SERVER-ONLY tripwire. This module carries
+// the deterministic engine and the proprietary data corpus (medicalAstrology,
+// remedyPolarity, etc.). It must never enter the client bundle: client code
+// imports render helpers from '@/lib/engineClient' and calls '/api/protocol'.
+if (typeof window !== 'undefined') {
+  throw new Error('engine.ts is server-only — import client-safe helpers from @/lib/engineClient and call /api/protocol.')
+}
 
 // ─── SYMPTOM VOCABULARY BRIDGE ────────────────────────────────
 // The intake UI (planet-intake-map.json) emits free-text symptom TAGS such as
@@ -153,18 +164,7 @@ function planetsImplicatedBySymptoms(canonicalSymptoms: string[]): string[] {
 }
 
 // ─── PLANET COLORS ────────────────────────────────────────────
-export const PLANET_COLORS: Record<string, string> = {
-  Sun:     '#F4A940',
-  Moon:    '#A8C4D0',
-  Mercury: '#9EC832',
-  Venus:   '#4CAF89',
-  Mars:    '#E8453C',
-  Jupiter: '#6B7FD4',
-  Saturn:  '#C9993A',
-  Uranus:  '#2EC4B6',
-  Neptune: '#9B5DE5',
-  Pluto:   '#9F7AEA',
-}
+// PLANET_COLORS → moved to @/lib/engineClient (FIX 1A), imported above.
 
 // ─── SACRED LAYER PLANET → FORK MAP ──────────────────────────
 // The base engine uses canonical planet names. The sacredTones JSON file
@@ -286,10 +286,9 @@ function lookupTransitInterpretation(transit: any) {
  * deterministic core (signal, sequence, frequencies) stays persisted untouched;
  * this derives DISPLAY TEXT only, from the current data files.
  */
-export function freshTransitInterpretation(transit: any):
-  { effect: string; intervention: string; duration: string } | undefined {
-  return lookupTransitInterpretation(transit) ?? transit?.interpretation ?? undefined
-}
+// freshTransitInterpretation → moved to @/lib/engineClient (FIX 1A). The server
+// bakes each transit's interpretation via shapeActiveTransit (below), so the
+// client reads the baked copy and medicalAstrology.json stays server-only.
 
 // ── Directive H.0.4 — landmark life events ──
 // A transiting planet returning to (or striking) a personal natal point on a
@@ -899,24 +898,7 @@ const ASPECT_LABELS: Record<string, string> = {
 
 // ─── GEOCODING ────────────────────────────────────────────────
 
-export interface GeoResult {
-  name: string
-  lat: number
-  lon: number
-  country: string
-}
-
-export async function geocodeLocation(query: string): Promise<GeoResult[]> {
-  if (!query.trim()) return []
-  try {
-    const res = await fetch(`/api/geocode?q=${encodeURIComponent(query)}`)
-    const data = await res.json()
-    if (data.success) return data.results
-    return []
-  } catch {
-    return []
-  }
-}
+// GeoResult + geocodeLocation → moved to @/lib/engineClient (FIX 1A).
 
 // ─── CHART API CALL ───────────────────────────────────────────
 
@@ -936,7 +918,16 @@ async function fetchChart(payload: ChartRequestPayload): Promise<{
   symptomPlanets: string[]
 } | null> {
   try {
-    const res = await fetch('/api/chart', {
+    // FIX 1A — runEngine now runs server-side (inside /api/protocol), so the
+    // internal chart call needs an ABSOLUTE base. Resolve it from the server env
+    // (NEXTAUTH_URL in prod/dev, VERCEL_URL as a fallback). Determinism-neutral:
+    // the chart response is identical regardless of how the URL is formed.
+    const base =
+      process.env.NEXTAUTH_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '') ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      'http://localhost:3000'
+    const res = await fetch(`${base}/api/chart`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -1137,34 +1128,8 @@ function buildSymptomGuidance(
 // and you can't "cool" a planet that was never hot. Felt language keys to the
 // planet's ELEMENT (the Part-F PLANET_ELEMENT map) + state, and the corrective
 // verbs match the actual corrective direction. Never default to hot/cool.
-export interface FeltLanguage { felt: string; body: string; verbs: string }
-const ELEMENT_EXCESS_LANGUAGE: Record<string, FeltLanguage> = {
-  Fire:  { felt: 'running hot',   body: 'may be over-active — inflamed, driven, burning through reserves', verbs: 'cool and calm' },
-  Air:   { felt: 'running fast',  body: 'may be over-active — scattered, wired, racing ahead of the body', verbs: 'settle, slow, and ground' },
-  Earth: { felt: 'running heavy', body: 'may be over-consolidated — rigid, weighted, walled-in',           verbs: 'soften, release, and lighten' },
-  Water: { felt: 'running high',  body: 'may be flooded — foggy, dissolved, washing past its banks',       verbs: 'clarify, contain, and ground' },
-}
-const DEFICIENCY_LANGUAGE: FeltLanguage = {
-  felt: 'running low', body: 'may be under-resourced — depleted, dim, slow to rise', verbs: 'build, warm, and strengthen',
-}
-const BLOCKED_LANGUAGE: FeltLanguage = {
-  felt: 'held or stuck', body: 'may be held — stuck, frozen, slow to move', verbs: 'mobilize and free',
-}
-const BALANCED_LANGUAGE: FeltLanguage = {
-  felt: 'steady', body: 'appears steady', verbs: 'maintain',
-}
-
-/** Element- and state-true felt language for a planet. Exported so the hero,
- *  diagnostic, chamber, and Astryx all speak the same planet-true words. */
-export function feltStateLanguage(planet: string, state: string): FeltLanguage {
-  if (state === 'deficiency') return DEFICIENCY_LANGUAGE
-  if (state === 'blocked')    return BLOCKED_LANGUAGE
-  if (state === 'excess') {
-    const el = PLANET_ELEMENT[planet] ?? 'Earth'
-    return ELEMENT_EXCESS_LANGUAGE[el] ?? ELEMENT_EXCESS_LANGUAGE.Earth
-  }
-  return BALANCED_LANGUAGE
-}
+// FeltLanguage + feltStateLanguage (+ its element/state tables) → moved to
+// @/lib/engineClient (FIX 1A), imported above.
 
 function buildSignalHierarchy(
   pattern: DominantPattern,
@@ -1294,10 +1259,7 @@ function alignDiagnosticToPrimary(diagnostic: DiagnosticOutput, hierarchy: Signa
 // signs.json/elements.json encode (Moon rules Cancer = Water, Mars rules Aries =
 // Fire, …). Authored from existing data; not fabricated. The CORRECTIVE element
 // comes from the regulator, so the environment always points toward balance.
-const PLANET_ELEMENT: Record<string, string> = {
-  Sun: 'Fire', Moon: 'Water', Mercury: 'Air', Venus: 'Earth', Mars: 'Fire',
-  Jupiter: 'Fire', Saturn: 'Earth', Uranus: 'Air', Neptune: 'Water', Pluto: 'Water',
-}
+// PLANET_ELEMENT → moved to @/lib/engineClient (FIX 1A), imported above.
 const SIGN_MODALITY: Record<string, string> = (() => {
   const m: Record<string, string> = {}
   for (const s of signsData as Array<{ sign: string; modality?: string }>) {
@@ -2306,6 +2268,4 @@ function buildReasoningTrace(args: {
   }
 }
 
-export function getAccentColor(protocol: ProtocolOutput): string {
-  return PLANET_COLORS[protocol.dominant_pattern.planets[0]] ?? '#8B5CF6'
-}
+// getAccentColor → moved to @/lib/engineClient (FIX 1A).

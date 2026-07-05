@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import type { ProtocolOutput } from '@/types'
 import { GlassCard, PrimaryButton, PlanetBadge, Tag, DataPoint, ConfidenceBar, SectionLabel } from '@/components/ui'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { hexToRgb, hexToRgba, APP_PLAYED_TONES } from '@/lib/utils'
 import planetaryAnchors from '@/data/planetary-anchors.json'
 import solfeggioOverlays from '@/data/solfeggio-overlays.json'

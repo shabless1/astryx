@@ -20,7 +20,7 @@ import { useState } from 'react'
 import type { ProtocolOutput } from '@/types'
 import { hexToRgba } from '@/lib/utils'
 import { GlassCard } from '@/components/ui'
-import { freshTransitInterpretation } from '@/lib/engine'
+import { freshTransitInterpretation } from '@/lib/engineClient'
 
 const cap = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s)
 

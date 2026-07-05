@@ -24,7 +24,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import type { ProtocolOutput, AppMode, SessionRecord } from '@/types'
 import { computeDailyTemperature, type Temperature } from '@/lib/dailyTemperature'
-import { freshTransitInterpretation } from '@/lib/engine'
+import { freshTransitInterpretation } from '@/lib/engineClient'
 import { forkFor } from '@/lib/chamber/forkRite'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'

@@ -21,7 +21,7 @@ import { useState, useEffect, useCallback } from 'react'
 import type { SavedTrack, SoundFolderState, CustomSequence } from '@/types'
 import { useAppStore } from '@/lib/store'
 import { hexToRgba, formatTime } from '@/lib/utils'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { astryxPlayer } from '@/lib/astryxPlayer'
 import { audioSession } from '@/lib/audioSession'
 import {

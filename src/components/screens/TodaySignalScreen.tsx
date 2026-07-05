@@ -20,7 +20,7 @@
 import { useState } from 'react'
 import type { ProtocolOutput, AppMode } from '@/types'
 import { signalWord, whyLine } from '@/lib/signalCopy'
-import { PLANET_COLORS } from '@/lib/engine'
+import { PLANET_COLORS } from '@/lib/engineClient'
 import { buildForkSequence, buildFullSpectrumSequence, forkSequenceDisplay } from '@/lib/chamber/forkRite'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { hexToRgba } from '@/lib/utils'
