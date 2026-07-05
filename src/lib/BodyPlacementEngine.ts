@@ -390,11 +390,18 @@ const CHAKRA_LOCATION_TEXT: Record<string, string> = {
  * The fixed body-map placement for a chakra CENTER (chakra session only).
  * Planet-independent, single orb, contact hover at the center's anatomical point.
  */
+// v4.5.1 (SHA) — chakra-specific vertical refinements, kept SEPARATE from the
+// generic body-region anchors used by planet placements: the Heart center sits
+// at the sternum and the Sacral center within the pelvic girdle (above the Root).
+// These keep the Body Map (BodyMap.tsx CHAKRAS) and the chakra session in sync.
+const CHAKRA_ANCHOR_Y: Record<string, number> = { heart: 0.27, sacral: 0.42 }
+
 export function chakraCenterPlacement(center: string): ForkPlacement {
   const key = CHAKRA_CENTER_TO_KEY[center] ?? 'heart'
   const lib = chakraPlacementLibrary[key]
   const region = lib.bodyMapRegion
-  const anchor = anchorFor(region)
+  const baseAnchor = anchorFor(region)
+  const anchor = key in CHAKRA_ANCHOR_Y ? { x: baseAnchor.x, y: CHAKRA_ANCHOR_Y[key] } : baseAnchor
   const locationText = CHAKRA_LOCATION_TEXT[key] ?? region.replace(/_/g, ' ')
   const label = `${lib.label} · ${locationText}`
   const style = signalStateApplicationLibrary.coherent

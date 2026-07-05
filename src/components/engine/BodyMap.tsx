@@ -121,9 +121,9 @@ const CHAKRAS: { id: string; name: string; sanskrit: string; color: string; colo
   { id: 'crown',     name: 'Crown',         sanskrit: 'Sahasrāra',    color: '#B447FF', colorName: 'Violet', hz: 963, y:  4 },
   { id: 'third-eye', name: 'Third Eye',     sanskrit: 'Ājñā',         color: '#5B47FF', colorName: 'Indigo', hz: 852, y: 10 },
   { id: 'throat',    name: 'Throat',        sanskrit: 'Viśuddha',     color: '#1FB6FF', colorName: 'Blue',   hz: 741, y: 16 },
-  { id: 'heart',     name: 'Heart',         sanskrit: 'Anāhata',      color: '#43E66A', colorName: 'Green',  hz: 639, y: 30 },
+  { id: 'heart',     name: 'Heart',         sanskrit: 'Anāhata',      color: '#43E66A', colorName: 'Green',  hz: 639, y: 27 },
   { id: 'plexus',    name: 'Solar Plexus',  sanskrit: 'Maṇipūra',     color: '#FFD600', colorName: 'Yellow', hz: 528, y: 37 },
-  { id: 'sacral',    name: 'Sacral',        sanskrit: 'Svādhiṣṭhāna', color: '#FF8A1A', colorName: 'Orange', hz: 417, y: 46 },
+  { id: 'sacral',    name: 'Sacral',        sanskrit: 'Svādhiṣṭhāna', color: '#FF8A1A', colorName: 'Orange', hz: 417, y: 42 },
   { id: 'root',      name: 'Root',          sanskrit: 'Mūlādhāra',    color: '#FF3D5C', colorName: 'Red',    hz: 396, y: 48 },
 ]
 
@@ -548,9 +548,9 @@ function ChakraMeridianOverlay({
           <stop offset="0%"   stopColor="#B447FF" />
           <stop offset="14%"  stopColor="#5B47FF" />
           <stop offset="27%"  stopColor="#1FB6FF" />
-          <stop offset="59%"  stopColor="#43E66A" />
+          <stop offset="52%"  stopColor="#43E66A" />
           <stop offset="75%"  stopColor="#FFD600" />
-          <stop offset="95%"  stopColor="#FF8A1A" />
+          <stop offset="86%"  stopColor="#FF8A1A" />
           <stop offset="100%" stopColor="#FF3D5C" />
         </linearGradient>
         <filter id="meridian-glow" x="-50%" y="-50%" width="200%" height="200%">
