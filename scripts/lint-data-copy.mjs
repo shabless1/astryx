@@ -63,6 +63,19 @@ function findBanned(text) {
   return hits
 }
 
+// ─── LEGAL SHIELD v1 · FIX 3 — claims-scrub scope note ──────────────────────
+// Over-claim verbs ("clinically proven", "guaranteed to cure", "FDA-approved",
+// …) live in BANNED_PHRASES (compliance.ts) and are auto-extracted above, so
+// they fail the build EVERYWHERE (single source of truth — no second list).
+// Disease-naming + explicit dosing are handled two ways, by design:
+//   • FREE / Individual surface → the transit-field guard below + the runtime
+//     sibling guard `lintClinicalClaims()` (compliance.ts), which the /api/astryx
+//     output guard applies to individual-tier replies.
+//   • Practitioner tier (bodySystems/*.json disease names + clinical dosing) is
+//     INTENTIONALLY NOT flagged here — it is attested, isPremium-gated clinical
+//     reference (SHA decision, LEGAL SHIELD v1). Do not add bodySystems disease/
+//     dose detection here without revisiting that decision.
+
 // ─── Individual-facing transit copy guard (Fix 5 §2) ────────────────────────
 // The Daily Check-In transit list renders `effect` + "Support: {intervention}"
 // verbatim to Individual-tier users. Named medical conditions and supplement

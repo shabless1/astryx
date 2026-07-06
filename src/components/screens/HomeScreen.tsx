@@ -290,7 +290,7 @@ export default function HomeScreen({
               <span className="eyebrow-pill">How are you feeling?</span>
             </div>
             <p className="text-[14px] text-content-sm max-w-[60ch] leading-relaxed">
-              Tap a state. Astryx routes it through your chart and returns a focused diagnostic.
+              Tap a state. Astryx routes it through your chart and returns a focused session summary.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

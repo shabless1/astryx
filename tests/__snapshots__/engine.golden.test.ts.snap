@@ -2718,7 +2718,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "tier": 2,
         "traditionalUse": "Protection practices, strength and courage practices, Mars day (Tuesday) practices, warrior medicine",
         "wellnessBenefits": [
-          "Blood pressure regulation (clinically documented)",
+          "Blood pressure regulation (traditionally associated)",
           "Iron-rich blood building and anemia support",
           "Immune system fortification",
           "Liver and metabolic protection",
@@ -2865,7 +2865,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "tier": 2,
         "traditionalUse": "Protection practices, strength and courage practices, Mars day (Tuesday) practices, warrior medicine",
         "wellnessBenefits": [
-          "Blood pressure regulation (clinically documented)",
+          "Blood pressure regulation (traditionally associated)",
           "Iron-rich blood building and anemia support",
           "Immune system fortification",
           "Liver and metabolic protection",

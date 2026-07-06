@@ -24,6 +24,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import {
   detectCrisis, CRISIS_RESOURCES_CARD, MICRO_DISCLAIMER, lintForBannedPhrases,
+  lintClinicalClaims,
 } from '@/lib/compliance'
 import { retrieve } from '@/lib/astryx/canon'
 import { buildAstryxSystem } from '@/lib/astryx/persona'
@@ -32,6 +33,7 @@ import { buildTransitContext } from '@/lib/astryx/transitContext'
 import { fetchWebContext, ASTRYX_WEB_ENABLED } from '@/lib/astryx/webSources'
 import { deriveAstryxActions } from '@/lib/astryx/actions'
 import { enforceRateLimit } from '@/lib/rateLimit'
+import { sessionHasConsent } from '@/lib/consent'
 
 export const runtime = 'nodejs'
 
@@ -171,6 +173,18 @@ export async function POST(req: NextRequest) {
     const userId = session?.user?.id ?? null
     const isPremium = session?.user?.isPremium ?? false
     const tier: 'individual' | 'practitioner' = isPremium ? 'practitioner' : 'individual'
+
+    // LEGAL SHIELD v1 · FIX 1 — an authenticated user who has not accepted the
+    // current consent version cannot receive chat output. Anonymous callers are
+    // not gated here (they still see the AI disclosure + disclaimers).
+    if (!(await sessionHasConsent(session))) {
+      return NextResponse.json({
+        consentRequired: true, code: 'consent_required',
+        reply: 'Please review and accept the Terms & Consent to continue.',
+        disclaimer: MICRO_DISCLAIMER, tier,
+      }, { status: 403 })
+    }
+
     const metered = tier === 'individual'
     const identity = identityFor(req, userId)
     // FIX 3 — short-window BURST cap (anti-scrape) on top of the daily allowance.
@@ -266,13 +280,21 @@ export async function POST(req: NextRequest) {
     if (reply === undefined) return NextResponse.json({ fallback: true, reason: 'model-error' })
 
     // 5. Output guard — regenerate once stricter, else safe fallback.
-    if (teacherLint(reply).length > 0) {
+    // LEGAL SHIELD v1 · FIX 3 — for the FREE (individual) tier the guard also
+    // catches disease-naming + explicit dosing that could be surfaced from the
+    // canon's practitioner clinical layer. Practitioner tier keeps clinical
+    // terminology, so lintClinicalClaims is applied only when tier==='individual'.
+    const guardHits = (text: string): string[] => [
+      ...teacherLint(text),
+      ...(tier === 'individual' ? lintClinicalClaims(text) : []),
+    ]
+    if (guardHits(reply).length > 0) {
       flagged = true
-      const hits = teacherLint(reply)
-      const stricter = `${system}\n\nOUTPUT GUARD: your previous draft used disallowed phrasing (${hits.join(', ')}). Rewrite with the SAME meaning but strictly probabilistic, non-clinical framing. Never use "you have", "treats", "cures", "diagnose", "will", "guaranteed", "permanently", or the verb "prescribe". Use "may suggest", "may support", "is classically associated with".`
+      const hits = guardHits(reply)
+      const stricter = `${system}\n\nOUTPUT GUARD: your previous draft used disallowed phrasing (${hits.join(', ')}). Rewrite with the SAME meaning but strictly probabilistic, non-clinical framing. Do not name diseases/medical conditions or give supplement doses. Never use "you have", "treats", "cures", "diagnose", "will", "guaranteed", "permanently", or the verb "prescribe". Use "may suggest", "may support", "is classically associated with".`
       try { reply = await model.complete({ system: stricter, context, message }) } catch { /* keep first */ }
     }
-    if (!reply || teacherLint(reply).length > 0) {
+    if (!reply || guardHits(reply).length > 0) {
       reply = SAFE_FALLBACK
       flagged = true
     }

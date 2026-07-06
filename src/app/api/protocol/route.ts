@@ -18,6 +18,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import { runEngine } from '@/lib/engine'
 import { enforceRateLimit, clientIdentity } from '@/lib/rateLimit'
+import { sessionHasConsent } from '@/lib/consent'
 import type { IntakeData } from '@/types'
 
 interface ProtocolRequestBody {
@@ -40,6 +41,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { success: false, error: 'Too many calibrations in a short window — please wait a moment and try again.' },
         { status: 429, headers: { 'Retry-After': String(rl.retryAfterSec) } },
+      )
+    }
+
+    // LEGAL SHIELD v1 · FIX 1 — server-side consent gate. An authenticated user
+    // who has not accepted the current consent version cannot release a reading,
+    // even if the client UI is bypassed. Anonymous callers are not gated here.
+    if (!(await sessionHasConsent(session))) {
+      return NextResponse.json(
+        { success: false, error: 'Consent required before a reading can be generated.', code: 'consent_required' },
+        { status: 403 },
       )
     }
 

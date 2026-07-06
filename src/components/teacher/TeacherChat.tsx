@@ -18,6 +18,7 @@ import { hexToRgba } from '@/lib/utils'
 import { answerAstryx } from '@/lib/astryx/sovereignAstryx'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
 import { deriveAstryxActions, type AstryxAction } from '@/lib/astryx/actions'
+import { AI_DISCLOSURE_LABEL } from '@/legal'
 
 type Turn = { role: 'user' | 'model'; text: string; sources?: string[]; actions?: AstryxAction[] }
 
@@ -157,6 +158,16 @@ export default function TeacherChat({
                   style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
             ✕
           </button>
+        </div>
+
+        {/* LEGAL SHIELD v1 · FIX 2 — persistent AI disclosure. Always visible,
+            in every state (live model + offline sovereign brain), before the
+            user reads any chat output. */}
+        <div
+          className="shrink-0 px-5 py-1.5 text-[10px] leading-snug border-b border-white/8"
+          style={{ color: 'rgba(255,255,255,0.42)', background: 'rgba(255,255,255,0.02)' }}
+        >
+          {AI_DISCLOSURE_LABEL}
         </div>
 
         {/* Messages */}

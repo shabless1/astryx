@@ -19,16 +19,16 @@
 export const COMPLIANCE_VERSION = '1.0'
 
 // ─── DISCLAIMERS (EXACT TEXT — DO NOT EDIT WITHOUT VERSION BUMP) ─────
+// LEGAL SHIELD v1 — the canonical text now lives in src/legal/copy.ts (the
+// single counsel-edit file). Re-exported here so every existing
+// `import { MICRO_DISCLAIMER } from '@/lib/compliance'` keeps working.
 
-export const MICRO_DISCLAIMER = 'ⓘ Reference tool · Not medical advice'
-
-export const FULL_DISCLAIMER = `This information is provided for educational and observational reference only. Astryx does not diagnose, treat, cure, or prescribe. The astrological correlations presented are drawn from classical sources and are intended as a complement to — not a replacement for — care provided by a licensed healthcare professional.
-
-Consult your physician or qualified practitioner for any persistent symptom, health decision, or concern. Do not stop or alter prescribed medication based on this information. In an emergency, call your local emergency services.
-
-By using Astryx, you acknowledge and accept these terms.`
-
-export const PRACTITIONER_ADDENDUM = `The information presented is observational reference. Clinical interpretation, diagnosis, and any recommended interventions are the sole responsibility of the practitioner accessing this output.`
+import {
+  MICRO_DISCLAIMER,
+  FULL_DISCLAIMER,
+  PRACTITIONER_ADDENDUM,
+} from '@/legal'
+export { MICRO_DISCLAIMER, FULL_DISCLAIMER, PRACTITIONER_ADDENDUM }
 
 // ─── TIERS ───────────────────────────────────────────────────────────
 
@@ -63,6 +63,15 @@ export const BANNED_PHRASES: ReadonlyArray<RegExp> = [
   /\bsafe for everyone\b/i,
   /\bno side effects\b/i,
   /\bcompletely natural\b/i,
+  // LEGAL SHIELD v1 · FIX 3 — over-claim verbs. No tier makes these claims, so
+  // they are banned EVERYWHERE (individual + practitioner + marketing copy).
+  /\bclinically proven\b/i,
+  /\bscientifically proven\b/i,
+  /\bmedically proven\b/i,
+  /\bproven to (?:cure|heal|treat|reverse|fix)\b/i,
+  /\bguaranteed to (?:cure|heal|treat|reverse|fix|eliminate)\b/i,
+  /\bmiracle (?:cure|remedy)\b/i,
+  /\bFDA[- ]approved\b/i,
 ]
 
 // Phrases allowed in specific contexts (e.g., quoted source titles)
@@ -345,6 +354,36 @@ export function containsBannedPhrase(text: string): boolean {
   return lintForBannedPhrases(text).length > 0
 }
 
+// ─── CLINICAL-CLAIMS LEXICON (FIX 3 · individual-tier output guard) ─────────
+// The individual-tier chat retrieves from a canon that INCLUDES the attested
+// Practitioner clinical layer (disease-named pathologies, supplement dosing).
+// On the FREE surface, disease-naming and explicit dosing must be caught the
+// same way banned phrases are. Practitioner-tier output legitimately uses
+// clinical terminology and cited pathology, so these fire ONLY for the
+// individual tier (see safetyGate + the /api/astryx output guard).
+
+export const CLINICAL_CONDITION_TERMS: ReadonlyArray<RegExp> = [
+  /\b(?:hypertension|arrhythmia|fibromyalgia|endometriosis|GERD|PMDD|COPD)\b/i,
+  /\b(?:depression|anxiety) disorder\b/i,
+  /\b(?:cancer|diabetes|osteoporosis|hypothyroidism|hyperthyroidism)\b/i,
+  /\b\w+ (?:disease|syndrome|disorder)\b/i,
+  /\bICD[- ]?(?:9|10|11)?\b/i,
+]
+
+export const SUPPLEMENT_DOSE_TERMS: ReadonlyArray<RegExp> = [
+  /\b\d+\s?-?\s?\d*\s?(?:mg|mcg|µg|IU)\b/i,                        // explicit dose
+  /\b(?:magnesium|riboflavin|melatonin|CoQ10|5-?HTP|SAMe|zinc)\s+\d/i, // supplement + number
+]
+
+/** Disease-naming + explicit dosing findings. Empty if clean. */
+export function lintClinicalClaims(text: string): string[] {
+  if (!text) return []
+  const hits: string[] = []
+  for (const re of CLINICAL_CONDITION_TERMS) { const m = text.match(re); if (m) hits.push(`condition:${m[0]}`) }
+  for (const re of SUPPLEMENT_DOSE_TERMS)    { const m = text.match(re); if (m) hits.push(`dose:${m[0]}`) }
+  return hits
+}
+
 // ─── HARD-LINE GUARDS ───────────────────────────────────────────────
 
 /**
@@ -377,6 +416,13 @@ export function safetyGate(
   const banned = lintForBannedPhrases(content)
   if (banned.length > 0) {
     return { safe: false, reason: `Output contains banned phrases: ${banned.join(', ')}. Rewrite per COMPLIANCE.md §3.` }
+  }
+  // FIX 3 — disease-naming / explicit dosing is not allowed on the free surface.
+  if (tier === 'individual') {
+    const clinical = lintClinicalClaims(content)
+    if (clinical.length > 0) {
+      return { safe: false, reason: `Individual-tier output contains clinical claims: ${clinical.join(', ')}. Soften to the wellness register.` }
+    }
   }
   return { safe: true }
 }

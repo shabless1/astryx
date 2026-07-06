@@ -8,7 +8,7 @@ const PHASES = [
   'Detecting planetary patterns...',
   'Scoring aspect configurations...',
   'Mapping sign localizations...',
-  'Cross-referencing symptom matrix...',
+  'Cross-referencing your signals...',
   'Building sensory protocol...',
 ]
 

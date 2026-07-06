@@ -11,6 +11,7 @@ import { computeSubscription, verifySubscription } from '@/lib/subscription'
 import { signalWord } from '@/lib/signalCopy'
 import { generateId, hexToRgba } from '@/lib/utils'
 import { audioSession } from '@/lib/audioSession'
+import { MICRO_DISCLAIMER, CONSENT_LINK_LABEL } from '@/legal'
 
 // Layout
 import CosmicBackground from '@/components/layout/CosmicBackground'
@@ -36,6 +37,7 @@ import BodyGridScreen from '@/components/screens/BodyGridScreen'
 import ClientRosterScreen from '@/components/screens/ClientRosterScreen'
 import HomeScreen from '@/components/screens/HomeScreen'
 import SubscribeGateScreen from '@/components/screens/SubscribeGateScreen'
+import ConsentGateScreen from '@/components/screens/ConsentGateScreen'
 import ForkAccessScreen from '@/components/screens/ForkAccessScreen'
 import SessionModePicker from '@/components/screens/SessionModePicker'
 import type { SessionMode } from '@/lib/store'
@@ -45,7 +47,7 @@ import TeacherChat from '@/components/teacher/TeacherChat'
 import type { AppScreen, ClientRecord, SessionSummarySnapshot } from '@/types'
 
 export default function AstryxApp() {
-  const { data: session } = useSession()
+  const { data: session, update: updateSession } = useSession()
 
   const {
     screen, setScreen,
@@ -677,6 +679,31 @@ export default function AstryxApp() {
   const isSessionScreen = screen === 'session'
   const hideNav = isSessionScreen || screen === 'analysis' || screen === 'auth' || screen === 'payment' || screen === 'subscribe-gate' || screen === 'landing' || screen === 'fork-access' || screen === 'session-mode'
 
+  // LEGAL SHIELD v1 · FIX 1 — blocking consent gate. An authenticated user who
+  // has not accepted the current consent version sees ONLY the gate until they
+  // do — intake, dashboard, and every reading are unreachable behind it. The
+  // server enforces the same rule, so this is UX, not the security boundary.
+  const needsConsent = !!session?.user && session.user.consented === false
+  if (needsConsent) {
+    return (
+      <div className="relative min-h-screen" style={{ overflow: 'auto' }}>
+        <CosmicBackground screen="landing" accentColor={accentColor} />
+        <div className="relative z-10 min-h-screen">
+          <ConsentGateScreen
+            accentColor={accentColor}
+            mode="gate"
+            onAccepted={async () => {
+              // Refresh the JWT (jwt callback `update` trigger re-checks consent),
+              // which flips session.user.consented → true and drops the gate.
+              await updateSession()
+              goHome()
+            }}
+          />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div
       className="relative min-h-screen"
@@ -735,6 +762,11 @@ export default function AstryxApp() {
         {/* ── Subscribe gate (FIX 9 — trial expired; data preserved behind it) ── */}
         {screen === 'subscribe-gate' && (
           <SubscribeGateScreen accentColor={accentColor} onRestore={handleRestoreSubscription} />
+        )}
+
+        {/* ── Terms & Consent (LEGAL SHIELD v1 · FIX 1 — read-only, anytime) ── */}
+        {screen === 'consent' && (
+          <ConsentGateScreen accentColor={accentColor} mode="review" onBack={goBack} />
         )}
 
         {/* ── Fork access (Directive v4.0 Fix 2/8 — beta access = fork set) ── */}
@@ -973,7 +1005,7 @@ export default function AstryxApp() {
             <TierGate
               accentColor={accentColor}
               title="Body Systems"
-              blurb="The system-by-system medical-astrology breakdown is a Practitioner-tier surface. Your Chart and Body Grid are always available to you."
+              blurb="The system-by-system body-based wellness breakdown is a Practitioner-tier surface. Your Chart and Body Grid are always available to you."
               onUpgrade={() => setScreen('fork-access')}
               onBack={goHome}
             />
@@ -1011,6 +1043,21 @@ export default function AstryxApp() {
         )}
 
       </div>
+
+      {/* ── Global legal footer (LEGAL SHIELD v1 · FIX 2 persistent micro-
+          disclaimer + FIX 1 anytime "Terms & Consent" link). Hidden on the
+          fullscreen session/chamber to keep it immersive. ── */}
+      {!hideNav && (
+        <footer className="relative z-10 px-4 pb-6 pt-2 flex flex-col items-center gap-1.5">
+          <span className="text-[11px] text-white/40">{MICRO_DISCLAIMER}</span>
+          <button
+            onClick={() => setScreen('consent')}
+            className="text-[11px] underline decoration-white/25 underline-offset-2 text-white/45 hover:text-white/70 transition-colors"
+          >
+            {CONSENT_LINK_LABEL}
+          </button>
+        </footer>
+      )}
 
       {/* ── Ask Astryx — the launcher is a permanent fixture of every screen's
           TOP bar (NavBar center on standard screens; the chamber's own top bar on

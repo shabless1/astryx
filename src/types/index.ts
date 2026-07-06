@@ -656,6 +656,7 @@ export type AppScreen =
   | 'auth'
   | 'payment'
   | 'subscribe-gate'
+  | 'consent'
   | 'intake'
   | 'analysis'
   | 'daily-checkin'

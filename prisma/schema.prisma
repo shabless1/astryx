@@ -32,6 +32,7 @@ model User {
   sessions        Session[]
   readings        Reading[]
   chamberSessions ChamberSession[]
+  consents        ConsentAcceptance[]
 }
 
 model Account {
@@ -115,4 +116,22 @@ model ChamberSession {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+// LEGAL SHIELD v1 · FIX 1 — informed-consent + assumption-of-risk record.
+// One row per acceptance. When CONSENT_VERSION bumps, a returning user is
+// re-prompted and a NEW row is written; old rows are retained (audit trail),
+// never updated or deleted. `current consent` = a row whose consentVersion
+// equals the app's CONSENT_VERSION constant (see src/legal/copy.ts).
+model ConsentAcceptance {
+  id              String   @id @default(cuid())
+  userId          String
+  consentVersion  String // matches src/legal CONSENT_VERSION at accept time
+  acceptedAt      DateTime @default(now())
+  ipAtAcceptance  String? // best-effort client IP captured server-side
+  consentTextHash String? // sha256 of CONSENT_FULL_TEXT — proves WHAT was agreed
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, consentVersion])
 }

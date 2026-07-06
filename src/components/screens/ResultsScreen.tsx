@@ -27,6 +27,7 @@ import type {
 import { GlassCard, PrimaryButton, Tag, PlanetBadge, SectionLabel, DataPoint } from '@/components/ui'
 import { PLANET_COLORS, feltStateLanguage } from '@/lib/engineClient'
 import { signalWord, whyLine } from '@/lib/signalCopy'
+import { DISPLAY } from '@/lib/displayLabels'
 import { hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import ChartTabs from '@/components/engine/ChartTabs'
@@ -374,7 +375,7 @@ export default function ResultsScreen({
         {d?.symptomRouting && d.symptomRouting.length > 0 && (
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
-              <SectionLabel>Symptom Routing</SectionLabel>
+              <SectionLabel>{DISPLAY.signalRouting}</SectionLabel>
               <span className="text-[10px] text-white/30 tracking-widest">
                 {d.symptomRouting.length} ROUTED
               </span>
@@ -512,7 +513,7 @@ export default function ResultsScreen({
                 accentColor={accentColor}
                 soapContent={
                   <div>
-                    <SectionLabel>Reference Assessment (SOAP)</SectionLabel>
+                    <SectionLabel>{DISPLAY.sessionSummary}</SectionLabel>
                     <SOAPSection label="S — Subjective" items={protocol.soap.subjective} accentColor={accentColor} />
                     <SOAPSection
                       label="O — Objective"

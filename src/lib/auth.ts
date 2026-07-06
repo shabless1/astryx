@@ -26,6 +26,7 @@ declare module 'next-auth' {
       id: string
       isPremium: boolean
       entitled: boolean
+      consented: boolean
       xrpAddress?: string
     } & DefaultSession['user']
   }
@@ -41,6 +42,7 @@ declare module 'next-auth/jwt' {
     id: string
     isPremium: boolean
     entitled?: boolean
+    consented?: boolean
     xrpAddress?: string
   }
 }
@@ -126,7 +128,7 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id         = user.id
         token.isPremium  = user.isPremium ?? false
@@ -136,6 +138,15 @@ export const authOptions: NextAuthOptions = {
         // forks after signing in picks it up on their next sign-in.
         const { hasEntitlement } = await import('./entitlement')
         token.entitled = await hasEntitlement(user.email ?? token.email)
+        // LEGAL SHIELD v1 · FIX 1 — consent stamp. False for a fresh signup;
+        // flips to true after they accept (see the `update` trigger below).
+        const { hasAcceptedCurrentConsent } = await import('./consent')
+        token.consented = await hasAcceptedCurrentConsent(user.id)
+      } else if (trigger === 'update' && token.id) {
+        // FIX 1 — the client calls session.update() right after accepting, so
+        // the consent gate flips within the same session (no re-login needed).
+        const { hasAcceptedCurrentConsent } = await import('./consent')
+        token.consented = await hasAcceptedCurrentConsent(token.id)
       }
       return token
     },
@@ -145,6 +156,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id         = token.id
         session.user.isPremium  = token.isPremium
         session.user.entitled   = token.entitled ?? false
+        session.user.consented  = token.consented ?? false
         session.user.xrpAddress = token.xrpAddress
       }
       return session

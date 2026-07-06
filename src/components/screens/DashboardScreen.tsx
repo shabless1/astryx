@@ -31,6 +31,7 @@ import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/com
 import { useAppStore, type SessionMode, type ChakraInstrument } from '@/lib/store'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
 import { GlassCard } from '@/components/ui'
+import BetaBanner from '@/components/ui/BetaBanner'
 import type { DailyInput } from '@/components/screens/DailyCheckInScreen'
 import ResultsScreen from '@/components/screens/ResultsScreen'
 import HistoryScreen from '@/components/screens/HistoryScreen'
@@ -127,6 +128,9 @@ export default function DashboardScreen({
   return (
     <div className="min-h-screen font-rajdhani pb-20">
       <div className="max-w-3xl lg:max-w-5xl mx-auto px-5" style={{ paddingTop: 96 }}>
+
+        {/* LEGAL SHIELD v1 · FIX 2 — beta banner (dismissible per CONSENT_VERSION). */}
+        <BetaBanner accentColor={accentColor} />
 
         {sessionLoggedToast && (
           <div className="mb-4 px-4 py-3 rounded-2xl flex items-center gap-2.5 animate-fade-in-up"
