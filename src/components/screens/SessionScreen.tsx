@@ -379,6 +379,8 @@ export default function SessionScreen({
   // AUDIO ONLY — the on-screen visual planet/mandala is unchanged.
   const audioForkPlanet =
     stepIdx === 0 ? 'earthday'
+    // SHA — the chakra session ENDS on the Earth Day fork (not Earth Year).
+    : isChakraEarthClose ? 'earthday'
     : isClosingStep ? 'earthyear'
     : currentForkPlanet
 
@@ -1676,7 +1678,14 @@ function ChakraEarthClose({
     <StepCard badge="CLOSE · EARTH GROUNDING" title="Earth grounding — completion" accentColor={accentColor}>
       <p className="text-[11px] text-white/45 italic mb-3">{phaseLabel} — the centers are lit; let the body settle and integrate.</p>
 
-      {/* Body grid LEADS the close (SHA v4.5) — the whole body, no fork to place. */}
+      {/* SHA — the session ENDS on the Earth Day fork (194.18 Hz), the grounding close. */}
+      <div className="flex items-baseline gap-3 mb-4 flex-wrap">
+        <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>194.18 Hz</span>
+        <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>· Earth Day fork</span>
+        <span className="text-[12px] text-white/65">the grounding close</span>
+      </div>
+
+      {/* Body grid LEADS the close (SHA v4.5) — the whole body; the Earth Day fork grounds. */}
       <div className="mb-4">
         <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} hideForkDot />
       </div>
@@ -1691,8 +1700,8 @@ function ChakraEarthClose({
       </div>
 
       <p className="text-[13px] text-white/85 leading-relaxed mb-2">
-        The Earth tone carries you home. Feel the weight of the body, the ground
-        beneath you. Notice what has shifted — there is no rush to leave.
+        Sound the Earth Day fork and let it carry you home. Feel the weight of the
+        body, the ground beneath you. Notice what has shifted — there is no rush to leave.
       </p>
 
       {/* Earth information — COLLAPSED by default (SHA v4.5), expandable. */}
@@ -1702,11 +1711,10 @@ function ChakraEarthClose({
         </summary>
         <div className="px-3 pb-3 pt-1">
           <p className="text-[12.5px] text-white/80 leading-relaxed">
-            After the seven centers have been sounded and answered, the closing
-            Earth tone (136.10 Hz) draws the attention back down through the body
-            and into the ground. The extended exhale of the 4-7-8 breath supports
-            the shift toward rest, sealing the session in the body rather than the
-            head.
+            After the seven centers have been sounded and answered, the Earth Day
+            fork (194.18 Hz) draws the attention back down through the body and into
+            the ground. The extended exhale of the 4-7-8 breath supports the shift
+            toward rest, sealing the session in the body rather than the head.
           </p>
         </div>
       </details>

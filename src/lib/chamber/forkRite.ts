@@ -267,6 +267,9 @@ function makeStep(
   let fork: SacredFork | null = null
   let hz = 0
   if (planet === 'Earth') { hz = EARTH_OM_HZ }
+  // Earth Day is the grounding-CLOSE fork (194.18). It's a real Sacred Tone but
+  // not in PLANET_TO_FORK (forkFor can't reach it), so resolve it directly.
+  else if (planet === 'Earth Day') { fork = FORKS.find((x) => x.planet === 'Earth Day') ?? null; hz = fork ? parseFloat(String(fork.hz)) : 194.18 }
   else if (planet === 'Silence' || planet === 'Breath') { hz = 0 }
   else { fork = forkFor(planet); hz = hzFor(planet) }
   return { idx, role, phaseLabel, purpose, planet, fork, hz, startSec, holdSec, slotLabel: SLOT_LABEL[role] ?? role }
@@ -517,7 +520,7 @@ export const CHAKRA_CENTERS: {
   /** music/visual planet (canonical name) + the physical fork's display name */
   planet: string; forkName: string; color: string
 }[] = [
-  { center: 'Root',         bodyPoint: 'base of the spine',       solfeggioHz: 396, planet: 'Earth',   forkName: 'Earth Day', color: '#E53935' },
+  { center: 'Root',         bodyPoint: 'base of the spine',       solfeggioHz: 396, planet: 'Mars',    forkName: 'Mars',      color: '#E53935' },
   { center: 'Sacral',       bodyPoint: 'lower abdomen',           solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon', color: '#FB8C00' },
   { center: 'Solar Plexus', bodyPoint: 'upper abdomen',           solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun',     color: '#FDD835' },
   { center: 'Heart',        bodyPoint: 'center of the chest',     solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus',   color: '#43A047' },
@@ -598,8 +601,10 @@ export function buildChakraSequence(
   for (const c of [...CHAKRA_CENTERS].reverse()) pushRaw(centerStep(c, 'descent', hold(CHAKRA_WEIGHTS.descentCenter)))
   // 3) Ascent — root up to crown (canonical array order).
   for (const c of CHAKRA_CENTERS) pushRaw(centerStep(c, 'ascent', hold(CHAKRA_WEIGHTS.ascentCenter)))
-  // 4) Close · Earth Grounding — the final step; relaxing breath + Earth tone.
-  pushRaw(makeStep(steps.length, 'earthClose', 'Close · Earth Grounding', 'ground the body and integrate — the session completes here', 'Earth', cursor, Math.max(10, total - cursor)))
+  // 4) Close · Earth Grounding — the final step. Ends on the EARTH DAY fork
+  //    (194.18 Hz), the grounding close (SHA): Root moved to Mars, Earth Day now
+  //    seals the session. Relaxing 4-7-8 breath runs alongside.
+  pushRaw(makeStep(steps.length, 'earthClose', 'Close · Earth Grounding', 'ground the body and integrate with the Earth Day fork — the session completes here', 'Earth Day', cursor, Math.max(10, total - cursor)))
 
   return steps
 }
@@ -621,13 +626,15 @@ export function sequenceStepAt(steps: SequenceStep[], t: number): number {
  */
 export function forkSequenceDisplay(steps: SequenceStep[]): string[] {
   const seq: string[] = []
-  let hasEarth = false
+  // The grounding close is an Earth tone — 'Earth' (Om) or, for the chakra
+  // session, 'Earth Day' (the closing fork). Appended once, at the end.
+  let earthLabel: string | null = null
   for (const s of steps) {
     if (s.planet === 'Silence' || s.planet === 'Breath') continue
-    if (s.planet === 'Earth') { hasEarth = true; continue }
+    if (s.planet === 'Earth' || s.planet === 'Earth Day') { earthLabel = s.planet; continue }
     const name = s.planet === 'Full Moon' ? 'Moon' : s.planet
     if (!seq.includes(name)) seq.push(name)
   }
-  if (hasEarth) seq.push('Earth')
+  if (earthLabel) seq.push(earthLabel)
   return seq
 }

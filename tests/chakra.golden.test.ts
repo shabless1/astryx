@@ -78,18 +78,42 @@ describe('buildChakraSequence — the 7-center session', () => {
     }
   })
 
-  it('Planetary mapping matches the sacredTones chakra fields exactly (no invented pairs)', () => {
+  it('Planetary forks resolve from forkName; Root is the intentional Mars override', () => {
     const forks = sacredTones as { planet: string; chakra?: string; hz: number | string }[]
+    const hzByForkName = (fn: string) => parseFloat(String(forks.find((f) => f.planet === fn)!.hz))
+
+    // SHA override: Root moved from the data's Earth Day (chakra 'Root') to the
+    // Mars fork (144.72); Earth Day now seals the session at the close (below).
+    const root = CHAKRA_CENTERS.find((c) => c.center === 'Root')!
+    expect(root.forkName).toBe('Mars')
+    expect(root.planet).toBe('Mars')
+    expect(hzByForkName('Mars')).toBeCloseTo(144.72, 2)
+
+    // Every center's fork name resolves to a real Sacred Tone fork.
+    for (const c of CHAKRA_CENTERS) expect(forks.find((f) => f.planet === c.forkName), c.center).toBeTruthy()
+    // Non-Root centers still match their data-defined chakra fork (no invented pairs).
     for (const c of CHAKRA_CENTERS) {
+      if (c.center === 'Root') continue
       const match = forks.find((f) => f.chakra === c.center)
       expect(match, `data mapping for ${c.center}`).toBeTruthy()
       expect(match!.planet).toBe(c.forkName)
     }
+    // Struck-center planetary Hz = the center's forkName fork Hz.
     const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument: 'planetary' })
-    const hzForCenter = (center: string) =>
-      parseFloat(String(forks.find((f) => f.chakra === center)!.hz))
+    const centerByName = new Map(CHAKRA_CENTERS.map((c) => [c.center, c]))
     for (const s of steps.slice(1, 15)) {
-      expect(s.hz).toBeCloseTo(hzForCenter(s.phaseLabel.replace(/^(Descent|Ascent) · /, '')), 2)
+      const center = centerByName.get(s.phaseLabel.replace(/^(Descent|Ascent) · /, ''))!
+      expect(s.hz).toBeCloseTo(hzByForkName(center.forkName), 2)
+    }
+  })
+
+  it('ends on the Earth Day fork (194.18) — the grounding close', () => {
+    for (const instrument of ['solfeggio', 'planetary'] as ChakraInstrument[]) {
+      const steps = buildChakraSequence({ durationSec: CANONICAL_SEC, instrument })
+      const last = steps[steps.length - 1]
+      expect(last.role).toBe('earthClose')
+      expect(last.planet).toBe('Earth Day')
+      expect(last.hz).toBeCloseTo(194.18, 2)
     }
   })
 })
