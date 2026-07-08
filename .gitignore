@@ -36,3 +36,6 @@ Thumbs.db
 next-env.d.ts
 
 .vercel
+
+# Stray personal/business docs — not part of the app
+Sacred_Rebirth_*.docx
