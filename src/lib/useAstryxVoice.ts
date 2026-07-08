@@ -15,11 +15,34 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useAppStore } from '@/lib/store'
 
 // ONE audio element for the whole app (module scope — the brand voice is a
 // single throat). Both playback paths route through stopCurrent().
 let sharedAudio: HTMLAudioElement | null = null
 let currentStop: (() => void) | null = null
+
+// Astryx is feminine — pick a female system voice for the speechSynthesis
+// fallback (guests / preview / no OpenAI key) instead of the OS default, which
+// is often a male robotic voice. Prefers known female voices; English first.
+function pickFemaleVoice(): SpeechSynthesisVoice | null {
+  try {
+    const voices = window.speechSynthesis?.getVoices?.() ?? []
+    if (!voices.length) return null
+    const female = /female|samantha|zira|victoria|karen|moira|tessa|fiona|serena|allison|susan|catherine|nova|aria|jenny|libby|sonia|natasha/i
+    const male = /male|david|mark|daniel|alex|fred|george|james|guy|ryan/i
+    const en = voices.filter((v) => /^en/i.test(v.lang))
+    const pool = en.length ? en : voices
+    return (
+      pool.find((v) => female.test(v.name)) ||
+      pool.find((v) => !male.test(v.name)) ||
+      pool[0] ||
+      null
+    )
+  } catch {
+    return null
+  }
+}
 
 function stopCurrent() {
   if (currentStop) {
@@ -53,11 +76,15 @@ export function useAstryxVoice() {
     setSpeakingId(id)
     const done = () => { if (mounted.current) setSpeakingId((cur) => (cur === id ? null : cur)) }
 
+    // The user's chosen feminine voice (Settings). Read at call time so a fresh
+    // pick takes effect immediately (e.g. the Settings preview button).
+    const voice = useAppStore.getState().settings?.astryxVoice ?? 'coral'
+
     try {
       const res = await fetch('/api/speak', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: clean.slice(0, 4096) }),
+        body: JSON.stringify({ text: clean.slice(0, 4096), voice }),
       })
       if (!res.ok) throw new Error(`speak ${res.status}`)
       const blob = await res.blob()
@@ -82,6 +109,10 @@ export function useAstryxVoice() {
         synth.cancel()
         const utter = new SpeechSynthesisUtterance(clean.slice(0, 4096))
         utter.rate = 0.95
+        // Astryx is feminine — override the OS default (often a male robot).
+        const fem = pickFemaleVoice()
+        if (fem) { utter.voice = fem; utter.lang = fem.lang }
+        utter.pitch = 1.05
         utter.onend = () => { currentStop = null; done() }
         utter.onerror = () => { currentStop = null; done() }
         currentStop = () => { synth.cancel(); done() }

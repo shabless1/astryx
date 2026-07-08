@@ -252,6 +252,8 @@ interface AppState {
     visualIntensity: 'low' | 'medium' | 'high'
     breathGuide: 'active' | 'passive' | 'off'
     sessionDuration: number
+    /** Astryx's spoken voice (OpenAI TTS voice id). All feminine, warm-leaning. */
+    astryxVoice: 'coral' | 'shimmer' | 'nova' | 'sage'
   }
   updateSettings: (settings: Partial<AppState['settings']>) => void
 
@@ -495,6 +497,7 @@ export const useAppStore = create<AppState>()(
         visualIntensity: 'high',
         breathGuide: 'active',
         sessionDuration: 10,
+        astryxVoice: 'coral',
       },
       updateSettings: (settings) =>
         set((state) => ({ settings: { ...state.settings, ...settings } })),

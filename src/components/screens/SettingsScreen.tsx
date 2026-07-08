@@ -5,6 +5,15 @@ import { GlassCard, PrimaryButton, ModeToggle, SectionLabel } from '@/components
 import { hexToRgba } from '@/lib/utils'
 import { APP_VERSION } from '@/lib/version'
 import { useAppStore } from '@/lib/store'
+import { useAstryxVoice } from '@/lib/useAstryxVoice'
+
+type AstryxVoiceId = 'coral' | 'shimmer' | 'nova' | 'sage'
+const ASTRYX_VOICES: { value: AstryxVoiceId; label: string; note: string }[] = [
+  { value: 'coral',   label: 'Coral',   note: 'warm & expressive' },
+  { value: 'shimmer', label: 'Shimmer', note: 'soft & gentle' },
+  { value: 'nova',    label: 'Nova',    note: 'bright & clear' },
+  { value: 'sage',    label: 'Sage',    note: 'calm & measured' },
+]
 
 const FORK_PLANETS = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
 
@@ -18,6 +27,7 @@ interface SettingsScreenProps {
     visualIntensity: 'low' | 'medium' | 'high'
     breathGuide: 'active' | 'passive' | 'off'
     sessionDuration: number
+    astryxVoice: 'coral' | 'shimmer' | 'nova' | 'sage'
   }
   updateSettings: (s: Partial<SettingsScreenProps['settings']>) => void
   onBack: () => void
@@ -109,6 +119,13 @@ export default function SettingsScreen({
           onChange={(v) => updateSettings({ breathGuide: v as any })}
           accentColor={accentColor}
           delay={0.2}
+        />
+
+        {/* Astryx's spoken voice — all feminine; tap Preview to hear each. */}
+        <VoiceSettingRow
+          current={settings.astryxVoice ?? 'coral'}
+          onChange={(v) => updateSettings({ astryxVoice: v })}
+          accentColor={accentColor}
         />
 
         {/* v4.3 — session mode preference (skips the chamber's mode picker) */}
@@ -320,6 +337,56 @@ function SettingRow({
           </button>
         ))}
       </div>
+    </GlassCard>
+  )
+}
+
+function VoiceSettingRow({
+  current, onChange, accentColor,
+}: {
+  current: AstryxVoiceId
+  onChange: (v: AstryxVoiceId) => void
+  accentColor: string
+}) {
+  const { speak, stop, speakingId } = useAstryxVoice()
+  const previewing = speakingId === 'voice-preview'
+  const note = ASTRYX_VOICES.find((v) => v.value === current)?.note ?? ''
+  return (
+    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>
+      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-0.5 uppercase">Astryx Voice</div>
+      <div className="text-[12px] text-white/30 mb-3">Her spoken voice — all feminine · currently {note}</div>
+      <div className="flex flex-wrap gap-2 mb-3">
+        {ASTRYX_VOICES.map((o) => (
+          <button
+            key={o.value}
+            onClick={() => onChange(o.value)}
+            className="font-rajdhani text-[12px] transition-all duration-200"
+            style={{
+              padding: '7px 18px',
+              borderRadius: 10,
+              border: `1px solid ${current === o.value ? accentColor : 'rgba(255,255,255,0.1)'}`,
+              background: current === o.value ? hexToRgba(accentColor, 0.18) : 'transparent',
+              color: current === o.value ? accentColor : 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+            }}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+      <button
+        onClick={() => previewing
+          ? stop()
+          : speak("Hello, I'm Astryx. This is my voice — I'm here to walk you through your calibration.", 'voice-preview')}
+        className="font-rajdhani text-[11px] tracking-[0.15em] uppercase transition"
+        style={{
+          padding: '6px 14px', borderRadius: 9,
+          border: `1px solid ${hexToRgba(accentColor, 0.4)}`,
+          background: hexToRgba(accentColor, 0.1), color: accentColor, cursor: 'pointer',
+        }}
+      >
+        {previewing ? '■ Stop' : '▸ Preview voice'}
+      </button>
     </GlassCard>
   )
 }
