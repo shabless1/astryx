@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASTRYX — User Guide</title>
+<meta name="description" content="Quick Start and full user manual for the ASTRYX Cosmic Resonance System.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/images/astryx%20logo%20b.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050510; --bg-2:#0a0a17; --surface:#10101f; --surface-2:#16162a;
+    --border:#232147; --border-soft:#1b1a38;
+    --gold:#f5b301; --gold-soft:#f59e0b; --purple:#c084fc; --cyan:#4cc5f0;
+    --magenta:#ff3d8b; --green:#4cd6a0;
+    --text:#e9e7f2; --muted:#9c98bb; --faint:#6d6a92;
+    --maxw:760px;
+    --serif:'Cinzel',Georgia,'Times New Roman',serif;
+    --sans:'Rajdhani',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .stars{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 25px 35px, rgba(205,196,255,.55), transparent),
+      radial-gradient(1px 1px at 90px 70px, rgba(205,196,255,.4), transparent),
+      radial-gradient(1.5px 1.5px at 150px 120px, rgba(210,200,255,.5), transparent),
+      radial-gradient(1px 1px at 60px 160px, rgba(190,205,255,.4), transparent),
+      radial-gradient(1px 1px at 175px 30px, rgba(205,196,255,.32), transparent);
+    background-size:200px 200px;background-repeat:repeat;opacity:.5;
+    animation:tw 6s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.34}50%{opacity:.6}}
+  .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 22px 120px}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;line-height:1.18;margin:0}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+  h2{font-size:27px;color:#fff;margin:0 0 6px;letter-spacing:.01em}
+  h3{font-size:19px;color:var(--text);margin:0 0 6px}
+  p{margin:0 0 14px;color:#cdcadf}
+  strong{color:#fff;font-weight:600}
+  em{color:var(--purple);font-style:normal}
+  .lead{font-size:17px;color:var(--muted);line-height:1.55}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin:0 0 9px;color:#cdcadf}
+  li::marker{color:var(--faint)}
+  .kbd{font-size:13px;letter-spacing:.02em;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:6px;padding:1px 8px;color:#fff;white-space:nowrap}
+
+  header.hero{padding:84px 0 40px;text-align:center;border-bottom:1px solid var(--border-soft)}
+  .mark{font-family:var(--serif);font-size:clamp(44px,11vw,78px);letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;color:#fff;margin-left:.2em;text-shadow:0 0 40px rgba(245,179,1,.28)}
+  .hero .sup{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
+  .hero .title{margin-top:16px;font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+  .hero .sub{max-width:50ch;margin:16px auto 0;color:var(--muted);font-size:16.5px}
+  .hero .by{margin-top:22px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .hero .by b{color:var(--muted);font-weight:600}
+
+  nav.toc{margin:34px 0 8px;padding:22px 24px;background:linear-gradient(160deg,rgba(192,132,252,.06),rgba(245,179,1,.03));
+    border:1px solid var(--border);border-radius:16px}
+  nav.toc .eyebrow{margin-bottom:12px}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:0;list-style:none;margin:0}
+  nav.toc li{margin:0 0 7px;font-size:14.5px;break-inside:avoid}
+  nav.toc a{color:#d7d4ea;display:flex;gap:10px;align-items:baseline}
+  nav.toc a:hover{color:var(--cyan);text-decoration:none}
+  nav.toc .n{font-family:var(--serif);color:var(--gold);font-size:12.5px;min-width:22px;text-align:right;font-variant-numeric:tabular-nums}
+  @media(max-width:560px){nav.toc ol{columns:1}}
+
+  section{padding:46px 0;border-bottom:1px solid var(--border-soft)}
+  section:last-of-type{border-bottom:0}
+  .sec-head{margin-bottom:22px}
+
+  .qs{padding:44px 0}
+  .steps{display:flex;flex-direction:column;gap:2px;counter-reset:qs}
+  .step{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--border-soft)}
+  .step:first-child{border-top:0}
+  .step .num{counter-increment:qs;font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+  .step .num::before{content:counter(qs,decimal-leading-zero)}
+  .step h3{margin-bottom:4px}
+  .step p{margin-bottom:0;font-size:15.5px}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:0 0 14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}}
+  .card h3{font-family:var(--sans);font-size:16px;font-weight:600;color:#fff}
+  .card .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:9px;display:block}
+  .card p{font-size:14.5px;margin-bottom:0;color:var(--muted)}
+  .t-gold{color:var(--gold)} .t-cyan{color:var(--cyan)} .t-purple{color:var(--purple)}
+  .t-mag{color:var(--magenta)} .t-green{color:var(--green)}
+
+  .rows{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 16px}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 20px;border-top:1px solid var(--border-soft);background:var(--surface)}
+  .row:first-child{border-top:0}
+  .row .lbl{font-size:13.5px;font-weight:600;color:#fff}
+  .row .desc{font-size:14.5px;color:var(--muted)}
+  .row .desc b{color:#d7d4ea;font-weight:600}
+  @media(max-width:560px){.row{grid-template-columns:1fr;gap:3px}}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;margin:0 0 8px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:440px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border-soft)}
+  thead th{background:var(--surface-2);color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:rgba(255,255,255,.02)}
+  td b{color:#fff}
+  .hz{font-variant-numeric:tabular-nums;color:var(--cyan)}
+  caption{caption-side:bottom;text-align:left;padding:10px 4px 0;font-size:12.5px;color:var(--faint)}
+
+  .note{border-left:3px solid var(--cyan);background:rgba(76,197,240,.06);padding:14px 18px;border-radius:0 10px 10px 0;margin:0 0 16px}
+  .note p{margin:0;font-size:15px;color:#d7d4ea}
+  .note .lbl{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:5px}
+  .warn{border-left-color:var(--magenta);background:rgba(255,61,139,.07)}
+  .warn .lbl{color:var(--magenta)}
+  .warn p{color:#f6d6e3}
+
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+  .pill{font-size:12.5px;letter-spacing:.02em;padding:4px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--muted)}
+  .pill b{color:#fff;font-weight:600}
+
+  .divider-glyph{text-align:center;color:var(--faint);letter-spacing:1em;font-size:13px;padding:8px 0 0}
+
+  footer.foot{padding-top:44px;text-align:center}
+  footer.foot .disc{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  footer.foot .sig{font-family:var(--serif);font-size:19px;color:#fff;margin-top:20px}
+  footer.foot .sig span{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+
+  @media (prefers-reduced-motion:reduce){.stars{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="sup">Cosmic Resonance System</div>
+    <div class="mark">Astryx</div>
+    <div class="title">User Guide</div>
+    <p class="sub">Everything your Sacred Tones forks and your birth chart can do together — from your first tone to a daily practice.</p>
+    <div class="by">Private beta · <b>House of MahMah Tea LLC</b></div>
+  </header>
+
+  <nav class="toc" aria-label="Contents">
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#quickstart"><span class="n">&#8599;</span> Quick Start — box to first session</a></li>
+      <li><a href="#access"><span class="n">01</span> Getting in</a></li>
+      <li><a href="#blueprint"><span class="n">02</span> Your Birth Blueprint</a></li>
+      <li><a href="#home"><span class="n">03</span> Your daily home</a></li>
+      <li><a href="#sessions"><span class="n">04</span> The three sessions</a></li>
+      <li><a href="#chamber"><span class="n">05</span> Inside the Chamber</a></li>
+      <li><a href="#forks"><span class="n">06</span> Your Sacred Tones forks</a></li>
+      <li><a href="#fivesense"><span class="n">07</span> The 5-Sense Plan</a></li>
+      <li><a href="#astryx"><span class="n">08</span> Ask Astryx</a></li>
+      <li><a href="#deeper"><span class="n">09</span> Explore Deeper</a></li>
+      <li><a href="#chart"><span class="n">10</span> Chart &amp; Body Map</a></li>
+      <li><a href="#music"><span class="n">11</span> Music Library</a></li>
+      <li><a href="#settings"><span class="n">12</span> Settings</a></li>
+      <li><a href="#access2"><span class="n">13</span> Access &amp; subscription</a></li>
+      <li><a href="#safety"><span class="n">14</span> Safety &amp; the fine print</a></li>
+    </ol>
+  </nav>
+
+  <section class="qs" id="quickstart">
+    <div class="sec-head">
+      <div class="eyebrow">Quick Start</div>
+      <h2>From the box to your first session</h2>
+      <p class="lead">Six steps, about five minutes. Have your forks nearby.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <h3>Activate your access</h3>
+        <p>Go to <strong>myastryx.com</strong> and tap <span class="kbd">Sign Up</span>. Use the <strong>same email you used to buy your forks</strong> — that is what unlocks your full beta access automatically. You can sign up with Google or with an email and password.</p>
+      </div></div>
+      <div class="step"><div class="num"></div><div>
+        <h3>Agree to the terms</h3>
+        <p>A one-time screen — <em>&ldquo;Before you begin&rdquo;</em> — confirms you&rsquo;re 18+ and understand Astryx is an observational reference tool, not medical advice. Tick the box and continue.</p>
+      </div></div>
+      <div class="step"><div class="num"></div><div>
+        <h3>Build your Birth Blueprint</h3>
+        <p>Enter your name, birth date, birth time, and birth city. Don&rsquo;t know your exact time? Tap <span class="kbd">I don&rsquo;t know</span> and Astryx switches to <em>Solar Chart</em> mode. Choose your body map, run the quick resonance scan (tap what feels true right now), rate your energy, add a few words and an intention — then tap <span class="kbd">Generate my protocol</span>.</p>
+      </div></div>
+      <div class="step"><div class="num"></div><div>
+        <h3>Read Today&rsquo;s Reading</h3>
+        <p>Astryx shows your <strong>carrier planet</strong> for the day, why that signal is present, and your <strong>fork sequence</strong> — the order to work your tones.</p>
+      </div></div>
+      <div class="step"><div class="num"></div><div>
+        <h3>Enter the Resonance Chamber</h3>
+        <p>Tap <span class="kbd">Enter Resonance Chamber</span>, then press <span class="kbd">&#9654;</span> in the music player — that one tap starts the whole guided session. Follow each phase: <strong>strike</strong> your fork when it says <em>Strike now</em>, <strong>hold</strong> while it says <em>Hold</em>, and ease off at <em>Release</em>. There&rsquo;s no clock to watch — just follow the guidance.</p>
+      </div></div>
+      <div class="step"><div class="num"></div><div>
+        <h3>Complete &amp; check in</h3>
+        <p>On the last phase, tap <span class="kbd">Complete Session &check;</span> and note how you feel. That&rsquo;s a full calibration. Come back each day for a fresh one tuned to the live sky.</p>
+      </div></div>
+    </div>
+    <div class="note" style="margin-top:20px">
+      <span class="lbl">The one rule that matters</span>
+      <p>Sign up with your fork-order email. If you use a different address, the system won&rsquo;t recognize your purchase — but you can always reach out and we&rsquo;ll link it.</p>
+    </div>
+  </section>
+
+  <div class="divider-glyph">&#10022; &#10022; &#10022;</div>
+
+  <section id="access">
+    <div class="sec-head"><div class="eyebrow">01 · Getting in</div><h2>Access &amp; your account</h2></div>
+    <p>Astryx is in <strong>private beta</strong>, and access comes with your Sacred Tones forks. When you purchase, your access is granted behind the scenes and tied to your checkout email.</p>
+    <ul>
+      <li><strong>Create your account</strong> at myastryx.com with <em>the email from your fork order</em> — by Google or email/password.</li>
+      <li>Astryx is <strong>account-only</strong> — there&rsquo;s no anonymous browsing. Signing in is what carries your chart, history, and progress across devices.</li>
+      <li>A <strong>beta banner</strong> appears inside the app: <em>&ldquo;You&rsquo;re using Astryx in beta. Features are still being refined, and everything Astryx shows is observational reference — not medical advice.&rdquo;</em></li>
+    </ul>
+    <div class="note"><span class="lbl">Bought the forks but locked out?</span>
+      <p>It&rsquo;s almost always the email. Make sure you signed up with your checkout address. If it still won&rsquo;t open, contact us and we&rsquo;ll connect your order to your account by hand.</p></div>
+  </section>
+
+  <section id="blueprint">
+    <div class="sec-head"><div class="eyebrow">02 · Your Birth Blueprint</div>
+      <h2>The one-time resonance scan</h2>
+      <p class="lead">A four-part intake that builds your natal chart and your first calibration. You only do the full scan once — after that, a light daily check-in takes seconds.</p></div>
+    <div class="rows">
+      <div class="row"><div class="lbl">Personal</div><div class="desc">Name, birth date, birth time, and birth city (with autocomplete). Choose the body map Astryx uses to guide fork placement — <b>Female</b>, <b>Male</b>, or <b>Prefer not to say</b>.</div></div>
+      <div class="row"><div class="lbl">No birth time?</div><div class="desc">Tap <b>&ldquo;I don&rsquo;t know&rdquo;</b> to switch to <b>&#9737; Solar Chart</b> mode. Sign-based insights stay useful; house, Ascendant, and timing details are flagged as less precise. You can add your time later.</div></div>
+      <div class="row"><div class="lbl">Resonance</div><div class="desc">Rate your energy right now (<b>Depleted &#8594; Charged</b>), note where you&rsquo;re holding it, then tap the statements that feel true across ten planetary systems — or mark a system <b>&ldquo;balanced &amp; strong.&rdquo;</b> The fuller the scan, the more precise your calibration.</div></div>
+      <div class="row"><div class="lbl">Narrative</div><div class="desc">In your own words, what&rsquo;s going on right now. Astryx reads it for themes — mental acceleration, emotional heaviness, grounding need, depletion. Optional, but it sharpens the result.</div></div>
+      <div class="row"><div class="lbl">Intention</div><div class="desc">What you want to call in. Type it, or tap a chip — <b>Clarity, Peace, Energy, Healing, Strength, Grounding</b>, and more. Then <b>Generate my protocol</b>.</div></div>
+    </div>
+    <p>A brief animated analysis follows, then your reading appears. From here on, Astryx recomputes a fresh calibration each new day from your saved chart, the live sky, and your daily check-in — it never just replays yesterday.</p>
+  </section>
+
+  <section id="home">
+    <div class="sec-head"><div class="eyebrow">03 · Your daily home</div>
+      <h2>The Daily Check-In dashboard</h2>
+      <p class="lead">Your home base. A row of session tiles sits up top; everything else lives in tabs.</p></div>
+    <h3 style="margin-bottom:10px">The Sessions launcher</h3>
+    <div class="grid3">
+      <div class="card"><span class="tag t-gold">Today&rsquo;s Calibration</span><p>Tuned to your chart and today&rsquo;s sky. Shows a <b>&ldquo;{planet}-led today&rdquo;</b> badge and drops you straight into your calibrated session.</p></div>
+      <div class="card"><span class="tag t-cyan">Full Body</span><p>All twelve forks, ground to crown and back — about 35 minutes. The same map for every body.</p></div>
+      <div class="card"><span class="tag t-purple">Chakra</span><p>Seven centers, crown to root and back. A toggle on the tile picks your instrument — <b>Solfeggio</b> or <b>Planetary</b>.</p></div>
+    </div>
+    <h3 style="margin:24px 0 10px">The tabs</h3>
+    <div class="rows">
+      <div class="row"><div class="lbl">Check-In</div><div class="desc">Re-tune to today: your energy, what&rsquo;s present, an optional intention &#8594; <b>Calibrate today</b>. Your chart is never re-asked.</div></div>
+      <div class="row"><div class="lbl">Today&rsquo;s Pulse</div><div class="desc">Today&rsquo;s <b>Temperature</b> (Cool / Warm / Hot), a <b>Headline</b> you can have read aloud (<b>&#128266; listen</b>), your live <b>Transits</b>, a <b>Suggested Fork</b>, and <b>Begin today&rsquo;s session</b>.</div></div>
+      <div class="row"><div class="lbl">Summary Report</div><div class="desc">Your Calibration Plan — and, right after a session, a &ldquo;how do you feel now&rdquo; check-in that saves to your progress.</div></div>
+      <div class="row"><div class="lbl">Explore Deeper</div><div class="desc">Collapsible reference cards that unpack your reading. (See section 09.)</div></div>
+      <div class="row"><div class="lbl">Chart · Body Map</div><div class="desc">Your interactive natal wheel and your planetary body map. (See section 10.)</div></div>
+      <div class="row"><div class="lbl">History</div><div class="desc">Your energy trend and the archive of past sessions and readings.</div></div>
+    </div>
+    <div class="note"><span class="lbl">Left a session unfinished?</span>
+      <p>A <b>Resume</b> card waits at the top of the dashboard — it names the mode and phase, so you pick up exactly where you left off, or start fresh.</p></div>
+  </section>
+
+  <section id="sessions">
+    <div class="sec-head"><div class="eyebrow">04 · The three sessions</div><h2>Which session, when</h2></div>
+    <div class="card">
+      <span class="tag t-gold">Today&rsquo;s Calibration &nbsp;·&nbsp; your daily work</span>
+      <p style="color:#cdcadf;font-size:15.5px">Tuned to your chart <em>and</em> today&rsquo;s sky. Astryx selects the exact forks and phases your reading calls for. Where a signal is running hot or blocked, it&rsquo;s gently balanced with its regulating tone rather than amplified — so a session always settles you, never over-stimulates. Same chart, same sky, same session, every time.</p>
+    </div>
+    <div class="card">
+      <span class="tag t-cyan">Full Body Recalibration &nbsp;·&nbsp; ~35 min</span>
+      <p style="color:#cdcadf;font-size:15.5px">The complete anatomical ladder — an opening ground, then all twelve forks climbing <b>feet to crown</b>, a pause of three slow breaths at the top, and the same ladder swept back down to an Earth close. The same map for everyone; no reading needed. A full-coverage reset.</p>
+    </div>
+    <div class="card">
+      <span class="tag t-purple">Chakra Recalibration &nbsp;·&nbsp; ~27 min</span>
+      <p style="color:#cdcadf;font-size:15.5px">The seven centers, <b>crown to root and back</b>, sealed with an Earth grounding. Choose your instrument on the tile: the <b>Solfeggio</b> set (396&ndash;963 Hz) or the <b>Planetary</b> forks. The chamber carries any tone you don&rsquo;t hold in hand, so no center is ever skipped.</p>
+    </div>
+    <div class="note"><span class="lbl">Prefer to skip the chooser?</span>
+      <p>Set a default in <b>Settings &#8594; Session Mode</b> (Ask each time / Calibrated / Full Body / Chakra), or just tap a dashboard tile — tiles always launch directly.</p></div>
+  </section>
+
+  <section id="chamber">
+    <div class="sec-head"><div class="eyebrow">05 · Inside the Chamber</div>
+      <h2>Running a session</h2>
+      <p class="lead">The Resonance Chamber is a guided, full-screen experience. You follow phases — you don&rsquo;t operate a wizard, and there&rsquo;s no timer to watch.</p></div>
+    <h3 style="margin-bottom:10px">The one gesture that starts everything</h3>
+    <p>Press <span class="kbd">&#9654;</span> in the <strong>Chamber Music</strong> player. Nothing plays until you do — that single tap begins the music, the pacing, and the phase-by-phase flow together.</p>
+    <h3 style="margin:22px 0 10px">Following the cues</h3>
+    <p>Each phase tells you exactly what to do with your fork through a short cue:</p>
+    <div class="pills">
+      <span class="pill"><b>Strike now</b> — sound your fork</span>
+      <span class="pill"><b>Hold</b> — keep it in place</span>
+      <span class="pill"><b>Release&hellip; next phase</b> — ease off</span>
+      <span class="pill"><b>Ground with the Earth tone</b></span>
+      <span class="pill"><b>Rest in the silence</b></span>
+    </div>
+    <p>A <strong>HOLD</strong> badge shows how long the current phase runs. To linger on a phase, tap <span class="kbd">&#8592;</span> / <span class="kbd">&#8594;</span> or drag the phase slider; tap <span class="kbd">&#9656; Resume the flow</span> to rejoin the timeline.</p>
+    <h3 style="margin:22px 0 10px">What&rsquo;s on screen</h3>
+    <div class="rows">
+      <div class="row"><div class="lbl">Body map</div><div class="desc"><b>Where to hold the fork</b> for this phase, with a <b>Front / Back</b> toggle and a &ldquo;How to use this fork&rdquo; walkthrough.</div></div>
+      <div class="row"><div class="lbl">Visual modes</div><div class="desc">Switch the atmosphere without touching the audio: <b>Body</b> (&#9765;, shows the guidance card), <b>Color</b> (&#9683;, a color-therapy field), <b>Mandala</b> (&#10022;, a cymatic pattern).</div></div>
+      <div class="row"><div class="lbl">Chamber Music</div><div class="desc">Play/pause, previous/next song, replay, stop, volume, and a <b>Default / Customize</b> song picker. Each fork&rsquo;s frequency lives in the music&rsquo;s key.</div></div>
+      <div class="row"><div class="lbl">Breath guide</div><div class="desc">A breathing pattern chosen for your reading (e.g. <b>4-7-8</b> or <b>Box Breath</b>) runs quietly throughout, with an animated pacer on breath phases.</div></div>
+      <div class="row"><div class="lbl">Ask Astryx</div><div class="desc">The <b>&#10022; Ask Astryx</b> button is right there if you have a question mid-session.</div></div>
+    </div>
+    <div class="note"><span class="lbl">Finishing</span>
+      <p>On the last phase tap <b>Complete Session &check;</b> to save it and check in on how you feel. <b>Exit Session</b> leaves without saving — and if you leave partway, the dashboard offers to resume.</p></div>
+  </section>
+
+  <section id="forks">
+    <div class="sec-head"><div class="eyebrow">06 · Your Sacred Tones forks</div>
+      <h2>Working your physical forks</h2>
+      <p class="lead">Astryx names which fork to strike, shows its frequency, and maps where to hold it. Your set determines how you apply it.</p></div>
+    <div class="grid2">
+      <div class="card"><span class="tag t-cyan">Steel · weighted</span><p><b>On-body.</b> Strike, then rest the stem of the fork against the body point with steady, comfortable contact.</p></div>
+      <div class="card"><span class="tag t-purple">Aluminum · field</span><p><b>Off-body.</b> Strike and hold the fork 4&ndash;6 inches from the body — by the ear, or sweeping over the point. Light contact only.</p></div>
+    </div>
+    <h3 style="margin:22px 0 10px">How to strike</h3>
+    <ol>
+      <li>Settle with one slow breath.</li>
+      <li>Strike on a soft surface (your knee or palm) — <strong>never metal on metal</strong>.</li>
+      <li>Apply per your set — stem to the point (steel) or hovering near the ear / over the point (aluminum).</li>
+      <li>Two applications at most; let the tone fully fade.</li>
+      <li>Close with a sealing breath.</li>
+    </ol>
+    <h3 style="margin:22px 0 12px">The Sacred Tones — 13 forks</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fork</th><th>Center</th><th>Hz</th><th>Where to hold</th></tr></thead>
+        <tbody>
+          <tr><td><b>Earth Day</b></td><td>Root · grounding</td><td class="hz">194.18</td><td>Base of spine / sacrum · opens &amp; seals sessions</td></tr>
+          <tr><td><b>Full Moon</b></td><td>Sacral</td><td class="hz">210.42</td><td>Just below the navel / low back</td></tr>
+          <tr><td><b>Sun</b></td><td>Solar Plexus</td><td class="hz">126.22</td><td>Solar plexus · lower ribs</td></tr>
+          <tr><td><b>Earth Year</b></td><td>Heart · vagal anchor</td><td class="hz">136.10</td><td>Sternum (the grounding &ldquo;Earth Om&rdquo; tone)</td></tr>
+          <tr><td><b>Venus</b></td><td>Heart</td><td class="hz">221.23</td><td>Chest / forehead / back of head</td></tr>
+          <tr><td><b>Mercury</b></td><td>Throat</td><td class="hz">141.27</td><td>Throat · behind the ear</td></tr>
+          <tr><td><b>Jupiter</b></td><td>Crown</td><td class="hz">183.58</td><td>Right lower ribs / crown</td></tr>
+          <tr><td><b>Neptune</b></td><td>Third Eye</td><td class="hz">211.44</td><td>Temples — very gently, or off-body near the ears</td></tr>
+          <tr><td><b>Mars</b></td><td>Activating</td><td class="hz">144.72</td><td>Thighs / lower back · <span class="t-mag">energizing — not at a session&rsquo;s end</span></td></tr>
+          <tr><td><b>Saturn</b></td><td>Structural</td><td class="hz">147.85</td><td>Long / structural bones · knees</td></tr>
+          <tr><td><b>Uranus</b></td><td>Nervous system</td><td class="hz">207.36</td><td>Forearms · shoulders · base of neck</td></tr>
+          <tr><td><b>Pluto</b></td><td>Deep release</td><td class="hz">140.25</td><td>Sacrum region · <span class="t-mag">most powerful — close with Earth Day, then Earth Year</span></td></tr>
+        </tbody>
+        <caption>Frequencies from the Cousto cosmic octave. Every session opens on Earth Day and closes on an Earth tone to settle the field.</caption>
+      </table>
+    </div>
+    <div class="note warn"><span class="lbl">&#9888; A few safety notes</span>
+      <p><strong>Mars</strong> is activating — Astryx never places it at the end of a session. <strong>Pluto</strong> is the most powerful and is always followed by grounding. Intimate or pelvic regions are guided as an <strong>off-body sweep</strong> (no contact). And if a crystal appears in your plan, <strong>Malachite</strong> always carries a warning — use polished and sealed pieces only, never raw, never in elixirs.</p></div>
+    <div class="note"><span class="lbl">Tip</span>
+      <p>In <b>Settings &#8594; Sacred Tones You Own</b>, tap the forks you actually have. Astryx then stops labeling those tones as &ldquo;simulated&rdquo; and treats them as yours.</p></div>
+  </section>
+
+  <section id="fivesense">
+    <div class="sec-head"><div class="eyebrow">07 · The 5-Sense Plan</div>
+      <h2>Your Calibration Plan, across five channels</h2>
+      <p class="lead">Every reading produces one protocol keyed to a single planet, expressed through five senses you can actually act on.</p></div>
+    <div class="grid3">
+      <div class="card"><span class="tag t-gold">&#9834; Sound</span><p>The fork and frequency to play, and where on the body to apply it.</p></div>
+      <div class="card"><span class="tag t-purple">&#9678; Scent</span><p>Essential oils and how to use them — diffuse or inhale, a few minutes.</p></div>
+      <div class="card"><span class="tag t-cyan">&#9671; Taste</span><p>A tea blend and its botanicals, with a simple brew-and-sip.</p></div>
+      <div class="card"><span class="tag t-green">&#11041; Body</span><p>A breath pattern, a posture or placement, and a small movement.</p></div>
+      <div class="card"><span class="tag t-mag">&#10022; Sight</span><p>A color to soften your vision into — and sometimes a sacred-geometry form.</p></div>
+    </div>
+    <p>An integration note ties them into one flow: begin with sound, layer scent, sip the tea, breathe, hold placement, soften into the color — about <strong>20&ndash;30 minutes</strong>. Any safety notes from the botanicals, minerals, or crystals in your plan are always shown.</p>
+  </section>
+
+  <section id="astryx">
+    <div class="sec-head"><div class="eyebrow">08 · Ask Astryx</div>
+      <h2>Your built-in guide</h2>
+      <p class="lead">Astryx — the &ldquo;sixth sense · Mind&rdquo; — reads <em>only</em> your own chart and the Astryx knowledge base, and explains it in plain language.</p></div>
+    <ul>
+      <li><strong>Open it</strong> from the <span class="kbd">&#10022; Ask Astryx</span> button in the top bar on almost any screen.</li>
+      <li><strong>Ask anything about your calibration</strong> — why a tone, herb, color, or transit appears, or what a term like your Ascendant means. Starter chips get you going.</li>
+      <li><strong>It can set up sessions.</strong> Ask about today&rsquo;s transits, the full-body ladder, or your chakras and a button appears — <em>&ldquo;Begin today&rsquo;s calibration &#8594;&rdquo;</em>, <em>&ldquo;Set up the Full Body ladder &#8594;&rdquo;</em>, <em>&ldquo;Begin Chakra Recalibration &#8594;&rdquo;</em>. Tapping it opens the Chamber already configured. Astryx never invents a session; it opens the one the engine computed.</li>
+      <li><strong>Listen instead of read</strong> — every reply has a <span class="kbd">&#128266; listen</span> button. Pick her voice in Settings.</li>
+    </ul>
+    <div class="note"><span class="lbl">Good to know</span>
+      <p>The free plan includes <b>20 questions a day</b> (it refreshes tomorrow; your calibration and sessions stay fully available). Astryx is an <b>AI reference companion</b> — not a person, not a professional — and for symptoms or health decisions it will point you to your licensed practitioner. If it ever detects a crisis, it leads with real support resources first.</p></div>
+  </section>
+
+  <section id="deeper">
+    <div class="sec-head"><div class="eyebrow">09 · Explore Deeper</div>
+      <h2>Unpacking your reading</h2>
+      <p class="lead">Tap any card to peek inside. Each fills in once you&rsquo;ve run today&rsquo;s calibration.</p></div>
+    <div class="rows">
+      <div class="row"><div class="lbl">Current Pulse</div><div class="desc">What&rsquo;s going on — your pattern, body focus, and support — plus today&rsquo;s sky against your chart.</div></div>
+      <div class="row"><div class="lbl">Where it comes from</div><div class="desc">How each thing you noted maps to a planet and a body layer, with a mineral reference.</div></div>
+      <div class="row"><div class="lbl">Minerals for you</div><div class="desc">A cell-salt reference — what&rsquo;s active now and for your sign, with food sources. A foundation reference, not a dose.</div></div>
+      <div class="row"><div class="lbl">The full notes</div><div class="desc">Your reading in plain language: <b>You said</b> · <b>We saw</b> · <b>What it means</b> · <b>What to do</b>.</div></div>
+    </div>
+  </section>
+
+  <section id="chart">
+    <div class="sec-head"><div class="eyebrow">10 · Chart &amp; Body Map</div><h2>See your chart, hear your body</h2></div>
+    <h3 style="margin-bottom:8px">Natal Chart Wheel</h3>
+    <p>Your birth chart, written in plain language — sign names spelled out, twelve life-area houses, and your planets. Toggle <span class="kbd">Aspects</span> and <span class="kbd">Houses</span> on or off; tap any planet, line, or house for detail including its frequency, fork, chakra, and body region. A <span class="kbd">&#9737; Solar Chart</span> badge appears if you entered without a birth time.</p>
+    <h3 style="margin:20px 0 8px">Body Map</h3>
+    <p>A full-body view mapping your planets to body regions with the seven-chakra meridian. Switch <span class="kbd">Front</span> / <span class="kbd">Back</span> and <span class="kbd">&#9792;</span> / <span class="kbd">&#9794;</span>, and choose a view — Anatomy, Chakras, Planets, Combined, or Full. <strong>Tap any planet or chakra to hear its tone</strong> — a quick way to preview a frequency without a full session.</p>
+  </section>
+
+  <section id="music">
+    <div class="sec-head"><div class="eyebrow">11 · Music Library</div>
+      <h2>The full sound library</h2>
+      <p class="lead">Every planet, every state, growing monthly. Favorite what moves you, or build your own chamber.</p></div>
+    <div class="rows">
+      <div class="row"><div class="lbl">Browse</div><div class="desc">Pick a planet, then a track by state — <b>Natural</b>, <b>Excess · cooling</b>, <b>Deficiency · building</b>, <b>Blocked · releasing</b>. Play, favorite (&#9825;), or add to a sequence (&#65291;).</div></div>
+      <div class="row"><div class="lbl">Favorites</div><div class="desc">Everything you&rsquo;ve hearted, in one place — with <b>Play all</b>.</div></div>
+      <div class="row"><div class="lbl">My Chambers</div><div class="desc">Build your own session: add tracks, reorder, name it, preview, and save.</div></div>
+      <div class="row"><div class="lbl">Chakra</div><div class="desc">Pure Solfeggio tones, crown to root (963 &#8594; 396 Hz), plus an ambient integration tone. Tap one to play; one at a time.</div></div>
+    </div>
+  </section>
+
+  <section id="settings">
+    <div class="sec-head"><div class="eyebrow">12 · Settings</div><h2>Make it yours</h2></div>
+    <div class="rows">
+      <div class="row"><div class="lbl">Astryx Voice</div><div class="desc"><b>Coral</b>, <b>Shimmer</b>, <b>Nova</b>, or <b>Sage</b> — preview each. This is the voice for &ldquo;listen&rdquo; everywhere.</div></div>
+      <div class="row"><div class="lbl">Chamber Audio</div><div class="desc"><b>Muted</b> / <b>Music</b> / <b>Music + Texture</b>. Audio plays only in the Chamber and Music Library.</div></div>
+      <div class="row"><div class="lbl">Session Mode</div><div class="desc"><b>Ask each time</b> (default), or lock to <b>Calibrated</b>, <b>Full Body</b>, or <b>Chakra</b>.</div></div>
+      <div class="row"><div class="lbl">Default Duration</div><div class="desc">5 / 10 / 20 / 30 / 45 minutes.</div></div>
+      <div class="row"><div class="lbl">Sacred Tones You Own</div><div class="desc">Tap the forks you physically have, so they&rsquo;re never labeled &ldquo;simulated.&rdquo;</div></div>
+      <div class="row"><div class="lbl">Session Fit</div><div class="desc"><b>Depth</b> — full holds on the forks that matter most. <b>Breadth</b> — keep every fork, shorten each hold.</div></div>
+      <div class="row"><div class="lbl">Breath · Visual · Animation</div><div class="desc">Breath guide (Active / Passive / Off), visual intensity (Minimal &#8594; Immersive), and motion (Low / Medium / High).</div></div>
+    </div>
+  </section>
+
+  <section id="access2">
+    <div class="sec-head"><div class="eyebrow">13 · Access &amp; subscription</div><h2>Your beta, and beyond</h2></div>
+    <p>Your forks include <strong>full beta access</strong>. Everyone also gets a <strong>30-day experience</strong> with no card required — you&rsquo;ll see a gentle reminder as it nears its end.</p>
+    <p>When the beta opens to the public, Astryx continues at <strong>$9.99/mo</strong> — billed monthly, cancel anytime. Your chart, history, and progress are always preserved; subscribing (or your fork access) simply restores you exactly where you left off. If you ever land on the subscribe screen after subscribing, tap <span class="kbd">I&rsquo;ve subscribed — restore my access</span>.</p>
+  </section>
+
+  <section id="safety">
+    <div class="sec-head"><div class="eyebrow">14 · Safety &amp; the fine print</div><h2>Please read this part</h2></div>
+    <div class="note warn"><span class="lbl">Not medical advice</span>
+      <p>Astryx is an <strong>observational reference and calibration tool</strong>. It does not diagnose, treat, cure, or prescribe, and it is not a substitute for care from a licensed professional. It speaks in patterns — <em>&ldquo;may suggest,&rdquo; &ldquo;may correlate with&rdquo;</em> — never in certainties. Consult your provider for any persistent symptom or health decision, and never stop or change prescribed medication based on Astryx.</p></div>
+    <ul>
+      <li><strong>You&rsquo;re 18+</strong> and use every practice — sound, scent, taste, movement — voluntarily and at your own risk.</li>
+      <li><strong>In a crisis</strong>, Astryx is not an emergency service. Call your local emergency number, the <strong>988 Suicide &amp; Crisis Lifeline</strong> (call or text 988), or text <strong>HOME to 741741</strong>.</li>
+      <li><strong>Fork &amp; crystal safety</strong> — strike on soft surfaces only; apply gently; Malachite polished/sealed only, never raw or ingested.</li>
+    </ul>
+    <p style="color:var(--faint);font-size:14px">Every screen in Astryx carries the same quiet reminder: <em>&#9432; Reference tool · Not medical advice.</em></p>
+  </section>
+
+  <footer class="foot">
+    <div class="disc">&#9432; Reference tool · Not medical advice</div>
+    <div class="sig">Thank you for building this with us.
+      <span>Sha Blyss aka MahMah Tea · House of MahMah Tea LLC</span></div>
+  </footer>
+
+</div>
+</body>
+</html>

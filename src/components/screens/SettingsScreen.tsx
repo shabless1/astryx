@@ -49,6 +49,24 @@ export default function SettingsScreen({
           <h1 className="font-cinzel text-3xl text-white">Settings</h1>
         </div>
 
+        {/* User Guide — opens the public guide page (myastryx.com/guide) in a new tab.
+            Same page linked from the Sacred Tones fork-buyer email + packaging QR. */}
+        <a
+          href="/guide"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block mb-3 animate-fade-in-up"
+        >
+          <GlassCard className="flex items-center justify-between p-5 transition hover:brightness-125">
+            <div>
+              <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Help</div>
+              <div className="text-[14px] text-white/90">User Guide</div>
+              <div className="text-[12px] text-white/45 mt-0.5">Quick start &amp; the full manual — how to use every feature</div>
+            </div>
+            <span className="text-[18px]" style={{ color: accentColor }} aria-hidden="true">↗</span>
+          </GlassCard>
+        </a>
+
         {/* Mode */}
         <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up">
           <div>

@@ -25,6 +25,14 @@ const nextConfig = {
       },
     ]
   },
+  // Clean URL for the public user guide — /guide serves the static, isolated
+  // guide page in public/guide.html (myastryx.com/guide). Linked from the
+  // Shopify fork-buyer email, the packaging QR, and in-app from Settings.
+  async rewrites() {
+    return [
+      { source: '/guide', destination: '/guide.html' },
+    ]
+  },
   // Allow video files to be served from public
   async headers() {
     return [
