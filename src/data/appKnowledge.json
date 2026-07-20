@@ -10,7 +10,7 @@
     {
       "id": "app-what-is-astryx",
       "topic": "app",
-      "text": "Astryx is a deterministic multi-sensory calibration system. From birth data it reads a natal chart as a pattern-recognition map and generates a personalized five-sense protocol — Sound, Scent, Taste, Body, and Sight — plus a sixth channel, Mind (Astryx herself). Same birth data always produces the same output. It is calibration, not prediction; a blueprint, not a reading. It never diagnoses, treats, or prescribes."
+      "text": "Astryx is a deterministic multi-sensory calibration system. From birth data it reads a natal chart as a pattern-recognition map and generates a personalized six-sense protocol — Sound, Scent, Taste, Body, Sight, and Field (the user's own auric/etheric field, which the fork's vibration moves through and clears). Same birth data always produces the same output. It is calibration, not prediction; a blueprint, not a reading. It never diagnoses, treats, or prescribes. (Astryx herself is the app's guide — the intelligence that explains the reading — not one of the six senses.)"
     },
     {
       "id": "app-flow",
@@ -50,7 +50,7 @@
     {
       "id": "app-five-senses",
       "topic": "app",
-      "text": "The five-sense protocol: Sound (planetary tones from Hans Cousto's cosmic octave), Scent (essential oils mapped to the active planet), Taste (an herbal blend or tea), Body (a breath, posture, and orientation), and Sight (a color and a sacred-geometry form tied to the dominant aspect). Each is chosen by the corrective polarity, so the whole protocol moves toward balance."
+      "text": "The six-sense protocol: Sound (planetary tones from Hans Cousto's cosmic octave), Scent (essential oils mapped to the active planet), Taste (an herbal blend or tea), Body (a breath, posture, and orientation), Sight (a color and a sacred-geometry form tied to the dominant aspect), and Field (the user's own auric/etheric field — the space around the body that the fork's vibration moves through and clears; the aluminum field forks especially, sounded off-body). The five sensory channels are chosen by the corrective polarity so the protocol moves toward balance; Field is the universal effect of the sound spreading through the surrounding field."
     },
     {
       "id": "app-body-map",
@@ -85,7 +85,7 @@
     {
       "id": "app-ask-astryx",
       "topic": "app",
-      "text": "Ask Astryx is the sixth sense — Mind. She is the living intelligence of the system: she explains your existing reading, defines terms, connects the frameworks, and teaches you to read your own chart over time. She never changes your reading, never diagnoses, and always speaks in probabilistic language. Her goal is fluency — a user who practices should need her less over time."
+      "text": "Ask Astryx is the app's guide — the living intelligence of the system. She explains your existing reading, defines terms, connects the frameworks, and teaches you to read your own chart over time. She is the guide, not one of the senses (the sixth sense is your own auric Field). She never changes your reading, never diagnoses, and always speaks in probabilistic language. Her goal is fluency — a user who practices should need her less over time."
     },
     {
       "id": "app-sacred-tones",

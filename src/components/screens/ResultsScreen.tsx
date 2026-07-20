@@ -451,7 +451,7 @@ export default function ResultsScreen({
         {prescriptions.length > 0 && (
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
-              <SectionLabel>Your 5-Sense Calibration Plan</SectionLabel>
+              <SectionLabel>Your 6-Sense Calibration Plan</SectionLabel>
               <span className="text-[10px] text-white/30 tracking-widest">
                 {prescriptions.length} PROTOCOL{prescriptions.length > 1 ? 'S' : ''}
               </span>
@@ -910,7 +910,9 @@ function PrescriptionCard({
         <div className="px-5 pb-5 animate-fade-in">
           <div className="h-px bg-white/5 mb-5" />
 
-          {/* Five senses grid */}
+          {/* Six senses grid — the five sensory channels plus FIELD, the
+              human's auric/etheric field the fork's vibration moves through.
+              Field is universal (not planet-keyed), so its copy is fixed. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
             <SenseTile
               icon="♪" label="SOUND" color={color}
@@ -939,14 +941,17 @@ function PrescriptionCard({
               primary={rx.fiveSenses.body.breath.replace(/_/g, ' ')}
               detail={`Posture: ${rx.fiveSenses.body.placement.replace(/_/g, ' ')} · Movement: ${rx.fiveSenses.body.movement.replace(/_/g, ' ')}`}
             />
-            <div className="sm:col-span-2">
-              <SenseTile
-                icon="✦" label="SIGHT" color={color}
-                primary={rx.fiveSenses.sight.colors.join(' · ') || '—'}
-                detail={rx.fiveSenses.sight.instruction}
-                colorSwatches={rx.fiveSenses.sight.colors}
-              />
-            </div>
+            <SenseTile
+              icon="✦" label="SIGHT" color={color}
+              primary={rx.fiveSenses.sight.colors.join(' · ') || '—'}
+              detail={rx.fiveSenses.sight.instruction}
+              colorSwatches={rx.fiveSenses.sight.colors}
+            />
+            <SenseTile
+              icon="◈" label="FIELD" color={color}
+              primary="Your auric field"
+              detail="The tone moves through the etheric field around you, clearing it as it spreads — the aluminum field forks especially, sounded off-body."
+            />
           </div>
 
           {/* Mineral / Botanical / Crystal / Fork bundle */}
@@ -1354,7 +1359,7 @@ function CalibrationToday({
               <span className="inline-block w-1.5 h-1.5 rounded-full"
                     style={{ background: '#C084FC', boxShadow: '0 0 8px #C084FC' }} />
               <span>
-                <span className="block text-[10px] uppercase tracking-[0.22em] text-meta">Sixth sense · Mind</span>
+                <span className="block text-[10px] uppercase tracking-[0.22em] text-meta">Your calibration guide</span>
                 <span className="block text-[13px] text-content">Ask Astryx why your calibration is what it is</span>
               </span>
             </span>

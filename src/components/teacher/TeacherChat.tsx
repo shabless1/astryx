@@ -149,7 +149,7 @@ export default function TeacherChat({
                 Astryx
               </div>
               <div className="text-[10px] uppercase tracking-[0.22em] mt-1" style={{ color: alpha(accentColor, 0.8) }}>
-                Sixth Sense · Mind
+                Your calibration guide
               </div>
             </div>
           </div>

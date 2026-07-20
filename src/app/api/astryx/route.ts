@@ -250,7 +250,7 @@ export async function POST(req: NextRequest) {
       transit.groundingBlock,
       '',
       webBlock,
-      'CANON PASSAGES (Tier-1 authority for Astryx PROPRIETARY specifics — fork Hz, the Lotus Spectrum, the five-sense protocol logic, cell-salt/botanical/crystal mappings. Synthesize in YOUR OWN WORDS, never paste raw):',
+      'CANON PASSAGES (Tier-1 authority for Astryx PROPRIETARY specifics — fork Hz, the Lotus Spectrum, the six-sense protocol logic, cell-salt/botanical/crystal mappings. Synthesize in YOUR OWN WORDS, never paste raw):',
       canonBlock,
       '',
       history.length ? `RECENT CONVERSATION:\n${history.slice(-6).map((h) => `${h.role === 'user' ? 'User' : 'Astryx'}: ${h.text}`).join('\n')}` : '',

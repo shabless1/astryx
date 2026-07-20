@@ -61,7 +61,7 @@ export default function LandingScreen({ accentColor, onSignUp, onSignIn }: Landi
         {/* Short orientation */}
         <p className="text-content-sm leading-relaxed mx-auto mb-8 max-w-[52ch] text-[14px]">
           Enter your birth details and a quick resonance scan to receive a personalized
-          <span className="text-content"> 5-Sense Calibration Plan</span> and a guided
+          <span className="text-content"> 6-Sense Calibration Plan</span> and a guided
           <span className="text-content"> Chamber session</span>. You don&apos;t need to know
           astrology to begin — Astryx translates your chart into sound, breath, color, and remedy guidance.
         </p>
