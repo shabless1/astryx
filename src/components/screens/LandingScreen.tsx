@@ -14,10 +14,9 @@ interface LandingScreenProps {
   accentColor: string
   onSignUp: () => void
   onSignIn: () => void
-  onExplore: () => void
 }
 
-export default function LandingScreen({ accentColor, onSignUp, onSignIn, onExplore }: LandingScreenProps) {
+export default function LandingScreen({ accentColor, onSignUp, onSignIn }: LandingScreenProps) {
   const rgba = (c: string, a: number) => (c?.startsWith('#') ? hexToRgba(c, a) : c)
 
   return (
@@ -93,14 +92,13 @@ export default function LandingScreen({ accentColor, onSignUp, onSignIn, onExplo
           </button>
         </div>
 
-        {/* Free-tier path */}
-        <button
-          onClick={onExplore}
-          className="mt-5 text-[12px] tracking-[0.1em] transition-colors hover:text-white"
-          style={{ color: 'rgba(255,255,255,0.45)', background: 'none', border: 'none', cursor: 'pointer' }}
-        >
-          or continue without an account →
-        </button>
+        {/* Beta access note — the app is account-gated (fork-buyer beta). The
+            old "continue without an account" guest path was removed 2026-07-20
+            (SHA): access now requires signing up. */}
+        <p className="mt-6 text-[11px] text-white/40 tracking-wide max-w-[46ch] mx-auto leading-relaxed">
+          Astryx is in private beta. Sign up with the email from your Sacred Tones
+          fork order to unlock full access.
+        </p>
 
         <p className="mt-8 text-[10px] text-white/30 tracking-wide">ⓘ Reference tool · Not medical advice</p>
       </div>

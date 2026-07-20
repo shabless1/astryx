@@ -47,7 +47,7 @@ import TeacherChat from '@/components/teacher/TeacherChat'
 import type { AppScreen, ClientRecord, SessionSummarySnapshot } from '@/types'
 
 export default function AstryxApp() {
-  const { data: session, update: updateSession } = useSession()
+  const { data: session, update: updateSession, status: authStatus } = useSession()
 
   const {
     screen, setScreen,
@@ -234,6 +234,20 @@ export default function AstryxApp() {
     if (session?.user && (screen === 'auth' || screen === 'landing')) goHome()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, screen])
+
+  // ── ACCOUNT GATE (SHA 2026-07-20) ───────────────────────────────────────
+  // The app is account-only now (fork-buyer private beta) — the old guest
+  // "continue without an account" path is gone. A visitor with no session gets
+  // ONLY the landing + auth doors: every other screen (a #chamber/#session deep
+  // link, or a returning guest's persisted localStorage journey) bounces back to
+  // the landing until they sign in. Only acts once auth has resolved to
+  // 'unauthenticated' — never during 'loading' (avoids flashing the gate on a
+  // hard refresh for a real logged-in user, incl. the OAuth full-page return).
+  useEffect(() => {
+    if (authStatus !== 'unauthenticated') return
+    if (screen !== 'landing' && screen !== 'auth') setScreen('landing')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authStatus, screen])
 
   // Directive v4.0 Fix 1 — server-side rehydration. A signed-in user on a fresh
   // device (or after a cleared localStorage) pulls their latest persisted
@@ -786,7 +800,6 @@ export default function AstryxApp() {
             accentColor={accentColor}
             onSignUp={() => { setAuthInitialMode('signup'); setScreen('auth') }}
             onSignIn={() => { setAuthInitialMode('signin'); setScreen('auth') }}
-            onExplore={() => setScreen('intake')}
           />
         )}
 
