@@ -24,14 +24,44 @@ export function consentTextHash(text: string = CONSENT_FULL_TEXT): string {
   return createHash('sha256').update(text, 'utf8').digest('hex')
 }
 
-/** True iff the user has accepted the CURRENT consent version. */
+/**
+ * Resolve a session's user to a REAL User.id row. The JWT `id` can be stale
+ * (e.g. the DB was reset/migrated and cuids regenerated) or absent, while the
+ * account still exists by email. We trust the id only if a row exists; otherwise
+ * we reconcile by email. Returns null when neither resolves (truly unknown user).
+ */
+export async function resolveUserId(
+  userId: string | null | undefined,
+  email?: string | null,
+): Promise<string | null> {
+  try {
+    if (userId) {
+      const byId = await prisma.user.findUnique({ where: { id: userId }, select: { id: true } })
+      if (byId) return byId.id
+    }
+    const normEmail = email?.toLowerCase().trim()
+    if (normEmail) {
+      const byEmail = await prisma.user.findUnique({ where: { email: normEmail }, select: { id: true } })
+      if (byEmail) return byEmail.id
+    }
+    return null
+  } catch (e) {
+    console.error('[consent] resolveUserId failed:', e)
+    return null
+  }
+}
+
+/** True iff the user has accepted the CURRENT consent version. Reconciles a
+ *  stale/absent JWT id to the real User row by email before checking. */
 export async function hasAcceptedCurrentConsent(
   userId: string | null | undefined,
+  email?: string | null,
 ): Promise<boolean> {
-  if (!userId) return false
+  const realId = await resolveUserId(userId, email)
+  if (!realId) return false
   try {
     const row = await prisma.consentAcceptance.findFirst({
-      where: { userId, consentVersion: CONSENT_VERSION },
+      where: { userId: realId, consentVersion: CONSENT_VERSION },
       select: { id: true },
     })
     return !!row
@@ -50,11 +80,18 @@ export async function hasAcceptedCurrentConsent(
  */
 export async function recordConsent(args: {
   userId: string
+  email?: string | null
   ip?: string | null
 }): Promise<{ id: string; consentVersion: string }> {
+  // Reconcile to a REAL User row (the JWT id may be stale) — otherwise the FK
+  // to User is violated and the acceptance can never be recorded.
+  const realId = await resolveUserId(args.userId, args.email)
+  if (!realId) {
+    throw new Error('We could not find your account to record consent — please sign out and sign in again.')
+  }
   const row = await prisma.consentAcceptance.create({
     data: {
-      userId: args.userId,
+      userId: realId,
       consentVersion: CONSENT_VERSION,
       ipAtAcceptance: args.ip ?? null,
       consentTextHash: consentTextHash(),
@@ -78,15 +115,16 @@ export async function sessionHasConsent(session: Session | null): Promise<boolea
   const userId = session?.user?.id
   if (!userId) return true // anonymous — not gated by the consent record
   if (session?.user?.consented === true) return true
-  return hasAcceptedCurrentConsent(userId)
+  return hasAcceptedCurrentConsent(userId, session?.user?.email)
 }
 
 /** The most recent acceptance across ALL versions (for the Terms & Consent view). */
-export async function latestConsent(userId: string | null | undefined) {
-  if (!userId) return null
+export async function latestConsent(userId: string | null | undefined, email?: string | null) {
+  const realId = await resolveUserId(userId, email)
+  if (!realId) return null
   try {
     return await prisma.consentAcceptance.findFirst({
-      where: { userId },
+      where: { userId: realId },
       orderBy: { acceptedAt: 'desc' },
       select: { consentVersion: true, acceptedAt: true },
     })

@@ -26,7 +26,7 @@ import {
 export async function GET() {
   const session = await getSession()
   const userId = session?.user?.id ?? null
-  const accepted = userId ? await hasAcceptedCurrentConsent(userId) : false
+  const accepted = userId ? await hasAcceptedCurrentConsent(userId, session?.user?.email) : false
 
   return NextResponse.json({
     version: CONSENT_VERSION,
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
   const ip = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || null
 
   try {
-    const row = await recordConsent({ userId, ip })
+    const row = await recordConsent({ userId, email: session?.user?.email, ip })
     return NextResponse.json({ success: true, version: row.consentVersion })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Could not record consent'
