@@ -61,8 +61,49 @@ function resolveNextAuthSecret(): string {
   return 'astryx-dev-only-secret-do-not-use-in-production'
 }
 
+// ─── OAUTH COOKIE DOMAIN (Health-Analyst v1.1 · OAuth fix 2026-07-20) ─────────
+// Root cause of the recurring Google "OAUTH_CALLBACK_ERROR — state cookie was
+// missing" (firing since 2026-07-10): apex ↔ www host split. Both myastryx.com
+// and www.myastryx.com resolve; a next.config www→apex 301 exists, but NextAuth
+// scopes the OAuth `state`/PKCE cookie to whichever HOST set it. If Google's
+// callback lands on the apex while the cookie was set on www (or the 301 fires
+// mid-callback), the state cookie isn't sent → the login fails.
+//
+// Fix: pin the round-trip cookies to the SHARED parent domain (.myastryx.com,
+// derived from NEXTAUTH_URL) so they survive apex↔www. Only in production over
+// https; local dev (http://localhost) keeps NextAuth's defaults untouched.
+// NOTE: csrfToken is deliberately NOT overridden — it uses the `__Host-` prefix,
+// which forbids a Domain attribute, and it's validated at sign-in initiation on
+// a single host, so it needs no cross-subdomain sharing.
+function resolveCookieConfig(): Pick<NextAuthOptions, 'useSecureCookies' | 'cookies'> {
+  const url = process.env.NEXTAUTH_URL ?? ''
+  if (!url.startsWith('https://')) return {} // dev / http → NextAuth defaults
+
+  let host = ''
+  try { host = new URL(url).hostname } catch { host = '' }
+  const apex = host.replace(/^www\./, '')
+  if (!apex || apex === 'localhost') return { useSecureCookies: true }
+
+  const domain = `.${apex}`
+  const base = { httpOnly: true, sameSite: 'lax' as const, path: '/', secure: true, domain }
+
+  return {
+    useSecureCookies: true,
+    cookies: {
+      sessionToken:     { name: '__Secure-next-auth.session-token',      options: { ...base } },
+      callbackUrl:      { name: '__Secure-next-auth.callback-url',       options: { ...base } },
+      state:            { name: '__Secure-next-auth.state',              options: { ...base, maxAge: 900 } },
+      pkceCodeVerifier: { name: '__Secure-next-auth.pkce.code_verifier', options: { ...base, maxAge: 900 } },
+      nonce:            { name: '__Secure-next-auth.nonce',              options: { ...base } },
+    },
+  }
+}
+
 export const authOptions: NextAuthOptions = {
   secret: resolveNextAuthSecret(),
+
+  // Cross-subdomain OAuth cookies — see resolveCookieConfig() above.
+  ...resolveCookieConfig(),
 
   // Prisma adapter persists OAuth users/accounts. Credentials sign-in is
   // handled manually below (NextAuth v4 never persists credentials sessions
@@ -140,13 +181,19 @@ export const authOptions: NextAuthOptions = {
         token.entitled = await hasEntitlement(user.email ?? token.email)
         // LEGAL SHIELD v1 · FIX 1 — consent stamp. False for a fresh signup;
         // flips to true after they accept (see the `update` trigger below).
-        const { hasAcceptedCurrentConsent } = await import('./consent')
-        token.consented = await hasAcceptedCurrentConsent(user.id)
+        const { hasAcceptedCurrentConsent, resolveUserId } = await import('./consent')
+        // Self-heal a stale JWT id (e.g. DB reset regenerated cuids) to the real
+        // User row by email, so reads/consent key off the right account.
+        const realId = await resolveUserId(user.id, user.email ?? token.email)
+        if (realId) token.id = realId
+        token.consented = await hasAcceptedCurrentConsent(token.id, user.email ?? token.email)
       } else if (trigger === 'update' && token.id) {
         // FIX 1 — the client calls session.update() right after accepting, so
         // the consent gate flips within the same session (no re-login needed).
-        const { hasAcceptedCurrentConsent } = await import('./consent')
-        token.consented = await hasAcceptedCurrentConsent(token.id)
+        const { hasAcceptedCurrentConsent, resolveUserId } = await import('./consent')
+        const realId = await resolveUserId(token.id, token.email)
+        if (realId) token.id = realId
+        token.consented = await hasAcceptedCurrentConsent(token.id, token.email)
       }
       return token
     },
