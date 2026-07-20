@@ -220,7 +220,7 @@ governs *already-triaged* items.
 
 | First seen | Issue | Route | Impact | Status |
 |-----------|-------|-------|--------|--------|
-| 2026-07-10 | `OAUTH_CALLBACK_ERROR` — "state cookie was missing" (Google) | `/api/auth/[...nextauth]` | Google sign-in fails for affected users; credentials sign-in unaffected | **OPEN — fix proposed** (apex/www OAuth-cookie domain split; see the fix note handed to SHA 2026-07-20) |
+| 2026-07-10 | `OAUTH_CALLBACK_ERROR` — "state cookie was missing" (Google) | `/api/auth/[...nextauth]` | Google sign-in fails for affected users; credentials sign-in unaffected | **FIX DEPLOYED 2026-07-20** (commit `679c4ff` — OAuth cookies pinned to `Domain=.myastryx.com`, verified live on the handshake). **WATCHING:** confirm the error stops firing over the next 24–48h and a real Google sign-in succeeds; then close. Owner-side companion check still open: Google Console authorized redirect URI = `https://myastryx.com/api/auth/callback/google` and `NEXTAUTH_URL` = apex. |
 
 ---
 
