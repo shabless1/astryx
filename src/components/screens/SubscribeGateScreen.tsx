@@ -15,7 +15,7 @@
 import { useState } from 'react'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, } from '@/lib/compliance'
-import { SUB_PRICE, SUBSCRIBE_URL } from '@/lib/subscription'
+import { PRICE_MONTHLY, PRICE_YEARLY, YEARLY_SAVING, SUBSCRIBE_URL } from '@/lib/subscription'
 
 export default function SubscribeGateScreen({
   accentColor, onRestore,
@@ -61,9 +61,32 @@ export default function SubscribeGateScreen({
           Your chart, history, and progress are safe — subscribing restores you exactly where you left off.
         </p>
 
-        <div className="font-cinzel text-[34px] mb-1" style={{ color: accentColor }}>{SUB_PRICE}</div>
+        {/* Two lanes, one checkout — both plans live on the same Shopify
+            product page, where the buyer picks between them. */}
+        <div className="flex gap-2.5 mb-3">
+          <div
+            className="flex-1 rounded-2xl px-3 py-3.5"
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)' }}
+          >
+            <div className="font-cinzel text-[22px] leading-none mb-1.5" style={{ color: accentColor }}>
+              {PRICE_MONTHLY}
+            </div>
+            <div className="text-[10.5px] text-white/45 leading-snug">Monthly · cancel anytime</div>
+          </div>
+          <div
+            className="flex-1 rounded-2xl px-3 py-3.5 relative"
+            style={{ background: hexToRgba(accentColor, 0.09), border: `1px solid ${hexToRgba(accentColor, 0.4)}` }}
+          >
+            <div className="font-cinzel text-[22px] leading-none mb-1.5" style={{ color: accentColor }}>
+              {PRICE_YEARLY}
+            </div>
+            <div className="text-[10.5px] leading-snug" style={{ color: hexToRgba(accentColor, 0.9) }}>
+              {YEARLY_SAVING}
+            </div>
+          </div>
+        </div>
         <div className="text-[11px] text-white/40 mb-6 tracking-[0.04em]">
-          Billed monthly · cancel anytime · auto-renews until cancelled
+          Auto-renews until cancelled · cancel anytime
         </div>
 
         <div className="flex flex-col gap-2.5">

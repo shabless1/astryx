@@ -7,7 +7,10 @@ import { useAppStore } from '@/lib/store'
 // only the small render helpers from the client-safe module.
 import { getAccentColor, geocodeLocation } from '@/lib/engineClient'
 import { computeDailyElement } from '@/lib/dailyElement'
-import { computeSubscription, verifySubscription } from '@/lib/subscription'
+import {
+  computeSubscription, fetchSubscriptionState, startTrialClock,
+  type ServerSubscriptionState,
+} from '@/lib/subscription'
 import { signalWord } from '@/lib/signalCopy'
 import { generateId, hexToRgba } from '@/lib/utils'
 import { audioSession } from '@/lib/audioSession'
@@ -86,15 +89,33 @@ export default function AstryxApp() {
   // JWT at sign-in by the Shopify webhook → Entitlement pipeline.
   const entitled = session?.user?.entitled === true
 
+  // SUBSCRIPTION GATE v1 — the server owns the clock and the entitlement.
+  // The JWT `entitled` stamp is only refreshed at sign-in, so a subscription
+  // that lapses (or one bought five minutes ago) is invisible to it; this is
+  // read live from /api/subscription/status on every mount.
+  const [serverSub, setServerSub] = useState<ServerSubscriptionState | null>(null)
+  useEffect(() => {
+    if (!session?.user) { setServerSub(null); return }
+    let alive = true
+    fetchSubscriptionState().then((s) => { if (alive && s) setServerSub(s) })
+    return () => { alive = false }
+  }, [session?.user?.id])   // eslint-disable-line react-hooks/exhaustive-deps
+
   // FIX 9 — trial/subscription clock (deliberate opt-in; Shopify billing).
-  const sub = computeSubscription(trialStartedAt, entitled ? 'active' : subscriptionStatus)
+  // Server state wins whenever we have it; the local clock is the offline
+  // fallback so a network blip never locks anyone out mid-session.
+  const localSub = computeSubscription(trialStartedAt, entitled ? 'active' : subscriptionStatus)
+  const sub = serverSub ?? localSub
   const [alertDismissed, setAlertDismissed] = useState(false)
   // Global Ask Astryx — a floating companion the user can open anywhere.
   const [astryxOpen, setAstryxOpen] = useState(false)
 
-  // Re-verify a Shopify subscription (seam). Test-unlock via env for QA.
+  // "I've subscribed — restore my access." Asks the server whether the Shopify
+  // orders/paid webhook has written a live entitlement for this account yet.
   const handleRestoreSubscription = async (): Promise<boolean> => {
-    const ok = (await verifySubscription(session?.user?.id ?? session?.user?.email ?? undefined))
+    const fresh = await fetchSubscriptionState()
+    if (fresh) setServerSub(fresh)
+    const ok = fresh?.entitled === true
       || process.env.NEXT_PUBLIC_SUBSCRIBE_TEST_UNLOCK === 'true'
     if (ok) { setSubscriptionStatus('active'); goHome() }   // reactivate → restored into the saved journey
     return ok
@@ -471,7 +492,15 @@ export default function AstryxApp() {
       // never shows again (home becomes the daily door / dashboard).
       setOnboarded(true)
       // FIX 9 — the 30-day no-card trial clock starts at first onboarding.
+      // GATE v1: claimed on the SERVER (once, ever) so clearing site data or
+      // opening a second device can't mint a fresh 30 days. The local stamp
+      // stays as the offline mirror.
       if (!trialStartedAt) setTrialStartedAt(new Date().toISOString())
+      startTrialClock().then((s) => {
+        if (!s) return
+        setServerSub(s)
+        if (s.trialStartedAt) setTrialStartedAt(s.trialStartedAt)  // server date wins
+      })
       // FIX 5 — compute today's element/ritual from the fresh chart + the engine's
       // counterweight (regulator) fork; surfaced on the Reading card + Continuation.
       const elementFork = result.dominantPolarity?.protocol?.regulator_planets?.find(Boolean) ?? 'Earth'

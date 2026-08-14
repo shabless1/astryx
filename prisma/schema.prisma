@@ -26,6 +26,11 @@ model User {
   passwordHash  String?   // Credentials provider (bcryptjs)
   birthData     Json?     // natal input snapshot (name/date/time/location/coords)
   isPremium     Boolean   @default(false) // XRP legacy rail (dormant)
+  // SUBSCRIPTION GATE v1 — the 30-day no-card trial clock, SERVER-side.
+  // It used to live only in localStorage, which meant clearing site data (or a
+  // second device) handed out a fresh 30 days. Claimed ONCE, atomically, and
+  // never reset: see POST /api/subscription/status.
+  trialStartedAt DateTime?
   createdAt     DateTime  @default(now())
 
   accounts        Account[]
@@ -73,17 +78,30 @@ model VerificationToken {
 
 // ─── Astryx models (Directive v4.0) ───────────────────────────────────────
 
-// Fork-buyer / beta entitlement. Keyed by lowercase-normalized email so a
-// Shopify order can grant access before the account exists.
+// Access entitlement. Keyed by lowercase-normalized email so a Shopify order
+// can grant access before the account exists.
+//
+// SUBSCRIPTION GATE v1 (2026-08-14) — one row PER PAID ORDER, append-only.
+// Effective access = ANY active row that has not lapsed, so a renewal simply
+// adds a row with a later period end and can never shorten what came before.
+//   • currentPeriodEnd = NULL  → never expires (lifetime).
+//   • currentPeriodEnd = date  → access dies at that date; a rebill extends it.
+// SHA ruling 2026-08-14: the 10 founding fork buyers hold lifetime; every fork
+// sold after FORK_LIFETIME_CUTOFF gets the standard 30-day trial instead.
 model Entitlement {
-  id             String   @id @default(cuid())
-  email          String // ALWAYS lowercase-normalized before write
-  source         String // "shopify_fork_kit" | "manual" | "subscription"
-  shopifyOrderId String?  @unique
-  status         String   @default("active")
-  createdAt      DateTime @default(now())
+  id                String    @id @default(cuid())
+  email             String // ALWAYS lowercase-normalized before write
+  source            String // "shopify_fork_kit" | "shopify_subscription" | "manual"
+  plan              String    @default("lifetime") // "lifetime" | "monthly" | "yearly"
+  shopifyOrderId    String?   @unique
+  shopifyCustomerId String?
+  status            String    @default("active")
+  currentPeriodEnd  DateTime? // NULL = lifetime, never lapses
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @default(now()) @updatedAt
 
   @@index([email])
+  @@index([email, status])
 }
 
 // A persisted reading — the full deterministic ProtocolOutput + the intake

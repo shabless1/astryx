@@ -1,38 +1,96 @@
 /**
- * Beta entitlement check (Directive v4.0 · Fix 2).
+ * Access entitlement (Directive v4.0 · Fix 2 → SUBSCRIPTION GATE v1).
  *
- * A user is entitled when:
- *   • an active Entitlement row exists for their normalized email
- *     (written by the Shopify orders/paid webhook), OR
- *   • their email is in the BETA_ALLOWLIST env (comma-separated — lets SHA
- *     grant access manually without touching the database).
+ * A user has access when ANY of these is true:
+ *   • their email is in BETA_ALLOWLIST (SHA's manual grant — no DB row needed,
+ *     and it survives a database wipe, which is why it stays first), OR
+ *   • an active Entitlement row exists for their normalized email that has
+ *     NOT lapsed — meaning currentPeriodEnd is NULL (lifetime) or in the future.
  *
- * Server-only. The result is stamped into the NextAuth JWT at sign-in
- * (cached — we never hit the DB per request).
+ * Rows are APPEND-ONLY, one per paid Shopify order. Effective access is the
+ * most generous live row, so a renewal can only ever extend — a rebill that
+ * lands with a shorter period can never claw back time someone already holds.
+ * That is the same "never shorten" guarantee the Sacred Vault webhook carries,
+ * expressed as data instead of as branching logic.
+ *
+ * Server-only.
  */
 
 import { prisma } from './db'
 
-export async function hasEntitlement(email: string | null | undefined): Promise<boolean> {
-  if (!email) return false
-  const normalized = email.trim().toLowerCase()
+export interface AccessState {
+  /** Access is live right now. */
+  entitled: boolean
+  /** Access never expires (founding fork buyer, or BETA_ALLOWLIST). */
+  lifetime: boolean
+  /** 'lifetime' | 'monthly' | 'yearly' | null when not entitled. */
+  plan: string | null
+  /** ISO expiry, or null for lifetime / not entitled. */
+  currentPeriodEnd: string | null
+  source: string | null
+}
 
-  const allowlist = (process.env.BETA_ALLOWLIST || '')
+const NO_ACCESS: AccessState = {
+  entitled: false, lifetime: false, plan: null, currentPeriodEnd: null, source: null,
+}
+
+function allowlisted(normalized: string): boolean {
+  return (process.env.BETA_ALLOWLIST || '')
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean)
-  if (allowlist.includes(normalized)) return true
+    .includes(normalized)
+}
+
+/**
+ * The full picture for one email — what kind of access, and until when.
+ * Used by the subscription-status route so the gate can show an honest
+ * renewal date instead of a bare locked/unlocked flag.
+ */
+export async function resolveAccess(email: string | null | undefined): Promise<AccessState> {
+  if (!email) return NO_ACCESS
+  const normalized = email.trim().toLowerCase()
+
+  if (allowlisted(normalized)) {
+    return { entitled: true, lifetime: true, plan: 'lifetime', currentPeriodEnd: null, source: 'allowlist' }
+  }
 
   try {
-    const row = await prisma.entitlement.findFirst({
+    const rows = await prisma.entitlement.findMany({
       where: { email: normalized, status: 'active' },
-      select: { id: true },
+      select: { plan: true, currentPeriodEnd: true, source: true },
     })
-    return !!row
+    if (rows.length === 0) return NO_ACCESS
+
+    // Lifetime beats everything — no date can undercut it.
+    const forever = rows.find((r) => r.currentPeriodEnd === null)
+    if (forever) {
+      return { entitled: true, lifetime: true, plan: forever.plan, currentPeriodEnd: null, source: forever.source }
+    }
+
+    // Otherwise the furthest-out live row wins.
+    const now = Date.now()
+    const live = rows
+      .filter((r) => r.currentPeriodEnd !== null && r.currentPeriodEnd.getTime() > now)
+      .sort((a, b) => b.currentPeriodEnd!.getTime() - a.currentPeriodEnd!.getTime())[0]
+    if (!live) return NO_ACCESS
+
+    return {
+      entitled: true,
+      lifetime: false,
+      plan: live.plan,
+      currentPeriodEnd: live.currentPeriodEnd!.toISOString(),
+      source: live.source,
+    }
   } catch (e) {
-    // A DB hiccup must never lock a paying user out mid-session; the JWT
-    // keeps whatever was stamped at sign-in. Fail closed for new stamps.
+    // A DB hiccup must never lock a paying user out mid-session; the JWT keeps
+    // whatever was stamped at sign-in. Fail closed only for NEW stamps.
     console.error('[entitlement] lookup failed:', e)
-    return false
+    return NO_ACCESS
   }
+}
+
+/** Boolean form — what the NextAuth JWT stamps at sign-in. */
+export async function hasEntitlement(email: string | null | undefined): Promise<boolean> {
+  return (await resolveAccess(email)).entitled
 }
