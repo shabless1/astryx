@@ -6,44 +6,98 @@ billing rail; access is time-bound; the trial clock is server-side.
 
 ---
 
-## ⚠️ The one thing left for SHA
+## ⚠️ Two things left for SHA
 
-**Attach the two selling plans, then activate the product.** Until then the
-gate's Subscribe button falls through to the shop root instead of the product.
+### 1. The yearly plan currently charges $9.99, not $99 — fix in Shopify
 
-**Deadline: 2026-08-18** — that's when the first real user
-(`setkhinekyaw@gmail.com`) hits the paywall. Two more follow on 08-22 and 09-01.
+The product is live (**UNLISTED**, `requiresSellingPlan: true`) with a plan
+group **Astryx** (`86032089367`) carrying "Deliver every month" and "Deliver
+every year". Both are correct on *frequency*. But **both have an empty
+`pricingPolicies` array**, which means neither overrides the variant price — so
+they both charge **$9.99**. A yearly subscriber would pay $9.99 for a full year.
 
-The draft product is built and waiting:
+The Vault's plans carry an explicit fixed price per plan
+(`adjustmentType: PRICE` → $19.99 / $199.99). ASTRYX's need the same.
 
-| | |
-|---|---|
-| Product | **ASTRYX — Cosmic Calibration Access** |
-| Shopify ID | `10497531183383` |
-| Handle | `astryx-cosmic-calibration-access` |
-| Status | **DRAFT** — invisible to shoppers until you activate |
-| Variant | $9.99 · SKU `ASTRYX-ACCESS` · no shipping, no inventory tracking |
+I tried to patch it by API and got:
+> Access denied for `sellingPlanGroupUpdate`. Required: `write_products` plus
+> `write_own_subscription_contracts` or `write_purchase_options`.
 
-### Why I didn't create the selling plans by API
+So this one is yours:
+1. Shopify admin → the ASTRYX product → the **Astryx** purchase-option group
+2. Monthly plan → set the price to **$9.99**
+3. Yearly plan → set the price to **$99.00**
+4. Re-check: the product page should show two prices, not two identical ones
 
-A selling plan group belongs to whichever app creates it, and **only a
-subscription app with a billing engine can actually charge the rebills.** The
-Vault's plans are owned by *Digital Library Access* (Shopify app
-`66228322305`). If I had created plans from this connector instead, the product
-would have *looked* subscribable and taken orders that never billed a second
-time — a worse failure than no plans at all, and one that only shows up 30 days
-later.
+**Also worth verifying with one real test order:** the group's `appId` is
+`null`, where the Vault's group is stamped with its subscription app
+(`66228322305`). A selling plan needs a subscription app behind it to actually
+run the rebills — a plan with no billing engine takes the first payment and
+never charges again, which only becomes visible 30 days later. Buy it once
+yourself and confirm a subscription contract appears in the admin.
 
-**Do this in the same subscription app that runs the Vault pass:**
-1. Open the subscription app → create a plan group on **ASTRYX — Cosmic Calibration Access**
-2. Monthly — **$9.99**, every 1 month
-3. Yearly — **$99.00**, every 1 year
-4. Set the product to require a selling plan (no one-time purchase)
-5. Set product status **Active**
+### 2. Turn the email funnel on — `RESEND_API_KEY`
 
-Then point the `orders/paid` webhook at
-`https://myastryx.com/api/webhooks/shopify` if it isn't already (it is — the
-fork entitlement has been using it since July).
+The funnel is built and inert. Read the copy in `src/lib/emails.ts`, then set
+`RESEND_API_KEY` in Vercel (same Resend account as the Vault — it sends from
+`noreply@mail.sacredtea.net`, a domain already verified there). No key, no
+sends. That's the approval switch.
+
+**Deadline: 2026-08-18** — `setkhinekyaw@gmail.com` hits the paywall then, and
+is the first person who will meet the subscribe link for real. Two more follow
+on 08-22 and 09-01.
+
+The `orders/paid` webhook is already pointed at
+`https://myastryx.com/api/webhooks/shopify` (the fork entitlement has used it
+since July), so the subscription grant needs no extra wiring.
+
+---
+
+## The funnel — fork buyer → subscriber
+
+```
+buys forks ──► orders/paid webhook
+                 ├─ BuyerLead recorded (account or not)
+                 └─ "Your Sacred Tones are coming" ──► myastryx.com + /guide
+                                                          │
+                                              creates account, 30-day clock
+                                                          │
+                     day 27 ──► "Your access pauses in 3 days" ──► subscribe link
+                     day 30 ──► "Your 30 days are complete"   ──► subscribe link
+                                                          │
+                                              subscribes on sacredtea.net
+                                                          │
+                        orders/paid ──► entitlement +33d / +367d ──► unlocked
+```
+
+**Three emails, all in `src/lib/emails.ts`** — that one file is the whole
+customer-facing voice, and the build lints every word of it against
+`COMPLIANCE.md` (it already caught a banned "you have" in my first draft).
+
+**Nobody is asked to buy what they already hold.** Founding fork buyers,
+allowlisted emails and live subscribers are all skipped.
+
+**Send-once is a database stamp, not a schedule assumption.** The stamp is
+written only after Resend accepts, so the daily cron is safe to re-run, a failed
+send retries tomorrow instead of vanishing, and an account that lapsed a
+fortnight ago gets the door-closed mail rather than a stale "3 days left".
+
+**The cron:** `/api/cron/trial-emails`, daily at 15:00 UTC (10am Central) via
+`vercel.json`. Add `?dryRun=1` to see exactly who would be mailed while sending
+and stamping nothing.
+
+### Dry run against production, 2026-08-14
+
+```json
+{"mailConfigured": false, "sent": [], "skipped": {"hasAccess": 8, "notDue": 3, "undeliverable": 1},
+ "neverActivated": ["nijohn7@yahoo.com", "l.jones@livebenevolent.org",
+                    "ruthyrodgers19@gmail.com", "cgcooks721@gmail.com"]}
+```
+
+Nobody is due today, and `mailConfigured: false` confirms the gate is shut.
+`neverActivated` lists Nina's *yahoo* address because that is the address she
+bought under — she is active on gmail. The other three are the real activation
+gap.
 
 ---
 
@@ -144,6 +198,8 @@ Everyone else holds lifetime (founding forks) or is on the allowlist.
 ```
 SHOPIFY_ASTRYX_PRODUCT_ID   = 10497531183383
 NEXT_PUBLIC_SUBSCRIBE_URL   = https://sacredtea.net/products/astryx-cosmic-calibration-access
+CRON_SECRET                 = (generated — protects the daily mailer)
+RESEND_API_KEY              = ← NOT SET. This is the funnel's on-switch.
 ```
 
 `SUBSCRIBE_URL` falls back to the shop root when unset — a draft product 404s,
@@ -161,4 +217,9 @@ and a dead link at the gate is worse than the storefront's front door.
 | `src/lib/entitlement.ts` | `resolveAccess()` — most generous live row |
 | `src/lib/subscription.ts` | Clock + client calls + both prices |
 | `src/components/screens/SubscribeGateScreen.tsx` | Two-lane gate |
-| `tests/subscriptionGate.test.ts` | 10 tests pinning the boundary |
+| `tests/subscriptionGate.test.ts` | 14 tests pinning the access boundary |
+| `src/lib/emails.ts` | **Every customer-facing word.** SHA's file to edit |
+| `src/lib/mailer.ts` | Resend door · no key = no sends |
+| `src/app/api/cron/trial-emails/route.ts` | Daily lifecycle mailer · `?dryRun=1` |
+| `prisma/migrations/20260814010000_funnel_v1/` | BuyerLead + send-once stamps |
+| `tests/funnel.test.ts` | 15 tests — who gets mailed, once, and the copy lint |
