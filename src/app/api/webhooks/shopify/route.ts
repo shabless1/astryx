@@ -121,6 +121,44 @@ export async function POST(req: Request) {
   )
   const paidAtMs = Number.isNaN(paidAt) ? Date.now() : paidAt
 
+  // ── FUNNEL v1 — a fork buyer is a lead the moment they pay ────────────────
+  // Recorded whether or not they ever create an account: half the founding
+  // buyers never activated and nothing in the system knew who they were. The
+  // welcome mail is what closes that gap, and welcomeEmailAt keeps a Shopify
+  // retry from sending it twice.
+  if (forkItem) {
+    const buyerName =
+      [order?.customer?.first_name, order?.customer?.last_name].filter(Boolean).join(' ') || null
+    try {
+      const lead = await prisma.buyerLead.upsert({
+        where: { shopifyOrderId: orderId },
+        update: { email, name: buyerName },
+        create: {
+          email,
+          name: buyerName,
+          product: 'forks',
+          shopifyOrderId: orderId,
+          purchasedAt: new Date(paidAtMs),
+        },
+        select: { id: true, welcomeEmailAt: true },
+      })
+      if (!lead.welcomeEmailAt) {
+        const { forkWelcome } = await import('@/lib/emails')
+        const { sendAstryxEmail } = await import('@/lib/mailer')
+        const mail = forkWelcome(buyerName)
+        if (await sendAstryxEmail(email, mail.subject, mail.html)) {
+          await prisma.buyerLead.update({
+            where: { id: lead.id },
+            data: { welcomeEmailAt: new Date() },
+          })
+        }
+      }
+    } catch (e) {
+      // A lead row or a mail failure must never cost Shopify its 200.
+      console.error('[shopify webhook] fork lead/welcome failed:', e)
+    }
+  }
+
   let plan: 'monthly' | 'yearly' | 'lifetime'
   let source: string
   let currentPeriodEnd: Date | null

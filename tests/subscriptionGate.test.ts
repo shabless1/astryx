@@ -14,9 +14,22 @@ import { createHmac } from 'node:crypto'
 
 const SECRET = 'test-webhook-secret'
 
-// The route's only side effect. Captured, never executed.
+// The route's side effects. Captured, never executed.
 const upsert = vi.fn().mockResolvedValue({})
-vi.mock('@/lib/db', () => ({ prisma: { entitlement: { upsert: (...a: any[]) => upsert(...a) } } }))
+const leadUpsert = vi.fn().mockResolvedValue({ id: 'lead1', welcomeEmailAt: null })
+const leadUpdate = vi.fn().mockResolvedValue({})
+const sendMail = vi.fn().mockResolvedValue(true)
+
+vi.mock('@/lib/db', () => ({
+  prisma: {
+    entitlement: { upsert: (...a: any[]) => upsert(...a) },
+    buyerLead: { upsert: (...a: any[]) => leadUpsert(...a), update: (...a: any[]) => leadUpdate(...a) },
+  },
+}))
+vi.mock('@/lib/mailer', async () => {
+  const actual = await vi.importActual<typeof import('@/lib/mailer')>('@/lib/mailer')
+  return { ...actual, mailEnabled: () => true, sendAstryxEmail: (...a: any[]) => sendMail(...a) }
+})
 
 process.env.SHOPIFY_WEBHOOK_SECRET = SECRET
 process.env.SHOPIFY_ASTRYX_PRODUCT_ID = '10497531183383'
@@ -44,7 +57,10 @@ const FORKS = { product_id: 10338601697559, title: 'SACRED TONES PLANETARY TUNIN
 
 const DAY = 24 * 3600 * 1000
 
-beforeEach(() => upsert.mockClear())
+beforeEach(() => {
+  upsert.mockClear(); leadUpsert.mockClear(); leadUpdate.mockClear(); sendMail.mockClear()
+  leadUpsert.mockResolvedValue({ id: 'lead1', welcomeEmailAt: null })
+})
 
 describe('shopify webhook — who gets in', () => {
   it('rejects an unsigned body without touching the database', async () => {
@@ -83,6 +99,47 @@ describe('shopify webhook — who gets in', () => {
     }))
     expect(await res.json()).toMatchObject({ entitled: false })
     expect(upsert).not.toHaveBeenCalled()
+  })
+})
+
+describe('shopify webhook — the fork buyer becomes a tracked lead', () => {
+  it('records the buyer and mails them the app, even with no access granted', async () => {
+    await POST(order({
+      id: 900010, email: 'NewFork@Buyer.com', processed_at: '2026-09-01T00:00:00Z',
+      customer: { id: 55, first_name: 'Ada', last_name: 'Lovelace' }, line_items: [FORKS],
+    }))
+    expect(leadUpsert.mock.calls[0][0].create).toMatchObject({
+      email: 'newfork@buyer.com', name: 'Ada Lovelace', product: 'forks',
+    })
+    expect(sendMail).toHaveBeenCalledTimes(1)
+    expect(sendMail.mock.calls[0][0]).toBe('newfork@buyer.com')
+    // Stamped only after the mail is accepted, so a failure retries later.
+    expect(leadUpdate.mock.calls[0][0].data.welcomeEmailAt).toBeInstanceOf(Date)
+  })
+
+  it('does not welcome the same buyer twice when Shopify retries', async () => {
+    leadUpsert.mockResolvedValue({ id: 'lead1', welcomeEmailAt: new Date() })
+    await POST(order({
+      id: 900011, email: 'repeat@buyer.com', processed_at: '2026-09-01T00:00:00Z', line_items: [FORKS],
+    }))
+    expect(sendMail).not.toHaveBeenCalled()
+    expect(leadUpdate).not.toHaveBeenCalled()
+  })
+
+  it('a subscription order is not a fork lead', async () => {
+    await POST(order({
+      id: 900012, email: 'sub@buyer.com', processed_at: '2026-09-01T00:00:00Z', line_items: [ASTRYX_MONTHLY],
+    }))
+    expect(leadUpsert).not.toHaveBeenCalled()
+    expect(sendMail).not.toHaveBeenCalled()
+  })
+
+  it('a tea order is not a fork lead either', async () => {
+    await POST(order({
+      id: 900013, email: 'tea@buyer.com', processed_at: '2026-09-01T00:00:00Z', line_items: [TEA],
+    }))
+    expect(leadUpsert).not.toHaveBeenCalled()
+    expect(sendMail).not.toHaveBeenCalled()
   })
 
   it('a fork order BEFORE the cutoff still grants lifetime — the founding promise', async () => {

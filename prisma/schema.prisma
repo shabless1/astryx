@@ -31,6 +31,10 @@ model User {
   // second device) handed out a fresh 30 days. Claimed ONCE, atomically, and
   // never reset: see POST /api/subscription/status.
   trialStartedAt DateTime?
+  // FUNNEL v1 — send-once stamps for the trial lifecycle mails. A stamp is the
+  // dedupe: no stamp, no send, and the cron can run as often as it likes.
+  trialEndingEmailAt DateTime?
+  trialEndedEmailAt  DateTime?
   createdAt     DateTime  @default(now())
 
   accounts        Account[]
@@ -102,6 +106,24 @@ model Entitlement {
 
   @@index([email])
   @@index([email, status])
+}
+
+// FUNNEL v1 (2026-08-14) — every fork buyer, whether or not they ever made an
+// account. The July briefing's #1 growth leak was that ~half of paying fork
+// buyers never activated and nothing in the system knew who they were.
+// Written by the Shopify orders/paid webhook, keyed by order so a retry can't
+// double-send. `welcomeEmailAt` doubles as the send-once dedupe.
+model BuyerLead {
+  id             String    @id @default(cuid())
+  email          String // ALWAYS lowercase-normalized before write
+  name           String?
+  product        String // "forks"
+  shopifyOrderId String    @unique
+  purchasedAt    DateTime
+  welcomeEmailAt DateTime?
+  createdAt      DateTime  @default(now())
+
+  @@index([email])
 }
 
 // A persisted reading — the full deterministic ProtocolOutput + the intake
