@@ -57,6 +57,11 @@ They feed each other: showroom → data that makes the dock valuable → ubiquit
 
 **Acceptance:** ≥ 80% of fork buyers activated · outcome table live and populating · pay-per-crawl on · a real weekly-active number we can watch.
 
+**0.2 — build spec (scoped 2026-09-09).** Today `POST /api/sessions` persists only `kind / completedPhases / startedAt / completedAt` (fired at completion from `page.tsx`), while the real outcome data — `energyBefore`, `energyRating` (after), `forkSequence`, carrier planet/state, intention — is assembled in `PostSessionSummary.tsx` and saved **only to the browser** (`addSessionLog` → zustand). The flywheel needs it in the DB:
+- **Schema:** extend `ChamberSession` (RLS already on; columns, not a new table) with `energyBefore Int?`, `energyAfter Int?`, `carrierPlanet String?`, `signalState String?` (excess/deficiency/blocked/balanced), `forkSequence Json?` (string[]), `intention String?`, `chartHash String?` (ties to the Reading's determinism hash), `standardVersion String?`, `outcomeAt DateTime?`.
+- **Two-step write:** (1) at completion the existing POST also sends `energyBefore, carrierPlanet, signalState, forkSequence, chartHash, standardVersion` (all known from the snapshot) and the client **keeps the returned `id`** on the pending snapshot; (2) at the post-session check-in, `PATCH /api/sessions/:id` writes `energyAfter` + `outcomeAt` (+ felt-state answers if kept). Abandoned sessions keep step 1 only. Guests stay local-only as today.
+- **Compliance:** subjective 1–10 felt state only ("recalibration response"); no clinical fields. Note: since 2026-08-14 a `BuyerLead` model + welcome-email-on-purchase already exist, so 0.1 activation is partly automated — verify the send-once stamps are firing.
+
 ### PHASE 1 — THE STANDARD + THE DOOR · "Be the dependency" · Q4 2026 → Q1 2027
 *Cheap, early, and the same work as the biggest security fix. This is the ground-floor claim.*
 
