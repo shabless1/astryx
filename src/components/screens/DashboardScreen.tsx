@@ -136,7 +136,7 @@ export default function DashboardScreen({
           <div className="mb-4 px-4 py-3 rounded-2xl flex items-center gap-2.5 animate-fade-in-up"
                style={{ background: hexToRgba(accentColor, 0.12), border: `1px solid ${hexToRgba(accentColor, 0.4)}` }}>
             <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: accentColor, boxShadow: `0 0 8px ${accentColor}` }} />
-            <span className="text-[13px] text-content">Session logged to your progress.</span>
+            <span className="text-[13px] text-content">Session written into your progress.</span>
           </div>
         )}
 
@@ -275,7 +275,7 @@ export default function DashboardScreen({
               {chartData ? (
                 <NatalChartWheel chart={chartData} accentColor={accentColor} size={420} />
               ) : (
-                <ChartFallback accentColor={accentColor} glyph="◎" label="Chart not available yet" hint="Run a calibration to generate your chart." />
+                <ChartFallback accentColor={accentColor} glyph="◎" label="Chart not available yet" hint="Run a calibration and your chart appears here." />
               )}
             </GlassCard>
           )}
@@ -285,7 +285,7 @@ export default function DashboardScreen({
               {chartData ? (
                 <BodyMap chart={chartData} accentColor={accentColor} />
               ) : (
-                <ChartFallback accentColor={accentColor} glyph="⬡" label="Body Map not available yet" hint="Run a calibration to map your body." />
+                <ChartFallback accentColor={accentColor} glyph="⬡" label="Body Map not available yet" hint="Run a calibration and your body map appears here." />
               )}
             </GlassCard>
           )}
@@ -598,7 +598,7 @@ function PulseTab({
             })}
           </div>
         ) : (
-          <p className="text-[12.5px] text-white/45 italic">No strong transits to your natal chart today — a steady sky. A grounding session still supports your baseline.</p>
+          <p className="text-[12.5px] text-white/45 italic">No strong transits to your chart today: a quiet sky. A grounding session still tunes the field.</p>
         )}
       </div>
 

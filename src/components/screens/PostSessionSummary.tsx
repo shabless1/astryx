@@ -150,7 +150,7 @@ function buildContinuation(
     color: snap.colorProtocol,
     bodyAreaToObserve: snap.primaryBodyPlacement,
     whatToAvoid,
-    nextCheckIn: 'Check back tomorrow (or before your next session) and notice how you feel.',
+    nextCheckIn: 'Return tomorrow, or before your next session, and notice what has shifted.',
     responseNote,
   }
 }
@@ -168,8 +168,8 @@ function downloadContinuationCard(
     ['Tea', cont.teaPlaceholder],
     ['Breath', cont.breath],
     ['Color', cont.color ?? '—'],
-    ['Body area to observe', cont.bodyAreaToObserve],
-    ['What to avoid today', cont.whatToAvoid],
+    ['Where to keep your attention', cont.bodyAreaToObserve],
+    ['What to let rest today', cont.whatToAvoid],
     ['Next check-in', cont.nextCheckIn],
   ]
   if (cont.responseNote) rows.push(['Note', cont.responseNote])
@@ -225,7 +225,7 @@ export default function PostSessionSummary({
       return (
         <div className="text-center py-10">
           <div className="text-3xl mb-3 opacity-30">◎</div>
-          <p className="text-[13px] text-white/55">No session to summarize yet. Begin today&apos;s session and it will appear here.</p>
+          <p className="text-[13px] text-white/55">Nothing has sounded yet today. Enter the Chamber and the summary will appear here.</p>
         </div>
       )
     }
@@ -410,7 +410,7 @@ export default function PostSessionSummary({
               />
 
               <div className="mt-6">
-                <QLabel>Energy level after session</QLabel>
+                <QLabel>Energy now, after the session</QLabel>
                 <Scale10
                   value={answers.energyLevel}
                   onChange={(n) => setAnswers((a) => ({ ...a, energyLevel: n }))}
@@ -439,7 +439,7 @@ export default function PostSessionSummary({
               </div>
 
               <div className="mt-6">
-                <QLabel>Did the fork placement feel accurate?</QLabel>
+                <QLabel>Did the fork placement land where it needed to?</QLabel>
                 <SingleSelect
                   options={PLACEMENT_ACCURACY as string[]}
                   selected={answers.placementAccuracy}
@@ -450,14 +450,14 @@ export default function PostSessionSummary({
                   type="text"
                   value={answers.feltMostWhere ?? ''}
                   onChange={(e) => setAnswers((a) => ({ ...a, feltMostWhere: e.target.value }))}
-                  placeholder="Where did you feel the tone most? (optional)"
+                  placeholder="Where did the tone land in you? (optional)"
                   className="w-full mt-3 px-3 py-2.5 rounded-lg text-[13px] text-white placeholder:text-white/30"
                   style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
               </div>
 
               <div className="mt-6">
-                <QLabel>Did the Chamber feel supportive?</QLabel>
+                <QLabel>Did the Chamber hold you?</QLabel>
                 <SingleSelect
                   options={CHAMBER_SUPPORT as string[]}
                   selected={answers.chamberSupport}

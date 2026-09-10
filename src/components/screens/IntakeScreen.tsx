@@ -262,7 +262,7 @@ export default function IntakeScreen({
 
       {/* ── STEP 0: Personal ── */}
       {step === 0 && (
-        <StepCard title="Your Birth Blueprint" subtitle="This data generates your unique natal chart — the foundation of your calibration protocol.">
+        <StepCard title="Your Birth Blueprint" subtitle="The moment you arrived: date, time, and place set the chord your calibration is tuned to.">
           <div className="space-y-4">
             {/* Mode toggle. The Practitioner portal is LOCKED for launch (SHA
                 2026-06-28) — shown but non-clickable with a padlock until the
@@ -409,7 +409,7 @@ export default function IntakeScreen({
       {step === 1 && (
         <StepCard
           title="Full-Spectrum Resonance Scan"
-          subtitle={`Primary → secondary → tertiary across all ten systems. Tap every statement that feels true right now — the more complete the scan, the more precise your calibration.${activePlanetCount > 0 ? ` ${activePlanetCount} activated.` : ''}`}
+          subtitle={`Surface, root, weather: what is loudest, where it comes from, and what is stirring it. Tap every statement that feels true right now. The more of you the scan hears, the truer the calibration.${activePlanetCount > 0 ? ` ${activePlanetCount} activated.` : ''}`}
           wide
         >
           {/* v2 FIX 1 — pre-session energy baseline → enables BEFORE→AFTER + trend chart */}
@@ -726,10 +726,10 @@ export default function IntakeScreen({
               >
                 <span className="text-[10px] text-white/20">
                   {(formData.narrative || '').length < 30 && (formData.narrative || '').length > 0
-                    ? 'A bit more detail will give the system more to work with'
+                    ? 'A little more, and the reading has more to listen to'
                     : (formData.narrative || '').length >= 30
                     ? '✦ Narrative captured'
-                    : 'Optional — but the more you share, the more precise your protocol'}
+                    : 'Optional, but the more you share, the truer the protocol'}
                 </span>
                 <span className="text-[10px] text-white/20">
                   {(formData.narrative || '').split(/\s+/).filter(Boolean).length} words

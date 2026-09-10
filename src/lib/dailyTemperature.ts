@@ -16,7 +16,8 @@
  * `result.suggestedForkPlanet`. Keep this function pure and self-contained so the
  * bot can reuse it without pulling in UI. Do not add side effects here.
  *
- * Voice: energy / frequency / calibration — never ritual/occult/mystical.
+ * Voice: metaphysical + scientific (SHA ruling 2026-09-10) — energy, frequency,
+ * field, the sky as instrument. Structure from Saturn, expression from Uranus.
  * Compliance: probabilistic framing ("may"), no dosages, no medical claims.
  */
 

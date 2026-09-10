@@ -41,7 +41,7 @@ const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODE
 // banned-phrase guard even after a stricter retry. Never leaves the user
 // with a compliance-violating message.
 const SAFE_FALLBACK =
-  "Let me keep this to what your chart actually shows. I can explain why a particular tone, herb, color, or transit appears in your calibration, or walk you through a term like your Ascendant or what a transit is. For anything about a symptom or a health decision, that's a conversation for your licensed practitioner. What would you like me to explain?"
+  "Let me bring this back to your chart, where I can actually see. I can show you why a tone, an herb, a color, or a transit is sounding in your calibration today, or open up a term like your Ascendant or the Clairs. Anything about a symptom or a health decision lives with someone who can examine you. Where shall we look first?"
 
 export type TeacherTurn = { role: 'user' | 'model'; text: string }
 

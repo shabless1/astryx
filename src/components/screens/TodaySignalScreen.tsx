@@ -76,7 +76,7 @@ export default function TodaySignalScreen({
   const calibrationResponse =
     state !== 'balanced' && correctiveDir.length
       ? correctiveDir.slice(0, 3).map(cap).join('. ') + '.'
-      : 'Draw on this steady signal to support the rest of your field.'
+      : 'A steady signal is a gift: draw on it to resource the rest of your field.'
 
   // ── Fork sequence (shared helper — never re-derived) ──
   const preset = getDurationPreset(chamberDurationKey)

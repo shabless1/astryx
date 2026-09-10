@@ -5,8 +5,8 @@
  * reads and edits. Changing the funnel's voice should never mean opening a
  * route handler.
  *
- * COMPLIANCE (COMPLIANCE.md §2–3): no medical claims, no banned phrases, no
- * occult/ritual register — energy, frequency and calibration only. The
+ * COMPLIANCE (COMPLIANCE.md §2–3): no medical claims, no banned phrases. Voice
+ * is the app's metaphysical + scientific register (SHA ruling 2026-09-10). The
  * disclaimer rides in the shell on every send, so it can't be forgotten here.
  *
  * The funnel, end to end:

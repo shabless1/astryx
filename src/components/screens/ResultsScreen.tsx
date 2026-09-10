@@ -666,13 +666,13 @@ function TransitCard({
           <div className="h-px bg-white/5 mb-4" />
           {transit.interpretation.effect && (
             <div className="mb-3">
-              <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">EFFECT IN YOUR BODY</div>
+              <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">WHERE IT LANDS IN THE BODY</div>
               <p className="text-[13px] text-white/75 leading-relaxed">{transit.interpretation.effect}</p>
             </div>
           )}
           {transit.interpretation.intervention && (
             <div className="mb-3">
-              <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>INTERVENTION</div>
+              <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>THE RESPONSE</div>
               <p className="text-[13px] text-white/70 leading-relaxed">{transit.interpretation.intervention}</p>
             </div>
           )}
@@ -729,7 +729,7 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
 
   return (
     <GlassCard accentColor={planetColor} opacity={0.12} className="p-5">
-      <div className="text-[10px] tracking-[0.25em] text-white/40 mb-1">REPORTED SYMPTOM</div>
+      <div className="text-[10px] tracking-[0.25em] text-white/40 mb-1">WHAT YOU NAMED</div>
       <div className="font-cinzel text-[18px] text-white mb-3 capitalize">{symptom.reportedSymptom}</div>
 
       <p className="text-[14px] text-white/85 leading-relaxed mb-3">
@@ -742,7 +742,7 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
       )}
 
       <div className="mb-3">
-        <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1.5">EVIDENCE FROM YOUR CHART</div>
+        <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1.5">WHERE THE CHART CARRIES IT</div>
         <ul className="space-y-1">
           {symptom.evidence.map((e, i) => (
             <li key={i} className="text-[12px] text-white/65 flex gap-2 leading-relaxed">
@@ -755,20 +755,20 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
 
       {symptom.rootCause.bodyLayer && (
         <div className="mb-3">
-          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">WHAT IT DOES IN YOUR BODY</div>
+          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">HOW IT MOVES IN THE BODY</div>
           <p className="text-[13px] text-white/75 leading-relaxed">{symptom.rootCause.bodyLayer}</p>
         </div>
       )}
       {symptom.rootCause.actionLayer && (
         <div className="mb-3">
-          <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>WHAT TO DO</div>
+          <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>THE PRACTICE</div>
           <p className="text-[13px] text-white/70 leading-relaxed">{symptom.rootCause.actionLayer}</p>
         </div>
       )}
 
       {symptom.recommendedCellSalt?.saltName && (
         <div className="mt-4 p-3 rounded-lg border border-white/10 bg-white/3">
-          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">RECOMMENDED CELL SALT</div>
+          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">THE MINERAL REFERENCE</div>
           <div className="flex items-baseline gap-2 flex-wrap">
             <span className="font-cinzel text-[14px] text-white">{symptom.recommendedCellSalt.saltShort}</span>
             <span className="text-[11px] text-white/40 italic">{symptom.recommendedCellSalt.epithet}</span>
@@ -912,7 +912,11 @@ function PrescriptionCard({
 
           {/* Six senses grid — the five sensory channels plus FIELD, the
               human's auric/etheric field the fork's vibration moves through.
-              Field is universal (not planet-keyed), so its copy is fixed. */}
+              Field is universal (not planet-keyed), so its copy is fixed.
+              Every channel opens both ways: the outward instrument is the
+              tile's primary; the inward faculty is its Clair (Standard §4.2,
+              src/data/clairs.json). The tone that tunes a channel is the tone
+              that clears its Clair. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
             <SenseTile
               icon="♪" label="SOUND" color={color}
@@ -925,32 +929,38 @@ function PrescriptionCard({
                     )
               }
               detail={rx.fiveSenses.sound.instruction}
+              clair="Clairaudience · clear hearing"
             />
             <SenseTile
               icon="◎" label="SCENT" color={color}
               primary={rx.fiveSenses.scent.oils.join(' · ') || '—'}
               detail={rx.fiveSenses.scent.instruction}
+              clair="Clairalience · clear smelling"
             />
             <SenseTile
               icon="◇" label="TASTE" color={color}
               primary={rx.fiveSenses.taste.tea}
               detail={rx.fiveSenses.taste.ingredients.join(' · ')}
+              clair="Clairgustance · clear tasting"
             />
             <SenseTile
               icon="⬡" label="BODY" color={color}
               primary={rx.fiveSenses.body.breath.replace(/_/g, ' ')}
               detail={`Posture: ${rx.fiveSenses.body.placement.replace(/_/g, ' ')} · Movement: ${rx.fiveSenses.body.movement.replace(/_/g, ' ')}`}
+              clair="Clairsentience · clear feeling  ·  Clairtangency · clear touching"
             />
             <SenseTile
               icon="✦" label="SIGHT" color={color}
               primary={rx.fiveSenses.sight.colors.join(' · ') || '—'}
               detail={rx.fiveSenses.sight.instruction}
               colorSwatches={rx.fiveSenses.sight.colors}
+              clair="Clairvoyance · clear seeing"
             />
             <SenseTile
               icon="◈" label="FIELD" color={color}
               primary="Your auric field"
-              detail="The tone moves through the etheric field around you, clearing it as it spreads — the aluminum field forks especially, sounded off-body."
+              detail="The tone moves through the etheric field around you, clearing it as it spreads — the aluminum field forks especially, sounded off-body. This is the sixth sense: yours, not a device."
+              clair="Claircognizance · clear knowing  ·  Clairempathy · clear emotion"
             />
           </div>
 
@@ -1013,7 +1023,7 @@ function PrescriptionCard({
           {rx.integrationNote && (
             <div className="p-4 rounded-lg border border-white/10" style={{ background: `${color}08` }}>
               <div className="text-[10px] tracking-[0.25em] mb-2" style={{ color }}>
-                INTEGRATION — HOW TO WEAVE THE 5 SENSES
+                INTEGRATION — HOW TO WEAVE THE SIX SENSES
               </div>
               <p className="text-[13px] text-white/75 leading-relaxed">{rx.integrationNote}</p>
             </div>
@@ -1035,7 +1045,7 @@ function PrescriptionCard({
           {rx.signature.source === 'dominant' && (
             <div className="mt-4 flex items-center gap-2 text-[11px] text-white/45 italic">
               <span style={{ color }}>♫</span>
-              Hear this calibration in your chamber — the only place audio plays.
+              Hear this calibration in your Chamber, the only room where the tones play.
             </div>
           )}
         </div>
@@ -1048,11 +1058,13 @@ function PrescriptionCard({
 // SENSE TILE — one of 5 sensory channels
 // ═══════════════════════════════════════════════════════════════
 function SenseTile({
-  icon, label, color, primary, detail, colorSwatches,
+  icon, label, color, primary, detail, colorSwatches, clair,
 }: {
   icon: string; label: string; color: string
   primary: string; detail?: string
   colorSwatches?: string[]
+  /** The channel's inward faculty — the Clair that wakes when the channel is clear (Standard §4.2). */
+  clair?: string
 }) {
   return (
     <div className="p-3 rounded-lg border border-white/10" style={{ background: 'rgba(255,255,255,0.025)' }}>
@@ -1061,6 +1073,9 @@ function SenseTile({
         <span className="text-[10px] tracking-[0.25em] text-white/45">{label}</span>
       </div>
       <div className="text-[13px] text-white/85 font-medium mb-1">{primary}</div>
+      {clair && (
+        <div className="text-[10.5px] italic mb-1.5" style={{ color, opacity: 0.75 }}>{clair}</div>
+      )}
       {colorSwatches && colorSwatches.length > 0 && (
         <div className="flex gap-1.5 mb-1.5">
           {colorSwatches.slice(0, 4).map((c, i) => (
@@ -1231,7 +1246,7 @@ function CalibrationToday({
   const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   const calibrationResponse = state !== 'balanced' && correctiveDir.length
     ? correctiveDir.slice(0, 3).map(cap).join('. ') + '.'
-    : 'Draw on this steady signal to support the rest of your field.'
+    : 'A steady signal is a gift: draw on it to resource the rest of your field.'
   // v4 FIX 2 — print the REAL ordered sequence the Chamber + Summary run for the
   // user's selected container, via the shared helper. Never a hardcoded "X with Y
   // support" string derived separately from the engine's phase array.
@@ -1359,8 +1374,8 @@ function CalibrationToday({
               <span className="inline-block w-1.5 h-1.5 rounded-full"
                     style={{ background: '#C084FC', boxShadow: '0 0 8px #C084FC' }} />
               <span>
-                <span className="block text-[10px] uppercase tracking-[0.22em] text-meta">Your calibration guide</span>
-                <span className="block text-[13px] text-content">Ask Astryx why your calibration is what it is</span>
+                <span className="block text-[10px] uppercase tracking-[0.22em] text-meta">Your guide through the field</span>
+                <span className="block text-[13px] text-content">Ask Astryx why the sky sounds this way for you today</span>
               </span>
             </span>
             <span className="text-[12px] text-white/50 shrink-0">→</span>
@@ -1432,8 +1447,8 @@ function PrepareSession({
           <PrepareStep label="Tone" color={planetColor}>
             Ready your <strong className="text-content">{primaryPlanet} Resonance Fork</strong> — the tone this session calibrates.
             <span className="block text-[12px] text-meta mt-0.5">
-              No forks yet? The Chamber introduces the tone sequence through guided audio — the full
-              calibration is built for use with the Astryx Resonance Forks.
+              No forks yet? The Chamber carries the tone sequence in guided audio. The full
+              calibration comes alive with the Sacred Tones forks in your hands.
             </span>
           </PrepareStep>
 

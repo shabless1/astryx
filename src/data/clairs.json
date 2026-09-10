@@ -1,0 +1,130 @@
+{
+  "_meta": {
+    "title": "The Clairs — the receptive side of the 6-Sense Protocol",
+    "source": "Astryx Calibration Standard v0 §4.2 (myastryx.com/standard)",
+    "principle": "Every channel has an outward instrument (fork, oil, tea, breath, color, field) and an inward Clair. The tone that tunes a channel is the tone that clears its Clair. Correspondences are traditional associations; the person's own experience is the only evidence. A Clair has a polarity state like any signal and obeys never-amplify.",
+    "framing": "The Clairs are perceptual faculties described across the esoteric tradition. A tone does not grant a faculty; a calibration does not contact anyone or anything. Perception is first-person by nature."
+  },
+  "clairs": [
+    {
+      "id": "clairvoyance",
+      "name": "Clairvoyance",
+      "meaning": "clear seeing",
+      "channel": "sight",
+      "center": "Third eye",
+      "tones": [
+        { "planet": "Neptune", "hz": "211.44" },
+        { "planet": "Full Moon", "hz": "210.42" }
+      ],
+      "regulator": "Saturn",
+      "opens": "Inner vision: images, symbols, color, the aura seen with the mind's eye.",
+      "inExcess": "Images that will not stop; the dream bleeding into the day. Met with Saturn, the boundary tone, not more Neptune.",
+      "whenDeficient": "A door not yet opened. Activated directly with its own tones."
+    },
+    {
+      "id": "clairaudience",
+      "name": "Clairaudience",
+      "meaning": "clear hearing",
+      "channel": "sound",
+      "center": "Throat · ear",
+      "tones": [
+        { "planet": "Mercury", "hz": "141.27" },
+        { "planet": "Uranus", "hz": "207.36" }
+      ],
+      "regulator": "Earth Year",
+      "opens": "Inner hearing: words, tones, music with no outer source. The struck fork is the door.",
+      "inExcess": "Noise with no off switch. Grounded with the Earth Year tone at the sternum.",
+      "whenDeficient": "Listen to the fade after the strike. The silence after the tone is part of the tone."
+    },
+    {
+      "id": "clairsentience",
+      "name": "Clairsentience",
+      "meaning": "clear feeling",
+      "channel": "body",
+      "center": "Sacral · solar plexus",
+      "tones": [
+        { "planet": "Full Moon", "hz": "210.42" },
+        { "planet": "Sun", "hz": "126.22" }
+      ],
+      "regulator": "Saturn",
+      "opens": "The feeling body: energy and emotion sensed as physical sensation. Gut feeling, made literal.",
+      "inExcess": "Feeling everything, holding nothing. Met with Saturn: structure, edge, bone.",
+      "whenDeficient": "The Sun at the solar plexus steadies the seat of feeling."
+    },
+    {
+      "id": "claircognizance",
+      "name": "Claircognizance",
+      "meaning": "clear knowing",
+      "channel": "field",
+      "center": "Crown",
+      "tones": [
+        { "planet": "Uranus", "hz": "207.36" },
+        { "planet": "Jupiter", "hz": "183.58" }
+      ],
+      "regulator": "Earth Day",
+      "opens": "Direct knowing: the flash that arrives whole, without steps. Uranus is the lightning; Jupiter is the wide view it lands in.",
+      "inExcess": "Certainty running ahead of the body. Grounded with Earth Day at the root.",
+      "whenDeficient": "The knowing you keep talking yourself out of. Resourced, never forced."
+    },
+    {
+      "id": "clairalience",
+      "name": "Clairalience",
+      "meaning": "clear smelling",
+      "channel": "scent",
+      "center": "Root · limbic",
+      "tones": [
+        { "planet": "Venus", "hz": "221.23" },
+        { "planet": "Earth Day", "hz": "194.18" }
+      ],
+      "regulator": "Earth Day",
+      "opens": "Scent with no source: the memory-sense, the oldest door. Venus rules the pleasure senses; Earth Day keeps the animal nose in the body.",
+      "inExcess": "Scents that crowd the room. Earth Day brings it back to the floor.",
+      "whenDeficient": "Diffuse the carrier's oil and let the nose lead."
+    },
+    {
+      "id": "clairgustance",
+      "name": "Clairgustance",
+      "meaning": "clear tasting",
+      "channel": "taste",
+      "center": "Throat · stomach",
+      "tones": [
+        { "planet": "Venus", "hz": "221.23" },
+        { "planet": "Earth Year", "hz": "136.10" }
+      ],
+      "regulator": "Earth Year",
+      "opens": "Taste with nothing on the tongue: the signature taken inward. The tea is the outward instrument; this is what it may open.",
+      "inExcess": "A taste that lingers past its welcome. The Earth Year tone settles the vagal line.",
+      "whenDeficient": "Sip slowly. Taste is the slowest sense to wake."
+    },
+    {
+      "id": "clairtangency",
+      "name": "Clairtangency",
+      "meaning": "clear touching",
+      "channel": "body",
+      "center": "Hands · bone",
+      "tones": [
+        { "planet": "Saturn", "hz": "147.85" },
+        { "planet": "Earth Day", "hz": "194.18" }
+      ],
+      "regulator": "Earth Day",
+      "opens": "Reading through contact: the history held in matter. A weighted fork on bone is touch; Saturn rules bone, matter, and time.",
+      "inExcess": "Every object speaks at once. Earth Day quiets the room.",
+      "whenDeficient": "Hold the fork stem to the point and stay there. Two strikes, then let it fade."
+    },
+    {
+      "id": "clairempathy",
+      "name": "Clairempathy",
+      "meaning": "clear emotion",
+      "channel": "field",
+      "center": "Heart",
+      "tones": [
+        { "planet": "Full Moon", "hz": "210.42" },
+        { "planet": "Neptune", "hz": "211.44" }
+      ],
+      "regulator": "Saturn",
+      "opens": "Feeling another's state as your own, through the field. The most generous Clair and the one most in need of an edge.",
+      "inExcess": "Absorbing every room you walk into. Never amplified with more Moon and Neptune: met with Saturn, the boundary tone.",
+      "whenDeficient": "Open and boundaried at once is the goal. Balanced means both."
+    }
+  ]
+}

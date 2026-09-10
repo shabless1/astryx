@@ -45,7 +45,7 @@ export default function SettingsScreen({
     <div className="min-h-screen font-rajdhani">
       <div className="max-w-xl mx-auto px-5" style={{ paddingTop: 100, paddingBottom: 60 }}>
         <div className="mb-8 animate-fade-in-up">
-          <SectionLabel>System Preferences</SectionLabel>
+          <SectionLabel>Your Instrument</SectionLabel>
           <h1 className="font-cinzel text-3xl text-white">Settings</h1>
         </div>
 
@@ -70,7 +70,7 @@ export default function SettingsScreen({
         {/* Mode */}
         <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up">
           <div>
-            <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Operating Mode</div>
+            <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Mode</div>
             <div className="text-[14px] text-white/80">
               {mode === 'practitioner' ? 'Practitioner — Full Pattern View' : 'User — Personal Guidance'}
             </div>
@@ -80,8 +80,8 @@ export default function SettingsScreen({
 
         {/* Animation */}
         <SettingRow
-          label="Animation Intensity"
-          description="Controls visual motion complexity across all screens"
+          label="Motion"
+          description="How much the cosmos moves behind you"
           options={[
             { value: 'low', label: 'Low' },
             { value: 'medium', label: 'Medium' },
@@ -111,8 +111,8 @@ export default function SettingsScreen({
 
         {/* Visual intensity */}
         <SettingRow
-          label="Visual Intensity"
-          description="Session mode visual engine depth and complexity"
+          label="Chamber Visuals"
+          description="How deep the Chamber's visual field goes"
           options={[
             { value: 'low', label: 'Minimal' },
             { value: 'medium', label: 'Standard' },
@@ -151,8 +151,8 @@ export default function SettingsScreen({
 
         {/* Session duration */}
         <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-          <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Default Session Duration</div>
-          <div className="text-[12px] text-white/40 mb-3">Minutes per calibration session</div>
+          <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Default Chamber Container</div>
+          <div className="text-[12px] text-white/40 mb-3">Minutes per session</div>
           <div className="flex flex-wrap gap-2">
             {[5, 10, 20, 30, 45].map((d) => (
               <button
@@ -395,7 +395,7 @@ function VoiceSettingRow({
       <button
         onClick={() => previewing
           ? stop()
-          : speak("Hello, I'm Astryx. This is my voice — I'm here to walk you through your calibration.", 'voice-preview')}
+          : speak("Hello, I'm Astryx. This is my voice. I'll walk you through your calibration, and through the field around it.", 'voice-preview')}
         className="font-rajdhani text-[11px] tracking-[0.15em] uppercase transition"
         style={{
           padding: '6px 14px', borderRadius: 9,

@@ -116,6 +116,26 @@
       "id": "app-astryx-sets-up-chamber",
       "topic": "app",
       "text": "Astryx can set the chamber up for you. When you ask about today's transits, a session, the Full Body ladder, or the chakras, a button appears under her reply that carries the session directly — today's calibration already tuned by the engine, the Full Body ladder, or the Chakra Recalibration with your instrument set. Tapping it closes the chat and opens the chamber configured and ready. Astryx never computes or changes the session itself — the engine's deterministic output decides every fork; she only opens the door. If today's check-in hasn't happened yet, the button routes through the Daily Check-In first so the calibration is never skipped. The same tiles live on the Dashboard under Sessions."
+    },
+    {
+      "id": "app-clairs-receptive-side",
+      "topic": "clairs",
+      "text": "Every one of the six channels of the 6-Sense Protocol opens both ways. Each has an outward instrument (the fork for Sound, the oil for Scent, the tea for Taste, the breath and placement for Body, the color for Sight, the auric/etheric field for Field) and an inward faculty, the subtle sense the esoteric tradition calls a Clair. The instrument tunes the channel; the Clair is what the person perceives through it once it is clear. The tone that tunes a channel is the tone that clears its Clair. This is Standard v0 section 4.2 (myastryx.com/standard)."
+    },
+    {
+      "id": "app-clairs-eight-mapping",
+      "topic": "clairs",
+      "text": "The eight Clairs and their channels, centers, and governing Cousto tones: Clairvoyance (clear seeing) lives in Sight at the third eye, tuned by Neptune 211.44 Hz and the Full Moon 210.42 Hz, and opens inner vision, symbols, color, the aura seen. Clairaudience (clear hearing) lives in Sound at the throat and ear, tuned by Mercury 141.27 and Uranus 207.36, and opens inner hearing. Clairsentience (clear feeling) lives in Body at the sacral and solar plexus, tuned by the Full Moon 210.42 and the Sun 126.22, and opens the feeling body. Claircognizance (clear knowing) lives in Field at the crown, tuned by Uranus 207.36 and Jupiter 183.58, and opens direct knowing that arrives whole. Clairalience (clear smelling) lives in Scent at the root and limbic body, tuned by Venus 221.23 and Earth Day 194.18, and opens scent with no source. Clairgustance (clear tasting) lives in Taste at the throat and stomach, tuned by Venus 221.23 and Earth Year 136.10, and opens taste with nothing on the tongue. Clairtangency (clear touching, psychometry) lives in Body at the hands and bone, tuned by Saturn 147.85 and Earth Day 194.18, and opens reading through contact. Clairempathy (clear emotion) lives in Field at the heart, tuned by the Full Moon 210.42 and Neptune 211.44, and opens feeling another's state as one's own through the field."
+    },
+    {
+      "id": "app-clairs-obey-never-amplify",
+      "topic": "clairs",
+      "text": "A Clair has a polarity state like any signal: excess, deficiency, blocked, or balanced, and it obeys the never-amplify rule. Clairempathy in excess is absorbing every room you walk into; it is not amplified with more Moon and Neptune, it is met by its regulator, Saturn, the boundary tone. Claircognizance blocked is the knowing you keep talking yourself out of; it is resourced, never forced. A Clair deficient is a door not yet opened and is activated directly with its own tones. Balanced means open and boundaried at once, which is the goal. The correspondences are traditional associations, and the person's own experience is the only evidence: a tone does not grant a faculty, and a calibration does not contact anyone or anything. Perception is first-person by nature. Work with a Clair the way you work with a fork: open, perceive, ground, close."
+    },
+    {
+      "id": "app-voice-metaphysical",
+      "topic": "app",
+      "text": "Astryx is a metaphysical app. Its language holds the metaphysical, the esoteric, the scientific, and the mathematical at once: Cousto's orbital arithmetic next to the Hermetic principle of correspondence, as above so below. Saturn gives the structure (the invariants, determinism, versioning) and Uranus is free to express the eccentric, genius, metaphysical side inside it. The only hard limits are the law and false claims: Astryx does not diagnose, treat, cure, or prescribe, and all assessment language stays probabilistic (may suggest, may correlate with, is traditionally associated with). Expansion is not the same as false claims."
     }
   ]
 }

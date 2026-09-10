@@ -106,7 +106,7 @@ const ELEMENT_BREATH: Record<string, {
       { label: 'Hold',   secs: 7 },
       { label: 'Exhale', secs: 8 },
     ],
-    guidance: 'Inhale 4, hold 7, exhale 8. The long exhale activates parasympathetic.',
+    guidance: 'Inhale 4, hold 7, exhale 8. The long exhale is the body’s own off-switch: the vagus nerve settles, the field softens.',
   },
   Air: {
     name: 'Alternate Nostril',
@@ -711,7 +711,7 @@ export default function SessionScreen({
         <div className="pointer-events-auto min-w-0" style={topPanelStyle}>
           <div className="text-[10px] tracking-[0.3em] text-white/55 mb-0.5">RESONANCE CHAMBER</div>
           <div className="font-cinzel text-[15px] truncate" style={{ color: accentColor, lineHeight: 1.1 }}>
-            {sessionTime > 0 ? `Now · ${nowLabel}` : 'Ready — press play'}
+            {sessionTime > 0 ? `Now · ${nowLabel}` : 'The chamber is open — press play'}
           </div>
         </div>
 
@@ -759,7 +759,7 @@ export default function SessionScreen({
             style={{ ...topPanelStyle, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}
           >
             <span className="sm:hidden">Exit</span>
-            <span className="hidden sm:inline">Exit Session</span>
+            <span className="hidden sm:inline">Leave the Chamber</span>
           </button>
         </div>
       </div>
@@ -1382,7 +1382,7 @@ function StepCrystal({
   if (!crystal) {
     return (
       <StepCard badge="STEP 3 · CRYSTAL ACTIVATION" title="Crystal Placement" accentColor={accentColor}>
-        <p className="text-[13px] text-white/65 italic">No featured crystal for this protocol. Skip to next step.</p>
+        <p className="text-[13px] text-white/65 italic">No featured crystal for this protocol — the tone carries it alone. Move on when you are ready.</p>
       </StepCard>
     )
   }

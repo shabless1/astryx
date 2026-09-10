@@ -149,7 +149,7 @@ export default function TeacherChat({
                 Astryx
               </div>
               <div className="text-[10px] uppercase tracking-[0.22em] mt-1" style={{ color: alpha(accentColor, 0.8) }}>
-                Your calibration guide
+                Your guide through the field
               </div>
             </div>
           </div>
@@ -175,9 +175,11 @@ export default function TeacherChat({
           {turns.length === 0 && (
             <div className="text-content-sm text-[13.5px] leading-relaxed">
               <p className="mb-3">
-                I&apos;m Astryx. I can explain anything in your calibration — why a tone, herb, color, or
-                transit appears, or teach a term like your Ascendant. I read only your chart, in plain
-                language. For symptoms or health decisions, that&apos;s for your licensed practitioner.
+                I&apos;m Astryx. Your chart is a chord struck at your first breath, and today&apos;s sky is
+                playing against it. Ask me why a tone, an herb, a color, or a transit is sounding in your
+                calibration, what your Ascendant or a Clair means, or what to do with the fork in your hand.
+                I read your chart and the Astryx canon, and I say it plainly. Health decisions stay with
+                someone who can examine you.
               </p>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((s) => (
