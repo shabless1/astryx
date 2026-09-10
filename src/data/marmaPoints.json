@@ -1,0 +1,1141 @@
+{
+  "_meta": {
+    "file": "marmaPoints.json",
+    "version": "1.0.0",
+    "added": "2026-09-10",
+    "ruling": "SHA approved the Marma x Sacred Tones placement map, proposal v2, 2026-09-10.",
+    "source": "Vasant Lad and Anisha Durve, Marma Points of Ayurveda: The Energy Pathways for Healing Body, Mind and Consciousness, The Ayurvedic Press. Locations, doshic subtypes, vitality classes and traditional associations are drawn from the region chapters and from chapters 2, 3 and 8.",
+    "scope": "27 of the tradition's 117 points. Every point here earns its place by matching a Sacred Tones fork's own bone application point or a chakra centre. The set is deliberately small.",
+    "excluded": "The genital and perineal points of the classical set (Bhaga, Medhra, Yoni Jihva, Vrushana, Yoni Oshtha, Guda) are excluded from Astryx entirely and must never be added. See applicationType fieldOnly and the reproductive zone rule in BodyPlacementEngine.",
+    "applicationTypes": {
+      "weighted": "A weighted fork stem may rest on the point with steady, comfortable contact.",
+      "field": "Light contact at most, or the fork held in the field. Never deep pressure.",
+      "fieldOnly": "Never contacted at any pressure. The fork is held six inches out and swept."
+    },
+    "anchorSpace": "x and y are fractions of the body image, matching bodyMapAnchorLibrary in BodyPlacementEngine.ts. Paired points carry xLeft and xRight.",
+    "tierSeam": "Individual tier renders sanskrit, english, plainLocation, applicationType and safetyNote. The practitioner tier adds location, doshicSubtypes, element, vitalityClass, anatomicalRelation and contraindications. Enforced in sacredShape.ts.",
+    "lineage": "Vasant Lad and Anisha Durve, Marma Points of Ayurveda (The Ayurvedic Press) - locations, doshic subtypes, vitality classes and traditional associations"
+  },
+  "points": [
+    {
+      "id": "adhipati",
+      "sanskrit": "Adhipati",
+      "alsoKnownAs": "Murdhni",
+      "english": "The crown vertex",
+      "region": "head",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The very top of the head.",
+      "location": "On the vertex at the midline, ten anguli back from the midpoint between the eyebrows. Found by drawing a line from the apex of each ear to where they meet at the top of the skull.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": "Crown",
+      "element": "space",
+      "doshicSubtypes": [
+        "Prana Vayu",
+        "Sadhaka Pitta",
+        "Tarpaka Kapha"
+      ],
+      "vitalityClass": "sadyah pranahara",
+      "vitalityLabel": "One of the Eight Great points",
+      "anatomicalRelation": "Associated in the source with the subarachnoid space and cerebrospinal fluid, the middle cerebral artery, the mid-cranial fossa, and the hypothalamic-pituitary axis.",
+      "traditionallyAssociatedWith": [
+        "Regulating prana and bringing prana and apana into step",
+        "Cerebral and cerebrospinal fluid circulation",
+        "Memory, attention and concentration",
+        "Settling the mind and steadying the emotions"
+      ],
+      "name_note": "Adhi means first or origin and pati means master. The source calls it the first master of all the points.",
+      "safetyNote": "One of the Eight Great points. Light, steady contact only. Never percussive force, and never on an infant or a child whose fontanelles have not closed.",
+      "contraindications": [
+        "Open or recent skull injury",
+        "Recent cranial surgery",
+        "Infants and young children",
+        "Uncontrolled high blood pressure"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.025
+      },
+      "sourcePage": "p. 82"
+    },
+    {
+      "id": "shivarandhra",
+      "sanskrit": "Shivarandhra",
+      "english": "The opening behind the crown",
+      "region": "head",
+      "side": "midline",
+      "view": "posterior",
+      "plainLocation": "Just behind the top of the head.",
+      "location": "On the midline, two anguli behind Adhipati and twelve anguli back from the midpoint between the eyebrows.",
+      "applicationType": "field",
+      "fieldDistanceInches": 4,
+      "chakra": null,
+      "element": "space",
+      "doshicSubtypes": [
+        "Tarpaka Kapha",
+        "Prana Vayu"
+      ],
+      "vitalityClass": "sadyah pranahara",
+      "vitalityLabel": "One of the Eight Great points",
+      "anatomicalRelation": "Associated with the posterior cerebral artery, the posterior cranial fossa, the cerebellum and the third ventricle.",
+      "traditionallyAssociatedWith": [
+        "Regulating tarpaka kapha",
+        "Occipital and parietal ease",
+        "Cerebrospinal fluid circulation",
+        "Recall and positive memory"
+      ],
+      "name_note": "Translated as the opening to Shiva. It sits at the top of the sushumna alongside Adhipati.",
+      "safetyNote": "One of the Eight Great points, and the source asks for gentle stimulation here. Hold the fork in the field or use featherlight contact only.",
+      "contraindications": [
+        "Open or recent skull injury",
+        "Recent cranial surgery",
+        "Infants and young children"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.038
+      },
+      "sourcePage": "p. 86"
+    },
+    {
+      "id": "sthapani",
+      "sanskrit": "Sthapani",
+      "alsoKnownAs": "Ajna",
+      "english": "The third eye point",
+      "region": "head",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The centre of the forehead, just above the point between the eyebrows.",
+      "location": "On the midline of the forehead, one angula above the glabella.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": "Third Eye",
+      "element": "consciousness",
+      "doshicSubtypes": [
+        "Tarpaka Kapha",
+        "Sadhaka Pitta",
+        "Prana Vayu"
+      ],
+      "vitalityClass": "sadyah pranahara",
+      "vitalityLabel": "One of the Eight Great points",
+      "anatomicalRelation": "Associated with the hypothalamus, the optic chiasm and the frontal lobe, and described as the bridge between the pineal and pituitary glands.",
+      "traditionallyAssociatedWith": [
+        "Steadying the fluctuations of the mind",
+        "Hormonal balance through the pineal and pituitary bridge",
+        "Concentration and insight",
+        "Releasing held stress"
+      ],
+      "name_note": "Ajna means order. Sthapani means establishment or steadiness.",
+      "safetyNote": "One of the Eight Great points and close to the eyes. Gentle, steady contact on the frontal bone only. Never let the fork stem slide toward the eye socket.",
+      "contraindications": [
+        "Recent facial or orbital injury",
+        "Acute sinus infection",
+        "Glaucoma without their doctor's clearance"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.1
+      },
+      "sourcePage": "p. 89"
+    },
+    {
+      "id": "shankha",
+      "sanskrit": "Shankha",
+      "english": "The temple point",
+      "region": "head",
+      "side": "paired",
+      "view": "anterior",
+      "plainLocation": "The soft hollow at each temple.",
+      "location": "At the temple, in the depression one to two anguli behind the outer end of the eyebrow.",
+      "applicationType": "field",
+      "fieldDistanceInches": 4,
+      "chakra": null,
+      "element": "fire",
+      "doshicSubtypes": [
+        "Pachaka Pitta",
+        "Alochaka Pitta"
+      ],
+      "vitalityClass": "extra vital",
+      "vitalityLabel": "Classed by the source as an extremely vital point",
+      "anatomicalRelation": "Associated with the temporal lobe, the mid-cranial fossa and the temporalis muscle.",
+      "traditionallyAssociatedWith": [
+        "Strongly settling pitta",
+        "Ease in the temples",
+        "Cooling heat held in the upper body",
+        "Softening intense or fiery emotion"
+      ],
+      "name_note": "Shankha means conch. The temporal bone resembles part of a conch shell.",
+      "safetyNote": "The source is explicit that heavy pressure must be avoided here, and the point sits close to the eye. Hold the fork in the field. Never press the stem into the temple.",
+      "contraindications": [
+        "Heavy pressure of any kind",
+        "Recent head injury",
+        "Active migraine with aura, unless they ask for it",
+        "Temporal artery tenderness"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.44,
+        "xRight": 0.56,
+        "y": 0.095
+      },
+      "sourcePage": "p. 91"
+    },
+    {
+      "id": "manyamula",
+      "sanskrit": "Manyamula",
+      "english": "The root of the neck",
+      "region": "neck",
+      "side": "midline",
+      "view": "posterior",
+      "plainLocation": "The hollow at the base of the skull, where the head meets the neck.",
+      "location": "In the depression immediately below the occipital protuberance.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "fire",
+      "doshicSubtypes": [
+        "Prana Vayu",
+        "Apana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated with the posterior cranial fossa, the posterior cerebral artery, the occipital bone and the hypothalamus.",
+      "traditionallyAssociatedWith": [
+        "Cerebral and cerebrospinal fluid circulation",
+        "Lymphatic flow at the base of the skull",
+        "Neck ease and range of motion",
+        "Balance and equilibrium",
+        "Kindling agni in the stomach and pancreas"
+      ],
+      "name_note": "Mula means root and manya means neck. The beginning of the neck.",
+      "safetyNote": "Steady, comfortable contact on the bony ridge. Stop if the person feels dizzy or light-headed.",
+      "contraindications": [
+        "Recent neck injury or whiplash",
+        "Cervical instability",
+        "Vertebral artery concerns",
+        "Recent cranial surgery"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.125
+      },
+      "sourcePage": "p. 116"
+    },
+    {
+      "id": "vidhuram",
+      "sanskrit": "Vidhuram",
+      "english": "That which holds the skull",
+      "region": "neck",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "Either side of the spine at the very top of the neck.",
+      "location": "On the back of the neck, level with the lower border of the spinous process of C1, one angula out from the midline on each side.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Tarpaka Kapha",
+        "Prana Vayu"
+      ],
+      "vitalityClass": "extra vital",
+      "vitalityLabel": "Classed by the source as a vital point",
+      "anatomicalRelation": "Level with the first cervical vertebra and the upper intraspinal nerves. The source relates the right side to the liver and the left to the spleen.",
+      "traditionallyAssociatedWith": [
+        "Anchoring and steadying the mind",
+        "Ease in the neck and the back of the head",
+        "Regulating rakta dhatu, the blood tissue",
+        "The eyes"
+      ],
+      "name_note": "From the root dhru, to hold. Literally that which holds the skull, and also that which holds consciousness.",
+      "safetyNote": "A delicate region. Light, steady contact only, with the head supported and the neck neutral. Never apply force or leverage here.",
+      "contraindications": [
+        "Recent neck injury or whiplash",
+        "Cervical instability or fusion",
+        "Osteoporosis of the cervical spine",
+        "Any history of spinal cord involvement"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.485,
+        "xRight": 0.515,
+        "y": 0.14
+      },
+      "sourcePage": "p. 118"
+    },
+    {
+      "id": "krikatika",
+      "sanskrit": "Krikatika",
+      "english": "The axis point",
+      "region": "neck",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "Either side of the spine at the top of the neck, one finger below Vidhuram.",
+      "location": "On the back of the neck, level with the lower border of the spinous process of C2, one angula out from the midline on each side, directly below Vidhuram.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Prana Vayu",
+        "Udana Vayu",
+        "Kledaka Kapha",
+        "Avalambaka Kapha"
+      ],
+      "vitalityClass": "extra vital",
+      "vitalityLabel": "Classed by the source as a delicate point",
+      "anatomicalRelation": "Level with the axis vertebra. Associated with the hypothalamus, the medulla oblongata, the intraspinal nerves and the upper lobes of the lungs.",
+      "traditionallyAssociatedWith": [
+        "Ease in the neck, head and ears",
+        "Releasing tension, stress and held emotion",
+        "Opening the breath in the upper lungs",
+        "Loosening the weight carried across the shoulders"
+      ],
+      "name_note": "Krikatika means axis, the joint that lets the skull rotate. It also carries the sense of responsibility.",
+      "safetyNote": "The source names this a delicate area. Light, steady contact only, head supported, neck neutral. Never apply force or leverage here.",
+      "contraindications": [
+        "Recent neck injury or whiplash",
+        "Cervical instability or fusion",
+        "Osteoporosis of the cervical spine",
+        "Any history of spinal cord involvement"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.485,
+        "xRight": 0.515,
+        "y": 0.152
+      },
+      "sourcePage": "p. 120"
+    },
+    {
+      "id": "kantha",
+      "sanskrit": "Kantha",
+      "english": "The throat point",
+      "region": "neck",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The front of the throat, in the soft hollow just above the hyoid bone.",
+      "location": "On the anterior midline of the neck, in the depression above the hyoid bone.",
+      "applicationType": "field",
+      "fieldDistanceInches": 4,
+      "chakra": "Throat",
+      "element": "space",
+      "doshicSubtypes": [
+        "Udana Vayu",
+        "Prana Vayu"
+      ],
+      "vitalityClass": "extra vital",
+      "vitalityLabel": "Classed by the source as an extra vital point",
+      "anatomicalRelation": "Associated with the thyroid and parathyroid, the vocal cords and larynx, the pharynx and trachea.",
+      "traditionallyAssociatedWith": [
+        "Regulating udana vayu, the upward-moving breath",
+        "Voice and speech",
+        "Opening the airway and calming the breath",
+        "Releasing what has gone unsaid"
+      ],
+      "name_note": "Kantha means throat. The source ties it directly to Vishuddhi, the throat centre, whose name means purity.",
+      "safetyNote": "The source states that every point of the throat is very sensitive and requires gentle pressure. Astryx holds the fork in the field here. Never press on the front of the throat.",
+      "contraindications": [
+        "Any pressure on the front of the throat",
+        "Thyroid nodules or goitre",
+        "Recent neck or airway surgery",
+        "Carotid sensitivity",
+        "Difficulty swallowing"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.165
+      },
+      "sourcePage": "p. 123"
+    },
+    {
+      "id": "jatru",
+      "sanskrit": "Jatru",
+      "english": "That which preserves",
+      "region": "chest",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The flat of the upper breastbone, just below the notch at the base of the throat.",
+      "location": "On the midline of the manubrium sterni, slightly below the suprasternal notch.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "space",
+      "doshicSubtypes": [
+        "Udana Vayu",
+        "Avalambaka Kapha"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Delicate. The source asks for a light touch.",
+      "anatomicalRelation": "Sits in front of the thymus, which the source calls ojo granthi, the seat of ojas. Associated with the trachea and bronchi, the cardiac and tracheal plexuses and the thyroid.",
+      "traditionallyAssociatedWith": [
+        "Immunity and the building of ojas",
+        "Kindling dhatu agni and clearing ama",
+        "Steady respiration",
+        "Lymphatic flow in the chest",
+        "Devotion, and the meeting of the inner world with the outer"
+      ],
+      "name_note": "Jatru means to preserve or maintain. The source describes tapping it lightly several times to wake the immune response, which is precisely what a struck fork stem does.",
+      "safetyNote": "A delicate point over the breastbone. Light, steady contact only. Never percussive force.",
+      "contraindications": [
+        "Recent chest or cardiac surgery",
+        "Sternal fracture or instability",
+        "A pacemaker or implanted cardiac device",
+        "Osteoporosis of the sternum"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.215
+      },
+      "sourcePage": "p. 128"
+    },
+    {
+      "id": "hridayam",
+      "sanskrit": "Hridayam",
+      "english": "The heart point",
+      "region": "chest",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The centre of the breastbone, level with the third space between the ribs.",
+      "location": "On the anterior midline at the level of the third intercostal space.",
+      "applicationType": "field",
+      "fieldDistanceInches": 4,
+      "chakra": "Heart",
+      "element": "air",
+      "doshicSubtypes": [
+        "Prana Vayu",
+        "Vyana Vayu",
+        "Udana Vayu",
+        "Sadhaka Pitta",
+        "Avalambaka Kapha"
+      ],
+      "vitalityClass": "sadyah pranahara",
+      "vitalityLabel": "One of the Eight Great points",
+      "anatomicalRelation": "Associated with the right side of the heart and the pericardium, and with the oesophagus, trachea and bronchi.",
+      "traditionallyAssociatedWith": [
+        "Steady cardiac rhythm and coronary circulation",
+        "Open airways",
+        "Settling the mind and balancing the emotions",
+        "Releasing prana held stagnant in the chest"
+      ],
+      "name_note": "Hrid means heart. The source notes that a tulsi or rudraksha mala worn so it touches this point helps the heart centre find its balance.",
+      "safetyNote": "One of the Eight Great points, directly over the heart. Astryx holds the fork in the field here. Never place a vibrating stem over the heart.",
+      "contraindications": [
+        "A pacemaker or implanted cardiac device",
+        "Any known arrhythmia",
+        "Recent cardiac event or chest surgery",
+        "Sternal fracture or instability"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.29
+      },
+      "sourcePage": "p. 140"
+    },
+    {
+      "id": "urdhva_skandha",
+      "sanskrit": "Urdhva Skandha",
+      "english": "The upper shoulder point",
+      "region": "shoulders",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "The top of each shoulder, on the ridge of muscle halfway between the neck and the point of the shoulder.",
+      "location": "At the superior aspect of the trapezius, midway between the tip of the spinous process of C7 and the tip of the acromion.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Udana Vayu",
+        "Vyana Vayu",
+        "Shleshaka Kapha"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Overlies the brachial gateway at C7 and the trapezius. The source relates the right side to the liver and the left to the spleen.",
+      "traditionallyAssociatedWith": [
+        "Ease and range in the shoulder",
+        "Carrying prana into the lungs and upper chest",
+        "Occipital tension that rises from the shoulders",
+        "Releasing stagnant, unexpressed feeling"
+      ],
+      "name_note": "Skandha carries the sense of shouldering responsibility. The source links it to the weight people carry across the shoulders.",
+      "safetyNote": "Comfortable contact on the muscle ridge. Ease off if the arm tingles or goes numb.",
+      "contraindications": [
+        "Pregnancy, where this point is traditionally avoided",
+        "Recent shoulder or clavicle injury",
+        "Known thoracic outlet involvement"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.4,
+        "xRight": 0.6,
+        "y": 0.205
+      },
+      "sourcePage": "p. 170"
+    },
+    {
+      "id": "bruhati",
+      "sanskrit": "Bruhati",
+      "english": "The expansion point",
+      "region": "back",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "Just below the bottom tip of each shoulder blade.",
+      "location": "Immediately below the inferior angle of the scapula on both sides.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Prana Vayu",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "The source relates the right side to the liver and gallbladder and the left to the heart and spleen.",
+      "traditionallyAssociatedWith": [
+        "Diaphragmatic expansion and easy breathing",
+        "Steady prana vayu through the breath",
+        "Ease across the scapula and between the ribs",
+        "Circulation through the liver and the spleen"
+      ],
+      "name_note": "From bru, to increase or expand. Bruhati also means support.",
+      "safetyNote": "Comfortable contact over muscle and rib, never over the spine itself.",
+      "contraindications": [
+        "Rib fracture or costochondral injury",
+        "Osteoporosis of the thoracic spine",
+        "Recent thoracic surgery"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.44,
+        "xRight": 0.56,
+        "y": 0.32
+      },
+      "sourcePage": "p. 162"
+    },
+    {
+      "id": "yakrut",
+      "sanskrit": "Yakrut",
+      "english": "The liver point",
+      "region": "trunk",
+      "side": "right",
+      "view": "anterior",
+      "plainLocation": "On the right side, where the lower edge of the ribs crosses a line dropped from the middle of the collarbone.",
+      "location": "Where a vertical line from the mid-clavicular point meets the costal margin on the right side of the body.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "fire",
+      "doshicSubtypes": [
+        "Ranjaka Pitta",
+        "Pachaka Pitta",
+        "Apana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated with the liver and gallbladder, and with the head of the pancreas, the right kidney, the hepatic flexure and the right adrenal.",
+      "traditionallyAssociatedWith": [
+        "Liver and gallbladder function",
+        "Kindling bhuta agni, the metabolic fire of the liver",
+        "Digestion and the metabolism of the seven tissues",
+        "Settling fiery emotion"
+      ],
+      "name_note": "Ya means circulation and krut means action. Yakrut is simply the liver.",
+      "safetyNote": "Comfortable contact on the rib margin. Ease off over soft abdomen. Stop at any tenderness.",
+      "contraindications": [
+        "Known liver enlargement or gallstones",
+        "Recent abdominal surgery",
+        "Rib fracture",
+        "Acute abdominal pain of any kind"
+      ],
+      "anchor": {
+        "x": 0.44,
+        "y": 0.355
+      },
+      "sourcePage": "p. 147"
+    },
+    {
+      "id": "surya",
+      "sanskrit": "Surya",
+      "alsoKnownAs": "Amashaya",
+      "english": "The sun point",
+      "region": "trunk",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "On the midline of the belly, halfway between the navel and the bottom tip of the breastbone.",
+      "location": "On the midline of the abdomen, at the midpoint between the umbilicus and the tip of the xiphoid process.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": "Solar Plexus",
+      "element": "fire",
+      "doshicSubtypes": [
+        "Samana Vayu",
+        "Pachaka Pitta",
+        "Kledaka Kapha"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated with the stomach and pancreas and with the celiac region.",
+      "traditionallyAssociatedWith": [
+        "Kindling jathara agni, the digestive fire",
+        "Steady digestion and appetite",
+        "Settling pitta and the heat it carries",
+        "Harmonising the emotions held in the belly"
+      ],
+      "name_note": "The full name is Surya Mandala. Surya is the sun and mandala is a vortex. The source calls it the microcosmic sun within us.",
+      "safetyNote": "Comfortable contact on the soft belly, never deep pressure. Work only on an empty or light stomach.",
+      "contraindications": [
+        "Pregnancy",
+        "Recent abdominal surgery",
+        "Acute abdominal pain",
+        "Abdominal aortic aneurysm",
+        "Immediately after a full meal"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.37
+      },
+      "sourcePage": "p. 149"
+    },
+    {
+      "id": "nabhi",
+      "sanskrit": "Nabhi",
+      "english": "The navel point",
+      "region": "trunk",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "The centre of the navel.",
+      "location": "At the centre of the umbilicus.",
+      "applicationType": "field",
+      "fieldDistanceInches": 4,
+      "chakra": null,
+      "element": "fire",
+      "doshicSubtypes": [
+        "Samana Vayu",
+        "Prana Vayu",
+        "Apana Vayu",
+        "Vyana Vayu",
+        "Pachaka Pitta",
+        "Kledaka Kapha"
+      ],
+      "vitalityClass": "sadyah pranahara",
+      "vitalityLabel": "One of the Eight Great points",
+      "anatomicalRelation": "Associated with the small intestine, the mesenteric lymph nodes, the omentum and the abdominal aorta.",
+      "traditionallyAssociatedWith": [
+        "The seat of samana vayu and the root of the nadis",
+        "Digestion and absorption",
+        "Building ojas and carrying it through the tissues",
+        "Grounding the breath into the belly"
+      ],
+      "name_note": "Nabhi means the centre, and also the place with no fear. The source names it the central pole that harmonises the crown and the sole.",
+      "safetyNote": "One of the Eight Great points and directly over the abdominal aorta. Astryx holds the fork in the field here rather than pressing.",
+      "contraindications": [
+        "Pregnancy",
+        "Abdominal aortic aneurysm",
+        "Recent abdominal surgery",
+        "Hernia at or near the navel",
+        "Acute abdominal pain"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42
+      },
+      "sourcePage": "p. 150"
+    },
+    {
+      "id": "basti",
+      "sanskrit": "Basti",
+      "english": "The lower belly point",
+      "region": "pelvis",
+      "side": "midline",
+      "view": "anterior",
+      "plainLocation": "On the midline below the navel, in the lower belly.",
+      "location": "At the midpoint of a line drawn from the umbilicus toward the upper border of the pubic bone.",
+      "applicationType": "fieldOnly",
+      "fieldDistanceInches": 6,
+      "chakra": "Sacral",
+      "chakraFace": "anterior",
+      "element": "water",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "extra vital",
+      "vitalityLabel": "Classed by the source as an extra vital point",
+      "anatomicalRelation": "Associated with the bladder and the pelvic organs.",
+      "traditionallyAssociatedWith": [
+        "Regulating apana vayu, the downward-moving breath",
+        "Bladder tone and the water channels",
+        "Circulation through the pelvic bowl"
+      ],
+      "name_note": "Basti means bladder. The source calls it the premier point for regulating apana vayu.",
+      "safetyNote": "Never contacted. This point sits inside the reproductive and pelvic-floor zone, so the fork is held six inches out and swept. That rule holds for every fork, every chart and every person.",
+      "contraindications": [
+        "Contact of any kind, at any pressure",
+        "Pregnancy, where the sweep widens further",
+        "Recent pelvic or abdominal surgery"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.455
+      },
+      "sourcePage": "p. 152"
+    },
+    {
+      "id": "kukundara",
+      "sanskrit": "Kukundara",
+      "english": "The lower lumbar point",
+      "region": "back",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "Either side of the spine at the small of the back, just above the sacrum.",
+      "location": "One angula lateral to the lower border of the spinous process of L5, on each side.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": "Sacral",
+      "chakraFace": "posterior-alternate",
+      "element": "water",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Level with the fifth lumbar vertebra at the lumbosacral hinge.",
+      "traditionallyAssociatedWith": [
+        "Ease across the low back",
+        "Stability through the lumbosacral hinge",
+        "Regulating apana vayu"
+      ],
+      "name_note": "Worked alongside Kati, which sits just below it on the sacrum.",
+      "safetyNote": "Comfortable contact over bone and muscle beside the spine, never on the spinous process itself. Person prone and clothed.",
+      "contraindications": [
+        "Recent low back injury",
+        "Disc involvement with leg symptoms",
+        "Osteoporosis of the lumbar spine",
+        "Recent spinal surgery"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.465,
+        "xRight": 0.535,
+        "y": 0.445
+      },
+      "sourcePage": "p. 164"
+    },
+    {
+      "id": "kati",
+      "sanskrit": "Kati",
+      "english": "The sacral point",
+      "region": "sacrum",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "On the flat plate of the sacrum, in the first pair of small hollows below the small of the back.",
+      "location": "In the first posterior sacral foramen, on each side.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": "Sacral",
+      "chakraFace": "posterior",
+      "element": "water",
+      "doshicSubtypes": [
+        "Apana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated with the sacroiliac joint and, through apana vayu, with the pelvic organs and the colon.",
+      "traditionallyAssociatedWith": [
+        "Stability through the sacroiliac joint and the lumbopelvic girdle",
+        "Regulating apana vayu",
+        "Ease across the low back",
+        "Posture and locomotion"
+      ],
+      "name_note": "Kati means hip or waist. It is the place a wrapped cloth touches.",
+      "safetyNote": "Worked over the bony plate of the sacrum with the person prone and clothed. This is the sacral doorway in Astryx. Comfortable contact only, never over the coccyx or below it.",
+      "contraindications": [
+        "Pregnancy, where this resolves to a field sweep",
+        "Sacroiliac instability",
+        "Recent pelvic fracture",
+        "Coccyx injury"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.475,
+        "xRight": 0.525,
+        "y": 0.465
+      },
+      "sourcePage": "p. 165"
+    },
+    {
+      "id": "trik",
+      "sanskrit": "Trik",
+      "english": "The base of the spine",
+      "region": "pelvis",
+      "side": "midline",
+      "view": "posterior",
+      "plainLocation": "The very base of the spine, at the tail bone.",
+      "location": "At the tip of the coccyx.",
+      "applicationType": "fieldOnly",
+      "fieldDistanceInches": 6,
+      "chakra": "Root",
+      "element": "earth",
+      "doshicSubtypes": [
+        "Apana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Sits within the field-only zone",
+      "anatomicalRelation": "At the sacral angle and the triangular tip of the coccyx.",
+      "traditionallyAssociatedWith": [
+        "Grounding, and the base of the spine",
+        "Regulating apana vayu",
+        "The pelvic floor",
+        "The seat of dormant kundalini, which the source describes rising from here to the crown"
+      ],
+      "name_note": "Trik means triangle, for the sacral angle. The source states plainly that Trik stimulates energy at Muladhara and Adhipati at Sahasrara, the two ends of one channel.",
+      "safetyNote": "Never contacted. This point sits inside the field-only zone, so the fork is held six inches out and swept downward. That rule holds for every fork, every chart and every person.",
+      "contraindications": [
+        "Contact of any kind, at any pressure",
+        "Coccyx injury",
+        "Recent pelvic surgery"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.49
+      },
+      "sourcePage": "p. 166"
+    },
+    {
+      "id": "kurpara",
+      "sanskrit": "Kurpara",
+      "english": "The elbow point",
+      "region": "arms",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "The bony tip of each elbow.",
+      "location": "On the elbow, at the tip of the olecranon process of the ulna.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "earth",
+      "doshicSubtypes": [
+        "Shleshaka Kapha",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "An asthi marma, a bone point",
+      "anatomicalRelation": "Directly on the olecranon. The source classes it an asthi marma because it lies on bone.",
+      "traditionallyAssociatedWith": [
+        "Coordination and range through the elbow and forearm",
+        "Shleshaka kapha, which lubricates the joints",
+        "Local ease at the elbow"
+      ],
+      "name_note": "Kurpara means corner, for its place at the bend of the arm. The source names it a bone point, which makes it the natural home for the Saturn fork.",
+      "safetyNote": "Comfortable contact on the bony tip. Avoid the ulnar groove on the inner side, where the nerve runs close to the surface. Ease off at any tingling into the hand.",
+      "contraindications": [
+        "Recent elbow fracture or dislocation",
+        "Ulnar nerve irritation",
+        "Acute joint inflammation"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.28,
+        "xRight": 0.72,
+        "y": 0.44
+      },
+      "sourcePage": "p. 178"
+    },
+    {
+      "id": "bahu_indrabasta",
+      "sanskrit": "Bahu Indrabasta",
+      "english": "The forearm point",
+      "region": "arms",
+      "side": "paired",
+      "view": "anterior",
+      "plainLocation": "On the inside of each forearm, two fingers below the crease of the elbow.",
+      "location": "Two anguli below the midpoint of the cubital crease.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Samana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Over the upper forearm between the ulna and radius, close to the median and ulnar pathways.",
+      "traditionallyAssociatedWith": [
+        "Steadying the mind and holding focus",
+        "Colon function, which Ayurveda calls the seat of vata",
+        "Kindling agni and clearing ama",
+        "Releasing stagnant feeling"
+      ],
+      "name_note": "Indrabasta means the stable crown of Indra. The source ties it to steadiness and persistence, which is why Astryx pairs it with Uranus.",
+      "safetyNote": "Comfortable contact on the muscle of the forearm. Ease off at any tingling into the hand.",
+      "contraindications": [
+        "Recent forearm fracture",
+        "Nerve entrapment in the arm",
+        "Active tendon inflammation"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.29,
+        "xRight": 0.71,
+        "y": 0.46
+      },
+      "sourcePage": "p. 176"
+    },
+    {
+      "id": "tala_hrida",
+      "sanskrit": "Tala Hrida",
+      "english": "The heart of the palm",
+      "region": "hands",
+      "side": "paired",
+      "view": "anterior",
+      "plainLocation": "The centre of each palm, where the middle finger touches when the hand makes a fist.",
+      "location": "On the palm, in the depression between the second and third metacarpals.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Vyana Vayu",
+        "Prana Vayu",
+        "Udana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated with the heart through vyana vayu, the diaphragm through udana vayu and the lungs through prana vayu.",
+      "traditionallyAssociatedWith": [
+        "Settling the mind and steadying the emotions",
+        "Releasing held stress",
+        "The lungs and the diaphragm",
+        "Grounding an overactive current"
+      ],
+      "name_note": "The heart or centre of the palm. The source calls it the solar plexus of the hand, since the hand is a small map of the whole chakra system.",
+      "safetyNote": "Comfortable contact in the centre of the palm. A very safe and well-tolerated point.",
+      "contraindications": [
+        "Recent hand injury",
+        "Active carpal or tendon inflammation"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.24,
+        "xRight": 0.76,
+        "y": 0.64
+      },
+      "sourcePage": "p. 184"
+    },
+    {
+      "id": "sakthi_urvi_anterior",
+      "sanskrit": "Sakthi Urvi",
+      "english": "The power of the thighs, front",
+      "region": "legs",
+      "side": "paired",
+      "view": "anterior",
+      "plainLocation": "The middle of the front of each thigh, on the big muscle.",
+      "location": "At the level of the mid thigh on the anterior surface of the quadriceps.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "fire",
+      "doshicSubtypes": [
+        "Udana Vayu",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Over the femoral shaft and the quadriceps. The source relates the right thigh to the ascending colon and the left to the descending colon.",
+      "traditionallyAssociatedWith": [
+        "Circulation through the lower limbs",
+        "Strength and upward-moving energy through udana vayu",
+        "The kidneys and bladder",
+        "Steadying vata-type shifting discomfort"
+      ],
+      "name_note": "Sakthi urvi means the power or energy of the thighs.",
+      "safetyNote": "Comfortable contact on the muscle of the thigh. Keep well clear of the inner thigh and the groin.",
+      "contraindications": [
+        "Any known blood clot in the leg",
+        "Recent hip or femur fracture",
+        "Varicose veins at the point",
+        "Acute muscle tear"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.44,
+        "xRight": 0.56,
+        "y": 0.64
+      },
+      "sourcePage": "p. 198"
+    },
+    {
+      "id": "janu_anterior",
+      "sanskrit": "Janu",
+      "english": "The knee point, front",
+      "region": "legs",
+      "side": "paired",
+      "view": "anterior",
+      "plainLocation": "The centre of each kneecap.",
+      "location": "At the centre of the patella.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "earth",
+      "doshicSubtypes": [
+        "Shleshaka Kapha",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Directly on the patella and the knee joint capsule.",
+      "traditionallyAssociatedWith": [
+        "Ease and stability through the knee",
+        "Shleshaka kapha, which lubricates the joint",
+        "Circulation through the lower limbs",
+        "Settling inflammatory heat held in the joint"
+      ],
+      "name_note": "Janu simply means knee. Bone, joint and lubrication together, which is the Saturn signature.",
+      "safetyNote": "Comfortable contact on the kneecap. Ease off at any sharp pain in the joint.",
+      "contraindications": [
+        "Recent knee surgery or joint replacement",
+        "Acute joint swelling",
+        "Known meniscal or ligament tear",
+        "Any blood clot in the leg"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.445,
+        "xRight": 0.555,
+        "y": 0.75
+      },
+      "sourcePage": "p. 199"
+    },
+    {
+      "id": "indrabasta_posterior",
+      "sanskrit": "Indrabasta",
+      "english": "The calf point",
+      "region": "legs",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "The middle of the fullest part of each calf.",
+      "location": "In the centre of the belly of the gastrocnemius, on the line connecting posterior Janu to Parshni.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "air",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Vyana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Over the calf muscle along the tibial line. The source relates the right leg to the ascending colon and the left to the descending colon.",
+      "traditionallyAssociatedWith": [
+        "Circulation through the lower limbs",
+        "Releasing cramp and holding in the calf",
+        "Colon function and the vata emotions Ayurveda seats there",
+        "Steadying the mind"
+      ],
+      "name_note": "Basta means colon. Indrabasta is described as the inner door of the colon.",
+      "safetyNote": "Comfortable contact on the calf muscle. Do not work this point if there is any calf tenderness, swelling or warmth, which needs a doctor first.",
+      "contraindications": [
+        "Any suspected blood clot, which is an urgent medical matter",
+        "Calf tenderness, swelling or warmth",
+        "Varicose veins at the point",
+        "Acute muscle tear"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.445,
+        "xRight": 0.555,
+        "y": 0.85
+      },
+      "sourcePage": "p. 202"
+    },
+    {
+      "id": "parshni",
+      "sanskrit": "Parshni",
+      "english": "The heel point",
+      "region": "feet",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "The back of each heel, just below the heel bone.",
+      "location": "One angula below the calcaneal tubercle on the posterior aspect of the heel.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "earth",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Prana Vayu"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "On the calcaneus, at the head of the posterior chain that runs up the back of the leg.",
+      "traditionallyAssociatedWith": [
+        "Bringing prana and apana into balance in the pelvic bowl",
+        "Circulation through the feet",
+        "Ease along the back of the leg",
+        "Grounding"
+      ],
+      "name_note": "Parshni means heel. Astryx uses it as the Earth Day fork's primary point because it reaches the root of the body without approaching it.",
+      "safetyNote": "Comfortable contact on the heel bone. A very safe and well-tolerated point.",
+      "contraindications": [
+        "Heel fracture or stress fracture",
+        "Acute plantar inflammation",
+        "Reduced sensation in the feet, where less pressure is needed"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.45,
+        "xRight": 0.55,
+        "y": 0.935
+      },
+      "sourcePage": "p. 206"
+    },
+    {
+      "id": "pada_madhya",
+      "sanskrit": "Pada Madhya",
+      "alsoKnownAs": "Tala Hridaya",
+      "english": "The centre of the sole",
+      "region": "feet",
+      "side": "paired",
+      "view": "posterior",
+      "plainLocation": "The centre of the sole of each foot, about a third of the way down from the base of the second toe.",
+      "location": "On the sole between the second and third metatarsals, one third of the distance along a line from the base of the second toe to the heel.",
+      "applicationType": "weighted",
+      "fieldDistanceInches": null,
+      "chakra": null,
+      "element": "earth",
+      "doshicSubtypes": [
+        "Apana Vayu",
+        "Pachaka Pitta"
+      ],
+      "vitalityClass": "standard",
+      "vitalityLabel": "Standard vitality class",
+      "anatomicalRelation": "Associated in the source with the pancreas and the diaphragm.",
+      "traditionallyAssociatedWith": [
+        "Bringing excess energy down out of the head",
+        "Grounding and equilibrium",
+        "Settling the mind before rest",
+        "Ease through the feet and lower limbs"
+      ],
+      "name_note": "Pada is foot and madhya is middle. The source pairs it with Adhipati at the crown to balance the body's polarity, with Nabhi as the pole between them.",
+      "safetyNote": "Comfortable contact on the sole. A very safe and well-tolerated point, and the standard close for a session.",
+      "contraindications": [
+        "Reduced sensation in the feet, where less pressure is needed",
+        "Acute plantar inflammation",
+        "Open wound on the sole"
+      ],
+      "anchor": {
+        "x": 0.5,
+        "xLeft": 0.45,
+        "xRight": 0.55,
+        "y": 0.955
+      },
+      "sourcePage": "p. 207"
+    }
+  ]
+}

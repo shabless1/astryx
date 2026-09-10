@@ -17,6 +17,7 @@
  * 10. Practitioner notes footer
  */
 
+import { resolveMarmaLayer } from '@/lib/MarmaEngine'
 import type { ProtocolOutput } from '@/types'
 import type { IntakeData } from '@/types'
 
@@ -435,6 +436,57 @@ export async function exportPractitionerPDF(options: ExportOptions): Promise<voi
         doc.text(lines, ML + 40, y)
         y += lines.length * 4.5 + 1
       }
+      // ── Marma doorway (SHA ruling 2026-09-10) ──
+      // The bone point above names the zone. These name the point inside it.
+      // Every point prints its own application class and its own safety note —
+      // a field-only point must never reach a printed sheet looking contactable.
+      const marma = resolveMarmaLayer({ planet: f.planet })
+      if (marma && marma.points.length) {
+        checkPageBreak(doc, y, 20)
+        doc.setFont('helvetica', 'bold')
+        doc.setFontSize(7.5)
+        doc.setTextColor(...accentRGB)
+        doc.text('MARMA - THE NAMED POINT', ML, y); y += 4.5
+        for (const p of marma.points) {
+          checkPageBreak(doc, y, 22)
+          const never = p.application === 'fieldOnly'
+          doc.setFont('helvetica', 'bold')
+          doc.setFontSize(8.5)
+          doc.setTextColor(40, 40, 60)
+          doc.text(`${p.sanskrit} - ${p.plainLocation}`, ML, y); y += 4
+          doc.setFont('helvetica', 'bold')
+          doc.setFontSize(7)
+          if (never) doc.setTextColor(190, 20, 90)
+          else doc.setTextColor(110, 110, 140)
+          const badge = p.application === 'weighted' ? 'WEIGHTED - STEM ON THE POINT'
+            : p.application === 'field' ? 'FIELD - 4 IN - NO DEEP PRESSURE'
+            : 'NEVER TOUCHED - 6 IN FIELD SWEEP'
+          doc.text(badge, ML, y); y += 4
+          doc.setFont('helvetica', 'normal')
+          doc.setFontSize(8)
+          doc.setTextColor(60, 60, 90)
+          const instr = doc.splitTextToSize(p.instruction, CW)
+          doc.text(instr, ML, y); y += instr.length * 4 + 1
+          checkPageBreak(doc, y, 10)
+          doc.setFont('helvetica', 'italic')
+          doc.setFontSize(7.5)
+          if (never) doc.setTextColor(190, 20, 90)
+          else doc.setTextColor(160, 100, 40)
+          const safe = doc.splitTextToSize(`Safety: ${p.safetyNote}`, CW)
+          doc.text(safe, ML, y); y += safe.length * 4 + 3
+        }
+        checkPageBreak(doc, y, 12)
+        doc.setFont('helvetica', 'italic')
+        doc.setFontSize(7.5)
+        doc.setTextColor(100, 100, 130)
+        const method = doc.splitTextToSize(marma.method.instruction, CW)
+        doc.text(method, ML, y); y += method.length * 4 + 1
+        doc.setFontSize(7)
+        doc.setTextColor(130, 130, 155)
+        const cite = doc.splitTextToSize(marma.citation, CW)
+        doc.text(cite, ML, y); y += cite.length * 3.6 + 5
+      }
+
       checkPageBreak(doc, y, 14)
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(7.5)

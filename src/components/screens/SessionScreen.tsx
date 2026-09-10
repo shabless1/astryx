@@ -45,6 +45,8 @@ import { generateKaleidoscopeMandala } from '@/lib/visual/KaleidoscopeMandalaEng
 import { getPhaseForProgress } from '@/lib/protocol/sessionPhaseMap'
 import type { BodyMapType } from '@/lib/bodyMapPlacement'
 import { resolveForkPlacement, chakraCenterPlacement, type ForkPlacement } from '@/lib/BodyPlacementEngine'
+import MarmaPanel from '@/components/engine/MarmaPanel'
+import { resolveMarmaLayer } from '@/lib/MarmaEngine'
 import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
@@ -1122,6 +1124,8 @@ function SequenceStepCard({
               </div>
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
+              {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
+              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
             </div>
           </div>
 
@@ -1192,6 +1196,8 @@ function SequenceStepCard({
               </div>
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
+              {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
+              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
             </div>
           </div>
           <div className="flex items-baseline gap-3 mb-4 flex-wrap">
@@ -1421,6 +1427,9 @@ function StepFork({
   const accentColor = fork.color
   const vagusBadge = vagusBadgeColor(fork.vagusStrength)
   const hold = holdDurationFor(fork.vagusStrength)
+  // The named marma doorway for this fork. Pluto and every pelvic-zone point
+  // resolve to the six-inch field sweep inside the engine, never here.
+  const forkMarma = resolveMarmaLayer({ planet: fork.planet })
 
   return (
     <StepCard
@@ -1442,6 +1451,8 @@ function StepFork({
       </div>
 
       <FieldRow label="WHERE TO APPLY" value={fork.boneApplicationPoint} accentColor={accentColor} highlight />
+      {/* The bone point names the zone; the marma names the doorway inside it. */}
+      <MarmaPanel marma={forkMarma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
       <FieldRow label="HOLD DURATION" value={hold + '. Observe breath response.'} accentColor={accentColor} highlight />
 
       {isPractitionerMode && (

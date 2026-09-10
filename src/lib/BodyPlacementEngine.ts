@@ -17,6 +17,7 @@
 
 import type { BodyMapType, BodyView } from '@/lib/bodyMapPlacement'
 import { chakraAddressFor } from '@/lib/forkClass'
+import { resolveMarmaLayer, marmaDoorwayLayer, type MarmaLayer } from '@/lib/MarmaEngine'
 
 // ─── 1. SIGN BODY RULERSHIP (primary anatomical field) ─────────────────
 interface SignField {
@@ -269,6 +270,13 @@ export interface ForkPlacement {
   natalPlacement: PlacementAnchor & { sameAsTraditional: boolean; sign?: string }
   natalLabel: string
   natalHow: string
+  /**
+   * Marma layer (SHA ruling 2026-09-10) — the named Ayurvedic doorway inside
+   * the resolved body zone. OPTIONAL and additive: every field above keeps its
+   * existing meaning, so a surface that ignores this renders exactly as before.
+   * null when the planet has no mapping. See MarmaEngine.ts.
+   */
+  marma: MarmaLayer | null
 }
 
 function mergeChakras(a: string[] = [], b: string[] = []): string[] {
@@ -366,6 +374,9 @@ export function resolveForkPlacement(input: ResolveInput): ForkPlacement {
     traditionalPlacement, natalPlacement,       // K.1 — dual anchors
     natalLabel: natalPlacement.label,
     natalHow,
+    // The marma layer inherits the delivery mode already resolved above, so an
+    // off-body fork (Pluto, an intimate zone) can never surface a contact point.
+    marma: resolveMarmaLayer({ planet, engineState, forkDelivery: mode }),
   }
 }
 
@@ -426,6 +437,9 @@ export function chakraCenterPlacement(center: string): ForkPlacement {
     natalPlacement: { ...anchorObj, sameAsTraditional: true },
     natalLabel: label,
     natalHow: lib.instruction,
+    // In a chakra session the marma layer is the CENTRE's named doorway —
+    // Kati on the sacrum for Sacral, Adhipati at the vertex for Crown, and so on.
+    marma: marmaDoorwayLayer(center),
   }
 }
 

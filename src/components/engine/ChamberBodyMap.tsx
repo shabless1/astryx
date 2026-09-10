@@ -17,6 +17,7 @@ import { hexToRgba } from '@/lib/utils'
 import { resolveBodyMapAsset, fallbackBodyMapAsset, type BodyMapType, type BodyView } from '@/lib/bodyMapPlacement'
 import type { ForkPlacement, PlacementAnchor } from '@/lib/BodyPlacementEngine'
 import type { ReflexPoint } from '@/lib/ReflexEngine'
+import type { MarmaPlacement } from '@/lib/MarmaEngine'
 import { PLANET_COLORS } from '@/lib/engineClient'
 
 interface ChamberBodyMapProps {
@@ -52,6 +53,9 @@ const prettyRegion = (r: string) => {
 export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hideForkDot = false, reflexPoints, onAskAstryx, chakraMode = false }: ChamberBodyMapProps) {
   const trad = placement.traditionalPlacement
   const natal = placement.natalPlacement
+  // SHA ruling 2026-06-28 — the map carries the two placements and nothing
+  // else. So this is ONE marker, not a cloud: the leading marma for this fork.
+  const marmaLead: MarmaPlacement | null = placement.marma?.points?.[0] ?? null
   const showNatal = !natal.sameAsTraditional
   const showReflex = !hideForkDot && !!reflexPoints && reflexPoints.length > 0
 
@@ -109,6 +113,11 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
         {!hideForkDot && <Orb p={trad} kind="traditional" color={accentColor} />}
         {!hideForkDot && showNatal && <Orb p={natal} kind="natal" color={accentColor} />}
 
+        {/* The named marma doorway — one marker, on its own side of the body. */}
+        {!hideForkDot && marmaLead && marmaLead.view === view && (
+          <MarmaMarker m={marmaLead} />
+        )}
+
         {/* SHA 2026-06-28 — each fork shows ONLY its 2 placements (traditional +
             natal). The reflex-point cloud is removed from the map; that reasoning
             lives behind Astryx, not scattered as extra orbs. */}
@@ -122,6 +131,15 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             <span style={{ color: accentColor }}>◉</span>
             <span className="text-content-sm">{placement.primaryLabel}</span>
           </div>
+          {marmaLead && (
+            <div className="flex items-center gap-1.5 text-[11px]">
+              <span style={{ color: MARMA_COLOR[marmaLead.application] }}>✧</span>
+              <span className="text-content-sm">
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Marma · </span>
+                {marmaLead.sanskrit} · {marmaLead.plainLocation.replace(/\.$/, '').toLowerCase()}
+              </span>
+            </div>
+          )}
           <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/40">
             <span><span style={{ color: accentColor }}>◉</span> Chakra placement · same for every body</span>
           </div>
@@ -142,6 +160,19 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
               <span className="text-content-sm">
                 <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Natal · {natal.sign ?? ''} · </span>
                 {prettyRegion(natal.region)}{natal.mode === 'sweep' ? ' · off-body sweep' : ''}
+              </span>
+            </div>
+          )}
+          {marmaLead && (
+            <div className="flex items-center gap-1.5 text-[11px]">
+              <span style={{ color: MARMA_COLOR[marmaLead.application] }}>✧</span>
+              <span className="text-content-sm">
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Marma · </span>
+                {marmaLead.sanskrit}
+                {marmaLead.application === 'fieldOnly'
+                  ? ' · never touched, six-inch field sweep'
+                  : marmaLead.application === 'field' ? ' · field, no deep pressure' : ''}
+                {marmaLead.view !== view ? ` · on the ${marmaLead.view} side` : ''}
               </span>
             </div>
           )}
@@ -166,6 +197,47 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
       {/* A1.3 — quiet technique expander (retained from Directive R). */}
       {!hideForkDot && <TechniqueExpander accentColor={accentColor} />}
     </div>
+  )
+}
+
+/** Marker colour carries the SAFETY class, never the planet — a magenta ✧ means
+ *  the point is never contacted at any pressure. */
+const MARMA_COLOR: Record<string, string> = {
+  weighted: '#FDE047',
+  field: '#38BDF8',
+  fieldOnly: '#FF006E',
+}
+
+/** The one named marma doorway for this fork. Colour = how it may be met. */
+function MarmaMarker({ m }: { m: MarmaPlacement }) {
+  const color = MARMA_COLOR[m.application] ?? '#38BDF8'
+  const never = m.application === 'fieldOnly'
+  const title = `${m.sanskrit} · ${m.plainLocation}${never ? ' · never touched, six-inch field sweep' : ''}`
+  // A paired point shows on both sides; a midline point shows once.
+  const xs = m.anchorLeft && m.anchorRight
+    ? [m.anchorLeft.x, m.anchorRight.x]
+    : [m.anchor.x]
+  return (
+    <>
+      {xs.map((x, i) => (
+        <div
+          key={i}
+          className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          style={{
+            left: `${x * 100}%`,
+            top: `${m.anchor.y * 100}%`,
+            width: 9,
+            height: 9,
+            border: `1.5px solid ${color}`,
+            background: never ? 'transparent' : hexToRgba(color, 0.35),
+            transform: 'translate(-50%,-50%) rotate(45deg)',
+            boxShadow: `0 0 7px ${hexToRgba(color, 0.7)}`,
+            borderStyle: never ? 'dashed' : 'solid',
+          }}
+          title={title}
+        />
+      ))}
+    </>
   )
 }
 

@@ -1,0 +1,485 @@
+{
+  "_meta": {
+    "file": "marmaFork.json",
+    "version": "1.0.0",
+    "added": "2026-09-10",
+    "ruling": "SHA approved the Marma x Sacred Tones placement map, proposal v2, 2026-09-10. Two rulings shaped it: the sacral centre is the sacrum, not the navel; and the reproductive and pelvic-floor zone is a six-inch field sweep for every fork, every chart and every person.",
+    "flexibility": "SHA ruling: fork placement is not one settled system. Every mapping here is the considered default. Each fork also carries alternates, labelled by the basis they are chosen on, and a practitioner may take any of them. The safety layer is the only part that does not move.",
+    "basis": {
+      "bone-point": "Chosen because it sits on the fork's own bone application point in sacredTones_nervousSystem.json.",
+      "chakra": "Chosen because it is the named point of the fork's chakra centre.",
+      "dosha": "Chosen because it is a home seat of the fork's dosha.",
+      "grounding": "A closing or grounding point rather than a carrier point."
+    },
+    "determinism": "Pure lookup. No randomness, no clock. Point ids resolve against marmaPoints.json.",
+    "source": "Vasant Lad and Anisha Durve, Marma Points of Ayurveda, The Ayurvedic Press. The direction-of-movement guidance in stateMethod is from the touch and pressure guidelines, chapter 8.",
+    "engineUsage": "BodyPlacementEngine.resolveMarmaLayer reads this. Application type resolves as the strictest of the point's own type, the reproductive-zone rule, the fork's delivery mode and the pregnancy widening. It never loosens.",
+    "lineage": "Astryx Marma x Sacred Tones map v2 (SHA approved 2026-09-10), built on Vasant Lad and Anisha Durve, Marma Points of Ayurveda"
+  },
+  "methodBridge": {
+    "headline": "The fork is a shalaka that sings.",
+    "body": "The tradition applies deep dry pressure with a shalaka, a small blunt metal rod, and separately recites the healing sound into the point while it is worked. A weighted metal fork stem is both at once. This is not an addition to marma chikitsa. It is two of its own ten methods arriving in one instrument.",
+    "shalakaMetals": "The classical rod is chosen by dosha: copper to reduce kapha, gold to reduce vata, silver to reduce pitta.",
+    "dwell": "The tradition asks for steady contact of roughly one to two minutes per point, which is already the shape of a fork hold."
+  },
+  "stateMethod": {
+    "excess": {
+      "label": "Pacify",
+      "direction": "counterclockwise",
+      "forkChoice": "regulator",
+      "delivery": "field",
+      "instruction": "Work the point counterclockwise, which the tradition holds to be calming. Use the regulator's fork held in the field, never the amplified planet's own fork.",
+      "neverAmplify": true
+    },
+    "deficiency": {
+      "label": "Tonify",
+      "direction": "clockwise",
+      "forkChoice": "own",
+      "delivery": "contact",
+      "instruction": "Work the point clockwise, which the tradition holds to be tonifying. Use the planet's own fork, stem steady on the point.",
+      "neverAmplify": false
+    },
+    "blocked": {
+      "label": "Mobilise",
+      "direction": "linear",
+      "forkChoice": "own",
+      "delivery": "contact",
+      "instruction": "Move the fork and the attention in a line from one point to the next along the channel, then close at the sole. The tradition names linear movement as the one that balances vata.",
+      "neverAmplify": false
+    },
+    "balanced": {
+      "label": "Hold",
+      "direction": "steady",
+      "forkChoice": "own",
+      "delivery": "contact",
+      "instruction": "Hold the point steady with no rotation. Short. A closing tone.",
+      "neverAmplify": false
+    }
+  },
+  "forks": [
+    {
+      "planet": "Earth Day",
+      "hz": "194.18",
+      "dosha": "regulator",
+      "doshaNote": "Tridoshic. The Earth tones regulate, they never amplify.",
+      "primary": {
+        "marma": "parshni",
+        "basis": "bone-point",
+        "why": "The fork's own bone point names the calcaneus. Parshni is the heel, and the tradition associates it with bringing prana and apana into balance in the pelvic bowl. It reaches the root of the body without approaching it."
+      },
+      "secondary": {
+        "marma": "kati",
+        "basis": "bone-point",
+        "why": "The fork's bone point also names the sacrum. Kati sits on the sacral plate, worked with the person prone."
+      },
+      "chakraDoorway": {
+        "marma": "trik",
+        "basis": "chakra",
+        "why": "Root. The tradition states plainly that Trik carries energy at Muladhara."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "pada_madhya",
+          "basis": "grounding",
+          "why": "The sole of the foot, when the session needs to close lower than the heel."
+        }
+      ]
+    },
+    {
+      "planet": "Full Moon",
+      "hz": "210.42",
+      "dosha": "kapha",
+      "doshaNote": "The Moon is a kapha carrier in Vedic rulership.",
+      "primary": {
+        "marma": "kati",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the iliac crests, the sacrum and L4 to L5. Kati sits in the first sacral foramen, which is that exact address, and it is posterior, so the work never crosses the front of the pelvis."
+      },
+      "secondary": {
+        "marma": "kukundara",
+        "basis": "bone-point",
+        "why": "One level up at the lumbosacral hinge, matching the L4 to L5 half of the fork's bone point."
+      },
+      "chakraDoorway": {
+        "marma": "kati",
+        "basis": "chakra",
+        "why": "Sacral. SHA ruling: this centre is the sacrum, worked posteriorly or at the lower lumbar. Its anterior face is Basti, below the navel, which is field only."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "basti",
+          "basis": "chakra",
+          "why": "The anterior face of the same centre, below the navel. Six-inch field sweep only."
+        },
+        {
+          "marma": "kukundara",
+          "basis": "chakra",
+          "why": "The lower lumbar reading of the sacral centre."
+        }
+      ]
+    },
+    {
+      "planet": "Sun",
+      "hz": "126.22",
+      "dosha": "pitta",
+      "doshaNote": "The Sun is the primary pitta carrier.",
+      "primary": {
+        "marma": "surya",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the lower sternum and floating ribs, and its chakra is the solar plexus. The point's full name is Surya Mandala, the sun-vortex, which the source calls the microcosmic sun within us. The Sun fork and the Sun point are the same address."
+      },
+      "secondary": {
+        "marma": "nabhi",
+        "basis": "dosha",
+        "why": "The navel, seat of samana vayu and root of the nadis. Held in the field."
+      },
+      "chakraDoorway": {
+        "marma": "surya",
+        "basis": "chakra",
+        "why": "Solar Plexus. The same point."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "yakrut",
+          "basis": "dosha",
+          "why": "The liver point, when the pitta reading runs hot through the right side."
+        }
+      ]
+    },
+    {
+      "planet": "Earth Year",
+      "hz": "136.10",
+      "dosha": "regulator",
+      "doshaNote": "Tridoshic. The Om tone integrates the whole field.",
+      "primary": {
+        "marma": "jatru",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the sternum and clavicles, and its plexus is the cardiac and vagal line. Jatru sits on the manubrium in front of the thymus, which the source calls the seat of ojas, and the tradition asks for a light tap there, which is exactly what a struck fork stem does."
+      },
+      "secondary": {
+        "marma": "hridayam",
+        "basis": "bone-point",
+        "why": "Lower on the same breastbone. One of the Eight Great points, so it is held in the field."
+      },
+      "chakraDoorway": null,
+      "counterweight": {
+        "marma": "nabhi",
+        "basis": "grounding",
+        "why": "The central pole. The source pairs Adhipati at the crown with Pada Madhya at the sole to balance polarity, and names Nabhi as the pole that harmonises them. That triad is this fork's whole-field signature."
+      },
+      "alternates": [
+        {
+          "marma": "adhipati",
+          "basis": "grounding",
+          "why": "The crown end of the polarity pair."
+        },
+        {
+          "marma": "pada_madhya",
+          "basis": "grounding",
+          "why": "The sole end of the polarity pair."
+        }
+      ]
+    },
+    {
+      "planet": "Mercury",
+      "hz": "141.27",
+      "dosha": "vata",
+      "doshaNote": "Mercury is a vata carrier in Vedic rulership.",
+      "primary": {
+        "marma": "krikatika",
+        "basis": "bone-point",
+        "why": "The fork's bone point names C1 and C2. Krikatika sits level with the axis, and its name means the joint that lets the skull turn."
+      },
+      "secondary": {
+        "marma": "vidhuram",
+        "basis": "bone-point",
+        "why": "Level with the atlas, one vertebra above. Its name means that which holds the skull."
+      },
+      "chakraDoorway": {
+        "marma": "kantha",
+        "basis": "chakra",
+        "why": "Throat. The source ties Kantha directly to Vishuddhi and to udana vayu, which governs speech. Held in the field, since every throat point takes gentle handling only."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "manyamula",
+          "basis": "bone-point",
+          "why": "The hollow below the occipital ridge, matching the mastoid half of the fork's bone point."
+        }
+      ]
+    },
+    {
+      "planet": "Venus",
+      "hz": "221.23",
+      "dosha": "kapha",
+      "doshaNote": "Venus is a kapha carrier in Vedic rulership.",
+      "primary": {
+        "marma": "sthapani",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the sphenoid and frontal bone and its plexus is the hypothalamic-pituitary line. Sthapani sits on the midline of the forehead and the source associates it with the hypothalamus, the optic chiasm and the bridge between the pineal and pituitary. That is the same anatomy from both directions."
+      },
+      "secondary": {
+        "marma": "shivarandhra",
+        "basis": "bone-point",
+        "why": "Behind the crown, matching the occipital half of the fork's bone point. Held in the field."
+      },
+      "chakraDoorway": {
+        "marma": "hridayam",
+        "basis": "chakra",
+        "why": "Heart. Held in the field, since it is one of the Eight Great points."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "hridayam",
+          "basis": "chakra",
+          "why": "For a practitioner who prefers to carry Venus at the heart rather than the brow. Field only."
+        }
+      ]
+    },
+    {
+      "planet": "Mars",
+      "hz": "144.72",
+      "dosha": "pitta",
+      "doshaNote": "Mars is a pitta carrier in Vedic rulership.",
+      "primary": {
+        "marma": "sakthi_urvi_anterior",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the femoral shaft. Sakthi Urvi sits mid-thigh over the quadriceps and its name means the power of the thighs."
+      },
+      "secondary": {
+        "marma": "indrabasta_posterior",
+        "basis": "bone-point",
+        "why": "The calf along the tibial line, matching the tibial half of the fork's bone point. Muscle tissue is the Mars dhatu."
+      },
+      "chakraDoorway": null,
+      "counterweight": {
+        "marma": "surya",
+        "basis": "dosha",
+        "why": "Pitta's home seat. Where Mars reads amplified, the regulator's fork is held here, never the Mars fork."
+      },
+      "alternates": [
+        {
+          "marma": "janu_anterior",
+          "basis": "bone-point",
+          "why": "The kneecap, which the source associates with settling inflammatory heat in the joint."
+        }
+      ]
+    },
+    {
+      "planet": "Jupiter",
+      "hz": "183.58",
+      "dosha": "kapha",
+      "doshaNote": "Jupiter is a kapha carrier in Vedic rulership.",
+      "primary": {
+        "marma": "yakrut",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the right lateral ribs over the liver. Yakrut is the liver point, at the right costal margin. They are the same spot named twice."
+      },
+      "secondary": {
+        "marma": "bruhati",
+        "basis": "bone-point",
+        "why": "Below the right shoulder blade, matching the T8 to T10 posterior half of the fork's bone point. Its name means expansion."
+      },
+      "chakraDoorway": {
+        "marma": "adhipati",
+        "basis": "chakra",
+        "why": "Crown."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "adhipati",
+          "basis": "chakra",
+          "why": "For a practitioner who carries Jupiter at the crown rather than the liver."
+        }
+      ]
+    },
+    {
+      "planet": "Saturn",
+      "hz": "147.85",
+      "dosha": "vata",
+      "doshaNote": "Saturn is the primary vata carrier.",
+      "primary": {
+        "marma": "janu_anterior",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the long and structural bones. Janu sits on the kneecap, and bone, joint and shleshaka kapha together are the Saturn signature."
+      },
+      "secondary": {
+        "marma": "kurpara",
+        "basis": "bone-point",
+        "why": "The tip of the elbow. The source classes Kurpara an asthi marma, a bone point. Saturn's fork is the bone fork, so stem to bone is the correct instrument."
+      },
+      "chakraDoorway": null,
+      "counterweight": {
+        "marma": "nabhi",
+        "basis": "dosha",
+        "why": "Vata's regulation seat, for when Saturn reads contracted."
+      },
+      "alternates": [
+        {
+          "marma": "kukundara",
+          "basis": "bone-point",
+          "why": "The lumbar spine, for the structural rather than the articular reading."
+        },
+        {
+          "marma": "parshni",
+          "basis": "grounding",
+          "why": "The heel, for the weight-bearing chain."
+        }
+      ]
+    },
+    {
+      "planet": "Uranus",
+      "hz": "207.36",
+      "dosha": "vata",
+      "doshaNote": "Assigned vata. Uranus carries the nervous and electrical current in Astryx, which is vata territory.",
+      "primary": {
+        "marma": "urdhva_skandha",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the clavicle, scapula and C7. Urdhva Skandha sits on the trapezius midway between C7 and the acromion, which is the brachial gateway itself."
+      },
+      "secondary": {
+        "marma": "bahu_indrabasta",
+        "basis": "bone-point",
+        "why": "The upper forearm between ulna and radius, matching the forearm half of the fork's bone point. The source associates it with steadying the mind, which is the right counterweight for an electric fork."
+      },
+      "chakraDoorway": null,
+      "counterweight": {
+        "marma": "tala_hrida",
+        "basis": "grounding",
+        "why": "The centre of the palm, which the source calls the solar plexus of the hand. Somewhere for the current to land."
+      },
+      "alternates": [
+        {
+          "marma": "tala_hrida",
+          "basis": "grounding",
+          "why": "When the session needs the current brought all the way out to the hands."
+        }
+      ]
+    },
+    {
+      "planet": "Neptune",
+      "hz": "211.44",
+      "dosha": "kapha",
+      "doshaNote": "Assigned kapha. Neptune's plexus is the pineal and limbic line, which is tarpaka kapha territory.",
+      "primary": {
+        "marma": "shankha",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the temporal bones. Shankha is the temple, and the source associates it with the temporal lobe and the mid-cranial fossa. Held in the field, since the source forbids heavy pressure there."
+      },
+      "secondary": {
+        "marma": "manyamula",
+        "basis": "bone-point",
+        "why": "The hollow below the occipital ridge, matching the occipital base half of the fork's bone point."
+      },
+      "chakraDoorway": {
+        "marma": "sthapani",
+        "basis": "chakra",
+        "why": "Third Eye."
+      },
+      "counterweight": null,
+      "alternates": [
+        {
+          "marma": "sthapani",
+          "basis": "chakra",
+          "why": "For a practitioner who carries Neptune at the brow rather than the temple."
+        },
+        {
+          "marma": "pada_madhya",
+          "basis": "grounding",
+          "why": "The sole, when a Neptune session needs a firm floor under it."
+        }
+      ]
+    },
+    {
+      "planet": "Pluto",
+      "hz": "140.25",
+      "dosha": "vata",
+      "doshaNote": "Assigned vata. Pluto sits with apana vayu and the deep pelvic field.",
+      "primary": {
+        "marma": "kati",
+        "basis": "bone-point",
+        "why": "The fork's bone point names the sacrum and coccyx. Pluto is an unconditional off-body fork, so this point is addressed from six inches out and the marma layer does not soften that."
+      },
+      "secondary": {
+        "marma": "trik",
+        "basis": "bone-point",
+        "why": "The coccyx tip. Held six inches out and swept downward, never contacted."
+      },
+      "chakraDoorway": null,
+      "counterweight": {
+        "marma": "pada_madhya",
+        "basis": "grounding",
+        "why": "The sole. Deep work closes at the floor."
+      },
+      "alternates": [
+        {
+          "marma": "pada_madhya",
+          "basis": "grounding",
+          "why": "When the session needs to end lower than it began."
+        }
+      ]
+    }
+  ],
+  "chakraDoorways": [
+    {
+      "chakra": "Crown",
+      "solfeggioHz": 963,
+      "marma": "adhipati",
+      "alternates": [],
+      "note": "The vertex. The source names Adhipati as the point that carries consciousness at Sahasrara."
+    },
+    {
+      "chakra": "Third Eye",
+      "solfeggioHz": 852,
+      "marma": "sthapani",
+      "alternates": [],
+      "note": "The midline of the forehead, one angula above the point between the brows."
+    },
+    {
+      "chakra": "Throat",
+      "solfeggioHz": 741,
+      "marma": "kantha",
+      "alternates": [],
+      "note": "The hollow above the hyoid. The source ties Kantha directly to Vishuddhi. Field only, since every throat point takes gentle handling."
+    },
+    {
+      "chakra": "Heart",
+      "solfeggioHz": 639,
+      "marma": "hridayam",
+      "alternates": [],
+      "note": "The centre of the breastbone. One of the Eight Great points, so it is held in the field."
+    },
+    {
+      "chakra": "Solar Plexus",
+      "solfeggioHz": 528,
+      "marma": "surya",
+      "alternates": [],
+      "note": "Halfway between the navel and the tip of the breastbone. Surya Mandala, the sun-vortex."
+    },
+    {
+      "chakra": "Sacral",
+      "solfeggioHz": 417,
+      "marma": "kati",
+      "alternates": [
+        "kukundara",
+        "basti"
+      ],
+      "note": "SHA ruling 2026-09-10: this centre is the sacrum, not the navel. Worked posteriorly at the first sacral foramen with the person prone, or one level up at the lower lumbar. Its anterior face sits below the navel at Basti, which is a six-inch field sweep only. The source's own chakra table names Nabhi here; Astryx departs from it on this one point and says so. Nabhi keeps its real job as the central pole between crown and sole."
+    },
+    {
+      "chakra": "Root",
+      "solfeggioHz": 396,
+      "marma": "trik",
+      "alternates": [
+        "parshni"
+      ],
+      "note": "The tip of the coccyx. Six-inch field sweep only. Parshni at the heel is the contact alternate for a practitioner who needs one."
+    }
+  ]
+}
