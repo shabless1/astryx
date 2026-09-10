@@ -46,12 +46,12 @@ import { getPhaseForProgress } from '@/lib/protocol/sessionPhaseMap'
 import type { BodyMapType } from '@/lib/bodyMapPlacement'
 import { resolveForkPlacement, chakraCenterPlacement, type ForkPlacement } from '@/lib/BodyPlacementEngine'
 import MarmaPanel from '@/components/engine/MarmaPanel'
-import { resolveMarmaLayer } from '@/lib/MarmaEngine'
+import { resolveMarmaLayer, marmaPointById } from '@/lib/MarmaEngine'
 import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
-import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, buildMarmaSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
 
 // v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
 // selections for every user, every run (the ladder is chart-independent). Only
@@ -207,8 +207,12 @@ export default function SessionScreen({
   const isFullBody = chamberContainer.fullBody === true
   // v4.3.1 — so is the Chakra Recalibration (7 centers, chosen instrument).
   const isChakra = chamberContainer.chakra === true
+  // SHA 2026-09-10 — the named-point session: twelve forks at their marma
+  // doorways, heel to crown to sole. Canonical, so it places the same on
+  // every body (the point is the point).
+  const isMarma = chamberContainer.marma === true
   const chakraInstrument = useAppStore((s) => s.chakraInstrument)
-  const isCanonicalSession = isFullBody || isChakra
+  const isCanonicalSession = isFullBody || isChakra || isMarma
 
   // Chamber Deploy 2 — build DNA + HarmonicPlan once per session.
   // v4.3 — the Full Body session uses ONE canonical DNA for every user (fixed
@@ -278,6 +282,8 @@ export default function SessionScreen({
   const sequenceSteps: SequenceStep[] = useMemo(
     () => isChakra
       ? buildChakraSequence({ durationSec: chamberDurationSec, instrument: chakraInstrument })
+      : isMarma
+      ? buildMarmaSequence({ durationSec: chamberDurationSec })
       : isFullBody
       ? buildFullBodySequence({ durationSec: chamberDurationSec })
       : isFullSpectrum
@@ -292,7 +298,7 @@ export default function SessionScreen({
           forkCount:        chamberContainer.forkCount,
           tier:             mode === 'practitioner' ? 'practitioner' : 'individual',
         }),
-    [isChakra, chakraInstrument, isFullBody, isFullSpectrum, protocol?.signalHierarchy, protocol?.dominantPolarity, protocol?.polarityResults, protocol?.intentionPlanet, chamberContainer, mode, chamberDurationSec],
+    [isChakra, chakraInstrument, isMarma, isFullBody, isFullSpectrum, protocol?.signalHierarchy, protocol?.dominantPolarity, protocol?.polarityResults, protocol?.intentionPlanet, chamberContainer, mode, chamberDurationSec],
   )
 
   // Botanical + crystal from sacred layer (close step references)
@@ -867,6 +873,37 @@ export default function SessionScreen({
                   // anatomical point (Crown = top of head …), never the fork
                   // planet's body zone. One orb, same for every fork + body.
                   if (chakraCenterName) return chakraCenterPlacement(chakraCenterName)
+                  // A Marma step places at the step's own named point. The
+                  // engine still decides HOW the fork may meet it, so a
+                  // pelvic-zone point stays a six-inch sweep here too.
+                  if (current.marmaPointId) {
+                    const pt = marmaPointById(current.marmaPointId)
+                    const b = resolvePlacement(current.planet)
+                    if (pt) {
+                      const anchorObj = {
+                        anchor: pt.anchor,
+                        region: pt.region,
+                        label: `${pt.sanskrit} · ${pt.plainLocation.replace(/\.$/, '').toLowerCase()}`,
+                        view: pt.view,
+                        mode: (pt.application === 'fieldOnly' ? 'sweep' : 'contact') as 'sweep' | 'contact',
+                      }
+                      return {
+                        ...b,
+                        primaryLabel: anchorObj.label,
+                        primaryRegions: [pt.region],
+                        view: pt.view,
+                        anchor: pt.anchor,
+                        mode: anchorObj.mode,
+                        how: pt.instruction,
+                        why: 'The named point is the same on every body. What changes is how the fork is allowed to meet it.',
+                        traditionalPlacement: anchorObj,
+                        natalPlacement: { ...anchorObj, sameAsTraditional: true },
+                        natalLabel: anchorObj.label,
+                        natalHow: pt.instruction,
+                        marma: { ...(b.marma ?? { planet: current.planet, dosha: '', doshaNote: '', method: { label: '', direction: '', forkChoice: '', instruction: '', neverAmplify: false }, bridge: { headline: '', body: '', dwell: '', shalakaMetals: '' }, alternates: [], citation: '' }), points: [pt] },
+                      }
+                    }
+                  }
                   // v4.4 FIX 3.1 — other canonical sessions (Full Body) place by
                   // the LADDER territory only. Calibrated sessions keep natal.
                   const base = resolvePlacement(current.planet, isFullBody ? current.sign : undefined)

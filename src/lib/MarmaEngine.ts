@@ -479,6 +479,17 @@ export function allMarmaPoints(): MarmaPlacement[] {
     .filter((x): x is MarmaPlacement => x !== null)
 }
 
+/** One point by id, resolved with no fork context. Used by the Marma session builder. */
+export function marmaPointById(id: string): MarmaPlacement | null {
+  if (!POINTS[id]) return null
+  return buildPlacement({ marma: id, basis: 'bone-point', why: '' }, 'primary', {}, STATE_METHOD.balanced)
+}
+
+/** The primary marma id for a fork, or null when the planet has no mapping. */
+export function primaryMarmaIdFor(planet: string): string | null {
+  return FORKS[planet]?.primary?.marma ?? null
+}
+
 /** Short label for a placement, e.g. "Kati · the sacral plate". */
 export function marmaLabel(m: MarmaPlacement): string {
   return `${m.sanskrit} · ${m.plainLocation.replace(/\.$/, '').toLowerCase()}`

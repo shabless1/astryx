@@ -26,7 +26,7 @@
  */
 
 export type ChamberDurationKey =
-  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM' | 'FULL_BODY' | 'CHAKRA'
+  | '15_PERSONAL' | '30_DEEP' | '60_PRACTITIONER' | 'FULL_SPECTRUM' | 'FULL_BODY' | 'CHAKRA' | 'MARMA'
 
 /** A phase slot in a container's fixed architecture. */
 export type PhaseRole =
@@ -76,6 +76,10 @@ export interface ChamberDurationPreset {
   /** v4.3.1 — routes SessionScreen to buildChakraSequence() (7 centers,
    *  root→crown→root; instrument = Solfeggio or Planetary forks). */
   chakra?: boolean
+  /** SHA 2026-09-10 — routes SessionScreen to buildMarmaSequence(): the
+   *  twelve forks at their named Ayurvedic marma points, heel to crown to
+   *  sole. Chart-independent and canonical. */
+  marma?: boolean
 }
 
 // ── Full-Spectrum timing (OPEN ITEM for SHA — retune by ear) ─────────────────
@@ -149,6 +153,9 @@ export const CHAMBER_DURATIONS: ChamberDurationPreset[] = [
   { key: 'FULL_BODY',       label: 'Full Body Recalibration',          description: 'The complete anatomical ladder — all twelve forks, ground to crown and back', durationSec: FULL_BODY_SEC, minMode: 'user', architecture: ARCH_FULL_BODY, fullBody: true },
   // v4.3.1 — 1650s (27.5 min): ground 180 → 7 centers ×114 → crown turn 72 →
   // 7 sweep centers ×60 → ground 180. Builder scales to any durationSec.
+  // SHA 2026-09-10 — 1800s (30 min): heel 185 → 11 named points ×118 →
+  // crown turn 89 → sole close 222. Builder scales to any durationSec.
+  { key: 'MARMA',           label: 'Marma Recalibration',              description: 'The twelve forks at their named Ayurvedic points — heel to crown, closing at the sole', durationSec: 1800, minMode: 'user', architecture: ARCH_FULL_BODY, marma: true },
   { key: 'CHAKRA',          label: 'Chakra Recalibration',             description: 'The seven centers, root to crown and back — Solfeggio or Planetary forks', durationSec: 1650, minMode: 'user', architecture: ARCH_FULL_BODY, chakra: true },
 ]
 

@@ -33,6 +33,7 @@ import sacredTonesData from '@/data/sacredTones_nervousSystem.json'
 import type { SacredFork, SignalHierarchy, PolarityResultLike, PolarityStateLike } from '@/types'
 import type { PhaseArchitectureStep, PhaseRole } from '@/lib/chamber/durationPresets'
 import { FULL_SPECTRUM_TIMING } from '@/lib/chamber/durationPresets'
+import { marmaPointById } from '@/lib/MarmaEngine'
 
 export type StepRole = PhaseRole
 
@@ -60,6 +61,10 @@ export interface SequenceStep {
   centerColor?: string
   /** Short slot label for display: 'primary' | 'support' | 'integration' | … */
   slotLabel: string
+  /** Marma Recalibration only — the id of the named point this step works.
+   *  The session surface renders THIS point rather than the whole fork layer.
+   *  Safety is still decided by MarmaEngine.resolveApplication(), never here. */
+  marmaPointId?: string
 }
 
 const PLANET_TO_FORK: Record<string, string> = {
@@ -605,6 +610,102 @@ export function buildChakraSequence(
   //    (194.18 Hz), the grounding close (SHA): Root moved to Mars, Earth Day now
   //    seals the session. Relaxing 4-7-8 breath runs alongside.
   pushRaw(makeStep(steps.length, 'earthClose', 'Close · Earth Grounding', 'ground the body and integrate with the Earth Day fork — the session completes here', 'Earth Day', cursor, Math.max(10, total - cursor)))
+
+  return steps
+}
+
+
+// ════════════════════════════════════════════════════════════════════════════
+// MARMA RECALIBRATION (SHA approved 2026-09-10) — the named-point session.
+//
+// The Full Body ladder walks the twelve forks through their body ZONES. This
+// walks the same twelve through their named marma DOORWAYS, feet to crown,
+// in the order the tradition's own regional massage sequences move.
+//
+//   Open · Ground at the Heel   — Earth Day at Parshni. The tradition holds
+//     Parshni to balance prana and apana in the pelvic bowl, so the session
+//     reaches the root of the body without ever approaching it.
+//   Ascent · eleven stations    — each fork at its primary marma, ordered by
+//     the point's own height on the body (knee → thigh → sacrum → belly →
+//     ribs → breastbone → shoulder → neck → brow → temple).
+//   Crown Turn · Adhipati       — breath only at the vertex, nothing struck.
+//   Close · The Central Pole    — Earth Day at Pada Madhya. The source pairs
+//     Adhipati at the crown with Pada Madhya at the sole to balance the body's
+//     polarity, with Nabhi as the pole that harmonises them. Deep work closes
+//     at the floor.
+//
+// Chart-independent and canonical, like the Chakra and Full Body sessions —
+// runnable without a reading, byte-identical every run. Safety is NOT decided
+// here: each step names its point, and MarmaEngine.resolveApplication() decides
+// how the fork may meet it (Pluto and every pelvic-zone point resolve to the
+// six-inch field sweep no matter what this ladder says).
+// ════════════════════════════════════════════════════════════════════════════
+
+/** The ascent, ordered by each primary marma's own height on the body (low → high). */
+export const MARMA_LADDER: { planet: string; marma: string; region: string }[] = [
+  { planet: 'Saturn',    marma: 'janu_anterior',        region: 'the knee' },
+  { planet: 'Mars',      marma: 'sakthi_urvi_anterior', region: 'the thigh' },
+  { planet: 'Pluto',     marma: 'kati',                 region: 'the sacrum' },
+  { planet: 'Full Moon', marma: 'kati',                 region: 'the sacrum' },
+  { planet: 'Sun',       marma: 'surya',                region: 'above the navel' },
+  { planet: 'Jupiter',   marma: 'yakrut',               region: 'the right rib margin' },
+  { planet: 'Earth Year', marma: 'jatru',               region: 'the breastbone' },
+  { planet: 'Uranus',    marma: 'urdhva_skandha',       region: 'the shoulder' },
+  { planet: 'Mercury',   marma: 'krikatika',            region: 'the top of the neck' },
+  { planet: 'Venus',     marma: 'sthapani',             region: 'the forehead' },
+  { planet: 'Neptune',   marma: 'shankha',              region: 'the temple' },
+]
+
+const MARMA_WEIGHTS = { ground: 2.5, station: 1.6, crownTurn: 1.2, earthClose: 3.0 }
+const MARMA_TOTAL_WEIGHT =
+  MARMA_WEIGHTS.ground + MARMA_WEIGHTS.station * MARMA_LADDER.length +
+  MARMA_WEIGHTS.crownTurn + MARMA_WEIGHTS.earthClose
+
+/**
+ * The Marma Recalibration. 14 steps; pure function of durationSec.
+ * Every station carries `marmaPointId` so the session surface names the exact
+ * point rather than the whole fork layer.
+ */
+export function buildMarmaSequence({ durationSec }: { durationSec: number }): SequenceStep[] {
+  const total = durationSec && durationSec > 0 ? durationSec : 1800
+  const unit = total / MARMA_TOTAL_WEIGHT
+  const hold = (w: number) => Math.max(10, Math.round(w * unit))
+
+  const steps: SequenceStep[] = []
+  let cursor = 0
+  const push = (
+    role: PhaseRole, phaseLabel: string, purpose: string, planet: string,
+    holdSec: number, marmaPointId?: string,
+  ) => {
+    const s = makeStep(steps.length, role, phaseLabel, purpose, planet, cursor, holdSec)
+    if (marmaPointId) s.marmaPointId = marmaPointId
+    steps.push(s)
+    cursor += holdSec
+  }
+
+  // 1) Open — Earth Day at the heel.
+  push('ground', 'Open · Ground at the Heel',
+    'settle at Parshni, the heel — the tradition reaches the pelvic field from here without approaching it',
+    'Earth Day', hold(MARMA_WEIGHTS.ground), 'parshni')
+
+  // 2) Ascent — eleven named points, low to high.
+  for (const rung of MARMA_LADDER) {
+    const point = marmaPointById(rung.marma)
+    const name = point?.sanskrit ?? rung.marma
+    push('signalFork', `Ascent · ${name}`,
+      `sound the ${rung.planet === 'Earth Year' ? 'Earth Year' : rung.planet} fork at ${name}, ${rung.region}`,
+      rung.planet, hold(MARMA_WEIGHTS.station), rung.marma)
+  }
+
+  // 3) Crown Turn — breath only at the vertex, nothing struck.
+  push('breathwork', 'Crown Turn · Adhipati',
+    'hold at the vertex — three slow breaths before the descent to the floor',
+    'Breath', hold(MARMA_WEIGHTS.crownTurn), 'adhipati')
+
+  // 4) Close — the central pole. Absorbs the rounding remainder so it tiles exactly.
+  push('earthClose', 'Close · The Central Pole',
+    'ground at Pada Madhya, the sole — crown and sole together, the navel the pole between them',
+    'Earth Day', Math.max(10, total - cursor), 'pada_madhya')
 
   return steps
 }
