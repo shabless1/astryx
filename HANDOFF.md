@@ -1,6 +1,6 @@
 # ASTRYX — Session Handoff Document
 ### Complete State, File Inventory & Transfer Instructions
-**Generated:** End of session, May 2026
+**Generated:** End of session, May 2026 · **Superseded for current state by `HANDOFF_2026-09-10_ClaudeCode.md` — read that first.**
 **For:** SHA, next Claude session, or new developer onboarding
 
 > **This document is the complete handoff. Read this first. Everything you need to resume or transfer Astryx is here.**
