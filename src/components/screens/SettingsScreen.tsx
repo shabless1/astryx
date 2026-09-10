@@ -72,7 +72,7 @@ export default function SettingsScreen({
           <div>
             <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Mode</div>
             <div className="text-[14px] text-white/80">
-              {mode === 'practitioner' ? 'Practitioner — Full Pattern View' : 'User — Personal Guidance'}
+              {mode === 'practitioner' ? 'Practitioner — the full pattern' : 'User — Personal Guidance'}
             </div>
           </div>
           <ModeToggle mode={mode} setMode={setMode} accentColor={accentColor} />

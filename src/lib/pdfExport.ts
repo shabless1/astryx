@@ -91,7 +91,7 @@ export async function exportPractitionerPDF(options: ExportOptions): Promise<voi
   doc.setFontSize(8)
   doc.setTextColor(180, 180, 200)
   doc.text('COSMIC RESONANCE SYSTEM', ML, 22)
-  doc.text('PRACTITIONER PROTOCOL REPORT', ML, 27)
+  doc.text('CALIBRATION PROTOCOL · PRACTITIONER EDITION', ML, 27)
 
   // Date + practitioner (right aligned)
   doc.setFontSize(8)

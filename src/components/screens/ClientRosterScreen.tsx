@@ -73,7 +73,7 @@ export default function ClientRosterScreen({
             <SectionLabel>Practitioner</SectionLabel>
             <h1 className="font-cinzel text-2xl text-white">Client Roster</h1>
             <p className="text-[12px] text-white/45 mt-0.5">
-              {clients.length} {clients.length === 1 ? 'client' : 'clients'} on file
+              {clients.length} {clients.length === 1 ? 'client' : 'clients'} in your circle
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -254,9 +254,9 @@ function AddClientForm({
   return (
     <GlassCard accentColor={accentColor} opacity={0.10} topBorder className="p-7 animate-fade-in-up">
       <SectionLabel>New Client</SectionLabel>
-      <h2 className="font-cinzel text-xl text-white mb-1 mt-1">Add Client to Roster</h2>
+      <h2 className="font-cinzel text-xl text-white mb-1 mt-1">Bring a client into your circle</h2>
       <p className="text-[12px] text-white/50 mb-6">
-        Their birth data will be saved encrypted in your local roster. Informed consent attestation required (below).
+        Their birth data stays on this device, in your local roster, until the practitioner portal moves it to your account. Informed consent attestation required (below).
       </p>
 
       <div className="space-y-4">
@@ -308,7 +308,7 @@ function AddClientForm({
 
         <div>
           <div className="text-[10px] tracking-[0.2em] text-white/40 mb-2 uppercase">
-            Modality of Care *
+            Your modality *
           </div>
           <select
             value={modality}
@@ -333,7 +333,7 @@ function AddClientForm({
             onChange={(e) => setNotes(e.target.value)}
             rows={3}
             className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-[13px] focus:outline-none focus:border-white/30 resize-none"
-            placeholder="Intake notes, goals, observations…"
+            placeholder="What they came in carrying, what they want, what you noticed…"
             style={{ background: 'rgba(15,15,26,0.65)' }}
           />
         </div>

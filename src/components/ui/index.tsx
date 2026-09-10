@@ -194,7 +194,7 @@ export function ModeToggle({
       className="inline-flex items-center p-1 rounded-full"
       style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${hexToRgba(accentColor, 0.18)}` }}
     >
-      {(['free', 'practitioner'] as AppMode[]).map((m) => {
+      {(['user', 'practitioner'] as AppMode[]).map((m) => {
         const active = mode === m
         return (
           <button

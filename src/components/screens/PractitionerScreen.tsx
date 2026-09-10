@@ -137,7 +137,7 @@ export default function PractitionerScreen({
         <div className="flex items-start justify-between mb-7 flex-wrap gap-4">
           <div>
             <SectionLabel>Practitioner Mode</SectionLabel>
-            <h1 className="font-cinzel text-2xl text-white">Pattern Analysis — Full View</h1>
+            <h1 className="font-cinzel text-2xl text-white">The Full Pattern</h1>
           </div>
           <div className="flex gap-2.5 flex-wrap">
             <PrimaryButton label="⬡ Start Session" onClick={onStartSession} accent={accentColor} glow />
@@ -355,7 +355,7 @@ export default function PractitionerScreen({
 
         {/* ── Full SOAP ── */}
         <GlassCard className="p-5 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <SectionLabel>Full SOAP Output</SectionLabel>
+          <SectionLabel>SOAP · the full read</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <DataPoint label="Subjective" value={protocol.soap.subjective.join(' · ')} />
             <DataPoint label="Objective" value={protocol.soap.objective.join(' · ')} />
@@ -368,7 +368,7 @@ export default function PractitionerScreen({
           </div>
         </GlassCard>
 
-        {/* ── Session Parameters ── */}
+        {/* ── The Container ── */}
         <GlassCard className="p-5 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
           <SectionLabel>Session Parameters</SectionLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

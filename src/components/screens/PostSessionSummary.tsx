@@ -484,7 +484,7 @@ export default function PostSessionSummary({
                   <div className="text-[10px] uppercase tracking-[0.28em] mb-3" style={{ color: hexToRgba(accent, 0.7) }}>
                     Practitioner
                   </div>
-                  <QLabel>Vagal tone reading</QLabel>
+                  <QLabel>Vagal tone · how the nervous system landed</QLabel>
                   <div className="flex gap-1.5 mb-4">
                     {[1, 2, 3, 4, 5].map((n) => (
                       <button
@@ -507,7 +507,7 @@ export default function PostSessionSummary({
                     value={answers.practitionerNotes ?? ''}
                     onChange={(e) => setAnswers((a) => ({ ...a, practitionerNotes: e.target.value }))}
                     rows={3}
-                    placeholder="Clinical observations, what shifted, next steps for this client."
+                    placeholder="What you observed, what shifted, where this client goes next."
                     className="w-full px-3 py-2.5 rounded-lg text-[13px] text-white resize-none placeholder:text-white/30"
                     style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                   />

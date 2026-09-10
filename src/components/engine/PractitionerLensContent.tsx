@@ -265,7 +265,7 @@ function Phase2Placeholder({ icon, label, accentColor }: { icon: string; label: 
         <h3 className="font-cinzel text-lg text-white mb-2">{label} — Phase 2</h3>
         <p className="text-[13px] text-white/65 max-w-md mx-auto leading-relaxed">
           Your client&apos;s full diagnostic data is above. Apply your professional judgment.
-          Lens-specific tools for this modality are scheduled for the Phase 2 release per the Astryx Roadmap.
+          Tools built for this modality are on their way. Until then the full pattern above is yours to work with.
         </p>
       </GlassCard>
     </div>

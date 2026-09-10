@@ -1168,7 +1168,7 @@ function SequenceStepCard({
           {isPractitionerMode && (
             <details className="mt-3">
               <summary className="cursor-pointer text-[10px] tracking-widest text-white/55 hover:text-white/87">
-                CLINICAL DETAIL
+                PRACTITIONER DETAIL
               </summary>
               <div className="mt-2 space-y-1.5">
                 <FieldRow label="NERVE ACTIVATION" value={fork.nervePlexus} accentColor={accentColor} />
@@ -1450,7 +1450,7 @@ function StepFork({
           <FieldRow label="ANS EFFECT" value={fork.ANSEffect} accentColor={accentColor} />
           <details className="mt-3">
             <summary className="cursor-pointer text-[10px] tracking-widest text-white/55 hover:text-white/87">
-              CLINICAL GUIDANCE
+              PRACTITIONER GUIDANCE
             </summary>
             <p className="text-[12px] text-white/65 italic mt-1.5 leading-relaxed">{fork.clinicalNote}</p>
           </details>
