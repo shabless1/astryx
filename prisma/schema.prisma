@@ -96,7 +96,12 @@ model Entitlement {
   id                String    @id @default(cuid())
   email             String // ALWAYS lowercase-normalized before write
   source            String // "shopify_fork_kit" | "shopify_subscription" | "manual"
-  plan              String    @default("lifetime") // "lifetime" | "monthly" | "yearly"
+  plan              String    @default("lifetime") // DURATION: "lifetime" | "monthly" | "yearly"
+  // WHAT they bought. `plan` is duration and never encoded tier — that gap was
+  // the practitioner portal's whole blocker. Two values only (SHA cut Verified
+  // 2026-09-10). Resolved server-side in entitlement.ts; the client is never
+  // trusted for it. See lib/entitlement.ts resolveAccess().
+  tier              String    @default("individual") // "individual" | "practitioner"
   shopifyOrderId    String?   @unique
   shopifyCustomerId String?
   status            String    @default("active")
@@ -106,6 +111,7 @@ model Entitlement {
 
   @@index([email])
   @@index([email, status])
+  @@index([email, tier])
 }
 
 // FUNNEL v1 (2026-08-14) — every fork buyer, whether or not they ever made an

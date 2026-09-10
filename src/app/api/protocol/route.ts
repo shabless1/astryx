@@ -81,7 +81,10 @@ export async function POST(req: NextRequest) {
     // (and the golden suite that locks it) is untouched — only what leaves
     // the server changes. The shaped object is a subset of the declared type;
     // every client reader touches only fields present at its tier.
-    const tier = sacredTierFor(intake.mode, !!session?.user)
+    // P0 — the TIER comes off the session, never off `intake.mode`. That field
+    // is a display preference the client controls; it is not an entitlement.
+    const sessionTier = (session?.user as { tier?: string } | undefined)?.tier
+    const tier = sacredTierFor(sessionTier, !!session?.user)
     const clientProtocol: ProtocolOutput = {
       ...protocol,
       sacredLayer: shapeSacredLayerForClient(protocol.sacredLayer, tier) as unknown as ProtocolOutput['sacredLayer'],

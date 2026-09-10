@@ -2,6 +2,7 @@
 
 import type { AppMode } from '@/types'
 import { GlassCard, PrimaryButton, ModeToggle, SectionLabel } from '@/components/ui'
+import { useIsPractitioner, PRACTITIONER_PRODUCT_URL, PRACTITIONER_TIER_LIVE } from '@/lib/tierGate'
 import { hexToRgba } from '@/lib/utils'
 import { APP_VERSION } from '@/lib/version'
 import { useAppStore } from '@/lib/store'
@@ -41,6 +42,8 @@ export default function SettingsScreen({
   updateSettings,
   onBack,
 }: SettingsScreenProps) {
+  // P0 — the practitioner surface is entitlement-gated, not toggle-gated.
+  const isPractitioner = useIsPractitioner()
   return (
     <div className="min-h-screen font-rajdhani">
       <div className="max-w-xl mx-auto px-5" style={{ paddingTop: 100, paddingBottom: 60 }}>
@@ -67,16 +70,32 @@ export default function SettingsScreen({
           </GlassCard>
         </a>
 
-        {/* Mode */}
-        <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up">
-          <div>
-            <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Mode</div>
-            <div className="text-[14px] text-white/80">
-              {mode === 'practitioner' ? 'Practitioner — the full pattern' : 'User — Personal Guidance'}
+        {/* Mode — P0 gate. The toggle is a DISPLAY preference for people who
+            hold the practitioner tier, not a way to acquire it. */}
+        {isPractitioner ? (
+          <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up">
+            <div>
+              <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Mode</div>
+              <div className="text-[14px] text-white/80">
+                {mode === 'practitioner' ? 'Practitioner — the full pattern' : 'User — Personal Guidance'}
+              </div>
             </div>
-          </div>
-          <ModeToggle mode={mode} setMode={setMode} accentColor={accentColor} />
-        </GlassCard>
+            <ModeToggle mode={mode} setMode={setMode} accentColor={accentColor} />
+          </GlassCard>
+        ) : PRACTITIONER_TIER_LIVE ? (
+          <a href={PRACTITIONER_PRODUCT_URL} target="_blank" rel="noopener noreferrer" className="block">
+            <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up transition hover:brightness-125">
+              <div>
+                <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Practitioner</div>
+                <div className="text-[14px] text-white/90">Work on other people&rsquo;s charts</div>
+                <div className="text-[12px] text-white/45 mt-0.5">
+                  A client roster, Sacred Tones Session Mode, the named marma points, and the practitioner export.
+                </div>
+              </div>
+              <span className="text-[18px]" style={{ color: accentColor }} aria-hidden="true">&#8599;</span>
+            </GlassCard>
+          </a>
+        ) : null}
 
         {/* Animation */}
         <SettingRow

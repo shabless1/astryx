@@ -131,7 +131,14 @@ This ensures every screenshot a user shares carries the disclaimer.
 - **PDF export** — their name + claimed modality on footer, BUT no credential/license number rendered until verified (next tier).
 - **Disclaimer:** Universal block + practitioner-specific addendum: *"The information presented is observational reference. Clinical interpretation, diagnosis, and any recommended interventions are the sole responsibility of the practitioner accessing this output."*
 
-### 🌕 Verified Practitioner ($59/mo)
+### 🌕 Verified Practitioner ($59/mo) — ❌ RETIRED (SHA ruling 2026-09-10)
+
+> **This tier is cut.** SHA: *"just one price for practitioner $39.95, we don't need verification,
+> that's a bit much."* Astryx is a systems-and-tools builder, not an organization or association,
+> and it will not act as a credentialing body. There is no credential upload, no review queue, no
+> verified badge. `Entitlement.tier` is `individual | practitioner` — two values, not three.
+> The text below is kept for the record only and must not be rendered anywhere.
+
 
 - **License/credential uploaded and verified** (manual or via third-party verification service in Phase 2).
 - **Verified badge** rendered on all client-facing materials (PDF exports, share links, session summaries).
@@ -359,6 +366,73 @@ Every clinical claim or pathology correlation rendered to a Practitioner or Veri
 This is **good practice** AND **legal protection** — when the app says *"classical sources associate this with…"*, we MEAN it, and we can show our work.
 
 For the Individual tier, citations are summarized or removed in favor of plain language — but the underlying claim must still trace back to a cited source in the data files.
+
+---
+
+## 11.1 The Answering Doctrine — how to answer fully without claiming
+
+**SHA ruling, 2026-09-10:** *"We are not trying to break any laws, but at the same time we are not
+trying to withhold any valuable information. We have to find a way to answer their questions without
+implying anything that can bite us later, but still answer the question."*
+
+This section governs the herb library, the search index, Astryx's replies, and every reference
+surface. It is the practical companion to §2 and §3 — those say what never to write; this says how
+to say everything else.
+
+### The rule
+
+**Speak about the subject, not to the person.**
+
+Exposure comes from the implied relationship, almost never from the information. An answer *about an
+herb* can be complete, specific and rich. An answer *addressed to someone's condition* is a different
+act, no matter how carefully it is worded. The dividing line is grammatical, not informational.
+
+### What this looks like
+
+❌ **Withholding** (unhelpful AND no safer):
+> "We can't advise on bone health. Consult your doctor."
+
+✅ **Answering** (longer, more useful, makes no claim about anyone):
+> "Comfrey is Saturn-ruled in Culpeper and carries the folk name knitbone. Ayurveda reads it as
+> cooling and kapha-building. It is traditionally applied externally over bone and connective
+> tissue. It contains pyrrolizidine alkaloids that are hepatotoxic, so the tradition uses it
+> externally and modern practice avoids internal use entirely. Contraindicated in pregnancy,
+> nursing, and with any liver involvement."
+
+Nothing was hidden. The only thing absent is the second-person instruction — which was never the
+valuable part.
+
+### The three operating principles
+
+1. **Attribution licenses depth.** "Culpeper assigns this to Mars" is a verifiable fact *about
+   Culpeper*. Reporting a tradition accurately is not asserting a mechanism, so the register can stay
+   as rich as the source is. Name the tradition, the author and the page. This is also why the voice
+   ruling (metaphysical, not sterilized) and this doctrine do not conflict.
+
+2. **Safety data is the highest-value, lowest-risk content — never the thing we trim.** The common
+   failure of over-cautious systems is to hedge the description and omit the interaction warning.
+   Astryx does the opposite: full detail, and warnings that are load-bearing rather than decorative.
+   A specific line about blood thinners protects better than a generic banner nobody reads.
+   Disclaimers are welcome (SHA: *"there is nothing wrong with stating disclaimers"*) — they must be
+   **specific to the item**, not boilerplate stapled to the page.
+
+3. **The risk is in the pairing, not the page.** An herb entry in a library is a reference. The same
+   herb printed beside a named client on a session sheet is closer to a recommendation. So any
+   per-client output records that **the practitioner selected it and the app presented options.**
+   The app presents; the practitioner decides. Always.
+
+### Applied to the search index
+
+Facets are **correspondence categories only** — body system, planet, sign, dosha, element,
+temperature, taste, preparation, safety. **No disease names in the index, ever.** When a query
+carries a condition, resolve it to the body system and answer about the system: *bones*, not
+osteoporosis; *digestion*, not colitis. This is what keeps the library a categorised reference rather
+than a symptom-to-remedy lookup, and it costs nothing — it is already how a practitioner thinks.
+
+### Mandatory fields (herb library)
+
+An herb with no **pregnancy status** and no **drug-interaction flag** does not enter the index.
+No exceptions. Stricter than the correspondence framing strictly requires; the right call anyway.
 
 ---
 

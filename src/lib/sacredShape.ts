@@ -15,11 +15,10 @@
  *
  * Rule: sell the output, never the dataset. Server-only.
  *
- * TIER SEAM — today `practitioner` is derived from the request's intake.mode,
- * which is a self-attested Settings toggle (bypassable by design until the
- * real Practitioner entitlement lands in Phase 2). This is the exact plug
- * point: when that entitlement exists, derive the tier from it HERE and
- * nowhere else. Until then, basic is the default for every Individual reading.
+ * TIER SEAM — CLOSED 2026-09-10 (P0). `practitioner` now comes from
+ * `Entitlement.tier`, resolved server-side and stamped on the JWT. It is no
+ * longer derived from the request's `intake.mode`, which was a client-supplied
+ * string and therefore not a gate at all. Basic remains the default.
  */
 
 import type { ProtocolOutput } from '@/types'
@@ -110,10 +109,15 @@ export function shapeSacredLayerForClient(
 }
 
 /**
- * Derive the sacred-layer tier for a request. Server-side only.
- * TODAY: practitioner mode (self-attested) + an authenticated session.
- * PHASE 2: replace the body with a real Practitioner entitlement check.
+ * Derive the sacred-layer tier for a request. SERVER-SIDE ONLY.
+ *
+ * P0, 2026-09-10 — this used to branch on `intake.mode`, a string the CLIENT
+ * puts in the request body. Anyone who could send a request could ask for the
+ * practitioner sacred layer and get it. It now reads the tier NextAuth stamped
+ * on the JWT from `Entitlement.tier`, which only the Shopify webhook writes.
+ *
+ * Pass `session.user.tier`. Never pass anything that came from a request body.
  */
-export function sacredTierFor(mode: string | undefined, authenticated: boolean): SacredTier {
-  return mode === 'practitioner' && authenticated ? 'practitioner' : 'basic'
+export function sacredTierFor(serverTier: string | undefined, authenticated: boolean): SacredTier {
+  return authenticated && serverTier === 'practitioner' ? 'practitioner' : 'basic'
 }

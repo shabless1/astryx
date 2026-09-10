@@ -48,6 +48,7 @@ import MusicLibraryScreen from '@/components/screens/MusicLibraryScreen'
 import PostSessionSummary from '@/components/screens/PostSessionSummary'
 import TeacherChat from '@/components/teacher/TeacherChat'
 import type { AppScreen, ClientRecord, SessionSummarySnapshot } from '@/types'
+import { useAccessTier } from '@/lib/tierGate'
 
 export default function AstryxApp() {
   const { data: session, update: updateSession, status: authStatus } = useSession()
@@ -72,6 +73,12 @@ export default function AstryxApp() {
     pendingSession, setPendingSession,
     sessionLog,
   } = useAppStore()
+  // ── P0 · practitioner tier gate (2026-09-10) ────────────────────────────
+  // The tier is resolved on the server and stamped on the JWT. `mode` is a
+  // display preference; it is NOT an entitlement and never was.
+  const { tier: accessTier, loading: tierLoading } = useAccessTier()
+  const isPractitionerTier = !tierLoading && accessTier === 'practitioner'
+
   const deleteSessionLog = useAppStore((s) => s.deleteSessionLog)
   const setChamberDurationKey = useAppStore((s) => s.setChamberDurationKey)
   const setProtocolDate = useAppStore((s) => s.setProtocolDate)
@@ -990,7 +997,9 @@ export default function AstryxApp() {
         )}
 
         {/* ── Practitioner ── */}
-        {screen === 'practitioner' && protocol && (
+        {/* P0 — the render itself checks the entitlement, so a stale persisted
+            mode, a deep link, or a hand-set store value cannot open this. */}
+        {screen === 'practitioner' && protocol && isPractitionerTier && (
           <PractitionerScreen
             protocol={protocol}
             accentColor={accentColor}

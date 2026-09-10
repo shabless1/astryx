@@ -26,6 +26,7 @@ declare module 'next-auth' {
       id: string
       isPremium: boolean
       entitled: boolean
+      tier: 'individual' | 'practitioner'
       consented: boolean
       xrpAddress?: string
     } & DefaultSession['user']
@@ -42,6 +43,7 @@ declare module 'next-auth/jwt' {
     id: string
     isPremium: boolean
     entitled?: boolean
+    tier?: 'individual' | 'practitioner'
     consented?: boolean
     xrpAddress?: string
   }
@@ -177,8 +179,12 @@ export const authOptions: NextAuthOptions = {
         // Fix 2 — fork-buyer / allowlist entitlement, stamped ONCE at sign-in
         // and cached in the JWT (no DB read per request). A user who buys the
         // forks after signing in picks it up on their next sign-in.
-        const { hasEntitlement } = await import('./entitlement')
-        token.entitled = await hasEntitlement(user.email ?? token.email)
+        const { resolveAccess } = await import('./entitlement')
+        // One lookup resolves BOTH — the tier must come from the server, never
+        // from anything the client can put in a request body.
+        const access = await resolveAccess(user.email ?? token.email)
+        token.entitled = access.entitled
+        token.tier = access.tier
         // LEGAL SHIELD v1 · FIX 1 — consent stamp. False for a fresh signup;
         // flips to true after they accept (see the `update` trigger below).
         const { hasAcceptedCurrentConsent, resolveUserId } = await import('./consent')
@@ -203,6 +209,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id         = token.id
         session.user.isPremium  = token.isPremium
         session.user.entitled   = token.entitled ?? false
+        session.user.tier       = token.tier ?? 'individual'
         session.user.consented  = token.consented ?? false
         session.user.xrpAddress = token.xrpAddress
       }

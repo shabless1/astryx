@@ -66,6 +66,30 @@ function findAstryxItem(items: LineItem[]): LineItem | undefined {
   )
 }
 
+/**
+ * Which TIER did this line item buy? By SKU, never by price.
+ *
+ * The old classifier read `price >= YEARLY_PRICE_FLOOR` to guess monthly vs
+ * yearly, and nothing at all read WHAT was bought. Pricing a product at $39.95
+ * is a merchandising decision; it must never be the thing that decides how much
+ * of the app someone sees. SKU is the contract.
+ *
+ * SHOPIFY_PRACTITIONER_SKUS (comma-separated) overrides; ASTRYX-PRACTITIONER is
+ * the built-in default so the gate works the moment SHA activates the product.
+ */
+function tierForItem(li: LineItem | undefined): 'individual' | 'practitioner' {
+  if (!li) return 'individual'
+  const configured = (process.env.SHOPIFY_PRACTITIONER_SKUS || 'ASTRYX-PRACTITIONER')
+    .split(',')
+    .map((x) => x.trim().toLowerCase())
+    .filter(Boolean)
+  const sku = String(li.sku ?? '').trim().toLowerCase()
+  if (sku && configured.includes(sku)) return 'practitioner'
+  // Title fallback only for an order that carries no SKU at all.
+  if (!sku && /practitioner/i.test(String(li.title ?? li.name ?? ''))) return 'practitioner'
+  return 'individual'
+}
+
 /** A Sacred Tones fork line item — scoped by SKU list, else by product title. */
 function findForkItem(items: LineItem[]): LineItem | undefined {
   const skus = (process.env.SHOPIFY_FORK_SKUS || '')
@@ -162,10 +186,13 @@ export async function POST(req: Request) {
   let plan: 'monthly' | 'yearly' | 'lifetime'
   let source: string
   let currentPeriodEnd: Date | null
+  // Duration and tier are independent axes: `plan` is how long, `tier` is what.
+  let tier: 'individual' | 'practitioner' = 'individual'
 
   if (astryxItem) {
     const yearly = Number(astryxItem.price ?? 0) >= YEARLY_PRICE_FLOOR
     plan = yearly ? 'yearly' : 'monthly'
+    tier = tierForItem(astryxItem)
     source = 'shopify_subscription'
     currentPeriodEnd = new Date(paidAtMs + (yearly ? 367 : 33) * 24 * 3600 * 1000)
   } else if (forkItem && paidAtMs < FORK_LIFETIME_CUTOFF) {
@@ -184,11 +211,12 @@ export async function POST(req: Request) {
   // later period end simply wins in resolveAccess().
   await prisma.entitlement.upsert({
     where: { shopifyOrderId: orderId },
-    update: { email, plan, source, status: 'active', currentPeriodEnd, shopifyCustomerId: customerId },
+    update: { email, plan, tier, source, status: 'active', currentPeriodEnd, shopifyCustomerId: customerId },
     create: {
       email,
       source,
       plan,
+      tier,
       shopifyOrderId: orderId,
       shopifyCustomerId: customerId,
       status: 'active',
@@ -200,6 +228,7 @@ export async function POST(req: Request) {
     ok: true,
     entitled: true,
     plan,
+    tier,
     currentPeriodEnd: currentPeriodEnd?.toISOString() ?? null,
   })
 }
