@@ -29,6 +29,44 @@ import { matchSacredTeaForPostSession, type SacredTeaResult } from '@/lib/tea/Sa
 import TeacherChat from '@/components/teacher/TeacherChat'
 import ExploreDeeperCards from '@/components/screens/dashboard/ExploreDeeperCards'
 
+// ── Outcome capture step 2 (Roadmap 0.2) ──────────────────────────────────
+// The completion POST is fire-and-forget, so its id may still be in flight
+// when the user taps Save. Wait briefly for it; if it never arrives (guest,
+// offline, or the POST failed) the outcome stays local-only, as before.
+function awaitServerSessionId(timeoutMs: number): Promise<string | null> {
+  const now = useAppStore.getState().pendingSessionServerId
+  if (now) return Promise.resolve(now)
+  return new Promise((resolve) => {
+    const unsub = useAppStore.subscribe((s) => {
+      if (s.pendingSessionServerId) { unsub(); clearTimeout(t); resolve(s.pendingSessionServerId) }
+    })
+    const t = setTimeout(() => { unsub(); resolve(null) }, timeoutMs)
+  })
+}
+
+function recordOutcome(answers: PostSessionAnswers): void {
+  awaitServerSessionId(8000).then((id) => {
+    if (!id) return
+    // Whitelist mirrors lib/outcomeCapture — free text never leaves the device.
+    fetch(`/api/sessions/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        energyAfter: answers.energyLevel,
+        outcome: {
+          feeling: answers.feeling,
+          bodyState: answers.bodyState,
+          mentalState: answers.mentalState,
+          placementAccuracy: answers.placementAccuracy,
+          chamberSupport: answers.chamberSupport,
+        },
+      }),
+    })
+      .then(() => useAppStore.getState().setPendingSessionServerId(null))
+      .catch((e) => console.warn('[sessions] outcome record failed:', e))
+  })
+}
+
 // Shop links gate on SHA's own products only (sacredtea.net), per the shop flag.
 const SHOP_LIVE = process.env.NEXT_PUBLIC_SHOP_LIVE === 'true'
 const SHOP_URL = 'https://sacredtea.net'
@@ -272,6 +310,8 @@ export default function PostSessionSummary({
       continuationProtocol: continuation,
     }
     addSessionLog(entry)
+    // Outcome capture step 2 — how it landed, onto the server row from step 1.
+    recordOutcome(answers)
 
     // Practitioner: also write a ClientSession to the active client's history.
     if (snapshot.isPractitioner && snapshot.activeClientId) {

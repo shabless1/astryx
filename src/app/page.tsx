@@ -685,6 +685,10 @@ export default function AstryxApp() {
     setChamberPhase(null)   // v4.1 FIX 2 — completed runs leave no resume state
     // v4.3 — record the completed run server-side for signed-in users
     // (fire-and-forget; guests keep local-only history).
+    // Outcome capture step 1 (Roadmap 0.2): the payload also carries what ran,
+    // and the returned id is parked in the store so the post-session check-in
+    // can PATCH how it landed onto the same row (step 2).
+    useAppStore.getState().setPendingSessionServerId(null)
     if (session?.user) {
       fetch('/api/sessions', {
         method: 'POST',
@@ -696,8 +700,19 @@ export default function AstryxApp() {
           completedPhases: snapshot.forkSequence?.length ?? 0,
           startedAt: useAppStore.getState().sessionStartedAt ?? new Date().toISOString(),
           completedAt: new Date().toISOString(),
+          energyBefore: snapshot.energyBefore,
+          carrierPlanet: snapshot.planetaryCarrier,
+          signalState: snapshot.signalStateRaw,
+          forkSequence: snapshot.forkSequence,
+          intention: snapshot.intention,
         }),
-      }).catch((e) => console.warn('[sessions] record failed:', e))
+      })
+        .then(async (r) => {
+          if (!r.ok) return
+          const j = await r.json().catch(() => null)
+          if (typeof j?.id === 'string') useAppStore.getState().setPendingSessionServerId(j.id)
+        })
+        .catch((e) => console.warn('[sessions] record failed:', e))
     }
     // The session lands on the Dashboard; its Summary Report tab opens with this
     // snapshot for the post-session check-in + save (practitioners keep Results).

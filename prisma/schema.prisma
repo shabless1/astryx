@@ -153,9 +153,28 @@ model ChamberSession {
   startedAt       DateTime
   completedAt     DateTime?
 
+  // OUTCOME CAPTURE (Positioning Roadmap 0.2, 2026-09-09) — the flywheel.
+  // Step 1 (at completion): what ran, on which chart, under which Standard.
+  // Step 2 (post-session check-in, PATCH /api/sessions/:id): how it landed.
+  // Subjective felt-state only ("recalibration response") — no clinical fields,
+  // no free text. readingId/chartHash are resolved SERVER-SIDE from the user's
+  // latest Reading; the client never asserts which chart it ran on.
+  energyBefore    Int?      // 1–10, from intake (baseline)
+  energyAfter     Int?      // 1–10, from the post-session check-in
+  carrierPlanet   String?   // dominant planet — the session's carrier signal
+  signalState     String?   // engine state: excess | deficiency | blocked | balanced
+  forkSequence    Json?     // string[] — fork planet names in sequence order
+  intention       Json?     // string[] — stated intention(s) at intake
+  chartHash       String?   // Reading.chartHash of the reading this session ran on
+  standardVersion String?   // Calibration Standard version the engine ran under
+  outcome         Json?     // whitelisted check-in answers (see lib/outcomeCapture)
+  outcomeAt       DateTime? // when the check-in was recorded (null = abandoned/step-1 only)
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([chartHash])
+  @@index([carrierPlanet, signalState])
 }
 
 // LEGAL SHIELD v1 · FIX 1 — informed-consent + assumption-of-risk record.

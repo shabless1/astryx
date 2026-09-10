@@ -175,6 +175,11 @@ interface AppState {
   // Progress History — the After → Next record the user tracks over time.
   pendingSession: SessionSummarySnapshot | null
   setPendingSession: (s: SessionSummarySnapshot | null) => void
+  // Outcome capture (Roadmap 0.2) — the server ChamberSession id returned by
+  // POST /api/sessions at completion, so the post-session check-in can PATCH
+  // energyAfter onto the same row. Transient, never persisted; null for guests.
+  pendingSessionServerId: string | null
+  setPendingSessionServerId: (id: string | null) => void
   sessionLog: ProgressEntry[]
   addSessionLog: (entry: ProgressEntry) => void
   deleteSessionLog: (id: string) => void
@@ -384,6 +389,8 @@ export const useAppStore = create<AppState>()(
       // ── Post-Session loop ──
       pendingSession: null,
       setPendingSession: (s) => set({ pendingSession: s }),
+      pendingSessionServerId: null,
+      setPendingSessionServerId: (id) => set({ pendingSessionServerId: id }),
       sessionLog: [],
       addSessionLog: (entry) =>
         set((state) => ({ sessionLog: [entry, ...state.sessionLog].slice(0, 100) })),
