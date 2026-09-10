@@ -76,6 +76,7 @@ They feed each other: showroom → data that makes the dock valuable → ubiquit
 
 **Owner-side prerequisites (SHA):** a **receiving wallet address** for USDC on Base (a public address — never a key — set as a Worker env var) · a free **Coinbase Developer Platform** account for the x402 facilitator (this *is* the rail, not an outside service).
 **Acceptance:** Standard page live · Worker serves identical output to the app (golden-test parity) · a real agent pays and receives a calibration end-to-end · listed in the Bazaar · zero raw tables exposed.
+> **Build spec:** PHASE1_WORKER_PORT_SCOPE.md (scoped 2026-09-09: port plan, the asOf determinism contract, parity risks, the compliance envelope, IP containment incl. the LIVE sacredLayer raw-record leak in /api/protocol, and the 3 owner decisions).
 
 ### PHASE 2 — CATALOG + NETWORK · "Be the hub" · 2027
 | # | Deliverable |
