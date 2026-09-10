@@ -472,7 +472,7 @@ export default function AstryxApp() {
       const engineRes = await fetch('/api/protocol', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ intake, coords: resolvedCoords }),
+        body: JSON.stringify({ intake, coords: resolvedCoords, solarChart: birthTimeUnknown }),
       })
       const engineData = await engineRes.json()
       console.log('[analyze] /api/protocol returned:', engineData)

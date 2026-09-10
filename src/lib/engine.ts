@@ -909,6 +909,7 @@ interface ChartRequestPayload {
   longitude: number
   tzOffset?: number
   symptoms?: string[]
+  solarChart?: boolean
 }
 
 async function fetchChart(payload: ChartRequestPayload): Promise<{
@@ -1897,7 +1898,8 @@ function computeActivePlanets(
 
 export async function runEngine(
   intake: IntakeData,
-  coords?: { lat: number; lon: number; tzOffset?: number }
+  coords?: { lat: number; lon: number; tzOffset?: number },
+  opts?: { solarChart?: boolean }
 ): Promise<ProtocolOutput> {
   let rawPattern: DominantPatternData | null = null
   let chart: any = null
@@ -1913,6 +1915,7 @@ export async function runEngine(
       longitude: coords.lon,
       tzOffset:  coords.tzOffset ?? 0,
       symptoms:  intake.symptoms,
+      solarChart: opts?.solarChart === true,
     })
     if (result) {
       rawPattern = result.dominantPattern

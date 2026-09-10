@@ -187,7 +187,7 @@ export function validateSaltDomains(): string[] {
 }
 
 // Dev-time assertion (log, never crash production). Ships clean = no warnings.
-if (process.env.NODE_ENV !== 'production') {
+if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
   const probs = validateSaltDomains()
   if (probs.length) console.warn('[cellSaltKeynotes] symptom→salt domain overlap issues:', probs)
 }

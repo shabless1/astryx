@@ -4,7 +4,7 @@
  * SERVER-ONLY. This module is the Teacher's "leash" — the system
  * instruction, the curated glossary (its reference shelf), and the
  * progressive-teaching picker. It must NEVER be imported by a client
- * component: it is the IP-containment heart of the sixth sense
+ * component: it is the IP-containment heart of Astryx (the guide)
  * (ASTRYX_SIXTH_SENSE_BLUEPRINT.md Part III). All grounding, mapping,
  * and correction context stays here, server-side.
  *
@@ -19,11 +19,12 @@ if (typeof window !== 'undefined') {
 }
 
 import { FULL_DISCLAIMER } from '@/lib/compliance'
+import lotusSpectrumData from '@/data/lotusSpectrum.json'  // server truth — the client copy no longer carries the Lotus Spectrum
 
 // ─── THE OPERATING CONTRACT (system instruction) ────────────────────
 // This is the binding contract from ASTRYX_SIXTH_SENSE_BLUEPRINT.md Part II.
 // It is the leash that keeps the Teacher a teacher forever.
-export const SYSTEM_INSTRUCTION = `You are Astryx — the living intelligence of this system, its "sixth sense." Astryx is a deterministic multi-sensory calibration system grounded in medical astrology, Hans Cousto's cosmic-octave frequencies, cell salts, botanicals, minerals, sacred geometry, and the nervous-system / chakric maps. The five senses recalibrate the body; you recalibrate the mind by building the user's fluency in their own chart. Teaching is your role — but you speak as Astryx herself, the named intelligence the user is talking to, never as a generic "assistant" or "teacher."
+export const SYSTEM_INSTRUCTION = `You are Astryx — the living intelligence of this system — the guide, not one of the senses. Astryx is a deterministic multi-sensory calibration system grounded in medical astrology, Hans Cousto's cosmic-octave frequencies, cell salts, botanicals, minerals, sacred geometry, and the nervous-system / chakric maps. The six senses recalibrate the body and its field; you build the user's fluency in their own chart. Teaching is your role — but you speak as Astryx herself, the named intelligence the user is talking to, never as a generic "assistant" or "teacher."
 
 YOUR PURPOSE is fluency, not dependence. A user who practices for two months should be reading their own chart. Your success is the user needing you LESS over time. You empower; you never create need. You are a warm, knowledgeable tutor — never a mystic channeling cosmic secrets.
 
@@ -175,7 +176,7 @@ export function pickSuggestedConcept(
     [!!report?.dominantPolarity && report.dominantPolarity.dominant_state !== 'balanced', 'planet_not_remedy'],
     [!!report?.dominantPolarity, 'polarity_state'],
     [Array.isArray(d?.cellSaltPrescription?.gestationDeficiencies), 'cell_salt'],
-    [Array.isArray(report?.sacredLayer?.lotusSpectrum) && report.sacredLayer.lotusSpectrum.length > 0, 'lotus_spectrum'],
+    [!!report?.sacredLayer, 'lotus_spectrum'],
   ]
   for (const [live, key] of livePrefs) {
     if (live && has(key) && GLOSSARY[key]) return { key, gloss: GLOSSARY[key] }
@@ -218,7 +219,7 @@ export function buildContextBlock(params: {
               botanical: report.sacredLayer.botanical,
               crystal: report.sacredLayer.crystal,
               dominantFork: report.sacredLayer.dominantFork,
-              lotusSpectrum: report.sacredLayer.lotusSpectrum,
+              lotusSpectrum: lotusSpectrumData,  // server-side; the shaped client report omits it
             }
           : null,
       }

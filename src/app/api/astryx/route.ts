@@ -128,8 +128,8 @@ function buildReadingSummary(report: any, intention?: string[]): string {
     }
   }
   const sl = report.sacredLayer
-  if (sl?.botanical?.name) L.push(`Botanical ally: ${sl.botanical.name}`)
-  if (sl?.crystal?.name) L.push(`Featured crystal: ${sl.crystal.name}`)
+  if (sl?.botanical?.sacredBotanical) L.push(`Botanical ally: ${sl.botanical.sacredBotanical}`)
+  if (sl?.crystal?.featuredCrystal) L.push(`Featured crystal: ${sl.crystal.featuredCrystal}`)
   if (sl?.dominantFork?.planet) L.push(`Dominant fork: ${sl.dominantFork.planet}`)
   const d = report.diagnostic
   if (d?.sunSign) L.push(`Sun sign: ${d.sunSign}`)
