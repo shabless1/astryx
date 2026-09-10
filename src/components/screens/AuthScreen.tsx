@@ -63,7 +63,7 @@ export default function AuthScreen({ accentColor, onSuccess, onSkip, initialMode
             {mode === 'signin' ? 'Welcome back' : 'Create account'}
           </h1>
           <p className="text-[13px] text-white/45 tracking-[0.1em]">
-            {mode === 'signin' ? 'Sign in to access your sessions' : 'Start your cosmic journey'}
+            {mode === 'signin' ? 'Sign in and return to your field' : 'Your chart is waiting. Begin.'}
           </p>
         </div>
 
@@ -152,14 +152,16 @@ export default function AuthScreen({ accentColor, onSuccess, onSkip, initialMode
           />
         </GlassCard>
 
-        {/* Skip option */}
+        {/* Back to the landing door. The app is account-only (SHA 2026-07-20): the
+            old guest path is gone, and page.tsx bounces any unauthenticated screen
+            back to landing — so this is a way back, never a way around. */}
         <div className="text-center mt-5">
           <button
             onClick={onSkip}
             className="text-[12px] text-white/30 hover:text-white/55 transition-colors font-rajdhani tracking-[0.1em]"
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
           >
-            Continue without account — sessions won't be saved
+← Back
           </button>
         </div>
       </div>

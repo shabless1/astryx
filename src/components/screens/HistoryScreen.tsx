@@ -73,10 +73,10 @@ export default function HistoryScreen({
             <div className="text-4xl mb-4 opacity-30">◎</div>
             <div className="font-cinzel text-lg text-white/50 mb-2">No readings yet</div>
             <p className="text-[13px] text-white/30">
-              Complete your first analysis to see your reading history here.
+              Run your first calibration and your history begins here.
             </p>
             <div className="mt-6">
-              <PrimaryButton label="Begin First Session" onClick={onBack} accent={accentColor} />
+              <PrimaryButton label="Begin your first calibration" onClick={onBack} accent={accentColor} />
             </div>
           </GlassCard>
         ) : (
