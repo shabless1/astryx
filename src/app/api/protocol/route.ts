@@ -26,7 +26,7 @@ import { getSession } from '@/lib/auth'
 import { runEngine } from '@/lib/engine'
 import { enforceRateLimit, clientIdentity } from '@/lib/rateLimit'
 import { sessionHasConsent } from '@/lib/consent'
-import { shapeSacredLayerForClient, sacredTierFor } from '@/lib/sacredShape'
+import { shapeSacredLayerForClient, shapePrescriptionsForClient, sacredTierFor } from '@/lib/sacredShape'
 import type { IntakeData, ProtocolOutput } from '@/types'
 
 interface ProtocolRequestBody {
@@ -88,6 +88,12 @@ export async function POST(req: NextRequest) {
     const clientProtocol: ProtocolOutput = {
       ...protocol,
       sacredLayer: shapeSacredLayerForClient(protocol.sacredLayer, tier) as unknown as ProtocolOutput['sacredLayer'],
+      // The SECOND door. Every prescription carries its own copy of the same
+      // botanical / crystal / fork records; shaping sacredLayer alone contained
+      // nothing. Found live 2026-09-10 while verifying the P0 gate.
+      prescriptions: shapePrescriptionsForClient(
+        protocol.prescriptions, tier,
+      ) as unknown as ProtocolOutput['prescriptions'],
     }
 
     return NextResponse.json({ success: true, protocol: clientProtocol })

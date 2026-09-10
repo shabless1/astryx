@@ -27,9 +27,11 @@ export type SacredTier = 'basic' | 'practitioner'
 type FullSacred = NonNullable<ProtocolOutput['sacredLayer']>
 
 /** Copy only the listed keys (skips undefined so the JSON stays lean). */
-function pick<T extends object>(src: T | null | undefined, keys: readonly (keyof T)[]): Partial<T> | null {
+function pick<T extends object>(src: T | null | undefined, keys: readonly (keyof T)[]): Partial<T> | null
+function pick(src: Record<string, unknown> | null | undefined, keys: readonly string[]): Record<string, unknown> | null
+function pick(src: any, keys: readonly any[]): any {
   if (!src) return null
-  const out: Partial<T> = {}
+  const out: Record<string, unknown> = {}
   for (const k of keys) {
     const v = src[k]
     if (v !== undefined) out[k] = v
@@ -106,6 +108,60 @@ export function shapeSacredLayerForClient(
     // Deliberately absent: lotusSpectrum, starterKit.
     tier,
   }
+}
+
+/**
+ * The SECOND door — `protocol.prescriptions[]`.
+ *
+ * Found live 2026-09-10 while verifying the P0 tier gate: shaping `sacredLayer`
+ * alone contained nothing, because every prescription carries its OWN copy of
+ * the same botanical, crystal and fork records — unshaped. An unauthenticated
+ * POST to /api/protocol returned `nervePlexus`, `clinicalNote`, `ANSEffect`,
+ * `biologicalMechanism`, `endocrineTarget`, and even `esotericSignature` and
+ * `traditionalUse`, which are documented above as shipping at NO tier.
+ *
+ * Same field lists, same tier, one door each. Any future path that carries a
+ * sacred record must come through here too — the whole-payload test in
+ * tests/practitionerTier.test.ts fails the build if a third copy appears.
+ */
+export function shapePrescriptionsForClient(
+  prescriptions: unknown,
+  tier: SacredTier,
+): unknown {
+  if (!Array.isArray(prescriptions)) return prescriptions
+  const pro = tier === 'practitioner'
+
+  return prescriptions.map((rx) => {
+    if (!rx || typeof rx !== 'object') return rx
+    const r = rx as Record<string, unknown>
+    const out: Record<string, unknown> = { ...r }
+
+    if (r.botanical) {
+      out.botanical = pick(
+        r.botanical as Record<string, unknown>,
+        (pro ? BOTANICAL_PRACTITIONER : BOTANICAL_BASIC) as readonly string[],
+      )
+    }
+    if (r.crystal) {
+      const c = r.crystal as Record<string, unknown>
+      out.crystal = {
+        planet: c.planet,
+        featuredCrystal: c.featuredCrystal,
+        hex: c.hex,
+        featuredCrystalData: pick(
+          c.featuredCrystalData as Record<string, unknown>,
+          (pro ? CRYSTAL_DATA_PRACTITIONER : CRYSTAL_DATA_BASIC) as readonly string[],
+        ),
+      }
+    }
+    if (r.fork) {
+      out.fork = pick(
+        r.fork as Record<string, unknown>,
+        (pro ? FORK_PRACTITIONER : FORK_BASIC) as readonly string[],
+      )
+    }
+    return out
+  })
 }
 
 /**

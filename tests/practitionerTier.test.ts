@@ -11,7 +11,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { sacredTierFor, shapeSacredLayerForClient } from '@/lib/sacredShape'
+import { sacredTierFor, shapeSacredLayerForClient, shapePrescriptionsForClient } from '@/lib/sacredShape'
 import { isPractitionerTier } from '@/lib/tierGate'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -115,5 +115,61 @@ describe('the shaped payload never leaks practitioner fields at basic tier', () 
     expect(blob).toContain('SECRET')
     // ...but never the fields that ship at no tier.
     expect(blob).not.toContain('NEVER')
+  })
+})
+
+describe('SECURITY — the SECOND door: prescriptions[] carried an unshaped copy', () => {
+  // Found live on 2026-09-10 while verifying the P0 gate: an unauthenticated
+  // POST to /api/protocol returned nervePlexus, clinicalNote, ANSEffect,
+  // biologicalMechanism and endocrineTarget — not via sacredLayer (which was
+  // correctly shaped to "basic") but via protocol.prescriptions[], which
+  // carries its own copy of the same records. Shaping one door contained
+  // nothing while the other stood open.
+  const RX = [{
+    signature: 'Sun',
+    prescription: 'visible',
+    botanical: {
+      planet: 'Sun', sacredBotanical: 'Calendula', teaProfile: 'ok', safetyNote: 'ok',
+      biologicalMechanism: 'CLINICAL', endocrineTarget: 'CLINICAL',
+      esotericSignature: 'NEVERSHIP', traditionalUse: 'NEVERSHIP', kitProduct: 'NEVERSHIP',
+    },
+    crystal: {
+      planet: 'Sun', featuredCrystal: 'Citrine', hex: '#fff',
+      featuredCrystalData: { name: 'Citrine', safetyNote: 'ok', biologicalMechanism: 'CLINICAL' },
+    },
+    fork: {
+      planet: 'Sun', hz: '126.22', boneApplicationPoint: 'ok',
+      nervePlexus: 'CLINICAL', clinicalNote: 'CLINICAL', ANSEffect: 'CLINICAL',
+    },
+  }]
+
+  it('basic tier strips every clinical field from every prescription', () => {
+    const blob = JSON.stringify(shapePrescriptionsForClient(RX, 'basic'))
+    expect(blob).not.toContain('CLINICAL')
+    expect(blob).toContain('Calendula')
+    expect(blob).toContain('visible')   // non-sacred prescription copy survives
+  })
+
+  it('fields that ship at NO tier never appear, even for a practitioner', () => {
+    for (const t of ['basic', 'practitioner'] as const) {
+      const blob = JSON.stringify(shapePrescriptionsForClient(RX, t))
+      expect(blob, `never-ship field leaked at ${t}`).not.toContain('NEVERSHIP')
+    }
+  })
+
+  it('practitioner tier still receives the clinical fields', () => {
+    const blob = JSON.stringify(shapePrescriptionsForClient(RX, 'practitioner'))
+    expect(blob).toContain('CLINICAL')
+  })
+
+  it('a non-array or empty payload passes through untouched', () => {
+    expect(shapePrescriptionsForClient(undefined, 'basic')).toBeUndefined()
+    expect(shapePrescriptionsForClient([], 'basic')).toEqual([])
+  })
+
+  it('the route shapes BOTH doors — a third copy must come through here too', () => {
+    const ROUTE = readFileSync(join(process.cwd(), 'src', 'app', 'api', 'protocol', 'route.ts'), 'utf8')
+    expect(ROUTE).toMatch(/shapeSacredLayerForClient\(/)
+    expect(ROUTE).toMatch(/shapePrescriptionsForClient\(/)
   })
 })
