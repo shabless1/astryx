@@ -44,7 +44,7 @@ Also: North Node "Report Engine" WIP that had leaked into this tree was quaranti
 ## 4. Open threads (who owes what)
 | Thread | Owner | Next |
 |---|---|---|
-| **1 · Marma × fork placements** (NEXT, SHA's call 09-10) | you, with SHA as the eyes | No Cowork step (SHA cancelled it: "you already know this app top to bottom"). Read §7 below, read the source text, build the mapping yourself, show SHA a visual of the proposal before wiring it in. |
+| ~~1 · Marma × fork placements~~ **DONE + LIVE 09-10** | shipped | Proposal v2 approved by SHA, then built: `6c6bd90` (layer) + `bc0b88f` (Marma Recalibration session). Prod `astryx-1i3vhdm28`. Her two rulings are §7.1 below — the sacral centre is the SACRUM, and the reproductive zone is a six-inch sweep for EVERY fork. Both are enforced in `MarmaEngine.resolveApplication()`, which only ever tightens. |
 | **2 · Practitioner Portal** (after Marma) | SHA owes 6 decisions (plan §4); build P0 → P1 → P2 → P4 → P3 → P5 | Start P0 (tier in Entitlement + Shopify practitioner products by SKU + server-resolved tier + gates) the moment she answers pricing + Shopify. |
 | Worker port (Roadmap 1.2) | you | Per `PHASE1_WORKER_PORT_SCOPE.md` §9; closes Security FIX 1; then x402 door (needs SHA's USDC-on-Base address, public only) |
 | Cloud daily health routine | live | trig_012AUJYeY96VgEYXpBEBHX2g, 4am Central; edit via RemoteTrigger |
@@ -66,6 +66,28 @@ Also: North Node "Report Engine" WIP that had leaked into this tree was quaranti
 - Session rendering: `SessionScreen.tsx` `applicationFor()` (~1054: weighted stem-to-point vs field/aluminum off-body), `FieldRow "WHERE TO APPLY"` (~1444), `printProtocolSheet`.
 - Practitioner surface: `PractitionerScreen.tsx` fork cards; PDF `src/lib/pdfExport.ts` ("Application Point" rows ~420).
 - Tier seam: `src/lib/sacredShape.ts` — practitioner-only fields (nervePlexus, clinicalNote…) never reach basic tier. Marma detail should sit on the same seam (decide with SHA what individuals see).
+
+## 7.1 Marma — WHAT SHIPPED (2026-09-10) · read this before §7
+
+§7 below is the *hypothesis* I took into the work. It survived, with two corrections from SHA that are now law.
+
+**SHA ruling A — the sacral centre is the SACRUM, not the navel.** Kati (first sacral foramen), or Kukundara at the lower lumbar, or anteriorly below the navel at Basti. Lad & Durve's own chakra table names Nabhi there; Astryx departs from it on that one point and says so on the page. Nabhi keeps its real job as the central pole between crown and sole.
+
+**SHA ruling B — the reproductive and pelvic-floor zone is a SIX-INCH FIELD SWEEP, for every fork, every chart, every person.** She hardened this beyond Pluto herself. It is a **zone** rule (`FIELD_ONLY_REGIONS`) sitting *underneath* the fork logic, because the old Pluto-only rule could be routed past by a Scorpio natal placement or a pelvic symptom match. The **posterior sacrum is deliberately NOT in the zone** — bone, prone, clothed, inside every bodywork scope, and it is where the sacral doorway lives.
+
+**SHA ruling C — placement is not a rigid system.** Every mapping ships as the considered default plus named `alternates`, labelled by `basis`. Only the safety layer is fixed.
+
+**The invariant. Do not break it.** `resolveApplication()` in `src/lib/MarmaEngine.ts` is monotone — it only ever TIGHTENS (weighted → field → fieldOnly). Every input can raise strictness; none can lower it. An unknown class fails to `field`. `tests/marma.test.ts` walks the whole matrix. Red suite = fix the engine, never the test.
+
+**Files:** `src/data/marmaPoints.json` (27 points; the classical genital/perineal points are excluded and a test keeps them out) · `src/data/marmaFork.json` · `src/lib/MarmaEngine.ts` (named `*Engine` so `lint:determinism` covers it) · `src/components/engine/MarmaPanel.tsx` · one marker on `ChamberBodyMap` (colour = safety class; SHA's no-orb-cloud ruling respected) · practitioner PDF · guide §04 + §06 · canon 714 chunks.
+
+**The session:** `buildMarmaSequence()` + the `MARMA` container (1800s). Heel → 11 ascending named stations → Crown Turn at Adhipati (breath only) → close at the sole. Chart-independent, 14 steps, tiles any duration exactly. It names points; it does not decide how they are met — Pluto and Full Moon share the sacrum station and resolve differently.
+
+**Visual for SHA:** `MARKETING/ASTRYX_Marma_Fork_Placements_PROPOSAL_v1.html` (now v2, front + back body maps + both tables).
+
+**Still open:** the tier seam is enforced in the component (`isPractitionerMode`), not in `sacredShape.ts` — the marma data ships client-side like the rest of the fork data, and Security FIX 1 (the Worker port) is the real fix for all of it. Individuals currently see name + plain location + application + safety; practitioners get the depth.
+
+---
 
 ## 7. Marma × fork placements — the working hypothesis and the build path
 
