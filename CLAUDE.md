@@ -9,7 +9,9 @@ Astryx is a **deterministic multi-sensory calibration system**. It uses natal as
 
 Same birth data always produces the same output. The system is deterministic, repeatable, and grounded in real astronomical calculation.
 
-**Positioning:** Calibration not prediction. Blueprint not reading. Signal not sign. System not mysticism.
+**Positioning:** Calibration not prediction. Blueprint not reading. Signal not sign.
+
+**Voice (SHA ruling 2026-09-10):** Astryx is a **metaphysical** app. Write in the metaphysical + esoteric + scientific + mathematical register at once — Uranus / Gemini / Sagittarius / Scorpio / Cancer style. Saturn gives structure (the invariants, determinism, versioning, tables); Uranus expresses the eccentric, genius, metaphysical side. Do NOT sterilize the copy with clinical "guardrail" tone. The only hard limits are the law and false claims: COMPLIANCE.md banned phrases, probabilistic framing, no diagnose/treat/cure/prescribe claims, and the micro-disclaimer all stay. The public reference for the voice is `ASTRYX_CALIBRATION_STANDARD_v0.md` (myastryx.com/standard), which includes the eight Clairs as the receptive side of the 6-Sense Protocol.
 
 **All assessment language uses probabilistic framing:** "may suggest," "may indicate," "may correlate with." This is intentional and non-negotiable throughout the app.
 
@@ -230,7 +232,7 @@ These files are the Astryx-specific Sacred Tones and botanical/crystal system. T
 
 | File | Records | Purpose |
 |------|---------|---------|
-| `sacredTones_nervousSystem.json` | 13 | Physical tuning fork specs — Hz, nerve plexus, vagal data, binaural offsets, chakra mapping |
+| `sacredTones_nervousSystem.json` | 12 | Physical tuning fork specs — Hz, nerve plexus, vagal data, binaural offsets, chakra mapping |
 | `sacredBotanicals.json` | 9 | Tier 2 Sacred Botanicals — one master plant per planet, full biological spec |
 | `crystalsExpanded.json` | 9 | Featured crystal per planet — mineralogy, biological mechanism, body placement |
 | `lotusSpectrum.json` | 4 | Red, White, Blue, Egyptian Blue lotus — proprietary Astryx IP |
@@ -364,7 +366,7 @@ Body/UI:  Exo 2 (Google Font)
 6. **All safety notes from data files must render in the UI.** Never omit a safety warning.
 7. **Solar Chart mode must always be labeled clearly** — "☉ Solar Chart" badge in wheel, PDF, and API response. Never hide or downplay it.
 8. **Feature flags are sacred.** Never hard-code sacredtea.net shop URLs — always check `NEXT_PUBLIC_SHOP_LIVE` and `NEXT_PUBLIC_SACRED_TONES_SHOP_LIVE`.
-9. **Sacred Tones = physical products.** SHA makes real metal planetary tuning forks (13 forks, Cousto Hz). The Practitioner screen's fork data comes from `sacredTones_nervousSystem.json`. The shop link gates the product page until it goes live.
+9. **Sacred Tones = physical products.** SHA makes real metal planetary tuning forks (12 forks, Cousto Hz — SHA ruling 2026-09-10: the set is 12 for now; the 172.06 Platonic Year tone is ambient integration, not a fork). The Practitioner screen's fork data comes from `sacredTones_nervousSystem.json`. The shop link gates the product page until it goes live.
 10. **Scorpio dual-ruler:** `planets.json` assigns Mars to Scorpio for Phase 1. Pluto dual-ruler is Phase 2.
 11. **Do not import Three.js.** The Chart Wheel and Body Map are native SVG. Three.js upgrade is Phase 3+.
 12. **The Astryx.jsx artifact** (in the parent folder) is the working Claude-preview version of the app — a useful reference, but the canonical codebase is the `src/` TypeScript source.
@@ -421,7 +423,7 @@ All documents are in the parent folder alongside this codebase.
 | `ASTRYX_BLUEPRINT_v1.4.docx` | Full v1.4 technical architecture, API routes, all component specs, sound engine, deployment |
 | `ASTRYX_COMPLETE_GUIDE_v1.4.docx` | User guide, practitioner guide, marketing strategy, deployment walkthrough |
 | `ASTRYX_Practitioner_Mode_Spec_v1.docx` | Practitioner Portal deep spec — Sacred Tones Session Mode, client roster, PDF export, Supabase schemas (historical reference) |
-| `ASTRYX_Nervous_System_Addendum_v1.docx` | Vagus nerve overlay, nervous system data for 13 planetary forks, binaural mode, Vagal Tone Tracker |
+| `ASTRYX_Nervous_System_Addendum_v1.docx` | Vagus nerve overlay, nervous system data for the planetary forks, binaural mode, Vagal Tone Tracker |
 | `ASTRYX_Botanical_Crystal_Addendum_v1.docx` | Two-tier botanical library, Sacred Botanicals, Lotus Spectrum, crystal biological mechanisms, starter kit products |
 
 ---

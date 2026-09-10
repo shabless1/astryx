@@ -215,7 +215,7 @@ src/
 │   ├── soap-templates.json                       ← 6 SOAP templates
 │   ├── taste-map.json                            ← 10 taste profiles
 │   ├── sample-protocol.json
-│   ├── sacredTones_nervousSystem.json            ← 13 tuning fork specs
+│   ├── sacredTones_nervousSystem.json            ← 12 tuning fork specs
 │   ├── sacredBotanicals.json                     ← MODIFIED — added Uranus/Skullcap
 │   ├── crystalsExpanded.json                     ← MODIFIED — added Uranus/Labradorite
 │   ├── lotusSpectrum.json                        ← 4 lotus varieties (Astryx IP)

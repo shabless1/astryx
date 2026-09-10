@@ -145,11 +145,11 @@ Astryx rests on **five complete data libraries**, each cross-referenced into the
 
 **Source:** Hans Cousto — *The Cosmic Octave* (1978). The Sacred Tones are SHA's physical product line — real metal planetary tuning forks tuned to Cousto's cosmic octave Hz frequencies.
 
-**What it is:** 13 planetary tuning forks (including Earth Day, Earth Year, Full Moon, Platonic Year cosmic forks) with full nerve plexus mapping, bone application points, vagus connection strength, brainwave affinity, ANS effect, and clinical notes.
+**What it is:** 12 planetary tuning forks (including the Earth Day, Earth Year and Full Moon cosmic forks; the 172.06 Platonic Year tone is an ambient integration tone, not a fork) with full nerve plexus mapping, bone application points, vagus connection strength, brainwave affinity, ANS effect, and clinical notes.
 
 The **Sacred Tones are physical products** — not virtual. The Practitioner Portal's crown feature is **Sacred Tones Session Mode**: during a live session, the app shows the practitioner which fork to apply to which body point for THIS specific client's chart.
 
-**Data file:** `src/data/sacredTones_nervousSystem.json` (13 forks)
+**Data file:** `src/data/sacredTones_nervousSystem.json` (12 forks)
 
 ---
 

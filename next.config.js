@@ -31,6 +31,8 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/guide', destination: '/guide.html' },
+      // The Astryx Calibration Standard — the public method page (Roadmap 1.1).
+      { source: '/standard', destination: '/standard.html' },
     ]
   },
   // Allow video files to be served from public

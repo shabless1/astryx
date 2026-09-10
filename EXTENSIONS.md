@@ -8,7 +8,7 @@
 This file instructs Claude Code to wire the five Sacred Extension JSON files into the running v1.4 codebase. These files are already present in `src/data/`. They are not yet connected to the engine or UI. This document tells you exactly where each one plugs in — read it completely before writing a single line.
 
 **Files to integrate:**
-- `src/data/sacredTones_nervousSystem.json` — 13 planetary forks (Hz, nerve plexus, vagal data, binaural offsets, clinical notes)
+- `src/data/sacredTones_nervousSystem.json` — 12 planetary forks (Hz, nerve plexus, vagal data, binaural offsets, clinical notes)
 - `src/data/sacredBotanicals.json` — 9 Sacred Botanicals, one master plant per planet
 - `src/data/crystalsExpanded.json` — 9 featured crystals with biological mechanism and body placement
 - `src/data/lotusSpectrum.json` — 4 lotus varieties, proprietary Astryx IP

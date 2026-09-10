@@ -67,7 +67,7 @@ The Chamber's living visuals. All built.
 - **Medical astrology:** `medicalAstrology.json` (the connective tissue — anatomy + transit interpretation), `symptoms.json`, `planet-intake-map.json`.
 - **Cell salts:** `cellSalts.json` (12 Schüssler salts, food sources, sign mapping — **no dosages shown in UI**), `remedyPolarity.json`.
 - **Body systems:** `bodySystems/` — 11 files (cardiovascular, nervous, endocrine, digestive, respiratory, muscular, skeletal, integumentary, lymphatic-immune, urinary, reproductive).
-- **Sacred extension layer:** `sacredTones_nervousSystem` (13 forks — Hz, nerve plexus, vagal, chakra), `sacredBotanicals` (9), `crystalsExpanded` (9), `lotusSpectrum` (4 — proprietary IP), `starterKits` (4 shop products), `sample-protocol`.
+- **Sacred extension layer:** `sacredTones_nervousSystem` (12 forks — Hz, nerve plexus, vagal, chakra), `sacredBotanicals` (9), `crystalsExpanded` (9), `lotusSpectrum` (4 — proprietary IP), `starterKits` (4 shop products), `sample-protocol`.
 
 ## 8 · SCREENS / FEATURES BUILT — `src/components/screens/`
 Auth · Intake · Analysis · **Today's Signal** (light bridge) · Results (full reference report) · **Session/Chamber** · **Post-Session Summary** (with collapsible deep-report cards: Diagnosis, Cosmic Weather, Symptom Routing, Mineral Foundation, SOAP) · History (energy-trend sparkline) · Settings · Chart · Body Grid · Body System Preview · **Music Library** (Browse/Favorites/Sequences/**Chakra tones**) · **Dashboard + Daily Check-In** (NEW, daily-temperature) · Payment. **Home now routes to the Intake form** (old `HomeScreen` daily-hub deprecated). Practitioner: PractitionerScreen · ClientRoster · PractitionerExport (jsPDF) · PractitionerLensContent · LensSwitcher.
