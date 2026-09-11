@@ -38,9 +38,9 @@ Build A→G in order; each part has a verify gate. `npx tsc --noEmit` green + `r
 
 ## PART B — close the last "amplify" leak: the Cosmic Diagnostic (P0)
 **Concept:** Law 3 must hold on the first card the user reads.
-**Bug (Pressure Test #2):** the COSMIC DIAGNOSTIC still prints the raw, polarity-unaware `howToRestore` — "Egyptian Blue Lotus tea… 211.44 Hz Neptune fork" — for a Neptune-excess user (an oneirogen + the amplifying frequency), contradicting the corrected hero/prescription/chamber.
+**Bug (Pressure Test #2):** the COSMIC DIAGNOSTIC still prints the raw, polarity-unaware `howToRestore` — "Egyptian Blue Lotus tea… 211.45 Hz Neptune fork" — for a Neptune-excess user (an oneirogen + the amplifying frequency), contradicting the corrected hero/prescription/chamber.
 **Build:** in the diagnostic builder (`engine.ts` ~641 & ~737, where `actionLayer = medAstro.plainLanguageBridge.howToRestore`), when `dominantPolarity.symptomDriven && state !== 'balanced'`, replace `actionLayer`/`howToRestore` with corrective text built from the **same `CorrectiveProtocol`** the prescription uses (regulator-named, corrective herbs/scents/breath/colors, regulator Hz) and apply the **same `isOneirogen` gate**. `ResultsScreen.tsx:198` then renders the corrected line.
-**Verify:** Neptune-excess COSMIC DIAGNOSTIC shows cooling/peppermint/141.27-Mercury language, **no Blue Lotus, no 211.44 Neptune fork**; consistent with the hero.
+**Verify:** Neptune-excess COSMIC DIAGNOSTIC shows cooling/peppermint/141.27-Mercury language, **no Blue Lotus, no 211.45 Neptune fork**; consistent with the hero.
 
 ## PART C — audio honesty: transit-card sound + the real fork set (P1)
 **C1 — each transit card plays ITS OWN tone + track, not the dominant.**

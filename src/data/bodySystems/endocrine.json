@@ -108,7 +108,7 @@
       {"name": "Carnelian", "planet": "Mars", "bodyPlacement": "Sacral / gonads", "classicalAttribution": "Reproductive hormonal support"}
     ],
     "tuningForks": [
-      {"planet": "Neptune", "hz": 211.44, "applicationPoint": "Crown/pineal"},
+      {"planet": "Neptune", "hz": 211.45, "applicationPoint": "Crown/pineal"},
       {"planet": "Mercury", "hz": 141.27, "applicationPoint": "Third eye/pituitary or throat/thyroid"},
       {"planet": "Sun", "hz": 126.22, "applicationPoint": "Sternum/thymus"},
       {"planet": "Mars", "hz": 144.72, "applicationPoint": "Lower back/adrenals"},

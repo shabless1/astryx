@@ -1552,7 +1552,7 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
       "chakra": "Extended",
       "clinicalNote": "Uranus is the great disruptor. In nervous system terms, it promotes neuroplasticity — the brain's ability to form new pathways. Apply to both forearms simultaneously when possible, or alternate. The electrical sensation of the Uranus fork along the arm's neural pathways is often the most physically noticeable of all the Sacred Tones forks.",
       "color": "#38BDF8",
-      "hz": "207.36",
+      "hz": "207.33",
       "nervePlexus": "Brachial Plexus + Peripheral Nervous System — electrical conduction pathways",
       "note": "G#",
       "planet": "Uranus",
@@ -2354,7 +2354,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
       "mode": "tone_sequence",
       "primary_anchors": [
         144.72,
-        207.36,
+        207.33,
       ],
       "regulator": {
         "hz": 136.1,
@@ -2386,7 +2386,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         {
           "binaural_offset": 1.2,
           "duration_seconds": 180,
-          "hz_focus": 207.36,
+          "hz_focus": 207.33,
           "intensity": 0.6,
           "name": "regulation",
         },
@@ -4057,12 +4057,12 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         "resolution": "midpoint_merge",
         "rhythm": "call_response",
       },
-      "description": "Moon anchor (210.42 Hz) paired with Uranus anchor (207.36 Hz). Earth Om regulator grounds the activation cycle.",
+      "description": "Moon anchor (210.42 Hz) paired with Uranus anchor (207.33 Hz). Earth Om regulator grounds the activation cycle.",
       "duration": "5–10 min",
       "mode": "tone_sequence",
       "primary_anchors": [
         210.42,
-        207.36,
+        207.33,
       ],
       "regulator": {
         "hz": 136.1,
@@ -4094,7 +4094,7 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         {
           "binaural_offset": 1.2,
           "duration_seconds": 180,
-          "hz_focus": 207.36,
+          "hz_focus": 207.33,
           "intensity": 0.6,
           "name": "regulation",
         },

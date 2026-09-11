@@ -314,8 +314,8 @@ immersive planetary composition. This is generative music, not a recording.
 | Mars | 144.72 | D | Aeolian | Adrenals, head, musculature |
 | Jupiter | 183.58 | F# | Ionian | Liver, hips, pituitary |
 | Saturn | 147.85 | D | Locrian | Bones, joints, knees, teeth |
-| Uranus | 207.36 | G# | Phrygian Dominant | Nervous system, ankles, biofield |
-| Neptune | 211.44 | G# | Lydian b7 | Immune, lymph, pineal, feet |
+| Uranus | 207.33 | G# | Phrygian Dominant | Nervous system, ankles, biofield |
+| Neptune | 211.45 | G# | Lydian b7 | Immune, lymph, pineal, feet |
 | Pluto | 140.25 | C# | Diminished | Reproductive, elimination, cellular |
 
 **SET 2 — Earth Resonance Forks (SHA creating after app completion)**

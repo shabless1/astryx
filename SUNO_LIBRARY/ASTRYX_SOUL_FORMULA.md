@@ -52,8 +52,8 @@ The Tone.js engine plays the planet's exact Cousto Hz as a **drone on the root n
 | ♂ Mars | 144.72 | D | Aeolian | slow 72 | Dm9 – B♭maj9 – C |
 | ♃ Jupiter | 183.58 | F# | Ionian | slow 61 | F#maj9 – D#m9 – Bmaj9 |
 | ♄ Saturn | 147.85 | D | Dark minor | slow 49 | Dm(maj9) – B♭maj9 |
-| ♅ Uranus | 207.36 | G# | Phrygian dom | slow 52 | G#7♭9 – Amaj7 |
-| ♆ Neptune | 211.44 | G# | Lydian | slow 53 | G#maj9♯11 – A#9 |
+| ♅ Uranus | 207.33 | G# | Phrygian dom | slow 52 | G#7♭9 – Amaj7 |
+| ♆ Neptune | 211.45 | G# | Lydian | slow 53 | G#maj9♯11 – A#9 |
 | ♇ Pluto | 140.25 | C# | Diminished/dark | slow 47 | C#m(maj9), sparse |
 | 🜨 Earth Year | 136.10 | C# | Ionian | slow 68 | C#maj9 – A#m9 – F#maj9 |
 | 🜨 Earth Day | 194.18 | G | Mixolydian | slow 70 | G9 – Fmaj9 – Dm9 – C6/9 |

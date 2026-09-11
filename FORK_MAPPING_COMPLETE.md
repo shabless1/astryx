@@ -23,8 +23,8 @@ Verify-and-adjust pass on top of the completed v1.0 Daily Recalibration build (s
   | 8 | Mars | Extended | 144.72 |
   | 9 | Jupiter | **Extended** ← (→ Crown) | 183.58 |
   | 10 | Saturn | Extended | 147.85 |
-  | 11 | Uranus | Extended | 207.36 |
-  | 12 | Neptune | **Extended** ← (→ Third Eye) | 211.44 |
+  | 11 | Uranus | Extended | 207.33 |
+  | 12 | Neptune | **Extended** ← (→ Third Eye) | 211.45 |
   | 13 | Pluto | Extended | 140.25 |
 - **All Hz already match the v2 target table** — only chakra reassignment + the Platonic Year removal are needed; no frequency edits.
 
@@ -158,7 +158,7 @@ Set the chakra address on the 7 chakra forks; moved Neptune/Jupiter INTO chakra 
 | Sun | 126.22 | Solar Plexus | 528 |
 | Venus | 221.23 | Heart | 639 |
 | Mercury | 141.27 | Throat | 741 |
-| Neptune | 211.44 | Third Eye | 852 |
+| Neptune | 211.45 | Third Eye | 852 |
 | Jupiter | 183.58 | Crown | 963 |
 
 **5 Extended forks** (body-zone home only — Cousto-only, no chakra):
@@ -167,7 +167,7 @@ Set the chakra address on the 7 chakra forks; moved Neptune/Jupiter INTO chakra 
 | Earth Year | 136.10 | Whole-field / OM / ground | contact |
 | Mars | 144.72 | Head + adrenals (Aries) | contact |
 | Saturn | 147.85 | Knees / bones / joints (Capricorn) | contact |
-| Uranus | 207.36 | Ankles / nervous system (Aquarius) | contact |
+| Uranus | 207.33 | Ankles / nervous system (Aquarius) | contact |
 | Pluto | 140.25 | Pelvic (Scorpio) | **off-body sacral-down sweep** |
 
 **Retired:** Platonic Year (172.06) — not a fork; repurposed as audio ambient (FIX D).

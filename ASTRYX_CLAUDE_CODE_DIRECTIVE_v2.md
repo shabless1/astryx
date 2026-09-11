@@ -271,13 +271,13 @@ This table is the master reference. If any track's character, tempo, or key cont
 | | | | | exc | Venus + Jupiter | 221.23 | 55 | A Mixolydian |
 | | | | | def | Saturn (amplified) | 147.85 | 49 | D minor (structure) |
 | | | | | blk | Venus + Moon | 221.23 | 55 | A Mixolydian |
-| **♅ Uranus** | 207.36 | 52 | G# Phrygian Dom | nat | — | — | — | — |
+| **♅ Uranus** | 207.33 | 52 | G# Phrygian Dom | nat | — | — | — | — |
 | | | | | exc | Saturn | 147.85 | 47 | D minor |
-| | | | | def | Uranus (amplified) | 207.36 | 58 | G# unusual |
+| | | | | def | Uranus (amplified) | 207.33 | 58 | G# unusual |
 | | | | | blk | Jupiter | 183.58 | 61 | F# major |
-| **♆ Neptune** | 211.44 | 53 | G# Lydian | nat | — | — | — | — |
+| **♆ Neptune** | 211.45 | 53 | G# Lydian | nat | — | — | — | — |
 | | | | | exc | Mercury + Saturn | 141.27 | 57 | C# Dorian |
-| | | | | def | Neptune (amplified) | 211.44 | 48 | G# Lydian (deeper) |
+| | | | | def | Neptune (amplified) | 211.45 | 48 | G# Lydian (deeper) |
 | | | | | blk | Venus | 221.23 | 55 | A Mixolydian |
 | **♇ Pluto** | 140.25 | 47 | C# Diminished | nat | — | — | — | — |
 | | | | | exc | Venus | 221.23 | 55 | A Mixolydian |

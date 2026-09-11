@@ -70,10 +70,10 @@ These are the frequencies of the Sacred Tones forks and of every calibration's S
 | Venus | 221.23 | A | Heart |
 | Mercury | 141.27 | G | Throat |
 | Jupiter | 183.58 | F# | Crown |
-| Neptune | 211.44 | G# | Third eye |
+| Neptune | 211.45 | G# | Third eye |
 | Mars | 144.72 | D | Activating |
 | Saturn | 147.85 | D# | Structural |
-| Uranus | 207.36 | G# | Nervous system |
+| Uranus | 207.33 | G# | Nervous system |
 | Pluto | 140.25 | C# | Deep release |
 | *Platonic Year* | *172.06* | *F* | *Integration tone: ambient, held under the session, never struck* |
 
@@ -108,14 +108,14 @@ The five physical senses each have a subtle counterpart, and the field carries t
 
 | Clair | Channel | Center | Governing tones (Hz) | What opens |
 |---|---|---|---|---|
-| **Clairvoyance** · clear seeing | Sight | Third eye | Neptune 211.44 · Full Moon 210.42 | Inner vision: images, symbols, color, the aura seen |
-| **Clairaudience** · clear hearing | Sound | Throat · ear | Mercury 141.27 · Uranus 207.36 | Inner hearing: words, tones, music with no outer source |
+| **Clairvoyance** · clear seeing | Sight | Third eye | Neptune 211.45 · Full Moon 210.42 | Inner vision: images, symbols, color, the aura seen |
+| **Clairaudience** · clear hearing | Sound | Throat · ear | Mercury 141.27 · Uranus 207.33 | Inner hearing: words, tones, music with no outer source |
 | **Clairsentience** · clear feeling | Body | Sacral · solar plexus | Full Moon 210.42 · Sun 126.22 | The feeling body: energy and emotion sensed as physical sensation |
-| **Claircognizance** · clear knowing | Field | Crown | Uranus 207.36 · Jupiter 183.58 | Direct knowing: the flash that arrives whole, without steps |
+| **Claircognizance** · clear knowing | Field | Crown | Uranus 207.33 · Jupiter 183.58 | Direct knowing: the flash that arrives whole, without steps |
 | **Clairalience** · clear smelling | Scent | Root · limbic | Venus 221.23 · Earth Day 194.18 | Scent with no source: the memory-sense, the oldest door |
 | **Clairgustance** · clear tasting | Taste | Throat · stomach | Venus 221.23 · Earth Year 136.10 | Taste with nothing on the tongue: the signature taken inward |
 | **Clairtangency** · clear touching | Body | Hands · bone | Saturn 147.85 · Earth Day 194.18 | Reading through contact: the history held in matter |
-| **Clairempathy** · clear emotion | Field | Heart | Full Moon 210.42 · Neptune 211.44 | Feeling another's state as one's own, through the field |
+| **Clairempathy** · clear emotion | Field | Heart | Full Moon 210.42 · Neptune 211.45 | Feeling another's state as one's own, through the field |
 
 **Why these tones.** The correspondences follow the classical rulerships already in the method: Neptune and the Moon rule vision and the dream body; Mercury rules hearing, speech, and the messenger; Uranus rules the sudden transmission and the flash of genius; Jupiter rules the crown and the wide view; Venus rules the pleasure senses of scent and taste; Saturn rules bone, matter, and time, which is what an object holds; the two Earth tones ground every faculty in the body so that perception stays embodied. The Sun steadies the solar plexus, the seat of gut feeling.
 

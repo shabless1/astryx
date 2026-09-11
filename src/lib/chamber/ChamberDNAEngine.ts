@@ -203,7 +203,7 @@ function planetHz(planet: string, fallback: number): number {
   const HZ: Record<string, number> = {
     Sun: 126.22, Moon: 210.42, Mercury: 141.27, Venus: 221.23,
     Mars: 144.72, Jupiter: 183.58, Saturn: 147.85,
-    Uranus: 207.36, Neptune: 211.44, Pluto: 140.25,
+    Uranus: 207.33, Neptune: 211.45, Pluto: 140.25,
   }
   return HZ[planet] ?? fallback
 }

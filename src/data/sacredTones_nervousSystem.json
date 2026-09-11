@@ -143,7 +143,7 @@
   {
     "planet": "Uranus",
     "chakra": "Extended",
-    "hz": "207.36",
+    "hz": "207.33",
     "note": "G#",
     "color": "#38BDF8",
     "nervePlexus": "Brachial Plexus + Peripheral Nervous System — electrical conduction pathways",
@@ -158,7 +158,7 @@
   {
     "planet": "Neptune",
     "chakra": "Third Eye",
-    "hz": "211.44",
+    "hz": "211.45",
     "solfeggioFallback": 852,
     "note": "G#",
     "color": "#C084FC",

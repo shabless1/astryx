@@ -264,7 +264,7 @@ describe('guide — the chat bubble is plain text, so markdown is stripped', () 
   })
   it('leaves ordinary prose exactly alone', async () => {
     const { stripChatMarkdown } = await import('@/lib/compliance')
-    const s = 'Your Ascendant is Leo, and today the signal reads Uranus at 207.36 Hz.'
+    const s = 'Your Ascendant is Leo, and today the signal reads Uranus at 207.33 Hz.'
     expect(stripChatMarkdown(s)).toBe(s)
   })
   it('the route strips before the guard lints', async () => {

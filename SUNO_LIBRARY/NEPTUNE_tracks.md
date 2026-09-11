@@ -1,5 +1,5 @@
 # ASTRYX Suno Music Library — ♆ NEPTUNE (REVISED — Global Palette)
-### Planet Hz: 211.44 (Cousto) | Derived BPM: 53 | Key: G# / Ab | Mode: Lydian / Dreamy
+### Planet Hz: 211.45 (Cousto) | Derived BPM: 53 | Key: G# / Ab | Mode: Lydian / Dreamy
 
 | State | Effective Planet | Key | BPM | Character |
 |-------|-----------------|-----|-----|-----------|
@@ -208,4 +208,4 @@ NEPTUNE_DEF_01 through 02 | NEPTUNE_BLK_01 through 02
 ```
 **Upload:** `public/audio/library/neptune/`
 
-*ASTRYX Suno Library — NEPTUNE (Global Revised) | 12 tracks | Cousto 211.44 Hz | June 2026*
+*ASTRYX Suno Library — NEPTUNE (Global Revised) | 12 tracks | Cousto 211.45 Hz | June 2026*

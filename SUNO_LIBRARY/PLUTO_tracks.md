@@ -213,8 +213,8 @@ vocals, intense, heavy, dark, driving, rushing, Pluto intensity
 | ♂ Mars | 144.72 | 72 | Natural vital + 7 corrective | `/mars/` |
 | ♃ Jupiter | 183.58 | 61 | Global griot → Andean | `/jupiter/` |
 | ♄ Saturn | 147.85 | 49 | Global dunun → dungchen | `/saturn/` |
-| ♅ Uranus | 207.36 | 52 | Global gamelan → mbira | `/uranus/` |
-| ♆ Neptune | 211.44 | 53 | Global shakuhachi → cedar flute | `/neptune/` |
+| ♅ Uranus | 207.33 | 52 | Global gamelan → mbira | `/uranus/` |
+| ♆ Neptune | 211.45 | 53 | Global shakuhachi → cedar flute | `/neptune/` |
 | ♇ Pluto | 140.25 | 47 | Global batá → mridangam | `/pluto/` |
 | **TOTAL** | | | **120 tracks** | `public/audio/library/` |
 

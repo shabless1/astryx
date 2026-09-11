@@ -13,7 +13,7 @@
       "channel": "sight",
       "center": "Third eye",
       "tones": [
-        { "planet": "Neptune", "hz": "211.44" },
+        { "planet": "Neptune", "hz": "211.45" },
         { "planet": "Full Moon", "hz": "210.42" }
       ],
       "regulator": "Saturn",
@@ -29,7 +29,7 @@
       "center": "Throat · ear",
       "tones": [
         { "planet": "Mercury", "hz": "141.27" },
-        { "planet": "Uranus", "hz": "207.36" }
+        { "planet": "Uranus", "hz": "207.33" }
       ],
       "regulator": "Earth Year",
       "opens": "Inner hearing: words, tones, music with no outer source. The struck fork is the door.",
@@ -58,7 +58,7 @@
       "channel": "field",
       "center": "Crown",
       "tones": [
-        { "planet": "Uranus", "hz": "207.36" },
+        { "planet": "Uranus", "hz": "207.33" },
         { "planet": "Jupiter", "hz": "183.58" }
       ],
       "regulator": "Earth Day",
@@ -119,7 +119,7 @@
       "center": "Heart",
       "tones": [
         { "planet": "Full Moon", "hz": "210.42" },
-        { "planet": "Neptune", "hz": "211.44" }
+        { "planet": "Neptune", "hz": "211.45" }
       ],
       "regulator": "Saturn",
       "opens": "Feeling another's state as your own, through the field. The most generous Clair and the one most in need of an edge.",

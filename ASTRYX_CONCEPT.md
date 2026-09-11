@@ -248,7 +248,7 @@ Astryx uses planetary Hz frequencies sourced from Hans Cousto's *Law of the Octa
 ```
 Sun     126.22 Hz       Mercury   141.27 Hz       Venus    221.23 Hz
 Mars    144.72 Hz       Jupiter   183.58 Hz       Saturn   147.85 Hz
-Uranus  207.36 Hz       Neptune   211.44 Hz       Pluto    140.25 Hz
+Uranus  207.33 Hz       Neptune   211.45 Hz       Pluto    140.25 Hz
 Moon    210.42 Hz       Earth Om  136.10 Hz
 ```
 

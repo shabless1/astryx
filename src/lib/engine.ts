@@ -1038,7 +1038,7 @@ function shouldApplyPolarity(polarity?: PolarityResult): boolean {
 // prescription + chamber use (regulator-named, corrective herbs/scents/breath,
 // regulator Hz) — never the raw, AMPLIFYING medicalAstrology.howToRestore,
 // which for a Neptune-excess user would suggest Blue Lotus (an oneirogen) and
-// the 211.44 Hz Neptune fork (feeding the imbalance). Law 3: never amplify.
+// the 211.45 Hz Neptune fork (feeding the imbalance). Law 3: never amplify.
 const DIAGNOSTIC_ONEIROGENS = ['mugwort', 'blue lotus', 'wormwood', 'salvia', 'kava', 'valerian']
 
 function correctiveDiagnosisAction(polarity: PolarityResult): string {

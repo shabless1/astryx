@@ -26,8 +26,8 @@ All Suno prompts (STYLE + AVOID fields) are in these files in the `SUNO_LIBRARY/
 | `MARS_tracks.md` | ♂ Mars | 144.72 | 72 | D Aeolian |
 | `JUPITER_tracks.md` | ♃ Jupiter | 183.58 | 61 | F# Major |
 | `SATURN_tracks.md` | ♄ Saturn | 147.85 | 49 | D Dark Minor |
-| `URANUS_tracks.md` | ♅ Uranus | 207.36 | 52 | G# Phrygian Dom |
-| `NEPTUNE_tracks.md` | ♆ Neptune | 211.44 | 53 | G# Lydian |
+| `URANUS_tracks.md` | ♅ Uranus | 207.33 | 52 | G# Phrygian Dom |
+| `NEPTUNE_tracks.md` | ♆ Neptune | 211.45 | 53 | G# Lydian |
 | `PLUTO_tracks.md` | ♇ Pluto | 140.25 | 47 | C# Diminished |
 
 Also read: `GLOBAL_INSTRUMENT_GUIDE.md` — the full world instrument palette and which instruments belong to which planets.

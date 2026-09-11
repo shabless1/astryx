@@ -260,7 +260,7 @@
   },
   {
     "planet": "Uranus",
-    "anchor_hz": 207.36,
+    "anchor_hz": 207.33,
     "function": [
       "reset",
       "electrical shift",
@@ -297,7 +297,7 @@
   },
   {
     "planet": "Neptune",
-    "anchor_hz": 211.44,
+    "anchor_hz": 211.45,
     "function": [
       "diffusion",
       "permeability",

@@ -16,7 +16,7 @@
 - Moon: 210.42 ÷ 4 = 52.6 → **53 BPM**
 - Saturn corrective: 147.85 ÷ 4 = 36.9 → rounded up to **47 BPM** (slow, anchoring)
 - Venus corrective: 221.23 ÷ 4 = 55.3 → **55 BPM**
-- Neptune corrective: 211.44 ÷ 4 = 52.9 → **53 BPM** (same as Moon — watery resolution)
+- Neptune corrective: 211.45 ÷ 4 = 52.9 → **53 BPM** (same as Moon — watery resolution)
 
 ---
 

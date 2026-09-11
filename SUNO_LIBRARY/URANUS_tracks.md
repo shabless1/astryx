@@ -1,5 +1,5 @@
 # ASTRYX Suno Music Library — ♅ URANUS (REVISED — Global Palette)
-### Planet Hz: 207.36 (Cousto) | Derived BPM: 52 | Key: G# / Ab | Mode: Phrygian Dominant / Unusual
+### Planet Hz: 207.33 (Cousto) | Derived BPM: 52 | Key: G# / Ab | Mode: Phrygian Dominant / Unusual
 
 | State | Effective Planet | Key | BPM | Character |
 |-------|-----------------|-----|-----|-----------|
@@ -208,4 +208,4 @@ URANUS_DEF_01 through 02 | URANUS_BLK_01 through 02
 ```
 **Upload:** `public/audio/library/uranus/`
 
-*ASTRYX Suno Library — URANUS (Global Revised) | 12 tracks | Cousto 207.36 Hz | June 2026*
+*ASTRYX Suno Library — URANUS (Global Revised) | 12 tracks | Cousto 207.33 Hz | June 2026*
