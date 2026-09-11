@@ -36,14 +36,25 @@ function undeliverable(email: string): boolean {
   return /\.(test|invalid|local|localhost|example)$/i.test(email.split('@')[1] ?? '')
 }
 
+/**
+ * SECURITY (2026-09-10) — this route mails real customers and burns their
+ * send-once stamps, so it fails CLOSED.
+ *
+ * The previous version accepted ANY request carrying an `x-vercel-cron`
+ * header. That header is not a secret and not verified by anything: a stranger
+ * could set it with curl and trigger a live send. It was found by doing exactly
+ * that from outside Vercel while CRON_SECRET sat empty in production, which
+ * also meant the bearer branch was never reachable.
+ *
+ * Vercel injects `Authorization: Bearer $CRON_SECRET` into its own cron
+ * invocations whenever CRON_SECRET is set, so the bearer check alone is enough
+ * for the real scheduler. No secret configured → nobody gets in, including the
+ * scheduler. Silence is the correct failure for a mailer.
+ */
 function authorized(req: Request): boolean {
   const secret = process.env.CRON_SECRET
-  // No secret configured → only Vercel's own cron header gets in.
-  if (!secret) return req.headers.get('x-vercel-cron') !== null
-  return (
-    req.headers.get('authorization') === `Bearer ${secret}` ||
-    req.headers.get('x-vercel-cron') !== null
-  )
+  if (!secret) return false
+  return req.headers.get('authorization') === `Bearer ${secret}`
 }
 
 export async function GET(req: Request) {
