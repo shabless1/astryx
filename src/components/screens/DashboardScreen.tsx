@@ -314,9 +314,10 @@ const RESUME_MODE_LABEL: Record<SessionMode, string> = {
   calibrated: 'your session',
   full_body: 'Full Body Recalibration',
   chakra: 'Chakra Recalibration',
+  marma: 'Marma Recalibration',
 }
 
-// ── SESSIONS LAUNCHER (v4.4 FIX 1) — three tiles, every mode one tap away ──
+// ── SESSIONS LAUNCHER (v4.4 FIX 1) — four tiles, every mode one tap away ──
 function SessionLauncher({
   accentColor, forkPlanet, forkColor, chakraInstrument, onSetChakraInstrument, onLaunch,
 }: {
@@ -331,7 +332,7 @@ function SessionLauncher({
   return (
     <div className="mb-5 animate-fade-in-up">
       <div className="text-[10px] uppercase tracking-[0.28em] text-meta mb-2">Sessions</div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
 
         {/* Today's Calibration — straight into the calibrated session */}
         <button
@@ -361,6 +362,20 @@ function SessionLauncher({
           <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
                 style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.6)' }}>
             12 forks · ~35 min
+          </span>
+        </button>
+
+        {/* Marma — the twelve forks at their named Ayurvedic points (2026-09-10) */}
+        <button
+          onClick={() => onLaunch('#session/marma')}
+          className={tileBase}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+        >
+          <span className="text-[14px] text-white font-medium leading-snug">Marma →</span>
+          <span className="text-[11.5px] text-white/50 leading-snug">Twelve forks at their named points, heel to crown to sole</span>
+          <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
+                style={{ background: 'rgba(255,0,110,0.08)', border: '1px solid rgba(255,0,110,0.28)', color: 'rgba(255,150,190,0.9)' }}>
+            27 points · ~30 min
           </span>
         </button>
 

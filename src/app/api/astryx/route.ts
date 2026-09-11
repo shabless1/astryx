@@ -39,7 +39,11 @@ export const runtime = 'nodejs'
 
 const INDIVIDUAL_DAILY_LIMIT = 20
 const MAX_MESSAGE_CHARS = 2000
-const RETRIEVE_K = 5   // leaner grounding → fewer tokens/request (free-tier-friendly)
+const RETRIEVE_K = 7   // 2026-09-10: 5 → 7. The canon grew to 728 chunks and the
+                       // dense data records (27 marma points, 12 fork mappings)
+                       // can crowd out the app-guide entries at K=5. Two more
+                       // chunks is a small token cost on gpt-4o for a guide that
+                       // must reach the right explanation every time.
 
 // FIX 3 — short-window burst cap (anti-scrape) layered over the daily allowance.
 const CHAT_BURST_LIMIT = 15
@@ -171,8 +175,14 @@ export async function POST(req: NextRequest) {
     // Tier + metering.
     const session = await getSession()
     const userId = session?.user?.id ?? null
-    const isPremium = session?.user?.isPremium ?? false
-    const tier: 'individual' | 'practitioner' = isPremium ? 'practitioner' : 'individual'
+    // P0 (2026-09-10) — the tier comes off the JWT, stamped from Entitlement.tier
+    // by the Shopify webhook (see lib/tierGate.ts). `isPremium` is the legacy XRP
+    // grant: honoured as a grant, never used as THE gate — reading it alone here
+    // meant a paying $39.95 practitioner was metered to 20 questions a day and
+    // held to individual-tier language.
+    const su = session?.user as { tier?: string; isPremium?: boolean } | undefined
+    const tier: 'individual' | 'practitioner' =
+      su?.tier === 'practitioner' || su?.isPremium === true ? 'practitioner' : 'individual'
 
     // LEGAL SHIELD v1 · FIX 1 — an authenticated user who has not accepted the
     // current consent version cannot receive chat output. Anonymous callers are

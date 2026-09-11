@@ -230,13 +230,15 @@ function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
     { value: 'calibrated', label: 'Calibrated' },
     { value: 'full_body',  label: 'Full Body' },
     { value: 'chakra',     label: 'Chakra' },
+    { value: 'marma',      label: 'Marma' },
   ] as const
   return (
     <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>
       <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Session Mode</div>
       <div className="text-[12px] text-white/40 mb-3">
         Calibrated — tuned to your chart and today&apos;s sky. Full Body — the complete
-        anatomical ladder, all twelve forks, ground to crown and back.
+        anatomical ladder, all twelve forks, ground to crown and back. Marma — the same
+        twelve at their named Ayurvedic points, heel to crown to sole.
       </div>
       <div className="flex flex-wrap gap-2">
         {OPTIONS.map((o) => (

@@ -1,0 +1,112 @@
+/**
+ * ASTRYX — the guide can REACH the knowledge a user needs.
+ *
+ * Astryx is the in-app user guide. Her knowledge lives in the canon, and the
+ * route hands her only the top-K chunks for each question — so an entry the
+ * retriever never surfaces might as well not exist. This walks the questions a
+ * new user actually types and asserts the RIGHT app-knowledge chunk lands in
+ * the top-K, plus the deterministic action buttons she can hand them.
+ *
+ * Retrieval is pure keyword scoring, so this is fully deterministic and needs
+ * no model. If it goes red, the manifest text stopped matching how people ask.
+ */
+
+import { describe, it, expect } from 'vitest'
+import { retrieve, CANON_CHUNK_COUNT } from '@/lib/astryx/canon'
+import { deriveAstryxActions } from '@/lib/astryx/actions'
+import { answerAstryx } from '@/lib/astryx/sovereignAstryx'
+import { lintForBannedPhrases } from '@/lib/compliance'
+
+const K = 5 // RETRIEVE_K in /api/astryx
+
+/** question → an app-knowledge chunk id that MUST appear in the top-K. */
+const REACH: [string, string][] = [
+  // getting in / access
+  ['How do I subscribe?',                                   'appKnowledge/app-access-trial-subscribe'],
+  ['My trial ended and now I am locked out, what do I do?', 'appKnowledge/app-locked-out'],
+  ['How much does Astryx cost?',                            'appKnowledge/app-tiers'],
+  ['I bought the tuning forks, do I get access?',           'appKnowledge/app-fork-buyer-access'],
+  ['Is my chart deleted when the trial ends?',              'appKnowledge/app-access-trial-subscribe'],
+  // practitioner
+  ['What do I get with the practitioner tier?',             'appKnowledge/app-practitioner-portal'],
+  ['How do I add a client to my roster?',                   'appKnowledge/app-practitioner-portal'],
+  // sessions
+  ['How do I start my first session?',                      'appKnowledge/app-getting-started'],
+  ['What is the difference between the session types?',     'appKnowledge/app-full-body-vs-calibrated'],
+  ['How long is the Full Body Recalibration?',              'appKnowledge/app-full-body-recalibration'],
+  // marma
+  ['What is a marma point?',                                'appKnowledge/app-marma-points'],
+  ['Why would I use a tuning fork on a marma point?',       'appKnowledge/app-marma-why-a-fork'],
+  ['Tell me about the Marma Recalibration session',         'appKnowledge/app-marma-recalibration'],
+  ['Can I place the fork on the pelvic area?',              'appKnowledge/app-marma-safety-rule'],
+  // settings / chamber
+  ['Why does it say simulated tone?',                       'appKnowledge/app-forks-you-own'],
+  ['Where are the settings and what can I change?',         'appKnowledge/app-settings'],
+  ['What is the daily check-in?',                           'appKnowledge/app-daily-checkin'],
+  ['Why does the chakra session use Solfeggio but the forks use Cousto?', 'appKnowledge/app-two-frequency-systems'],
+  ['How many questions can I ask you a day?',               'appKnowledge/app-ask-astryx-allowance'],
+]
+
+describe('guide reachability — the right chunk lands in the top-K', () => {
+  it('has a canon to retrieve from', () => {
+    expect(CANON_CHUNK_COUNT).toBeGreaterThan(700)
+  })
+
+  for (const [q, mustHit] of REACH) {
+    it(`"${q}" → ${mustHit.split('/')[1]}`, () => {
+      const ids = retrieve(q, K).map((c) => c.id)
+      expect(ids, `top-${K} was: ${ids.join(', ')}`).toContain(mustHit)
+    })
+  }
+})
+
+describe('guide — stale facts are gone from the manifest', () => {
+  it('never surfaces the retired Verified tier or the old price', () => {
+    for (const q of ['How much does Astryx cost?', 'What are the tiers?', 'Is there a verified practitioner tier?']) {
+      const blob = retrieve(q, K).map((c) => c.text).join(' ')
+      expect(blob).not.toMatch(/\$59/)
+      expect(blob).not.toMatch(/Verified Practitioner \(/)
+      expect(blob).not.toMatch(/\$9\.95/)
+    }
+  })
+
+  it('no chunk still claims three session modes', () => {
+    const blob = retrieve('session modes', 40).map((c) => c.text).join(' ')
+    expect(blob).not.toMatch(/three session modes/i)
+    expect(blob).not.toMatch(/All three live in the Resonance Chamber/i)
+  })
+})
+
+describe('guide — action buttons', () => {
+  it('a marma question opens the Marma Recalibration door', () => {
+    const a = deriveAstryxActions('how do I run the marma session?', null)
+    expect(a.map((x) => x.sessionHash)).toContain('#session/marma')
+  })
+  it('the existing doors still open', () => {
+    expect(deriveAstryxActions('set up the full body ladder', null)[0]?.sessionHash).toBe('#session/full-body')
+    expect(deriveAstryxActions('chakra solfeggio please', null)[0]?.sessionHash).toBe('#session/chakra-solfeggio')
+    expect(deriveAstryxActions('what should I do today?', null)[0]?.sessionHash).toBe('#session/custom')
+  })
+  it('a plain chart question opens no door', () => {
+    expect(deriveAstryxActions('what is my ascendant?', null)).toEqual([])
+  })
+})
+
+describe('guide — the offline brain handles usage questions', () => {
+  const USAGE = [
+    ['what is a marma point', /marma/i],
+    ['I am locked out how do I subscribe', /\$9\.99|subscribe|sacredtea/i],
+    ['what does the practitioner tier include', /roster|practitioner/i],
+    ['how do I start a session', /Play|Sessions|tile/i],
+    ['why does it say simulated tone', /Sacred Tones You Own|simulated/i],
+    ['how many questions a day', /twenty|20/i],
+  ] as const
+  for (const [q, re] of USAGE) {
+    it(`"${q}" gets a real answer, not the orientation fallback`, () => {
+      const { reply, suggestedConcept } = answerAstryx(q, {})
+      expect(reply).toMatch(re)
+      expect(suggestedConcept?.key).not.toBe('orientation')
+      expect(lintForBannedPhrases(reply.replace(/\bprescriptions?\b/gi, '')), reply).toEqual([])
+    })
+  }
+})

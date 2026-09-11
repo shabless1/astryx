@@ -10,7 +10,7 @@
  *
  * sessionHash values are the app's single routing vocabulary (deep-link shim):
  *   #session/custom · #session/full-body ·
- *   #session/chakra-planetary · #session/chakra-solfeggio
+ *   #session/chakra-planetary · #session/chakra-solfeggio · #session/marma
  */
 
 export interface AstryxAction {
@@ -22,6 +22,9 @@ export interface AstryxAction {
 const CUSTOM = /transit|today|sky|calibrat|recalibrat|session|what should i do|daily/i
 const FULL_BODY = /full.?body|ladder|whole body|head to (toe|feet)|feet to head/i
 const CHAKRA = /chakra|seven centers|root to crown/i
+// Marma — the named Ayurvedic points. 'point(s)' alone is too broad (body
+// point, application point), so it needs the tradition's own words.
+const MARMA = /marma|named points?|ayurved|marmani|shalaka|pressure points?/i
 const SOLFEGGIO = /solfeggio/i
 
 /** The daily lead planet, straight from the engine's computed output. */
@@ -52,6 +55,13 @@ export function deriveAstryxActions(message: string, report: any): AstryxAction[
       label: 'Begin Chakra Recalibration →',
       sessionHash: solf ? '#session/chakra-solfeggio' : '#session/chakra-planetary',
       context: solf ? 'Seven centers · Solfeggio forks' : 'Seven centers · Planetary forks',
+    })
+  }
+  if (MARMA.test(m)) {
+    actions.push({
+      label: 'Begin Marma Recalibration →',
+      sessionHash: '#session/marma',
+      context: 'Twelve forks at their named points · heel to crown to sole',
     })
   }
   // The daily door — transits/today/session asks carry today's engine session.

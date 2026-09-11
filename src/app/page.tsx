@@ -360,6 +360,7 @@ export default function AstryxApp() {
     // v4.4 — the session hash names the MODE (one vocabulary everywhere).
     const sessionHash = sessionMode === 'full_body' ? 'session/full-body'
       : sessionMode === 'chakra' ? `session/chakra-${useAppStore.getState().chakraInstrument}`
+      : sessionMode === 'marma' ? 'session/marma'
       : 'session/custom'
     const HASH_FOR_SCREEN: Partial<Record<AppScreen, string>> = {
       dashboard: 'dashboard',
@@ -581,11 +582,12 @@ export default function AstryxApp() {
 
   // v4.4 — ONE routing vocabulary for tiles, deep links, and Astryx's action
   // buttons: #session/custom · #session/full-body · #session/chakra-planetary
-  // · #session/chakra-solfeggio. The 'custom' door routes through the Daily
+  // · #session/chakra-solfeggio · #session/marma. The 'custom' door routes through the Daily
   // Check-In when today's calibration hasn't run — never skips the pipeline.
   const handleSessionAction = (hash: string) => {
     const key = hash.replace(/^#?session\//, '')
     if (key === 'full-body') { beginSession('full_body'); return }
+    if (key === 'marma') { beginSession('marma'); return }
     if (key === 'chakra-planetary' || key === 'chakra-solfeggio') {
       useAppStore.getState().setChakraInstrument(key === 'chakra-solfeggio' ? 'solfeggio' : 'planetary')
       beginSession('chakra')
@@ -622,9 +624,14 @@ export default function AstryxApp() {
       handleStartSession()
       return
     }
+    if (m === 'marma') {    // 2026-09-10 — the named-point ladder, chart-independent
+      setChamberDurationKey('MARMA')
+      handleStartSession()
+      return
+    }
     // Calibrated — never run the corrective flow on a canonical container.
     const key = useAppStore.getState().chamberDurationKey
-    if (key === 'FULL_BODY' || key === 'CHAKRA') {
+    if (key === 'FULL_BODY' || key === 'CHAKRA' || key === 'MARMA') {
       setChamberDurationKey('15_PERSONAL')
     }
     if (!useAppStore.getState().protocol) { setScreen('intake'); return }

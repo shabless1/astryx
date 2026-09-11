@@ -98,7 +98,11 @@ function ingestFile(absPath, base) {
   if (Array.isArray(data.entries)) {
     for (const e of data.entries) {
       if (!e?.text) continue
-      chunks.push({ id: `${base}/${e.id}`, topic: e.topic ?? 'app', system: 'app', text: clamp(e.text, 1600), source })
+      // 2026-09-10 — honour a per-entry `system` tag. Tag match is the strongest
+      // retrieval signal (+6); without it the guide's explanatory entries lost
+      // to dense data records (12 fork mappings all shouting 'marma') on the
+      // very questions a new user asks. Default stays 'app'.
+      chunks.push({ id: `${base}/${e.id}`, topic: e.topic ?? 'app', system: e.system ?? 'app', text: clamp(e.text, 1600), source })
     }
     return
   }

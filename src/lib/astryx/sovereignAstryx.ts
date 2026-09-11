@@ -114,8 +114,36 @@ export function answerAstryx(message: string, ctx: AstryxContext = {}): AstryxAn
   let reply: string
   let concept: string | undefined
 
+  // 1b) USING THE APP (2026-09-10) — the guide answers usage questions offline
+  // too. Ordered most-specific first so "marma session" lands on marma, not on
+  // the generic session branch.
+  if (has(q, 'marma', 'marmani', 'named point', 'ayurved', 'shalaka')) {
+    reply = `Marma is the named point inside the body zone — Ayurveda's map of places where nerve, vessel, muscle, bone and joint meet. Astryx carries twenty-seven of them, each chosen because it sits on a fork's own application point or a chakra center. Every fork has its primary point (the Sun at Surya above the navel, Saturn at Janu on the kneecap, Mercury at Krikatika at the top of the neck) and every point shows how the fork may meet it: a gold badge means the weighted stem may rest there, cyan means light contact or the fork held in the field, magenta means never touched — a six-inch field sweep only. The Marma Recalibration walks all twelve from the heel to the crown and closes at the sole; start it from the Sessions tiles on your Dashboard or the session picker.`
+    concept = 'marma'
+  }
+  else if (has(q, 'locked', 'lock out', 'locked out', 'subscribe', 'subscription', 'trial', 'paywall', 'expired', 'gate', 'how much', 'price', 'cost', 'pay', 'renew', 'cancel')) {
+    reply = `Your account begins with thirty days free, no card. When they are complete the app shows the subscribe gate — nothing of yours is removed; your chart, readings and history wait exactly where you left them. Subscribing at sacredtea.net restores you the moment the order goes through: $9.99 a month or $99 a year for Individual, $39.95 a month for Practitioner. Use the same email you sign in with, because access is matched to your checkout email. If you already subscribed and still see the gate, sign in with the email you used at checkout, or write to info@sacredtea.net. Bought the Sacred Tones forks? That purchase grants access under the same email.`
+    concept = 'access'
+  }
+  else if (has(q, 'practitioner', 'client roster', 'my clients', 'session mode', 'pdf', 'export', 'clinical')) {
+    reply = `The Practitioner tier ($39.95 a month) turns Astryx toward the people who sit in your chair: a client roster, running any session on a client's chart, Sacred Tones Session Mode showing which fork goes where for that chart today with the named marma and its safety class, session notes with a vagal-tone rating, the practitioner PDF with your name and modality on the footer, the sixty-minute container, clinical terminology, and unmetered Ask Astryx. Subscribe to Practitioner Access at sacredtea.net with your sign-in email and the surface opens on your next sign-in. It is self-attested — Astryx is a builder of tools, not a credentialing body.`
+    concept = 'practitioner'
+  }
+  else if (has(q, 'how do i start', 'start a session', 'begin a session', 'which session', 'what session', 'session types', 'kinds of session', 'full body', 'full-body', 'chakra recal', 'full spectrum', 'full-spectrum', 'how long')) {
+    reply = `Six session types live in the Resonance Chamber. Calibrated is tuned to your chart and today's sky — fifteen or thirty minutes, sixty for practitioners. The other five are the same map for every body and need no reading: Full-Spectrum (all ten planetary forks feet to head, about twenty-eight minutes), Full Body (the twelve-fork ladder up and back, about thirty-five), Chakra (seven centers crown to root and back, Solfeggio or Planetary forks, about twenty-seven), and Marma (the twelve forks at their named Ayurvedic points, heel to crown to sole, about thirty). Tap a tile under Sessions on your Dashboard, then press Play in the Chamber Music player — nothing begins until you do. Every phase card names the fork, the frequency, where to hold it and for how long.`
+    concept = 'sessions'
+  }
+  else if (has(q, 'settings', 'simulated', 'forks i own', 'forks you own', 'own the forks', 'motion', 'body map type')) {
+    reply = `Settings holds: Motion (how much the cosmos moves behind you); Chamber Music (Default lets Astryx pick each fork's song, Customize remembers your choice per planet); Session Mode (Ask each time, or a default of Calibrated, Full Body, Chakra or Marma); Sacred Tones You Own (tap the forks you physically hold and the chamber stops calling those tones simulated); the Body Map silhouette; the User Guide; and your Terms and Consent. Practitioners also see a Mode toggle between the full pattern and personal guidance.`
+    concept = 'settings'
+  }
+  else if (has(q, 'daily allowance', 'how many questions', 'limit', 'allowance', 'questions a day', 'questions per day')) {
+    reply = `On the Individual tier I answer twenty questions a day, refreshing tomorrow — your reading, protocol and every session stay fully open when the allowance is spent; only the chat pauses. The Practitioner tier lifts the limit. I explain your existing reading; I never recompute or change it, I make no clinical call about your body, and I keep every statement probabilistic. Anything about a symptom, a medication or a health decision belongs with your licensed practitioner.`
+    concept = 'allowance'
+  }
+
   // 2) Continuity — pick up the thread.
-  if (has(q, 'last time', 'where did we', 'pick up', 'continue', 'recap', 'left off')) {
+  else if (has(q, 'last time', 'where did we', 'pick up', 'continue', 'recap', 'left off')) {
     const last = sessionLog?.[0]
     if (last?.planetaryCarrier) {
       const felt = last.postSessionState?.feeling?.join(', ')

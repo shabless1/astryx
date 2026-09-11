@@ -40,8 +40,9 @@ export interface InterruptedSession {
   mode?: SessionMode
 }
 
-// v4.3 / v4.3.1 — the three first-class session modes.
-export type SessionMode = 'calibrated' | 'full_body' | 'chakra'
+// v4.3 / v4.3.1 — the first-class session modes. 2026-09-10: + marma (the
+// twelve forks at their named Ayurvedic points, heel → crown → sole).
+export type SessionMode = 'calibrated' | 'full_body' | 'chakra' | 'marma'
 // v4.3.1 — the Chakra Recalibration's instrument set.
 export type ChakraInstrument = 'solfeggio' | 'planetary'
 

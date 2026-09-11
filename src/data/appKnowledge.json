@@ -4,7 +4,8 @@
     "subtitle": "How the app works, in Astryx's own reference voice",
     "lineage": "Astryx product canon (distilled from the user guide, capabilities manifest, and live app behavior)",
     "schemaVersion": "1.0",
-    "lastUpdated": "2026-07-03"
+    "lastUpdated": "2026-09-10",
+    "changelog": "2026-09-10 — marma layer + Marma Recalibration; practitioner tier in the money path; Verified tier cut; live price $9.99; paywall, trial and fork-buyer access; getting started, settings, daily check-in, two frequency systems; session count corrected from three to six."
   },
   "entries": [
     {
@@ -45,7 +46,8 @@
     {
       "id": "app-full-spectrum",
       "topic": "app",
-      "text": "Full-Spectrum Recalibration is a fourth session type: a whole-body attunement (not a correction). It opens with breathwork (Earth Day underneath), then sounds all ten planetary forks from the feet upward — Neptune at the feet, then Uranus, Saturn, Jupiter, Pluto, Venus, Mercury, Sun, Moon, and Mars at the head — each at its natural, balanced tone, then closes with breathwork (Earth Year underneath). It does not target today's signal; it tones the whole field evenly."
+      "text": "Full-Spectrum Recalibration is a fourth session type: a whole-body attunement (not a correction). It opens with breathwork (Earth Day underneath), then sounds all ten planetary forks from the feet upward — Neptune at the feet, then Uranus, Saturn, Jupiter, Pluto, Venus, Mercury, Sun, Moon, and Mars at the head — each at its natural, balanced tone, then closes with breathwork (Earth Year underneath). It does not target today's signal; it tones the whole field evenly.",
+      "system": "sessions"
     },
     {
       "id": "app-five-senses",
@@ -55,7 +57,7 @@
     {
       "id": "app-body-map",
       "topic": "app",
-      "text": "The Body Map shows where to hold each fork. Astryx renders two glowing orbs per fork: a TRADITIONAL placement (the planet's rulership home — the classical zodiacal-man body region) and a NATAL placement (where that planet actually sits in your chart, by its natal sign). When a planet is in its own ruling sign the two merge into one orb. Pelvic and reproductive placements always sit on the womb/sacral field — never the genitals — and intimate placements use an off-body sweep with no contact."
+      "text": "The Body Map shows where to hold each fork. Astryx renders two glowing orbs per fork: a TRADITIONAL placement (the planet's rulership home — the classical zodiacal-man body region) and a NATAL placement (where that planet actually sits in your chart, by its natal sign). When a planet is in its own ruling sign the two merge into one orb. A small diamond marker names the marma — the exact Ayurvedic point inside that zone — and its color is the safety class, not the planet: gold means the weighted stem may rest on the point, cyan means light contact or the fork held in the field, magenta means never touched, a six-inch field sweep only. Pelvic and reproductive placements always sit on the womb/sacral field, never the genitals, and the whole reproductive and pelvic-floor zone is a six-inch field sweep for every fork, every chart, and every person."
     },
     {
       "id": "app-body-tones",
@@ -75,7 +77,8 @@
     {
       "id": "app-tiers",
       "topic": "app",
-      "text": "Three access tiers. Individual ($9.95/mo): plain-language diagnostics, prescriptions, transit weather, the daily home, and a metered daily allowance of Ask Astryx questions. Practitioner ($39.95/mo, self-attested): clinical terminology, classical citations, a client roster, session notes, PDF export, and unmetered Ask Astryx. Verified Practitioner ($59/mo): a verified badge, credential auto-fill, and insurance-grade SOAP. A legacy XRP payment (5 XRP) unlocks a year of equivalent access."
+      "text": "Two access tiers, and payments happen only through the sacredtea.net shop — never inside the app. Individual, $9.99 a month or $99 a year: the full daily practice — your reading, your six-sense protocol, every session type including Marma, the daily home and check-in, transit weather, the body map, and a metered allowance of 20 Ask Astryx questions a day. Practitioner, $39.95 a month: everything in Individual plus the client roster, running any session on a client's chart, Sacred Tones Session Mode, session notes with a vagal-tone rating, the practitioner PDF with your name and modality on the footer, the sixty-minute container, clinical terminology, the deeper marma detail (doshic subtypes, vitality class, contraindications), and unmetered Ask Astryx. There is no Verified tier and no credential check — Astryx is a builder of systems and tools, not a board or an association; practitioner access is self-attested. The tier is decided by what you bought, resolved on the server from your checkout email, never by a setting in the app.",
+      "system": "access tiers price"
     },
     {
       "id": "app-transit-weather",
@@ -90,12 +93,13 @@
     {
       "id": "app-sacred-tones",
       "topic": "app",
-      "text": "Sacred Tones are real physical tuning forks tuned to the Cousto cosmic-octave frequencies. The chamber's on-screen tones mirror them; with the physical forks a practitioner applies the named fork to the mapped body point for a client's chart. The fork-to-body-point intelligence is the Practitioner Portal's crown feature."
+      "text": "Sacred Tones are real physical tuning forks tuned to the Cousto cosmic-octave frequencies — twelve forks: Earth Day, Full Moon, Sun, Earth Year, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto. The chamber's on-screen tones mirror them; with the physical forks in hand you apply the named fork to the mapped body point — and now to the named marma inside that zone. Two sets exist: the aluminum field set (held four to six inches off the body, by the ear, or swept over a point) and the weighted steel set (struck, then the stem rested on the point). Tell Astryx which set you own in Settings under Sacred Tones You Own and the chamber keys its instructions to it. The forks are sold at sacredtea.net; the app is the intelligence that tells you which fork, where, today."
     },
     {
       "id": "app-full-body-recalibration",
       "topic": "app",
-      "text": "The Full Body Recalibration is one of the chamber's three session modes — the complete anatomical ladder, all twelve forks, ground to crown and back. It opens with an Earth ground, climbs the zodiacal body feet to head, pauses for three slow breaths at the crown turn, then sweeps back down the same ladder to an Earth ground close. Every rung sounds its planet's natural tone — an attunement of the whole map, not a correction of one signal. It is the same sequence for every body and needs no reading."
+      "text": "The Full Body Recalibration is one of the chamber's six session types — the complete anatomical ladder, all twelve forks, ground to crown and back, about thirty-five minutes. It opens with an Earth ground, climbs the zodiacal body feet to head, pauses for three slow breaths at the crown turn, then sweeps back down the same ladder to an Earth ground close. Every rung sounds its planet's natural tone — an attunement of the whole map, not a correction of one signal. It is the same sequence for every body and needs no reading.",
+      "system": "sessions"
     },
     {
       "id": "app-full-body-ladder-order",
@@ -105,17 +109,19 @@
     {
       "id": "app-full-body-vs-calibrated",
       "topic": "app",
-      "text": "Choosing between the session modes: a Calibrated Session is tuned to your chart and today's sky — the composition engine selects the forks your reading calls for, honoring the never-amplify rule. The Full Body Recalibration is the complete twelve-fork anatomical ladder, the same map for everyone. The Chakra Recalibration works the seven centers, root to crown and back, with your choice of Solfeggio or Planetary forks. The whole-body and chakra modes suit full-coverage days or a weekly reset — and need no reading; the Calibrated Session is the targeted daily work. All three live in the Resonance Chamber and close on the Earth ground."
+      "text": "Choosing a session. The Calibrated Session is the targeted daily work — tuned to your chart and today's sky, the composition engine selects the forks your reading calls for, honoring the never-amplify rule; it comes in fifteen and thirty minute lengths, and a sixty-minute practitioner container. The other five are canonical — the same map for every body, no reading needed: Full-Spectrum (all ten planetary forks feet to head, about twenty-eight minutes), Full Body (the twelve-fork ladder up and back, about thirty-five), Chakra (the seven centers crown to root and back, Solfeggio or Planetary forks, about twenty-seven), and Marma (the twelve forks at their named Ayurvedic points, heel to crown, closing at the sole, about thirty). Use Calibrated for today's specific signal; use a canonical session for a full-coverage day or a weekly reset. All six live in the Resonance Chamber and close on an Earth ground.",
+      "system": "sessions"
     },
     {
       "id": "app-chakra-recalibration",
       "topic": "app",
-      "text": "The Chakra Recalibration is a seven-center chamber session: Opening Ground, then Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown ascending, three slow breaths at the crown, the same centers swept back down, and an Earth ground close. At the start you choose your instrument set — Solfeggio forks (Root 396 Hz, Sacral 417, Solar Plexus 528, Heart 639, Throat 741, Third Eye 852, Crown 963) or Planetary forks (Root · Earth Day, Sacral · Full Moon, Solar Plexus · Sun, Heart · Venus, Throat · Mercury, Third Eye · Neptune, Crown · Jupiter). The chamber carries any tone you do not hold in hand, so no center is ever skipped. Both sets run the same deterministic sequence."
+      "text": "The Chakra Recalibration is a seven-center chamber session: Opening Ground, then Root, Sacral, Solar Plexus, Heart, Throat, Third Eye, and Crown ascending, three slow breaths at the crown, the same centers swept back down, and an Earth ground close. At the start you choose your instrument set — Solfeggio forks (Root 396 Hz, Sacral 417, Solar Plexus 528, Heart 639, Throat 741, Third Eye 852, Crown 963) or Planetary forks (Root · Earth Day, Sacral · Full Moon, Solar Plexus · Sun, Heart · Venus, Throat · Mercury, Third Eye · Neptune, Crown · Jupiter). The chamber carries any tone you do not hold in hand, so no center is ever skipped. Both sets run the same deterministic sequence.",
+      "system": "sessions chakra"
     },
     {
       "id": "app-astryx-sets-up-chamber",
       "topic": "app",
-      "text": "Astryx can set the chamber up for you. When you ask about today's transits, a session, the Full Body ladder, or the chakras, a button appears under her reply that carries the session directly — today's calibration already tuned by the engine, the Full Body ladder, or the Chakra Recalibration with your instrument set. Tapping it closes the chat and opens the chamber configured and ready. Astryx never computes or changes the session itself — the engine's deterministic output decides every fork; she only opens the door. If today's check-in hasn't happened yet, the button routes through the Daily Check-In first so the calibration is never skipped. The same tiles live on the Dashboard under Sessions."
+      "text": "Astryx can set the chamber up for you. When you ask about today's transits, a session, the Full Body ladder, the chakras, or the marma points, a button appears under her reply that carries the session directly — today's calibration already tuned by the engine, the Full Body ladder, the Chakra Recalibration with your instrument set, or the Marma Recalibration. Tapping it closes the chat and opens the chamber configured and ready. Astryx never computes or changes the session itself — the engine's deterministic output decides every fork; she only opens the door. If today's check-in hasn't happened yet, the button routes through the Daily Check-In first so the calibration is never skipped. The same tiles live on the Dashboard under Sessions."
     },
     {
       "id": "app-clairs-receptive-side",
@@ -136,6 +142,90 @@
       "id": "app-voice-metaphysical",
       "topic": "app",
       "text": "Astryx is a metaphysical app. Its language holds the metaphysical, the esoteric, the scientific, and the mathematical at once: Cousto's orbital arithmetic next to the Hermetic principle of correspondence, as above so below. Saturn gives the structure (the invariants, determinism, versioning) and Uranus is free to express the eccentric, genius, metaphysical side inside it. The only hard limits are the law and false claims: Astryx does not diagnose, treat, cure, or prescribe, and all assessment language stays probabilistic (may suggest, may correlate with, is traditionally associated with). Expansion is not the same as false claims."
+    },
+    {
+      "id": "app-marma-points",
+      "topic": "app",
+      "text": "Marma is the named point inside the body zone. Ayurveda maps 117 points where nerve, vessel, muscle, bone and joint meet in one place; Astryx carries 27 of them, drawn from Lad and Durve, chosen because each one sits on a fork's own bone application point or on a chakra center. The fork table tells you the zone — the marma tells you the doorway. Every one of the twelve forks carries a primary marma, a secondary, and either a chakra doorway or a dosha counterweight: Earth Day at Parshni (the heel), Full Moon at Kati (the sacrum), Sun at Surya (above the navel — the point's full name is Surya Mandala, the sun-vortex), Earth Year at Jatru (the upper breastbone), Mercury at Krikatika (the top of the neck), Venus at Sthapani (the forehead), Mars at Sakthi Urvi (the mid-thigh), Jupiter at Yakrut (the right rib margin), Saturn at Janu (the kneecap), Uranus at Urdhva Skandha (the top of the shoulder), Neptune at Shankha (the temple), Pluto at Kati and Trik (sacrum and tailbone, field only). The seven chakra doorways: Crown Adhipati, Third Eye Sthapani, Throat Kantha, Heart Hridayam, Solar Plexus Surya, Sacral Kati (the sacrum, not the navel), Root Trik. Placement is not one rigid system — every mapping ships as the considered default with named alternates, and a practitioner may take any of them; only the safety layer is fixed. Each point shows its name and plain location for everyone; practitioners also see the classical location, doshic subtypes, element, vitality class and contraindications.",
+      "system": "marma"
+    },
+    {
+      "id": "app-marma-why-a-fork",
+      "topic": "app",
+      "text": "Why a tuning fork belongs in marma work: the tradition lists ten ways to stimulate a marma. Two of them are pidana — deep dry pressure through a small blunt metal rod called a shalaka — and shabda, the healing sound recited into the point while it is worked. A weighted metal fork stem is both at once. You strike it, it sings, you set the stem on the point. This is not sound healing added onto marma therapy; it is two of marma therapy's own methods arriving in one instrument. The fork is a shalaka that sings. The tradition asks for one to two minutes of steady contact per point, which is already the shape of a fork hold. Direction of work follows your signal state: an amplified signal is worked counterclockwise from the field with the regulator's fork, never the loud planet's own — never-amplify holds here as everywhere; an under-supported signal is worked clockwise with the planet's own fork, stem on the point; a compressed signal is worked in a line from one point to the next, then closed at the sole; a steady signal is a short still hold.",
+      "system": "marma"
+    },
+    {
+      "id": "app-marma-recalibration",
+      "topic": "app",
+      "text": "The Marma Recalibration is a chamber session — the twelve forks worked at their named Ayurvedic points rather than their body zones, about thirty minutes, the same map for every body, no reading needed. It opens at Parshni, the heel, because the tradition reaches the pelvic field from there without ever approaching it. Then eleven named stations climb the body from low to high: Janu at the knee (Saturn), Sakthi Urvi at the thigh (Mars), Kati at the sacrum (Pluto from six inches, then Full Moon), Surya above the navel (Sun), Yakrut at the right ribs (Jupiter), Jatru at the breastbone (Earth Year), Urdhva Skandha at the shoulder (Uranus), Krikatika at the neck (Mercury), Sthapani at the brow (Venus), Shankha at the temple (Neptune). A pause of three slow breaths at Adhipati, the crown, nothing struck. It closes at Pada Madhya, the sole, with the Earth Day fork — crown and sole together, the navel the pole between them, because deep work closes at the floor. Start it from the Sessions tiles on the Dashboard, the session picker, or ask Astryx and tap the button.",
+      "system": "marma sessions"
+    },
+    {
+      "id": "app-marma-safety-rule",
+      "topic": "app",
+      "text": "Can I place a fork on the pelvic area? No — and this is the rule that never moves. The whole reproductive and pelvic-floor zone, the lower pelvic area and the genital region, is a six-inch field sweep — for every fork, every chart and every person. Not Pluto only. Astryx never instructs anyone to place a fork or make contact there; the fork is held six inches above the area and swept, and the rule sits underneath the fork logic so nothing can route around it. The genital and perineal points of the classical marma set are left out of Astryx entirely. Separately, the points the tradition marks as most consequential — the Eight Great marma points such as Hridayam over the heart, Nabhi at the navel, Kantha at the throat, Shankha at the temple — are held in the field rather than pressed. Every marma point in the app renders its own safety note and contraindications; read it before you place anything. In pregnancy the field zone widens upward over the abdomen and the sacrum. How a fork may meet a point only ever tightens: weighted becomes field, field becomes never-touched, and nothing goes the other way.",
+      "system": "marma"
+    },
+    {
+      "id": "app-access-trial-subscribe",
+      "topic": "app",
+      "text": "How access works. Create your account and you receive thirty days free, no card required, from the day you sign up. When the thirty days are complete the door closes and the app shows the subscribe gate. Nothing is deleted — your natal chart, your readings, your session history and your energy trend all stay exactly where you left them. Subscribing restores you the moment the order goes through, landing you back where you were. To subscribe, follow the gate's button to the sacredtea.net product page and choose monthly ($9.99) or yearly ($99); use the SAME email you sign in with, because access is matched to your checkout email automatically. Three days before the end, and again when it closes, Astryx sends a short email. There is no auto-charge and no card on file inside the app — you decide, deliberately.",
+      "system": "access subscribe trial"
+    },
+    {
+      "id": "app-locked-out",
+      "topic": "app",
+      "text": "If the app shows the subscribe gate or says your thirty days are complete, your free trial has ended and no subscription is matched to your sign-in email yet. Nothing of yours has been removed. Tap the gate's button to subscribe at sacredtea.net with the same email you use here, then tap 'I've subscribed' and the app re-checks and unlocks. If you already subscribed and are still locked, the most common cause is a different email at checkout than the one you sign in with — sign in with the checkout email, or write to info@sacredtea.net. If you bought Sacred Tones forks, see how fork purchases grant access.",
+      "system": "access locked subscribe"
+    },
+    {
+      "id": "app-fork-buyer-access",
+      "topic": "app",
+      "text": "Bought the forks? Sacred Tones purchases grant Astryx access, matched to your checkout email — create your account with that same address and the access is already waiting. The founding buyers of the original stainless steel and aluminum sets hold lifetime access to the Individual tier, free and clear, as the guests of honor. Buyers in the fortnight before the paywall opened hold a ninety-day promo window at full access, then step down to the Individual tier unless they subscribe. Fork buyers from the paywall date onward receive the standard thirty-day trial from signup. If you hold a fork grant and the app still shows the gate, the email you signed in with is not the one you checked out with — sign in with the checkout email or write to info@sacredtea.net.",
+      "system": "access forks purchase"
+    },
+    {
+      "id": "app-ask-astryx-allowance",
+      "topic": "app",
+      "text": "Ask Astryx has a daily allowance on the Individual tier: twenty questions a day, refreshing tomorrow. Your reading, your protocol and every session stay fully available when the allowance is spent — only the chat pauses. The Practitioner tier removes the limit. Astryx also has a short burst limit so very rapid messages are asked to slow down for a few seconds. She explains your existing reading; she never recomputes or changes it, never diagnoses, and keeps every statement probabilistic. If you ask something outside the practice — a symptom, a medication, a health decision — she will hand you to your licensed practitioner and return to what your chart shows.",
+      "system": "allowance questions limit"
+    },
+    {
+      "id": "app-practitioner-portal",
+      "topic": "app",
+      "text": "The Practitioner tier ($39.95 a month) turns Astryx outward, toward the people who sit in your chair. Your client roster: add a client's birth data once and their blueprint is there every time they return; run any session on their chart rather than your own. Sacred Tones Session Mode: during a live session the app shows which fork goes where for this chart on this day — fork, frequency, nerve plexus, bone application point, the named marma with its application class and safety note, and the autonomic reasoning behind each one. Session notes: rate the response on the vagal-tone scale of one to five and write what you saw, kept against that client's record. The practitioner PDF: the pattern, the six-sense protocol, the fork sequence with every application point and safety note, and your name and modality on the footer. The sixty-minute container. Clinical terminology, the deeper marma detail, and unmetered Ask Astryx. Today the roster is kept in your browser on this device. To enter, subscribe to Practitioner Access at sacredtea.net with the email you sign in with; the tier is resolved on the server and the practitioner surface opens on your next sign-in. The Mode toggle in Settings is a display preference for people who already hold the tier, not a way to acquire it. Practitioner access is self-attested — Astryx is not a credentialing body.",
+      "system": "practitioner roster"
+    },
+    {
+      "id": "app-getting-started",
+      "topic": "app",
+      "text": "Your first session, start to finish. One: create your account and accept the Terms and Consent. Two: Intake — your name, birth date, birth time (or tap 'I don't know my birth time' for Solar Chart mode), birth city, and, if you like, how you feel today and an intention. Three: a brief Analysis while the engine computes. Four: Today's Reading — one card naming your signal, its carrier planet, and today's fork sequence; tap it open for the six-sense protocol and the chart tabs. Five: the Dashboard — your daily home. Under Sessions tap Today's Calibration, or pick Full Body, Chakra, or Marma. Six: in the Resonance Chamber, press Play in the Chamber Music player — nothing starts until you do — then follow the phase cards: each names the fork, the frequency, where to hold it, and for how long. Seven: after the session, the Post-Session summary asks how you feel and records the shift. Come back tomorrow: the Daily Check-In recomputes the sky against your chart and sets a fresh calibration.",
+      "system": "sessions start"
+    },
+    {
+      "id": "app-settings",
+      "topic": "app",
+      "text": "Settings — where you change how Astryx behaves. Open Settings from the gear on the Dashboard. In Settings you can change, in order: Mode — shown only to practitioners: Practitioner (the full pattern) or User (personal guidance). Motion — how much the cosmos moves behind you: Low, Medium, High. Chamber Music — Default lets Astryx pick each fork's song deterministically; Customize lets you choose a variant per planet and state and remembers it. Session Mode — Ask each time shows the session picker; or set a default of Calibrated, Full Body, Chakra, or Marma to start directly. Sacred Tones You Own — tap the forks you physically hold, and the chamber stops labeling those tones 'simulated'. Body Map — the silhouette the placements are drawn on. Help — the User Guide, quick start and the full manual. Terms and Consent — review what you accepted. Every setting changes only how the app is shown to you; none of them change your reading.",
+      "system": "settings"
+    },
+    {
+      "id": "app-forks-you-own",
+      "topic": "app",
+      "text": "The 'simulated tone' note: in the chamber, the app plays each fork's tone for you. If you don't own that physical fork, the phase card says the tone is simulated and names the frequency the real fork rings at. Tap the forks you own in Settings under Sacred Tones You Own and that note disappears for them. Two sets are made: the aluminum field set and the weighted steel set; choose yours on the phase card and the application instructions key to it — the field set is held four to six inches off the body or by the ear and is not built for deep pressure; the weighted set is struck and its stem rested on the point.",
+      "system": "settings simulated forks"
+    },
+    {
+      "id": "app-daily-checkin",
+      "topic": "app",
+      "text": "The Daily Check-In is how each day begins. It asks how you feel and re-reads today's sky against your natal chart — the transiting planets, the aspects they make to your natal placements, today's temperature (cool, warm, hot), the headline transit, and the fork of the day. From it the engine sets today's calibration. Same chart, same sky, same session, every time — deterministic. If you start a session before checking in, the app routes you through the check-in first so a calibration is never skipped. Yesterday's reading is kept in History.",
+      "system": "checkin daily"
+    },
+    {
+      "id": "app-two-frequency-systems",
+      "topic": "app",
+      "text": "Astryx keeps two frequency systems deliberately separate. The PLANETARY protocol — the twelve forks, the chamber audio, the planetary anchors — uses Hans Cousto's cosmic octave: each planet's orbital period doubled up into the audible range, so the Sun fork is 126.22 Hz, Earth Year (the Om) 136.10, Full Moon 210.42, Mercury 141.27, Venus 221.23, Mars 144.72, Jupiter 183.58, Saturn 147.85, Uranus 207.36, Neptune 211.44, Pluto 140.25, Earth Day 194.18. The CHAKRA layer uses the Solfeggio tones: Root 396, Sacral 417, Solar Plexus 528, Heart 639, Throat 741, Third Eye 852, Crown 963. The Chakra Recalibration lets you choose either instrument; the planetary protocol never uses Solfeggio. The 172.06 Hz Platonic Year is an ambient integration tone in the music, not a fork.",
+      "system": "frequency solfeggio cousto"
     }
   ]
 }

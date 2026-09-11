@@ -99,6 +99,13 @@ export default function SessionModePicker({
             accent: '#4CAF89',
             onClick: () => onPick('full_body', remember),
           })}
+          {card({
+            title: 'Marma Recalibration',
+            blurb: 'The same twelve forks, worked at their named Ayurvedic points — opens at the heel, climbs to the crown, closes at the sole. The same map for every body; no reading required.',
+            footnote: 'Every point shows how the fork may meet it. The pelvic field is a six-inch sweep, always.',
+            accent: '#FF6FA8',
+            onClick: () => onPick('marma', remember),
+          })}
           <ChakraCard remember={remember} onPick={onPick} />
         </div>
 
