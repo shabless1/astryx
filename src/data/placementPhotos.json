@@ -1,0 +1,14 @@
+{
+  "_comment": "Marma point id -> a photograph of that placement, shot from the practitioner's or the user's own point of view. SHA, 2026-09-11. A point with no entry falls back to the body map; the panel must never show a wrong picture rather than none. Wave 2 adds hands, arm, upper back, sacrum and the pelvic field sweep.",
+  "_rules": "Every contact photo shows the stem touching. Every field photo shows an unmistakable gap. The light follows the spectrum by height: violet at crown and brow, cyan at throat and shoulder, rose-gold at the heart, amber and gold from the solar plexus down.",
+  "photos": {
+    "adhipati":       { "file": "adhipati.jpg",       "alt": "A woman in a candlelit mirror rests the stem of a tuning fork on the crown of her own head, violet rings spreading from the contact." },
+    "sthapani":       { "file": "sthapani.jpg",       "alt": "A man in a candlelit mirror rests the stem of a tuning fork between his own brows, violet rings spreading across the forehead." },
+    "kantha":         { "file": "kantha.jpg",         "alt": "A woman in a candlelit mirror holds a tuning fork a clear hand's width in front of her own throat, not touching, a cyan field bridging the gap." },
+    "urdhva_skandha": { "file": "urdhva_skandha.jpg", "alt": "A man reaches across and presses the stem of a weighted tuning fork onto the ridge of his own shoulder, cyan rings sinking into the muscle." },
+    "hridayam":       { "file": "hridayam.jpg",       "alt": "A woman holds a tuning fork a clear distance in front of the centre of her own breastbone, not touching, a rose-gold field between metal and chest." },
+    "surya":          { "file": "surya.jpg",          "alt": "A woman rests the stem of a tuning fork just below her own ribs at the centre, amber rings radiating outward." },
+    "janu_anterior":  { "file": "janu_anterior.jpg",  "alt": "Looking down at her own legs, a woman rests the stem of a tuning fork on the front of her own knee, gold light branching up the thigh and down the shin." },
+    "parshni":        { "file": "parshni.jpg",        "alt": "Seated with one ankle across the opposite knee, a man presses the stem of a tuning fork to the back of his own heel, gold light climbing the calf." }
+  }
+}

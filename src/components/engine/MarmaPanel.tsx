@@ -18,7 +18,21 @@
  */
 
 import { hexToRgba } from '@/lib/utils'
+import placementPhotos from '@/data/placementPhotos.json'
 import type { MarmaLayer, MarmaPlacement, MarmaApplication } from '@/lib/MarmaEngine'
+
+/**
+ * SHA, 2026-09-11 — a placement is SHOWN, not described.
+ *
+ * The chamber used to teach a placement with a wireframe silhouette while the
+ * marketing page taught it with a photograph, so a person who subscribed because
+ * of the photographs arrived and got a diagram. These are the photographs.
+ *
+ * Wave one covers eight points. A point with no photograph renders none — the
+ * body map above still shows where on the body it sits. Never substitute a
+ * different point's picture; a wrong placement is worse than no placement.
+ */
+const PHOTOS = (placementPhotos as { photos: Record<string, { file: string; alt: string }> }).photos
 
 const APP_STYLE: Record<MarmaApplication, { label: string; color: string; bg: string; border: string }> = {
   weighted: { label: 'WEIGHTED · STEM ON THE POINT', color: '#FDE047', bg: 'rgba(253,224,71,0.10)', border: 'rgba(253,224,71,0.38)' },
@@ -54,6 +68,27 @@ function MarmaCard({
         border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.28)' : 'rgba(255,255,255,0.09)'}`,
       }}
     >
+      {PHOTOS[point.id] && (
+        <figure className="relative mb-2.5 -mx-1 rounded-lg overflow-hidden"
+                style={{ border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.35)' : 'rgba(255,255,255,0.12)'}` }}>
+          <img
+            src={`/images/placements/${PHOTOS[point.id].file}`}
+            alt={PHOTOS[point.id].alt}
+            loading="lazy"
+            className="block w-full"
+            style={{ aspectRatio: '3 / 2', objectFit: 'cover' }}
+          />
+          {/* The badge repeats ON the photograph, because the picture is what
+              gets copied — contact or field has to read without the caption. */}
+          <figcaption
+            className="absolute left-2 bottom-2 px-2 py-[3px] rounded-full text-[8.5px] font-bold tracking-[0.14em]"
+            style={{ background: app.bg, color: app.color, border: `1px solid ${app.border}`, backdropFilter: 'blur(6px)' }}
+          >
+            {app.label}
+          </figcaption>
+        </figure>
+      )}
+
       <div className="flex items-baseline gap-2 flex-wrap mb-1">
         <span className="text-[8.5px] tracking-[0.2em] text-white/40">{ROLE_LABEL[point.role] ?? 'POINT'}</span>
         <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>{point.sanskrit}</span>
