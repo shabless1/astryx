@@ -52,6 +52,21 @@ const PROMO_90D = [
  */
 const OWNER = { id: 'ent_owner_shablyss', email: 'shabless1@gmail.com', tier: 'practitioner' }
 
+/**
+ * Lifetime access granted directly by SHA — not a fork purchase, so the source
+ * says 'manual_owner_grant' rather than borrowing 'shopify_fork_kit' and
+ * implying an order that never happened.
+ *
+ * Keyed on EMAIL, so a grant applies the moment that person signs up with that
+ * exact address — they do not need an account first.
+ *
+ * tier 'practitioner' = full access (SHA: "give her full access"), which is the
+ * whole surface, not the lite individual tier the guests of honour hold.
+ */
+const OWNER_GRANTS = [
+  { id: 'ent_gift_arushadivine33', email: 'arushadivine33@gmail.com', tier: 'practitioner' },
+]
+
 async function main() {
   console.log(COMMIT ? '── COMMITTING ──' : '── DRY RUN (pass --commit to write) ──')
 
@@ -78,6 +93,25 @@ async function main() {
         status: 'active',
         shopifyOrderId: g.orderId,
         currentPeriodEnd: ends,
+      },
+    })
+  }
+
+  console.log('\nLifetime granted by SHA:')
+  for (const g of OWNER_GRANTS) {
+    console.log(`  ${g.email.padEnd(28)} lifetime \u00b7 ${g.tier}`)
+    if (!COMMIT) continue
+    await prisma.entitlement.upsert({
+      where: { id: g.id },
+      update: { email: g.email.toLowerCase(), tier: g.tier, status: 'active', currentPeriodEnd: null },
+      create: {
+        id: g.id,
+        email: g.email.toLowerCase(),
+        source: 'manual_owner_grant',
+        plan: 'lifetime',
+        tier: g.tier,
+        status: 'active',
+        currentPeriodEnd: null,
       },
     })
   }
