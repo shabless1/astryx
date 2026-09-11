@@ -286,12 +286,16 @@ export async function POST(req: NextRequest) {
     // 4. Model call (swappable adapter).
     //
     // 2026-09-10 — the live battery found every blank answer was an OpenAI 429:
-    // the org sits at 30k tokens/minute for gpt-4o and a guide request is ~7.5k
-    // tokens, so ~4 requests/minute. The old loop retried once after a fixed
-    // 700ms while OpenAI was asking for up to 3.7s — so the retry 429'd too and
-    // the user got nothing. Now: honour the wait OpenAI names (capped), three
-    // attempts, then ONE attempt on gpt-4o-mini (its own, much larger TPM pool)
-    // before surrendering. Quality degrades gracefully instead of going dark.
+    // that org sat at 30k tokens/minute for gpt-4o and a guide request is ~7.5k
+    // tokens, so ~4 requests/minute ORG-WIDE. The old loop retried once after a
+    // fixed 700ms while the provider was asking for up to 3.7s — so the retry
+    // 429'd too and the user got nothing. Now: honour the wait the provider
+    // names (capped), three attempts, then ONE attempt on the provider's
+    // declared fallbackModel before surrendering.
+    //
+    // SHA moved the default to DeepSeek-V4-Flash on DeepInfra the same day,
+    // which is what actually retires that ceiling — but the resilience stays:
+    // it is provider-agnostic now, so no provider can take the guide dark.
     const model = getAstryxModel()
     const system = buildAstryxSystem()
     let reply: string | undefined
@@ -310,16 +314,18 @@ export async function POST(req: NextRequest) {
         if (attempt < 2) await sleep(wait)
       }
     }
-    if (reply === undefined && model.provider === 'openai') {
-      // The primary pool is exhausted — reach for the smaller model's pool once.
+    if (reply === undefined && model.fallbackModel) {
+      // The primary pool is exhausted — reach for the sibling pool once. Which
+      // model that is belongs to the provider, not to this route.
+      const alt = model.fallbackModel
       try {
-        reply = await model.complete({ system, context, message, modelOverride: 'gpt-4o-mini' })
-        usedModel = 'gpt-4o-mini'
-        console.warn('[astryx] served by gpt-4o-mini after gpt-4o 429s')
+        reply = await model.complete({ system, context, message, modelOverride: alt })
+        usedModel = alt
+        console.warn(`[astryx] served by ${alt} after primary 429s`)
       } catch (e) { lastErr = e }
     }
     if (reply === undefined) {
-      console.error('[astryx] model error (after retries + mini):', lastErr)
+      console.error('[astryx] model error (after retries + fallback):', lastErr)
       return NextResponse.json({ fallback: true, reason: 'model-error' })
     }
     // 4b. The chat bubble renders PLAIN TEXT (whitespace-pre-wrap), so any

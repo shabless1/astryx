@@ -32,8 +32,66 @@ export interface CompleteArgs {
 
 export interface AstryxModel {
   readonly provider: string
+  /**
+   * A cheaper/roomier sibling to retry on when the primary pool 429s. The route
+   * used to hardcode 'gpt-4o-mini', which quietly made the retry OpenAI-only.
+   * Undefined means "this provider has no second pool — fail to the offline brain".
+   */
+  readonly fallbackModel?: string
   complete(args: CompleteArgs): Promise<string>
   embed(texts: string[]): Promise<number[][]>
+}
+
+/**
+ * One OpenAI-DIALECT call. OpenAI, DeepInfra (DeepSeek) and any self-host all
+ * speak the same /chat/completions shape, so the request, the error envelope and
+ * the 429 retry-after parsing live here once instead of per provider.
+ *
+ * `stream: false` is deliberate and load-bearing — the same rule SHA's Akasha
+ * worker runs under. Nothing in Astryx needs tokens before the whole reply
+ * exists, and one JSON response cannot hang.
+ */
+async function openAIDialectComplete(opts: {
+  label: string
+  baseUrl: string
+  apiKey: string
+  model: string
+  system: string
+  context: string
+  message: string
+  temperature: number
+  maxTokens: number
+}): Promise<string> {
+  const res = await fetch(`${opts.baseUrl.replace(/\/$/, '')}/chat/completions`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${opts.apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: opts.model,
+      temperature: opts.temperature,
+      max_tokens: opts.maxTokens,
+      stream: false,
+      messages: [
+        { role: 'system', content: `${opts.system}\n\n${opts.context}` },
+        { role: 'user', content: opts.message },
+      ],
+    }),
+  })
+  if (!res.ok) {
+    const text = (await res.text().catch(() => '')).slice(0, 240)
+    const err = new Error(`${opts.label} ${res.status}: ${text}`) as Error & { status?: number; retryAfterMs?: number }
+    err.status = res.status
+    // 429s carry the wait the provider actually wants — a header, or the body's
+    // "Please try again in 945ms" / "3.72s". A fixed 700ms retry ignored both
+    // and failed a second time, every time.
+    const hdr = Number(res.headers.get('retry-after'))
+    const m = text.match(/try again in\s+([\d.]+)\s*(ms|s)\b/i)
+    err.retryAfterMs = Number.isFinite(hdr) && hdr > 0 ? hdr * 1000
+      : m ? Math.round(parseFloat(m[1]) * (m[2].toLowerCase() === 'ms' ? 1 : 1000))
+      : undefined
+    throw err
+  }
+  const data = await res.json()
+  return (data?.choices?.[0]?.message?.content ?? '').trim()
 }
 
 // ─── Gemini (default) ────────────────────────────────────────────────────────
@@ -78,39 +136,17 @@ const geminiModel: AstryxModel = {
 const OPENAI_MODEL_DEFAULT = 'gpt-4o'
 const openaiModel: AstryxModel = {
   provider: 'openai',
+  fallbackModel: 'gpt-4o-mini',
   async complete({ system, context, message, temperature = ASTRYX_TEMPERATURE, maxTokens = 800, modelOverride }) {
     const apiKey = process.env.OPENAI_API_KEY
     if (!apiKey) throw new Error('OPENAI_API_KEY not set')
-    const model = modelOverride || process.env.OPENAI_MODEL || OPENAI_MODEL_DEFAULT
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model,
-        temperature,
-        max_tokens: maxTokens,
-        messages: [
-          { role: 'system', content: `${system}\n\n${context}` },
-          { role: 'user', content: message },
-        ],
-      }),
+    return openAIDialectComplete({
+      label: 'OpenAI',
+      baseUrl: 'https://api.openai.com/v1',
+      apiKey,
+      model: modelOverride || process.env.OPENAI_MODEL || OPENAI_MODEL_DEFAULT,
+      system, context, message, temperature, maxTokens,
     })
-    if (!res.ok) {
-      const text = (await res.text().catch(() => '')).slice(0, 240)
-      const err = new Error(`OpenAI ${res.status}: ${text}`) as Error & { status?: number; retryAfterMs?: number }
-      err.status = res.status
-      // 429s carry the wait OpenAI actually wants — a header, or the body's
-      // "Please try again in 945ms" / "3.72s". A fixed 700ms retry ignored
-      // both and failed a second time, every time.
-      const hdr = Number(res.headers.get('retry-after'))
-      const m = text.match(/try again in\s+([\d.]+)\s*(ms|s)\b/i)
-      err.retryAfterMs = Number.isFinite(hdr) && hdr > 0 ? hdr * 1000
-        : m ? Math.round(parseFloat(m[1]) * (m[2].toLowerCase() === 'ms' ? 1 : 1000))
-        : undefined
-      throw err
-    }
-    const data = await res.json()
-    return (data?.choices?.[0]?.message?.content ?? '').trim()
   },
   async embed(texts) {
     const apiKey = process.env.OPENAI_API_KEY
@@ -123,6 +159,41 @@ const openaiModel: AstryxModel = {
     if (!res.ok) throw new Error(`OpenAI embed ${res.status}`)
     const data = await res.json()
     return (data?.data ?? []).map((d: { embedding: number[] }) => d.embedding)
+  },
+}
+
+// ─── DeepSeek via DeepInfra (SHA ruling 2026-09-10 — the production default) ──
+// Same lineage SHA already runs in AKASHA SV and the North Node composer:
+// DeepSeek-V4-Flash served from DeepInfra's US infrastructure, OpenAI dialect,
+// non-streaming. Two things this buys Astryx over gpt-4o:
+//   · COST — roughly an order of magnitude cheaper per token.
+//   · HEADROOM — a 1M-token context and a far larger throughput pool, which is
+//     what was actually throttling the guide (the OpenAI org ceiling of 30k
+//     tokens/minute capped everyone at ~4 questions a minute, org-wide).
+// Weights are DeepSeek's; the HOSTING is DeepInfra in the US, which is the
+// distinction SHA means by "the US version" — no request reaches a China-based
+// endpoint. Override the host with DEEPINFRA_BASE_URL if that ever changes.
+const DEEPSEEK_MODEL_DEFAULT = 'deepseek-ai/DeepSeek-V4-Flash'
+const deepseekModel: AstryxModel = {
+  provider: 'deepseek',
+  // No second pool worth reaching for: V4-Flash IS the fast, cheap tier, and a
+  // smaller sibling would answer worse for a guide that has to be right.
+  fallbackModel: undefined,
+  async complete({ system, context, message, temperature = ASTRYX_TEMPERATURE, maxTokens = 800, modelOverride }) {
+    const apiKey = process.env.DEEPINFRA_API_KEY
+    if (!apiKey) throw new Error('DEEPINFRA_API_KEY not set')
+    return openAIDialectComplete({
+      label: 'DeepInfra',
+      baseUrl: process.env.DEEPINFRA_BASE_URL || 'https://api.deepinfra.com/v1/openai',
+      apiKey,
+      model: modelOverride || process.env.ASTRYX_DEEPSEEK_MODEL || DEEPSEEK_MODEL_DEFAULT,
+      system, context, message, temperature, maxTokens,
+    })
+  },
+  async embed() {
+    // Nothing calls this — canon retrieval is deterministic keyword scoring, not
+    // vectors. Fail loudly rather than silently returning empty embeddings.
+    throw new Error('DeepSeek/DeepInfra embeddings are not wired — Astryx retrieval is keyword-based.')
   },
 }
 
@@ -159,19 +230,21 @@ const selfhostModel: AstryxModel = {
 const MODELS: Record<string, AstryxModel> = {
   gemini: geminiModel,
   openai: openaiModel,
+  deepseek: deepseekModel,
   selfhost: selfhostModel,
 }
 
-/** The active model per ASTRYX_MODEL_PROVIDER (default gemini). */
+/** The active model per ASTRYX_MODEL_PROVIDER (default deepseek — SHA, 2026-09-10). */
 export function getAstryxModel(): AstryxModel {
-  const key = (process.env.ASTRYX_MODEL_PROVIDER || 'gemini').toLowerCase()
-  return MODELS[key] ?? geminiModel
+  const key = (process.env.ASTRYX_MODEL_PROVIDER || 'deepseek').toLowerCase()
+  return MODELS[key] ?? deepseekModel
 }
 
 /** True when the active provider has the credentials it needs to answer. */
 export function modelConfigured(): boolean {
-  const key = (process.env.ASTRYX_MODEL_PROVIDER || 'gemini').toLowerCase()
+  const key = (process.env.ASTRYX_MODEL_PROVIDER || 'deepseek').toLowerCase()
   if (key === 'openai') return !!process.env.OPENAI_API_KEY
+  if (key === 'gemini') return !!process.env.GEMINI_API_KEY
   if (key === 'selfhost') return !!process.env.SELFHOST_LLM_URL
-  return !!process.env.GEMINI_API_KEY
+  return !!process.env.DEEPINFRA_API_KEY
 }
