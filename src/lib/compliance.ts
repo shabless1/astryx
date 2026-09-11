@@ -448,3 +448,34 @@ export function safetyGate(
   }
   return { safe: true }
 }
+
+/**
+ * LAST-RESORT SALVAGE (SHA go-live, 2026-09-10) — drop the offending sentence,
+ * keep the answer.
+ *
+ * The output guard used to have exactly two outcomes: a clean model rewrite, or
+ * total surrender to the offline brain. Surrender is safe but it throws away a
+ * good, on-topic answer — the live battery caught "Which fork is for grounding?"
+ * being answered with an unrelated element note because ONE sentence in an
+ * otherwise perfect reply used the word "guaranteed" (and the rewrite call was
+ * rate-limited, so the model never got to fix it).
+ *
+ * This removes only. It never rewords, never substitutes, and so can never
+ * manufacture a claim that the model did not make. If what survives is too thin
+ * to stand as an answer, it returns null and the caller surrenders as before.
+ */
+export function dropOffendingSentences(
+  text: string,
+  lint: (t: string) => string[] = lintForBannedPhrases,
+): string | null {
+  if (!text) return null
+  const sentences = text.match(/[^.!?\n]+[.!?]*\s*/g) ?? []
+  if (sentences.length < 2) return null
+  const kept = sentences.filter((s) => lint(s).length === 0)
+  if (kept.length < 2) return null
+  const salvaged = kept.join('').replace(/\s+/g, ' ').trim()
+  // Must still read as an answer, not a fragment: keep at least half the body.
+  if (salvaged.length < Math.max(120, text.length * 0.5)) return null
+  if (lint(salvaged).length > 0) return null
+  return salvaged
+}

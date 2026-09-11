@@ -227,6 +227,33 @@ export function answerAstryx(message: string, ctx: AstryxContext = {}): AstryxAn
     concept = 'transits'
   }
 
+  // 6b) WHICH fork for a given purpose. (Must sit ABOVE the element branch —
+  // "which fork is for grounding?" was landing on the element note, which is a
+  // real question answered with an unrelated sentence. Live battery, 2026-09-10.)
+  else if (has(q, 'fork', 'tone', 'frequency', 'hz') && has(q, 'which', 'what', 'best for', 'good for', 'use for', 'for grounding', 'recommend')) {
+    const PURPOSE: [RegExp, string, string][] = [
+      [/ground|settle|stable|stabili|anchor|root|calm|restless|sleep|rest\b/i, 'Earth Year', 'the grounding regulator of the set — classically the tone reached for to settle and steady'],
+      [/focus|clarity|mind|think|study|communicat|speak|word/i, 'Mercury', 'classically the tone of mind, breath and the spoken word'],
+      [/energy|drive|strength|motivat|courage|heat|action/i, 'Mars', 'classically the tone of drive and heat — used briefly, never to push'],
+      [/love|heart|harmony|relationship|beauty|soften/i, 'Venus', 'classically the cooling, harmonising tone'],
+      [/expand|growth|abundance|optimis|hope|generous/i, 'Jupiter', 'classically the tone of expansion and open space'],
+      [/structure|discipline|boundar|bone|limit|slow/i, 'Saturn', 'classically the tone of structure and containment'],
+      [/intuition|dream|imagin|subtle|psychic|clair/i, 'Neptune', 'classically the tone of the subtle senses'],
+      [/change|breakthrough|insight|innovat|electric|sudden/i, 'Uranus', 'classically the tone of sudden insight'],
+      [/transform|release|depth|shadow|shed|let go/i, 'Pluto', 'classically the tone of depth and release'],
+      [/emotion|mood|feel|cycle|womb|tide|moon/i, 'Full Moon', 'classically the tone of the emotional tide'],
+      [/vital|confidence|identity|self|shine|centre|center/i, 'Sun', 'classically the tone of the centre and vitality'],
+      [/rhythm|wake|morning|circadian|daily/i, 'Earth Day', "classically the tone of the day's own rotation"],
+    ]
+    const found = PURPOSE.find(([re]) => re.test(q))
+    const target = found ? found[1] : 'Earth Year'
+    const gloss = found ? found[2] : 'the grounding regulator of the set'
+    const f = forkFor(target)
+    const { zone } = placementZone(target)
+    reply = `For that, reach for the ${target} fork${f ? ` at ${f.hz} Hz` : ''} — ${gloss}. Strike it on something soft, never metal, then either rest the stem over ${zone} or float the tines beside your ear so the tone travels inward. Two gentle rings is plenty. If you'd rather not choose by hand, your Calibrated session already picks the fork from your chart and today's sky — today that reads ${planet}. This is a sensory practice and a reference, never medical care; anything health-related belongs with your licensed practitioner.`
+    concept = 'fork-choice'
+  }
+
   // 7) Element.
   else if (has(q, 'element', 'fire', 'earth', 'air', 'water', 'grounding')) {
     const namedEl = ['fire', 'earth', 'air', 'water'].find((e) => q.includes(e))
@@ -239,7 +266,7 @@ export function answerAstryx(message: string, ctx: AstryxContext = {}): AstryxAn
   else if (has(q, 'herb', 'tea', 'botanical', 'plant')) {
     const tea = rx?.fiveSenses?.taste?.tea
     const botanical = rx?.botanical?.sacredBotanical
-    reply = `${tea ? `Today's tea is ${tea}. ` : ''}${botanical ? `Its sacred botanical is ${botanical}. ` : ''}These are traditionally associated with supporting your ${planet} signal as ritual and comfort — a self-care practice, not a treatment for any condition. For anything health-related, please see your licensed practitioner.`
+    reply = `${tea ? `Today's tea is ${tea}. ` : ''}${botanical ? `Its sacred botanical is ${botanical}. ` : ''}These are traditionally associated with supporting your ${planet} signal as ritual and comfort — a self-care practice, never medical care. For anything health-related, please see your licensed practitioner.`
     concept = 'botanicals'
   }
 

@@ -24,7 +24,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import {
   detectCrisis, CRISIS_RESOURCES_CARD, MICRO_DISCLAIMER, lintForBannedPhrases,
-  lintClinicalClaims, stripBenignYouHave,
+  lintClinicalClaims, stripBenignYouHave, dropOffendingSentences,
 } from '@/lib/compliance'
 import { retrieve } from '@/lib/astryx/canon'
 import { buildAstryxSystem } from '@/lib/astryx/persona'
@@ -352,6 +352,18 @@ export async function POST(req: NextRequest) {
       const surgical = `${system}\n\nOUTPUT GUARD (final): the phrase(s) ${hits.map((h) => `"${h}"`).join(', ')} must not appear anywhere. Replace "you have" with "your chart shows", "your Ascendant is", "there are", or "you can". Replace "will" with "may". Do not name any disease, condition, or dose. Keep everything else exactly as it was. Answer the question fully.`
       try { reply = await model.complete({ system: surgical, context, message, modelOverride: usedModel }) } catch { /* keep */ }
       hits = guardHits(reply ?? '')
+    }
+    if (reply && hits.length > 0) {
+      // Third: SALVAGE. Both rewrites failed — often because the rewrite CALL
+      // was rate-limited, not because the model refused. Drop only the sentence
+      // that offends and keep the rest of the answer, which is usually correct
+      // and on-topic. Removal-only: it cannot invent a claim.
+      const salvaged = dropOffendingSentences(reply, guardHits)
+      if (salvaged) {
+        console.warn('[astryx] guard salvaged by dropping a sentence | q:', message.slice(0, 80), '| hits:', hits.join(', '))
+        reply = salvaged
+        hits = guardHits(reply)
+      }
     }
     if (!reply || hits.length > 0) {
       // Surrender = the deterministic sovereign brain, which is lint-clean by

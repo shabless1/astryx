@@ -200,3 +200,51 @@ describe('guard — "you have" is banned for diagnosis, not for grammar', () => 
     }
   })
 })
+
+describe('guard — salvage beats surrender (live battery, 2026-09-10)', () => {
+  it('drops only the offending sentence and keeps the answer', async () => {
+    const { dropOffendingSentences, lintForBannedPhrases } = await import('@/lib/compliance')
+    const text =
+      'For grounding, reach for the Earth Year fork at 136.10 Hz — classically the steadying tone of the set. ' +
+      'Strike it on something soft, never metal, then rest the stem at the base of the spine or float the tines beside your ear. ' +
+      'It is guaranteed to settle you completely. ' +
+      'Two gentle rings is plenty, and one slow breath to open and close seals the practice.'
+    const out = dropOffendingSentences(text)
+    expect(out).toBeTruthy()
+    expect(out!).toMatch(/Earth Year/)
+    expect(out!).toMatch(/136\.10/)
+    expect(out!).not.toMatch(/guaranteed/i)
+    expect(lintForBannedPhrases(out!)).toEqual([])
+  })
+  it('refuses to salvage when the answer would be gutted', async () => {
+    const { dropOffendingSentences } = await import('@/lib/compliance')
+    expect(dropOffendingSentences('This will cure your anxiety.')).toBeNull()
+    expect(dropOffendingSentences('You have anxiety. This will cure it. Permanently.')).toBeNull()
+  })
+  it('the route wires salvage in BEFORE surrendering to the offline brain', async () => {
+    const fs = await import('node:fs')
+    const src = fs.readFileSync('src/app/api/astryx/route.ts', 'utf8')
+    const salvage = src.indexOf('dropOffendingSentences(reply, guardHits)')
+    const surrender = src.indexOf('guard surrendered to sovereign brain')
+    expect(salvage).toBeGreaterThan(0)
+    expect(salvage).toBeLessThan(surrender)
+  })
+})
+
+describe('guide — "which fork for X" is a real answer, not the element note', () => {
+  const CASES: [string, RegExp][] = [
+    ['Which fork is for grounding?', /Earth Year/],
+    ['What fork is best for focus?', /Mercury/],
+    ['Which tone is good for sleep?', /Earth Year/],
+    ['Which fork do you recommend for heartbreak?', /Venus|Full Moon/],
+  ]
+  for (const [q, re] of CASES) {
+    it(`"${q}"`, async () => {
+      const { reply, suggestedConcept } = answerAstryx(q, {})
+      expect(suggestedConcept?.key, q).toBe('fork-choice')
+      expect(reply).toMatch(re)
+      expect(reply).toMatch(/Hz/)
+      expect(lintForBannedPhrases(reply.replace(/\bprescriptions?\b/gi, '')), reply).toEqual([])
+    })
+  }
+})
