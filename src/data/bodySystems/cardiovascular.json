@@ -308,7 +308,7 @@
       "classicalReference": "Cornell (1933): 'Blood Pressure, High — Mars or Jupiter afflicting in Leo or fixed signs; Saturn in 1st or 6th with Mars affliction; activity of Mars in the blood tends to vascular rupture.'",
       "cellSalts": ["Nat Mur", "Mag Phos"],
       "indicatorLanguage": {
-        "individual": "Your chart configuration may suggest patterns classical sources associate with circulatory pressure tendencies. Regular monitoring with your healthcare provider is recommended.",
+        "individual": "Your chart configuration may suggest patterns traditionally associated with circulatory pressure tendencies. Regular monitoring with your healthcare provider is recommended.",
         "practitioner": "Mars-Jupiter, Sun-Mars in fixed signs, and Saturn-Mars combinations are classically associated with hypertensive patterns (per Cornell, 1933). Confirm with current BP measurement; refer to MD for clinical management. Bodywork contraindications apply if BP > 180/110."
       },
       "modalityNotes": {
@@ -340,7 +340,7 @@
       "classicalReference": "Cornell (1933): 'Angina — Pain and Oppression About the Heart. Saturn in Leo, Mars afflicting in Leo, oppression of cardiac action by malefics in the fixed cross.'",
       "cellSalts": ["Mag Phos", "Nat Mur"],
       "indicatorLanguage": {
-        "individual": "Your chart shows a configuration that classical sources associate with patterns of cardiac stress. Any chest pain, pressure, or radiating pain — particularly with exertion — requires immediate evaluation by your healthcare provider.",
+        "individual": "Your chart shows a configuration traditionally associated with patterns of cardiac stress. Any chest pain, pressure, or radiating pain — particularly with exertion — requires immediate evaluation by your healthcare provider.",
         "practitioner": "Saturn-Sun afflictions in fixed signs are classically associated with anginal patterns (Cornell, 1933). Any client reporting chest discomfort, radiating arm/jaw pain, or exertional dyspnea must be referred to MD/emergency immediately. This is not within scope of holistic practice for acute presentation."
       },
       "modalityNotes": {
@@ -371,7 +371,7 @@
       "classicalReference": "Cornell (1933): 'Arythmia Cordis — disturbance of the rhythm of the heart. Uranus in Leo, sudden disturbances; Mercury-Uranus afflictions, signal disruption.'",
       "cellSalts": ["Mag Phos", "Kali Phos"],
       "indicatorLanguage": {
-        "individual": "Your chart may suggest a configuration classical sources associate with patterns of rhythm variability. If you experience palpitations, skipped beats, or racing heart — particularly with dizziness, chest discomfort, or shortness of breath — please consult your healthcare provider.",
+        "individual": "Your chart may suggest a configuration traditionally associated with patterns of rhythm variability. If you experience palpitations, skipped beats, or racing heart — particularly with dizziness, chest discomfort, or shortness of breath — please consult your healthcare provider.",
         "practitioner": "Uranus-Sun or Uranus-Moon configurations are classically associated with cardiac rhythm variability (Cornell, 1933 + modern attribution). Atrial fibrillation, SVT, and PVCs may all present. EKG referral indicated for any new or symptomatic palpitations."
       },
       "modalityNotes": {
@@ -427,7 +427,7 @@
       "classicalReference": "Cornell (1933): 'Aneurysm of the Aorta — Mars afflicted in Leo. Activity of Mars in the blood tends to Hemorrhages, Rupture of Blood Vessels.'",
       "cellSalts": ["Calc Fluor", "Ferr Phos"],
       "indicatorLanguage": {
-        "individual": "Your chart may show classical sources associate with vascular structural patterns. Any persistent chest, back, or abdominal pain — particularly tearing or pulsating — requires immediate medical evaluation. This is not a self-managed concern.",
+        "individual": "Your chart may show configurations traditionally associated with vascular structural patterns. Any persistent chest, back, or abdominal pain — particularly tearing or pulsating — requires immediate medical evaluation. This is not a self-managed concern.",
         "practitioner": "Mars-Saturn-Uranus complexes in Leo are classically associated with aortic structural risk (Cornell, 1933). ANY suspicion of dissection, rupture, or known aneurysm is OUT OF SCOPE for holistic practice. Refer to cardiology/vascular surgery."
       },
       "modalityNotes": {
@@ -453,7 +453,7 @@
       "classicalReference": "Cornell (1933): 'Anemia — deficient iron-carrying capacity. Mars rules iron and hemoglobin. Mars weak or afflicted → tendency to deficient red blood cell function.' Carey (1932): 'Pisces governs Ferr Phos — first-aid for any inflammatory or anemic state.'",
       "cellSalts": ["Ferr Phos", "Calc Phos"],
       "indicatorLanguage": {
-        "individual": "Your chart configuration may suggest patterns classical sources associate with iron and oxygenation balance. Persistent fatigue, pallor, shortness of breath, or dizziness warrant a CBC and ferritin test with your healthcare provider.",
+        "individual": "Your chart configuration may suggest patterns traditionally associated with iron and oxygenation balance. Persistent fatigue, pallor, shortness of breath, or dizziness warrant a CBC and ferritin test with your healthcare provider.",
         "practitioner": "Mars-Sun-Pluto configurations may indicate hematological vulnerability per Cornell (1933) and Carey. Refer for CBC + ferritin + B12/folate panel. Iron supplementation should only follow lab confirmation — excess iron is toxic. Practitioner-tier reminder: iron supplementation is OUT OF SCOPE without medical guidance."
       },
       "modalityNotes": {

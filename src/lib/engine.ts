@@ -304,7 +304,7 @@ function detectLifeEvent(t: any): ActiveTransit['lifeEvent'] {
   }
   if (tp === 'Saturn' && np === 'Sun') return {
     key: 'saturn-sun', label: 'Saturn on your Sun',
-    description: 'Transiting Saturn is sitting on your natal Sun — a weight-bearing season for identity and vitality that classical sources associate with consolidation and earned authority.',
+    description: 'Transiting Saturn is sitting on your natal Sun — a weight-bearing season for identity and vitality traditionally associated with consolidation and earned authority.',
   }
   if (tp === 'Saturn' && np === 'Moon') return {
     key: 'saturn-moon', label: 'Saturn on your Moon',
@@ -1877,7 +1877,7 @@ function computeActivePlanets(
 
     // Compliance-friendly transit description
     const transitDescription = transitResult.description
-      ? `${transitResult.description}. This configuration may correlate with classical sources' associations for ${p}.`
+      ? `${transitResult.description}. This configuration may correlate with the patterns traditionally associated with ${p}.`
       : `${p}-pattern reference signature`
 
     return {
