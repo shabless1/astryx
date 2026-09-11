@@ -166,13 +166,24 @@ describe('guide — the offline brain: boundary, first session, simulated tone (
   })
 })
 
-describe('guide — the pelvic rule is in the HARD LINES, not just a chunk', () => {
-  it('the persona forbids contact on the pelvic zone in so many words', async () => {
+describe('guide — the sweep rule is in the HARD LINES, and it names POINTS not a region', () => {
+  // SHA, 2026-09-11: an earlier pass widened her ruling about reproductive
+  // placements into a rule about the whole pelvis. Two points are swept —
+  // Basti and Trik. No region is withheld, and the sacrum is ordinary contact.
+  it('the persona names the two swept points and the six-inch distance', async () => {
     const { buildAstryxSystem } = await import('@/lib/astryx/persona')
     const sys = buildAstryxSystem()
-    expect(sys).toMatch(/THE PELVIC RULE/)
+    expect(sys).toMatch(/THE SWEEP RULE/)
     expect(sys).toMatch(/six inches/i)
-    expect(sys).toMatch(/the answer is no/i)
+    expect(sys).toMatch(/Basti/)
+    expect(sys).toMatch(/Trik/)
+  })
+  it('the persona does NOT withhold the region, and says the sacrum is contact', async () => {
+    const { buildAstryxSystem } = await import('@/lib/astryx/persona')
+    const sys = buildAstryxSystem()
+    expect(sys).toMatch(/NAME THE POINT, NOT THE REGION/)
+    expect(sys).toMatch(/no region is withheld/i)
+    expect(sys).toMatch(/sacrum/i)
   })
 })
 

@@ -95,7 +95,7 @@ Vibration is rendered visible: concentric rings from struck metal, light travell
 
 ## 7. Hard constraints that keep biting
 
-1. **The pelvic rule.** No image, copy or protocol ever shows or states a fork contacting the reproductive organs, genitals, perineum or pelvic floor. That zone is a six-inch field sweep only. This is absolute.
+1. **The sweep rule — name the point, not the region (SHA, 2026-09-11).** Two named points are swept at six inches rather than touched: **Basti**, the reproductive point on the midline below the navel, and **Trik**, the coccyx. That holds for every fork, chart and person. **No region is withheld.** The pelvis is a skeletal region and the rest of it is ordinary bodywork — the sacrum (Kati, worked from the back) is normal weighted contact. An earlier pass widened this to "the whole pelvic zone" and then quoted it back to SHA as her own ruling; it was not. Do not re-widen it, and do not flag anatomical imagery of the pelvic girdle as a violation.
 2. **The metal is the source of truth.** Where a shipped fork is engraved with a frequency, the app matches the engraving. Uranus is **207.33**, Neptune is **211.45**, deliberately diverging from strict Cousto derivation. Do not "correct" it back.
 3. **Generated type cannot hold twelve decimal frequencies.** AI-generated fork engravings came back with Mars at 514.47 Hz, a duplicate Venus, and no Pluto. Product shots of real products use real photographs, or the prompt specifies unengraved metal.
 4. **Never Solfeggio for the planetary protocol.** Cousto for planets and forks, Solfeggio for the chakra layer only.

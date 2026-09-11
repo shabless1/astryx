@@ -17,7 +17,7 @@ import {
   marmaDoorwayFor,
   allMarmaPoints,
   APPLICATION_RANK,
-  FIELD_ONLY_REGIONS,
+  FIELD_ONLY_POINTS,
   type MarmaApplication,
 } from '@/lib/MarmaEngine'
 import pointsData from '@/data/marmaPoints.json'
@@ -92,12 +92,26 @@ describe('marma data integrity', () => {
   })
 })
 
-describe('SAFETY — the reproductive / pelvic-floor zone is never contacted', () => {
-  it('is a zone rule: every pelvis-region point is fieldOnly at six inches, for every fork and every state', () => {
+describe('SAFETY — no REGION is withheld (SHA, 2026-09-11)', () => {
+  it('the sacrum is ordinary weighted contact, not swept', () => {
+    const kati = (pointsData.points as any[]).find((p) => p.id === 'kati')
+    expect(kati, 'kati exists').toBeTruthy()
+    expect(kati.applicationType).toBe('weighted')
+    expect(FIELD_ONLY_POINTS.has('kati')).toBe(false)
+  })
+  it('only the reproductive point and the coccyx are withheld', () => {
+    expect(Array.from(FIELD_ONLY_POINTS).sort()).toEqual(['basti', 'trik'])
+  })
+})
+
+describe('SAFETY — the reproductive region and the coccyx are swept, never touched', () => {
+  // SHA, 2026-09-11: name the point, not the region. No region is withheld; the
+  // rule rides on the two points it actually concerns and travels with them.
+  it('every named point is fieldOnly at six inches, for every fork and every state', () => {
     const pelvicIds = (pointsData.points as any[])
-      .filter((p) => FIELD_ONLY_REGIONS.has(p.region))
+      .filter((p) => FIELD_ONLY_POINTS.has(p.id))
       .map((p) => p.id)
-    expect(pelvicIds.length, 'expected pelvic-zone points in the set').toBeGreaterThan(0)
+    expect(pelvicIds.length, 'expected the named field-only points').toBe(2)
 
     for (const planet of FORK_PLANETS) {
       for (const state of STATES) {
@@ -113,14 +127,25 @@ describe('SAFETY — the reproductive / pelvic-floor zone is never contacted', (
     }
   })
 
-  it('a pelvic point cannot be loosened even when the fork is a contact fork in deficiency', () => {
+  it('a named point cannot be loosened even by the most permissive combination', () => {
     // deficiency + contact is the most permissive combination the engine can produce.
     const r = resolveApplication(
-      { applicationType: 'weighted', region: 'pelvis' },
+      { id: 'basti', applicationType: 'weighted', region: 'pelvis' },
       { forkDelivery: 'contact', engineState: 'deficiency' },
     )
     expect(r.application).toBe('fieldOnly')
-    expect(r.reason).toMatch(/reproductive and pelvic-floor zone/i)
+    expect(r.reason).toMatch(/swept, never touched/i)
+  })
+
+  it('an ordinary pelvis-region point is NOT withheld (SHA, 2026-09-11)', () => {
+    // The rule names points, not regions. A weighted point that simply happens
+    // to be filed under 'pelvis' stays ordinary contact.
+    const r = resolveApplication(
+      { id: 'some_other_pelvic_point', applicationType: 'weighted', region: 'pelvis' },
+      { forkDelivery: 'contact', engineState: 'balanced' },
+    )
+    expect(r.application).toBe('weighted')
+    expect(r.reason).toBeNull()
   })
 
   it('Pluto is off the body at every one of its points, in every state', () => {
@@ -165,7 +190,7 @@ describe('SAFETY — application resolution only ever tightens', () => {
   })
 
   it('an unknown application class fails safe rather than to weighted', () => {
-    const r = resolveApplication({ applicationType: 'nonsense', region: 'head' })
+    const r = resolveApplication({ id: 'x', applicationType: 'nonsense', region: 'head' })
     expect(r.application).toBe('field')
   })
 

@@ -102,7 +102,7 @@ export default function SessionModePicker({
           {card({
             title: 'Marma Recalibration',
             blurb: 'The same twelve forks, worked at their named Ayurvedic points — opens at the heel, climbs to the crown, closes at the sole. The same map for every body; no reading required.',
-            footnote: 'Every point shows how the fork may meet it. The pelvic field is a six-inch sweep, always.',
+            footnote: 'Every point shows how the fork may meet it. The reproductive point and the tail bone are swept, never touched.',
             accent: '#FF6FA8',
             onClick: () => onPick('marma', remember),
           })}

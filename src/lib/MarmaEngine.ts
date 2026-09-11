@@ -180,12 +180,19 @@ export const MARMA_CITATION =
  * natal placement must not be able to route a different fork into this zone
  * with contact. Keep in step with INTIMATE_REGIONS in BodyPlacementEngine.
  *
- * NOTE the boundary SHA confirmed: the POSTERIOR SACRUM ('sacrum' — Kati,
- * Kukundara) is NOT in this set. It is bone, worked prone and clothed, it is
- * inside every bodywork scope of practice, and it is where the sacral doorway
- * now lives. 'pelvis' (Basti below the navel, Trik at the coccyx) IS in it.
+ * SHA, 2026-09-11 — NAME THE POINT, NOT THE REGION. An earlier pass generalised
+ * her ruling from "reproductive placements" to the whole pelvis, which is wrong:
+ * the pelvis is a skeletal region and most of it is ordinary bodywork territory.
+ * No region is withheld. What is withheld is specific: **the reproductive region
+ * and the coccyx are swept, never touched.**
+ *
+ * Those two points already carry `fieldOnly` on themselves — Basti on the
+ * midline below the navel, and Trik at the tail bone — so the rule lives on the
+ * point where it belongs and travels with it. The POSTERIOR SACRUM (Kati,
+ * Kukundara) is bone, worked prone and clothed, inside every bodywork scope of
+ * practice, and stays weighted contact.
  */
-export const FIELD_ONLY_REGIONS: ReadonlySet<string> = new Set(['pelvis'])
+export const FIELD_ONLY_POINTS: ReadonlySet<string> = new Set(['basti', 'trik'])
 
 /** Pregnancy widens the field zone upward over the abdomen and sacrum. */
 export const PREGNANCY_WIDEN_REGIONS: ReadonlySet<string> = new Set(['pelvis', 'sacrum', 'trunk'])
@@ -223,7 +230,7 @@ export interface ApplicationContext {
  * UI can say WHY rather than silently moving the fork off the body.
  */
 export function resolveApplication(
-  point: Pick<RawPoint, 'applicationType' | 'region'>,
+  point: Pick<RawPoint, 'applicationType' | 'region' | 'id'>,
   ctx: ApplicationContext = {},
 ): { application: MarmaApplication; reason: string | null } {
   const own = (APPLICATION_RANK as readonly string[]).includes(point.applicationType)
@@ -238,9 +245,10 @@ export function resolveApplication(
     app = next
   }
 
-  // 1. The zone rule. Highest authority, applies to every fork and every person.
-  if (FIELD_ONLY_REGIONS.has(point.region)) {
-    raise('fieldOnly', 'This point sits inside the reproductive and pelvic-floor zone, which is never contacted by any fork.')
+  // 1. The point rule. Highest authority, applies to every fork and every person.
+  //    Named points, not a whole region — the reproductive region and the coccyx.
+  if (FIELD_ONLY_POINTS.has(point.id)) {
+    raise('fieldOnly', 'This point is swept, never touched — it sits in the reproductive region or at the coccyx.')
   }
   // 2. The fork's own delivery mode (Pluto is unconditionally off-body).
   if (ctx.forkDelivery === 'sweep') {
