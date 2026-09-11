@@ -32,6 +32,7 @@ import { getAstryxModel, modelConfigured } from '@/lib/astryx/modelAdapter'
 import { buildTransitContext } from '@/lib/astryx/transitContext'
 import { fetchWebContext, ASTRYX_WEB_ENABLED } from '@/lib/astryx/webSources'
 import { deriveAstryxActions } from '@/lib/astryx/actions'
+import { answerAstryx } from '@/lib/astryx/sovereignAstryx'
 import { enforceRateLimit } from '@/lib/rateLimit'
 import { sessionHasConsent } from '@/lib/consent'
 
@@ -218,7 +219,10 @@ export async function POST(req: NextRequest) {
 
     // 2. Retrieve canon (over the message + recent history for continuity).
     const retrievalQuery = [history.slice(-2).map((h) => h.text).join(' '), message].join(' ').trim()
-    const chunks = retrieve(retrievalQuery, RETRIEVE_K)
+    // Retrieval is tier-aware: individuals never see the practitioner clinical
+    // layer (bodySystems, medicalAstrology) — the model cannot echo what it
+    // never read, and the guard stops firing on words we handed it ourselves.
+    const chunks = retrieve(retrievalQuery, RETRIEVE_K, { tier })
 
     // 3. Assemble grounding (sovereign — derived summary + cited canon only).
     const readingSummary = buildReadingSummary(report, intention)
@@ -267,27 +271,45 @@ export async function POST(req: NextRequest) {
       `USER TIER: ${tier}${tier === 'individual' ? ' (plain language; route clinical questions to their practitioner)' : ' (clinical terminology + classical citations permitted)'}.`,
     ].join('\n')
 
-    // 4. Model call (swappable adapter). On any failure → client local fallback.
+    // 4. Model call (swappable adapter).
+    //
+    // 2026-09-10 — the live battery found every blank answer was an OpenAI 429:
+    // the org sits at 30k tokens/minute for gpt-4o and a guide request is ~7.5k
+    // tokens, so ~4 requests/minute. The old loop retried once after a fixed
+    // 700ms while OpenAI was asking for up to 3.7s — so the retry 429'd too and
+    // the user got nothing. Now: honour the wait OpenAI names (capped), three
+    // attempts, then ONE attempt on gpt-4o-mini (its own, much larger TPM pool)
+    // before surrendering. Quality degrades gracefully instead of going dark.
     const model = getAstryxModel()
     const system = buildAstryxSystem()
     let reply: string | undefined
     let flagged = false
-    // Two attempts — the free model tier can return a transient 429/503 under
-    // bursty load; a brief backoff + one retry recovers most blips before we fall
-    // back to the local brain.
-    for (let attempt = 0; attempt < 2; attempt++) {
+    let usedModel: string | undefined
+    const MAX_WAIT_MS = 4500
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+    let lastErr: unknown
+    for (let attempt = 0; attempt < 3 && reply === undefined; attempt++) {
       try {
         reply = await model.complete({ system, context, message })
-        break
       } catch (e) {
-        if (attempt === 1) {
-          console.error('[astryx] model error (after retry):', e)
-          return NextResponse.json({ fallback: true, reason: 'model-error' })
-        }
-        await new Promise((r) => setTimeout(r, 700))
+        lastErr = e
+        const er = e as { status?: number; retryAfterMs?: number }
+        const wait = Math.min(MAX_WAIT_MS, er.retryAfterMs ?? 700 * (attempt + 1))
+        if (attempt < 2) await sleep(wait)
       }
     }
-    if (reply === undefined) return NextResponse.json({ fallback: true, reason: 'model-error' })
+    if (reply === undefined && model.provider === 'openai') {
+      // The primary pool is exhausted — reach for the smaller model's pool once.
+      try {
+        reply = await model.complete({ system, context, message, modelOverride: 'gpt-4o-mini' })
+        usedModel = 'gpt-4o-mini'
+        console.warn('[astryx] served by gpt-4o-mini after gpt-4o 429s')
+      } catch (e) { lastErr = e }
+    }
+    if (reply === undefined) {
+      console.error('[astryx] model error (after retries + mini):', lastErr)
+      return NextResponse.json({ fallback: true, reason: 'model-error' })
+    }
 
     // 5. Output guard — regenerate once stricter, else safe fallback.
     // LEGAL SHIELD v1 · FIX 3 — for the FREE (individual) tier the guard also
@@ -298,14 +320,34 @@ export async function POST(req: NextRequest) {
       ...teacherLint(text),
       ...(tier === 'individual' ? lintClinicalClaims(text) : []),
     ]
-    if (guardHits(reply).length > 0) {
+    // 5b. The guard is LOGGED now — in prod it was invisible what tripped, and
+    // the battery showed "What can I change in Settings?" landing on the canned
+    // line with no way to know why.
+    let hits = guardHits(reply)
+    if (hits.length > 0) {
       flagged = true
-      const hits = guardHits(reply)
+      console.warn('[astryx] guard hit (draft 1):', hits.join(', '), '| q:', message.slice(0, 80))
       const stricter = `${system}\n\nOUTPUT GUARD: your previous draft used disallowed phrasing (${hits.join(', ')}). Rewrite with the SAME meaning but strictly probabilistic, non-clinical framing. Do not name diseases/medical conditions or give supplement doses. Never use "you have", "treats", "cures", "diagnose", "will", "guaranteed", "permanently", or the verb "prescribe". Use "may suggest", "may support", "is classically associated with".`
-      try { reply = await model.complete({ system: stricter, context, message }) } catch { /* keep first */ }
+      try { reply = await model.complete({ system: stricter, context, message, modelOverride: usedModel }) } catch { /* keep first */ }
+      hits = guardHits(reply ?? '')
     }
-    if (!reply || guardHits(reply).length > 0) {
-      reply = SAFE_FALLBACK
+    if (hits.length > 0) {
+      // Second, surgical rewrite: name the exact phrase and hand over substitutions.
+      // "you have" is the usual offender on innocent answers ("you have a Leo
+      // Ascendant", "you have 20 questions") — the ban exists for "you have
+      // [condition]", so we teach the model the swap instead of surrendering.
+      console.warn('[astryx] guard hit (draft 2):', hits.join(', '), '| q:', message.slice(0, 80))
+      const surgical = `${system}\n\nOUTPUT GUARD (final): the phrase(s) ${hits.map((h) => `"${h}"`).join(', ')} must not appear anywhere. Replace "you have" with "your chart shows", "your Ascendant is", "there are", or "you can". Replace "will" with "may". Do not name any disease, condition, or dose. Keep everything else exactly as it was. Answer the question fully.`
+      try { reply = await model.complete({ system: surgical, context, message, modelOverride: usedModel }) } catch { /* keep */ }
+      hits = guardHits(reply ?? '')
+    }
+    if (!reply || hits.length > 0) {
+      // Surrender = the deterministic sovereign brain, which is lint-clean by
+      // construction and now knows the app — never a canned line that answers
+      // a Settings question with "let me keep this to what your chart shows".
+      console.warn('[astryx] guard surrendered to sovereign brain | q:', message.slice(0, 80), '| hits:', hits.join(', '))
+      const local = answerAstryx(message, { protocol: report })
+      reply = local.crisis ? SAFE_FALLBACK : local.reply
       flagged = true
     }
 
@@ -325,7 +367,7 @@ export async function POST(req: NextRequest) {
       tier,
       remaining: metered ? Math.max(0, INDIVIDUAL_DAILY_LIMIT - used) : null,
       flagged,
-      provider: model.provider,
+      provider: usedModel ? `${model.provider}:${usedModel}` : model.provider,
     })
   } catch (err: any) {
     console.error('[astryx] route error:', err)

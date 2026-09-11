@@ -57,12 +57,28 @@ const INDEX: Indexed[] = CHUNKS.map((c) => {
  *   tag (planet/sign/system) match = strong · topic match = medium ·
  *   text term frequency = base · whole-phrase substring = bonus.
  */
-export function retrieve(query: string, k = 6): CanonChunk[] {
+/**
+ * Chunk-id prefixes that are the PRACTITIONER clinical layer. An individual-tier
+ * caller never retrieves these — the same seam sacredShape.ts applies to the API
+ * response, applied here to what the MODEL is allowed to read.
+ *
+ * Found live 2026-09-10: an individual asking about Uranus was handed a chunk
+ * containing "arrhythmia"; a medication question pulled endocrine/reproductive
+ * pathology records naming cancer. The model echoed the words, the individual
+ * guard rejected the draft twice, and the person got a canned line. Filtering
+ * retrieval by tier fixes the quality problem AND closes the model-side seam.
+ */
+const PRACTITIONER_ONLY_PREFIXES = ['bodySystems/', 'medicalAstrology/']
+export type RetrieveTier = 'individual' | 'practitioner'
+
+export function retrieve(query: string, k = 6, opts: { tier?: RetrieveTier } = {}): CanonChunk[] {
   const qt = tokenize(query)
   if (!qt.length) return []
   const ql = query.toLowerCase().trim()
+  const pro = opts.tier === 'practitioner'
+  const pool = pro ? INDEX : INDEX.filter(({ c }) => !PRACTITIONER_ONLY_PREFIXES.some((p) => c.id.startsWith(p)))
 
-  const scored = INDEX.map(({ c, freq, tagTokens, topicLc, blob }) => {
+  const scored = pool.map(({ c, freq, tagTokens, topicLc, blob }) => {
     let s = 0
     for (const t of qt) {
       if (tagTokens.has(t)) s += 6

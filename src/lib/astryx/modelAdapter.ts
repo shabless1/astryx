@@ -26,6 +26,8 @@ export interface CompleteArgs {
   message: string
   temperature?: number
   maxTokens?: number
+    /** Per-call model (the 429 fallback to gpt-4o-mini). */
+    modelOverride?: string
 }
 
 export interface AstryxModel {
@@ -76,10 +78,10 @@ const geminiModel: AstryxModel = {
 const OPENAI_MODEL_DEFAULT = 'gpt-4o'
 const openaiModel: AstryxModel = {
   provider: 'openai',
-  async complete({ system, context, message, temperature = ASTRYX_TEMPERATURE, maxTokens = 800 }) {
+  async complete({ system, context, message, temperature = ASTRYX_TEMPERATURE, maxTokens = 800, modelOverride }) {
     const apiKey = process.env.OPENAI_API_KEY
     if (!apiKey) throw new Error('OPENAI_API_KEY not set')
-    const model = process.env.OPENAI_MODEL || OPENAI_MODEL_DEFAULT
+    const model = modelOverride || process.env.OPENAI_MODEL || OPENAI_MODEL_DEFAULT
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
@@ -93,7 +95,20 @@ const openaiModel: AstryxModel = {
         ],
       }),
     })
-    if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text().catch(() => '')).slice(0, 240)}`)
+    if (!res.ok) {
+      const text = (await res.text().catch(() => '')).slice(0, 240)
+      const err = new Error(`OpenAI ${res.status}: ${text}`) as Error & { status?: number; retryAfterMs?: number }
+      err.status = res.status
+      // 429s carry the wait OpenAI actually wants — a header, or the body's
+      // "Please try again in 945ms" / "3.72s". A fixed 700ms retry ignored
+      // both and failed a second time, every time.
+      const hdr = Number(res.headers.get('retry-after'))
+      const m = text.match(/try again in\s+([\d.]+)\s*(ms|s)\b/i)
+      err.retryAfterMs = Number.isFinite(hdr) && hdr > 0 ? hdr * 1000
+        : m ? Math.round(parseFloat(m[1]) * (m[2].toLowerCase() === 'ms' ? 1 : 1000))
+        : undefined
+      throw err
+    }
     const data = await res.json()
     return (data?.choices?.[0]?.message?.content ?? '').trim()
   },

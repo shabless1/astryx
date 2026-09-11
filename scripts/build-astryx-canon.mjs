@@ -107,10 +107,24 @@ function ingestFile(absPath, base) {
     return
   }
 
+  // NON-USER-FACING keys never enter the canon, at any depth. Mirrors the
+  // lint-data-copy rule: complianceNotes (internal scope-of-practice guidance),
+  // engineUsage (wiring docs), '_' keys (dev metadata), phase2/placeholder
+  // (unshipped content). The live battery caught a complianceNotes block being
+  // handed to the model as teaching material.
+  const internalKey = (k) => k.startsWith('_') || k === 'complianceNotes' || k === 'engineUsage' || /phase2|placeholder/i.test(k)
   for (const [key, value] of Object.entries(data)) {
     if (key === '_meta' || key === 'meta') continue
+    // 2026-09-10 — NON-USER-FACING subtrees never enter the canon. Mirrors the
+    // lint-data-copy rule: complianceNotes (internal scope-of-practice guidance),
+    // engineUsage (wiring docs), '_' keys (dev metadata), phase2/placeholder
+    // (unshipped content). The live battery caught a bodySystems complianceNotes
+    // block being handed to the model as if it were teaching material.
+    if (internalKey(key)) continue
     if (isRecordMap(value)) {
-      for (const [rk, rv] of Object.entries(value)) push(base, `${key}.${rk}`, rk, rv, source, data)
+      // Nested record keys too — modalitySpecificGrid.ayurvedic_phase2_placeholder
+      // slipped past a top-level-only check (11 unshipped placeholders reached the model).
+      for (const [rk, rv] of Object.entries(value)) { if (internalKey(rk)) continue; push(base, `${key}.${rk}`, rk, rv, source, data) }
     } else if (Array.isArray(value)) {
       if (value.length && typeof value[0] === 'object') {
         value.forEach((item, i) => push(base, `${key}[${i}]`, item?.name ?? item?.id ?? item?.sign ?? item?.planet ?? `${key} ${i}`, item, source, data))

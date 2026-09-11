@@ -110,3 +110,35 @@ describe('guide — the offline brain handles usage questions', () => {
     })
   }
 })
+
+describe('guide — retrieval is tier-aware (the model-side seam)', () => {
+  const PRO_ONLY = /^(bodySystems|medicalAstrology)\//
+  const CLINICAL_QS = [
+    "Why is Uranus my signal today, and why isn't the calibration amplifying it?",
+    'Should I stop taking my medication and use the forks instead?',
+    'What do I get if I become a practitioner?',
+    'Tell me about my heart and circulation',
+    'What does a Saturn transit to my Moon mean?',
+  ]
+  it('an individual never retrieves the practitioner clinical layer', () => {
+    for (const q of CLINICAL_QS) {
+      const ids = retrieve(q, 7, { tier: 'individual' }).map((c) => c.id)
+      const leaked = ids.filter((id) => PRO_ONLY.test(id))
+      expect(leaked, `${q} → ${leaked.join(', ')}`).toEqual([])
+    }
+  })
+  it('a practitioner still can', () => {
+    const ids = retrieve('Tell me about my heart and circulation', 7, { tier: 'practitioner' }).map((c) => c.id)
+    expect(ids.some((id) => PRO_ONLY.test(id))).toBe(true)
+  })
+  it('the default (no tier) is the safe one', () => {
+    const ids = retrieve('Should I stop taking my medication?', 7).map((c) => c.id)
+    expect(ids.filter((id) => PRO_ONLY.test(id))).toEqual([])
+  })
+  it('internal notes are not in the canon at all — even for a practitioner', () => {
+    // Searched as a PRACTITIONER, otherwise the individual filter hides
+    // bodySystems/* and this passes for the wrong reason.
+    const all = retrieve('compliance notes engine usage scope of practice phase2 placeholder', 800, { tier: 'practitioner' }).map((c) => c.id)
+    expect(all.filter((id) => /complianceNotes|engineUsage|\/_|phase2|placeholder/i.test(id))).toEqual([])
+  })
+})
