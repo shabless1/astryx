@@ -24,7 +24,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import {
   detectCrisis, CRISIS_RESOURCES_CARD, MICRO_DISCLAIMER, lintForBannedPhrases,
-  lintClinicalClaims, stripBenignYouHave, dropOffendingSentences,
+  lintClinicalClaims, stripBenignYouHave, dropOffendingSentences, stripChatMarkdown,
 } from '@/lib/compliance'
 import { retrieve } from '@/lib/astryx/canon'
 import { buildAstryxSystem } from '@/lib/astryx/persona'
@@ -322,6 +322,13 @@ export async function POST(req: NextRequest) {
       console.error('[astryx] model error (after retries + mini):', lastErr)
       return NextResponse.json({ fallback: true, reason: 'model-error' })
     }
+    // 4b. The chat bubble renders PLAIN TEXT (whitespace-pre-wrap), so any
+    // markdown the model reaches for shows up as literal asterisks and hashes.
+    // The live battery caught "**Client Roster**" on screen. Stripped here
+    // rather than only asked for in the prompt, because a prompt rule the model
+    // ignores once is a visible defect for the user. Runs before the guard so
+    // the lint sees exactly what ships.
+    reply = stripChatMarkdown(reply)
 
     // 5. Output guard — regenerate once stricter, else safe fallback.
     // LEGAL SHIELD v1 · FIX 3 — for the FREE (individual) tier the guard also
@@ -340,7 +347,7 @@ export async function POST(req: NextRequest) {
       flagged = true
       console.warn('[astryx] guard hit (draft 1):', hits.join(', '), '| q:', message.slice(0, 80))
       const stricter = `${system}\n\nOUTPUT GUARD: your previous draft used disallowed phrasing (${hits.join(', ')}). Rewrite with the SAME meaning but strictly probabilistic, non-clinical framing. Do not name diseases/medical conditions or give supplement doses. Never use "you have", "treats", "cures", "diagnose", "will", "guaranteed", "permanently", or the verb "prescribe". Use "may suggest", "may support", "is classically associated with".`
-      try { reply = await model.complete({ system: stricter, context, message, modelOverride: usedModel }) } catch { /* keep first */ }
+      try { reply = stripChatMarkdown(await model.complete({ system: stricter, context, message, modelOverride: usedModel })) } catch { /* keep first */ }
       hits = guardHits(reply ?? '')
     }
     if (hits.length > 0) {
@@ -350,7 +357,7 @@ export async function POST(req: NextRequest) {
       // [condition]", so we teach the model the swap instead of surrendering.
       console.warn('[astryx] guard hit (draft 2):', hits.join(', '), '| q:', message.slice(0, 80))
       const surgical = `${system}\n\nOUTPUT GUARD (final): the phrase(s) ${hits.map((h) => `"${h}"`).join(', ')} must not appear anywhere. Replace "you have" with "your chart shows", "your Ascendant is", "there are", or "you can". Replace "will" with "may". Do not name any disease, condition, or dose. Keep everything else exactly as it was. Answer the question fully.`
-      try { reply = await model.complete({ system: surgical, context, message, modelOverride: usedModel }) } catch { /* keep */ }
+      try { reply = stripChatMarkdown(await model.complete({ system: surgical, context, message, modelOverride: usedModel })) } catch { /* keep */ }
       hits = guardHits(reply ?? '')
     }
     if (reply && hits.length > 0) {

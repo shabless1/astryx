@@ -479,3 +479,25 @@ export function dropOffendingSentences(
   if (lint(salvaged).length > 0) return null
   return salvaged
 }
+
+/**
+ * The Astryx chat bubble is plain text (whitespace-pre-wrap), not a markdown
+ * renderer — so "**Client Roster**" reaches the user with the asterisks showing.
+ * Removal-only: it strips markup characters and never changes a word, so it can
+ * neither introduce nor hide a compliance problem. Bullets become "• ".
+ */
+export function stripChatMarkdown(text: string): string {
+  if (!text) return text
+  return text
+    .replace(/```[a-z]*\n?/gi, '')                                   // fenced code markers
+    .replace(/^\s{0,3}#{1,6}\s+/gm, '')                              // # headings
+    .replace(/\*\*([^*\n]+)\*\*/g, '$1')                             // **bold**
+    .replace(/__([^_\n]+)__/g, '$1')                                 // __bold__
+    .replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,;:!?]|$)/g, '$1$2')     // *italic*
+    .replace(/`([^`\n]+)`/g, '$1')                                   // `code`
+    .replace(/^\s{0,3}[-*+]\s+/gm, '• ')                        // - bullets
+    .replace(/^\s{0,3}>\s?/gm, '')                                   // > quotes
+    .replace(/\[([^\]\n]+)\]\((https?:[^)\s]+)\)/g, '$1 ($2)')       // [text](url)
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}

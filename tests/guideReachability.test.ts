@@ -248,3 +248,28 @@ describe('guide — "which fork for X" is a real answer, not the element note', 
     })
   }
 })
+
+describe('guide — the chat bubble is plain text, so markdown is stripped', () => {
+  it('bold, headings, bullets and links come out readable', async () => {
+    const { stripChatMarkdown } = await import('@/lib/compliance')
+    const out = stripChatMarkdown(
+      '### What you get\n\n1. **Client Roster**: add birth data once.\n- *Session Mode* shows the fork.\n- Visit [the shop](https://sacredtea.net) to subscribe.\n',
+    )
+    expect(out).not.toMatch(/\*\*/)
+    expect(out).not.toMatch(/^#/m)
+    expect(out).toMatch(/Client Roster: add birth data once\./)
+    expect(out).toMatch(/Session Mode shows the fork\./)
+    expect(out).toMatch(/the shop \(https:\/\/sacredtea\.net\)/)
+    expect(out).toMatch(/What you get/)
+  })
+  it('leaves ordinary prose exactly alone', async () => {
+    const { stripChatMarkdown } = await import('@/lib/compliance')
+    const s = 'Your Ascendant is Leo, and today the signal reads Uranus at 207.36 Hz.'
+    expect(stripChatMarkdown(s)).toBe(s)
+  })
+  it('the route strips before the guard lints', async () => {
+    const fs = await import('node:fs')
+    const src = fs.readFileSync('src/app/api/astryx/route.ts', 'utf8')
+    expect(src.indexOf('reply = stripChatMarkdown(reply)')).toBeLessThan(src.indexOf('let hits = guardHits(reply)'))
+  })
+})
