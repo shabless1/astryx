@@ -142,11 +142,17 @@ export default function TeacherChat({
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 shrink-0">
           <div className="flex items-center gap-2.5">
-            <span className="inline-block w-2 h-2 rounded-full animate-cosmic-pulse"
-                  style={{ background: accentColor, boxShadow: `0 0 10px ${accentColor}` }} />
+            {/* Astra has a face on the marketing site; she should have one here
+                too, or the person you were introduced to does not exist inside. */}
+            <img
+              src="/images/astra/astra-avatar.jpg"
+              alt=""
+              className="w-9 h-9 rounded-full object-cover shrink-0"
+              style={{ objectPosition: '62% 34%', border: `1px solid ${alpha(accentColor, 0.5)}`, boxShadow: `0 0 14px ${alpha(accentColor, 0.45)}` }}
+            />
             <div>
               <div className="font-cinzel text-[15px] leading-none" style={{ color: 'rgba(255,255,255,0.96)' }}>
-                Astryx
+                Astra
               </div>
               <div className="text-[10px] uppercase tracking-[0.22em] mt-1" style={{ color: alpha(accentColor, 0.8) }}>
                 Your guide through the field
@@ -175,7 +181,7 @@ export default function TeacherChat({
           {turns.length === 0 && (
             <div className="text-content-sm text-[13.5px] leading-relaxed">
               <p className="mb-3">
-                I&apos;m Astryx. Your chart is a chord struck at your first breath, and today&apos;s sky is
+                I&apos;m Astra. Your chart is a chord struck at your first breath, and today&apos;s sky is
                 playing against it. Ask me why a tone, an herb, a color, or a transit is sounding in your
                 calibration, what your Ascendant or a Clair means, or what to do with the fork in your hand.
                 I read your chart and the Astryx canon, and I say it plainly. Health decisions stay with
@@ -199,8 +205,11 @@ export default function TeacherChat({
                 className="max-w-[85%] px-4 py-2.5 rounded-2xl text-[13.5px] leading-relaxed whitespace-pre-wrap"
                 style={
                   t.role === 'user'
+                    // Two speakers, told apart before a word is read. Astra's
+                    // replies are the long ones, so hers take the stone ground
+                    // where reading is easiest; the user stays in the dark.
                     ? { background: alpha(accentColor, 0.18), border: `1px solid ${alpha(accentColor, 0.3)}`, color: 'rgba(255,255,255,0.95)' }
-                    : { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.9)' }
+                    : { background: '#DDD7CA', border: '1px solid #C7C0B0', color: '#15121C' }
                 }
               >
                 {t.text}
@@ -247,7 +256,7 @@ export default function TeacherChat({
             <div className="flex justify-start">
               <div className="px-4 py-2.5 rounded-2xl text-[13px] text-white/50"
                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <span className="animate-pulse">Astryx is reading your chart…</span>
+                <span className="animate-pulse">Astra is reading your chart…</span>
               </div>
             </div>
           )}

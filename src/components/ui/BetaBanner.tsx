@@ -1,7 +1,7 @@
 /**
- * ASTRYX — Beta banner (LEGAL SHIELD v1 · FIX 2).
+ * ASTRYX — Standing disclosure banner (LEGAL SHIELD v1 · FIX 2).
  *
- * A dismissible notice that Astryx is in beta and everything shown is
+ * A dismissible notice that everything Astryx shows is
  * observational reference, not medical advice. Dismissal is remembered per
  * CONSENT_VERSION — when that bumps (e.g. counsel updates the terms), the
  * banner returns once so returning users re-see the notice.

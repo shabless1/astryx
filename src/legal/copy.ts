@@ -54,7 +54,10 @@ export const AI_DISCLOSURE_OFFLINE = AI_DISCLOSURE_FULL
 
 // ─── BETA BANNER (FIX 2 · dashboard, dismissible per CONSENT_VERSION) ─────
 
-export const BETA_BANNER = `You're using Astryx in beta. Features are still being refined, and everything Astryx shows is observational reference — not medical advice. Thank you for helping shape it.`
+// 2026-09-11 — the "in beta" claim retired. Two paid tiers are live and
+// selling; telling a paying subscriber they are in a closed test was the
+// sharpest contradiction on the dashboard. The disclosure it carries stays.
+export const BETA_BANNER = `Astryx is a reference instrument, not a clinical one. What it shows is observational, and your own experience is the evidence. Anything about a symptom or a health decision belongs with your licensed practitioner.`
 
 // ─── CONSENT & ASSUMPTION-OF-RISK GATE (FIX 1) ───────────────────────────
 // Blocking, first-authenticated-session agreement shown BEFORE intake or any
