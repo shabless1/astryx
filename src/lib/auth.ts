@@ -200,6 +200,18 @@ export const authOptions: NextAuthOptions = {
         const realId = await resolveUserId(token.id, token.email)
         if (realId) token.id = realId
         token.consented = await hasAcceptedCurrentConsent(token.id, token.email)
+        // 2026-09-10 (SHA) — RE-RESOLVE ENTITLEMENT + TIER on update too.
+        // The tier used to be stamped ONLY at sign-in, which meant somebody who
+        // paid for Practitioner Access kept seeing the Individual surface until
+        // they happened to sign out and back in — they had bought something the
+        // app would not hand them. session.update() now pulls the current tier
+        // straight from the server, so "Refresh access" in Settings and the
+        // return-from-checkout path both work without a re-login. Still
+        // server-resolved: the client can ask for a refresh, never for a tier.
+        const { resolveAccess } = await import('./entitlement')
+        const access = await resolveAccess(token.email)
+        token.entitled = access.entitled
+        token.tier = access.tier
       }
       return token
     },

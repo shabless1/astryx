@@ -3,6 +3,8 @@
 import type { AppMode } from '@/types'
 import { GlassCard, PrimaryButton, ModeToggle, SectionLabel } from '@/components/ui'
 import { useIsPractitioner, PRACTITIONER_PRODUCT_URL, PRACTITIONER_TIER_LIVE } from '@/lib/tierGate'
+import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 import { hexToRgba } from '@/lib/utils'
 import { APP_VERSION } from '@/lib/version'
 import { useAppStore } from '@/lib/store'
@@ -44,6 +46,8 @@ export default function SettingsScreen({
 }: SettingsScreenProps) {
   // P0 — the practitioner surface is entitlement-gated, not toggle-gated.
   const isPractitioner = useIsPractitioner()
+  const { update: updateSession } = useSession()
+  const [refreshing, setRefreshing] = useState(false)
   return (
     <div className="min-h-screen font-rajdhani">
       <div className="max-w-xl mx-auto px-5" style={{ paddingTop: 100, paddingBottom: 60 }}>
@@ -83,18 +87,40 @@ export default function SettingsScreen({
             <ModeToggle mode={mode} setMode={setMode} accentColor={accentColor} />
           </GlassCard>
         ) : PRACTITIONER_TIER_LIVE ? (
-          <a href={PRACTITIONER_PRODUCT_URL} target="_blank" rel="noopener noreferrer" className="block">
-            <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up transition hover:brightness-125">
-              <div>
-                <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Practitioner</div>
-                <div className="text-[14px] text-white/90">Work on other people&rsquo;s charts</div>
-                <div className="text-[12px] text-white/45 mt-0.5">
-                  A client roster, Sacred Tones Session Mode, the named marma points, and the practitioner export.
-                </div>
-              </div>
-              <span className="text-[18px]" style={{ color: accentColor }} aria-hidden="true">&#8599;</span>
-            </GlassCard>
-          </a>
+          <GlassCard className="p-5 mb-3 animate-fade-in-up">
+            <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Practitioner</div>
+            <div className="text-[14px] text-white/90">Work on other people&rsquo;s charts</div>
+            <div className="text-[12px] text-white/45 mt-0.5">
+              A client roster, Sacred Tones Session Mode, the named marma points, and the practitioner export. $39.95 a month.
+            </div>
+            <div className="flex items-center gap-3 mt-4">
+              <a
+                href={PRACTITIONER_PRODUCT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] px-4 py-2 rounded-full transition hover:brightness-125"
+                style={{ background: hexToRgba(accentColor, 0.18), color: accentColor, border: `1px solid ${hexToRgba(accentColor, 0.4)}` }}
+              >
+                Upgrade &#8599;
+              </a>
+              {/* Somebody who has just paid comes back to an app that still
+                  thinks they are on the Individual tier, because the tier is
+                  stamped on the session. This pulls it from the server on
+                  demand, so they never have to guess that signing out is the
+                  fix for something they already bought. */}
+              <button
+                type="button"
+                onClick={async () => {
+                  setRefreshing(true)
+                  try { await updateSession() } finally { setRefreshing(false) }
+                }}
+                className="text-[12px] text-white/50 underline underline-offset-4 hover:text-white/80 transition disabled:opacity-40"
+                disabled={refreshing}
+              >
+                {refreshing ? 'Checking…' : 'Already upgraded? Refresh access'}
+              </button>
+            </div>
+          </GlassCard>
         ) : null}
 
         {/* Animation */}
