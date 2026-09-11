@@ -20,6 +20,13 @@ import { GoogleGenAI } from '@google/genai'
 /** In-character but consistent. Surfaced as a constant (Directive L.2). */
 export const ASTRYX_TEMPERATURE = 0.4
 
+/**
+ * Ceiling on ONE upstream model call. Must stay comfortably under the route's
+ * own maxDuration so a slow provider produces a handled failure (retry, then
+ * the offline brain) instead of a gateway 504 with an empty body.
+ */
+export const UPSTREAM_TIMEOUT_MS = Number(process.env.ASTRYX_UPSTREAM_TIMEOUT_MS || 24_000)
+
 export interface CompleteArgs {
   system: string
   context: string
@@ -62,9 +69,15 @@ async function openAIDialectComplete(opts: {
   temperature: number
   maxTokens: number
 }): Promise<string> {
+  // A single upstream call must never eat the whole serverless budget. DeepSeek
+  // writes longer and slower than gpt-4o (richer answers, 6-20s typical), and an
+  // unbounded call that ran past the function's own ceiling returned a bare 504
+  // to the user — worse than a fallback, because nothing was written at all.
+  // Bounded here so a slow call fails while the route still has room to retry.
   const res = await fetch(`${opts.baseUrl.replace(/\/$/, '')}/chat/completions`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${opts.apiKey}`, 'Content-Type': 'application/json' },
+    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
     body: JSON.stringify({
       model: opts.model,
       temperature: opts.temperature,

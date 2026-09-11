@@ -40,7 +40,7 @@ describe('DeepSeek via DeepInfra', () => {
     vi.stubGlobal('fetch', f)
     const out = await getAstryxModel().complete({ system: 's', context: 'c', message: 'm' })
     expect(out).toBe('a reply')
-    const [url, init] = f.mock.calls[0] as [string, RequestInit]
+    const [url, init] = f.mock.calls[0] as unknown as [string, RequestInit]
     expect(url).toBe('https://api.deepinfra.com/v1/openai/chat/completions')
     expect(url).not.toMatch(/openai\.com/)
     const body = JSON.parse(String(init.body))

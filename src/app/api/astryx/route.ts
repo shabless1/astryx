@@ -37,6 +37,12 @@ import { enforceRateLimit } from '@/lib/rateLimit'
 import { sessionHasConsent } from '@/lib/consent'
 
 export const runtime = 'nodejs'
+// DeepSeek answers richer and slower than gpt-4o. The shared 30s cap in
+// vercel.json was cutting a long answer off as a bare 504 with no body — the
+// user saw nothing at all. 60s here, with a 24s ceiling on any single upstream
+// call (UPSTREAM_TIMEOUT_MS), so a slow model degrades to the offline brain
+// instead of to a blank screen.
+export const maxDuration = 60
 
 const INDIVIDUAL_DAILY_LIMIT = 20
 const MAX_MESSAGE_CHARS = 2000
@@ -304,14 +310,21 @@ export async function POST(req: NextRequest) {
     const MAX_WAIT_MS = 4500
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
     let lastErr: unknown
+    // Budget-aware: never START an attempt we cannot finish. Three retries of a
+    // 24s call would blow any function ceiling, and the guard rewrites still
+    // need room after this.
+    const startedAt = Date.now()
+    const BUDGET_MS = 42_000
+    const roomLeft = () => BUDGET_MS - (Date.now() - startedAt)
     for (let attempt = 0; attempt < 3 && reply === undefined; attempt++) {
+      if (attempt > 0 && roomLeft() < 8_000) break
       try {
         reply = await model.complete({ system, context, message })
       } catch (e) {
         lastErr = e
         const er = e as { status?: number; retryAfterMs?: number }
         const wait = Math.min(MAX_WAIT_MS, er.retryAfterMs ?? 700 * (attempt + 1))
-        if (attempt < 2) await sleep(wait)
+        if (attempt < 2 && roomLeft() > wait + 8_000) await sleep(wait)
       }
     }
     if (reply === undefined && model.fallbackModel) {
