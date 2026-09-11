@@ -17,6 +17,11 @@
  *
  * `?dryRun=1` reports exactly who WOULD be mailed, sends nothing, stamps
  * nothing. Use it before turning the funnel on.
+ *
+ * SCHEDULE (vercel.json): 14:00 UTC daily = 9am Central while US daylight
+ * saving is in effect (SHA, 2026-09-10). Vercel cron has no timezone and does
+ * not follow DST — when CDT ends on 2 Nov 2026 this becomes 8am Central.
+ * Change the expression to '0 15 * * *' then to hold 9am through the winter.
  */
 
 import { NextResponse } from 'next/server'
