@@ -375,6 +375,28 @@ export const SUPPLEMENT_DOSE_TERMS: ReadonlyArray<RegExp> = [
   /\b(?:magnesium|riboflavin|melatonin|CoQ10|5-?HTP|SAMe|zinc)\s+\d/i, // supplement + number
 ]
 
+/**
+ * CHAT SURFACE — "you have" is banned to stop DIAGNOSTIC phrasing: "you have
+ * anxiety", "you have a Saturn deficiency". Production guard logs (2026-09-10)
+ * showed it firing on 8 of 11 innocent answers — "you have a Leo Ascendant",
+ * "you have twenty questions a day", "you have access" — forcing a second model
+ * call on most normal replies (double the tokens against a 30k TPM ceiling) and
+ * sometimes surrendering a perfectly good answer.
+ *
+ * This strips a "you have …" ONLY when the words that follow carry no clinical
+ * noun. "you have anxiety" / "you have a deficiency" / "you have an imbalance in
+ * your liver" all stay banned. Reports, PDFs and data keep the strict lint —
+ * this is applied by the chat route alone.
+ */
+const CLINICAL_NOUN_AFTER_YOU_HAVE =
+  /\b(?:disorder|disease|syndrome|condition|deficienc(?:y|ies)|imbalance|infection|inflammation|dysfunction|dysregulation|patholog(?:y|ies)|cancer|diabetes|hypertension|arrhythmia|fibromyalgia|depression|anxiety|insomnia|fatigue|pain|ache|symptom|illness|tumou?r|lesion|allerg(?:y|ies)|intoleranc|blockage|excess of|too much|too little|low|high|weak|elevated|chronic|acute)\b/i
+
+export function stripBenignYouHave(text: string): string {
+  return text.replace(/\byou have\b((?:\s+\S+){0,5})/gi, (whole, after: string) =>
+    CLINICAL_NOUN_AFTER_YOU_HAVE.test(after) ? whole : `you hold${after}`,
+  )
+}
+
 /** Disease-naming + explicit dosing findings. Empty if clean. */
 export function lintClinicalClaims(text: string): string[] {
   if (!text) return []

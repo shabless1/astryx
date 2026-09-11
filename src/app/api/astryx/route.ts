@@ -24,7 +24,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import {
   detectCrisis, CRISIS_RESOURCES_CARD, MICRO_DISCLAIMER, lintForBannedPhrases,
-  lintClinicalClaims,
+  lintClinicalClaims, stripBenignYouHave,
 } from '@/lib/compliance'
 import { retrieve } from '@/lib/astryx/canon'
 import { buildAstryxSystem } from '@/lib/astryx/persona'
@@ -85,7 +85,9 @@ const POSITIVE_TREATMENT_CLAIM =
   /\b(?:this|that|it|the|these|those|a|your|my|his|her|astryx|forks?|frequency|frequencies|tone|tones|calibration|session|remedy|remedies)\b[^.?!\n]{0,40}?\b(?:treats?|treating|heals?|healing|cures?|curing)\b\s+(?:your|the|my|his|her|this|that|a|an|it|any)\b/i
 function teacherLint(text: string): string[] {
   if (!text) return []
-  const stripped = text
+  // "you have a Leo Ascendant" / "you have twenty questions" pass; "you have
+  // anxiety" / "you have a deficiency" still trip. See stripBenignYouHave.
+  const stripped = stripBenignYouHave(text)
     .replace(/\bprescriptions?\b/gi, '')
     .replace(NEGATED_BANNED, ' ')
     .replace(SAFE_CLINICAL_PHRASES, ' ')
@@ -129,7 +131,17 @@ function buildReadingSummary(report: any, intention?: string[]): string {
   // user ("your knees mirror to the stomach and head"). Derived zones only.
   if (Array.isArray(report.reflexPlacements) && report.reflexPlacements.length) {
     for (const r of report.reflexPlacements.slice(0, 3)) {
-      L.push(`Body signal: ${(r.localZones ?? []).slice(0, 2).join('/') || r.localSign} — action ${r.actionPlanet} (${r.state}) in ${r.localSign}; reflex mirrors to ${r.oppositeSign} + squares ${(r.squareSigns ?? []).join('/')}; co-governs ${r.coGovernedSystem || 'its polarity axis'}. LOCAL comfort fork at the zone, PLANETARY/REFLEX root fork at ${r.actionPlanet}'s anatomy + the reflex zones.`)
+      const zones: string[] = (r.localZones ?? []).map((z: string) => String(z).toLowerCase())
+      // SHA's pelvic rule, applied to what the MODEL is told. The live battery
+      // caught this line saying "LOCAL comfort fork at the zone" for a pelvic
+      // reflex zone — the model then told a user the fork "can indeed be applied
+      // to the pelvis". An intimate zone is a six-inch field sweep, never contact,
+      // and the summary must say so rather than describe a placement.
+      const intimate = zones.some((z) => /pelvi|reproduct|genital|sacral|elimination|womb|root/.test(z)) || r.localSign === 'Scorpio'
+      const localLine = intimate
+        ? `LOCAL placement is a FIELD SWEEP ONLY — the fork held six inches above the lower belly and swept, never contact (the pelvic rule).`
+        : `LOCAL comfort fork at the zone,`
+      L.push(`Body signal: ${(r.localZones ?? []).slice(0, 2).join('/') || r.localSign} — action ${r.actionPlanet} (${r.state}) in ${r.localSign}; reflex mirrors to ${r.oppositeSign} + squares ${(r.squareSigns ?? []).join('/')}; co-governs ${r.coGovernedSystem || 'its polarity axis'}. ${localLine} PLANETARY/REFLEX root fork at ${r.actionPlanet}'s anatomy + the reflex zones.`)
     }
   }
   const sl = report.sacredLayer

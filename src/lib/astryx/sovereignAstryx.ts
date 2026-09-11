@@ -114,10 +114,28 @@ export function answerAstryx(message: string, ctx: AstryxContext = {}): AstryxAn
   let reply: string
   let concept: string | undefined
 
+  // 1a) THE BOUNDARY (2026-09-10) — cure / heal / medication / doctor questions.
+  // The battery showed a "will this cure my anxiety" question surrendering to the
+  // generic orientation line. This is the warm boundary from the persona's own
+  // exemplar, lint-clean, and it names where the question belongs.
+  if (has(q, 'cure', 'heal me', 'heal my', 'fix my', 'get rid of', 'medication', 'medicine', 'pills', 'my doctor', 'instead of my', 'stop taking', 'symptom')) {
+    reply = `That is a question for your licensed practitioner — anything about a symptom, a medication, or whether something will ease lives with the person who can examine you, and Astryx makes no claim there. What I can do is explain why your calibration leans the way it does: today your signal reads ${planet}, and the tones, the colour and the plant in your protocol are chosen to settle that pattern rather than amplify it. It is a calming, sensory practice and a reference for your own chart, never a substitute for care. Shall I walk you through why it landed this way?`
+    concept = 'boundary'
+  }
   // 1b) USING THE APP (2026-09-10) — the guide answers usage questions offline
   // too. Ordered most-specific first so "marma session" lands on marma, not on
-  // the generic session branch.
-  if (has(q, 'marma', 'marmani', 'named point', 'ayurved', 'shalaka')) {
+  // the generic session branch. "How do I start" gets the first-session walk
+  // (it used to fall into the six-types overview); "simulated tone" gets its own
+  // answer rather than the whole Settings list.
+  else if (has(q, 'how do i start', 'how to start', 'first session', 'getting started', 'get started', 'where do i begin', 'how do i begin', 'new here')) {
+    reply = `Your first session, start to finish. Create your account and accept the Terms and Consent. Enter your birth data at Intake — date, time (or tap "I don't know my birth time"), and city — plus how you feel today and an intention if you like. A brief Analysis runs. Today's Reading appears: one card naming your signal, its carrier planet and today's fork sequence. Then the Dashboard, your daily home: under Sessions tap Today's Calibration, or pick Full Body, Chakra or Marma. In the Chamber press Play in the music player — nothing begins until you do — and follow the phase cards: each names the fork, the frequency, where to hold it and for how long. Afterwards the Post-Session summary records how you feel. Tomorrow the Daily Check-In sets a fresh calibration.`
+    concept = 'getting-started'
+  }
+  else if (has(q, 'simulated')) {
+    reply = `In the chamber the app plays each fork's tone for you. When you don't own that physical fork, the phase card says the tone is simulated and names the frequency the real fork rings at, so you always know what you are hearing. Tap the forks you do own in Settings under Sacred Tones You Own and that note disappears for them. Two sets are made: the aluminum field set, held four to six inches off the body or by the ear, and the weighted steel set, struck and rested stem-down on the point — choose yours on the phase card and the instructions key to it.`
+    concept = 'simulated-tone'
+  }
+  else if (has(q, 'marma', 'marmani', 'named point', 'ayurved', 'shalaka')) {
     reply = `Marma is the named point inside the body zone — Ayurveda's map of places where nerve, vessel, muscle, bone and joint meet. Astryx carries twenty-seven of them, each chosen because it sits on a fork's own application point or a chakra center. Every fork has its primary point (the Sun at Surya above the navel, Saturn at Janu on the kneecap, Mercury at Krikatika at the top of the neck) and every point shows how the fork may meet it: a gold badge means the weighted stem may rest there, cyan means light contact or the fork held in the field, magenta means never touched — a six-inch field sweep only. The Marma Recalibration walks all twelve from the heel to the crown and closes at the sole; start it from the Sessions tiles on your Dashboard or the session picker.`
     concept = 'marma'
   }
@@ -274,7 +292,9 @@ export function answerAstryx(message: string, ctx: AstryxContext = {}): AstryxAn
 
   // Compliance guard — never emit a banned phrase; fall back to a safe line.
   if (containsBannedPhrase(reply)) {
-    reply = `Here's what I can share about your ${planet} calibration in plain language — it's a reference and self-care tool, never a diagnosis. For anything health-related, please speak with your licensed practitioner.`
+    // (This line is itself lint-checked by the tests — it used to say "never a
+    // diagnosis", a banned word inside the compliance fallback.)
+    reply = `Here's what I can share about your ${planet} calibration in plain language — it's a reference and a self-care practice, never a clinical verdict. For anything health-related, please speak with your licensed practitioner.`
   }
 
   return { reply, suggestedConcept: concept ? { key: concept } : undefined }

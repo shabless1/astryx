@@ -142,3 +142,61 @@ describe('guide — retrieval is tier-aware (the model-side seam)', () => {
     expect(all.filter((id) => /complianceNotes|engineUsage|\/_|phase2|placeholder/i.test(id))).toEqual([])
   })
 })
+
+describe('guide — the offline brain: boundary, first session, simulated tone (from the live battery)', () => {
+  it('a cure / medication question gets the warm boundary, not the orientation line', () => {
+    for (const q of ['Will this cure my anxiety?', 'Should I stop taking my medication and use the forks instead?', 'Can this heal my back?']) {
+      const { reply, suggestedConcept } = answerAstryx(q, {})
+      expect(suggestedConcept?.key, q).toBe('boundary')
+      expect(reply).toMatch(/licensed practitioner/i)
+      expect(lintForBannedPhrases(reply.replace(/\bprescriptions?\b/gi, '')), reply).toEqual([])
+    }
+  })
+  it('"how do I start my first session" gets the walkthrough, not the six-types overview', () => {
+    const { reply, suggestedConcept } = answerAstryx('How do I start my first session?', {})
+    expect(suggestedConcept?.key).toBe('getting-started')
+    expect(reply).toMatch(/Intake/)
+    expect(reply).toMatch(/press Play/i)
+  })
+  it('"simulated tone" gets its own answer, not the Settings list', () => {
+    const { reply, suggestedConcept } = answerAstryx("Why does the chamber say 'simulated tone'?", {})
+    expect(suggestedConcept?.key).toBe('simulated-tone')
+    expect(reply).toMatch(/Sacred Tones You Own/)
+    expect(reply).not.toMatch(/^Settings holds/)
+  })
+})
+
+describe('guide — the pelvic rule is in the HARD LINES, not just a chunk', () => {
+  it('the persona forbids contact on the pelvic zone in so many words', async () => {
+    const { buildAstryxSystem } = await import('@/lib/astryx/persona')
+    const sys = buildAstryxSystem()
+    expect(sys).toMatch(/THE PELVIC RULE/)
+    expect(sys).toMatch(/six inches/i)
+    expect(sys).toMatch(/the answer is no/i)
+  })
+})
+
+describe('guard — "you have" is banned for diagnosis, not for grammar', () => {
+  it('innocent "you have" passes the chat lint', async () => {
+    const { stripBenignYouHave, lintForBannedPhrases } = await import('@/lib/compliance')
+    for (const s of [
+      'You have a Leo Ascendant, which colours how the whole calibration lands.',
+      'On the Individual tier you have twenty questions a day.',
+      'If you bought the forks you have access already — sign in with that email.',
+      'You have the option to choose Solfeggio or Planetary forks.',
+    ]) {
+      expect(lintForBannedPhrases(stripBenignYouHave(s)), s).toEqual([])
+    }
+  })
+  it('diagnostic "you have" still trips', async () => {
+    const { stripBenignYouHave, lintForBannedPhrases } = await import('@/lib/compliance')
+    for (const s of [
+      'You have anxiety, and Uranus is why.',
+      'It suggests you have a Saturn deficiency in the knees.',
+      'You have an imbalance in the liver.',
+      'You have chronic inflammation here.',
+    ]) {
+      expect(lintForBannedPhrases(stripBenignYouHave(s)).map((h) => h.toLowerCase()), s).toContain('you have')
+    }
+  })
+})
