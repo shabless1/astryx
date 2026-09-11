@@ -28,8 +28,9 @@
   },
   "crons": [
     {
+      "_comment": "14:00 UTC = 9am Central while US daylight saving is in effect (SHA, 2026-09-10). Vercel cron has no timezone and no DST: when CDT ends on 2 Nov 2026 this same expression becomes 8am Central. Change to '0 15 * * *' then to hold 9am through the winter.",
       "path": "/api/cron/trial-emails",
-      "schedule": "0 15 * * *"
+      "schedule": "0 14 * * *"
     }
   ]
 }
