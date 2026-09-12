@@ -262,6 +262,61 @@ Vibration is rendered visible: concentric rings from struck metal, light travell
 5. **Payments are Shopify-only.** Every buy CTA links a product page. Never build a payment portal.
 6. **Malachite carries a red warning badge** everywhere it appears.
 
+## 7b. THE ONE-PLACE RULE
+
+> **A session step has ONE place. The card names it, the body map marks it, and
+> the only picture shown is a picture of that place.**
+
+SHA, 2026-09-12, with three screenshots: *"if you are in the natal calibration,
+the only pictures that should be shown are pictures that match the body map. if
+it says shoulder, then only shoulder pictures should apply, if it says knee,
+only pictures that match the knee should apply. is this that difficult?"*
+
+It was not difficult and it was not ambiguous. What was wrong: a Natal
+Calibration step took its **headline** from the planet's natal body zone and its
+**pictures** from `resolveMarmaLayer(planet)`, which returns the fork's own four
+points (primary, secondary, chakra doorway, counterweight) at four unrelated
+sites. Nothing compared the two. Every picture was correct for its own point and
+wrong for the step:
+
+| Card said | Pictures showed |
+|---|---|
+| Mercury — Chest / Breasts / Stomach | Krikatika, Vidhuram — **neck** |
+| Uranus — Intestines / Lower abdomen | Urdhva Skandha **shoulder**, Bahu Indrabasta **elbow** |
+| Venus — Intestines / Lower abdomen | Sthapani **forehead**, Shivarandhra **top of head** |
+
+**How it is enforced.** `governingPlace()` in `src/lib/bodySites.ts` resolves the
+one site, in the order the session itself decides:
+
+```
+chakra → marma → register → natal → traditional
+```
+
+It resolves from `primaryRegions[0]`, which `BodyPlacementEngine` assigns
+together with `primaryLabel` in every branch — so the place is *by construction*
+the place the card's own headline names. `pointIsAtPlace()` gates every
+photograph. A point elsewhere keeps its name, its instruction and its safety
+note, loses its picture, and is labelled **Alternate · <site>**.
+
+**An unmapped region shows NO picture.** `regionToSite` covers 29 regions; 16 are
+deliberately unmapped with a written reason (systemic fields, the whole spine, a
+jaw with no photographed site). A neighbouring picture is never substituted — a
+wrong placement is worse than no placement, and the body map still shows where
+it is.
+
+### The session picks the system — never the user, mid-session
+
+SHA, same day: *"you should not be seeing all the different systems as options.
+what i meant last time by options, is selecting the option by SESSION, not
+including every picture then providing a list of systems on the side."*
+
+The chamber body map used to caption **three parallel addresses at once** —
+Traditional, Natal and Marma — each naming a different part of the body, with
+nothing saying which the session was actually working. Three answers to one
+question. Now the session decides, the map names that one address, and a single
+line says why it is that place. The other systems still exist in the model; they
+are simply not offered as competing options mid-session.
+
 ## 8. Workflow
 
 **Division of labour, proposed by SHA and it works.** Claude builds the frame and labels the holes. SHA makes the art. So: design with **named image slots carrying an id, a subject, an aspect ratio and a prompt-ready description**, and hand over a shot list. Never wait on images to design.
