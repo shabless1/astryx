@@ -153,9 +153,29 @@ function validateRequest(body: any): string | null {
 
 // ─── HANDLER ──────────────────────────────────────────────────
 
+/**
+ * TEMPORARY — Worker-port parity only (PHASE1_WORKER_PORT_SCOPE §3).
+ *
+ * Transits are computed against "now", so two calls a second apart can disagree
+ * and no byte-for-byte comparison against the Worker is possible. `X-Astryx-AsOf`
+ * pins the instant for one request, so the app and the Worker can be asked the
+ * same question and their answers diffed.
+ *
+ * It exposes nothing: the same response is obtainable by asking at that moment.
+ * Remove it once the app consumes the Worker and there is only one engine left
+ * to compare against itself.
+ */
+function asOfFromHeader(req: NextRequest): Date {
+  const raw = req.headers.get('x-astryx-asof')
+  if (!raw) return new Date()
+  const parsed = new Date(raw)
+  return Number.isNaN(parsed.getTime()) ? new Date() : parsed
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
+    const asOf = asOfFromHeader(req)
 
     // Validate
     const error = validateRequest(body)
@@ -216,10 +236,10 @@ export async function POST(req: NextRequest) {
     // Extract dominant pattern — symptom-implicated planets boost their aspects
     const dominantPattern = extractDominantPattern(chart as any, symptomBoost, symptomPlanets)
 
-    // ── Transits: current sky aspects to natal chart ──
+    // ── Transits: sky aspects to the natal chart at `asOf` ──
     // Calculated fresh every request — this is the daily-return data layer.
     // Top 7 by weight = the "what's hitting your chart right now" surface.
-    const allTransits = calculateTransits(chart as any, new Date())
+    const allTransits = calculateTransits(chart as any, asOf)
     const transits    = allTransits.slice(0, 7)
 
     return NextResponse.json({
@@ -229,9 +249,9 @@ export async function POST(req: NextRequest) {
       symptomPlanets,
       transits,
       meta: {
-        calculatedAt: new Date().toISOString(),
+        calculatedAt: asOf.toISOString(),
         chartMode: isSolarChart ? 'solar' : 'natal',
-        transitDate: new Date().toISOString(),
+        transitDate: asOf.toISOString(),
         birthData: {
           date:      body.birthDate,
           time:      isSolarChart ? 'Solar Chart (Sun on ASC)' : (body.birthTime || '12:00 noon default'),

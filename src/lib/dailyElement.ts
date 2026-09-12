@@ -81,7 +81,7 @@ function elementAction(
 
 export function computeDailyElement(
   natalChart: NatalChart | null | undefined,
-  date: Date = new Date(),
+  date: Date,   // REQUIRED — the clock is an input, never a default (Worker-port contract)
   forkPlanet = 'Earth',
   personalSignal?: { planet?: string; state?: string },   // N.3 — for sky↔reading reconciliation
 ): DailyElement {
