@@ -59,6 +59,14 @@ import { PLANET_COLORS, PLANET_ELEMENT, feltStateLanguage, type FeltLanguage } f
 // the deterministic engine and the proprietary data corpus (medicalAstrology,
 // remedyPolarity, etc.). It must never enter the client bundle: client code
 // imports render helpers from '@/lib/engineClient' and calls '/api/protocol'.
+//
+// WORKER PORT (Phase 1.2): this tripwire is stripped in the Worker's copy of the
+// core — a global-sniffing side effect at import time is exactly the host
+// coupling a sealed core forbids, and `window` never exists in workerd anyway.
+// It STAYS here. FIX 1 is still open in the app (the engine and its data still
+// ship to the browser), the same guard appears in seven sibling modules, and
+// removing the app's only runtime alarm before the Worker replaces it would be a
+// regression, not hygiene.
 if (typeof window !== 'undefined') {
   throw new Error('engine.ts is server-only — import client-safe helpers from @/lib/engineClient and call /api/protocol.')
 }
@@ -954,8 +962,12 @@ async function fetchChart(payload: ChartRequestPayload): Promise<{
 // Used only if the API call fails (no coords provided, network issue, etc.)
 
 function fallbackPattern(intake: IntakeData): DominantPatternData {
+  // 'YYYY-MM-DD' parses as UTC midnight, so the seed MUST be read with UTC
+  // getters. Local getters made the seed depend on the host timezone: the same
+  // birth date produced one fallback pattern on Vercel (UTC) and a different one
+  // on a machine west of Greenwich, where UTC midnight is the previous day.
   const dt = new Date(intake.birthDate || '1990-01-01')
-  const seed = dt.getFullYear() * 10000 + (dt.getMonth() + 1) * 100 + dt.getDate()
+  const seed = dt.getUTCFullYear() * 10000 + (dt.getUTCMonth() + 1) * 100 + dt.getUTCDate()
   const planets = ['Sun','Moon','Mercury','Venus','Mars','Jupiter','Saturn']
   const aspects = ['conjunction','opposition','trine','square','sextile']
   const signs = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces']

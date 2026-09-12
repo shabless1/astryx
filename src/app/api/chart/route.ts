@@ -195,7 +195,7 @@ export async function POST(req: NextRequest) {
     if (!isSolarChart && !Number.isNaN(birthData.latitude) && !Number.isNaN(birthData.longitude)) {
       try {
         const refDate = new Date(Date.UTC(year, month - 1, day, 12, 0))
-        const tzInfo  = await getTimezoneFromCoords(birthData.latitude, birthData.longitude, refDate)
+        const tzInfo  = getTimezoneFromCoords(birthData.latitude, birthData.longitude, refDate)
         if (tzInfo.iana !== 'UTC') tzOffset = tzInfo.offsetHours
       } catch {
         // keep client-provided offset on any resolver error

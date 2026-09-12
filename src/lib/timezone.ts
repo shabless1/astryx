@@ -2,27 +2,60 @@
  * Timezone detection from geographic coordinates.
  *
  * Uses tz-lookup (a fast, offline IANA timezone lookup by lat/lng).
- * No API calls — pure lookup table, works on Vercel and VPS alike.
+ * No API calls — pure lookup table, works on Vercel, a VPS, and a Worker alike.
  *
  * Returns:
  * - IANA timezone string (e.g. "America/New_York")
- * - UTC offset in hours at current date (respects DST)
+ * - UTC offset in hours AT AN EXPLICIT INSTANT (respects historical DST)
  * - Human-readable label ("EST (UTC-5)")
+ *
+ * WORKER-PORT CONTRACT (Phase 1.2):
+ * - `atDate` is REQUIRED. No hidden clock lives in this module; the caller — an
+ *   HTTP handler — decides what "now" means and passes it in.
+ * - tz-lookup is imported STATICALLY. The old `await import()` + `mod.default ||
+ *   mod` interop could silently resolve to the module namespace object instead
+ *   of the function; the call then threw, was swallowed, and EVERY chart came
+ *   back with UTC offset 0 — a wrong Ascendant with no error anywhere. A
+ *   one-time health assertion on a known coordinate makes that failure loud.
  */
 
-// ─── IANA TIMEZONE LOOKUP ─────────────────────────────────────
+import tzLookup from 'tz-lookup'
 
-let tzLookup: ((lat: number, lon: number) => string) | null = null
+// ─── TZ-LOOKUP HEALTH ASSERTION ───────────────────────────────
+// A wrong-but-silent UTC is the worst outcome here: a one-hour offset error
+// moves the Ascendant ~15°, which can flip whole-sign houses and change the
+// dominant pattern — a different protocol for the same person. So verify once,
+// at first use, against a coordinate whose zone is stable in every tz database:
+// Manhattan is America/New_York and has never been UTC.
 
-async function getTzLookup() {
-  if (tzLookup) return tzLookup
+const TZ_LOOKUP_BROKEN =
+  'tz-lookup is not resolving IANA zones — refusing to fall back to UTC, which would silently produce a wrong Ascendant'
+
+const HEALTH_PROBE = { lat: 40.7128, lon: -74.006, expected: 'America/New_York' }
+let tzLookupHealthy: boolean | null = null
+
+export function assertTzLookupHealthy(): void {
+  if (tzLookupHealthy === true) return
+  if (tzLookupHealthy === false) throw new Error(TZ_LOOKUP_BROKEN)
+
+  let zone: unknown
   try {
-    const mod = await import('tz-lookup')
-    tzLookup = mod.default || mod
-    return tzLookup
-  } catch {
-    return null
+    zone = (tzLookup as unknown as (lat: number, lon: number) => string)(
+      HEALTH_PROBE.lat,
+      HEALTH_PROBE.lon,
+    )
+  } catch (err) {
+    tzLookupHealthy = false
+    throw new Error(
+      `${TZ_LOOKUP_BROKEN} (threw: ${err instanceof Error ? err.message : String(err)})`,
+    )
   }
+
+  if (typeof zone !== 'string' || zone !== HEALTH_PROBE.expected) {
+    tzLookupHealthy = false
+    throw new Error(`${TZ_LOOKUP_BROKEN} (got: ${String(zone)})`)
+  }
+  tzLookupHealthy = true
 }
 
 // ─── MAIN EXPORT ──────────────────────────────────────────────
@@ -34,33 +67,42 @@ export interface TimezoneInfo {
   abbreviation: string  // e.g. "EDT"
 }
 
-export async function getTimezoneFromCoords(lat: number, lon: number, atDate?: Date): Promise<TimezoneInfo> {
-  try {
-    const lookup = await getTzLookup()
-    const iana = lookup ? lookup(lat, lon) : 'UTC'
+/**
+ * Resolve the IANA zone and its UTC offset at `atDate`.
+ *
+ * `atDate` is required by design (see the Worker-port contract above): the
+ * offset in effect at a 1990 birth is not the offset in effect today.
+ */
+export function getTimezoneFromCoords(lat: number, lon: number, atDate: Date): TimezoneInfo {
+  // Outside the try — a broken dependency must NOT degrade into a UTC chart.
+  assertTzLookupHealthy()
 
-    // Resolve the UTC offset AT THE GIVEN INSTANT (the birth date when supplied),
-    // not "now". Intl/ICU carries historical DST rules, so passing the birth date
-    // yields the offset that was actually in effect then. This fixes charts for
-    // anyone born across a DST edge or in a region that changed zones (e.g. a
-    // 1990 Lisbon birth was UTC+0 standard time, not today's UTC+1 summer time).
-    const refDate = atDate ?? new Date()
+  try {
+    const iana = tzLookup(lat, lon)
+
+    // Resolve the UTC offset AT THE GIVEN INSTANT. Intl/ICU carries historical
+    // DST rules, so passing the birth date yields the offset that was actually
+    // in effect then. This fixes charts for anyone born across a DST edge or in
+    // a region that changed zones (e.g. a 1990 Lisbon birth was UTC+0 standard
+    // time, not today's UTC+1 summer time).
     const formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: iana,
       timeZoneName: 'short',
     })
-    const parts = formatter.formatToParts(refDate)
+    const parts = formatter.formatToParts(atDate)
     const tzNamePart = parts.find((p) => p.type === 'timeZoneName')
     const abbreviation = tzNamePart?.value ?? 'UTC'
 
     // Calculate offset in hours at the reference instant
-    const utcOffset = getUTCOffsetHours(iana, refDate)
+    const utcOffset = getUTCOffsetHours(iana, atDate)
 
     const sign = utcOffset >= 0 ? '+' : '-'
     const label = `${abbreviation} (UTC${sign}${Math.abs(utcOffset)})`
 
     return { iana, offsetHours: utcOffset, label, abbreviation }
   } catch (err) {
+    // Reached only for a genuinely unresolvable coordinate — not for a broken
+    // dependency, which throws above. Callers keep their own fallback.
     console.warn('[timezone] Lookup failed, defaulting to UTC:', err)
     return { iana: 'UTC', offsetHours: 0, label: 'UTC', abbreviation: 'UTC' }
   }
@@ -86,12 +128,12 @@ function getUTCOffsetHours(iana: string, date: Date): number {
  * Convert a local birth datetime to UTC, given coordinates.
  * This is what the chart engine needs for precise planet positions.
  */
-export async function birthTimeToUTC(
+export function birthTimeToUTC(
   birthDate: string,   // YYYY-MM-DD
   birthTime: string,   // HH:MM
   lat: number,
   lon: number
-): Promise<{ utcDate: string; utcTime: string; tzInfo: TimezoneInfo }> {
+): { utcDate: string; utcTime: string; tzInfo: TimezoneInfo } {
   const [year, month, day] = birthDate.split('-').map(Number)
   const [hour, minute]     = birthTime.split(':').map(Number)
 
@@ -99,7 +141,7 @@ export async function birthTimeToUTC(
   // day as the reference instant so the rare DST fold/gap around midnight can't
   // skew it; the offset is otherwise constant across the day.
   const refDate = new Date(Date.UTC(year, month - 1, day, 12, 0))
-  const tzInfo  = await getTimezoneFromCoords(lat, lon, refDate)
+  const tzInfo  = getTimezoneFromCoords(lat, lon, refDate)
 
   // Local time → UTC
   const localMs   = Date.UTC(year, month - 1, day, hour, minute)

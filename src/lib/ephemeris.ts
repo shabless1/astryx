@@ -592,9 +592,11 @@ export interface SkyPosition {
  * Current ecliptic positions of all ten planets for a given date.
  * Order follows PLANET_BODIES (Sun, Moon, Mercury … Pluto).
  *
- * @param forDate - Date to compute the sky FOR (default: now)
+ * @param forDate - Date to compute the sky FOR. REQUIRED — no hidden clock
+ *                  lives in the engine (Worker-port determinism contract);
+ *                  the HTTP handler decides what "now" means and passes it in.
  */
-export function currentSkyPositions(forDate: Date = new Date()): SkyPosition[] {
+export function currentSkyPositions(forDate: Date): SkyPosition[] {
   const astroTime = Astronomy.MakeTime(forDate)
   const out: SkyPosition[] = []
   for (const [name, body] of Object.entries(PLANET_BODIES)) {
@@ -659,12 +661,13 @@ const TRANSIT_ASPECT_WEIGHTS: Record<string, number> = {
  * Calculate current planetary positions and detect aspects to a natal chart.
  *
  * @param natalChart  - The user's birth chart (output of calculateNatalChart)
- * @param forDate     - Date to compute transits FOR (default: now)
+ * @param forDate     - Date to compute transits FOR. REQUIRED — see
+ *                      currentSkyPositions: the clock is an input, never a default.
  * @returns Active transit aspects sorted by importance (highest weight first)
  */
 export function calculateTransits(
   natalChart: NatalChart,
-  forDate: Date = new Date(),
+  forDate: Date,
 ): TransitAspect[] {
   const astroTime = Astronomy.MakeTime(forDate)
 

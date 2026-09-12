@@ -145,7 +145,7 @@ function blurbFor(temp: Temperature): string {
  */
 export function computeDailyTemperature(
   natalChart: NatalChart | null | undefined,
-  date: Date = new Date(),
+  date: Date,
 ): DailyTemperatureResult {
   // Guard — an older persisted protocol may have no chart attached.
   if (!natalChart || !Array.isArray((natalChart as any).planets) || !(natalChart as any).planets.length) {

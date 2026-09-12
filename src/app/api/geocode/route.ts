@@ -79,12 +79,19 @@ export async function GET(req: NextRequest) {
       }
     }).filter((r: any) => r.name)
 
-    // Enrich first result with timezone info (server-side tz-lookup)
+    // Enrich first result with timezone info (server-side tz-lookup).
+    // The offset shown here is a display hint for "what zone is this city in
+    // right now" — so the clock lives HERE, in the HTTP handler, and is passed
+    // in explicitly. The chart route re-resolves the offset at the birth date.
     try {
       const { getTimezoneFromCoords } = await import('@/lib/timezone')
+      const asOf = new Date()
       for (const result of results) {
-        const tz = await getTimezoneFromCoords(result.lat, result.lon)
-        ;(result as any).timezone = tz
+        try {
+          ;(result as any).timezone = getTimezoneFromCoords(result.lat, result.lon, asOf)
+        } catch (oneErr) {
+          console.warn('[geocode] Timezone enrichment failed for a result:', oneErr)
+        }
       }
     } catch (tzErr) {
       console.warn('[geocode] Timezone enrichment failed:', tzErr)
