@@ -87,6 +87,7 @@ export default function DashboardScreen({
   const deleteSessionLog = useAppStore((s) => s.deleteSessionLog)
   const setProtocol      = useAppStore((s) => s.setProtocol)
   const setAccentColor   = useAppStore((s) => s.setAccentColor)
+  const chromePaletteId  = useAppStore((s) => s.chromePaletteId)
   const protocolDate     = useAppStore((s) => s.protocolDate)
   const pendingSession   = useAppStore((s) => s.pendingSession)
   const setPendingSession = useAppStore((s) => s.setPendingSession)
@@ -125,7 +126,7 @@ export default function DashboardScreen({
     // Chrome is resolved from the reading, never restored from the record.
     // Old rows carry the per-planet base hue from before the chrome ruling;
     // loading one used to re-skin the entire app in it.
-    setAccentColor(getAccentColor(record.protocol))
+    setAccentColor(getAccentColor(record.protocol, chromePaletteId))
   }
 
   return (

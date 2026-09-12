@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { hexToRgba } from '@/lib/utils'
 import { APP_VERSION } from '@/lib/version'
 import { useAppStore } from '@/lib/store'
+import { CHROME_PALETTES, PALETTE_ORDER, paletteById } from '@/lib/visual/chromePalettes'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
 
 type AstryxVoiceId = 'coral' | 'shimmer' | 'nova' | 'sage'
@@ -190,6 +191,9 @@ export default function SettingsScreen({
           accentColor={accentColor}
         />
 
+        {/* The room's finish — five palettes, the user picks (SHA, 2026-09-12) */}
+        <ChromePaletteRow />
+
         {/* v4.3 — session mode preference (skips the chamber's mode picker) */}
         <SessionModePreferenceRow accentColor={accentColor} />
 
@@ -243,6 +247,105 @@ export default function SettingsScreen({
 
 // FIX 8 — mark which physical Sacred Tone forks you own. Owned forks no longer
 // show the "this is the simulated tone" prescription line in the Chamber.
+// ── THE ROOM'S FINISH ────────────────────────────────────────────────────────
+// SHA, 2026-09-12, on seeing the five: *"I love them all! this is what i am
+// talking about baby!"* — so none of them was thrown away. The palette is the
+// instrument's FINISH; the room within it is still resolved by the reading's
+// STATE and never by the planet, so switching palettes changes what the colour
+// is made of, never what it means. Tapping one re-resolves the accent from the
+// reading already loaded, so the whole app moves on the tap.
+function ChromePaletteRow() {
+  const paletteId    = useAppStore((s) => s.chromePaletteId)
+  const setPaletteId = useAppStore((s) => s.setChromePaletteId)
+  const active       = paletteById(paletteId)
+
+  return (
+    <GlassCard
+      style={{ animationDelay: '0.20s' }}
+      title="The Room"
+      badge={active.name}
+      className="mb-3 animate-fade-in-up"
+      bodyClass="p-5"
+    >
+      <div className="text-[12px] text-white/40 mb-4">
+        The colour of the app follows your current signal — it cools when you are
+        running hot and warms when you are running low. This is what that colour is
+        made of.
+      </div>
+
+      <div className="flex flex-col gap-2">
+        {PALETTE_ORDER.map((id) => {
+          const p        = CHROME_PALETTES[id]
+          const isActive = id === paletteId
+          const rest     = p.rooms.balanced
+          return (
+            <button
+              key={id}
+              onClick={() => setPaletteId(id)}
+              aria-pressed={isActive}
+              className="w-full text-left rounded-xl p-3 transition-all duration-200"
+              style={{
+                background: isActive
+                  ? `linear-gradient(150deg, ${hexToRgba(rest.hex, 0.20)}, rgba(2,2,8,0.35))`
+                  : 'rgba(255,255,255,0.03)',
+                border: `1px solid ${isActive ? hexToRgba(rest.hex, 0.55) : 'rgba(255,255,255,0.09)'}`,
+                boxShadow: isActive
+                  ? `inset 0 1px 0 rgba(255,255,255,0.20), 0 16px 34px -22px ${hexToRgba(rest.hex, 0.9)}`
+                  : 'none',
+              }}
+            >
+              <div className="flex items-center gap-3">
+                {/* the four rooms, in order: rest · cools · warms · opens */}
+                <div className="flex gap-1 flex-shrink-0">
+                  {(['balanced', 'elevated', 'depleted', 'blocked'] as const).map((st) => (
+                    <span
+                      key={st}
+                      title={`${st} — ${p.rooms[st].name}`}
+                      className="block rounded-full"
+                      style={{
+                        width: 13, height: 13,
+                        background: p.rooms[st].hex,
+                        border: '1px solid rgba(255,255,255,0.30)',
+                        boxShadow: `0 0 10px ${hexToRgba(p.rooms[st].hex, 0.85)}`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div
+                    className="font-cinzel text-[14px] font-bold truncate"
+                    style={{ color: isActive ? '#fff' : 'rgba(255,255,255,0.80)' }}
+                  >
+                    {p.name}
+                  </div>
+                  <div className="text-[11px] text-white/45 truncate">{p.soul}</div>
+                </div>
+                {isActive && (
+                  <span
+                    className="text-[9px] uppercase tracking-[0.18em] flex-shrink-0 px-2 py-1 rounded-full"
+                    style={{
+                      color: rest.hex,
+                      border: `1px solid ${hexToRgba(rest.hex, 0.45)}`,
+                      background: hexToRgba(rest.hex, 0.10),
+                    }}
+                  >
+                    On
+                  </span>
+                )}
+              </div>
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="text-[11px] text-white/35 mt-4 leading-relaxed">
+        <span style={{ color: active.rooms.balanced.hex }}>Where it comes from &mdash;</span>{' '}
+        {active.source}
+      </div>
+    </GlassCard>
+  )
+}
+
 // v4.3 — Session Mode preference: Ask each time (default) shows the chamber's
 // two-card picker; a fixed mode starts sessions directly in that mode.
 function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {

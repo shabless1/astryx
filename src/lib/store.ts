@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { HOUSE_ACCENT } from '@/lib/engineClient'
+import { HOUSE_ACCENT, getAccentColor } from '@/lib/engineClient'
+import { DEFAULT_PALETTE_ID, type ChromePaletteId } from '@/lib/visual/chromePalettes'
 import type {
   AppScreen,
   AppMode,
@@ -84,6 +85,13 @@ interface AppState {
   setProtocol: (protocol: ProtocolOutput) => void
   accentColor: string
   setAccentColor: (color: string) => void
+  // ── THE ROOM'S FINISH (SHA, 2026-09-12: "I love them all!") ──────────
+  // Five palettes ship; the user picks. This is a PREFERENCE — an input the
+  // person chose — which is why it IS persisted, unlike `accentColor`, which is
+  // DERIVED from the reading and must never be restored from disk (see the
+  // partialize note). Changing it re-resolves the accent immediately.
+  chromePaletteId: ChromePaletteId
+  setChromePaletteId: (id: ChromePaletteId) => void
   // Daily Recalibration (Directive v1.0 FIX 1) — the active protocol's compute
   // date (YYYY-MM-DD, local). When this !== today, the app recomputes via the
   // daily door instead of replaying yesterday's reading.
@@ -330,6 +338,14 @@ export const useAppStore = create<AppState>()(
       // every pre-reading screen was already off-brand.)
       accentColor: HOUSE_ACCENT,
       setAccentColor: (color) => set({ accentColor: color }),
+      chromePaletteId: DEFAULT_PALETTE_ID,
+      setChromePaletteId: (id) =>
+        // Re-resolve the room in the new finish from the reading already loaded,
+        // so the picker changes the whole app the instant it is tapped.
+        set((state) => ({
+          chromePaletteId: id,
+          accentColor: getAccentColor(state.protocol, id),
+        })),
       protocolDate: null,
       setProtocolDate: (date) => set({ protocolDate: date }),
       dailyEnergy: null,
@@ -521,6 +537,8 @@ export const useAppStore = create<AppState>()(
           selectedSymptoms: [],
           protocol:         null,
           protocolDate:     null,
+          // accentColor resets; chromePaletteId deliberately does NOT — starting
+          // a new reading should not throw away the room the user chose.
           accentColor:      HOUSE_ACCENT,
           screen:           'intake',
           chartData:        null,
@@ -631,6 +649,11 @@ export const useAppStore = create<AppState>()(
         dailyEnergy:      state.dailyEnergy,
         dailyElement:     state.dailyElement,
         chartData:        state.chartData,
+        // The chosen palette IS persisted: it is a PREFERENCE the user set, not a
+        // value derived from a reading. That is the whole distinction — inputs
+        // persist, derivations resolve. Restoring this one is correct; restoring
+        // accentColor is the bug described directly below.
+        chromePaletteId:  state.chromePaletteId,
         // accentColor is DELIBERATELY NOT PERSISTED (2026-09-12).
         // zustand merges the saved blob OVER the defaults, so a browser that
         // once stored a per-planet hue replayed it on every load — before any

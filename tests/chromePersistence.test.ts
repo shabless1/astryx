@@ -53,6 +53,21 @@ describe('chrome is never restored from disk', () => {
     expect(body).toMatch(/delete incoming\.accentColor/)
   })
 
+  it('the CHOSEN PALETTE is persisted — it is an input, not a derivation', () => {
+    // The distinction that keeps this from being confused with the bug above:
+    // a preference the user set is restored; a value derived from a reading is
+    // resolved. chromePaletteId is the former, accentColor the latter.
+    expect(partializeBody()).toMatch(/chromePaletteId:\s*state\.chromePaletteId/)
+    expect(SRC).toMatch(/chromePaletteId:\s*DEFAULT_PALETTE_ID/)
+    // Picking a palette re-resolves the accent immediately from the live reading.
+    expect(SRC).toMatch(/setChromePaletteId:[\s\S]{0,400}getAccentColor\(state\.protocol, id\)/)
+  })
+
+  it('starting a new reading keeps the room the user chose', () => {
+    const reset = SRC.slice(SRC.indexOf('resetIntake:'), SRC.indexOf('resetIntake:') + 900)
+    expect(reset).not.toMatch(/chromePaletteId/)
+  })
+
   it('the store seeds chrome with the house accent, not a planet hue', () => {
     expect(SRC).toMatch(/accentColor:\s*HOUSE_ACCENT/)
     // The old violet seed is gone from every default and from resetIntake.
@@ -66,7 +81,7 @@ describe('no screen replays a stored hue back into chrome', () => {
   it('loading a history record resolves chrome from the reading', () => {
     const s = read('src/components/screens/DashboardScreen.tsx')
     expect(s).not.toMatch(/setAccentColor\(record\.accentColor\)/)
-    expect(s).toMatch(/setAccentColor\(getAccentColor\(record\.protocol\)\)/)
+    expect(s).toMatch(/setAccentColor\(getAccentColor\(record\.protocol, chromePaletteId\)\)/)
   })
 
   it('the post-session summary does not take its accent from the snapshot', () => {

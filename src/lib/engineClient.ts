@@ -50,7 +50,11 @@ export const PLANET_COLORS: Record<string, string> = {
  * to change: the mandala, colour therapy, the tone-ladder dots, the chart wheel
  * and the body map. Those are the signal. This is the room.
  */
-export { CHROME_BY_STATE, resolveChromeRoom, isRedBand } from '@/lib/visual/chromeAccent'
+export {
+  CHROME_PALETTES, PALETTE_ORDER, DEFAULT_PALETTE_ID, paletteById,
+  resolveChromeRoom, isRedBand, allChromeHexes,
+} from '@/lib/visual/chromeAccent'
+export type { ChromePaletteId, ChromePalette, ChromeRoom } from '@/lib/visual/chromeAccent'
 
 /**
  * The room at rest, and every fallback. Kept under its original name because it
@@ -58,9 +62,16 @@ export { CHROME_BY_STATE, resolveChromeRoom, isRedBand } from '@/lib/visual/chro
  */
 export const HOUSE_ACCENT = CHROME_DEFAULT.hex
 
-/** The accent colour for the app's chrome — resolved from state, never from the planet. */
-export function getAccentColor(protocol?: ProtocolOutput | null): string {
-  return resolveChromeAccent(protocol)
+/**
+ * The accent colour for the app's chrome — resolved from STATE, never from the
+ * planet. `paletteId` is the user's chosen finish (see chromePalettes.ts); omit
+ * it and the default palette is used.
+ */
+export function getAccentColor(
+  protocol?: ProtocolOutput | null,
+  paletteId?: string | null,
+): string {
+  return resolveChromeAccent(protocol, paletteId)
 }
 
 /** The dominant planet's own hue — for the chamber visuals that SHOULD move. */

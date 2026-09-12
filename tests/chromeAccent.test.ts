@@ -14,10 +14,13 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
-  CHROME_BY_STATE, CHROME_DEFAULT, resolveChromeAccent, resolveChromeRoom,
-  chromeStateFor, isRedBand, hexToHsl, assertChromeSafe,
+  CHROME_PALETTES, PALETTE_ORDER, DEFAULT_PALETTE_ID, CHROME_DEFAULT,
+  resolveChromeAccent, resolveChromeRoom, chromeStateFor,
+  isRedBand, hexToHsl, assertChromeSafe, allChromeHexes, isStale, STALE_FLOOR,
+  paletteHueFamilies, assertPaletteRange, MIN_HUE_FAMILIES, hueDistance,
 } from '@/lib/visual/chromeAccent'
 import { getAccentColor, HOUSE_ACCENT, PLANET_COLORS } from '@/lib/engineClient'
+const DEFAULT_ROOMS = CHROME_PALETTES[DEFAULT_PALETTE_ID].rooms
 import { PLANET_COLOR_THERAPY } from '@/lib/visual/planetColorTherapyLibrary'
 import type { ProtocolOutput } from '@/types'
 
@@ -62,13 +65,13 @@ describe('the red band is detected', () => {
 describe('the four rooms', () => {
   it('every chrome value is outside the red band', () => {
     for (const state of STATES) {
-      const room = CHROME_BY_STATE[state]
+      const room = DEFAULT_ROOMS[state]
       expect(isRedBand(room.hex), `${state} = ${room.hex} (${room.name}) is red`).toBe(false)
     }
   })
 
   it('SHA\'s named constraint: a DEPLETED day is never hot, blood or crimson red', () => {
-    const depleted = CHROME_BY_STATE.depleted
+    const depleted = DEFAULT_ROOMS.depleted
     expect(isRedBand(depleted.hex)).toBe(false)
     const { h } = hexToHsl(depleted.hex)
     // Comfortably on the amber-gold side of the band edge (28°), not near it.
@@ -77,25 +80,141 @@ describe('the four rooms', () => {
   })
 
   it('elevated cools and depleted warms — the shift runs the right way', () => {
-    const cool = hexToHsl(CHROME_BY_STATE.elevated.hex)
-    const warm = hexToHsl(CHROME_BY_STATE.depleted.hex)
+    const cool = hexToHsl(DEFAULT_ROOMS.elevated.hex)
+    const warm = hexToHsl(DEFAULT_ROOMS.depleted.hex)
     // A cool hue sits in the blue-green half of the circle; a warm one does not.
     expect(cool.h).toBeGreaterThan(90)
     expect(warm.h).toBeLessThan(90)
   })
 
-  it('no room shouts — every value stays inside the chrome envelope', () => {
-    for (const state of STATES) {
-      const { s, l } = hexToHsl(CHROME_BY_STATE[state].hex)
-      expect(s, `${state} saturation`).toBeLessThanOrEqual(0.55)
-      expect(l, `${state} lightness`).toBeGreaterThan(0.40)
-      expect(l, `${state} lightness`).toBeLessThan(0.80)
+  it('the room at rest is the house colour', () => {
+    expect(CHROME_DEFAULT).toBe(DEFAULT_ROOMS.balanced)
+    expect(HOUSE_ACCENT).toBe(DEFAULT_ROOMS.balanced.hex)
+  })
+})
+
+// ─── THE SECOND LAW — no room may be stale ───────────────────────────────────
+// SHA, 2026-09-12: "you either kill me with red or deplete me with stale
+// colors." The first chrome ladder passed every red test and was still wrong,
+// because it was built out of avoidance and came back beige. Avoiding red is
+// half the law. These tests are the other half.
+describe('no room is stale', () => {
+  it('every room in every palette carries real chroma', () => {
+    for (const id of PALETTE_ORDER) {
+      const p = CHROME_PALETTES[id]
+      for (const state of STATES) {
+        const room = p.rooms[state]
+        const { s } = hexToHsl(room.hex)
+        expect(isStale(room.hex), `${id}.${state} ${room.name} ${room.hex} is washed out (s=${s.toFixed(2)})`).toBe(false)
+        expect(s).toBeGreaterThanOrEqual(STALE_FLOOR.minSaturation)
+      }
     }
   })
 
-  it('the room at rest is the house colour', () => {
-    expect(CHROME_DEFAULT).toBe(CHROME_BY_STATE.balanced)
-    expect(HOUSE_ACCENT).toBe(CHROME_BY_STATE.balanced.hex)
+  // The exact ladder SHA rejected, kept as the regression fixture.
+  const REJECTED = {
+    balanced: '#C9A961', // House Gold   h 42
+    depleted: '#CFA65C', // Warm Amber   h 39
+    blocked:  '#B3A891', // Dry Stone    h 41
+    elevated: '#8FA9A6', // Cooled Stone h 173
+  }
+
+  it('the drained values in the rejected ladder are caught per colour', () => {
+    expect(isStale(REJECTED.elevated)).toBe(true)   // s 0.13
+    expect(isStale(REJECTED.blocked)).toBe(true)    // s 0.18
+  })
+
+  it('its two golds are NOT caught per colour — which is why range is the real law', () => {
+    // Honest: #C9A961 sits at s 0.49 and is a perfectly decent antique gold in
+    // isolation. No per-colour floor separates it from a palette SHA loved
+    // (Lilac Release is LOWER in chroma). The ladder is what failed, not the hex.
+    expect(isStale(REJECTED.balanced)).toBe(false)
+    expect(isStale(REJECTED.depleted)).toBe(false)
+  })
+
+  it('the rejected ladder fails the RANGE law — three of four rooms shared a hue', () => {
+    const hexes = Object.values(REJECTED)
+    expect(paletteHueFamilies(hexes)).toBeLessThan(MIN_HUE_FAMILIES)
+    expect(() => assertPaletteRange(hexes, 'rejected ladder')).toThrow(/hue famil/)
+    // The three golds really were within a few degrees of one another.
+    const h = (x: string) => hexToHsl(x).h
+    expect(hueDistance(h(REJECTED.balanced), h(REJECTED.depleted))).toBeLessThan(6)
+    expect(hueDistance(h(REJECTED.balanced), h(REJECTED.blocked))).toBeLessThan(6)
+  })
+
+  it('every shipped palette has range', () => {
+    for (const id of PALETTE_ORDER) {
+      const hexes = STATES.map((s) => CHROME_PALETTES[id].rooms[s].hex)
+      expect(paletteHueFamilies(hexes), `${id} needs ${MIN_HUE_FAMILIES}+ hue families`)
+        .toBeGreaterThanOrEqual(MIN_HUE_FAMILIES)
+      expect(() => assertPaletteRange(hexes, id)).not.toThrow()
+    }
+  })
+
+  it('every room reads on deep space — never too dark, never blown out', () => {
+    for (const id of PALETTE_ORDER) {
+      for (const state of STATES) {
+        const { l } = hexToHsl(CHROME_PALETTES[id].rooms[state].hex)
+        expect(l, `${id}.${state} lightness`).toBeGreaterThan(0.28)
+        expect(l, `${id}.${state} lightness`).toBeLessThan(0.84)
+      }
+    }
+  })
+})
+
+// ─── every palette obeys the law, not just the default ───────────────────────
+describe('all five palettes', () => {
+  it('the roster is complete and ordered', () => {
+    expect(PALETTE_ORDER).toHaveLength(5)
+    expect(new Set(PALETTE_ORDER).size).toBe(5)
+    for (const id of PALETTE_ORDER) expect(CHROME_PALETTES[id]?.id).toBe(id)
+    expect(PALETTE_ORDER).toContain(DEFAULT_PALETTE_ID)
+  })
+
+  it('no palette can put a red anywhere', () => {
+    for (const hex of allChromeHexes()) expect(isRedBand(hex), `${hex}`).toBe(false)
+  })
+
+  it('every palette cools when elevated and warms when depleted', () => {
+    for (const id of PALETTE_ORDER) {
+      const p = CHROME_PALETTES[id]
+      expect(hexToHsl(p.rooms.elevated.hex).h, `${id} elevated should be cool`).toBeGreaterThan(90)
+      expect(hexToHsl(p.rooms.depleted.hex).h, `${id} depleted should be warm`).toBeLessThan(90)
+      expect(p.rooms.elevated.temperature).toBe('cool')
+      expect(p.rooms.depleted.temperature).toBe('warm')
+    }
+  })
+
+  it('every palette resolves all 40 planet-states safely', () => {
+    for (const id of PALETTE_ORDER) {
+      for (const planet of Object.keys(PLANET_COLOR_THERAPY)) {
+        for (const state of STATES) {
+          const hex = getAccentColor(reading(planet, engineWord(state)), id)
+          expect(isRedBand(hex), `${id} · ${planet} · ${state} → ${hex}`).toBe(false)
+          expect(isStale(hex), `${id} · ${planet} · ${state} → ${hex}`).toBe(false)
+        }
+      }
+    }
+  })
+
+  it('a palette changes the finish but never the reading', () => {
+    // Same state → same ROOM SLOT in every palette; different palette → different
+    // colour. The state is what the colour means; the palette is what it is made of.
+    for (const state of STATES) {
+      const hexes = PALETTE_ORDER.map((id) => getAccentColor(reading('Mars', engineWord(state)), id))
+      expect(new Set(hexes).size, `${state} should differ across palettes`).toBeGreaterThan(1)
+    }
+    for (const id of PALETTE_ORDER) {
+      expect(getAccentColor(reading('Mars', 'excess'), id))
+        .toBe(getAccentColor(reading('Neptune', 'excess'), id))
+    }
+  })
+
+  it('an unknown or missing palette id falls back to the default', () => {
+    const fallback = CHROME_PALETTES[DEFAULT_PALETTE_ID].rooms.balanced.hex
+    expect(getAccentColor(null, 'not-a-palette')).toBe(fallback)
+    expect(getAccentColor(null, null)).toBe(fallback)
+    expect(getAccentColor(null)).toBe(fallback)
   })
 })
 
@@ -116,7 +235,7 @@ describe('chrome answers the state, never the planet', () => {
   })
 
   it('no planet\'s identity hue can ever be the chrome colour', () => {
-    const chrome = new Set(STATES.map((s) => CHROME_BY_STATE[s].hex.toLowerCase()))
+    const chrome = new Set(allChromeHexes().map((h) => h.toLowerCase()))
     for (const [planet, hex] of Object.entries(PLANET_COLORS)) {
       expect(chrome.has(hex.toLowerCase()), `${planet}'s identity hue leaked into chrome`).toBe(false)
     }

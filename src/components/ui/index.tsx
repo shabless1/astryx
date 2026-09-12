@@ -96,24 +96,40 @@ export function GlassCard({
   bodyClass?: string
 }) {
   const accent = accentColor || '#22D3EE'
-  // Hologram recipe per PR #2: vertical gradient bg, cyan hairline borders
-  // with a brighter top "scan-pass" rim, layered inset+halo+drop shadows.
-  // Per-planet accent shows in border + glow only — never washes the body.
+  // ── GLASS (SHA, 2026-09-12: "this is have a glass look and feel, not a dry
+  // cold room to do surgery") ──────────────────────────────────────────────
+  // The bones were already here — backdrop blur, an accent border, a top rim,
+  // a halo. What was missing was TRANSLUCENCY: the fill ran to 92% opaque, so
+  // nothing behind the card ever came through and the glass had nothing to
+  // refract. It read as a dark rectangle with a coloured edge.
+  //
+  // Three changes, all in this one component so every surface in the app moves
+  // at once: the fill is lightened and carries a breath of the accent so the
+  // glass is TINTED by the room; the backdrop filter gains saturate() so what
+  // shows through stays coloured instead of going grey; and an inset bloom sits
+  // in the lower body so the card is lit from within rather than filled.
   return (
     <div
-      className={`relative rounded-xl backdrop-blur-md transition-all duration-300 ${title ? 'overflow-hidden' : ''} ${className}`}
+      className={`relative rounded-xl transition-all duration-300 ${title ? 'overflow-hidden' : ''} ${className}`}
       style={{
-        background:
-          'linear-gradient(180deg, rgba(8,14,28,0.72) 0%, rgba(2,2,8,0.92) 100%)',
-        border: `1px solid ${hexToRgba(accent, Math.max(0.22, opacity))}`,
-        borderTop: `1px solid ${hexToRgba(accent, topBorder ? 0.65 : 0.4)}`,
+        background: [
+          `linear-gradient(157deg, ${hexToRgba(accent, 0.10)} 0%, ${hexToRgba(accent, 0.02)} 46%, rgba(2,2,8,0.30) 100%)`,
+          'linear-gradient(180deg, rgba(10,14,30,0.58) 0%, rgba(2,2,8,0.74) 100%)',
+        ].join(', '),
+        backdropFilter: 'blur(22px) saturate(165%)',
+        WebkitBackdropFilter: 'blur(22px) saturate(165%)',
+        border: `1px solid ${hexToRgba(accent, Math.max(0.24, opacity))}`,
+        borderTop: `1px solid ${hexToRgba(accent, topBorder ? 0.70 : 0.46)}`,
         boxShadow: [
           // SHA house style — the lip of light along the top edge. Warm
           // off-white, not white: indigo-and-white on near-black is what
           // made the app feel shut in.
           'inset 0 1px 0 var(--lip)',
-          `0 0 0 1px ${hexToRgba(accent, 0.08)}`,
-          `0 24px 60px -24px ${hexToRgba(accent, 0.30)}`,
+          // The bloom inside the glass. This is the difference between a lit
+          // surface and a filled one.
+          `inset 0 -30px 60px -40px ${hexToRgba(accent, 0.55)}`,
+          `0 0 0 1px ${hexToRgba(accent, 0.09)}`,
+          `0 28px 64px -26px ${hexToRgba(accent, 0.38)}`,
         ].join(', '),
         ...style,
       }}

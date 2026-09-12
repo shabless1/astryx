@@ -3,7 +3,7 @@
 import { useEffect, useRef, useMemo } from 'react'
 import type { AppScreen } from '@/types'
 import { hexToRgb, seededRandom } from '@/lib/utils'
-import { CHROME_BY_STATE, CHROME_DEFAULT, type ChromeRoom } from '@/lib/visual/chromeAccent'
+import { allChromeHexes, CHROME_PALETTES, CHROME_DEFAULT, type ChromeRoom } from '@/lib/visual/chromeAccent'
 
 interface CosmicBackgroundProps {
   screen: AppScreen
@@ -62,7 +62,8 @@ const PLANET_ATMOSPHERE: Record<string, {
 // surface in the app, so it moves with the same four rooms as every other
 // chrome element — it derives its tint from the resolved accent rather than
 // carrying a second, independently-drifting table. Strength stays in the gentle
-// 0.06–0.09 band: no state gets to shout, and none of the four can be red
+// 0.15–0.19 band: strong enough that the glass has coloured light to refract,
+// and safe at that strength because no room can be red (chromeLaw asserts it).
 // (chromeAccent.ts asserts that at module load).
 const ATMOSPHERE_BY_TEMPERATURE: Record<ChromeRoom['temperature'], {
   hueRot: number
@@ -70,13 +71,13 @@ const ATMOSPHERE_BY_TEMPERATURE: Record<ChromeRoom['temperature'], {
   nebulaPos: string
 }> = {
   // running hot → the room settles: dimmest nebula, placed low and wide
-  cool:   { hueRot: 0, nebulaStrength: 0.06, nebulaPos: '28% 62%' },
+  cool:   { hueRot: 0, nebulaStrength: 0.15, nebulaPos: '28% 62%' },
   // running low → the room builds: the warmest, most present field
-  warm:   { hueRot: 0, nebulaStrength: 0.09, nebulaPos: '24% 34%' },
+  warm:   { hueRot: 0, nebulaStrength: 0.19, nebulaPos: '24% 34%' },
   // compressed → the room opens: lifted and off-centre
-  dry:    { hueRot: 0, nebulaStrength: 0.07, nebulaPos: '70% 30%' },
+  open:   { hueRot: 0, nebulaStrength: 0.17, nebulaPos: '70% 30%' },
   // coherent → the room at rest
-  steady: { hueRot: 0, nebulaStrength: 0.07, nebulaPos: '20% 40%' },
+  steady: { hueRot: 0, nebulaStrength: 0.17, nebulaPos: '20% 40%' },
 }
 
 export default function CosmicBackground({
@@ -95,12 +96,24 @@ export default function CosmicBackground({
   // future surface that genuinely SHOULD carry a planet's hue — the page
   // background is not one, and must never be reconnected to `dominantPlanet`.
   void dominantPlanet
-  const room =
-    Object.values(CHROME_BY_STATE).find((r) => r.hex.toLowerCase() === accentColor?.toLowerCase())
+  // `accentColor` is already the state- and palette-resolved room colour, so the
+  // room is recovered by matching it back across every palette. That keeps the
+  // background a pure function of the accent: one source of truth, no second
+  // table that can drift out of step.
+  const room: ChromeRoom =
+    Object.values(CHROME_PALETTES)
+      .flatMap((p) => Object.values(p.rooms))
+      .find((r) => r.hex.toLowerCase() === accentColor?.toLowerCase())
     ?? CHROME_DEFAULT
+  const base = ATMOSPHERE_BY_TEMPERATURE[room.temperature]
+  // The counter-pool, mirrored across the viewport, so the light has a direction
+  // and the glass has an edge to catch instead of one even wash.
+  const [px, py] = base.nebulaPos.split(' ')
+  const mirror = (v: string) => `${100 - parseFloat(v)}%`
   const atm = {
-    ...ATMOSPHERE_BY_TEMPERATURE[room.temperature],
+    ...base,
     atmosRgb: rgb,   // hexToRgb already returns "r,g,b"
+    nebulaPosAlt: `${mirror(px)} ${mirror(py)}`,
   }
 
   // ── Three-layer parallax star field (Play 3) ──────────────────
@@ -257,11 +270,21 @@ export default function CosmicBackground({
         }}
       />
 
-      {/* Subtle planet-tint vignette (kept very low) */}
+      {/* ── THE ROOM'S LIGHT ────────────────────────────────────────────
+          SHA, 2026-09-12: "this is have a glass look and feel, not a dry cold
+          room to do surgery." Glass needs something behind it to refract, and
+          this was clamped to 0.05 — effectively invisible — from the days when
+          a per-planet table could wash the viewport in Mars red. It cannot go
+          red any more (chromeLaw asserts every room), so the bloom is allowed
+          to be a real source of light. Two offset pools rather than one flat
+          vignette, so the field has depth and the glass catches an edge. */}
       <div
         className="absolute inset-0 pointer-events-none transition-all duration-1000"
         style={{
-          background: `radial-gradient(ellipse 70% 50% at ${atm.nebulaPos}, rgba(${atm.atmosRgb},${Math.min(atm.nebulaStrength, 0.05)}) 0%, transparent 65%)`,
+          background: [
+            `radial-gradient(ellipse 62% 46% at ${atm.nebulaPos}, rgba(${atm.atmosRgb},${atm.nebulaStrength}) 0%, transparent 66%)`,
+            `radial-gradient(ellipse 48% 40% at ${atm.nebulaPosAlt}, rgba(${atm.atmosRgb},${(atm.nebulaStrength * 0.55).toFixed(3)}) 0%, transparent 62%)`,
+          ].join(', '),
         }}
       />
 

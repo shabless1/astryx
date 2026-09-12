@@ -60,7 +60,7 @@ export default function AstryxApp() {
     intakeData, setIntakeData,
     selectedSymptoms, toggleSymptom,
     protocol, setProtocol,
-    accentColor, setAccentColor,
+    accentColor, setAccentColor, chromePaletteId,
     sessionTime, setSessionTime,
     sessionActive, setSessionActive,
     chamberRunning, setChamberRunning,
@@ -301,7 +301,7 @@ export default function AstryxApp() {
         if (intake.birthCoords) setBirthCoords(intake.birthCoords)
         if (reading.chartData) setChartData(reading.chartData)
         setProtocol(reading.protocol)
-        setAccentColor(getAccentColor(reading.protocol))   // house accent — never the stored per-planet one
+        setAccentColor(getAccentColor(reading.protocol, chromePaletteId))   // the room, in the chosen finish — never a stored hue
         // Stamp the reading's compute date (local) so the daily door governs:
         // a reading from a prior day routes through the Check-In recompute.
         setProtocolDate(new Date(reading.createdAt).toLocaleDateString('en-CA'))
@@ -490,7 +490,7 @@ export default function AstryxApp() {
         throw new Error(engineData?.error || 'Engine returned no protocol — check console for upstream errors.')
       }
 
-      const accent = getAccentColor(result)
+      const accent = getAccentColor(result, chromePaletteId)
       setProtocol(result)
       setAccentColor(accent)
       // FIX 1 — stamp the compute date so the app recomputes on a NEW day instead
@@ -1030,7 +1030,7 @@ export default function AstryxApp() {
               setProtocol(record.protocol)
               // The room is resolved from the reading's own state, never from
               // the hue the record stored back when chrome followed the planet.
-              setAccentColor(getAccentColor(record.protocol))
+              setAccentColor(getAccentColor(record.protocol, chromePaletteId))
               setScreen('results')
             }}
             onBack={goHome}
