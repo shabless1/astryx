@@ -1566,7 +1566,7 @@ function buildSightProtocol(pattern: DominantPattern, polarity?: PolarityResult)
 
   const hexMap: Record<string, string> = {
     gold:'#F4A940', yellow:'#F9DC5C', 'pale blue':'#A8C4D0',
-    red:'#E8453C', 'deep red':'#C0392B', charcoal:'#3A3A3A',
+    red:'#C4756A', 'deep red':'#C0392B', charcoal:'#3A3A3A',
     'muted gold':'#C9993A', seafoam:'#2EC4B6', violet:'#9B5DE5',
     'yellow-green':'#9EC832', green:'#4CAF89', silver:'#CBD5E0',
     'blue-violet':'#6B7FD4', 'electric yellow':'#F6E05E',

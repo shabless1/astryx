@@ -149,8 +149,8 @@ export const CHAMBER_DURATIONS: ChamberDurationPreset[] = [
   { key: '15_PERSONAL',     label: '15-Minute Personal Recalibration', description: 'A complete personal recalibration session', durationSec:  900, minMode: 'user',         architecture: ARCH_15, forkCount: 4, reprise: false },
   { key: '30_DEEP',         label: '30-Minute Deep Chamber',           description: 'A deeper, fuller chamber session',          durationSec: 1800, minMode: 'user',         architecture: ARCH_30, forkCount: 6, reprise: true },
   { key: '60_PRACTITIONER', label: '60-Minute Practitioner Session',   description: 'The full client service protocol',         durationSec: 3600, minMode: 'practitioner', architecture: ARCH_60, forkCount: 8, reprise: true },
-  { key: 'FULL_SPECTRUM',   label: 'Full-Spectrum Recalibration',      description: 'All ten planetary forks, feet to head — a full-body attunement', durationSec: FULL_SPECTRUM_SEC, minMode: 'user', architecture: ARCH_FULL_SPECTRUM, fullSpectrum: true },
-  { key: 'FULL_BODY',       label: 'Full Body Recalibration',          description: 'The complete anatomical ladder — all twelve forks, ground to crown and back', durationSec: FULL_BODY_SEC, minMode: 'user', architecture: ARCH_FULL_BODY, fullBody: true },
+  { key: 'FULL_SPECTRUM',   label: 'Full-Spectrum Recalibration',      description: 'All ten planetary forks, feet to head — traditional placements, a full-body attunement', durationSec: FULL_SPECTRUM_SEC, minMode: 'user', architecture: ARCH_FULL_SPECTRUM, fullSpectrum: true },
+  { key: 'FULL_BODY',       label: 'Full Body Recalibration',          description: 'The complete anatomical ladder — all twelve forks at their traditional placements, ground to crown and back', durationSec: FULL_BODY_SEC, minMode: 'user', architecture: ARCH_FULL_BODY, fullBody: true },
   // v4.3.1 — 1650s (27.5 min): ground 180 → 7 centers ×114 → crown turn 72 →
   // 7 sweep centers ×60 → ground 180. Builder scales to any durationSec.
   // SHA 2026-09-10 — 1800s (30 min): heel 185 → 11 named points ×118 →

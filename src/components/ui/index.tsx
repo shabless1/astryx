@@ -18,6 +18,62 @@ import { hexToRgba } from '@/lib/utils'
 // ──────────────────────────────────────────────────────────────
 // GlassCard — surface card with frosted-glass border + subtle inner glow
 // ──────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────
+// TitleStrip — the universal card header (SHA house style)
+// ──────────────────────────────────────────────────────────────
+/**
+ * SHA, 2026-09-12: "I need the title strip in every card, every info card,
+ * even in the chamber. The title strip should have that bone background."
+ *
+ * So a title is never loose text floating on the dark ground — it is PRINTED,
+ * on stone, in black, which is the house rule: live things are lit, reference
+ * things are printed, and a heading is something you read. The accent bar at
+ * the left edge is the only place a card's own colour appears in the header,
+ * which is what keeps a red-accented card from reading as a red card.
+ *
+ * Full-bleed by design: the card supplies `overflow-hidden` and moves its own
+ * padding onto the body, so the strip runs edge to edge and follows the radius.
+ */
+export function TitleStrip({
+  title,
+  badge,
+  accentColor,
+  className = '',
+}: {
+  title: ReactNode
+  /** Optional right-hand pill — a count, a state, a system name. */
+  badge?: ReactNode
+  accentColor?: string
+  className?: string
+}) {
+  const accent = accentColor || '#22D3EE'
+  return (
+    <div className={`flex items-stretch ${className}`} style={{ background: 'var(--trim)' }}>
+      <span aria-hidden className="w-[5px] shrink-0" style={{ background: accent }} />
+      <div className="flex-1 min-w-0 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-2.5">
+        <span
+          className="font-cinzel font-bold text-[15px] leading-tight"
+          style={{ color: 'var(--on-trim)' }}
+        >
+          {title}
+        </span>
+        {badge != null && (
+          <span
+            className="shrink-0 text-[8.5px] font-bold tracking-[0.16em] uppercase px-2.5 py-[4px] rounded-full whitespace-nowrap"
+            style={{
+              background: hexToRgba(accent, 0.22),
+              border: `1px solid ${hexToRgba(accent, 0.5)}`,
+              color: 'var(--on-trim)',
+            }}
+          >
+            {badge}
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export function GlassCard({
   children,
   className = '',
@@ -25,6 +81,9 @@ export function GlassCard({
   accentColor,
   opacity = 0.22,        // strength of the accent border tint
   topBorder = false,     // adds a glowing top edge (used on payment confirmation)
+  title,                 // when given, the card opens with a bone TitleStrip
+  badge,
+  bodyClass = 'p-5',     // padding moves here so the strip can run full-bleed
 }: {
   children: ReactNode
   className?: string
@@ -32,6 +91,9 @@ export function GlassCard({
   accentColor?: string
   opacity?: number
   topBorder?: boolean
+  title?: ReactNode
+  badge?: ReactNode
+  bodyClass?: string
 }) {
   const accent = accentColor || '#22D3EE'
   // Hologram recipe per PR #2: vertical gradient bg, cyan hairline borders
@@ -39,7 +101,7 @@ export function GlassCard({
   // Per-planet accent shows in border + glow only — never washes the body.
   return (
     <div
-      className={`relative rounded-xl backdrop-blur-md transition-all duration-300 ${className}`}
+      className={`relative rounded-xl backdrop-blur-md transition-all duration-300 ${title ? 'overflow-hidden' : ''} ${className}`}
       style={{
         background:
           'linear-gradient(180deg, rgba(8,14,28,0.72) 0%, rgba(2,2,8,0.92) 100%)',
@@ -56,7 +118,12 @@ export function GlassCard({
         ...style,
       }}
     >
-      {children}
+      {title != null ? (
+        <>
+          <TitleStrip title={title} badge={badge} accentColor={accent} />
+          <div className={bodyClass}>{children}</div>
+        </>
+      ) : children}
     </div>
   )
 }
@@ -75,10 +142,16 @@ export function StonePanel({
   children,
   className = '',
   style,
+  title,
+  badge,
+  bodyClass = 'p-5',
 }: {
   children: ReactNode
   className?: string
   style?: CSSProperties
+  title?: ReactNode
+  badge?: ReactNode
+  bodyClass?: string
 }) {
   return (
     <div
@@ -91,7 +164,29 @@ export function StonePanel({
         ...style,
       }}
     >
-      {children}
+      {title != null ? (
+        <>
+          {/* On stone the strip cannot be stone — it steps a shade darker,
+              the way a printed table heads its own columns. */}
+          <div
+            className="flex items-center justify-between gap-3 px-4 py-2.5"
+            style={{ background: '#D2CBBD', borderBottom: '1px solid var(--trim-line)' }}
+          >
+            <span className="font-cinzel font-bold text-[15px] leading-tight" style={{ color: 'var(--on-trim)' }}>
+              {title}
+            </span>
+            {badge != null && (
+              <span
+                className="shrink-0 text-[8.5px] font-bold tracking-[0.16em] uppercase px-2.5 py-[4px] rounded-full whitespace-nowrap"
+                style={{ background: 'rgba(0,0,0,0.09)', color: 'var(--on-trim)' }}
+              >
+                {badge}
+              </span>
+            )}
+          </div>
+          <div className={bodyClass}>{children}</div>
+        </>
+      ) : children}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { HOUSE_ACCENT } from '@/lib/engineClient'
 import type {
   AppScreen,
   AppMode,
@@ -323,7 +324,11 @@ export const useAppStore = create<AppState>()(
 
       protocol: null,
       setProtocol: (protocol) => set({ protocol }),
-      accentColor: '#8B5CF6',
+      // CHROME ACCENT — never persisted, never planet-derived at rest.
+      // Seeded with the house accent so the app opens in its own colour even
+      // before a reading exists. (It used to seed violet #8B5CF6, which meant
+      // every pre-reading screen was already off-brand.)
+      accentColor: HOUSE_ACCENT,
       setAccentColor: (color) => set({ accentColor: color }),
       protocolDate: null,
       setProtocolDate: (date) => set({ protocolDate: date }),
@@ -516,7 +521,7 @@ export const useAppStore = create<AppState>()(
           selectedSymptoms: [],
           protocol:         null,
           protocolDate:     null,
-          accentColor:      '#8B5CF6',
+          accentColor:      HOUSE_ACCENT,
           screen:           'intake',
           chartData:        null,
           birthTimeUnknown: false,
@@ -527,6 +532,33 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'astryx-storage',
+      // ── PERSIST VERSION ────────────────────────────────────────────────
+      // v2 (2026-09-12) — RELEASE THE PINNED HUE. Every browser that used the
+      // app before today holds an `accentColor` in `astryx-storage` from the
+      // days when chrome took the dominant planet's raw base hue (Mars
+      // Crimson, Pluto Burgundy). zustand merges that blob OVER the defaults,
+      // so the stored hue won every load and made three clean fixes invisible.
+      // Bumping the version runs `migrate` once per browser and strips it —
+      // including off every saved history record and session snapshot, which
+      // carried their own copies and replayed them back into chrome.
+      version: 2,
+      migrate: (persisted: any, from: number) => {
+        if (!persisted || typeof persisted !== 'object') return persisted
+        if (from >= 2) return persisted
+        const next = { ...persisted }
+        delete next.accentColor
+        if (Array.isArray(next.history)) {
+          next.history = next.history.map((r: any) =>
+            r && typeof r === 'object' ? (({ accentColor, ...rest }) => rest)(r) : r
+          )
+        }
+        if (Array.isArray(next.sessionLog)) {
+          next.sessionLog = next.sessionLog.map((r: any) =>
+            r && typeof r === 'object' ? (({ accentColor, ...rest }) => rest)(r) : r
+          )
+        }
+        return next
+      },
       // DECISION (Build Directive Fix 2): Expanded persist whitelist to include
       // client roster + sessions + practitioner lens. Also added birth data
       // (intakeData, birthCoords, birthTimeUnknown) — these were missing from
@@ -599,7 +631,13 @@ export const useAppStore = create<AppState>()(
         dailyEnergy:      state.dailyEnergy,
         dailyElement:     state.dailyElement,
         chartData:        state.chartData,
-        accentColor:      state.accentColor,
+        // accentColor is DELIBERATELY NOT PERSISTED (2026-09-12).
+        // zustand merges the saved blob OVER the defaults, so a browser that
+        // once stored a per-planet hue replayed it on every load — before any
+        // runtime override could run. Clearing the browser cache does not clear
+        // localStorage, so three separate chrome fixes shipped clean and still
+        // rendered red on SHA's own device. Chrome resolves at runtime, every
+        // load, from the reading. Nothing about it is ever restored from disk.
         selectedSymptoms: state.selectedSymptoms,
         // Client roster
         clients:          state.clients,
@@ -619,7 +657,14 @@ export const useAppStore = create<AppState>()(
       // A stale chamber session becomes a resume pointer the Dashboard offers
       // back ("Resume / Start fresh"); everything else routes home.
       merge: (persisted, current) => {
-        const merged = { ...current, ...(persisted as Partial<AppState>) }
+        // Belt and braces on top of `migrate`: migrate runs ONCE per browser,
+        // and only when the stored version is older. This strips accentColor
+        // out of the incoming blob on EVERY load, so no future write path, no
+        // hand-edited localStorage and no partially-migrated state can pin the
+        // room to a colour again. Chrome is resolved at runtime, never restored.
+        const incoming = { ...(persisted as any) }
+        delete incoming.accentColor
+        const merged = { ...current, ...(incoming as Partial<AppState>) }
         const MID_FLOW: AppScreen[] = [
           'session', 'post-session', 'analysis', 'daily-checkin',
           'today-signal', 'auth', 'payment', 'subscribe-gate', 'fork-access',

@@ -83,7 +83,7 @@ const CHAKRA_TABLE: ChakraInfo[] = [
   { name: 'Heart',         sanskrit: 'Anahata',    color: '#4CAF89', rulers: ['Sun', 'Venus'],      hzRef: 341.3 },
   { name: 'Solar Plexus',  sanskrit: 'Manipura',   color: '#F4A940', rulers: ['Sun', 'Mars', 'Jupiter'], hzRef: 528.0 },
   { name: 'Sacral',        sanskrit: 'Svadhisthana', color: '#FF6B35', rulers: ['Moon', 'Venus', 'Mars'], hzRef: 417.0 },
-  { name: 'Root',          sanskrit: 'Muladhara',  color: '#E8453C', rulers: ['Mars', 'Saturn', 'Pluto'], hzRef: 396.0 },
+  { name: 'Root',          sanskrit: 'Muladhara',  color: '#C4756A', rulers: ['Mars', 'Saturn', 'Pluto'], hzRef: 396.0 },
 ]
 
 type ChakraState = 'over-active' | 'blocked' | 'balanced'
@@ -128,8 +128,7 @@ function ReikiLens({ protocol, accentColor }: LensContentProps) {
       <SectionLabel>Reiki Practitioner Lens</SectionLabel>
 
       {/* 1 — Chakra Activation Panel */}
-      <GlassCard accentColor={accentColor} opacity={0.08} className="p-5">
-        <div className="text-[10px] tracking-widest text-white/40 mb-3">CHAKRA ACTIVATION PANEL</div>
+      <GlassCard accentColor={accentColor} opacity={0.08} title="Chakra Activation" bodyClass="p-5">
         <div className="space-y-1.5">
           {chakras.map((c) => (
             <div
@@ -149,10 +148,9 @@ function ReikiLens({ protocol, accentColor }: LensContentProps) {
       </GlassCard>
 
       {/* 2 — Hand Position Guide */}
-      <GlassCard accentColor={accentColor} opacity={0.08} className="p-5">
-        <div className="text-[10px] tracking-widest text-white/40 mb-3">
-          HAND POSITION GUIDE — TOP {focusChakras.length} ACTIVE CHAKRA{focusChakras.length === 1 ? '' : 'S'}
-        </div>
+      <GlassCard accentColor={accentColor} opacity={0.08} bodyClass="p-5"
+        title="Hand Position Guide"
+        badge={`Top ${focusChakras.length} active chakra${focusChakras.length === 1 ? '' : 's'}`}>
         <div className="space-y-3">
           {focusChakras.map((c) => (
             <div key={c.name} className="p-3 rounded-lg border border-white/10" style={{ background: `${c.color}08` }}>
@@ -178,8 +176,7 @@ function ReikiLens({ protocol, accentColor }: LensContentProps) {
       </GlassCard>
 
       {/* 3 — Session Intention Generator */}
-      <GlassCard accentColor={accentColor} opacity={0.12} className="p-5">
-        <div className="text-[10px] tracking-widest text-white/40 mb-3">SESSION INTENTION</div>
+      <GlassCard accentColor={accentColor} opacity={0.12} title="Session Intention" bodyClass="p-5">
         <p className="text-[14px] text-white/85 leading-relaxed italic">
           The intention for this session: <span style={{ color: accentColor }}>&ldquo;{affirmation}&rdquo;</span>
         </p>
@@ -190,8 +187,8 @@ function ReikiLens({ protocol, accentColor }: LensContentProps) {
 
       {/* 4 — Crystal Placement Guidance */}
       {featuredCrystal && (
-        <GlassCard accentColor={featuredCrystal.hex} opacity={0.10} className="p-5">
-          <div className="text-[10px] tracking-widest text-white/40 mb-3">CRYSTAL PLACEMENT — {dominantPlanet?.toUpperCase()}</div>
+        <GlassCard accentColor={featuredCrystal.hex} opacity={0.10} bodyClass="p-5"
+          title="Crystal Placement" badge={dominantPlanet ?? undefined}>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className="font-cinzel text-[16px] text-white">{featuredCrystal.featuredCrystal}</span>
             {featuredCrystal.featuredCrystal === 'Malachite' && (
@@ -235,7 +232,7 @@ function ChakraStateBadge({ state, color, small = false }: { state: ChakraState;
   const labels = { 'over-active': 'OVER-ACTIVE', blocked: 'BLOCKED', balanced: 'BALANCED' }
   const bgs    = {
     'over-active': hexToRgba(color, 0.25),
-    blocked:       'rgba(232,69,60,0.15)',
+    blocked:       'rgba(196, 117, 106,0.15)',
     balanced:      'rgba(76,175,137,0.12)',
   }
   const fgs    = { 'over-active': color, blocked: '#FCA5A5', balanced: '#86EFAC' }

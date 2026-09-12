@@ -153,8 +153,7 @@ export default function PractitionerScreen({
         <LensSwitcher accentColor={accentColor} />
 
         {/* ── Dominant Configuration ── */}
-        <GlassCard accentColor={accentColor} opacity={0.06} topBorder className="p-6 mb-4 animate-fade-in-up">
-          <SectionLabel>Dominant Configuration</SectionLabel>
+        <GlassCard accentColor={accentColor} opacity={0.06} topBorder title="Dominant Configuration" className="mb-4 animate-fade-in-up" bodyClass="p-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex-1">
               <h2 className="font-cinzel text-xl text-white mb-1">{p.title}</h2>
@@ -177,8 +176,7 @@ export default function PractitionerScreen({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {/* ── Planetary Positions ── */}
-          <GlassCard className="p-5 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <SectionLabel>Planetary Positions</SectionLabel>
+          <GlassCard style={{ animationDelay: '0.1s' }} title="Planetary Positions" className="animate-fade-in-up" bodyClass="p-5">
             {planetRows.length === 0 ? (
               <p className="text-[12px] text-white/40 italic mt-2">
                 Chart positions unavailable. Re-run analysis from intake to refresh.
@@ -232,8 +230,7 @@ export default function PractitionerScreen({
               Replaces the legacy tuningForks rendering with the full
               Sacred Tones extension data (nerve plexus, application point,
               vagal connection, ANS effect, brainwave, clinical note). */}
-          <GlassCard accentColor={accentColor} opacity={0.05} className="p-5 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-            <SectionLabel>Sacred Tones Session Protocol</SectionLabel>
+          <GlassCard accentColor={accentColor} opacity={0.05} style={{ animationDelay: '0.15s' }} title="Sacred Tones Session Protocol" className="animate-fade-in-up" bodyClass="p-5">
             <p className="text-[12px] text-white/40 mb-5 mt-1">
               Apply the planetary forks in sequence — dominant planet forks first. The Earth
               and Platonic reference tones are app-played background (no physical fork) — let
@@ -312,8 +309,7 @@ export default function PractitionerScreen({
             {protocol.sacredLayer.botanical && (() => {
               const b = protocol.sacredLayer.botanical!
               return (
-                <GlassCard accentColor={b.color} opacity={0.05} className="p-5">
-                  <SectionLabel>Sacred Botanical</SectionLabel>
+                <GlassCard accentColor={b.color} opacity={0.05} title="Sacred Botanical" bodyClass="p-5">
                   <h4 className="font-cinzel text-white text-[14px] mt-2 mb-1">{b.sacredBotanical}</h4>
                   <p className="text-[11px] italic text-white/40 mb-3">{b.latinName}</p>
                   <div className="space-y-2">
@@ -331,8 +327,7 @@ export default function PractitionerScreen({
               const cd = c.featuredCrystalData
               const isMalachite = cd.name === 'Malachite'
               return (
-                <GlassCard accentColor={c.hex} opacity={0.05} className="p-5">
-                  <SectionLabel>Featured Crystal</SectionLabel>
+                <GlassCard accentColor={c.hex} opacity={0.05} title="Featured Crystal" bodyClass="p-5">
                   <div className="flex items-center gap-2 mt-2 mb-1 flex-wrap">
                     <h4 className="font-cinzel text-white text-[14px]">{cd.name}</h4>
                     {isMalachite && (
@@ -354,8 +349,7 @@ export default function PractitionerScreen({
         )}
 
         {/* ── Full SOAP ── */}
-        <GlassCard className="p-5 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <SectionLabel>SOAP · the full read</SectionLabel>
+        <GlassCard style={{ animationDelay: '0.2s' }} title="SOAP · The Full Read" className="mb-4 animate-fade-in-up" bodyClass="p-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <DataPoint label="Subjective" value={protocol.soap.subjective.join(' · ')} />
             <DataPoint label="Objective" value={protocol.soap.objective.join(' · ')} />
@@ -369,8 +363,7 @@ export default function PractitionerScreen({
         </GlassCard>
 
         {/* ── The Container ── */}
-        <GlassCard className="p-5 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-          <SectionLabel>Session Parameters</SectionLabel>
+        <GlassCard style={{ animationDelay: '0.25s' }} title="Session Parameters" className="animate-fade-in-up" bodyClass="p-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <ControlGroup
               label="Duration"
@@ -405,10 +398,7 @@ export default function PractitionerScreen({
 
         {/* ── Natal Chart Wheel ── */}
         {chartData && (
-          <GlassCard className="p-5 mb-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <SectionLabel>
-              Natal Chart{chartData.isSolarChart ? ' — Solar Chart Mode ☉' : ''}
-            </SectionLabel>
+          <GlassCard style={{ animationDelay: '0.3s' }} title={<>Natal Chart{chartData.isSolarChart ? ' — Solar Chart Mode ☉' : ''}</>} className="mb-4 animate-fade-in-up" bodyClass="p-5">
             <NatalChartWheel
               chart={chartData}
               accentColor={accentColor}
@@ -419,8 +409,7 @@ export default function PractitionerScreen({
 
         {/* ── Body Map ── */}
         {chartData && (
-          <GlassCard className="p-5 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
-            <SectionLabel>Planetary Body Map</SectionLabel>
+          <GlassCard style={{ animationDelay: '0.35s' }} title="Planetary Body Map" className="animate-fade-in-up" bodyClass="p-5">
             <BodyMap chart={chartData} accentColor={accentColor} />
           </GlassCard>
         )}

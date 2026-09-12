@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useAppStore } from '@/lib/store'
 // FIX 1A — the engine runs server-side (POST /api/protocol); the client keeps
 // only the small render helpers from the client-safe module.
-import { getAccentColor, geocodeLocation } from '@/lib/engineClient'
+import { getAccentColor, HOUSE_ACCENT, geocodeLocation } from '@/lib/engineClient'
 import { computeDailyElement } from '@/lib/dailyElement'
 import {
   computeSubscription, fetchSubscriptionState, startTrialClock,
@@ -301,7 +301,7 @@ export default function AstryxApp() {
         if (intake.birthCoords) setBirthCoords(intake.birthCoords)
         if (reading.chartData) setChartData(reading.chartData)
         setProtocol(reading.protocol)
-        setAccentColor(reading.accentColor || getAccentColor(reading.protocol))
+        setAccentColor(getAccentColor(reading.protocol))   // house accent — never the stored per-planet one
         // Stamp the reading's compute date (local) so the daily door governs:
         // a reading from a prior day routes through the Check-In recompute.
         setProtocolDate(new Date(reading.createdAt).toLocaleDateString('en-CA'))
@@ -1028,7 +1028,7 @@ export default function AstryxApp() {
             accentColor={accentColor}
             onLoadSession={(record) => {
               setProtocol(record.protocol)
-              setAccentColor(record.accentColor)
+              setAccentColor(HOUSE_ACCENT)   // house accent — a saved session's stored hue no longer skins the app
               setScreen('results')
             }}
             onBack={goHome}

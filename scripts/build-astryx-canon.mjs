@@ -137,9 +137,20 @@ function ingestFile(absPath, base) {
   }
 }
 
+// Files that are RENDERER data, not knowledge. A lookup table of anchors and
+// filenames teaches the guide nothing and, worse, floods retrieval: indexing
+// bodySites.json added 27 near-identical chunks that pushed the Full Body
+// answer out of the top-5 (SHA, 2026-09-12). Prose belongs in the canon;
+// coordinate tables do not.
+const NOT_KNOWLEDGE = new Set([
+  'astryxCanon.json',    // the output itself
+  'bodySites.json',      // the body site register — anchors, views, disciplines
+  'placementPhotos.json' // photo filenames + alt text
+])
+
 // Walk the data dir (skip the output + bodySystems handled separately).
 for (const f of readdirSync(DATA_DIR)) {
-  if (!f.endsWith('.json') || f === 'astryxCanon.json') continue
+  if (!f.endsWith('.json') || NOT_KNOWLEDGE.has(f)) continue
   ingestFile(join(DATA_DIR, f), basename(f, '.json'))
 }
 for (const f of readdirSync(BODY_DIR)) {

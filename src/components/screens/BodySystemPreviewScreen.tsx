@@ -470,7 +470,7 @@ export default function BodySystemPreviewScreen({ accentColor, onBack }: BodySys
           id="compliance"
           label="Compliance & Scope of Practice"
           tag="NON-NEGOTIABLE"
-          color="#E8453C"
+          color="#C4756A"
           expanded={expanded.compliance}
           onToggle={() => toggle('compliance')}
         >
@@ -483,7 +483,7 @@ export default function BodySystemPreviewScreen({ accentColor, onBack }: BodySys
               <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">INDICATOR LANGUAGE POLICY</div>
               <p className="text-[12px] text-white/70 leading-relaxed">{data.complianceNotes?.indicatorLanguagePolicy}</p>
             </div>
-            <div className="p-3 rounded-lg border" style={{ background: 'rgba(232,69,60,0.08)', borderColor: 'rgba(232,69,60,0.3)' }}>
+            <div className="p-3 rounded-lg border" style={{ background: 'rgba(196, 117, 106,0.08)', borderColor: 'rgba(196, 117, 106,0.3)' }}>
               <div className="text-[10px] tracking-[0.2em] mb-1 text-red-400">⚠ CRITICAL REFERRAL RULES</div>
               <ul className="space-y-1">
                 {data.complianceNotes?.criticalReferralRules?.map((r: string, i: number) => (
@@ -495,7 +495,7 @@ export default function BodySystemPreviewScreen({ accentColor, onBack }: BodySys
               <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">RED FLAG KEYWORDS</div>
               <div className="flex flex-wrap gap-1.5">
                 {data.complianceNotes?.redFlagKeywords?.map((k: string) => (
-                  <Tag key={k} label={k} accent="rgba(232,69,60,0.5)" small />
+                  <Tag key={k} label={k} accent="rgba(196, 117, 106,0.5)" small />
                 ))}
               </div>
             </div>
@@ -654,7 +654,7 @@ function PathologyCard({
           )}
 
           {pathology.redFlags && pathology.redFlags.length > 0 && (
-            <div className="p-3 rounded-lg" style={{ background: 'rgba(232,69,60,0.10)', border: '1px solid rgba(232,69,60,0.35)' }}>
+            <div className="p-3 rounded-lg" style={{ background: 'rgba(196, 117, 106,0.10)', border: '1px solid rgba(196, 117, 106,0.35)' }}>
               <div className="text-[10px] tracking-widest mb-1 text-red-400">⚠ RED FLAGS — REFER IMMEDIATELY</div>
               <ul className="space-y-0.5">
                 {pathology.redFlags.map((r: string, i: number) => (

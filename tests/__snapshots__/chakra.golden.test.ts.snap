@@ -183,7 +183,7 @@ exports[`buildChakraSequence — the 7-center session > planetary: byte-identica
     "startSec": 634,
   },
   {
-    "centerColor": "#E53935",
+    "centerColor": "#C06158",
     "fork": {
       "ANSEffect": "Sympathetic activation — Mars is one of the few planets in the Sacred Tones system that intentionally stimulates sympathetic tone. Use when the client is hypo-aroused, disconnected, or needing energy activation rather than calming. Do not use at the end of a session.",
       "boneApplicationPoint": "Femur (thigh bone shaft), tibial shaft, L1-L3 lumbar vertebrae",
@@ -210,7 +210,7 @@ exports[`buildChakraSequence — the 7-center session > planetary: byte-identica
     "startSec": 745,
   },
   {
-    "centerColor": "#E53935",
+    "centerColor": "#C06158",
     "fork": {
       "ANSEffect": "Sympathetic activation — Mars is one of the few planets in the Sacred Tones system that intentionally stimulates sympathetic tone. Use when the client is hypo-aroused, disconnected, or needing energy activation rather than calming. Do not use at the end of a session.",
       "boneApplicationPoint": "Femur (thigh bone shaft), tibial shaft, L1-L3 lumbar vertebrae",
@@ -527,7 +527,7 @@ exports[`buildChakraSequence — the 7-center session > solfeggio: byte-identica
     "startSec": 634,
   },
   {
-    "centerColor": "#E53935",
+    "centerColor": "#C06158",
     "fork": null,
     "holdSec": 111,
     "hz": 396,
@@ -540,7 +540,7 @@ exports[`buildChakraSequence — the 7-center session > solfeggio: byte-identica
     "startSec": 745,
   },
   {
-    "centerColor": "#E53935",
+    "centerColor": "#C06158",
     "fork": null,
     "holdSec": 85,
     "hz": 396,

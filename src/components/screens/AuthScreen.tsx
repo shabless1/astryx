@@ -136,7 +136,7 @@ export default function AuthScreen({ accentColor, onSuccess, onSkip, initialMode
           {error && (
             <div
               className="text-[12px] mb-3 px-3 py-2 rounded-lg"
-              style={{ background: 'rgba(232,69,60,0.12)', color: '#E8453C', border: '1px solid rgba(232,69,60,0.25)' }}
+              style={{ background: 'rgba(196, 117, 106,0.12)', color: '#C4756A', border: '1px solid rgba(196, 117, 106,0.25)' }}
             >
               {error}
             </div>

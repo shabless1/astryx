@@ -91,10 +91,12 @@ export default function HistoryScreen({
                 <GlassCard
                   className="flex items-center gap-4 p-5 transition-all duration-200 hover:border-white/20"
                 >
-                  {/* Accent stripe */}
+                  {/* Accent stripe. Chrome, not signal — a saved record's own
+                      accentColor is the retired per-planet base hue, so the
+                      stripe takes the live house accent instead. */}
                   <div
                     className="flex-shrink-0 rounded-sm"
-                    style={{ width: 4, height: 52, background: record.accentColor }}
+                    style={{ width: 4, height: 52, background: accentColor }}
                   />
                   <div className="flex-1 min-w-0">
                     <div className="text-[10px] tracking-[0.25em] text-white/35 mb-1">{record.date}</div>

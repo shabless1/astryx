@@ -252,8 +252,7 @@ function AddClientForm({
   }
 
   return (
-    <GlassCard accentColor={accentColor} opacity={0.10} topBorder className="p-7 animate-fade-in-up">
-      <SectionLabel>New Client</SectionLabel>
+    <GlassCard accentColor={accentColor} opacity={0.10} topBorder title="New Client" className="animate-fade-in-up" bodyClass="p-7">
       <h2 className="font-cinzel text-xl text-white mb-1 mt-1">Bring a client into your circle</h2>
       <p className="text-[12px] text-white/50 mb-6">
         Their birth data stays on this device, in your local roster, until the practitioner portal moves it to your account. Informed consent attestation required (below).
@@ -345,8 +344,8 @@ function AddClientForm({
         <div
           className="p-4 rounded-lg border"
           style={{
-            background: consent ? hexToRgba(accentColor, 0.06) : 'rgba(232, 69, 60, 0.04)',
-            borderColor: consent ? hexToRgba(accentColor, 0.35) : 'rgba(232, 69, 60, 0.25)',
+            background: consent ? hexToRgba(accentColor, 0.06) : 'rgba(196, 117, 106, 0.04)',
+            borderColor: consent ? hexToRgba(accentColor, 0.35) : 'rgba(196, 117, 106, 0.25)',
           }}
         >
           <label className="flex items-start gap-3 cursor-pointer">
@@ -400,8 +399,7 @@ function ClientHistoryPanel({
   return (
     <div className="space-y-4 animate-fade-in-up">
       {/* Client header */}
-      <GlassCard accentColor={accentColor} opacity={0.08} className="p-5">
-        <h2 className="font-cinzel text-xl text-white mb-1">{client.name}</h2>
+      <GlassCard accentColor={accentColor} opacity={0.08} title={client.name} bodyClass="p-5">
         <p className="text-[12px] text-white/55 mb-3">
           {modalityLabel} · Born {client.birthDate}{client.birthTime !== 'unknown' && ` · ${client.birthTime}`}
         </p>

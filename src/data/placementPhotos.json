@@ -1,63 +1,139 @@
 {
-  "_comment": "Marma point id -> a photograph of that placement, shot from the practitioner's or the user's own point of view. SHA, 2026-09-11. A point with no entry falls back to the body map; the panel must never show a wrong picture rather than none. Wave 2 adds hands, arm, upper back, sacrum and the pelvic field sweep.",
-  "_rules": "Every contact photo shows the stem touching. Every field photo shows an unmistakable gap. The light follows the spectrum by height: violet at crown and brow, cyan at throat and shoulder, rose-gold at the heart, amber and gold from the solar plexus down.",
+  "_comment": "BODY SITE id -> a photograph of that placement, shot from the practitioner's or the user's own point of view. SHA, 2026-09-11; re-keyed from marma point ids to body sites 2026-09-12. The keys used to be marma ids, which meant a picture could only be correct in the one session that walks marma points. A photograph shows A PLACE ON A BODY — the system is only the reason you chose that place — so these key to src/data/bodySites.json and are now correct in all five sessions. A site with no entry falls back to the body map; the panel must never show a wrong picture rather than none.",
+  "_rules": "Every contact photo shows the stem touching. Every field photo shows an unmistakable gap. `discipline` states which, and photoForSite() will not return a contact picture for a step that resolved to a sweep. The light follows the spectrum by height: violet at crown and brow, cyan at throat and shoulder, rose-gold at the heart, amber and gold from the solar plexus down.",
   "photos": {
-    "adhipati": {
+    "crown": {
       "file": "adhipati.jpg",
+      "discipline": "contact",
       "alt": "A woman in a candlelit mirror rests the stem of a tuning fork on the crown of her own head, violet rings spreading from the contact."
     },
-    "sthapani": {
+    "brow": {
       "file": "sthapani.jpg",
+      "discipline": "contact",
       "alt": "A man in a candlelit mirror rests the stem of a tuning fork between his own brows, violet rings spreading across the forehead."
     },
-    "kantha": {
-      "file": "kantha.jpg",
-      "alt": "A woman in a candlelit mirror holds a tuning fork a clear hand's width in front of her own throat, not touching, a cyan field bridging the gap."
+    "temple": {
+      "file": "shankha.jpg",
+      "discipline": "field",
+      "alt": "A fork held clear of the head beside the temple, never touching, rings of light crossing the gap into the nerve tree beneath."
     },
-    "urdhva_skandha": {
-      "file": "urdhva_skandha.jpg",
-      "alt": "A man reaches across and presses the stem of a weighted tuning fork onto the ridge of his own shoulder, cyan rings sinking into the muscle."
-    },
-    "hridayam": {
-      "file": "hridayam.jpg",
-      "alt": "A woman holds a tuning fork a clear distance in front of the centre of her own breastbone, not touching, a rose-gold field between metal and chest."
-    },
-    "surya": {
-      "file": "surya.jpg",
-      "alt": "A woman rests the stem of a tuning fork just below her own ribs at the centre, amber rings radiating outward."
-    },
-    "janu_anterior": {
-      "file": "janu_anterior.jpg",
-      "alt": "Looking down at her own legs, a woman rests the stem of a tuning fork on the front of her own knee, gold light branching up the thigh and down the shin."
-    },
-    "parshni": {
-      "file": "parshni.jpg",
-      "alt": "Seated with one ankle across the opposite knee, a man presses the stem of a tuning fork to the back of his own heel, gold light climbing the calf."
-    },
-    "jatru": {
-      "file": "jatru.jpg",
-      "alt": "A fork at the hollow where the collarbones meet the breastbone, the nerve pathways of the chest lit beneath."
-    },
-    "kati": {
-      "file": "kati.jpg",
-      "alt": "A fork on the sacral plate, worked from behind, the sacral nerve fan lit across the pelvis."
-    },
-    "krikatika": {
+    "skull_base": {
       "file": "krikatika.jpg",
+      "discipline": "contact",
       "alt": "A fork at the base of the skull where it meets the neck, the cervical spine and nerve tree lit beneath."
     },
-    "sakthi_urvi_anterior": {
-      "file": "sakthi_urvi_anterior.jpg",
-      "alt": "A fork on the front of the thigh, the quadriceps and its nerve pathways lit beneath the skin."
+    "throat_front": {
+      "file": "kantha.jpg",
+      "discipline": "field",
+      "alt": "A woman in a candlelit mirror holds a tuning fork a clear hand's width in front of her own throat, not touching, a cyan field bridging the gap."
     },
-    "yakrut": {
+    "shoulder_ridge": {
+      "file": "urdhva_skandha.jpg",
+      "discipline": "contact",
+      "alt": "A man reaches across and presses the stem of a weighted tuning fork onto the ridge of his own shoulder, cyan rings sinking into the muscle."
+    },
+    "upper_breastbone": {
+      "file": "jatru.jpg",
+      "discipline": "contact",
+      "alt": "A fork at the hollow where the collarbones meet the breastbone, the nerve pathways of the chest lit beneath."
+    },
+    "chest_centre": {
+      "file": "hridayam.jpg",
+      "discipline": "field",
+      "alt": "A woman holds a tuning fork a clear distance in front of the centre of her own breastbone, not touching, a rose-gold field between metal and chest."
+    },
+    "rib_margin_right": {
       "file": "yakrut.jpg",
+      "discipline": "contact",
       "alt": "A fork under the right ribs over the liver, the organ and its nerve supply lit beneath."
     },
-    "shankha": {
-      "file": "shankha.jpg",
-      "alt": "A fork held clear of the head beside the temple, never touching, rings of light crossing the gap into the nerve tree beneath."
+    "solar_plexus": {
+      "file": "surya.jpg",
+      "discipline": "contact",
+      "alt": "A woman rests the stem of a tuning fork just below her own ribs at the centre, amber rings radiating outward."
+    },
+    "sacrum": {
+      "file": "kati.jpg",
+      "discipline": "contact",
+      "alt": "A fork on the sacral plate, worked from behind, the sacral nerve fan lit across the pelvis."
+    },
+    "thigh_front": {
+      "file": "sakthi_urvi_anterior.jpg",
+      "discipline": "contact",
+      "alt": "A fork on the front of the thigh, the quadriceps and its nerve pathways lit beneath the skin."
+    },
+    "knee_front": {
+      "file": "janu_anterior.jpg",
+      "discipline": "contact",
+      "alt": "Looking down at her own legs, a woman rests the stem of a tuning fork on the front of her own knee, gold light branching up the thigh and down the shin."
+    },
+    "heel": {
+      "file": "parshni.jpg",
+      "discipline": "contact",
+      "alt": "Seated with one ankle across the opposite knee, a man presses the stem of a tuning fork to the back of his own heel, gold light climbing the calf."
+    },
+    "shoulder_blade": {
+      "file": "shoulder_blade.jpg",
+      "discipline": "contact",
+      "alt": "The stem of a weighted fork set just below the tip of the shoulder blade, worked from behind, cyan light fanning across the upper back and out along the blade."
+    },
+    "navel": {
+      "file": "navel.jpg",
+      "discipline": "field",
+      "alt": "A fork held a clear span above the belly, never touching, amber rings crossing the gap and the gut lit beneath the skin."
+    },
+    "elbow": {
+      "file": "elbow.jpg",
+      "discipline": "contact",
+      "alt": "The stem of a fork pressed to the bony point of the elbow, gold light spiralling at the contact and running the length of the forearm."
+    },
+    "lower_back": {
+      "file": "lower_back.jpg",
+      "discipline": "contact",
+      "alt": "Lying face down, the stem of a weighted fork set beside the spine at the small of the back, the lumbar nerve fan lit branching outward."
+    },
+    "lower_belly": {
+      "file": "lower_belly.jpg",
+      "discipline": "field",
+      "alt": "A tuning fork held a clear hand's width off the lower belly, never touching, amber rings crossing open air. Fully clothed in linen; the gap is the subject of the photograph."
+    },
+    "forearm": {
+      "file": "forearm.jpg",
+      "discipline": "contact",
+      "alt": "The stem of a fork resting on the inside of the forearm below the elbow crease, electric cyan travelling the arm down into the open palm."
+    },
+    "tailbone": {
+      "file": "tailbone.jpg",
+      "discipline": "field",
+      "alt": "Seen from behind, a fork swept a clear hand's width off the very base of the spine — never contact — a violet-to-amber field crossing the gap and climbing the spine as light. Fully clothed."
+    },
+    "hip": {
+      "file": "hip.jpg",
+      "discipline": "contact",
+      "alt": "Standing in profile, the stem of a fork set to the crest of the hip bone, the pelvis and its nerve tree lit beneath and running down the outer thigh."
+    },
+    "palm": {
+      "file": "palm.jpg",
+      "discipline": "contact",
+      "alt": "An open palm turned upward, the stem of a fork resting at its centre, cyan rings spreading into the fingers and gold branching along the wrist."
+    },
+    "shin": {
+      "file": "shin.jpg",
+      "discipline": "contact",
+      "alt": "Looking down at one's own leg, the stem of a fork laid against the front edge of the shin, electric cyan travelling the bone from ankle to knee."
+    },
+    "calf": {
+      "file": "calf.jpg",
+      "discipline": "contact",
+      "alt": "Kneeling to reach behind a standing leg, the stem of a weighted fork set into the belly of the calf, gold light running down to the heel and up behind the knee."
+    },
+    "sole": {
+      "file": "sole.jpg",
+      "discipline": "contact",
+      "alt": "One ankle drawn across the opposite knee, the stem of a fork pressed to the centre of the sole, gold light spreading through the arch and climbing the ankle."
     }
   },
-  "_wave2": "Wave 2 (SHA, 2026-09-12) — anatomical cutaways rather than first-person photographs. They teach something wave 1 could not: not just where the fork goes, but what it is reaching. Shankha was re-shot after the first version showed stem contact at the temple; it is a FIELD point, so the picture had to show the gap. It now does, and all twelve forks have a placement."
+  "_gaps": "26 of 27 sites. Every site any session lands on as a STATION now carries a photograph — SHA delivered the final twelve on 2026-09-12. The one remaining is crown_back (Shivarandhra, just behind the top of the head), which is never a station; it can still surface as an alternate card, and there it shows the body map alone.",
+  "_wave2": "Wave 2 (SHA, 2026-09-12) — anatomical cutaways rather than first-person photographs. They teach something wave 1 could not: not just where the fork goes, but what it is reaching. Shankha was re-shot after the first version showed stem contact at the temple; it is a FIELD site, so the picture had to show the gap. It now does — and the discipline stamp above means that class of error can no longer reach a screen.",
+  "_wave3": "Wave 3 (SHA, 2026-09-12) — the twelve that closed the register: sole, lower belly, lower back, navel, tail bone, hip, calf, shin, palm, shoulder blade, elbow, forearm. The three field shots (lower belly, tail bone, navel) each show an unmistakable gap and the two field-ONLY subjects are fully clothed, per SHA's standing ruling that the reproductive region and the coccyx are swept and never touched."
 }

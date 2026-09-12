@@ -345,17 +345,17 @@ export function buildForkSequence(input: ForkSequenceInput): SequenceStep[] {
 
 /** The locked feet-up sweep (Pisces/feet → Aries/head). Sign + region validated
  *  against data/signs.json `body_regions` (Directive J, ARCHITECT DECISION 2). */
-export const FULL_SPECTRUM_SWEEP: { planet: string; sign: string; region: string }[] = [
-  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet' },
-  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Calves & ankles' },
-  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees & bones' },
-  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips & thighs' },
-  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis' },
-  { planet: 'Venus',   sign: 'Libra',       region: 'Kidneys & lower back' },
-  { planet: 'Mercury', sign: 'Virgo',       region: 'Abdomen & gut' },
-  { planet: 'Sun',     sign: 'Leo',         region: 'Heart & spine' },
-  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest & stomach' },
-  { planet: 'Mars',    sign: 'Aries',       region: 'Head' },
+export const FULL_SPECTRUM_SWEEP: { planet: string; sign: string; region: string; site: string }[] = [
+  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet', site: 'sole' },
+  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Calves & ankles', site: 'calf' },
+  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees & bones', site: 'knee_front' },
+  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips & thighs', site: 'thigh_front' },
+  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis', site: 'lower_belly' },
+  { planet: 'Venus',   sign: 'Libra',       region: 'Kidneys & lower back', site: 'lower_back' },
+  { planet: 'Mercury', sign: 'Virgo',       region: 'Abdomen & gut', site: 'navel' },
+  { planet: 'Sun',     sign: 'Leo',         region: 'Heart & spine', site: 'chest_centre' },
+  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest & stomach', site: 'solar_plexus' },
+  { planet: 'Mars',    sign: 'Aries',       region: 'Head', site: 'crown' },
 ]
 
 /**
@@ -417,19 +417,19 @@ export function buildFullSpectrumSequence({ durationSec }: { durationSec: number
  *  v4.3.1 — OWNER-CANONICAL placement table (supersedes v4.3's regions).
  *  Each rung is a DISTINCT body region; Mercury (Virgo/Gemini) and Venus
  *  (Libra/Taurus) strike twice with different placements + instructions. */
-export const FULL_BODY_LADDER: { planet: string; sign: string; region: string; placement: string }[] = [
-  { planet: 'Neptune', sign: 'Pisces',      region: 'Feet',                   placement: 'rest the tone at the soles of the feet — the body’s furthest shore' },
-  { planet: 'Uranus',  sign: 'Aquarius',    region: 'Shins',                  placement: 'let the tone travel the shins — the current lines of the lower legs' },
-  { planet: 'Saturn',  sign: 'Capricorn',   region: 'Knees',                  placement: 'settle the tone at the knees — the architecture that carries you' },
-  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips',                   placement: 'open the tone across the hips — the wide gate of momentum' },
-  { planet: 'Pluto',   sign: 'Scorpio',     region: 'Pelvis region',          placement: 'ground the tone low at the pelvis — the deep root of the spine' },
-  { planet: 'Venus',   sign: 'Libra',       region: 'Lower back',             placement: 'warm the tone across the lower back — the balance point of the torso' },
-  { planet: 'Mercury', sign: 'Virgo',       region: 'Intestines region',      placement: 'rest the tone over the lower abdomen — the body’s sorting channels' },
-  { planet: 'Sun',     sign: 'Leo',         region: 'Solar plexus region',    placement: 'bring the tone to the solar plexus — the body’s radiant center' },
-  { planet: 'Moon',    sign: 'Cancer',      region: 'Chest region',           placement: 'soften the tone at the chest — where the inner tides gather' },
-  { planet: 'Mercury', sign: 'Gemini',      region: 'Shoulders & hands',      placement: 'carry the tone from the shoulders down to the hands — the lines of reach' },
-  { planet: 'Venus',   sign: 'Taurus',      region: 'Thymus & throat region', placement: 'rest the tone between the throat and the thymus — the voice’s home ground' },
-  { planet: 'Mars',    sign: 'Aries',       region: 'Head',                   placement: 'crown the tone at the head — the summit of the ladder' },
+export const FULL_BODY_LADDER: { planet: string; sign: string; region: string; site: string; placement: string }[] = [
+  { planet: 'Neptune', sign: 'Pisces', region: 'Feet',                   site: 'sole',                   placement: 'rest the tone at the soles of the feet — the body’s furthest shore' },
+  { planet: 'Uranus',  sign: 'Aquarius', region: 'Shins',                  site: 'shin',                  placement: 'let the tone travel the shins — the current lines of the lower legs' },
+  { planet: 'Saturn',  sign: 'Capricorn', region: 'Knees',                  site: 'knee_front',                  placement: 'settle the tone at the knees — the architecture that carries you' },
+  { planet: 'Jupiter', sign: 'Sagittarius', region: 'Hips',                   site: 'hip',                   placement: 'open the tone across the hips — the wide gate of momentum' },
+  { planet: 'Pluto',   sign: 'Scorpio', region: 'Pelvis region',          site: 'lower_belly',          placement: 'ground the tone low at the pelvis — the deep root of the spine' },
+  { planet: 'Venus',   sign: 'Libra', region: 'Lower back',             site: 'lower_back',             placement: 'warm the tone across the lower back — the balance point of the torso' },
+  { planet: 'Mercury', sign: 'Virgo', region: 'Intestines region',      site: 'navel',      placement: 'rest the tone over the lower abdomen — the body’s sorting channels' },
+  { planet: 'Sun',     sign: 'Leo', region: 'Solar plexus region',    site: 'solar_plexus',    placement: 'bring the tone to the solar plexus — the body’s radiant center' },
+  { planet: 'Moon',    sign: 'Cancer', region: 'Chest region',           site: 'chest_centre',           placement: 'soften the tone at the chest — where the inner tides gather' },
+  { planet: 'Mercury', sign: 'Gemini', region: 'Shoulders & hands',      site: 'shoulder_ridge',      placement: 'carry the tone from the shoulders down to the hands — the lines of reach' },
+  { planet: 'Venus',   sign: 'Taurus', region: 'Thymus & throat region', site: 'upper_breastbone', placement: 'rest the tone between the throat and the thymus — the voice’s home ground' },
+  { planet: 'Mars',    sign: 'Aries', region: 'Head',                   site: 'crown',                   placement: 'crown the tone at the head — the summit of the ladder' },
 ]
 
 /** Deterministic timing weights — pure proportions of durationSec.
@@ -525,7 +525,7 @@ export const CHAKRA_CENTERS: {
   /** music/visual planet (canonical name) + the physical fork's display name */
   planet: string; forkName: string; color: string
 }[] = [
-  { center: 'Root',         bodyPoint: 'base of the spine',       solfeggioHz: 396, planet: 'Mars',    forkName: 'Mars',      color: '#E53935' },
+  { center: 'Root',         bodyPoint: 'base of the spine',       solfeggioHz: 396, planet: 'Mars',    forkName: 'Mars',      color: '#C06158' },
   { center: 'Sacral',       bodyPoint: 'lower abdomen',           solfeggioHz: 417, planet: 'Moon',    forkName: 'Full Moon', color: '#FB8C00' },
   { center: 'Solar Plexus', bodyPoint: 'upper abdomen',           solfeggioHz: 528, planet: 'Sun',     forkName: 'Sun',     color: '#FDD835' },
   { center: 'Heart',        bodyPoint: 'center of the chest',     solfeggioHz: 639, planet: 'Venus',   forkName: 'Venus',   color: '#43A047' },

@@ -26,7 +26,7 @@ const FORKS: Fork[] = [
   { n: 'Earth Year', hz: 136.10, c: '#8A5A07', om: true },
   { n: 'Pluto',      hz: 140.25, c: '#7B4FD6' },
   { n: 'Mercury',    hz: 141.27, c: '#6E9410' },
-  { n: 'Mars',       hz: 144.72, c: '#D2362D' },
+  { n: 'Mars',       hz: 144.72, c: '#A85A4E' },
   { n: 'Saturn',     hz: 147.85, c: '#A87A1E' },
   { n: 'Jupiter',    hz: 183.58, c: '#4B5FBC' },
   { n: 'Earth Day',  hz: 194.18, c: '#1E7A5A' },

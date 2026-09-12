@@ -2,8 +2,9 @@
 
 /**
  * SessionModePicker (Directive v4.3 · Feature 1) — one lightweight step where
- * a session begins: Calibrated (chart-driven, the existing flow) vs Full Body
- * Recalibration (the complete 12-fork anatomical ladder, chart-independent).
+ * a session begins: Natal Calibration (chart-driven — the ONLY session that
+ * places by the user's own natal placements) vs the canonical sessions, which
+ * place by tradition: the same map for every body.
  *
  * Skippable: "remember my choice" writes the Settings preference
  * (rememberedSessionMode) so future sessions start directly.
@@ -14,6 +15,7 @@ import { useState } from 'react'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER } from '@/lib/compliance'
 import { useAppStore } from '@/lib/store'
+import { TitleStrip } from '@/components/ui'
 import type { SessionMode, InterruptedSession } from '@/lib/store'
 
 export default function SessionModePicker({
@@ -25,7 +27,7 @@ export default function SessionModePicker({
   onBack,
 }: {
   accentColor: string
-  /** No reading → the Calibrated card routes to the scan first. */
+  /** No reading → the Natal Calibration card routes to the scan first. */
   hasReading: boolean
   /** v4.3 — an interrupted session (guests have no Dashboard resume card,
    *  so the picker offers the resume door too). */
@@ -36,8 +38,16 @@ export default function SessionModePicker({
 }) {
   const [remember, setRemember] = useState(false)
 
+  // SHA 2026-09-12 — every card is topped by a BONE LABEL STRIP: the title in
+  // black Cinzel on stone (--trim), a vertical accent bar at its left edge, and
+  // the session's PLACEMENT SYSTEM named on the right. House rule — reference
+  // things are printed, live things are lit — so the label is printed on stone
+  // and the session itself stays on the dark ground beneath it. The system
+  // badge is not decoration: five sessions choose placement by five different
+  // maps, and a practitioner has to know which one they are reading.
   const card = (opts: {
     title: string
+    system: string
     blurb: string
     footnote?: string
     accent: string
@@ -46,18 +56,20 @@ export default function SessionModePicker({
   }) => (
     <button
       onClick={opts.onClick}
-      className="kowalski-button w-full text-left rounded-[1.6rem] p-6 transition-transform"
+      className="kowalski-button w-full text-left rounded-[1.6rem] overflow-hidden transition-transform"
       style={{
         background: `radial-gradient(ellipse at 50% 0%, ${hexToRgba(opts.accent, 0.08)} 0%, rgba(2,2,8,0.92) 65%)`,
         border: `1px solid ${hexToRgba(opts.accent, opts.preselected ? 0.55 : 0.28)}`,
         boxShadow: opts.preselected ? `0 24px 56px -30px ${hexToRgba(opts.accent, 0.6)}` : 'none',
       }}
     >
-      <div className="font-cinzel text-[18px] text-white mb-1.5">{opts.title}</div>
-      <p className="text-[13px] text-content-sm leading-relaxed">{opts.blurb}</p>
-      {opts.footnote && (
-        <p className="text-[11px] text-white/40 mt-2">{opts.footnote}</p>
-      )}
+      <TitleStrip title={opts.title} badge={opts.system} accentColor={opts.accent} />
+      <div className="px-5 pt-3.5 pb-5">
+        <p className="text-[13px] text-content-sm leading-relaxed">{opts.blurb}</p>
+        {opts.footnote && (
+          <p className="text-[11px] text-white/40 mt-2">{opts.footnote}</p>
+        )}
+      </div>
     </button>
   )
 
@@ -86,8 +98,9 @@ export default function SessionModePicker({
 
         <div className="flex flex-col gap-3.5 mb-5">
           {card({
-            title: 'Calibrated Session',
-            blurb: 'Tuned to your chart and today’s sky — the forks and phases your reading calls for.',
+            title: 'Natal Calibration',
+            system: 'Natal chart',
+            blurb: 'The one session tuned to your chart and today’s sky — the forks, the phases and the placements your own reading calls for.',
             footnote: hasReading ? undefined : 'Starts with the resonance scan — your reading shapes the session.',
             accent: accentColor,
             preselected: true,
@@ -95,12 +108,14 @@ export default function SessionModePicker({
           })}
           {card({
             title: 'Full Body Recalibration',
-            blurb: 'The complete anatomical ladder — all twelve forks, ground to crown and back. The same map for every body; no reading required.',
+            system: 'Anatomical ladder',
+            blurb: 'The complete anatomical ladder — all twelve forks at their traditional placements, ground to crown and back. The same map for every body; no reading required.',
             accent: '#4CAF89',
             onClick: () => onPick('full_body', remember),
           })}
           {card({
             title: 'Marma Recalibration',
+            system: 'Marma points',
             blurb: 'The same twelve forks, worked at their named Ayurvedic points — opens at the heel, climbs to the crown, closes at the sole. The same map for every body; no reading required.',
             footnote: 'Every point shows how the fork may meet it. The reproductive point and the tail bone are swept, never touched.',
             accent: '#FF6FA8',
@@ -170,13 +185,15 @@ function ChakraCard({
   )
   return (
     <div
-      className="w-full text-left rounded-[1.6rem] p-6"
+      className="w-full text-left rounded-[1.6rem] p-6 overflow-hidden"
       style={{
         background: `radial-gradient(ellipse at 50% 0%, ${hexToRgba(accent, 0.08)} 0%, rgba(2,2,8,0.92) 65%)`,
         border: `1px solid ${hexToRgba(accent, 0.28)}`,
       }}
     >
-      <div className="font-cinzel text-[18px] text-white mb-1.5">Chakra Recalibration</div>
+      <div className="-mx-6 -mt-6 mb-3.5">
+        <TitleStrip title="Chakra Recalibration" badge="Chakra centres" accentColor={accent} />
+      </div>
       <p className="text-[13px] text-content-sm leading-relaxed mb-3">
         The seven centers, crown to root and back, sealed with an Earth
         grounding. Choose your instrument set — the chamber carries any tone you

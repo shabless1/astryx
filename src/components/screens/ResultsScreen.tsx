@@ -418,10 +418,7 @@ export default function ResultsScreen({
 
             {/* Gestation deficiencies — Bonacci's rule */}
             {d.cellSaltPrescription.gestationDeficiencies?.length > 0 && (
-              <GlassCard className="mt-3 p-5">
-                <div className="text-[10px] tracking-[0.25em] text-white/40 mb-2">
-                  INNATE BASELINE DEFICIENCIES · 3 SIGNS YOU DIDN&apos;T GESTATE THROUGH
-                </div>
+              <GlassCard title="Innate Baseline Deficiencies" badge="3 signs" className="mt-3" bodyClass="p-5">
                 <p className="text-[12px] text-white/50 italic mb-4">
                   Per Carey/Bonacci&apos;s gestation rule — human gestation is 9 months, so the 3 zodiac
                   signs immediately after your Sun sign represent the 3 minerals you are innately
@@ -728,8 +725,7 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
   const planetColor = PLANET_COLORS[symptom.primaryPlanet] ?? '#8B5CF6'
 
   return (
-    <GlassCard accentColor={planetColor} opacity={0.12} className="p-5">
-      <div className="text-[10px] tracking-[0.25em] text-white/40 mb-1">WHAT YOU NAMED</div>
+    <GlassCard accentColor={planetColor} opacity={0.12} title="What You Named" bodyClass="p-5">
       <div className="font-cinzel text-[18px] text-white mb-3 capitalize">{symptom.reportedSymptom}</div>
 
       <p className="text-[14px] text-white/85 leading-relaxed mb-3">
@@ -829,10 +825,7 @@ function CellSaltCard({
 }) {
   const color = salt.color ?? '#94A3B8'
   return (
-    <GlassCard accentColor={color} opacity={highlight ? 0.20 : 0.08} className="p-5">
-      <div className="text-[10px] tracking-[0.25em] mb-2" style={{ color }}>
-        {label}
-      </div>
+    <GlassCard accentColor={color} opacity={highlight ? 0.20 : 0.08} title={label} bodyClass="p-5">
       <div className="font-cinzel text-[18px] text-white mb-0.5">{salt.saltName}</div>
       <div className="text-[11px] text-white/50 mb-2">{salt.saltShort} · {salt.sign} · {salt.epithet}</div>
       {salt.plainLanguageSignal && (

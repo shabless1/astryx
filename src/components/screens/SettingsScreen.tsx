@@ -87,8 +87,7 @@ export default function SettingsScreen({
             <ModeToggle mode={mode} setMode={setMode} accentColor={accentColor} />
           </GlassCard>
         ) : PRACTITIONER_TIER_LIVE ? (
-          <GlassCard className="p-5 mb-3 animate-fade-in-up">
-            <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Practitioner</div>
+          <GlassCard title="Practitioner" className="mb-3 animate-fade-in-up" bodyClass="p-5">
             <div className="text-[14px] text-white/90">Work on other people&rsquo;s charts</div>
             <div className="text-[12px] text-white/45 mt-0.5">
               A client roster, Sacred Tones Session Mode, the named marma points, and the practitioner export. $39.95 a month.
@@ -195,8 +194,7 @@ export default function SettingsScreen({
         <SessionModePreferenceRow accentColor={accentColor} />
 
         {/* Session duration */}
-        <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-          <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Default Chamber Container</div>
+        <GlassCard style={{ animationDelay: '0.25s' }} title="Default Chamber Container" className="mb-3 animate-fade-in-up" bodyClass="p-5">
           <div className="text-[12px] text-white/40 mb-3">Minutes per session</div>
           <div className="flex flex-wrap gap-2">
             {[5, 10, 20, 30, 45].map((d) => (
@@ -226,8 +224,7 @@ export default function SettingsScreen({
         <ContainerFitCard accentColor={accentColor} />
 
         {/* App info */}
-        <GlassCard className="p-5 mb-6 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <div className="text-[11px] tracking-[0.2em] text-white/40 mb-3 uppercase">About Astryx</div>
+        <GlassCard style={{ animationDelay: '0.3s' }} title="About Astryx" className="mb-6 animate-fade-in-up" bodyClass="p-5">
           <div className="text-[12px] text-white/35 leading-relaxed">
             Astryx is a deterministic multi-sensory calibration system. It uses astrological pattern intelligence as a structured wellness framework — not for prediction or fortune telling.
           </div>
@@ -253,18 +250,18 @@ function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
   const setRemembered = useAppStore((s) => s.setRememberedSessionMode)
   const OPTIONS = [
     { value: 'ask',        label: 'Ask each time' },
-    { value: 'calibrated', label: 'Calibrated' },
+    { value: 'calibrated', label: 'Natal Calibration' },
     { value: 'full_body',  label: 'Full Body' },
     { value: 'chakra',     label: 'Chakra' },
     { value: 'marma',      label: 'Marma' },
   ] as const
   return (
-    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>
-      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Session Mode</div>
+    <GlassCard style={{ animationDelay: '0.22s' }} title="Session Mode" className="mb-3 animate-fade-in-up" bodyClass="p-5">
       <div className="text-[12px] text-white/40 mb-3">
-        Calibrated — tuned to your chart and today&apos;s sky. Full Body — the complete
-        anatomical ladder, all twelve forks, ground to crown and back. Marma — the same
-        twelve at their named Ayurvedic points, heel to crown to sole.
+        Natal Calibration — the only session tuned to your chart and today&apos;s sky;
+        placements follow your own natal placements. Full Body — the complete anatomical
+        ladder, all twelve forks, ground to crown and back, at their traditional placements.
+        Marma — the same twelve at their named Ayurvedic points, heel to crown to sole.
       </div>
       <div className="flex flex-wrap gap-2">
         {OPTIONS.map((o) => (
@@ -293,8 +290,7 @@ function OwnedForksCard({ accentColor }: { accentColor: string }) {
   const ownedForks = useAppStore((s) => s.ownedForks)
   const toggleOwnedFork = useAppStore((s) => s.toggleOwnedFork)
   return (
-    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.28s' }}>
-      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-0.5 uppercase">Sacred Tones You Own</div>
+    <GlassCard style={{ animationDelay: '0.28s' }} title="Sacred Tones You Own" className="mb-3 animate-fade-in-up" bodyClass="p-5">
       <div className="text-[12px] text-white/30 mb-3">
         Tap the forks you physically own. The Chamber stops showing the &ldquo;simulated tone&rdquo; note for those.
       </div>
@@ -334,8 +330,7 @@ function ContainerFitCard({ accentColor }: { accentColor: string }) {
     { value: 'proportionalCompress', label: 'Breadth', hint: 'Keep every fork but shorten each hold to fit the container.' },
   ]
   return (
-    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.29s' }}>
-      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-0.5 uppercase">Session Fit</div>
+    <GlassCard style={{ animationDelay: '0.29s' }} title="Session Fit" className="mb-3 animate-fade-in-up" bodyClass="p-5">
       <div className="text-[12px] text-white/30 mb-3">When a chart needs more work than your container holds.</div>
       <div className="flex flex-wrap gap-2">
         {opts.map((o) => {
@@ -380,8 +375,7 @@ function SettingRow({
   delay: number
 }) {
   return (
-    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: `${delay}s` }}>
-      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-0.5 uppercase">{label}</div>
+    <GlassCard style={{ animationDelay: `${delay}s` }} title={label} className="mb-3 animate-fade-in-up" bodyClass="p-5">
       <div className="text-[12px] text-white/30 mb-3">{description}</div>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
@@ -417,8 +411,7 @@ function VoiceSettingRow({
   const previewing = speakingId === 'voice-preview'
   const note = ASTRYX_VOICES.find((v) => v.value === current)?.note ?? ''
   return (
-    <GlassCard className="p-5 mb-3 animate-fade-in-up" style={{ animationDelay: '0.22s' }}>
-      <div className="text-[11px] tracking-[0.2em] text-white/40 mb-0.5 uppercase">Astryx Voice</div>
+    <GlassCard style={{ animationDelay: '0.22s' }} title="Astryx Voice" className="mb-3 animate-fade-in-up" bodyClass="p-5">
       <div className="text-[12px] text-white/30 mb-3">Her spoken voice — all feminine · currently {note}</div>
       <div className="flex flex-wrap gap-2 mb-3">
         {ASTRYX_VOICES.map((o) => (

@@ -26,6 +26,13 @@ interface Star {
 //   • nebulaStrength — opacity of the secondary nebula layer (0–1)
 //   • nebulaPos — CSS ellipse center (e.g. "75% 25%") for placement contrast
 //
+// SHA 2026-09-12 — THIS TABLE IS THE PAGE BACKGROUND. Every entry washes the
+// whole viewport, so a hot value here tints the entire app, not one component.
+// Mars was '220,60,50' at 0.14 (the strongest of the ten) and Pluto was
+// '150,40,40'; between them they were the "bloody red everywhere". Keep each
+// atmosRgb in step with that planet's PLANET_COLORS entry in engineClient.ts,
+// and keep nebulaStrength in the 0.08–0.13 band — no planet gets to shout.
+//
 // Design intent: the user's planetary signature shapes the entire room.
 // Saturn feels containment-dark. Mars feels kinetic-red. Neptune drifts oceanic.
 const PLANET_ATMOSPHERE: Record<string, {
@@ -38,16 +45,21 @@ const PLANET_ATMOSPHERE: Record<string, {
   moon:    { hueRot: 195, atmosRgb: '168,195,220',  nebulaStrength: 0.09, nebulaPos: '25% 30%' },
   mercury: { hueRot: 58,  atmosRgb: '188,224,60',   nebulaStrength: 0.10, nebulaPos: '80% 70%' },
   venus:   { hueRot: 145, atmosRgb: '72,200,140',   nebulaStrength: 0.11, nebulaPos: '30% 70%' },
-  mars:    { hueRot: 0,   atmosRgb: '220,60,50',    nebulaStrength: 0.14, nebulaPos: '70% 30%' },
+  mars:    { hueRot: 8,   atmosRgb: '196,117,106',  nebulaStrength: 0.11, nebulaPos: '70% 30%' },
   jupiter: { hueRot: 235, atmosRgb: '100,120,200',  nebulaStrength: 0.10, nebulaPos: '20% 25%' },
   saturn:  { hueRot: 265, atmosRgb: '90,80,130',    nebulaStrength: 0.08, nebulaPos: '80% 80%' },
   uranus:  { hueRot: 178, atmosRgb: '56,190,248',   nebulaStrength: 0.12, nebulaPos: '50% 18%' },
   neptune: { hueRot: 215, atmosRgb: '100,130,210',  nebulaStrength: 0.10, nebulaPos: '35% 65%' },
-  pluto:   { hueRot: 340, atmosRgb: '150,40,40',    nebulaStrength: 0.09, nebulaPos: '65% 85%' },
+  pluto:   { hueRot: 275, atmosRgb: '159,122,234',  nebulaStrength: 0.09, nebulaPos: '65% 85%' },
 }
+// SHA ruling 2026-09-12 — THE BACKGROUND IS CHROME, so it no longer follows the
+// user's dominant planet. It used to: a Mars or Pluto chart washed every screen
+// in a red nebula, because this table paints the whole viewport. The room stays
+// the same room; only the mandala and colour therapy change inside the chamber.
+// A soft antique gold, at the gentlest strength in the old table.
 const DEFAULT_ATMOSPHERE = {
   hueRot: 0,
-  atmosRgb: '192,132,252',
+  atmosRgb: '201,169,97',
   nebulaStrength: 0.07,
   nebulaPos: '20% 40%',
 }
@@ -62,9 +74,10 @@ export default function CosmicBackground({
   const showMale = ['results', 'practitioner'].includes(screen)
 
   // Resolve atmosphere for current dominant planet
-  const atm = dominantPlanet
-    ? (PLANET_ATMOSPHERE[dominantPlanet.toLowerCase()] ?? DEFAULT_ATMOSPHERE)
-    : DEFAULT_ATMOSPHERE
+  // PLANET_ATMOSPHERE is kept for the record, and for any future surface that
+  // genuinely SHOULD carry a planet's hue — but the page background is not one.
+  void dominantPlanet
+  const atm = DEFAULT_ATMOSPHERE
 
   // ── Three-layer parallax star field (Play 3) ──────────────────
   // Stars split into far / mid / near depth layers.

@@ -46,12 +46,15 @@ import { getPhaseForProgress } from '@/lib/protocol/sessionPhaseMap'
 import type { BodyMapType } from '@/lib/bodyMapPlacement'
 import { resolveForkPlacement, chakraCenterPlacement, type ForkPlacement } from '@/lib/BodyPlacementEngine'
 import MarmaPanel from '@/components/engine/MarmaPanel'
+import { TitleStrip } from '@/components/ui'
+import { HOUSE_ACCENT } from '@/lib/engineClient'
 import { resolveMarmaLayer, marmaPointById } from '@/lib/MarmaEngine'
 import { hexToRgb, hexToRgba } from '@/lib/utils'
 import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
-import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, buildMarmaSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, buildMarmaSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, FULL_SPECTRUM_SWEEP, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
+import { siteById, type BodySite } from '@/lib/bodySites'
 
 // v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
 // selections for every user, every run (the ladder is chart-independent). Only
@@ -478,6 +481,25 @@ export default function SessionScreen({
   const chakraCenterName = isChakra && current?.role === 'signalFork'
     ? current.phaseLabel.split('·').pop()?.trim()
     : undefined
+
+  // ── THE BODY SITE REGISTER (SHA, 2026-09-12) ──────────────────────────────
+  // SHA's ruling: NATAL placements belong to the Natal Calibration session and
+  // nowhere else. Full Body and the feet-up Full Spectrum are the same map for
+  // every body, so they place by TRADITION — the rung's own site from the
+  // register — and never by the user's chart. This also stops the panel beneath
+  // a rung from showing the PLANET's marma points: "Uranus · Shins" was
+  // rendering the top of the shoulder, the forearm and the palm, with their
+  // photographs. The site owns the place; the planet only owns the tone.
+  const stepSite: BodySite | null = useMemo(() => {
+    if (!current) return null
+    if (isFullBody && current.sign) {
+      return siteById(FULL_BODY_LADDER.find((r) => r.sign === current.sign)?.site)
+    }
+    if (isFullSpectrum && current.role === 'signalFork') {
+      return siteById(FULL_SPECTRUM_SWEEP.find((f) => f.planet === current.planet)?.site)
+    }
+    return null
+  }, [current, isFullBody, isFullSpectrum])
   // v4.5.1 — in the PLANETARY chakra option, show the physical fork's NAME next to
   // the Hz so the client knows which planetary fork to pick up (Heart → Venus …).
   const chakraForkName = chakraCenterName && chakraInstrument === 'planetary'
@@ -904,9 +926,45 @@ export default function SessionScreen({
                       }
                     }
                   }
-                  // v4.4 FIX 3.1 — other canonical sessions (Full Body) place by
-                  // the LADDER territory only. Calibrated sessions keep natal.
-                  const base = resolvePlacement(current.planet, isFullBody ? current.sign : undefined)
+                  // SHA 2026-09-12 — THE TRADITIONAL PLACEMENT RULING.
+                  // Full Body and the feet-up Full Spectrum are the same map
+                  // for every body, so the REGISTER's site owns the place: its
+                  // anchor, its face, its discipline, and its own marma point.
+                  // Natal placement belongs to the Natal Calibration session
+                  // and nowhere else.
+                  if (stepSite) {
+                    const b = resolvePlacement(current.planet, current.sign)
+                    const pt = stepSite.marma ? marmaPointById(stepSite.marma) : null
+                    const sweep = stepSite.discipline === 'fieldOnly' || pt?.application === 'fieldOnly'
+                    const label = rungRegion ?? stepSite.name
+                    const how = `${current.purpose.charAt(0).toUpperCase()}${current.purpose.slice(1)}.`
+                    const anchorObj = {
+                      anchor: pt?.anchor ?? stepSite.anchor,
+                      region: pt?.region ?? stepSite.short.toLowerCase(),
+                      label,
+                      view: (pt?.view ?? stepSite.view) as 'anterior' | 'posterior',
+                      mode: (sweep ? 'sweep' : 'contact') as 'sweep' | 'contact',
+                    }
+                    return {
+                      ...b,
+                      primaryLabel: label,
+                      primaryRegions: [anchorObj.region],
+                      view: anchorObj.view,
+                      anchor: anchorObj.anchor,
+                      mode: anchorObj.mode,
+                      how,
+                      why: 'The same map for every body — traditional territory, rung by rung. Your chart shapes the Natal Calibration, not this one.',
+                      traditionalPlacement: anchorObj,
+                      natalPlacement: { ...anchorObj, sameAsTraditional: true },
+                      natalLabel: label,
+                      natalHow: how,
+                      // The site's OWN point, never the planet's — this is what
+                      // was putting a shoulder under "Uranus · Shins". A site
+                      // with no named point simply shows no panel.
+                      marma: pt && b.marma ? { ...b.marma, points: [pt] } : null,
+                    }
+                  }
+                  const base = resolvePlacement(current.planet)
                   if (!isCanonicalSession) return base
                   return {
                     ...base,
@@ -1154,15 +1212,15 @@ function SequenceStepCard({
           {/* Body Map LEADS the fork step — WHERE to hold + the active zone. */}
           <div className="mb-4">
             <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
-            <div className="mt-2 px-3 py-2 rounded-xl"
+            <div className="mt-2 rounded-xl overflow-hidden"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
-              <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accentColor, 0.9) }}>
-                Placement · {placement.primaryLabel}
-              </div>
+              <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
+              <div className="px-3 py-2.5">
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
               <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
+              </div>
             </div>
           </div>
 
@@ -1226,15 +1284,15 @@ function SequenceStepCard({
         <>
           <div className="mb-4">
             <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
-            <div className="mt-2 px-3 py-2 rounded-xl"
+            <div className="mt-2 rounded-xl overflow-hidden"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
-              <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accentColor, 0.9) }}>
-                Placement · {placement.primaryLabel}
-              </div>
+              <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
+              <div className="px-3 py-2.5">
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
               <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
+              </div>
             </div>
           </div>
           <div className="flex items-baseline gap-3 mb-4 flex-wrap">
@@ -1334,18 +1392,20 @@ function printProtocolSheet(
 function StepCard({
   badge, title, accentColor, children,
 }: { badge: string; title: string; accentColor: string; children: React.ReactNode }) {
+  // SHA 2026-09-12 — the chamber carries the same bone title strip as the rest
+  // of the app. The step number rides as the badge, so a practitioner reads
+  // WHERE they are and WHAT this step is from one printed line.
   return (
     <div
-      className="rounded-2xl p-7"
+      className="rounded-2xl overflow-hidden"
       style={{
         background: 'rgba(5,7,20,0.72)', backdropFilter: 'blur(20px)',
         border: `1px solid ${hexToRgba(accentColor, 0.25)}`,
         boxShadow: `0 0 32px -10px ${hexToRgba(accentColor, 0.3)}`,
       }}
     >
-      <div className="text-[10px] tracking-[0.3em] mb-1.5" style={{ color: accentColor }}>{badge}</div>
-      <h2 className="font-cinzel text-[24px] text-white mb-4">{title}</h2>
-      {children}
+      <TitleStrip title={title} badge={badge} accentColor={accentColor} />
+      <div className="p-7">{children}</div>
     </div>
   )
 }
@@ -1434,7 +1494,7 @@ function StepCrystal({
   return (
     <StepCard badge="STEP 3 · CRYSTAL ACTIVATION" title={crystal.featuredCrystal} accentColor={accentColor}>
       {isMalachite && (
-        <div className="mb-3 p-2.5 rounded-lg" style={{ background: 'rgba(232,69,60,0.15)', border: '1px solid rgba(232,69,60,0.4)' }}>
+        <div className="mb-3 p-2.5 rounded-lg" style={{ background: 'rgba(196, 117, 106,0.15)', border: '1px solid rgba(196, 117, 106,0.4)' }}>
           <span className="text-[10px] font-bold tracking-widest text-red-200">
             ⚠ MALACHITE — POLISHED & SEALED ONLY · NEVER RAW · NEVER FOR ELIXIRS
           </span>
@@ -1461,7 +1521,8 @@ function StepFork({
   isApplied: boolean; onMarkApplied: () => void
   isPractitionerMode: boolean
 }) {
-  const accentColor = fork.color
+  const accentColor = HOUSE_ACCENT   // SHA ruling — chamber CHROME is fixed;
+  // the fork's own hue still drives the mandala and colour therapy below.
   const vagusBadge = vagusBadgeColor(fork.vagusStrength)
   const hold = holdDurationFor(fork.vagusStrength)
   // The named marma doorway for this fork. Pluto and every pelvic-zone point

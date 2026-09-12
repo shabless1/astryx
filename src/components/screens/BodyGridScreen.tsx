@@ -36,7 +36,7 @@ export default function BodyGridScreen({
           Tap a glowing region to see what it governs.
         </p>
 
-        <GlassCard accentColor={accentColor} opacity={0.1} className="p-5 sm:p-7 animate-fade-in-up">
+        <GlassCard accentColor={accentColor} opacity={0.1} title="Your Body Map" className="animate-fade-in-up" bodyClass="p-5 sm:p-7">
           {chart ? (
             <BodyMap chart={chart} accentColor={accentColor} />
           ) : (

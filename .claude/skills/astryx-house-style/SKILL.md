@@ -51,7 +51,17 @@ Astryx ships a dark ground with warm light used as trim and as reference surface
 --magenta:#FF006E;   /* heat, alert, emphasis                      */
 --slate:#94A3B8;     /* body text on dark                          */
 --trim:#DDD7CA;      /* THE light ground. warm stone. SHA's pick   */
+--clay:#C4756A;      /* Mars, hard aspects, every caution          */
 ```
+
+**Never reintroduce `#E8453C`.** That hot vermilion was doing three jobs at once — Mars's
+accent, the hard-aspect line, and every warning/blocked state — so a Mars-dominant chart
+washed the whole app in it, because the accent drives every card gradient, border and label.
+SHA, 2026-09-12: *"the theme is bloody red everywhere... needs something softer, not so
+offensive."* Replaced app-wide with **`#C4756A`**, a warm clay — iron-oxide, which is what
+Mars actually is. Same hue family, far less saturation. The Root chakra moved with it
+(`#E53935`/`#FF3D5C` → `#C06158`), which shifts the chakra golden snapshot; that update is
+deliberate and expected, not a determinism break.
 
 **`--trim:#DDD7CA` is the only light ground.** Not white. Pure white glares against near-black and fights the gold. It is one token driving every light surface, so it retunes in one line.
 
@@ -68,6 +78,26 @@ Anything that is running, playing, sensing or being felt stays on the dark groun
 Applied as **trim first, surfaces second**. Section labels are stone pills with black type. Cards get a one-pixel warm highlight along the top lip. Hairlines are warmed off-white at low alpha, never indigo, because indigo on near-black is what makes a page feel shut in.
 
 **A dark screenshot needs a light mount.** The app UI is near-black; on a dark card it dissolves. Mat it on stone with about ten pixels of padding.
+
+## 3b. The title strip
+
+> **A title is never loose text on the dark ground. It is printed, on stone, in black.**
+
+SHA, 2026-09-12: *"I need the title strip in every card, every info card, even in the
+chamber."* Every titled surface opens with `<TitleStrip>` from `@/components/ui` — a
+full-bleed bone (`--trim`) band, a 5px accent bar at the left edge, the title in Cinzel 700
+black, and an optional badge pill on the right. The accent bar is the ONLY place a card's
+own colour appears in its header, which is exactly what stops a red-accented card from
+reading as a red card.
+
+`GlassCard` and `StonePanel` take `title` / `badge` / `bodyClass`. Padding moves to
+`bodyClass` so the strip runs edge to edge and follows the radius — a card that keeps its
+own `p-5` will inset the strip and look broken. On stone the strip cannot be stone, so it
+steps one shade darker (`#D2CBBD`), the way a printed table heads its own columns.
+
+**What does NOT get a strip:** empty states, accordions whose button IS the header, and
+list rows. A strip announces a titled panel; putting one above a toggle gives the card two
+headers. 38 of 56 cards carry one; the other 18 are those three shapes.
 
 ## 4. Typography
 

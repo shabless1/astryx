@@ -162,10 +162,7 @@ export default function ExploreDeeperCards({
   }
 
   return (
-    <GlassCard className="p-5 mb-5 animate-fade-in-up">
-      <div className="text-[10px] uppercase tracking-[0.28em] mb-1" style={{ color: hexToRgba(accent, 0.9) }}>
-        Explore Deeper
-      </div>
+    <GlassCard title="Explore Deeper" className="mb-5 animate-fade-in-up" bodyClass="p-5">
       <p className="text-[11px] text-white/45 mb-3">Want to know more? Tap any box to peek inside.</p>
       {list}
       <p className="text-[10px] text-white/35 italic mt-3">ⓘ Reference tool · not medical advice.</p>

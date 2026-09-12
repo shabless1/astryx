@@ -124,7 +124,7 @@ const CHAKRAS: { id: string; name: string; sanskrit: string; color: string; colo
   { id: 'heart',     name: 'Heart',         sanskrit: 'Anāhata',      color: '#43E66A', colorName: 'Green',  hz: 639, y: 27 },
   { id: 'plexus',    name: 'Solar Plexus',  sanskrit: 'Maṇipūra',     color: '#FFD600', colorName: 'Yellow', hz: 528, y: 37 },
   { id: 'sacral',    name: 'Sacral',        sanskrit: 'Svādhiṣṭhāna', color: '#FF8A1A', colorName: 'Orange', hz: 417, y: 42 },
-  { id: 'root',      name: 'Root',          sanskrit: 'Mūlādhāra',    color: '#FF3D5C', colorName: 'Red',    hz: 396, y: 48 },
+  { id: 'root',      name: 'Root',          sanskrit: 'Mūlādhāra',    color: '#C06158', colorName: 'Red',    hz: 396, y: 48 },
 ]
 
 // Planet → Sacred Tones fork name + Hz (for the body-map planet detail panel).
@@ -551,7 +551,7 @@ function ChakraMeridianOverlay({
           <stop offset="52%"  stopColor="#43E66A" />
           <stop offset="75%"  stopColor="#FFD600" />
           <stop offset="86%"  stopColor="#FF8A1A" />
-          <stop offset="100%" stopColor="#FF3D5C" />
+          <stop offset="100%" stopColor="#C06158" />
         </linearGradient>
         <filter id="meridian-glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="0.4" result="blur" />

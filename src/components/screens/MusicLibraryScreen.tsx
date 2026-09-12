@@ -39,7 +39,7 @@ const CHAKRA_TONES = [
   { name: 'Heart',        sanskrit: 'Anāhata',      hz: 639, color: '#43E66A' },
   { name: 'Solar Plexus', sanskrit: 'Maṇipūra',     hz: 528, color: '#FFD600' },
   { name: 'Sacral',       sanskrit: 'Svādhiṣṭhāna', hz: 417, color: '#FF8A1A' },
-  { name: 'Root',         sanskrit: 'Mūlādhāra',    hz: 396, color: '#FF3D5C' },
+  { name: 'Root',         sanskrit: 'Mūlādhāra',    hz: 396, color: '#C06158' },
 ]
 const STATES: { key: SoundFolderState; label: string }[] = [
   { key: 'nat', label: 'Natural' },

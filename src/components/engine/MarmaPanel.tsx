@@ -18,7 +18,7 @@
  */
 
 import { hexToRgba } from '@/lib/utils'
-import placementPhotos from '@/data/placementPhotos.json'
+import { photoForMarma } from '@/lib/bodySites'
 import type { MarmaLayer, MarmaPlacement, MarmaApplication } from '@/lib/MarmaEngine'
 
 /**
@@ -32,7 +32,9 @@ import type { MarmaLayer, MarmaPlacement, MarmaApplication } from '@/lib/MarmaEn
  * body map above still shows where on the body it sits. Never substitute a
  * different point's picture; a wrong placement is worse than no placement.
  */
-const PHOTOS = (placementPhotos as { photos: Record<string, { file: string; alt: string }> }).photos
+// The picture now keys to the BODY SITE, not to this point's id, so one
+// photograph serves every system that visits the same place — and the gate
+// withholds a contact picture on a step the engine tightened to a sweep.
 
 const APP_STYLE: Record<MarmaApplication, { label: string; color: string; bg: string; border: string }> = {
   weighted: { label: 'WEIGHTED · STEM ON THE POINT', color: '#FDE047', bg: 'rgba(253,224,71,0.10)', border: 'rgba(253,224,71,0.38)' },
@@ -59,6 +61,10 @@ function MarmaCard({
 }: { point: MarmaPlacement; accentColor: string; isPractitionerMode: boolean }) {
   const app = APP_STYLE[point.application]
   const neverTouched = point.application === 'fieldOnly'
+  // RESOLVED application, not the site's default — if this person's engine
+  // tightened a contact point to a sweep, the contact photograph disappears
+  // rather than contradict the instruction printed beside it.
+  const photo = photoForMarma(point.id, point.application)
 
   return (
     <div
@@ -68,12 +74,12 @@ function MarmaCard({
         border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.28)' : 'rgba(255,255,255,0.09)'}`,
       }}
     >
-      {PHOTOS[point.id] && (
+      {photo && (
         <figure className="relative mb-2.5 -mx-1 rounded-lg overflow-hidden"
                 style={{ border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.35)' : 'rgba(255,255,255,0.12)'}` }}>
           <img
-            src={`/images/placements/${PHOTOS[point.id].file}`}
-            alt={PHOTOS[point.id].alt}
+            src={`/images/placements/${photo.file}`}
+            alt={photo.alt}
             loading="lazy"
             className="block w-full"
             style={{ aspectRatio: '3 / 2', objectFit: 'cover' }}

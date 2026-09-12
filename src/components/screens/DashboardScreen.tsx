@@ -24,7 +24,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import type { ProtocolOutput, AppMode, SessionRecord } from '@/types'
 import { computeDailyTemperature, type Temperature } from '@/lib/dailyTemperature'
-import { freshTransitInterpretation } from '@/lib/engineClient'
+import { freshTransitInterpretation, getAccentColor } from '@/lib/engineClient'
 import { forkFor } from '@/lib/chamber/forkRite'
 import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'
@@ -122,7 +122,10 @@ export default function DashboardScreen({
 
   const handleLoadSession = (record: SessionRecord) => {
     setProtocol(record.protocol)
-    setAccentColor(record.accentColor)
+    // Chrome is resolved from the reading, never restored from the record.
+    // Old rows carry the per-planet base hue from before the chrome ruling;
+    // loading one used to re-skin the entire app in it.
+    setAccentColor(getAccentColor(record.protocol))
   }
 
   return (
@@ -261,17 +264,14 @@ export default function DashboardScreen({
           )}
 
           {tab === 'deeper' && (
-            <GlassCard accentColor={accentColor} opacity={0.08} className="p-5 sm:p-6">
-              <div className="text-[10px] uppercase tracking-[0.28em] mb-1" style={{ color: hexToRgba(accentColor, 0.9) }}>
-                Explore Deeper
-              </div>
+            <GlassCard accentColor={accentColor} opacity={0.08} title="Explore Deeper" badge="Tap to open" bodyClass="p-5 sm:p-6">
               <p className="text-[11px] text-white/45 mb-3">Tap any box to peek inside.</p>
               <ExploreDeeperCards protocol={protocol} accent={accentColor} bare />
             </GlassCard>
           )}
 
           {tab === 'chart' && (
-            <GlassCard accentColor={accentColor} opacity={0.1} className="p-5 sm:p-7 flex flex-col items-center">
+            <GlassCard accentColor={accentColor} opacity={0.1} title="Your Natal Chart" bodyClass="p-5 sm:p-7 flex flex-col items-center">
               {chartData ? (
                 <NatalChartWheel chart={chartData} accentColor={accentColor} size={420} />
               ) : (
@@ -281,7 +281,7 @@ export default function DashboardScreen({
           )}
 
           {tab === 'body' && (
-            <GlassCard accentColor={accentColor} opacity={0.1} className="p-5 sm:p-7">
+            <GlassCard accentColor={accentColor} opacity={0.1} title="Your Body Map" bodyClass="p-5 sm:p-7">
               {chartData ? (
                 <BodyMap chart={chartData} accentColor={accentColor} />
               ) : (

@@ -247,7 +247,9 @@ export default function PostSessionSummary({
     )
   }
 
-  const accent = snapshot.accentColor || accentColor
+  // Chrome comes from the live resolver, never from the saved snapshot — an
+  // old snapshot carries the planet base hue this app no longer renders.
+  const accent = accentColor
   const client = snapshot.isPractitioner ? getActiveClient() : null
   const continuation = buildContinuation(snapshot, answers)
 
@@ -356,10 +358,7 @@ export default function PostSessionSummary({
         )}
 
         {/* ── SECTION 1 — SESSION SUMMARY ── */}
-        <GlassCard className="p-6 mb-5 animate-fade-in-up">
-          <div className="text-[10px] uppercase tracking-[0.28em] mb-4" style={{ color: hexToRgba(accent, 0.9) }}>
-            Today&apos;s Resonance
-          </div>
+        <GlassCard title="Today&apos;s Resonance" className="mb-5 animate-fade-in-up" bodyClass="p-6">
           <div className="space-y-3">
             <SummaryRow label="Signal" accent={accent}>
               <span className="font-cinzel text-[22px]" style={{ color: accent }}>{snapshot.signalState}</span>
@@ -395,11 +394,7 @@ export default function PostSessionSummary({
         {!saved ? (
           <>
             {/* ── SECTION 2 — POST-SESSION CHECK-IN ── */}
-            <GlassCard className="p-6 mb-5 animate-fade-in-up">
-              <div className="text-[10px] uppercase tracking-[0.28em] mb-4" style={{ color: hexToRgba(accent, 0.9) }}>
-                Check-In
-              </div>
-
+            <GlassCard title="Check-In" className="mb-5 animate-fade-in-up" bodyClass="p-6">
               <ChipQuestion
                 question="How do you feel now?"
                 hint="Select any that fit"
@@ -701,11 +696,7 @@ function SacredTeaCard({
   const badgeColor = matchTone[pm.matchLevel] ?? accent
 
   return (
-    <GlassCard className="p-6 mb-5 animate-fade-in-up">
-      <div className="text-[10px] uppercase tracking-[0.28em] mb-4" style={{ color: hexToRgba(accent, 0.9) }}>
-        Sacred Tea Support
-      </div>
-
+    <GlassCard title="Sacred Tea Support" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       {/* Best Prepared Match — Sacred Tea, first */}
       <div className="flex items-center justify-between gap-3 mb-1">
         <div className="text-[9px] uppercase tracking-[0.22em] text-white/45">Best Prepared Match</div>
@@ -777,10 +768,7 @@ function StoneCard({
   if (!stone) return null
   const isMalachite = stone.toLowerCase() === 'malachite'
   return (
-    <GlassCard className="p-6 mb-5 animate-fade-in-up">
-      <div className="text-[10px] uppercase tracking-[0.28em] mb-3" style={{ color: hexToRgba(accent, 0.9) }}>
-        Stone to carry today
-      </div>
+    <GlassCard title="Stone to Carry Today" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       <div className="flex items-baseline gap-2 flex-wrap mb-1.5">
         <span className="font-cinzel text-[18px]" style={{ color: accent }}>{stone}</span>
         {isMalachite && (
@@ -818,10 +806,7 @@ function ContinuationCard({ cont, accent, elementAction }: { cont: ContinuationP
     { label: 'Check back', value: cont.nextCheckIn },
   ]
   return (
-    <GlassCard className="p-6 mb-5 animate-fade-in-up">
-      <div className="text-[10px] uppercase tracking-[0.28em] mb-4" style={{ color: hexToRgba(accent, 0.9) }}>
-        What To Carry Forward
-      </div>
+    <GlassCard title="What To Carry Forward" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       {cont.responseNote && (
         <div className="mb-4 p-3 rounded-lg" style={{ background: hexToRgba(accent, 0.1), border: `1px solid ${hexToRgba(accent, 0.3)}` }}>
           <span className="text-[13px] text-white/90 leading-snug">{cont.responseNote}</span>
@@ -845,10 +830,7 @@ function BeforeAfterCard({
   const before = [...snapshot.preSessionSymptoms, ...snapshot.preSessionEmotional]
   const after = entry.postSessionState.feeling
   return (
-    <GlassCard className="p-6 mb-5 animate-fade-in-up">
-      <div className="text-[10px] uppercase tracking-[0.28em] mb-4" style={{ color: hexToRgba(accent, 0.9) }}>
-        Before → After
-      </div>
+    <GlassCard title="Before → After" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <div className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Before</div>

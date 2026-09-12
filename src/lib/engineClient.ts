@@ -21,7 +21,7 @@ export const PLANET_COLORS: Record<string, string> = {
   Moon:    '#A8C4D0',
   Mercury: '#9EC832',
   Venus:   '#4CAF89',
-  Mars:    '#E8453C',
+  Mars:    '#C4756A',
   Jupiter: '#6B7FD4',
   Saturn:  '#C9993A',
   Uranus:  '#2EC4B6',
@@ -29,9 +29,37 @@ export const PLANET_COLORS: Record<string, string> = {
   Pluto:   '#9F7AEA',
 }
 
-/** The accent color for a computed protocol (dominant planet → color). */
-export function getAccentColor(protocol: ProtocolOutput): string {
-  return PLANET_COLORS[protocol.dominant_pattern.planets[0]] ?? '#8B5CF6'
+/**
+ * THE HOUSE ACCENT — the app's fixed chrome colour.
+ * ════════════════════════════════════════════════════════════════════════════
+ * SHA, 2026-09-12: "everything defaults to red. I hate it. We need softer
+ * default colors. The only time the color should change is in the chamber with
+ * the mandalas and color therapy."
+ *
+ * The app chrome used to take its colour from the user's DOMINANT PLANET, so
+ * every button, border, label, card glow and page nebula swung to whatever that
+ * planet happened to be — red for Mars or Pluto, acid green for Mercury. A
+ * personal chart was deciding the product's visual identity, which is not what
+ * an accent is for.
+ *
+ * Chrome is now FIXED: a soft antique gold, the brand's own colour, warm
+ * against the bone title strips and calm at full strength on a button.
+ *
+ * The planetary palette is NOT gone — it still drives everything that is meant
+ * to change: the mandala, colour therapy, the tone ladder dots, the chart wheel
+ * and the body map, all of which read their hues from PLANET_COLORS or
+ * planetColorTherapyLibrary directly. Those are the signal. This is the room.
+ */
+export const HOUSE_ACCENT = '#C9A961'
+
+/** The accent color for the app's chrome. Fixed by house ruling — see above. */
+export function getAccentColor(_protocol: ProtocolOutput): string {
+  return HOUSE_ACCENT
+}
+
+/** The dominant planet's own hue — for the chamber visuals that SHOULD move. */
+export function planetAccentFor(protocol: ProtocolOutput): string {
+  return PLANET_COLORS[protocol.dominant_pattern.planets[0]] ?? HOUSE_ACCENT
 }
 
 // ─── PLANET → ELEMENT (drives felt-state language) ───────────────────────────

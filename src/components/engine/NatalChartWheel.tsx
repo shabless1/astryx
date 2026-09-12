@@ -28,14 +28,14 @@ const PLANET_TO_FORK: Record<string, string> = {
 // ─── CONSTANTS ────────────────────────────────────────────────
 
 const ZODIAC_SIGNS = [
-  { name: 'Aries',       symbol: '♈', color: '#E8453C' },
+  { name: 'Aries',       symbol: '♈', color: '#C4756A' },
   { name: 'Taurus',      symbol: '♉', color: '#4CAF89' },
   { name: 'Gemini',      symbol: '♊', color: '#9EC832' },
   { name: 'Cancer',      symbol: '♋', color: '#A8C4D0' },
   { name: 'Leo',         symbol: '♌', color: '#F4A940' },
   { name: 'Virgo',       symbol: '♍', color: '#9EC832' },
   { name: 'Libra',       symbol: '♎', color: '#4CAF89' },
-  { name: 'Scorpio',     symbol: '♏', color: '#E8453C' },
+  { name: 'Scorpio',     symbol: '♏', color: '#C4756A' },
   { name: 'Sagittarius', symbol: '♐', color: '#F4A940' },
   { name: 'Capricorn',   symbol: '♑', color: '#C9993A' },
   { name: 'Aquarius',    symbol: '♒', color: '#2EC4B6' },
@@ -49,9 +49,9 @@ const PLANET_SYMBOLS: Record<string, string> = {
 
 const ASPECT_COLORS: Record<string, string> = {
   conjunction:  '#F4A940',
-  opposition:   '#E8453C',
+  opposition:   '#C4756A',
   trine:        '#4CAF89',
-  square:       '#E8453C',
+  square:       '#C4756A',
   sextile:      '#2EC4B6',
   quincunx:     '#9B5DE5',
   semisquare:   '#C9993A',

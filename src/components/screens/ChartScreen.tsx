@@ -33,7 +33,7 @@ export default function ChartScreen({
           {dominant ? <> Today it reads <strong style={{ color: accentColor }}>{dominant}</strong> as the dominant signature.</> : null}
         </p>
 
-        <GlassCard accentColor={accentColor} opacity={0.1} className="p-5 sm:p-7 flex flex-col items-center animate-fade-in-up">
+        <GlassCard accentColor={accentColor} opacity={0.1} title="Your Natal Chart" className="animate-fade-in-up" bodyClass="p-5 sm:p-7 flex flex-col items-center">
           {chart ? (
             <NatalChartWheel chart={chart} accentColor={accentColor} size={460} />
           ) : (
