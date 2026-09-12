@@ -145,6 +145,90 @@ localStorage. **Verify a chrome change on a real browser holding a poisoned
 `astryx-storage`, never by grepping the bundle.** `tests/chromePersistence.test.ts`
 asserts the persist config itself.
 
+### 3c.2 THE SECOND LAW — no room may be stale
+
+> **Avoiding red is half the law. The other half is that the room has to be alive.**
+
+SHA, 2026-09-12, on the first chrome ladder — which passed every red test:
+*"i do not like the palette you are choosing when it comes to color therapy. it
+has no soul. no flavor, no vibe. you either kill me with red or deplete me with
+stale colors."*
+
+She was right about the cause. That ladder was built out of **avoidance**: the
+red rule said where not to go, so the answer retreated into warm neutrals at
+mid-saturation — Dry Stone, Tallow, Warm Gray. On a `#020208` ground that is the
+one place colour neither glows nor recedes. A palette made of absences.
+Meanwhile `planetColorTherapyLibrary.ts` had the life in it the whole time.
+**Never-amplify means don't feed the heat. It never meant be beige.**
+
+**No single number captures this, and don't pretend one does.** Measured per
+colour the rejected values overlap the good ones: rejected House Gold `#C9A961`
+sits at saturation 0.49 / chroma 0.41, *higher* than Lilac Release `#C98FE8`
+(chroma 0.35) from a palette SHA loved. In isolation `#C9A961` is a decent
+antique gold. The failure was the **ladder**:
+
+```
+rejected:  balanced 42°  ·  depleted 39°  ·  blocked 41°  ·  elevated 173°
+```
+
+Three of four rooms within 3° of hue — the room could barely change at all. So
+the law is two checks, both in `src/lib/visual/chromeLaw.ts`, both throwing at
+module load:
+
+1. `isStale()` — saturation floor 0.45, catching genuinely drained values.
+2. `assertPaletteRange()` — at least **3 hue families**, 40° apart. The rejected
+   ladder scores 2; every shipped palette scores 3+.
+
+It earns its keep: on first run it caught Smoke Violet washed out at s=0.33, and
+Deep Water's Clear Blue set to `#3FA9F5` — which is Uranus's *and* Mercury's own
+base identity hue, banned outright by §3c.
+
+### 3c.3 The five rooms, and what a palette is
+
+SHA, on seeing the five: *"I love them all! this is what i am talking about
+baby!"* — so all five ship and the user picks, in Settings → **The Room**.
+
+A palette is the instrument's **FINISH**. The room within it is still resolved by
+the reading's STATE and never by the planet, so switching palettes changes what
+the colour is made of, **never what it means**.
+
+| Palette | At rest | Where it comes from |
+|---|---|---|
+| **Amethyst Chamber** *(default)* | `#9B6BE0` | Violet + gold, the brand's two originals; Pluto's own balanced field |
+| **Aurora** | `#22C39B` | Jade for a coherent field; the deep indigo Mars prescribes for heat |
+| **Obsidian & Ember** | `#F0A93C` | The Sun's Warm Gold; Pluto's Gold Containment |
+| **Deep Water** | `#3E92E8` | Neptune's corrective field — Clear Blue, Seafoam |
+| **Egyptian Blue** | `#4C7FE8` | The Lotus Spectrum's Egyptian Blue — proprietary Astryx IP |
+
+**`chromePaletteId` IS persisted; `accentColor` is NOT.** That is the whole
+distinction and it matters: a preference the user *set* is restored, a value
+*derived* from a reading is resolved. Confusing the two is the bug in §3c.
+
+### 3c.4 Glass, not surgery
+
+> **Colour on deep space behaves like light, not pigment.**
+
+SHA, 2026-09-12: *"this is have a glass look and feel — not a dry cold room to do
+surgery."*
+
+`GlassCard` already had the bones — backdrop blur, accent border, top rim, halo —
+but its fill ran to **92% opaque**, so nothing behind it came through and it read
+as a dark rectangle with a coloured edge. Three changes, all in that one
+component so every surface moves at once:
+
+- the fill is lightened and carries a breath of the accent, so the glass is
+  **tinted by the room**;
+- the backdrop filter gains `saturate(165%)`, so what shows through stays
+  coloured instead of going grey;
+- an **inset bloom** sits in the lower body — the difference between a surface
+  that is lit and one that is filled.
+
+Glass needs something to refract. The page bloom was clamped at `0.05`
+(invisible) from the days a per-planet table could wash the viewport in Mars red.
+No room can be red now, so it runs at **0.15–0.19** as two offset pools rather
+than one flat vignette, giving the field direction and the glass an edge to
+catch.
+
 ## 4. Typography
 
 Cinzel Decorative for the wordmark, Cinzel for headings, Exo 2 for body. Load Cinzel at **400;500;600;700** — the 700 cut is required. Without it every title renders faint or browser-synthesised.
