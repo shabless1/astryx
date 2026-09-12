@@ -46,7 +46,7 @@ export default function HistoryScreen({
           <div className="mb-10">
             {/* v2 FIX 6 — energy trend over time (the felt "track your recalibration") */}
             <EnergyTrend entries={sessionLog} accentColor={accentColor} />
-            <div className="text-[11px] uppercase tracking-[0.25em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>
+            <div className="text-[11px] uppercase tracking-[0.25em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
               Chamber Sessions · {sessionLog.length}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-start">
@@ -65,14 +65,14 @@ export default function HistoryScreen({
         )}
 
         {/* ── Reading history ── */}
-        <div className="text-[11px] uppercase tracking-[0.25em] mb-3 text-white/74">
+        <div className="text-[11px] uppercase tracking-[0.25em] mb-3 text-white/50">
           Readings · {history.length}
         </div>
         {history.length === 0 ? (
           <GlassCard className="p-10 text-center animate-fade-in">
             <div className="text-4xl mb-4 opacity-30">◎</div>
-            <div className="font-cinzel text-lg text-white/74 mb-2">No readings yet</div>
-            <p className="text-[13px] text-white/58">
+            <div className="font-cinzel text-lg text-white/50 mb-2">No readings yet</div>
+            <p className="text-[13px] text-white/30">
               Run your first calibration and your history begins here.
             </p>
             <div className="mt-6">
@@ -99,11 +99,11 @@ export default function HistoryScreen({
                     style={{ width: 4, height: 52, background: accentColor }}
                   />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[10px] tracking-[0.25em] text-white/62 mb-1">{record.date}</div>
+                    <div className="text-[10px] tracking-[0.25em] text-white/35 mb-1">{record.date}</div>
                     <div className="font-cinzel text-[15px] text-white mb-1 truncate">{record.pattern}</div>
-                    <div className="text-[12px] tracking-[0.1em] text-white/74">{record.summary}</div>
+                    <div className="text-[12px] tracking-[0.1em] text-white/50">{record.summary}</div>
                   </div>
-                  <div className="text-lg text-white/56 flex-shrink-0">›</div>
+                  <div className="text-lg text-white/25 flex-shrink-0">›</div>
                 </GlassCard>
               </button>
             ))}
@@ -155,21 +155,21 @@ function ProgressCard({
       >
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="min-w-0">
-            <div className="text-[10px] tracking-[0.22em] text-white/62 mb-1">{dateLabel} · {timeLabel}</div>
+            <div className="text-[10px] tracking-[0.22em] text-white/35 mb-1">{dateLabel} · {timeLabel}</div>
             <div className="font-cinzel text-[16px] text-white">
-              {entry.signalState} <span className="text-white/78 text-[13px]">· {entry.planetaryCarrier}</span>
+              {entry.signalState} <span className="text-white/55 text-[13px]">· {entry.planetaryCarrier}</span>
             </div>
             {containerLabel && (
-              <div className="text-[10px] tracking-[0.12em] text-white/70 mt-0.5">{containerLabel}</div>
+              <div className="text-[10px] tracking-[0.12em] text-white/45 mt-0.5">{containerLabel}</div>
             )}
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-[11px] text-white/70">{formatTime(entry.sessionDuration)}</span>
-            <span className="text-[12px] text-white/58">{open ? '▴' : '▾'}</span>
+            <span className="text-[11px] text-white/45">{formatTime(entry.sessionDuration)}</span>
+            <span className="text-[12px] text-white/30">{open ? '▴' : '▾'}</span>
             {onDelete && (
               <span
                 onClick={(e) => { e.stopPropagation(); onDelete() }}
-                className="text-[11px] text-white/58 hover:text-white/87 transition"
+                className="text-[11px] text-white/30 hover:text-white/70 transition"
                 style={{ cursor: 'pointer' }}
                 aria-label="Delete session"
               >✕</span>
@@ -179,38 +179,38 @@ function ProgressCard({
       </button>
 
       {intention.length > 0 && (
-        <div className="text-[11px] text-white/78 mb-1.5">
-          <span className="uppercase tracking-[0.18em] text-white/66">Intention</span> · {intention.join(', ')}
+        <div className="text-[11px] text-white/55 mb-1.5">
+          <span className="uppercase tracking-[0.18em] text-white/40">Intention</span> · {intention.join(', ')}
         </div>
       )}
       {entry.forkSequence?.length > 0 && (
-        <div className="text-[11px] text-white/78 mb-3">
-          <span className="uppercase tracking-[0.18em] text-white/66">Forks</span> · {entry.forkSequence.join(' → ')}
+        <div className="text-[11px] text-white/55 mb-3">
+          <span className="uppercase tracking-[0.18em] text-white/40">Forks</span> · {entry.forkSequence.join(' → ')}
         </div>
       )}
 
       <div className="grid grid-cols-2 gap-3 mb-3">
         <div>
-          <div className="text-[9px] uppercase tracking-[0.2em] text-white/66 mb-1.5">Before</div>
+          <div className="text-[9px] uppercase tracking-[0.2em] text-white/40 mb-1.5">Before</div>
           <div className="flex flex-wrap gap-1">
             {before.length ? before.map((b, i) => (
               <Chip key={`${b}-${i}`} label={b} />
-            )) : <span className="text-[11px] text-white/58 italic">—</span>}
+            )) : <span className="text-[11px] text-white/30 italic">—</span>}
           </div>
         </div>
         <div>
-          <div className="text-[9px] uppercase tracking-[0.2em] mb-1.5" style={{ color: hexToRgba(accentColor, 0.95) }}>After</div>
+          <div className="text-[9px] uppercase tracking-[0.2em] mb-1.5" style={{ color: hexToRgba(accentColor, 0.8) }}>After</div>
           <div className="flex flex-wrap gap-1">
             {after.length ? after.map((a) => (
               <Chip key={a} label={a} accent={accentColor} />
-            )) : <span className="text-[11px] text-white/58 italic">—</span>}
+            )) : <span className="text-[11px] text-white/30 italic">—</span>}
           </div>
         </div>
       </div>
 
       {typeof entry.energyRating === 'number' && (
-        <div className="flex items-center gap-2 text-[11px] text-white/74">
-          <span className="uppercase tracking-[0.18em] text-white/66">Energy</span>
+        <div className="flex items-center gap-2 text-[11px] text-white/50">
+          <span className="uppercase tracking-[0.18em] text-white/40">Energy</span>
           {/* v2 FIX 1 — true BEFORE→AFTER delta when a baseline was captured */}
           {typeof entry.energyBefore === 'number' ? (
             <span style={{ color: accentColor }}>
@@ -239,12 +239,12 @@ function ProgressCard({
       )}
 
       {!open && entry.notes && (
-        <div className="mt-3 pt-3 border-t border-white/8 text-[12px] text-white/78 italic leading-snug truncate">
+        <div className="mt-3 pt-3 border-t border-white/8 text-[12px] text-white/55 italic leading-snug truncate">
           “{entry.notes}”
         </div>
       )}
       {!open && !entry.notes && cont?.responseNote && (
-        <div className="mt-3 pt-3 border-t border-white/8 text-[12px] text-white/85 italic leading-snug">
+        <div className="mt-3 pt-3 border-t border-white/8 text-[12px] text-white/65 italic leading-snug">
           {cont.responseNote}
         </div>
       )}
@@ -255,7 +255,7 @@ function ProgressCard({
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex gap-3">
-      <div className="text-[9px] uppercase tracking-[0.18em] text-white/66 w-[110px] shrink-0 pt-0.5">{label}</div>
+      <div className="text-[9px] uppercase tracking-[0.18em] text-white/40 w-[110px] shrink-0 pt-0.5">{label}</div>
       <div className="text-[12px] text-white/80 leading-snug flex-1">{value}</div>
     </div>
   )
@@ -292,8 +292,8 @@ function EnergyTrend({ entries, accentColor }: { entries: ProgressEntry[]; accen
   }
 
   return (
-    <div className="mb-8 rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.33)', border: `1px solid ${hexToRgba(accentColor, 0.25)}` }}>
-      <div className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>
+    <div className="mb-8 rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${hexToRgba(accentColor, 0.25)}` }}>
+      <div className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
         Energy Trend
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} preserveAspectRatio="none" style={{ display: 'block' }}>
@@ -303,11 +303,11 @@ function EnergyTrend({ entries, accentColor }: { entries: ProgressEntry[]; accen
           <circle key={i} cx={x(i)} cy={y(p.v)} r={3} fill={accentColor} />
         ))}
       </svg>
-      <div className="flex justify-between text-[9px] text-white/62 mt-1">
+      <div className="flex justify-between text-[9px] text-white/35 mt-1">
         <span>{points[0].date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
         <span>{points[n - 1].date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
       </div>
-      <p className="text-[12px] text-white/87 italic mt-3 leading-snug">{insight}</p>
+      <p className="text-[12px] text-white/70 italic mt-3 leading-snug">{insight}</p>
     </div>
   )
 }
@@ -318,7 +318,7 @@ function Chip({ label, accent }: { label: string; accent?: string }) {
       className="px-2 py-0.5 rounded-full text-[10px]"
       style={accent
         ? { background: hexToRgba(accent, 0.18), border: `1px solid ${hexToRgba(accent, 0.4)}`, color: accent }
-        : { background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.87)' }}
+        : { background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.65)' }}
     >
       {label}
     </span>

@@ -225,7 +225,7 @@ export default function PostSessionSummary({
       return (
         <div className="text-center py-10">
           <div className="text-3xl mb-3 opacity-30">◎</div>
-          <p className="text-[13px] text-white/78">Nothing has sounded yet today. Enter the Chamber and the summary will appear here.</p>
+          <p className="text-[13px] text-white/55">Nothing has sounded yet today. Enter the Chamber and the summary will appear here.</p>
         </div>
       )
     }
@@ -234,7 +234,7 @@ export default function PostSessionSummary({
         <GlassCard className="max-w-md w-full p-8 text-center">
           <div className="text-4xl mb-4 opacity-30">◎</div>
           <h1 className="font-cinzel text-xl text-white mb-2">No active session</h1>
-          <p className="text-[13px] text-white/78 mb-6">
+          <p className="text-[13px] text-white/55 mb-6">
             This session has already been wrapped up, or the page was refreshed.
             Your saved sessions are in your Progress.
           </p>
@@ -346,7 +346,7 @@ export default function PostSessionSummary({
               {saved ? 'Saved to your progress' : 'Recalibration Summary'}
             </h1>
             {client && (
-              <div className="text-[12px] tracking-[0.2em] text-white/74 mt-2 uppercase">Client · {client.name}</div>
+              <div className="text-[12px] tracking-[0.2em] text-white/50 mt-2 uppercase">Client · {client.name}</div>
             )}
           </div>
         )}
@@ -362,7 +362,7 @@ export default function PostSessionSummary({
           <div className="space-y-3">
             <SummaryRow label="Signal" accent={accent}>
               <span className="font-cinzel text-[22px]" style={{ color: accent }}>{snapshot.signalState}</span>
-              <span className="text-[13px] text-white/82 ml-2">· {snapshot.planetaryCarrier}</span>
+              <span className="text-[13px] text-white/60 ml-2">· {snapshot.planetaryCarrier}</span>
             </SummaryRow>
             <SummaryRow label="Calibration Response" accent={accent}>
               <span className="text-[14px] text-white/85 leading-snug">{snapshot.correctiveDirection}</span>
@@ -377,7 +377,7 @@ export default function PostSessionSummary({
               <span className="text-[14px] text-white/85">{snapshot.primaryBodyPlacement}</span>
             </SummaryRow>
             <SummaryRow label="Chamber Focus" accent={accent}>
-              <span className="text-[13px] text-white/87 italic leading-relaxed">{snapshot.chamberFocus}</span>
+              <span className="text-[13px] text-white/70 italic leading-relaxed">{snapshot.chamberFocus}</span>
             </SummaryRow>
             {/* Fix 4/7 — the reasoning trace from the ONE protocol: proves the
                 user's narrative + intention shaped this exact session. */}
@@ -446,8 +446,8 @@ export default function PostSessionSummary({
                   value={answers.feltMostWhere ?? ''}
                   onChange={(e) => setAnswers((a) => ({ ...a, feltMostWhere: e.target.value }))}
                   placeholder="Where did the tone land in you? (optional)"
-                  className="w-full mt-3 px-3 py-2.5 rounded-lg text-[13px] text-white placeholder:text-white/58"
-                  style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.4)' }}
+                  className="w-full mt-3 px-3 py-2.5 rounded-lg text-[13px] text-white placeholder:text-white/30"
+                  style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
               </div>
 
@@ -468,15 +468,15 @@ export default function PostSessionSummary({
                   onChange={(e) => setAnswers((a) => ({ ...a, notes: e.target.value }))}
                   rows={3}
                   placeholder="What did you notice during or after the session?"
-                  className="w-full px-3 py-2.5 rounded-lg text-[13px] text-white resize-none placeholder:text-white/58"
-                  style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.4)' }}
+                  className="w-full px-3 py-2.5 rounded-lg text-[13px] text-white resize-none placeholder:text-white/30"
+                  style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
               </div>
 
               {/* Practitioner-only extras */}
               {snapshot.isPractitioner && (
                 <div className="mt-6 pt-5 border-t border-white/10">
-                  <div className="text-[10px] uppercase tracking-[0.28em] mb-3" style={{ color: hexToRgba(accent, 0.95) }}>
+                  <div className="text-[10px] uppercase tracking-[0.28em] mb-3" style={{ color: hexToRgba(accent, 0.7) }}>
                     Practitioner
                   </div>
                   <QLabel>Vagal tone · how the nervous system landed</QLabel>
@@ -487,9 +487,9 @@ export default function PostSessionSummary({
                         onClick={() => setAnswers((a) => ({ ...a, vagalToneRating: n }))}
                         className="flex-1 py-2 rounded transition"
                         style={{
-                          background: answers.vagalToneRating === n ? hexToRgba(accent, 0.25) : 'rgba(255,255,255,0.35)',
-                          border: `1px solid ${answers.vagalToneRating === n ? accent : 'rgba(255,255,255,0.4)'}`,
-                          color: answers.vagalToneRating === n ? accent : 'rgba(255,255,255,0.77)', cursor: 'pointer',
+                          background: answers.vagalToneRating === n ? hexToRgba(accent, 0.25) : 'rgba(255,255,255,0.05)',
+                          border: `1px solid ${answers.vagalToneRating === n ? accent : 'rgba(255,255,255,0.1)'}`,
+                          color: answers.vagalToneRating === n ? accent : 'rgba(255,255,255,0.55)', cursor: 'pointer',
                         }}
                       >
                         <div className="font-cinzel text-[14px]">{n}</div>
@@ -503,8 +503,8 @@ export default function PostSessionSummary({
                     onChange={(e) => setAnswers((a) => ({ ...a, practitionerNotes: e.target.value }))}
                     rows={3}
                     placeholder="What you observed, what shifted, where this client goes next."
-                    className="w-full px-3 py-2.5 rounded-lg text-[13px] text-white resize-none placeholder:text-white/58"
-                    style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.4)' }}
+                    className="w-full px-3 py-2.5 rounded-lg text-[13px] text-white resize-none placeholder:text-white/30"
+                    style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
                   />
                 </div>
               )}
@@ -552,7 +552,7 @@ export default function PostSessionSummary({
         <button
           onClick={() => setAskOpen(true)}
           className="kowalski-button w-full rounded-2xl px-5 py-3 mb-5 text-[13.5px] tracking-[0.02em]"
-          style={{ background: 'rgba(255,255,255,0.35)', border: `1px solid ${hexToRgba(accent, 0.4)}`, color: 'rgba(255,255,255,0.88)' }}
+          style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${hexToRgba(accent, 0.4)}`, color: 'rgba(255,255,255,0.88)' }}
         >
           Ask Astryx · learn more
         </button>
@@ -561,7 +561,7 @@ export default function PostSessionSummary({
             in its own "Explore Deeper" tab, so it's omitted when embedded. */}
         {!embedded && <ExploreDeeperCards protocol={snapshot.protocolSnapshot} accent={accent} />}
 
-        <div className="text-[9px] text-white/62 text-center tracking-widest italic mt-8">
+        <div className="text-[9px] text-white/35 text-center tracking-widest italic mt-8">
           {MICRO_DISCLAIMER}
         </div>
       </div>
@@ -579,7 +579,7 @@ export default function PostSessionSummary({
 function SummaryRow({ label, accent, children }: { label: string; accent: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-[9px] uppercase tracking-[0.25em] mb-0.5" style={{ color: hexToRgba(accent, 0.95) }}>{label}</div>
+      <div className="text-[9px] uppercase tracking-[0.25em] mb-0.5" style={{ color: hexToRgba(accent, 0.7) }}>{label}</div>
       <div>{children}</div>
     </div>
   )
@@ -599,7 +599,7 @@ function ChipQuestion({
     <div>
       <div className="flex items-baseline justify-between mb-2.5">
         <span className="text-[13px] text-white/85 font-medium">{question}</span>
-        {hint && <span className="text-[10px] text-white/62 tracking-wide">{hint}</span>}
+        {hint && <span className="text-[10px] text-white/35 tracking-wide">{hint}</span>}
       </div>
       <div className="flex flex-wrap gap-1.5">
         {options.map((opt) => {
@@ -610,9 +610,9 @@ function ChipQuestion({
               onClick={() => onToggle(opt)}
               className="px-3 py-1.5 rounded-full text-[12px] transition"
               style={{
-                background: on ? hexToRgba(accent, 0.22) : 'rgba(255,255,255,0.35)',
-                border: `1px solid ${on ? accent : 'rgba(255,255,255,0.42)'}`,
-                color: on ? accent : 'rgba(255,255,255,0.82)', cursor: 'pointer',
+                background: on ? hexToRgba(accent, 0.22) : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${on ? accent : 'rgba(255,255,255,0.12)'}`,
+                color: on ? accent : 'rgba(255,255,255,0.6)', cursor: 'pointer',
               }}
             >
               {opt}
@@ -637,9 +637,9 @@ function SingleSelect({
             onClick={() => onSelect(opt)}
             className="px-3.5 py-1.5 rounded-full text-[12px] transition"
             style={{
-              background: on ? hexToRgba(accent, 0.22) : 'rgba(255,255,255,0.35)',
-              border: `1px solid ${on ? accent : 'rgba(255,255,255,0.42)'}`,
-              color: on ? accent : 'rgba(255,255,255,0.82)', cursor: 'pointer',
+              background: on ? hexToRgba(accent, 0.22) : 'rgba(255,255,255,0.05)',
+              border: `1px solid ${on ? accent : 'rgba(255,255,255,0.12)'}`,
+              color: on ? accent : 'rgba(255,255,255,0.6)', cursor: 'pointer',
             }}
           >
             {opt}
@@ -662,9 +662,9 @@ function Scale10({ value, onChange, accent }: { value?: number; onChange: (n: nu
               onClick={() => onChange(n)}
               className="flex-1 py-2 rounded text-[12px] transition"
               style={{
-                background: on ? hexToRgba(accent, 0.28) : 'rgba(255,255,255,0.35)',
-                border: `1px solid ${on ? accent : 'rgba(255,255,255,0.4)'}`,
-                color: on ? accent : 'rgba(255,255,255,0.72)', cursor: 'pointer',
+                background: on ? hexToRgba(accent, 0.28) : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${on ? accent : 'rgba(255,255,255,0.1)'}`,
+                color: on ? accent : 'rgba(255,255,255,0.5)', cursor: 'pointer',
               }}
             >
               {n}
@@ -672,7 +672,7 @@ function Scale10({ value, onChange, accent }: { value?: number; onChange: (n: nu
           )
         })}
       </div>
-      <div className="flex justify-between text-[9px] text-white/62 tracking-widest mt-1">
+      <div className="flex justify-between text-[9px] text-white/35 tracking-widest mt-1">
         <span>DEPLETED</span><span>CHARGED</span>
       </div>
     </div>
@@ -690,8 +690,8 @@ function SacredTeaCard({
   const matchTone: Record<string, string> = {
     'Exact Match': accent,
     'Strong Match': accent,
-    'Partial Match': 'rgba(255,255,255,0.82)',
-    'No Current Match': 'rgba(255,255,255,0.72)',
+    'Partial Match': 'rgba(255,255,255,0.6)',
+    'No Current Match': 'rgba(255,255,255,0.5)',
   }
   const badgeColor = matchTone[pm.matchLevel] ?? accent
 
@@ -699,7 +699,7 @@ function SacredTeaCard({
     <GlassCard title="Sacred Tea Support" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       {/* Best Prepared Match — Sacred Tea, first */}
       <div className="flex items-center justify-between gap-3 mb-1">
-        <div className="text-[9px] uppercase tracking-[0.22em] text-white/70">Best Prepared Match</div>
+        <div className="text-[9px] uppercase tracking-[0.22em] text-white/45">Best Prepared Match</div>
         <span className="px-2 py-0.5 rounded-full text-[9px] tracking-[0.15em] uppercase"
               style={{ background: hexToRgba(badgeColor === accent ? accent : '#94A3B8', 0.18), color: badgeColor, border: `1px solid ${hexToRgba(badgeColor === accent ? accent : '#94A3B8', 0.4)}` }}>
           {pm.matchLevel}
@@ -725,27 +725,27 @@ function SacredTeaCard({
 
       {/* Create-Your-Own Herbal Direction — general DIY, second */}
       <div className="mt-4 pt-4 border-t border-white/10">
-        <div className="text-[9px] uppercase tracking-[0.22em] text-white/70 mb-1.5">Create-Your-Own Herbal Direction</div>
+        <div className="text-[9px] uppercase tracking-[0.22em] text-white/45 mb-1.5">Create-Your-Own Herbal Direction</div>
         <p className="text-[13px] text-white/85 leading-snug">
           If you prefer to prepare your own, look for herbs traditionally associated with this{' '}
-          <span className="text-white/87 italic">{diy.planetaryHerbCategory}</span> — such as{' '}
+          <span className="text-white/70 italic">{diy.planetaryHerbCategory}</span> — such as{' '}
           <span className="text-white/90">{diy.suggestedHerbs.join(', ')}</span>.
         </p>
-        <p className="text-[12px] text-white/78 leading-snug mt-1.5">
+        <p className="text-[12px] text-white/55 leading-snug mt-1.5">
           {cap(diy.tasteProfile)} · {diy.preparationStyle}.
         </p>
-        <p className="text-[11px] text-white/70 italic leading-relaxed mt-1.5">{diy.cautionNote}</p>
+        <p className="text-[11px] text-white/45 italic leading-relaxed mt-1.5">{diy.cautionNote}</p>
       </div>
 
       {/* Practitioner/Admin only — internal future-blend gap (never shown to users) */}
       {isPractitioner && result.futureBlendGap && (
         <div className="mt-3 pt-3 border-t border-white/8">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/66">Admin · blend gap: </span>
-          <span className="text-[11px] text-white/82">{result.futureBlendGap}</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Admin · blend gap: </span>
+          <span className="text-[11px] text-white/60">{result.futureBlendGap}</span>
         </div>
       )}
 
-      <p className="text-[10px] text-white/66 italic mt-4">{result.safetyNote}</p>
+      <p className="text-[10px] text-white/40 italic mt-4">{result.safetyNote}</p>
     </GlassCard>
   )
 }
@@ -753,7 +753,7 @@ function SacredTeaCard({
 function Labeled({ label, accent, children }: { label: string; accent: string; children: React.ReactNode }) {
   return (
     <div className="mb-2">
-      <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accent, 0.95) }}>{label}</div>
+      <div className="text-[9px] uppercase tracking-[0.22em] mb-0.5" style={{ color: hexToRgba(accent, 0.7) }}>{label}</div>
       <div className="text-[13px] text-white/85 leading-snug">{children}</div>
     </div>
   )
@@ -779,7 +779,7 @@ function StoneCard({
       {safety && safety.length > 0 && (
         <div className="space-y-1">
           {safety.map((n, i) => (
-            <p key={i} className={`text-[11px] leading-relaxed ${n.startsWith('⚠') ? 'text-red-300 font-semibold' : 'text-white/70 italic'}`}>{n}</p>
+            <p key={i} className={`text-[11px] leading-relaxed ${n.startsWith('⚠') ? 'text-red-300 font-semibold' : 'text-white/45 italic'}`}>{n}</p>
           ))}
         </div>
       )}
@@ -788,7 +788,7 @@ function StoneCard({
           ⚠ Malachite: polished &amp; sealed only — never raw, never as an elixir. Wash hands after handling.
         </p>
       )}
-      <p className="text-[10px] text-white/62 italic mt-2">A traditional crystal association for reflection — not medical advice.</p>
+      <p className="text-[10px] text-white/35 italic mt-2">A traditional crystal association for reflection — not medical advice.</p>
     </GlassCard>
   )
 }
@@ -815,7 +815,7 @@ function ContinuationCard({ cont, accent, elementAction }: { cont: ContinuationP
       <div className="space-y-3">
         {rows.map((r) => (
           <div key={r.label} className="flex gap-3">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-white/78 w-[120px] shrink-0 pt-0.5">{r.label}</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-white/55 w-[120px] shrink-0 pt-0.5">{r.label}</div>
             <div className="text-[13px] text-white/90 leading-snug flex-1">{r.value}</div>
           </div>
         ))}
@@ -833,22 +833,22 @@ function BeforeAfterCard({
     <GlassCard title="Before → After" className="mb-5 animate-fade-in-up" bodyClass="p-6">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-white/70 mb-2">Before</div>
+          <div className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">Before</div>
           {before.length ? (
             <div className="flex flex-wrap gap-1.5">
               {before.map((b, i) => (
-                <span key={`${b}-${i}`} className="px-2.5 py-1 rounded-full text-[11px] text-white/87"
-                      style={{ background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+                <span key={`${b}-${i}`} className="px-2.5 py-1 rounded-full text-[11px] text-white/70"
+                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
                   {b}
                 </span>
               ))}
             </div>
           ) : (
-            <span className="text-[12px] text-white/62 italic">Not recorded at intake</span>
+            <span className="text-[12px] text-white/35 italic">Not recorded at intake</span>
           )}
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ color: hexToRgba(accent, 0.95) }}>After</div>
+          <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ color: hexToRgba(accent, 0.8) }}>After</div>
           {after.length ? (
             <div className="flex flex-wrap gap-1.5">
               {after.map((a) => {
@@ -858,7 +858,7 @@ function BeforeAfterCard({
                         style={{
                           background: hexToRgba(accent, positive ? 0.22 : 0.1),
                           border: `1px solid ${hexToRgba(accent, positive ? 0.5 : 0.25)}`,
-                          color: positive ? accent : 'rgba(255,255,255,0.88)',
+                          color: positive ? accent : 'rgba(255,255,255,0.75)',
                         }}>
                     {a}
                   </span>
@@ -866,14 +866,14 @@ function BeforeAfterCard({
               })}
             </div>
           ) : (
-            <span className="text-[12px] text-white/62 italic">No selection</span>
+            <span className="text-[12px] text-white/35 italic">No selection</span>
           )}
         </div>
       </div>
       {typeof entry.energyRating === 'number' && (
         <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/70">Energy after</span>
-          <span className="font-cinzel text-[20px]" style={{ color: accent }}>{entry.energyRating}<span className="text-[12px] text-white/66">/10</span></span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/45">Energy after</span>
+          <span className="font-cinzel text-[20px]" style={{ color: accent }}>{entry.energyRating}<span className="text-[12px] text-white/40">/10</span></span>
         </div>
       )}
     </GlassCard>
@@ -889,7 +889,7 @@ function ActionButton({
       className="kowalski-button w-full rounded-2xl px-5 py-3 font-medium text-[14px] tracking-[0.04em] transition"
       style={filled
         ? { background: `linear-gradient(135deg, ${hexToRgba(accent, 0.95)} 0%, ${hexToRgba(accent, 0.6)} 100%)`, color: '#020208', cursor: 'pointer', border: 'none' }
-        : { background: 'rgba(255,255,255,0.35)', border: `1px solid ${hexToRgba(accent, 0.35)}`, color: 'rgba(255,255,255,0.85)', cursor: 'pointer' }}
+        : { background: 'rgba(255,255,255,0.05)', border: `1px solid ${hexToRgba(accent, 0.35)}`, color: 'rgba(255,255,255,0.85)', cursor: 'pointer' }}
     >
       {label}
     </button>

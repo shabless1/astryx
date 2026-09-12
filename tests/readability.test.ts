@@ -1,84 +1,31 @@
 /**
- * READABILITY — the contrast floor, and the last hue the palette did not choose.
+ * NOTHING PAINTS A HUE THE PALETTE DID NOT CHOOSE
  * ════════════════════════════════════════════════════════════════════════════
- * SHA, 2026-09-12, with three arrows drawn on a screenshot:
+ * SHA, 2026-09-12: "why do i still have this red background?"
  *
- *   "The fonts need a contrasting color, you cannot read it."
- *   "and why do i still have this red background?"
+ * It was never in the palette, which is why five chrome fixes missed it: it was
+ * the background VIDEO'S OWN colour. The footage strip used to be turned by a
+ * per-planet `hueRot` that happened to carry it off its native hue; when the
+ * planet table was disconnected hueRot went to 0, the raw warm footage showed
+ * through, and `saturate(1.4)` amplified it. It sits at bottom 8%, 20% tall —
+ * exactly where the glow was in her screenshot. The footage is now greyscaled
+ * and tinted by the room, so it cannot contribute a hue at all.
  *
- * TWO SEPARATE FAULTS, BOTH MINE
- *
- * 1. CONTRAST. Making GlassCard genuinely translucent (92% opaque → lit glass)
- *    was right, but it changed the ground under every piece of dim text in the
- *    app. `text-white/35` over a near-solid panel is quiet; over lit glass it is
- *    gone. The fix is a floor, applied so the ORDER survives — everything moves
- *    up, nothing overtakes what was above it.
- *
- * 2. THE RED. It was never in the palette, which is why every chrome fix missed
- *    it: it was the background VIDEO'S OWN colour. The footage strip used to be
- *    turned by a per-planet `hueRot` that happened to carry it off its native
- *    hue; when the planet table was disconnected hueRot went to 0, the raw warm
- *    footage showed through, and `saturate(1.4)` amplified it. It sits at
- *    bottom 8%, 20% tall — exactly where the red glow was in the screenshot.
- *    The footage is now greyscaled and tinted by the room, so it cannot
- *    contribute a hue at all.
+ * ⚠ A CONTRAST-FLOOR SUITE LIVED HERE AND WAS REMOVED, 2026-09-12.
+ * SHA asked for readable label text. The change I made swept every
+ * `rgba(255,255,255,x)` in nine files and raised it — which caught card
+ * BACKGROUNDS and BORDERS as well as text, turning faint fills into a grey wash
+ * over the whole dashboard. SHA: "I asked you to change the font color to give
+ * it contrast, not change everything to this grey." Reverted in full.
+ * If contrast is revisited: change the specific LABELS that are hard to read.
+ * Never sweep a colour function across files — a regex cannot tell text from a
+ * surface, and the blast radius is the entire app.
  */
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), 'utf-8')
-
-// Every surface a person reads a session from.
-const SCREENS = [
-  'src/components/screens/SessionScreen.tsx',
-  'src/components/engine/MarmaPanel.tsx',
-  'src/components/engine/ChamberBodyMap.tsx',
-  'src/components/screens/DashboardScreen.tsx',
-  'src/components/screens/SettingsScreen.tsx',
-  'src/components/screens/HistoryScreen.tsx',
-  'src/components/screens/PostSessionSummary.tsx',
-  'src/components/screens/ResultsScreen.tsx',
-]
-
-/** Below this, text on lit glass stops being readable. */
-const FLOOR = 56
-
-describe('the contrast floor', () => {
-  it.each(SCREENS)('%s has no text dimmer than the floor', (file) => {
-    const offenders = [...read(file).matchAll(/text-white\/(\d+)/g)]
-      .map((m) => Number(m[1]))
-      .filter((n) => n < FLOOR)
-    expect(offenders, `${file} has text-white/${offenders.join(', /')} below /${FLOOR}`)
-      .toHaveLength(0)
-  })
-
-  it.each(SCREENS)('%s has no inline white TEXT below the floor', (file) => {
-    // Scoped to `color:` on purpose. Borders, rims and hairlines are SUPPOSED to
-    // be faint — they are looked at, not read. An earlier version of this test
-    // flagged them and would have pushed every hairline up into the content.
-    const offenders = [...read(file).matchAll(/color:\s*['"`]?rgba\(255,\s*255,\s*255,\s*(0\.\d+)\)/g)]
-      .map((m) => Number(m[1]))
-      .filter((a) => a < FLOOR / 100)
-    expect(offenders, `${file} has unreadable text at rgba white ${offenders.join(', ')}`)
-      .toHaveLength(0)
-  })
-
-  it('the hierarchy survived the raise — the ladder is monotonic', () => {
-    // The floor was applied through one ordered map. If two different old values
-    // had collapsed onto one new value, hierarchy would be lost.
-    const LADDER: Record<number, number> = {
-      25: 56, 30: 58, 32: 60, 35: 62, 38: 64, 40: 66, 42: 68, 45: 70,
-      50: 74, 55: 78, 60: 82, 62: 83, 65: 85, 68: 86, 70: 87, 72: 88, 75: 89,
-    }
-    const keys = Object.keys(LADDER).map(Number).sort((a, b) => a - b)
-    const vals = keys.map((k) => LADDER[k])
-    for (let i = 1; i < vals.length; i++) {
-      expect(vals[i], `${keys[i]} must stay above ${keys[i - 1]}`).toBeGreaterThan(vals[i - 1])
-      expect(vals[i]).toBeGreaterThanOrEqual(FLOOR)
-    }
-  })
-})
 
 describe('nothing paints a hue the palette did not choose', () => {
   const bg = () => read('src/components/layout/CosmicBackground.tsx')

@@ -79,13 +79,13 @@ function MarmaCard({
     <div
       className="rounded-xl px-3 py-2.5 mb-2"
       style={{
-        background: neverTouched ? 'rgba(255,0,110,0.05)' : 'rgba(255,255,255,0.33)',
-        border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.28)' : 'rgba(255,255,255,0.39)'}`,
+        background: neverTouched ? 'rgba(255,0,110,0.05)' : 'rgba(255,255,255,0.025)',
+        border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.28)' : 'rgba(255,255,255,0.09)'}`,
       }}
     >
       {photo && (
         <figure className="relative mb-2.5 -mx-1 rounded-lg overflow-hidden"
-                style={{ border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.35)' : 'rgba(255,255,255,0.42)'}` }}>
+                style={{ border: `1px solid ${neverTouched ? 'rgba(255,0,110,0.35)' : 'rgba(255,255,255,0.12)'}` }}>
           <img
             src={`/images/placements/${photo.file}`}
             alt={photo.alt}
@@ -105,18 +105,18 @@ function MarmaCard({
       )}
 
       <div className="flex items-baseline gap-2 flex-wrap mb-1">
-        <span className="text-[8.5px] tracking-[0.2em] text-white/66">{ROLE_LABEL[point.role] ?? 'POINT'}</span>
+        <span className="text-[8.5px] tracking-[0.2em] text-white/40">{ROLE_LABEL[point.role] ?? 'POINT'}</span>
         {elsewhere && (
           <span
             className="text-[8px] tracking-[0.16em] px-1.5 py-[2px] rounded-full uppercase"
-            style={{ color: 'rgba(255,255,255,0.77)', border: '1px solid rgba(255,255,255,0.48)' }}
+            style={{ color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.18)' }}
           >
             Alternate &middot; {elsewhere.short}
           </span>
         )}
         <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>{point.sanskrit}</span>
         {point.alsoKnownAs && (
-          <span className="text-[10.5px] text-white/66 italic">also {point.alsoKnownAs}</span>
+          <span className="text-[10.5px] text-white/40 italic">also {point.alsoKnownAs}</span>
         )}
       </div>
 
@@ -129,7 +129,7 @@ function MarmaCard({
         {app.label}
       </span>
 
-      <div className="text-[12px] text-white/89 leading-relaxed mt-2">{point.instruction}</div>
+      <div className="text-[12px] text-white/75 leading-relaxed mt-2">{point.instruction}</div>
 
       {/* Why a rule moved the fork off the body — never silent. */}
       {point.applicationReason && (
@@ -141,14 +141,14 @@ function MarmaCard({
       {/* Rule 6 — every safety note renders. No exception, no truncation. */}
       <div
         className="text-[11px] leading-relaxed mt-2 pl-2.5"
-        style={{ borderLeft: `2px solid ${neverTouched ? '#FF006E' : 'rgba(255,255,255,0.48)'}`, color: neverTouched ? 'rgba(255,150,190,0.95)' : 'rgba(255,255,255,0.77)' }}
+        style={{ borderLeft: `2px solid ${neverTouched ? '#FF006E' : 'rgba(255,255,255,0.18)'}`, color: neverTouched ? 'rgba(255,150,190,0.95)' : 'rgba(255,255,255,0.55)' }}
       >
         {point.safetyNote}
       </div>
 
       {isPractitionerMode && (
         <details className="mt-2">
-          <summary className="cursor-pointer text-[9px] tracking-[0.2em] text-white/70 hover:text-white/80">
+          <summary className="cursor-pointer text-[9px] tracking-[0.2em] text-white/45 hover:text-white/80">
             POINT DETAIL
           </summary>
           <div className="mt-2 space-y-1.5">
@@ -164,7 +164,7 @@ function MarmaCard({
             />
             {point.nameNote && <Detail label="THE NAME" value={point.nameNote} />}
             <Detail label="CONTRAINDICATIONS" value={point.contraindications.join(' · ')} />
-            <div className="text-[9.5px] text-white/58 pt-1">Lad &amp; Durve, {point.sourcePage}</div>
+            <div className="text-[9.5px] text-white/30 pt-1">Lad &amp; Durve, {point.sourcePage}</div>
           </div>
         </details>
       )}
@@ -176,8 +176,8 @@ function Detail({ label, value }: { label: string; value: string }) {
   if (!value) return null
   return (
     <div>
-      <div className="text-[8.5px] tracking-[0.22em] text-white/64">{label}</div>
-      <div className="text-[11.5px] text-white/87 leading-relaxed">{value}</div>
+      <div className="text-[8.5px] tracking-[0.22em] text-white/38">{label}</div>
+      <div className="text-[11.5px] text-white/70 leading-relaxed">{value}</div>
     </div>
   )
 }
@@ -207,9 +207,9 @@ export default function MarmaPanel({
   return (
     <div className="mt-3">
       <div className="flex items-baseline gap-2 flex-wrap mb-1.5">
-        <span className="text-[9px] tracking-[0.25em] text-white/78">MARMA · THE NAMED POINT</span>
+        <span className="text-[9px] tracking-[0.25em] text-white/55">MARMA · THE NAMED POINT</span>
         {!compact && (
-          <span className="text-[9.5px] tracking-[0.14em] text-white/60">
+          <span className="text-[9.5px] tracking-[0.14em] text-white/32">
             {marma.method.label.toUpperCase()} · {marma.method.direction.toUpperCase()}
           </span>
         )}
@@ -222,7 +222,7 @@ export default function MarmaPanel({
       {!compact && (
         <>
           <div
-            className="text-[11.5px] text-white/82 leading-relaxed rounded-xl px-3 py-2 mt-1"
+            className="text-[11.5px] text-white/60 leading-relaxed rounded-xl px-3 py-2 mt-1"
             style={{ background: hexToRgba(accentColor, 0.06), border: `1px solid ${hexToRgba(accentColor, 0.16)}` }}
           >
             {marma.method.instruction}
@@ -235,24 +235,24 @@ export default function MarmaPanel({
 
           {isPractitionerMode && (
             <details className="mt-2">
-              <summary className="cursor-pointer text-[9px] tracking-[0.2em] text-white/70 hover:text-white/80">
+              <summary className="cursor-pointer text-[9px] tracking-[0.2em] text-white/45 hover:text-white/80">
                 THE FORK AS SHALAKA
               </summary>
               <div className="mt-2 space-y-1.5">
-                <p className="text-[12px] text-white/88 leading-relaxed italic">{marma.bridge.headline}</p>
-                <p className="text-[11.5px] text-white/82 leading-relaxed">{marma.bridge.body}</p>
+                <p className="text-[12px] text-white/72 leading-relaxed italic">{marma.bridge.headline}</p>
+                <p className="text-[11.5px] text-white/60 leading-relaxed">{marma.bridge.body}</p>
                 <Detail label="THE CLASSICAL ROD" value={marma.bridge.shalakaMetals} />
                 <Detail label="DWELL" value={marma.bridge.dwell} />
                 <Detail label="DOSHA" value={`${marma.dosha} — ${marma.doshaNote}`} />
                 {marma.alternates.length > 0 && (
                   <div>
-                    <div className="text-[8.5px] tracking-[0.22em] text-white/64">ALTERNATES</div>
+                    <div className="text-[8.5px] tracking-[0.22em] text-white/38">ALTERNATES</div>
                     {marma.alternates.map((a) => (
-                      <div key={a.id} className="text-[11.5px] text-white/83 leading-relaxed">
+                      <div key={a.id} className="text-[11.5px] text-white/62 leading-relaxed">
                         <span className="text-white/85">{a.sanskrit}</span> — {a.why}
                       </div>
                     ))}
-                    <div className="text-[10.5px] text-white/62 italic mt-1">
+                    <div className="text-[10.5px] text-white/35 italic mt-1">
                       Placement is not one settled system. Any alternate above is yours to take. The safety layer is the part that does not move.
                     </div>
                   </div>
@@ -261,7 +261,7 @@ export default function MarmaPanel({
             </details>
           )}
 
-          <div className="text-[9.5px] text-white/58 mt-2">{marma.citation}</div>
+          <div className="text-[9.5px] text-white/28 mt-2">{marma.citation}</div>
         </>
       )}
     </div>

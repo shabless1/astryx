@@ -67,9 +67,9 @@ export default function SettingsScreen({
         >
           <GlassCard className="flex items-center justify-between p-5 transition hover:brightness-125">
             <div>
-              <div className="text-[11px] tracking-[0.2em] text-white/66 mb-1 uppercase">Help</div>
+              <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Help</div>
               <div className="text-[14px] text-white/90">User Guide</div>
-              <div className="text-[12px] text-white/70 mt-0.5">Quick start &amp; the full manual — how to use every feature</div>
+              <div className="text-[12px] text-white/45 mt-0.5">Quick start &amp; the full manual — how to use every feature</div>
             </div>
             <span className="text-[18px]" style={{ color: accentColor }} aria-hidden="true">↗</span>
           </GlassCard>
@@ -80,7 +80,7 @@ export default function SettingsScreen({
         {isPractitioner ? (
           <GlassCard className="flex items-center justify-between p-5 mb-3 animate-fade-in-up">
             <div>
-              <div className="text-[11px] tracking-[0.2em] text-white/66 mb-1 uppercase">Mode</div>
+              <div className="text-[11px] tracking-[0.2em] text-white/40 mb-1 uppercase">Mode</div>
               <div className="text-[14px] text-white/80">
                 {mode === 'practitioner' ? 'Practitioner — the full pattern' : 'User — Personal Guidance'}
               </div>
@@ -90,7 +90,7 @@ export default function SettingsScreen({
         ) : PRACTITIONER_TIER_LIVE ? (
           <GlassCard title="Practitioner" className="mb-3 animate-fade-in-up" bodyClass="p-5">
             <div className="text-[14px] text-white/90">Work on other people&rsquo;s charts</div>
-            <div className="text-[12px] text-white/70 mt-0.5">
+            <div className="text-[12px] text-white/45 mt-0.5">
               A client roster, Sacred Tones Session Mode, the named marma points, and the practitioner export. $39.95 a month.
             </div>
             <div className="flex items-center gap-3 mt-4">
@@ -114,7 +114,7 @@ export default function SettingsScreen({
                   setRefreshing(true)
                   try { await updateSession() } finally { setRefreshing(false) }
                 }}
-                className="text-[12px] text-white/74 underline underline-offset-4 hover:text-white/80 transition disabled:opacity-40"
+                className="text-[12px] text-white/50 underline underline-offset-4 hover:text-white/80 transition disabled:opacity-40"
                 disabled={refreshing}
               >
                 {refreshing ? 'Checking…' : 'Already upgraded? Refresh access'}
@@ -199,7 +199,7 @@ export default function SettingsScreen({
 
         {/* Session duration */}
         <GlassCard style={{ animationDelay: '0.25s' }} title="Default Chamber Container" className="mb-3 animate-fade-in-up" bodyClass="p-5">
-          <div className="text-[12px] text-white/66 mb-3">Minutes per session</div>
+          <div className="text-[12px] text-white/40 mb-3">Minutes per session</div>
           <div className="flex flex-wrap gap-2">
             {[5, 10, 20, 30, 45].map((d) => (
               <button
@@ -209,9 +209,9 @@ export default function SettingsScreen({
                 style={{
                   padding: '7px 16px',
                   borderRadius: 10,
-                  border: `1px solid ${settings.sessionDuration === d ? accentColor : 'rgba(255,255,255,0.4)'}`,
+                  border: `1px solid ${settings.sessionDuration === d ? accentColor : 'rgba(255,255,255,0.1)'}`,
                   background: settings.sessionDuration === d ? hexToRgba(accentColor, 0.18) : 'transparent',
-                  color: settings.sessionDuration === d ? accentColor : 'rgba(255,255,255,0.72)',
+                  color: settings.sessionDuration === d ? accentColor : 'rgba(255,255,255,0.5)',
                   cursor: 'pointer',
                 }}
               >
@@ -229,13 +229,13 @@ export default function SettingsScreen({
 
         {/* App info */}
         <GlassCard style={{ animationDelay: '0.3s' }} title="About Astryx" className="mb-6 animate-fade-in-up" bodyClass="p-5">
-          <div className="text-[12px] text-white/62 leading-relaxed">
+          <div className="text-[12px] text-white/35 leading-relaxed">
             Astryx is a deterministic multi-sensory calibration system. It uses astrological pattern intelligence as a structured wellness framework — not for prediction or fortune telling.
           </div>
           <div className="mt-3 flex items-center gap-2">
-            <div className="text-[10px] tracking-[0.2em] text-white/56">VERSION {APP_VERSION}</div>
+            <div className="text-[10px] tracking-[0.2em] text-white/20">VERSION {APP_VERSION}</div>
             <div className="w-1 h-1 rounded-full bg-white/15" />
-            <div className="text-[10px] tracking-[0.2em] text-white/56">COSMIC RESONANCE ENGINE</div>
+            <div className="text-[10px] tracking-[0.2em] text-white/20">COSMIC RESONANCE ENGINE</div>
           </div>
         </GlassCard>
 
@@ -267,7 +267,7 @@ function ChromePaletteRow() {
       className="mb-3 animate-fade-in-up"
       bodyClass="p-5"
     >
-      <div className="text-[12px] text-white/66 mb-4">
+      <div className="text-[12px] text-white/40 mb-4">
         The colour of the app follows your current signal — it cools when you are
         running hot and warms when you are running low. This is what that colour is
         made of.
@@ -287,10 +287,10 @@ function ChromePaletteRow() {
               style={{
                 background: isActive
                   ? `linear-gradient(150deg, ${hexToRgba(rest.hex, 0.20)}, rgba(2,2,8,0.35))`
-                  : 'rgba(255,255,255,0.33)',
-                border: `1px solid ${isActive ? hexToRgba(rest.hex, 0.55) : 'rgba(255,255,255,0.39)'}`,
+                  : 'rgba(255,255,255,0.03)',
+                border: `1px solid ${isActive ? hexToRgba(rest.hex, 0.55) : 'rgba(255,255,255,0.09)'}`,
                 boxShadow: isActive
-                  ? `inset 0 1px 0 rgba(255,255,255,0.5), 0 16px 34px -22px ${hexToRgba(rest.hex, 0.9)}`
+                  ? `inset 0 1px 0 rgba(255,255,255,0.20), 0 16px 34px -22px ${hexToRgba(rest.hex, 0.9)}`
                   : 'none',
               }}
             >
@@ -305,7 +305,7 @@ function ChromePaletteRow() {
                       style={{
                         width: 13, height: 13,
                         background: p.rooms[st].hex,
-                        border: '1px solid rgba(255,255,255,0.6)',
+                        border: '1px solid rgba(255,255,255,0.30)',
                         boxShadow: `0 0 10px ${hexToRgba(p.rooms[st].hex, 0.85)}`,
                       }}
                     />
@@ -318,7 +318,7 @@ function ChromePaletteRow() {
                   >
                     {p.name}
                   </div>
-                  <div className="text-[11px] text-white/70 truncate">{p.soul}</div>
+                  <div className="text-[11px] text-white/45 truncate">{p.soul}</div>
                 </div>
                 {isActive && (
                   <span
@@ -338,7 +338,7 @@ function ChromePaletteRow() {
         })}
       </div>
 
-      <div className="text-[11px] text-white/62 mt-4 leading-relaxed">
+      <div className="text-[11px] text-white/35 mt-4 leading-relaxed">
         <span style={{ color: active.rooms.balanced.hex }}>Where it comes from &mdash;</span>{' '}
         {active.source}
       </div>
@@ -360,7 +360,7 @@ function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
   ] as const
   return (
     <GlassCard style={{ animationDelay: '0.22s' }} title="Session Mode" className="mb-3 animate-fade-in-up" bodyClass="p-5">
-      <div className="text-[12px] text-white/66 mb-3">
+      <div className="text-[12px] text-white/40 mb-3">
         Natal Calibration — the only session tuned to your chart and today&apos;s sky;
         placements follow your own natal placements. Full Body — the complete anatomical
         ladder, all twelve forks, ground to crown and back, at their traditional placements.
@@ -375,9 +375,9 @@ function SessionModePreferenceRow({ accentColor }: { accentColor: string }) {
             style={{
               padding: '7px 16px',
               borderRadius: 10,
-              border: `1px solid ${remembered === o.value ? accentColor : 'rgba(255,255,255,0.4)'}`,
+              border: `1px solid ${remembered === o.value ? accentColor : 'rgba(255,255,255,0.1)'}`,
               background: remembered === o.value ? hexToRgba(accentColor, 0.18) : 'transparent',
-              color: remembered === o.value ? accentColor : 'rgba(255,255,255,0.72)',
+              color: remembered === o.value ? accentColor : 'rgba(255,255,255,0.5)',
               cursor: 'pointer',
             }}
           >
@@ -394,7 +394,7 @@ function OwnedForksCard({ accentColor }: { accentColor: string }) {
   const toggleOwnedFork = useAppStore((s) => s.toggleOwnedFork)
   return (
     <GlassCard style={{ animationDelay: '0.28s' }} title="Sacred Tones You Own" className="mb-3 animate-fade-in-up" bodyClass="p-5">
-      <div className="text-[12px] text-white/58 mb-3">
+      <div className="text-[12px] text-white/30 mb-3">
         Tap the forks you physically own. The Chamber stops showing the &ldquo;simulated tone&rdquo; note for those.
       </div>
       <div className="flex flex-wrap gap-2">
@@ -408,9 +408,9 @@ function OwnedForksCard({ accentColor }: { accentColor: string }) {
               style={{
                 padding: '7px 14px',
                 borderRadius: 10,
-                border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.4)'}`,
+                border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.1)'}`,
                 background: on ? hexToRgba(accentColor, 0.18) : 'transparent',
-                color: on ? accentColor : 'rgba(255,255,255,0.72)',
+                color: on ? accentColor : 'rgba(255,255,255,0.5)',
                 cursor: 'pointer',
               }}
             >
@@ -434,7 +434,7 @@ function ContainerFitCard({ accentColor }: { accentColor: string }) {
   ]
   return (
     <GlassCard style={{ animationDelay: '0.29s' }} title="Session Fit" className="mb-3 animate-fade-in-up" bodyClass="p-5">
-      <div className="text-[12px] text-white/58 mb-3">When a chart needs more work than your container holds.</div>
+      <div className="text-[12px] text-white/30 mb-3">When a chart needs more work than your container holds.</div>
       <div className="flex flex-wrap gap-2">
         {opts.map((o) => {
           const on = containerFitMode === o.value
@@ -446,9 +446,9 @@ function ContainerFitCard({ accentColor }: { accentColor: string }) {
               className="font-rajdhani text-[12px] transition-all duration-200"
               style={{
                 padding: '7px 16px', borderRadius: 10,
-                border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.4)'}`,
+                border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.1)'}`,
                 background: on ? hexToRgba(accentColor, 0.18) : 'transparent',
-                color: on ? accentColor : 'rgba(255,255,255,0.72)', cursor: 'pointer',
+                color: on ? accentColor : 'rgba(255,255,255,0.5)', cursor: 'pointer',
               }}
             >
               {o.label}
@@ -479,7 +479,7 @@ function SettingRow({
 }) {
   return (
     <GlassCard style={{ animationDelay: `${delay}s` }} title={label} className="mb-3 animate-fade-in-up" bodyClass="p-5">
-      <div className="text-[12px] text-white/58 mb-3">{description}</div>
+      <div className="text-[12px] text-white/30 mb-3">{description}</div>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
           <button
@@ -489,9 +489,9 @@ function SettingRow({
             style={{
               padding: '7px 18px',
               borderRadius: 10,
-              border: `1px solid ${current === o.value ? accentColor : 'rgba(255,255,255,0.4)'}`,
+              border: `1px solid ${current === o.value ? accentColor : 'rgba(255,255,255,0.1)'}`,
               background: current === o.value ? hexToRgba(accentColor, 0.18) : 'transparent',
-              color: current === o.value ? accentColor : 'rgba(255,255,255,0.72)',
+              color: current === o.value ? accentColor : 'rgba(255,255,255,0.5)',
               cursor: 'pointer',
             }}
           >
@@ -515,7 +515,7 @@ function VoiceSettingRow({
   const note = ASTRYX_VOICES.find((v) => v.value === current)?.note ?? ''
   return (
     <GlassCard style={{ animationDelay: '0.22s' }} title="Astryx Voice" className="mb-3 animate-fade-in-up" bodyClass="p-5">
-      <div className="text-[12px] text-white/58 mb-3">Her spoken voice — all feminine · currently {note}</div>
+      <div className="text-[12px] text-white/30 mb-3">Her spoken voice — all feminine · currently {note}</div>
       <div className="flex flex-wrap gap-2 mb-3">
         {ASTRYX_VOICES.map((o) => (
           <button
@@ -525,9 +525,9 @@ function VoiceSettingRow({
             style={{
               padding: '7px 18px',
               borderRadius: 10,
-              border: `1px solid ${current === o.value ? accentColor : 'rgba(255,255,255,0.4)'}`,
+              border: `1px solid ${current === o.value ? accentColor : 'rgba(255,255,255,0.1)'}`,
               background: current === o.value ? hexToRgba(accentColor, 0.18) : 'transparent',
-              color: current === o.value ? accentColor : 'rgba(255,255,255,0.72)',
+              color: current === o.value ? accentColor : 'rgba(255,255,255,0.5)',
               cursor: 'pointer',
             }}
           >
