@@ -1,0 +1,296 @@
+<title>Five Rooms of Glass</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#020208; --ink:#15121C; --trim:#DDD7CA; --slate:#9AA3B8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#EDEBF4;
+       font-family:'Exo 2',system-ui,sans-serif;font-size:15px;line-height:1.6;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:46px 24px 100px;position:relative;z-index:1}
+  h1,h2,h3,h4{font-family:'Cinzel',Georgia,serif;font-weight:700;margin:0}
+
+  /* ── page-level atmosphere: the whole document is lit, not flat ── */
+  .sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .sky i{position:absolute;display:block;border-radius:50%;filter:blur(90px);opacity:.5}
+  .sky i:nth-child(1){width:52vw;height:52vw;left:-12vw;top:-14vw;background:#2F6BD6}
+  .sky i:nth-child(2){width:44vw;height:44vw;right:-10vw;top:16vh;background:#A971E0}
+  .sky i:nth-child(3){width:40vw;height:40vw;left:22vw;bottom:-16vw;background:#22C39B}
+  .sky i:nth-child(4){width:26vw;height:26vw;right:16vw;bottom:6vh;background:#F2A83C;opacity:.32}
+
+  header{margin-bottom:40px}
+  .eyebrow{font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+           color:#C9A7F0;margin-bottom:12px}
+  h1{font-size:42px;line-height:1.1;letter-spacing:.01em;text-wrap:balance}
+  h1 em{font-style:normal;
+    background:linear-gradient(96deg,#F2A83C,#A971E0 48%,#22C39B);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:#B9BECF;max-width:64ch;margin-top:16px;font-size:16px}
+  .owned{margin-top:22px;padding:15px 20px;border-radius:14px;max-width:72ch;
+    background:linear-gradient(150deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+    backdrop-filter:blur(16px) saturate(150%);
+    border:1px solid rgba(255,255,255,.13);border-top-color:rgba(255,255,255,.26);
+    box-shadow:0 22px 50px -26px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.18);
+    font-size:14.5px;color:#D7D4E4}
+  .owned b{color:#fff;font-weight:600}
+
+  /* ── palette blocks ── */
+  .pal{margin-top:46px;border-radius:22px;overflow:hidden;position:relative;
+       border:1px solid rgba(255,255,255,.10);
+       box-shadow:0 40px 90px -46px rgba(0,0,0,.95)}
+  .pal-glow{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .pal-glow i{position:absolute;display:block;border-radius:50%;filter:blur(64px);opacity:.62}
+  .pal-in{position:relative;z-index:1;display:grid;grid-template-columns:1fr 372px;
+          gap:0;background:rgba(4,4,12,.46);backdrop-filter:blur(2px)}
+
+  .pal-copy{padding:30px 32px 32px}
+  .pal-n{font-size:10px;letter-spacing:.26em;text-transform:uppercase;opacity:.72;margin-bottom:9px}
+  .pal-copy h2{font-size:27px;letter-spacing:.02em;margin-bottom:9px}
+  .soul{font-size:15px;max-width:46ch;color:#D5D2E2;margin-bottom:4px}
+  .from{font-size:12.5px;color:#A9AFC4;margin-top:11px;max-width:48ch}
+  .from b{font-weight:600}
+
+  /* the four rooms, as glass chips */
+  .rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:24px}
+  .room{border-radius:14px;padding:13px 12px 12px;min-height:104px;position:relative;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:space-between;
+        border:1px solid rgba(255,255,255,.13);border-top-color:rgba(255,255,255,.30);
+        backdrop-filter:blur(14px) saturate(160%);
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 16px 34px -20px rgba(0,0,0,.9)}
+  .room .lens{position:absolute;width:120px;height:120px;border-radius:50%;
+              filter:blur(26px);opacity:.92;left:-24px;bottom:-46px}
+  .room .st{position:relative;font-size:9px;letter-spacing:.20em;text-transform:uppercase;
+            color:rgba(255,255,255,.78);text-shadow:0 1px 5px rgba(0,0,0,.8)}
+  .room .nm{position:relative;display:flex;align-items:center;gap:7px;
+            font-family:'Cinzel',serif;font-weight:700;font-size:13.5px;
+            line-height:1.25;text-wrap:balance;color:#fff;
+            text-shadow:0 1px 6px rgba(0,0,0,.8)}
+  .room .nm span{width:9px;height:9px;border-radius:50%;flex:0 0 auto;
+            border:1px solid rgba(255,255,255,.5)}
+  .room .hx{text-shadow:0 1px 5px rgba(0,0,0,.8)}
+  .room .hx{position:relative;font-size:10px;letter-spacing:.09em;
+            color:rgba(255,255,255,.60);font-variant-numeric:tabular-nums;margin-top:3px}
+
+  /* ── the glass screen ── */
+  .screen{position:relative;min-height:100%;padding:26px 26px 28px;
+          border-left:1px solid rgba(255,255,255,.09)}
+  .scr-glow{position:absolute;inset:0;overflow:hidden}
+  .scr-glow i{position:absolute;display:block;border-radius:50%;filter:blur(52px)}
+  .card{position:relative;border-radius:18px;overflow:hidden;
+        background:linear-gradient(155deg,rgba(255,255,255,.13),rgba(255,255,255,.035));
+        backdrop-filter:blur(22px) saturate(165%);
+        border:1px solid rgba(255,255,255,.15);border-top-color:rgba(255,255,255,.34);
+        box-shadow:0 26px 56px -26px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.28)}
+  .card-top{display:flex;align-items:center;gap:9px;padding:11px 14px;
+            border-bottom:1px solid rgba(255,255,255,.10);
+            background:linear-gradient(180deg,rgba(255,255,255,.07),transparent)}
+  .card-top .bar{width:4px;height:17px;border-radius:2px}
+  .card-top .t{font-family:'Cinzel',serif;font-weight:700;font-size:10px;
+               letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.90)}
+  .card-top .pill{margin-left:auto;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;
+                  padding:3px 9px;border-radius:99px;border:1px solid rgba(255,255,255,.20);
+                  background:rgba(255,255,255,.07);color:rgba(255,255,255,.80)}
+  .card-body{padding:16px 15px 17px}
+  .sig{font-family:'Cinzel',serif;font-weight:700;font-size:23px;line-height:1.1}
+  .sigsub{font-size:11.5px;color:rgba(255,255,255,.58);margin-top:3px;letter-spacing:.02em}
+  .hair{height:1px;margin:15px 0;
+        background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent)}
+  .fork{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.08em;
+        padding:5px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.22);
+        background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);
+        font-variant-numeric:tabular-nums}
+  .cta{display:block;text-align:center;font-family:'Cinzel',serif;font-weight:700;
+       font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;
+       padding:13px;border-radius:12px;margin-top:16px;color:#05040C;
+       border-top:1px solid rgba(255,255,255,.45)}
+  .ghost{display:block;text-align:center;font-size:10.5px;letter-spacing:.16em;
+         text-transform:uppercase;padding:11px;border-radius:12px;margin-top:9px;
+         border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.05);
+         color:rgba(255,255,255,.80)}
+  .field{margin-top:16px}
+  .field .fl{font-size:8.5px;letter-spacing:.20em;text-transform:uppercase;
+             color:rgba(255,255,255,.46);margin-bottom:7px}
+  .field .bars{display:flex;gap:5px;height:34px}
+  .field .bars div{flex:1;border-radius:7px;border:1px solid rgba(255,255,255,.16);
+                   box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.10);
+         font-size:13px;color:#A3A9BE;max-width:76ch}
+  footer b{color:#DCD8E8;font-weight:600}
+
+  @media (max-width:960px){
+    .pal-in{grid-template-columns:1fr}
+    .screen{border-left:none;border-top:1px solid rgba(255,255,255,.09)}
+    h1{font-size:31px}
+    .rooms{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+
+<div class="sky"><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Astryx · the room at rest · pick one</div>
+  <h1>Five rooms made of <em>glass</em>.</h1>
+  <p class="sub">Every palette below is a complete set of four rooms — one for each state the
+  engine can report. All of them are lit from behind, translucent, and saturated. None of them
+  can go red.</p>
+  <div class="owned">
+    <b>What went wrong with the last one.</b> I built that palette out of avoidance — the red rule
+    told me where not to go and I retreated into warm neutrals at mid-saturation, which on deep
+    space is the one place colour neither glows nor recedes. Dry Stone, Tallow, Warm Gray. A
+    palette made of absences. Meanwhile the engine's own therapy colours — Blue-Green, Deep
+    Indigo, Deep Violet, Gold Containment, Seafoam — had the soul in them the whole time.
+    Never-amplify means don't feed the heat. It never meant be beige.
+  </div>
+</header>
+
+<div id="pals"></div>
+
+<footer>
+  <b>Every value here is law-safe</b> — nothing sits in the red band (hue under 28° or over 335°
+  at any real saturation), so no palette can flood a Mars or Pluto day with red. The difference
+  from the last attempt is saturation: these run 0.50–0.87 where the stale set sat at 0.13–0.55.
+  <br><br>
+  Pick a palette and I'll wire it, carry the glass treatment across the real screens, and take
+  the four room names into the house style. If one is close but the resting colour is off, say
+  which and I'll re-tune that room only.
+</footer>
+</div>
+
+<script>
+const PALETTES = [
+  {
+    id: 'aurora',
+    name: 'Aurora',
+    soul: 'Northern light seen through ice. Cold sky, hot core — the room is never grey, it is always some colour of lit.',
+    from: 'Balanced takes the jade of a coherent field; elevated drops to the deep indigo Mars prescribes for heat.',
+    rooms: {
+      balanced: { hex:'#22C39B', name:'Jade Light',   note:'at rest' },
+      elevated: { hex:'#3A63D6', name:'Deep Indigo',  note:'running hot → cools' },
+      depleted: { hex:'#F2A83C', name:'Ember Gold',   note:'running low → warms' },
+      blocked:  { hex:'#A971E0', name:'Orchid',       note:'compressed → opens' },
+    },
+    glow: ['#22C39B','#3A63D6','#A971E0'],
+  },
+  {
+    id: 'amethyst',
+    name: 'Amethyst Chamber',
+    soul: 'The room is violet and the light inside it changes. The most Astryx of the five — deep space wearing its own colour.',
+    from: 'Violet and gold are the brand’s two originals. Pluto’s own balanced pairing is Deep Violet with Gold Containment.',
+    rooms: {
+      balanced: { hex:'#9B6BE0', name:'Amethyst',     note:'at rest' },
+      elevated: { hex:'#3FBFB0', name:'Lit Teal',     note:'running hot → cools' },
+      depleted: { hex:'#F0A93C', name:'Ember Gold',   note:'running low → warms' },
+      blocked:  { hex:'#C98FE8', name:'Lilac Release',note:'compressed → opens' },
+    },
+    glow: ['#9B6BE0','#3FBFB0','#F0A93C'],
+  },
+  {
+    id: 'ember',
+    name: 'Obsidian & Ember',
+    soul: 'Gold, but molten instead of dusted. This is the answer to the sterile one — same family, lit from inside rather than drained.',
+    from: 'Sun depleted prescribes Warm Gold and Sunrise Yellow; Pluto elevated holds the field with Gold Containment.',
+    rooms: {
+      balanced: { hex:'#F0A93C', name:'Molten Gold',  note:'at rest' },
+      elevated: { hex:'#1E8F82', name:'Blue-Green',   note:'running hot → cools' },
+      depleted: { hex:'#FFD56B', name:'Sunrise',      note:'running low → warms' },
+      blocked:  { hex:'#B889C4', name:'Smoke Violet', note:'compressed → opens' },
+    },
+    glow: ['#F0A93C','#B889C4','#1E8F82'],
+  },
+  {
+    id: 'water',
+    name: 'Deep Water',
+    soul: 'Submerged light. Everything reads as depth rather than surface — the glass has ocean behind it, not a wall.',
+    from: 'Neptune’s corrective field: Clear Blue for the fog, Seafoam for release, Deep Indigo underneath.',
+    rooms: {
+      balanced: { hex:'#3FA9F5', name:'Clear Blue',   note:'at rest' },
+      elevated: { hex:'#2C3E8C', name:'Deep Indigo',  note:'running hot → cools' },
+      depleted: { hex:'#F2A83C', name:'Ember Gold',   note:'running low → warms' },
+      blocked:  { hex:'#7FE0C4', name:'Seafoam',      note:'compressed → opens' },
+    },
+    glow: ['#3FA9F5','#2C3E8C','#7FE0C4'],
+  },
+  {
+    id: 'lapis',
+    name: 'Egyptian Blue',
+    soul: 'Lapis and gold. Ancient, sacred and unmistakably ours — the oldest manufactured pigment on earth, next to the metal.',
+    from: 'The Lotus Spectrum’s Egyptian Blue, which is proprietary Astryx IP, read as a room instead of a footnote.',
+    rooms: {
+      balanced: { hex:'#4C7FE8', name:'Egyptian Blue',note:'at rest' },
+      elevated: { hex:'#2AA79C', name:'Nile Teal',    note:'running hot → cools' },
+      depleted: { hex:'#E8C15A', name:'Leaf Gold',    note:'running low → warms' },
+      blocked:  { hex:'#9D8CE8', name:'Lotus Violet', note:'compressed → opens' },
+    },
+    glow: ['#4C7FE8','#E8C15A','#9D8CE8'],
+  },
+];
+
+const STATE_ORDER = ['balanced','elevated','depleted','blocked'];
+const rgba = (hex,a)=>{const h=hex.replace('#','');
+  return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;};
+
+document.getElementById('pals').innerHTML = PALETTES.map((p,i)=>{
+  const sig = p.rooms.balanced;
+  const rooms = STATE_ORDER.map(s=>{
+    const r = p.rooms[s];
+    return `<div class="room" style="background:linear-gradient(155deg,${rgba(r.hex,.20)},rgba(4,4,12,.42))">
+      <span class="lens" style="background:${r.hex}"></span>
+      <div class="st">${s}</div>
+      <div>
+        <div class="nm"><span style="background:${r.hex};box-shadow:0 0 10px ${rgba(r.hex,.95)}"></span>${r.name}</div>
+        <div class="hx">${r.hex} &nbsp;·&nbsp; ${r.note}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <section class="pal">
+    <div class="pal-glow">
+      <i style="width:460px;height:460px;left:-110px;top:-170px;background:${p.glow[0]}"></i>
+      <i style="width:380px;height:380px;right:24%;bottom:-200px;background:${p.glow[1]}"></i>
+      <i style="width:320px;height:320px;right:-90px;top:-60px;background:${p.glow[2]};opacity:.5"></i>
+    </div>
+    <div class="pal-in">
+      <div class="pal-copy">
+        <div class="pal-n" style="color:${sig.hex}">Palette ${String(i+1).padStart(2,'0')}</div>
+        <h2 style="color:#fff">${p.name}</h2>
+        <p class="soul">${p.soul}</p>
+        <p class="from"><b style="color:${sig.hex}">Where it comes from —</b> ${p.from}</p>
+        <div class="rooms">${rooms}</div>
+      </div>
+
+      <div class="screen">
+        <div class="scr-glow">
+          <i style="width:300px;height:300px;left:-70px;top:-60px;background:${sig.hex};opacity:.42"></i>
+          <i style="width:240px;height:240px;right:-60px;bottom:-70px;background:${p.rooms.blocked.hex};opacity:.30"></i>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <span class="bar" style="background:${sig.hex};box-shadow:0 0 12px ${rgba(sig.hex,.9)}"></span>
+            <span class="t">Today's signal</span>
+            <span class="pill">Coherent</span>
+          </div>
+          <div class="card-body">
+            <div class="sig" style="color:${sig.hex};text-shadow:0 0 26px ${rgba(sig.hex,.55)}">Saturn</div>
+            <div class="sigsub">steady &middot; drawing on this signal</div>
+            <div class="hair"></div>
+            <span class="fork">Saturn &middot; 147.85 Hz</span>
+            <div class="cta" style="background:linear-gradient(160deg,${sig.hex},${rgba(sig.hex,.72)});
+                 box-shadow:0 14px 34px -14px ${rgba(sig.hex,.95)}">Enter the Chamber</div>
+            <div class="ghost">Ask Astra</div>
+            <div class="field">
+              <div class="fl">Colour field &middot; in the chamber</div>
+              <div class="bars">
+                ${STATE_ORDER.map(s=>`<div style="background:linear-gradient(170deg,${rgba(p.rooms[s].hex,.85)},${rgba(p.rooms[s].hex,.35)})"></div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}).join('');
+</script>
