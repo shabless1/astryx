@@ -46,10 +46,48 @@ export function GlassCard({
         border: `1px solid ${hexToRgba(accent, Math.max(0.22, opacity))}`,
         borderTop: `1px solid ${hexToRgba(accent, topBorder ? 0.65 : 0.4)}`,
         boxShadow: [
-          'inset 0 1px 0 rgba(255,255,255,0.06)',
+          // SHA house style — the lip of light along the top edge. Warm
+          // off-white, not white: indigo-and-white on near-black is what
+          // made the app feel shut in.
+          'inset 0 1px 0 var(--lip)',
           `0 0 0 1px ${hexToRgba(accent, 0.08)}`,
           `0 24px 60px -24px ${hexToRgba(accent, 0.30)}`,
         ].join(', '),
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+// ──────────────────────────────────────────────────────────────
+// StonePanel — the one LIGHT surface (SHA house style)
+// ──────────────────────────────────────────────────────────────
+/**
+ * For reference material: things you READ and compare rather than feel — a
+ * protocol list, pricing, a key, a passage of Astra's. Live things (the signal,
+ * photographs, the chamber, the sky) stay on the dark ground.
+ *
+ * Type on this is BLACK. Never a tint, never a pale colour on a light fill.
+ */
+export function StonePanel({
+  children,
+  className = '',
+  style,
+}: {
+  children: ReactNode
+  className?: string
+  style?: CSSProperties
+}) {
+  return (
+    <div
+      className={`rounded-xl overflow-hidden ${className}`}
+      style={{
+        background: 'var(--trim)',
+        border: '1px solid var(--trim-line)',
+        color: 'var(--on-trim)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 14px 38px rgba(0,0,0,0.5)',
         ...style,
       }}
     >
@@ -113,9 +151,12 @@ export function SectionLabel({
   children: ReactNode
   className?: string
 }) {
+  // House style — a label is a printed thing, so it sits on stone in black.
+  // Never a tinted font on a light fill.
   return (
     <div
-      className={`font-heading uppercase tracking-[0.3em] text-[0.7rem] text-purple ${className}`}
+      className={`inline-block font-heading uppercase tracking-[0.22em] text-[0.66rem] font-medium rounded-full px-3 py-[5px] ${className}`}
+      style={{ background: 'var(--trim)', color: 'var(--on-trim)' }}
     >
       {children}
     </div>

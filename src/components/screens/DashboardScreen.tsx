@@ -30,7 +30,7 @@ import { hexToRgba } from '@/lib/utils'
 import { MICRO_DISCLAIMER, detectCrisis, CRISIS_RESOURCES_CARD } from '@/lib/compliance'
 import { useAppStore, type SessionMode, type ChakraInstrument } from '@/lib/store'
 import { useAstryxVoice } from '@/lib/useAstryxVoice'
-import { GlassCard } from '@/components/ui'
+import { GlassCard, StonePanel } from '@/components/ui'
 import BetaBanner from '@/components/ui/BetaBanner'
 import type { DailyInput } from '@/components/screens/DailyCheckInScreen'
 import ResultsScreen from '@/components/screens/ResultsScreen'
@@ -448,14 +448,22 @@ function CheckInTab({
 
   return (
     <div className="space-y-4">
-      <p className="text-[13px] text-content-sm leading-relaxed">
-        {isToday
-          ? 'You’ve already calibrated today. Check in again any time to re-tune to the live sky.'
-          : 'A quick check-in tunes today’s calibration to the live sky. Your chart is already saved — this is just today.'}
-      </p>
+      {/* Give before you ask. The app used to open a new day on a form; this
+          states what is already in hand first, so the questions read as tuning
+          rather than as a toll. (SHA, 2026-09-11.) */}
+      <StonePanel className="px-5 py-4">
+        <div className="text-[10px] uppercase tracking-[0.2em] font-medium mb-1.5" style={{ color: 'var(--t-violet)' }}>
+          {isToday ? 'Already calibrated today' : 'Your chart is loaded'}
+        </div>
+        <p className="text-[13.5px] leading-relaxed" style={{ color: 'var(--on-trim-soft)' }}>
+          {isToday
+            ? 'Today is already tuned. Check in again whenever you like and the calibration re-tunes to the sky as it stands now.'
+            : 'Nothing needs re-entering — your birth data, your reading and every session you have run are saved. Two questions is all it takes to tune the day to the live sky.'}
+        </p>
+      </StonePanel>
 
       {/* Energy */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
         <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>Energy right now</div>
         <div className="flex gap-1">
           {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => {
@@ -477,7 +485,7 @@ function CheckInTab({
       </div>
 
       {/* What's present */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
         <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>What&apos;s present for you today?</div>
         <textarea
           value={question} onChange={(e) => setQuestion(e.target.value)} rows={3}
@@ -488,7 +496,7 @@ function CheckInTab({
       </div>
 
       {/* Intention */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
         <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
           Today&apos;s intention <span className="text-white/35 normal-case tracking-normal">· optional</span>
         </div>
@@ -539,30 +547,9 @@ function PulseTab({
   const { speak, stop: stopVoice, speakingId } = useAstryxVoice()
   return (
     <div className="space-y-4">
-      {/* Temperature */}
+      {/* THE SIGNAL — leads the day. The answer before any instrument reading. */}
       <div className="rounded-[1.4rem] p-5"
-           style={{ background: `linear-gradient(135deg, ${hexToRgba(tempColor, 0.16)} 0%, rgba(255,255,255,0.02) 60%)`, border: `1px solid ${hexToRgba(tempColor, 0.3)}`, boxShadow: `0 24px 60px -36px ${hexToRgba(tempColor, 0.6)}` }}>
-        <div className="text-[10px] uppercase tracking-[0.28em] mb-2" style={{ color: hexToRgba(tempColor, 0.9) }}>Today&apos;s Temperature</div>
-        <div className="flex items-end gap-3 mb-4">
-          <span className="font-cinzel leading-none" style={{ fontSize: 48, color: tempColor, textShadow: `0 0 28px ${hexToRgba(tempColor, 0.55)}` }}>{today.temperature}</span>
-        </div>
-        <div className="flex gap-1.5 mb-4">
-          {TEMP_ORDER.map((t) => {
-            const active = t === today.temperature
-            const c = TEMP_COLOR[t]
-            return (
-              <div key={t} className="flex-1 text-center">
-                <div className="h-1.5 rounded-full mb-1.5 transition-all" style={{ background: active ? c : 'rgba(255,255,255,0.08)', boxShadow: active ? `0 0 12px ${hexToRgba(c, 0.7)}` : 'none' }} />
-                <span className="text-[10px] uppercase tracking-[0.18em]" style={{ color: active ? c : 'rgba(255,255,255,0.35)', fontWeight: active ? 600 : 400 }}>{t}</span>
-              </div>
-            )
-          })}
-        </div>
-        <p className="text-[13.5px] leading-relaxed text-content">{today.temperatureBlurb}</p>
-      </div>
-
-      {/* Headline */}
-      <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+           style={{ background: `linear-gradient(165deg, ${hexToRgba(accentColor, 0.14)} 0%, rgba(255,255,255,0.02) 62%)`, border: `1px solid ${hexToRgba(accentColor, 0.3)}`, boxShadow: `inset 0 1px 0 var(--lip), 0 24px 60px -36px ${hexToRgba(accentColor, 0.55)}` }}>
         <div className="flex items-center justify-between mb-1.5">
           <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: hexToRgba(accentColor, 0.85) }}>Today&apos;s Headline</div>
           {/* v4.0 Fix 6 — speak the rendered headline (deterministic text; the LLM is not called) */}
@@ -583,12 +570,34 @@ function PulseTab({
             {speakingId === 'daily-headline' ? '■ stop' : '🔊 listen'}
           </button>
         </div>
-        <div className="font-cinzel text-[18px] text-white mb-2 leading-snug">{today.headlineTitle}</div>
+        <div className="font-cinzel font-bold text-[19px] text-white mb-2 leading-snug">{today.headlineTitle}</div>
         <p className="text-[13.5px] leading-relaxed text-content-sm">{today.headlineBody}</p>
       </div>
 
+      {/* Temperature */}
+      <div className="rounded-[1.2rem] p-5"
+           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.28em] mb-2" style={{ color: hexToRgba(tempColor, 0.9) }}>Today&apos;s Temperature</div>
+        <div className="flex items-end gap-3 mb-4">
+          <span className="font-cinzel leading-none" style={{ fontSize: 48, color: tempColor, textShadow: `0 0 28px ${hexToRgba(tempColor, 0.55)}` }}>{today.temperature}</span>
+        </div>
+        <div className="flex gap-1.5 mb-4">
+          {TEMP_ORDER.map((t) => {
+            const active = t === today.temperature
+            const c = TEMP_COLOR[t]
+            return (
+              <div key={t} className="flex-1 text-center">
+                <div className="h-1.5 rounded-full mb-1.5 transition-all" style={{ background: active ? c : 'rgba(255,255,255,0.08)', boxShadow: active ? `0 0 12px ${hexToRgba(c, 0.7)}` : 'none' }} />
+                <span className="text-[10px] uppercase tracking-[0.18em]" style={{ color: active ? c : 'rgba(255,255,255,0.35)', fontWeight: active ? 600 : 400 }}>{t}</span>
+              </div>
+            )
+          })}
+        </div>
+        <p className="text-[13.5px] leading-relaxed text-content">{today.temperatureBlurb}</p>
+      </div>
+
       {/* Today's transits vs natal */}
-      <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
         <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
           Today&apos;s Transits · live sky to your natal chart
         </div>

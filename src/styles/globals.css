@@ -22,6 +22,22 @@
   --cyan-scanline:     rgba(94, 224, 255, 0.025);
   --amber-signal:      #F59E0B;
   --planet-color:      #22D3EE;
+
+  /* ─── HOUSE STYLE (SHA, 2026-09-11) ───────────────────────
+     Live things are lit; reference things are printed. The dark ground never
+     leaves — warmth arrives as trim and as the one light surface. Warm stone,
+     never white: pure white glares against near-black and fights the gold.
+     One token drives every light surface in the app. */
+  --trim:              #DDD7CA;
+  --trim-line:         #C7C0B0;
+  --on-trim:           #15121C;   /* black on stone, always. never a tint */
+  --on-trim-soft:      #3B3548;
+  --t-gold:            #7A4E05;   /* prices, Earth Year                    */
+  --t-teal:            #0E6286;   /* frequencies                            */
+  --t-violet:          #3E2775;   /* practitioner headings                  */
+  /* the lip of light along the top edge of every card */
+  --lip:               rgba(244, 239, 228, 0.16);
+  --hair-warm:         rgba(244, 239, 228, 0.12);
 }
 
 /* ─── BASE RESET ─────────────────────────────────────────── */
