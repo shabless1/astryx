@@ -99,6 +99,52 @@ steps one shade darker (`#D2CBBD`), the way a printed table heads its own column
 list rows. A strip announces a titled panel; putting one above a toggle gives the card two
 headers. 38 of 56 cards carry one; the other 18 are those three shapes.
 
+## 3c. THE CHROME LAW
+
+> **Chrome is the room. A planet's identity colour never paints the room.**
+
+Two rules, and they are not stylistic — the engine is the authority and the
+presentation layer has to obey it.
+
+1. **No chrome element may take a planet's `base` palette.** `base` in
+   `planetColorTherapyLibrary.ts` is *identity*: Mars is Crimson, Pluto is
+   Burgundy, Mercury is Cyan. Chrome is the nebula, buttons, borders, labels,
+   card glows, nav pills, hairlines and accent bars — everything outside the
+   mandala and the colour-therapy field. It never reads that column.
+2. **No chrome element may render a hue listed in that planet-state's `avoid`.**
+   The engine already names what must not be shown. Mars `elevated` says
+   *intensifying red*; Pluto `elevated` says *overwhelming dark red*. A room that
+   renders those is prescribing the opposite of its own reading.
+
+**Why this is law.** Chrome took `PLANET_COLORS[dominant]` — the raw base hue —
+and pushed it through the entire interface including the full-viewport
+background. On a Mars or Pluto day the UI rendered the exact colour the engine
+lists under `avoid`, while the reading on screen said *"let the heat dissolve
+into the cool field."* SHA, 2026-09-12: *"if someone is having a mars pluto day,
+what type of intelligence floods them with RED?? if this is what you call
+calibration, we're dead before we even get started."* The intelligence was never
+broken. The presentation layer was never wired to it.
+
+**The red-band trap, if chrome ever follows the corrective palette.** The
+corrective palette only *cools* on `elevated` (and mostly on `blocked`). On
+`depleted` it deliberately *warms* — correct therapy inside a mandala, and the
+original complaint all over again at full-viewport scale. Six of the forty
+planet-states resolve to a red-band hue on the naive read: Mars depleted /
+blocked / balanced, Pluto depleted, Venus depleted / blocked. So "chrome takes
+the corrective colour" is only safe with a guard: **take the first member of the
+state's palette that is not in the red band (H < 28° or H > 335° with S > 0.30),
+then temper it to a chrome envelope (S ≤ 0.42, L clamped to 0.50–0.70).** All
+forty states resolve under that rule; none needs a fallback.
+
+**Chrome is never persisted.** `accentColor` is out of the zustand persist
+whitelist and stripped in both `migrate` and `merge`. zustand merges the saved
+blob over the defaults, so a stored hue replays on every load before any runtime
+override — which is why three clean fixes were invisible on SHA's own device
+while the served bundle was correct. Clearing the browser cache does not clear
+localStorage. **Verify a chrome change on a real browser holding a poisoned
+`astryx-storage`, never by grepping the bundle.** `tests/chromePersistence.test.ts`
+asserts the persist config itself.
+
 ## 4. Typography
 
 Cinzel Decorative for the wordmark, Cinzel for headings, Exo 2 for body. Load Cinzel at **400;500;600;700** — the 700 cut is required. Without it every title renders faint or browser-synthesised.

@@ -1,0 +1,396 @@
+<title>The Room Calibrates</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#020208; --surface:#0B0B15; --line:#1E1B4B; --gold:#F59E0B; --purple:#C084FC;
+    --cyan:#38BDF8; --slate:#94A3B8; --trim:#DDD7CA; --trim2:#D2CBBD; --clay:#C4756A;
+    --ink:#15121C; --house:#C9A961;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#E8E6F0;font-family:'Exo 2',system-ui,sans-serif;
+       font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:44px 26px 90px}
+  h1,h2,h3{font-family:'Cinzel',Georgia,serif;font-weight:700;margin:0}
+  .eyebrow{font-size:10px;letter-spacing:.30em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+
+  /* ── head ───────────────────────────────────────────── */
+  header{padding-bottom:30px;border-bottom:1px solid rgba(221,215,202,.13);margin-bottom:42px}
+  h1{font-size:40px;line-height:1.12;letter-spacing:.012em}
+  h1 em{font-style:normal;color:var(--house)}
+  .sub{color:var(--slate);max-width:62ch;margin-top:14px;font-size:15.5px}
+  .quote{margin:26px 0 0;padding:14px 20px;border-left:3px solid var(--clay);
+         background:rgba(196,117,106,.07);color:#D9D4E4;font-size:14.5px;max-width:70ch}
+  .quote b{color:#fff;font-weight:600}
+
+  /* ── section shell ──────────────────────────────────── */
+  section{margin-top:54px}
+  .shead{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .shead h2{font-size:22px}
+  .snum{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.24em;color:rgba(221,215,202,.42)}
+  .sdek{color:var(--slate);max-width:74ch;margin:0 0 22px;font-size:14.5px}
+
+  /* ── stone card + title strip ───────────────────────── */
+  .card{background:var(--surface);border:1px solid rgba(221,215,202,.11);border-radius:11px;overflow:hidden}
+  .card::before{content:'';display:block;height:1px;background:rgba(221,215,202,.16)}
+  .strip{display:flex;align-items:center;gap:11px;background:var(--trim);padding:9px 15px}
+  .strip .bar{width:5px;align-self:stretch;min-height:19px;border-radius:2px;background:var(--house)}
+  .strip h3{font-size:12.5px;letter-spacing:.10em;color:var(--ink);text-transform:uppercase}
+  .strip .badge{margin-left:auto;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+    background:rgba(21,18,28,.10);border:1px solid rgba(21,18,28,.22);color:var(--ink);
+    padding:3px 9px;border-radius:99px;font-weight:600}
+  .cbody{padding:18px}
+
+  /* ── the evidence row ───────────────────────────────── */
+  .ev{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .swatchrow{display:flex;gap:9px;margin:12px 0 0}
+  .sw{flex:1;height:54px;border-radius:7px;display:flex;align-items:flex-end;padding:6px 7px;
+      font-size:9px;letter-spacing:.05em;color:rgba(255,255,255,.94);
+      text-shadow:0 1px 3px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.13)}
+  .avoid{margin-top:13px;font-size:12.5px;color:#E3B7B1}
+  .avoid b{color:var(--clay);font-weight:600;letter-spacing:.14em;font-size:10px;
+           text-transform:uppercase;display:block;margin-bottom:4px}
+  .verdict{margin-top:13px;font-size:13px;padding:9px 12px;border-radius:7px;
+           background:rgba(196,117,106,.11);border:1px solid rgba(196,117,106,.3);color:#EAC7C2}
+  .verdict.ok{background:rgba(74,181,168,.10);border-color:rgba(74,181,168,.32);color:#B6E2DB}
+
+  /* ── controls ───────────────────────────────────────── */
+  .controls{background:var(--trim);border-radius:11px;padding:15px 17px;margin-bottom:24px}
+  .ctitle{font-family:'Cinzel',serif;font-weight:700;font-size:10.5px;letter-spacing:.20em;
+          text-transform:uppercase;color:var(--ink);opacity:.62;margin-bottom:9px}
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pill{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:500;letter-spacing:.04em;
+        padding:5px 13px;border-radius:99px;cursor:pointer;
+        background:rgba(21,18,28,.06);border:1px solid rgba(21,18,28,.20);color:var(--ink)}
+  .pill:hover{background:rgba(21,18,28,.12)}
+  .pill[aria-pressed="true"]{background:var(--ink);color:var(--trim);border-color:var(--ink)}
+  .ctrow+.ctrow{margin-top:13px;padding-top:13px;border-top:1px solid rgba(21,18,28,.13)}
+
+  /* ── the three rooms ────────────────────────────────── */
+  .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .room{border-radius:13px;overflow:hidden;border:1px solid rgba(221,215,202,.12);background:var(--bg)}
+  .roomhead{background:var(--trim);padding:10px 14px;height:74px;display:flex;flex-direction:column;justify-content:center}
+  .roomhead .k{font-family:'Cinzel',serif;font-weight:700;font-size:13px;color:var(--ink);letter-spacing:.03em}
+  .roomhead .d{font-size:11px;color:rgba(21,18,28,.66);margin-top:1px;line-height:1.4}
+  /* the mini app screen */
+  .screen{position:relative;padding:17px 15px 19px;min-height:318px;background:#020208}
+  .neb{position:absolute;inset:0;pointer-events:none;transition:background .45s ease}
+  .scr{position:relative}
+  .navrow{display:flex;align-items:center;gap:7px;margin-bottom:15px}
+  .logo{font-family:'Cinzel',serif;font-weight:700;font-size:10.5px;letter-spacing:.28em;transition:color .35s}
+  .navpill{margin-left:auto;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+           padding:3px 9px;border-radius:99px;transition:all .35s}
+  .minicard{border-radius:9px;overflow:hidden;background:#0B0B15;transition:box-shadow .4s,border-color .4s;
+            border:1px solid rgba(221,215,202,.10)}
+  .ministrip{display:flex;align-items:center;gap:8px;background:var(--trim);padding:6px 10px}
+  .ministrip .bar{width:4px;align-self:stretch;min-height:15px;border-radius:2px;transition:background .35s}
+  .ministrip .t{font-family:'Cinzel',serif;font-weight:700;font-size:10px;letter-spacing:.09em;
+                text-transform:uppercase;color:var(--ink)}
+  .minibody{padding:12px 11px}
+  .sig{font-family:'Cinzel',serif;font-size:17px;font-weight:700;margin-bottom:2px;transition:color .35s}
+  .sigsub{font-size:11px;color:rgba(232,230,240,.52);letter-spacing:.03em}
+  .hair{height:1px;margin:12px 0;transition:background .35s}
+  .forkpill{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:.09em;
+            padding:4px 11px;border-radius:99px;transition:all .35s}
+  .btn{display:block;width:100%;text-align:center;font-family:'Cinzel',serif;font-weight:700;
+       font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:11px;border-radius:8px;
+       margin-top:14px;color:#020208;transition:background .35s,box-shadow .35s}
+  .lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;margin-top:14px;transition:color .35s}
+  .chamberstrip{display:flex;gap:0;margin-top:11px;height:26px;border-radius:6px;overflow:hidden;
+                border:1px solid rgba(221,215,202,.14)}
+  .chamberstrip div{flex:1;transition:background .35s}
+  .chamlbl{font-size:8.5px;letter-spacing:.17em;text-transform:uppercase;color:rgba(232,230,240,.38);margin-top:6px}
+  .roomfoot{background:#0B0B15;border-top:1px solid rgba(221,215,202,.10);padding:9px 13px;
+            font-size:11px;color:var(--slate);display:flex;align-items:center;gap:8px;min-height:42px}
+  .chip{width:13px;height:13px;border-radius:3px;flex:0 0 auto;border:1px solid rgba(255,255,255,.2)}
+
+  /* ── the 40-cell grid ───────────────────────────────── */
+  .grid40{display:grid;grid-template-columns:88px repeat(4,1fr);gap:5px;margin-top:6px}
+  .g-h{font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:rgba(221,215,202,.5);
+       padding-bottom:3px;align-self:end}
+  .g-p{font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;color:#CFCADA;align-self:center}
+  .cell{border-radius:6px;padding:7px 8px;min-height:50px;position:relative;
+        border:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;justify-content:flex-end}
+  .cell .n{font-size:8.5px;letter-spacing:.03em;color:rgba(255,255,255,.92);
+           text-shadow:0 1px 3px rgba(0,0,0,.8);line-height:1.25}
+  .cell.flag{border:1px solid var(--clay);box-shadow:0 0 0 1px rgba(196,117,106,.35)}
+  .cell.flag::after{content:'✕';position:absolute;top:4px;right:6px;font-size:10px;
+                    color:var(--clay);font-weight:700}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--slate)}
+  .legend span{display:flex;align-items:center;gap:7px}
+  .lgbox{width:13px;height:13px;border-radius:3px;border:1px solid var(--clay);
+         box-shadow:0 0 0 1px rgba(196,117,106,.35)}
+
+  /* ── recommendation ─────────────────────────────────── */
+  .rec{background:var(--trim);border-radius:12px;overflow:hidden}
+  .recbody{padding:20px 22px;color:var(--ink)}
+  .recbody h3{font-size:17px;margin-bottom:9px;color:var(--ink)}
+  .recbody p{margin:0 0 11px;font-size:14px;color:rgba(21,18,28,.83);max-width:72ch}
+  .recbody p:last-child{margin-bottom:0}
+  .recbody b{font-weight:600;color:var(--ink)}
+  ol.rule{margin:12px 0 0;padding-left:19px;font-size:13.5px;color:rgba(21,18,28,.83)}
+  ol.rule li{margin-bottom:6px}
+  ol.rule code{background:rgba(21,18,28,.09);padding:1px 5px;border-radius:3px;font-size:12px}
+  .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
+  .opt{background:var(--surface);border:1px solid rgba(221,215,202,.12);border-radius:10px;padding:15px}
+  .opt.pick{border-color:rgba(201,169,97,.55);box-shadow:0 0 0 1px rgba(201,169,97,.20)}
+  .opt .tag{font-size:9px;letter-spacing:.20em;text-transform:uppercase;color:rgba(221,215,202,.45);
+            margin-bottom:6px}
+  .opt.pick .tag{color:var(--house)}
+  .opt h4{font-family:'Cinzel',serif;font-weight:700;font-size:14px;margin:0 0 7px;color:#EFEDF6}
+  .opt p{margin:0;font-size:12.5px;color:var(--slate);line-height:1.55}
+  .opt .cost{margin-top:10px;padding-top:10px;border-top:1px solid rgba(221,215,202,.10);
+             font-size:12px;color:#CFCADA}
+  .opt .cost b{color:var(--clay);font-weight:600}
+  .opt.pick .cost b{color:var(--house)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid rgba(221,215,202,.11);
+         font-size:12px;color:rgba(148,163,184,.72)}
+  @media (max-width:900px){
+    .rooms,.opts,.ev{grid-template-columns:1fr}
+    h1{font-size:30px}
+    .grid40{grid-template-columns:66px repeat(4,1fr)}
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Astryx · chrome calibration · 12 September 2026</div>
+  <h1>The room is <em>the first dose</em>.</h1>
+  <p class="sub">Three ways the app's chrome can answer a Mars–Pluto day. The engine already
+  knows the answer; the question is how much of it the room is allowed to say. Pick a day below
+  and watch the same screen under each model.</p>
+  <div class="quote">&ldquo;if someone is having a mars pluto day, what type of intelligence floods them
+  with RED?? if this is what you call calibration, <b>we're dead before we even get started.</b>&rdquo;</div>
+</header>
+
+<!-- 1 ───────────────────────────────────────────────── -->
+<section>
+  <div class="shead"><span class="snum">01</span><h2>What the engine said, and what the room did</h2></div>
+  <p class="sdek">Not a new idea — this is already in the codebase, in
+  <code>planetColorTherapyLibrary.ts</code>, and has been all along. Every planet carries an identity
+  palette and a corrective one. Chrome read the wrong column.</p>
+  <div class="ev">
+    <div class="card">
+      <div class="strip"><span class="bar" style="background:var(--clay)"></span>
+        <h3>What the room rendered</h3><span class="badge">base · identity</span></div>
+      <div class="cbody">
+        <div class="swatchrow" id="ev-base"></div>
+        <div class="avoid"><b>the same planet-state's avoid list</b><span id="ev-avoid"></span></div>
+        <div class="verdict" id="ev-verdict"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="strip"><span class="bar" style="background:#4AB5A8"></span>
+        <h3>What the engine prescribed</h3><span class="badge">corrective</span></div>
+      <div class="cbody">
+        <div class="swatchrow" id="ev-corr"></div>
+        <div class="avoid" style="color:#B6E2DB"><b style="color:#4AB5A8">the instruction it carries</b>
+          <span id="ev-instr"></span></div>
+        <div class="verdict ok">The medicine was computed, stored, and then never shown outside the mandala.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 ───────────────────────────────────────────────── -->
+<section>
+  <div class="shead"><span class="snum">02</span><h2>The same screen, three ways</h2></div>
+  <p class="sdek">One reading. One moment. Everything that moves below is chrome —
+  the nebula, the card glow, the accent bar, the label, the hairline, the button.
+  The strip along the bottom of each screen is the chamber's colour field, which is
+  <b>identical in all three</b>: no model touches the therapy itself.</p>
+
+  <div class="controls">
+    <div class="ctrow">
+      <div class="ctitle">The day · carrier</div>
+      <div class="pills" id="pl-planet"></div>
+    </div>
+    <div class="ctrow">
+      <div class="ctitle">The state it's in</div>
+      <div class="pills" id="pl-state"></div>
+    </div>
+  </div>
+
+  <div class="rooms">
+    <div class="room" data-m="a">
+      <div class="roomhead"><div class="k">A · The room calibrates</div>
+        <div class="d">Chrome takes the corrective colour for today's state</div></div>
+      <div class="screen"><div class="neb"></div><div class="scr"></div></div>
+      <div class="roomfoot"><span class="chip"></span><span class="fl"></span></div>
+    </div>
+    <div class="room" data-m="b">
+      <div class="roomhead"><div class="k">B · One fixed room</div>
+        <div class="d">Chrome never moves; corrective colour stays in the chamber</div></div>
+      <div class="screen"><div class="neb"></div><div class="scr"></div></div>
+      <div class="roomfoot"><span class="chip"></span><span class="fl"></span></div>
+    </div>
+    <div class="room" data-m="c">
+      <div class="roomhead"><div class="k">C · Warms and cools only</div>
+        <div class="d">Chrome answers the state, never the planet's identity</div></div>
+      <div class="screen"><div class="neb"></div><div class="scr"></div></div>
+      <div class="roomfoot"><span class="chip"></span><span class="fl"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ───────────────────────────────────────────────── -->
+<section>
+  <div class="shead"><span class="snum">03</span><h2>The trap inside option A</h2></div>
+  <p class="sdek">I tested A against all forty day-states before drawing any of this.
+  <b>The corrective palette only cools when a signal is elevated.</b> When it is depleted the palette
+  deliberately <i>warms</i> — that is correct therapy inside a mandala, and it is the old complaint
+  all over again at full-viewport scale. Six states resolve to a red-band hue on the naive read.
+  Mars balanced is Warm Red. Pluto depleted is Deep Burgundy.</p>
+  <p class="sdek" style="margin-top:-10px">So A only works with a guard: <b>chrome takes the first
+  member of the state's corrective palette that is not in the red band, then is tempered to a chrome
+  envelope.</b> Every cell below is what ships. The six marked ✕ are the ones the guard caught.</p>
+  <div class="grid40" id="grid40"></div>
+  <div class="legend">
+    <span><span class="lgbox"></span> the naive pick was in the red band — the guard stepped past it</span>
+    <span style="color:rgba(148,163,184,.75)">every swatch shown is the enveloped value, after tempering</span>
+  </div>
+</section>
+
+<!-- 4 ───────────────────────────────────────────────── -->
+<section>
+  <div class="shead"><span class="snum">04</span><h2>What each one costs</h2></div>
+  <div class="opts">
+    <div class="opt pick">
+      <div class="tag">Recommended</div>
+      <h4>A · The room calibrates</h4>
+      <p>Chrome takes the enveloped corrective colour for the carrier's current state. Mars running
+      hot and the room goes blue-green. Never-amplify, applied to colour — the law that already
+      governs fork selection.</p>
+      <div class="cost"><b>The cost:</b> the app's colour is no longer one fixed thing. It is a
+      band of tempered hues, and the brand has to be carried by the bone strips, the type and the
+      near-black ground instead.</div>
+    </div>
+    <div class="opt">
+      <div class="tag">Safest</div>
+      <h4>B · One fixed room</h4>
+      <p>Chrome stays antique gold for everyone, every day. The corrective palette lives only in
+      the chamber, where it already works. This is what is live right now.</p>
+      <div class="cost"><b>The cost:</b> it stops the harm and throws away the medicine. A room
+      that is the same for everyone is a theme, not a calibration.</div>
+    </div>
+    <div class="opt">
+      <div class="tag">Middle</div>
+      <h4>C · Warms and cools only</h4>
+      <p>One neutral family, temperature-shifted by state. Hot days cool the room, depleted days
+      warm it. The planet's identity never reaches the chrome at all.</p>
+      <div class="cost"><b>The cost:</b> four rooms total. It reads as a mood setting rather than
+      a reading, and a Mars day and a Neptune day in the same state look identical.</div>
+    </div>
+  </div>
+
+  <div class="rec" style="margin-top:22px">
+    <div class="strip" style="background:var(--trim2)">
+      <span class="bar" style="background:var(--house)"></span>
+      <h3>The rule, either way</h3><span class="badge">for the house-style skill</span></div>
+    <div class="recbody">
+      <p>Whichever model you pick, two lines get written into the house style and enforced in code,
+      because the failure was never a hue — it was that nothing stopped one.</p>
+      <ol class="rule">
+        <li>No chrome element may take a planet's <code>base</code> palette. Base is identity;
+          chrome is the room.</li>
+        <li>No chrome element may render a hue listed in that planet-state's <code>avoid</code>.
+          The engine names what must not be shown; the presentation layer has to read it.</li>
+      </ol>
+      <p style="margin-top:14px">Under B and C those rules hold by construction. Under A they need
+      the envelope guard above, and a test that walks all forty states on every build so it can
+      never quietly come back.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Palettes read directly from <code>src/lib/visual/planetColorTherapyLibrary.ts</code> — nothing here is
+  invented. The persistence trap is already fixed and live: <code>accentColor</code> is out of the
+  persist whitelist, and a migration releases every browser that was pinned to an old hue.
+</footer>
+</div>
+
+<script>
+const DATA = {"Sun": {"base": ["#F5B301", "#FFB347", "#F4F1E8"], "baseNames": ["Gold", "Amber", "Soft White"], "hz": 126.22, "states": {"elevated": {"a": "#D1BE90", "aName": "Restorative Gold", "aNaive": "#E8C879", "aNaiveName": "Restorative Gold", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#E8C879", "#BFD8F5", "#F4F1E8"], "names": ["Restorative Gold", "Pale Blue", "Soft White"], "avoid": ["intense orange-red", "blinding white", "rapid solar flare"], "instruction": "Let the brightness soften. Long, slow exhale.", "word": "running hot \u00b7 amplified", "baseHex": "#F5B301", "baseName": "Gold"}, "depleted": {"a": "#B5984A", "aName": "Warm Gold", "aNaive": "#F5B301", "aNaiveName": "Warm Gold", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#F5B301", "#FFD56B", "#F4F1E8"], "names": ["Warm Gold", "Sunrise Yellow", "Soft White"], "avoid": ["cold empty fields", "overly dark visuals"], "instruction": "Draw the warm light in on the inhale.", "word": "running low \u00b7 under-resourced", "baseHex": "#F5B301", "baseName": "Gold"}, "blocked": {"a": "#D3C092", "aName": "Sunrise Yellow", "aNaive": "#FFD56B", "aNaiveName": "Sunrise Yellow", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#FFD56B", "#E8C879", "#F4F1E8"], "names": ["Sunrise Yellow", "Soft Gold", "Soft White"], "avoid": ["hard static blocks", "aggressive pulsing"], "instruction": "Let the light open through. Soften on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#F5B301", "baseName": "Gold"}, "balanced": {"a": "#B5984A", "aName": "Gold", "aNaive": "#F5B301", "aNaiveName": "Gold", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#F5B301", "#FFD56B", "#F4F1E8"], "names": ["Gold", "Sunrise Yellow", "Soft White"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#F5B301", "baseName": "Gold"}}}, "Moon": {"base": ["#EDEAE2", "#C9CCD4", "#C3D8EE"], "baseNames": ["Pearl", "Silver", "Pale Blue"], "hz": 210.42, "states": {"elevated": {"a": "#A3B0C2", "aName": "Soft Blue-Gray", "aNaive": "#AAB6C6", "aNaiveName": "Soft Blue-Gray", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#AAB6C6", "#D6D9DF", "#9FD4CC"], "names": ["Soft Blue-Gray", "Pale Silver", "Muted Aqua"], "avoid": ["bright flashes", "high contrast"], "instruction": "Let the tide settle. Steady, even breath.", "word": "running hot \u00b7 amplified", "baseHex": "#EDEAE2", "baseName": "Pearl"}, "depleted": {"a": "#C5BDA0", "aName": "Pearl White", "aNaive": "#F1EFE8", "aNaiveName": "Pearl White", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#F1EFE8", "#AEE8E0", "#C3D8EE"], "names": ["Pearl White", "Soft Aqua", "Moon-Blue"], "avoid": ["cold empty fields", "overly dark visuals"], "instruction": "Let the soft water nourish. Breathe slow and round.", "word": "running low \u00b7 under-resourced", "baseHex": "#EDEAE2", "baseName": "Pearl"}, "blocked": {"a": "#92D3CA", "aName": "Soft Aqua", "aNaive": "#AEE8E0", "aNaiveName": "Soft Aqua", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#AEE8E0", "#C3D8EE", "#EDEAE2"], "names": ["Soft Aqua", "Moon-Blue", "Pearl"], "avoid": ["dense pressure", "aggressive pulsing"], "instruction": "Let feeling move. Soften and release on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#EDEAE2", "baseName": "Pearl"}, "balanced": {"a": "#C4BBA1", "aName": "Pearl", "aNaive": "#EDEAE2", "aNaiveName": "Pearl", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#EDEAE2", "#AEE8E0", "#C3D8EE"], "names": ["Pearl", "Soft Aqua", "Moon-Blue"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#EDEAE2", "baseName": "Pearl"}}}, "Mercury": {"base": ["#4FD8E8", "#3FA9F5", "#C9CCD4"], "baseNames": ["Cyan", "Electric Blue", "Silver"], "hz": 141.27, "states": {"elevated": {"a": "#92B4D3", "aName": "Soft Blue", "aNaive": "#9CC4E8", "aNaiveName": "Soft Blue", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#9CC4E8", "#9BE3CE", "#C2C6CC"], "names": ["Soft Blue", "Seafoam", "Muted Silver"], "avoid": ["fast electric sparks", "jittering", "rapid flashing"], "instruction": "Let the thoughts slow and organize. Even breath.", "word": "running hot \u00b7 amplified", "baseHex": "#4FD8E8", "baseName": "Cyan"}, "depleted": {"a": "#80C4CB", "aName": "Clear Cyan", "aNaive": "#5DE0EE", "aNaiveName": "Clear Cyan", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#5DE0EE", "#F3E9A6", "#A9CDEA"], "names": ["Clear Cyan", "Pale Yellow", "Light Blue"], "avoid": ["cold empty fields", "over-stimulation"], "instruction": "Let clarity wake gently. Light, steady breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#4FD8E8", "baseName": "Cyan"}, "blocked": {"a": "#92B4D3", "aName": "Soft Blue", "aNaive": "#9CC4E8", "aNaiveName": "Soft Blue", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#9CC4E8", "#5DE0EE", "#EDEAE2"], "names": ["Soft Blue", "Clear Cyan", "Pearl"], "avoid": ["hard blocks", "aggressive pulsing"], "instruction": "Let the static loosen. Exhale and let thought move.", "word": "compressed \u00b7 restricted", "baseHex": "#4FD8E8", "baseName": "Cyan"}, "balanced": {"a": "#72BDC5", "aName": "Cyan", "aNaive": "#4FD8E8", "aNaiveName": "Cyan", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#4FD8E8", "#9BE3CE", "#A9CDEA"], "names": ["Cyan", "Seafoam", "Light Blue"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#4FD8E8", "baseName": "Cyan"}}}, "Venus": {"base": ["#2FAE78", "#E58FA6", "#E6B7A0"], "baseNames": ["Emerald", "Rose", "Rose Gold"], "hz": 221.23, "states": {"elevated": {"a": "#4AB588", "aName": "Emerald", "aNaive": "#2FAE78", "aNaiveName": "Emerald", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#2FAE78", "#ECE6DD", "#F2C9D4"], "names": ["Emerald", "Soft White", "Pale Rose"], "avoid": ["heavy pink saturation", "sugary visuals", "rapid heart pulsing"], "instruction": "Let the sweetness clear and lighten. Slow exhale.", "word": "running hot \u00b7 amplified", "baseHex": "#2FAE78", "baseName": "Emerald"}, "depleted": {"a": "#4AB588", "aName": "Emerald", "aNaive": "#E6B7A0", "aNaiveName": "Rose Gold", "flagged": true, "b": "#C9A961", "c": "#C9A961", "colors": ["#E6B7A0", "#2FAE78", "#ECE6DD"], "names": ["Rose Gold", "Emerald", "Soft Pearl"], "avoid": ["cold empty fields", "harsh contrast"], "instruction": "Let the heart field open warmly with the inhale.", "word": "running low \u00b7 under-resourced", "baseHex": "#2FAE78", "baseName": "Emerald"}, "blocked": {"a": "#4AB588", "aName": "Emerald", "aNaive": "#E58FA6", "aNaiveName": "Rose", "flagged": true, "b": "#C9A961", "c": "#B0A48E", "colors": ["#E58FA6", "#2FAE78", "#E6B7A0"], "names": ["Rose", "Emerald", "Rose Gold"], "avoid": ["dense pressure", "aggressive pulsing"], "instruction": "Let connection open. Soften and bloom on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#2FAE78", "baseName": "Emerald"}, "balanced": {"a": "#4AB588", "aName": "Emerald", "aNaive": "#2FAE78", "aNaiveName": "Emerald", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#2FAE78", "#E58FA6", "#E6B7A0"], "names": ["Emerald", "Rose", "Rose Gold"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#2FAE78", "baseName": "Emerald"}}}, "Mars": {"base": ["#C5283D", "#FFB347", "#E2632A"], "baseNames": ["Crimson", "Amber", "Deep Orange"], "hz": 144.72, "states": {"elevated": {"a": "#4AB5A8", "aName": "Blue-Green", "aNaive": "#2E9D8F", "aNaiveName": "Blue-Green", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#2E9D8F", "#3A3F8F", "#8A6F52"], "names": ["Blue-Green", "Deep Indigo", "Earth Brown"], "avoid": ["intensifying red", "fire bursts", "rapid pulses", "aggressive triangles"], "instruction": "Let the heat dissolve into the cool field. Long exhale.", "word": "running hot \u00b7 amplified", "baseHex": "#C5283D", "baseName": "Crimson"}, "depleted": {"a": "#CAAA7C", "aName": "Amber", "aNaive": "#E0673A", "aNaiveName": "Warm Red-Orange", "flagged": true, "b": "#C9A961", "c": "#C9A961", "colors": ["#E0673A", "#FFB347", "#E2B24C"], "names": ["Warm Red-Orange", "Amber", "Steady Gold"], "avoid": ["cold empty fields", "over-stimulation"], "instruction": "Let a steady warmth build. Even, forward breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#C5283D", "baseName": "Crimson"}, "blocked": {"a": "#4FB3A6", "aName": "Green-Blue Release", "aNaive": "#CF5B5B", "aNaiveName": "Soft Red", "flagged": true, "b": "#C9A961", "c": "#B0A48E", "colors": ["#CF5B5B", "#4FB3A6", "#D9A85C"], "names": ["Soft Red", "Green-Blue Release", "Muted Amber"], "avoid": ["hard static blocks", "aggressive pulsing"], "instruction": "Compress on the inhale, release the heat on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#C5283D", "baseName": "Crimson"}, "balanced": {"a": "#CAAA7C", "aName": "Amber", "aNaive": "#D24238", "aNaiveName": "Warm Red", "flagged": true, "b": "#C9A961", "c": "#C9A961", "colors": ["#D24238", "#FFB347", "#E2B24C"], "names": ["Warm Red", "Amber", "Steady Gold"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#C5283D", "baseName": "Crimson"}}}, "Jupiter": {"base": ["#3B5BCC", "#8B5CF6", "#F5B301"], "baseNames": ["Royal Blue", "Violet", "Gold"], "hz": 183.58, "states": {"elevated": {"a": "#4A5EB5", "aName": "Deep Blue", "aNaive": "#2C3E8C", "aNaiveName": "Deep Blue", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#2C3E8C", "#C9A24B", "#A98EDB"], "names": ["Deep Blue", "Muted Gold", "Soft Violet"], "avoid": ["runaway expansion", "too much sparkle", "chaotic spirals"], "instruction": "Let the expansion settle inside the holding ring.", "word": "running hot \u00b7 amplified", "baseHex": "#3B5BCC", "baseName": "Royal Blue"}, "depleted": {"a": "#5067B7", "aName": "Royal Blue", "aNaive": "#3B5BCC", "aNaiveName": "Royal Blue", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#3B5BCC", "#F5B301", "#4A4E94"], "names": ["Royal Blue", "Gold", "Warm Indigo"], "avoid": ["cold empty fields", "harsh contrast"], "instruction": "Let the field expand gently. Broad, easy breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#3B5BCC", "baseName": "Royal Blue"}, "blocked": {"a": "#5067B7", "aName": "Royal Blue", "aNaive": "#3B5BCC", "aNaiveName": "Royal Blue", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#3B5BCC", "#C9A24B", "#A98EDB"], "names": ["Royal Blue", "Muted Gold", "Soft Violet"], "avoid": ["dense pressure", "aggressive pulsing"], "instruction": "Let room open. Expand steadily on the inhale.", "word": "compressed \u00b7 restricted", "baseHex": "#3B5BCC", "baseName": "Royal Blue"}, "balanced": {"a": "#5067B7", "aName": "Royal Blue", "aNaive": "#3B5BCC", "aNaiveName": "Royal Blue", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#3B5BCC", "#8B5CF6", "#F5B301"], "names": ["Royal Blue", "Violet", "Gold"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#3B5BCC", "baseName": "Royal Blue"}}}, "Saturn": {"base": ["#2E2E36", "#54627A", "#C9A24B"], "baseNames": ["Charcoal", "Slate Blue", "Muted Gold"], "hz": 147.85, "states": {"elevated": {"a": "#8A8378", "aName": "Warm Gray", "aNaive": "#8A8378", "aNaiveName": "Warm Gray", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#8A8378", "#C9A24B", "#9CC4E8"], "names": ["Warm Gray", "Muted Gold", "Soft Blue"], "avoid": ["heavy black fields", "claustrophobic visuals", "hard static blocks"], "instruction": "Breathe into the structure. Let pressure soften outward.", "word": "running hot \u00b7 amplified", "baseHex": "#2E2E36", "baseName": "Charcoal"}, "depleted": {"a": "#BFA261", "aName": "Structured Gold", "aNaive": "#D2A94E", "aNaiveName": "Structured Gold", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#D2A94E", "#54627A", "#ECE7D9"], "names": ["Structured Gold", "Slate Blue", "Bone White"], "avoid": ["cold empty fields", "heavy darkness"], "instruction": "Let a steady structure form. Slow, grounded breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#2E2E36", "baseName": "Charcoal"}, "blocked": {"a": "#8A8378", "aName": "Warm Gray", "aNaive": "#8A8378", "aNaiveName": "Warm Gray", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#8A8378", "#C9A24B", "#ECE7D9"], "names": ["Warm Gray", "Muted Gold", "Bone White"], "avoid": ["hard static blocks", "dense pressure"], "instruction": "Ease the boundary. Let the grid expand on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#2E2E36", "baseName": "Charcoal"}, "balanced": {"a": "#687997", "aName": "Slate Blue", "aNaive": "#54627A", "aNaiveName": "Slate Blue", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#54627A", "#C9A24B", "#ECE7D9"], "names": ["Slate Blue", "Muted Gold", "Bone White"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#2E2E36", "baseName": "Charcoal"}}}, "Uranus": {"base": ["#3FA9F5", "#4FD8E8", "#8B5CF6"], "baseNames": ["Electric Blue", "Cyan", "Violet"], "hz": 207.33, "states": {"elevated": {"a": "#4AB5AE", "aName": "Teal", "aNaive": "#2FA8A0", "aNaiveName": "Teal", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#2FA8A0", "#2C3E8C", "#C9A24B"], "names": ["Teal", "Deep Blue", "Muted Gold"], "avoid": ["sharp electric flicker", "glitch effects", "rapid sparks", "flashing white"], "instruction": "Slow exhale \u2014 let the current settle and ground.", "word": "running hot \u00b7 amplified", "baseHex": "#3FA9F5", "baseName": "Electric Blue"}, "depleted": {"a": "#6095BE", "aName": "Electric Blue", "aNaive": "#2E9BF0", "aNaiveName": "Electric Blue", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#2E9BF0", "#4FD8E8", "#C8B6E4"], "names": ["Electric Blue", "Cyan", "Soft Violet"], "avoid": ["cold empty fields", "harsh contrast"], "instruction": "Let fresh current wake gently. Light, easy breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#3FA9F5", "baseName": "Electric Blue"}, "blocked": {"a": "#4AB5AE", "aName": "Teal", "aNaive": "#2FA8A0", "aNaiveName": "Teal", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#2FA8A0", "#2E9BF0", "#8FD8E6"], "names": ["Teal", "Electric Blue", "Soft Cyan"], "avoid": ["sharp flicker", "aggressive pulsing"], "instruction": "Let change move through cleanly. Exhale and release.", "word": "compressed \u00b7 restricted", "baseHex": "#3FA9F5", "baseName": "Electric Blue"}, "balanced": {"a": "#70A1C4", "aName": "Electric Blue", "aNaive": "#3FA9F5", "aNaiveName": "Electric Blue", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#3FA9F5", "#4FD8E8", "#8B5CF6"], "names": ["Electric Blue", "Cyan", "Violet"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#3FA9F5", "baseName": "Electric Blue"}}}, "Neptune": {"base": ["#9BE3CE", "#8B5CF6", "#C3B2E8"], "baseNames": ["Seafoam", "Violet", "Lavender"], "hz": 211.45, "states": {"elevated": {"a": "#6A9EC2", "aName": "Clear Blue", "aNaive": "#4FA3DD", "aNaiveName": "Clear Blue", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#4FA3DD", "#C9CCD4", "#3C9B92"], "names": ["Clear Blue", "Silver Boundary", "Grounding Teal"], "avoid": ["heavy fog", "too much blur", "sedating darkness"], "instruction": "Let the edges return. Clear, steady breath.", "word": "running hot \u00b7 amplified", "baseHex": "#9BE3CE", "baseName": "Seafoam"}, "depleted": {"a": "#A792D3", "aName": "Lavender", "aNaive": "#C3B2E8", "aNaiveName": "Lavender", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#C3B2E8", "#9BE3CE", "#C8B6E4"], "names": ["Lavender", "Seafoam", "Pale Violet"], "avoid": ["heavy darkness", "cold empty fields"], "instruction": "Let the soft shimmer return. Dreamy, slow breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#9BE3CE", "baseName": "Seafoam"}, "blocked": {"a": "#6A9EC2", "aName": "Clear Blue", "aNaive": "#4FA3DD", "aNaiveName": "Clear Blue", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#4FA3DD", "#B6E6D6", "#C9CCD4"], "names": ["Clear Blue", "Soft Seafoam", "Silver"], "avoid": ["heavy fog", "aggressive pulsing"], "instruction": "Let the fog lift. Exhale into clarity.", "word": "compressed \u00b7 restricted", "baseHex": "#9BE3CE", "baseName": "Seafoam"}, "balanced": {"a": "#92D3C0", "aName": "Seafoam", "aNaive": "#9BE3CE", "aNaiveName": "Seafoam", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#9BE3CE", "#8B5CF6", "#C3B2E8"], "names": ["Seafoam", "Violet", "Lavender"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#9BE3CE", "baseName": "Seafoam"}}}, "Pluto": {"base": ["#5B2A86", "#6E1F36", "#11131F"], "baseNames": ["Deep Violet", "Burgundy", "Black-Blue"], "hz": 140.25, "states": {"elevated": {"a": "#834AB5", "aName": "Deep Violet", "aNaive": "#5B2A86", "aNaiveName": "Deep Violet", "flagged": false, "b": "#C9A961", "c": "#8FA9A6", "colors": ["#5B2A86", "#11131F", "#D9B65C"], "names": ["Deep Violet", "Black-Blue", "Gold Containment"], "avoid": ["overwhelming dark red", "rapid vortex", "threatening visuals", "violent pulsing"], "instruction": "Let it move slowly. Contain and breathe through it.", "word": "running hot \u00b7 amplified", "baseHex": "#5B2A86", "baseName": "Deep Violet"}, "depleted": {"a": "#BF9761", "aName": "Gold Ember", "aNaive": "#5E1B30", "aNaiveName": "Deep Burgundy", "flagged": true, "b": "#C9A961", "c": "#C9A961", "colors": ["#5E1B30", "#D69A4A", "#1A1E2E"], "names": ["Deep Burgundy", "Gold Ember", "Warm Black-Blue"], "avoid": ["cold empty fields", "heavy darkness"], "instruction": "Let a steady depth return. Slow, rooted breath.", "word": "running low \u00b7 under-resourced", "baseHex": "#5B2A86", "baseName": "Deep Violet"}, "blocked": {"a": "#834AB5", "aName": "Deep Violet", "aNaive": "#5B2A86", "aNaiveName": "Deep Violet", "flagged": false, "b": "#C9A961", "c": "#B0A48E", "colors": ["#5B2A86", "#6E1F36", "#CDA94E"], "names": ["Deep Violet", "Soft Burgundy", "Gold Boundary"], "avoid": ["rapid vortex", "violent pulsing"], "instruction": "Let what is ready release. Open slowly on the exhale.", "word": "compressed \u00b7 restricted", "baseHex": "#5B2A86", "baseName": "Deep Violet"}, "balanced": {"a": "#834AB5", "aName": "Deep Violet", "aNaive": "#5B2A86", "aNaiveName": "Deep Violet", "flagged": false, "b": "#C9A961", "c": "#C9A961", "colors": ["#5B2A86", "#6E1F36", "#D9B65C"], "names": ["Deep Violet", "Burgundy", "Soft Gold"], "avoid": ["high contrast", "fast movement"], "instruction": "Rest in the steady field. Let the breath stay even.", "word": "coherent \u00b7 steady", "baseHex": "#5B2A86", "baseName": "Deep Violet"}}}};
+const PLANETS = Object.keys(DATA);
+const STATES = ['elevated','depleted','blocked','balanced'];
+const STATE_LABEL = {elevated:'Elevated',depleted:'Depleted',blocked:'Blocked',balanced:'Balanced'};
+let cur = {p:'Mars', s:'elevated'};
+
+const hx = (h,a)=>{h=h.replace('#','');return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;};
+
+function pills(el, items, label, key){
+  el.innerHTML = items.map(v=>
+    `<button class="pill" data-v="${v}" aria-pressed="${cur[key]===v}">${label(v)}</button>`).join('');
+  el.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{cur[key]=b.dataset.v;render();});
+}
+
+function screenHTML(accent, d){
+  return `
+  <div class="navrow">
+    <span class="logo" style="color:${accent}">ASTRYX</span>
+    <span class="navpill" style="color:${accent};background:${hx(accent,.10)};border:1px solid ${hx(accent,.32)}">Today</span>
+  </div>
+  <div class="minicard" style="border-color:${hx(accent,.28)};box-shadow:0 14px 34px -22px ${hx(accent,.75)}">
+    <div class="ministrip"><span class="bar" style="background:${accent}"></span>
+      <span class="t">Today's signal</span></div>
+    <div class="minibody">
+      <div class="sig" style="color:${accent}">${cur.p}</div>
+      <div class="sigsub">${d.word}</div>
+      <div class="hair" style="background:${hx(accent,.30)}"></div>
+      <span class="forkpill" style="color:${accent};background:${hx(accent,.10)};border:1px solid ${hx(accent,.34)}">
+        ${cur.p} &middot; ${d.hz} Hz</span>
+      <div class="btn" style="background:${accent};box-shadow:0 10px 26px -14px ${hx(accent,.9)}">Enter the Chamber</div>
+    </div>
+  </div>
+  <div class="lbl" style="color:${hx(accent,.82)}">Colour field &middot; in the chamber</div>
+  <div class="chamberstrip">${d.colors.map(c=>`<div style="background:${c}"></div>`).join('')}</div>
+  <div class="chamlbl">${d.names.join(' &middot; ')}</div>`;
+}
+
+function render(){
+  const d = {...DATA[cur.p].states[cur.s], hz: DATA[cur.p].hz};
+
+  pills(document.getElementById('pl-planet'), PLANETS, v=>v, 'p');
+  pills(document.getElementById('pl-state'), STATES, v=>STATE_LABEL[v], 's');
+
+  // 01 — evidence
+  const base = DATA[cur.p].base, baseN = DATA[cur.p].baseNames;
+  document.getElementById('ev-base').innerHTML =
+    base.map((c,i)=>`<div class="sw" style="background:${c}">${baseN[i]}</div>`).join('');
+  document.getElementById('ev-corr').innerHTML =
+    d.colors.map((c,i)=>`<div class="sw" style="background:${c}">${d.names[i]}</div>`).join('');
+  document.getElementById('ev-avoid').textContent = d.avoid.join(' &middot; ').replace(/&middot;/g,'·');
+  document.getElementById('ev-instr').textContent = '“' + d.instruction + '”';
+  document.getElementById('ev-verdict').textContent =
+    `Chrome pushed ${baseN[0]} (${base[0]}) through every button, border, label, card glow and the full-viewport nebula.`;
+
+  // 02 — three rooms
+  document.querySelectorAll('.room').forEach(room=>{
+    const m = room.dataset.m, accent = d[m];
+    room.querySelector('.neb').style.background =
+      `radial-gradient(circle at 22% 34%, ${hx(accent,.17)} 0%, transparent 62%), #020208`;
+    room.querySelector('.scr').innerHTML = screenHTML(accent, d);
+    room.querySelector('.chip').style.background = accent;
+    const names = {
+      a: d.flagged ? `${d.aName} — guard stepped past ${d.aNaiveName}` : d.aName,
+      b: 'Antique gold — fixed',
+      c: {elevated:'Cooled stone',depleted:'Warm gold',blocked:'Dry stone',balanced:'Warm gold'}[cur.s]
+    };
+    room.querySelector('.fl').innerHTML = `${accent} &nbsp;·&nbsp; ${names[m]}`;
+  });
+
+  // 03 — the grid
+  let g = `<div></div>` + STATES.map(s=>`<div class="g-h">${STATE_LABEL[s]}</div>`).join('');
+  PLANETS.forEach(p=>{
+    g += `<div class="g-p">${p}</div>`;
+    STATES.forEach(s=>{
+      const c = DATA[p].states[s];
+      g += `<div class="cell${c.flagged?' flag':''}" style="background:${c.a}">
+              <div class="n">${c.aName}</div></div>`;
+    });
+  });
+  document.getElementById('grid40').innerHTML = g;
+}
+render();
+</script>
