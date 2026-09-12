@@ -1177,7 +1177,7 @@ function TierGate({
           <button
             onClick={onBack}
             className="kowalski-button rounded-2xl px-5 py-3 text-[13px]"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.8)' }}
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.8)' }}
           >
             ← Back
           </button>

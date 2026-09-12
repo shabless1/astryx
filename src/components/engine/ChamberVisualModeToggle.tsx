@@ -38,7 +38,7 @@ export default function ChamberVisualModeToggle({
       style={{
         background: 'rgba(5,7,20,0.7)',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255,255,255,0.12)',
+        border: '1px solid var(--hair-warm)',
       }}
       role="tablist"
       aria-label="Chamber visual view"

@@ -978,7 +978,7 @@ export default function SessionScreen({
               disabled={stepIdx === 0}
               className="px-3 py-2 rounded-lg font-rajdhani text-[11px] tracking-[0.2em] uppercase transition disabled:opacity-30"
               style={{
-                background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)',
+                background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)',
                 color: 'rgba(255,255,255,0.65)', cursor: stepIdx === 0 ? 'not-allowed' : 'pointer',
               }}
             >
@@ -1061,7 +1061,7 @@ export default function SessionScreen({
 
 const topPanelStyle: React.CSSProperties = {
   background: 'rgba(5,7,20,0.7)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-  border: '1px solid rgba(255,255,255,0.12)', borderRadius: 14, padding: '10px 18px',
+  border: '1px solid var(--hair-warm)', borderRadius: 14, padding: '10px 18px',
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1288,7 +1288,7 @@ function PaceButton({ label, onClick }: { label: string; onClick: () => void }) 
       onClick={onClick}
       className="px-3 py-1.5 rounded-lg font-rajdhani text-[10px] tracking-[0.18em] uppercase"
       style={{
-        background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.14)',
+        background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)',
         color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
       }}
     >

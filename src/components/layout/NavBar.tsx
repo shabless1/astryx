@@ -123,7 +123,7 @@ export default function NavBar({
       style={{
         backdropFilter: 'blur(20px) saturate(140%)',
         WebkitBackdropFilter: 'blur(20px) saturate(140%)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderBottom: '1px solid var(--hair-warm)',
         background: 'rgba(5,7,20,0.65)',
       }}
     >
@@ -141,7 +141,7 @@ export default function NavBar({
             style={{
               width: 38, height: 38,
               background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.12)',
+              border: '1px solid var(--hair-warm)',
               color: 'rgba(255,255,255,0.8)',
               transition: 'all 300ms cubic-bezier(0.32,0.72,0,1)',
             }}
@@ -223,7 +223,7 @@ export default function NavBar({
               className="group hidden sm:inline-flex items-center gap-2 pl-3 pr-1 py-1 rounded-full kowalski-button"
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.12)',
+                border: '1px solid var(--hair-warm)',
                 transition: 'all 400ms cubic-bezier(0.32,0.72,0,1)',
               }}
               onMouseEnter={(e) => {
@@ -278,7 +278,7 @@ export default function NavBar({
                   style={{
                     background: 'rgba(5,7,20,0.96)',
                     backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)',
-                    border: '1px solid rgba(255,255,255,0.14)',
+                    border: '1px solid var(--hair-warm)',
                     boxShadow: '0 18px 50px -16px rgba(0,0,0,0.7)',
                   }}
                 >
@@ -303,7 +303,7 @@ export default function NavBar({
               className="px-3 py-1.5 rounded-full text-[11px] uppercase tracking-[0.22em] kowalski-button"
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.12)',
+                border: '1px solid var(--hair-warm)',
                 color: 'rgba(255,255,255,0.75)',
                 transition: 'all 300ms cubic-bezier(0.32,0.72,0,1)',
               }}
@@ -362,7 +362,7 @@ export default function NavBar({
           ────────────────────────────────────────────────────── */}
       <div
         className="hidden md:flex items-center justify-center gap-1 px-6 pb-2 pt-1"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
+        style={{ borderTop: '1px solid var(--hair-warm)' }}
       >
         {visibleItems.map((item) => (
           <NavTab
@@ -389,7 +389,7 @@ export default function NavBar({
           background: 'rgba(2,2,8,0.92)',
           backdropFilter: 'blur(24px) saturate(160%)',
           WebkitBackdropFilter: 'blur(24px) saturate(160%)',
-          borderTop: menuOpen ? '1px solid rgba(255,255,255,0.06)' : 'none',
+          borderTop: menuOpen ? '1px solid var(--hair-warm)' : 'none',
         }}
       >
         <nav className="px-4 py-3 grid grid-cols-1 gap-1">
@@ -480,7 +480,7 @@ function NavTab({
           : 'transparent',
         border: `1px solid ${active ? hexToRgba(accent, 0.4) : 'transparent'}`,
         boxShadow: active
-          ? `0 0 24px -6px ${hexToRgba(accent, 0.55)}, inset 0 1px 0 rgba(255,255,255,0.06)`
+          ? `0 0 24px -6px ${hexToRgba(accent, 0.55)}, inset 0 1px 0 var(--lip)`
           : 'none',
         transition: 'all 350ms cubic-bezier(0.32,0.72,0,1)',
       }}

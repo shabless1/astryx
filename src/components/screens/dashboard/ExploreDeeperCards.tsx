@@ -176,7 +176,7 @@ export default function ExploreDeeperCards({
 function DeepCollapsible({ title, accent, children }: { title: string; accent: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+    <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
       <button
         onClick={() => setOpen((o) => !o)}
         className="w-full flex items-center justify-between px-4 py-3 text-left"

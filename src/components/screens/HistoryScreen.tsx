@@ -316,7 +316,7 @@ function Chip({ label, accent }: { label: string; accent?: string }) {
       className="px-2 py-0.5 rounded-full text-[10px]"
       style={accent
         ? { background: hexToRgba(accent, 0.18), border: `1px solid ${hexToRgba(accent, 0.4)}`, color: accent }
-        : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.65)' }}
+        : { background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.65)' }}
     >
       {label}
     </span>

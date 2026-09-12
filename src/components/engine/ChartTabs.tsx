@@ -112,7 +112,7 @@ function NoBirthTimeChart({
       className="w-full text-center py-12 rounded-xl font-rajdhani"
       style={{
         background: hexToRgba(accentColor, 0.04),
-        border: `1px solid rgba(255,255,255,0.08)`,
+        border: `1px solid var(--hair-warm)`,
       }}
     >
       <div className="text-3xl mb-3" style={{ color: hexToRgba(accentColor, 0.5) }}>◎</div>

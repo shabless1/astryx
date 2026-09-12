@@ -126,7 +126,7 @@ export default function SessionModePicker({
           <button
             onClick={onBack}
             className="kowalski-button rounded-2xl px-5 py-2.5 text-[13px]"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.75)' }}
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.75)' }}
           >
             ← Back
           </button>

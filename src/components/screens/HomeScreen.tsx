@@ -145,7 +145,7 @@ export default function HomeScreen({
             className="group inline-flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full kowalski-button"
             style={{
               background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.10)',
+              border: '1px solid var(--hair-warm)',
               transition: 'all 500ms cubic-bezier(0.32,0.72,0,1)',
             }}
             title="Settings"
@@ -260,7 +260,7 @@ export default function HomeScreen({
                     className="p-4 rounded-2xl"
                     style={{
                       background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      border: '1px solid var(--hair-warm)',
                     }}
                   >
                     <div className="text-[10px] uppercase tracking-[0.25em] text-label mb-1.5">
@@ -301,7 +301,7 @@ export default function HomeScreen({
                 className="group px-4 py-2.5 rounded-full text-[13px] kowalski-button"
                 style={{
                   background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.10)',
+                  border: '1px solid var(--hair-warm)',
                   color: 'rgba(255,255,255,0.85)',
                   transition: 'all 400ms cubic-bezier(0.32,0.72,0,1)',
                 }}

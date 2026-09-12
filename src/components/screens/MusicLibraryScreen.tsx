@@ -189,7 +189,7 @@ export default function MusicLibraryScreen({
           <button
             onClick={onBack}
             className="kowalski-button rounded-full px-4 py-2 text-[11px] uppercase tracking-[0.2em]"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.8)' }}
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.8)' }}
           >
             ← Back
           </button>
@@ -441,7 +441,7 @@ export default function MusicLibraryScreen({
                   />
                   <button onClick={() => playQueue(draft)}
                     className="px-4 py-2 rounded-lg text-[11px] uppercase tracking-[0.18em]"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.8)', cursor: 'pointer' }}>
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.8)', cursor: 'pointer' }}>
                     ▶ Preview
                   </button>
                   <button onClick={saveDraft}
@@ -486,7 +486,7 @@ export default function MusicLibraryScreen({
       {nowPlaying && (
         <div className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4 pointer-events-none">
           <div className="max-w-3xl mx-auto pointer-events-auto rounded-2xl p-3"
-               style={{ background: 'rgba(5,7,20,0.92)', backdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.12)' }}>
+               style={{ background: 'rgba(5,7,20,0.92)', backdropFilter: 'blur(16px)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             <div className="flex items-center gap-3">
               <div className="flex-1 min-w-0">
                 <div className="text-[9px] uppercase tracking-[0.2em] text-white/45">
@@ -560,7 +560,7 @@ function MiniBtn({
 
 function Empty({ text }: { text: string }) {
   return (
-    <div className="rounded-xl p-8 text-center" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}>
+    <div className="rounded-xl p-8 text-center" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
       <p className="text-[13px] text-content-sm">{text}</p>
     </div>
   )

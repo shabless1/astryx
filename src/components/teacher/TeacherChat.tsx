@@ -255,7 +255,7 @@ export default function TeacherChat({
           {busy && (
             <div className="flex justify-start">
               <div className="px-4 py-2.5 rounded-2xl text-[13px] text-white/50"
-                   style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                   style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
                 <span className="animate-pulse">Astra is reading your chart…</span>
               </div>
             </div>

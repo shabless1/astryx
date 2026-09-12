@@ -255,7 +255,7 @@ export default function ResultsScreen({
             background: `linear-gradient(135deg, ${hexAlpha(accentColor, 0.18)} 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.02) 100%)`,
             border: `1px solid ${hexAlpha(accentColor, 0.22)}`,
             boxShadow:
-              `0 32px 64px -32px ${hexAlpha(accentColor, 0.45)}, inset 0 1px 0 rgba(255,255,255,0.08)`,
+              `0 32px 64px -32px ${hexAlpha(accentColor, 0.45)}, inset 0 1px 0 var(--lip)`,
           }}
         >
           {/* Inner core (concentric squircle, mathematically smaller radius) */}
@@ -1286,7 +1286,7 @@ function CalibrationToday({
         style={{
           background: `linear-gradient(135deg, ${hexAlpha(planetColor, 0.20)} 0%, rgba(255,255,255,0.03) 55%, rgba(255,255,255,0.02) 100%)`,
           border: `1px solid ${hexAlpha(planetColor, 0.30)}`,
-          boxShadow: `0 28px 60px -30px ${hexAlpha(planetColor, 0.50)}, inset 0 1px 0 rgba(255,255,255,0.08)`,
+          boxShadow: `0 28px 60px -30px ${hexAlpha(planetColor, 0.50)}, inset 0 1px 0 var(--lip)`,
         }}
       >
         <div
@@ -1339,7 +1339,7 @@ function CalibrationToday({
 
           {/* The five plain-language actions */}
           <div className="rounded-2xl px-4 sm:px-5 py-1.5 mb-5"
-               style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.06)' }}>
+               style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             <ActionRow label="Sound" accent={planetColor}>
               {soundLabel}
               {mode === 'practitioner' && rx?.fiveSenses.sound?.hz
@@ -1368,7 +1368,7 @@ function CalibrationToday({
           <button
             onClick={() => onAskTeacher()}
             className="kowalski-button w-full mt-1 flex items-center justify-between rounded-2xl px-4 py-3 text-left"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
           >
             <span className="flex items-center gap-2.5">
               <span className="inline-block w-1.5 h-1.5 rounded-full"
@@ -1615,7 +1615,7 @@ function ChamberCTA({
 
           {mode === 'practitioner' && (
             <div className="mt-3 px-3 py-2 rounded-lg"
-                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
               <p className="text-[10px] uppercase tracking-[0.22em] text-label mb-1">Practitioner trace</p>
               <p className="text-[11px] text-meta">
                 {dna.technicalSignature} · <span className="font-mono-jb">{dna.signature}</span>
@@ -1815,7 +1815,7 @@ function TransitProtocolModal({
             className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-[16px] kowalski-button"
             style={{
               background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.10)',
+              border: '1px solid var(--hair-warm)',
               color: 'rgba(255,255,255,0.7)',
             }}
             aria-label="Close"
@@ -2048,7 +2048,7 @@ function TransitSection({
   title, color, children,
 }: { title: string; color: string; children: React.ReactNode }) {
   return (
-    <div className="mb-5 pb-5 last:mb-0 last:pb-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+    <div className="mb-5 pb-5 last:mb-0 last:pb-0" style={{ borderBottom: '1px solid var(--hair-warm)' }}>
       <div className="text-[10px] uppercase tracking-[0.28em] font-medium mb-2"
            style={{ color: hexAlpha(color, 0.85) }}>
         {title}

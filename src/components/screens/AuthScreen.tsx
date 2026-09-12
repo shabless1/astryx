@@ -93,7 +93,7 @@ export default function AuthScreen({ accentColor, onSuccess, onSkip, initialMode
             className="w-full flex items-center justify-center gap-3 py-3 rounded-xl mb-4 font-rajdhani text-[13px] tracking-[0.1em] transition-all duration-200 hover:bg-white/8"
             style={{
               background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.12)',
+              border: '1px solid var(--hair-warm)',
               color: 'rgba(255,255,255,0.8)',
               cursor: 'pointer',
             }}

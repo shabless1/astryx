@@ -66,7 +66,7 @@ export default function SubscribeGateScreen({
         <div className="flex gap-2.5 mb-3">
           <div
             className="flex-1 rounded-2xl px-3 py-3.5"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)' }}
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
           >
             <div className="font-cinzel text-[22px] leading-none mb-1.5" style={{ color: accentColor }}>
               {PRICE_MONTHLY}
@@ -105,7 +105,7 @@ export default function SubscribeGateScreen({
             onClick={restore}
             disabled={checking}
             className="kowalski-button w-full rounded-2xl px-5 py-3 text-[13px] disabled:opacity-50"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.82)' }}
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.82)' }}
           >
             {checking ? 'Checking…' : 'I’ve subscribed — restore my access'}
           </button>

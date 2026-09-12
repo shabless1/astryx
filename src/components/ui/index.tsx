@@ -87,7 +87,7 @@ export function StonePanel({
         background: 'var(--trim)',
         border: '1px solid var(--trim-line)',
         color: 'var(--on-trim)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 14px 38px rgba(0,0,0,0.5)',
+        boxShadow: 'inset 0 1px 0 var(--lip), 0 14px 38px rgba(0,0,0,0.5)',
         ...style,
       }}
     >

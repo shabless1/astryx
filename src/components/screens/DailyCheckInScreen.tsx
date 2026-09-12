@@ -69,7 +69,7 @@ export default function DailyCheckInScreen({
           <button
             onClick={() => setCrisis(false)}
             className="kowalski-button w-full mt-6 rounded-2xl px-5 py-3 text-[13px]"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.85)' }}
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.85)' }}
           >
             ← Back
           </button>
@@ -94,7 +94,7 @@ export default function DailyCheckInScreen({
 
         {/* Energy slider */}
         <div className="rounded-[1.4rem] p-5 mb-4 animate-fade-in-up"
-             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
           <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
             Energy right now
           </div>
@@ -124,7 +124,7 @@ export default function DailyCheckInScreen({
 
         {/* Daily question */}
         <div className="rounded-[1.4rem] p-5 mb-4 animate-fade-in-up"
-             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
           <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
             What&apos;s present for you today?
           </div>
@@ -140,7 +140,7 @@ export default function DailyCheckInScreen({
 
         {/* Intention chip (optional) */}
         <div className="rounded-[1.4rem] p-5 mb-4 animate-fade-in-up"
-             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
           <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
             Today&apos;s intention <span className="text-white/35 normal-case tracking-normal">· optional</span>
           </div>

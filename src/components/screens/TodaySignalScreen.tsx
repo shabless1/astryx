@@ -162,7 +162,7 @@ export default function TodaySignalScreen({
           <button
             onClick={onGoDeeper}
             className="kowalski-button w-full flex items-center justify-between rounded-2xl px-4 py-3 mb-3 text-left"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
           >
             <span className="text-[12px] tracking-[0.04em] text-content">Go deeper — chart, minerals, cosmic weather</span>
             <span className="text-[12px] text-white/45">→</span>

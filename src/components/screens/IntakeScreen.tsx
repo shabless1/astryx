@@ -413,7 +413,7 @@ export default function IntakeScreen({
           wide
         >
           {/* v2 FIX 1 — pre-session energy baseline → enables BEFORE→AFTER + trend chart */}
-          <div className="mb-5 rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="mb-5 rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             <div className="text-[12px] text-white/80 mb-2 font-medium">
               How is your energy right now? <span className="text-white/35">— sets your before/after baseline</span>
             </div>
@@ -444,7 +444,7 @@ export default function IntakeScreen({
 
           {/* Directive S — the light somatic moment. One flowing question, a few
               taps. Feeds the body-zone resolver (WHERE) + autonomic axis (state). */}
-          <div className="mb-5 rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="mb-5 rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             <div className="text-[12px] text-white/80 mb-2 font-medium">
               Where are you holding it today? <span className="text-white/35">— optional</span>
             </div>
@@ -722,7 +722,7 @@ export default function IntakeScreen({
               />
               <div
                 className="flex justify-between items-center px-4 py-2"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+                style={{ borderTop: '1px solid var(--hair-warm)' }}
               >
                 <span className="text-[10px] text-white/20">
                   {(formData.narrative || '').length < 30 && (formData.narrative || '').length > 0
@@ -834,7 +834,7 @@ export default function IntakeScreen({
             {/* Summary of what's been captured */}
             <div
               className="rounded-xl p-4 space-y-2"
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
             >
               <div className="text-[9px] tracking-[0.25em] text-white/25 uppercase mb-3">
                 Calibration Summary
@@ -1053,7 +1053,7 @@ function StepNav({
           className="group inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full kowalski-button"
           style={{
             background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.10)',
+            border: '1px solid var(--hair-warm)',
             color: 'rgba(255,255,255,0.65)',
             cursor: 'pointer',
             transition: 'all 500ms cubic-bezier(0.32,0.72,0,1)',
@@ -1063,7 +1063,7 @@ function StepNav({
             className="w-7 h-7 rounded-full flex items-center justify-center text-[14px]"
             style={{
               background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.10)',
+              border: '1px solid var(--hair-warm)',
             }}
           >
             ←

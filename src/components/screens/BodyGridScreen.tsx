@@ -41,7 +41,7 @@ export default function BodyGridScreen({
             <BodyMap chart={chart} accentColor={accentColor} />
           ) : (
             <div className="w-full text-center py-12 rounded-xl"
-                 style={{ background: hexToRgba(accentColor, 0.04), border: '1px solid rgba(255,255,255,0.08)' }}>
+                 style={{ background: hexToRgba(accentColor, 0.04), border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
               <div className="text-3xl mb-3" style={{ color: hexToRgba(accentColor, 0.5) }}>⬡</div>
               <div className="text-[13px] text-white/55 mb-1">Body Grid not available yet</div>
               <div className="text-[11px] text-white/35">Enter your birth location on the Intake screen to map your body.</div>

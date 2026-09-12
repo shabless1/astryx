@@ -253,7 +253,7 @@ export default function BodyMap({ chart, accentColor }: BodyMapProps) {
           background: 'rgba(255,255,255,0.02)',
           border: '1px solid rgba(94,224,255,0.10)',
           boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.08), 0 24px 60px -28px rgba(58,140,255,0.35)',
+            'inset 0 1px 0 var(--lip), 0 24px 60px -28px rgba(58,140,255,0.35)',
         }}
       >
         <div
@@ -490,7 +490,7 @@ function ViewToggle({
       className="relative inline-flex p-1 rounded-full"
       style={{
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.10)',
+        border: '1px solid var(--hair-warm)',
       }}
     >
       {/* Sliding active indicator */}
@@ -834,7 +834,7 @@ function SexToggle({
       className="relative inline-flex p-1 rounded-full"
       style={{
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.10)',
+        border: '1px solid var(--hair-warm)',
       }}
     >
       {/* Sliding active indicator */}
@@ -884,7 +884,7 @@ function ViewModeSelector({
       className="inline-flex p-1 rounded-full"
       style={{
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.10)',
+        border: '1px solid var(--hair-warm)',
       }}
     >
       {VIEW_MODES.map((m) => {

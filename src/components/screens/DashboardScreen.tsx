@@ -162,7 +162,7 @@ export default function DashboardScreen({
               <button
                 onClick={() => setInterruptedSession(null)}
                 className="kowalski-button rounded-full px-3.5 py-1.5 text-[11.5px]"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.75)' }}
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.75)' }}
               >
                 Start fresh
               </button>
@@ -355,12 +355,12 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch('#session/full-body')}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Full Body →</span>
           <span className="text-[11.5px] text-white/50 leading-snug">All twelve forks, ground to crown and back</span>
           <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.6)' }}>
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.6)' }}>
             12 forks · ~35 min
           </span>
         </button>
@@ -369,7 +369,7 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch('#session/marma')}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Marma →</span>
           <span className="text-[11.5px] text-white/50 leading-snug">Twelve forks at their named points, heel to crown to sole</span>
@@ -383,12 +383,12 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch(`#session/chakra-${chakraInstrument}`)}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.12)' }}
+          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Chakra →</span>
           <span className="text-[11.5px] text-white/50 leading-snug">Seven centers, crown to root and back</span>
           <span className="mt-auto flex rounded-full p-0.5 self-start"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             {(['solfeggio', 'planetary'] as ChakraInstrument[]).map((inst) => {
               const on = chakraInstrument === inst
               return (
@@ -439,7 +439,7 @@ function CheckInTab({
         <p className="text-[14px] text-content leading-relaxed whitespace-pre-line">{CRISIS_RESOURCES_CARD}</p>
         <button onClick={() => setCrisis(false)}
                 className="kowalski-button w-full mt-6 rounded-2xl px-5 py-3 text-[13px]"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(255,255,255,0.85)' }}>
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.85)' }}>
           ← Back
         </button>
       </div>
@@ -665,7 +665,7 @@ function ChartFallback({
   accentColor, glyph, label, hint,
 }: { accentColor: string; glyph: string; label: string; hint: string }) {
   return (
-    <div className="w-full text-center py-12 rounded-xl" style={{ background: hexToRgba(accentColor, 0.04), border: '1px solid rgba(255,255,255,0.08)' }}>
+    <div className="w-full text-center py-12 rounded-xl" style={{ background: hexToRgba(accentColor, 0.04), border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
       <div className="text-3xl mb-3" style={{ color: hexToRgba(accentColor, 0.5) }}>{glyph}</div>
       <div className="text-[13px] text-white/55 mb-1">{label}</div>
       <div className="text-[11px] text-white/35">{hint}</div>
