@@ -1521,8 +1521,12 @@ function StepFork({
   isApplied: boolean; onMarkApplied: () => void
   isPractitionerMode: boolean
 }) {
-  const accentColor = HOUSE_ACCENT   // SHA ruling — chamber CHROME is fixed;
-  // the fork's own hue still drives the mandala and colour therapy below.
+  // SHA ruling — the chamber's CHROME is the room, not the fork. It used to be
+  // `fork.color`, so a Mars fork turned the step card red mid-session. It now
+  // follows the same state-resolved room as the rest of the app (model C), so
+  // a hot day cools the chamber frame too. The fork's own hue still drives the
+  // mandala and the colour-therapy field below — those are the signal.
+  const accentColor = useAppStore((s) => s.accentColor) || HOUSE_ACCENT
   const vagusBadge = vagusBadgeColor(fork.vagusStrength)
   const hold = holdDurationFor(fork.vagusStrength)
   // The named marma doorway for this fork. Pluto and every pelvic-zone point

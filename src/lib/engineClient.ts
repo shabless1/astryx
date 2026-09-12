@@ -14,6 +14,7 @@
  */
 
 import type { ProtocolOutput } from '@/types'
+import { CHROME_DEFAULT, resolveChromeAccent } from '@/lib/visual/chromeAccent'
 
 // ─── PLANET → COLOR (presentational; chart wheel, body map, accents) ─────────
 export const PLANET_COLORS: Record<string, string> = {
@@ -30,31 +31,36 @@ export const PLANET_COLORS: Record<string, string> = {
 }
 
 /**
- * THE HOUSE ACCENT — the app's fixed chrome colour.
+ * THE CHROME ACCENT — the room's colour.
  * ════════════════════════════════════════════════════════════════════════════
- * SHA, 2026-09-12: "everything defaults to red. I hate it. We need softer
- * default colors. The only time the color should change is in the chamber with
- * the mandalas and color therapy."
+ * SHA's ruling, 2026-09-12 (model C): chrome warms or cools by the carrier's
+ * STATE only — never by the planet's identity — and a depleted day is never a
+ * hot, blood or crimson red.
  *
- * The app chrome used to take its colour from the user's DOMINANT PLANET, so
- * every button, border, label, card glow and page nebula swung to whatever that
- * planet happened to be — red for Mars or Pluto, acid green for Mercury. A
- * personal chart was deciding the product's visual identity, which is not what
- * an accent is for.
+ * Chrome used to take `PLANET_COLORS[dominant]`, a planet's raw identity hue,
+ * and push it through every button, border, label, card glow, nav pill and the
+ * full-viewport nebula. Mars base is Crimson; Pluto base is Burgundy. The room
+ * rendered the exact colour the engine's therapy library lists under `avoid`.
  *
- * Chrome is now FIXED: a soft antique gold, the brand's own colour, warm
- * against the bone title strips and calm at full strength on a button.
+ * The table, the red-band guard and the reasoning live in
+ * `@/lib/visual/chromeAccent`. This module keeps the call site the rest of the
+ * app already uses.
  *
  * The planetary palette is NOT gone — it still drives everything that is meant
- * to change: the mandala, colour therapy, the tone ladder dots, the chart wheel
- * and the body map, all of which read their hues from PLANET_COLORS or
- * planetColorTherapyLibrary directly. Those are the signal. This is the room.
+ * to change: the mandala, colour therapy, the tone-ladder dots, the chart wheel
+ * and the body map. Those are the signal. This is the room.
  */
-export const HOUSE_ACCENT = '#C9A961'
+export { CHROME_BY_STATE, resolveChromeRoom, isRedBand } from '@/lib/visual/chromeAccent'
 
-/** The accent color for the app's chrome. Fixed by house ruling — see above. */
-export function getAccentColor(_protocol: ProtocolOutput): string {
-  return HOUSE_ACCENT
+/**
+ * The room at rest, and every fallback. Kept under its original name because it
+ * is referenced widely; it is the `balanced` entry of CHROME_BY_STATE.
+ */
+export const HOUSE_ACCENT = CHROME_DEFAULT.hex
+
+/** The accent colour for the app's chrome — resolved from state, never from the planet. */
+export function getAccentColor(protocol?: ProtocolOutput | null): string {
+  return resolveChromeAccent(protocol)
 }
 
 /** The dominant planet's own hue — for the chamber visuals that SHOULD move. */

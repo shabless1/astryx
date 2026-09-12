@@ -3,6 +3,7 @@
 import { useEffect, useRef, useMemo } from 'react'
 import type { AppScreen } from '@/types'
 import { hexToRgb, seededRandom } from '@/lib/utils'
+import { CHROME_BY_STATE, CHROME_DEFAULT, type ChromeRoom } from '@/lib/visual/chromeAccent'
 
 interface CosmicBackgroundProps {
   screen: AppScreen
@@ -52,16 +53,30 @@ const PLANET_ATMOSPHERE: Record<string, {
   neptune: { hueRot: 215, atmosRgb: '100,130,210',  nebulaStrength: 0.10, nebulaPos: '35% 65%' },
   pluto:   { hueRot: 275, atmosRgb: '159,122,234',  nebulaStrength: 0.09, nebulaPos: '65% 85%' },
 }
-// SHA ruling 2026-09-12 — THE BACKGROUND IS CHROME, so it no longer follows the
+// SHA ruling 2026-09-12 — THE BACKGROUND IS CHROME, so it does not follow the
 // user's dominant planet. It used to: a Mars or Pluto chart washed every screen
-// in a red nebula, because this table paints the whole viewport. The room stays
-// the same room; only the mandala and colour therapy change inside the chamber.
-// A soft antique gold, at the gentlest strength in the old table.
-const DEFAULT_ATMOSPHERE = {
-  hueRot: 0,
-  atmosRgb: '201,169,97',
-  nebulaStrength: 0.07,
-  nebulaPos: '20% 40%',
+// in a red nebula, because this table paints the whole viewport.
+//
+// Model C (SHA, 2026-09-12): the room warms or cools by the carrier's STATE
+// only, never by the planet's identity. The nebula is the largest chrome
+// surface in the app, so it moves with the same four rooms as every other
+// chrome element — it derives its tint from the resolved accent rather than
+// carrying a second, independently-drifting table. Strength stays in the gentle
+// 0.06–0.09 band: no state gets to shout, and none of the four can be red
+// (chromeAccent.ts asserts that at module load).
+const ATMOSPHERE_BY_TEMPERATURE: Record<ChromeRoom['temperature'], {
+  hueRot: number
+  nebulaStrength: number
+  nebulaPos: string
+}> = {
+  // running hot → the room settles: dimmest nebula, placed low and wide
+  cool:   { hueRot: 0, nebulaStrength: 0.06, nebulaPos: '28% 62%' },
+  // running low → the room builds: the warmest, most present field
+  warm:   { hueRot: 0, nebulaStrength: 0.09, nebulaPos: '24% 34%' },
+  // compressed → the room opens: lifted and off-centre
+  dry:    { hueRot: 0, nebulaStrength: 0.07, nebulaPos: '70% 30%' },
+  // coherent → the room at rest
+  steady: { hueRot: 0, nebulaStrength: 0.07, nebulaPos: '20% 40%' },
 }
 
 export default function CosmicBackground({
@@ -73,11 +88,20 @@ export default function CosmicBackground({
   const showFemale = ['intake', 'analysis', 'history', 'settings'].includes(screen)
   const showMale = ['results', 'practitioner'].includes(screen)
 
-  // Resolve atmosphere for current dominant planet
-  // PLANET_ATMOSPHERE is kept for the record, and for any future surface that
-  // genuinely SHOULD carry a planet's hue — but the page background is not one.
+  // Resolve the atmosphere from the ROOM, not the planet. `accentColor` is
+  // already the state-resolved chrome colour (see lib/visual/chromeAccent), so
+  // the nebula is tinted with it and its placement/strength come from that
+  // room's temperature. PLANET_ATMOSPHERE is kept for the record and for any
+  // future surface that genuinely SHOULD carry a planet's hue — the page
+  // background is not one, and must never be reconnected to `dominantPlanet`.
   void dominantPlanet
-  const atm = DEFAULT_ATMOSPHERE
+  const room =
+    Object.values(CHROME_BY_STATE).find((r) => r.hex.toLowerCase() === accentColor?.toLowerCase())
+    ?? CHROME_DEFAULT
+  const atm = {
+    ...ATMOSPHERE_BY_TEMPERATURE[room.temperature],
+    atmosRgb: rgb,   // hexToRgb already returns "r,g,b"
+  }
 
   // ── Three-layer parallax star field (Play 3) ──────────────────
   // Stars split into far / mid / near depth layers.

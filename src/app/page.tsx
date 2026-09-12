@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useAppStore } from '@/lib/store'
 // FIX 1A — the engine runs server-side (POST /api/protocol); the client keeps
 // only the small render helpers from the client-safe module.
-import { getAccentColor, HOUSE_ACCENT, geocodeLocation } from '@/lib/engineClient'
+import { getAccentColor, geocodeLocation } from '@/lib/engineClient'
 import { computeDailyElement } from '@/lib/dailyElement'
 import {
   computeSubscription, fetchSubscriptionState, startTrialClock,
@@ -1028,7 +1028,9 @@ export default function AstryxApp() {
             accentColor={accentColor}
             onLoadSession={(record) => {
               setProtocol(record.protocol)
-              setAccentColor(HOUSE_ACCENT)   // house accent — a saved session's stored hue no longer skins the app
+              // The room is resolved from the reading's own state, never from
+              // the hue the record stored back when chrome followed the planet.
+              setAccentColor(getAccentColor(record.protocol))
               setScreen('results')
             }}
             onBack={goHome}
