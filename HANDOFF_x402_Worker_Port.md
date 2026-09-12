@@ -1,8 +1,17 @@
 # ASTRYX — Handoff: the x402 door · Worker port · MCP · Bazaar (Roadmap Phase 1.2–1.6)
-### For a dedicated Claude Code session. Written 2026-09-12. Status: **NOT STARTED** (scoped only).
+### For a dedicated Claude Code session. Written 2026-09-12. Status: **IN PROGRESS — steps 1–4 done, parity proven, stopped for review before the HTTP layer.**
+
+> **2026-09-12 progress.** Steps 1, 2, 3 and 4 of §4 are complete.
+> - **Step 1 — app-side hygiene: DONE** (app commits `e68603e`, `78f3a2f`). Required date signatures in `ephemeris.ts` / `dailyTemperature.ts` / `timezone.ts` / `dailyElement.ts`; static `tz-lookup` import with a one-time non-UTC health assertion (7 new tests); `fallbackPattern` on `getUTC*`. Deployed to prod and verified live. **The `window` tripwire was NOT deleted from the app** — it is stripped in the Worker's copy instead; removing the app's only FIX 1 runtime alarm while FIX 1 is still open would be a regression, not hygiene.
+> - **Step 2 — `astryx-core-worker` scaffolded** at `MARKETING/astryx-core-worker/`, its own git repo. 23 modules, **24** data JSONs / 347 KB (recounted from the live import closure — the scope's "22 / 282 KB" predates the marma layer), 2 pinned deps. `scripts/port-core.mjs` did the copy mechanically and `PORT_MANIFEST.json` + `npm run port:check` report upstream drift from here on. Five deliberate divergences, all in `PORT_NOTES.md`.
+> - **Step 3 — `computeChart(input, asOf)` extracted**; `fetchChart()` deleted; `asOf` threaded and required (`runEngine` throws without it). The chart source is an injectable provider, which is also how the goldens stay honest.
+> - **Step 4 — PARITY PROVEN, three ways.** Protocol goldens reproduce the app's own `.snap` byte-for-byte (same sha256, never regenerated, green under `CI=true`). A 197-tuple suite diffs `computeChart` against the LIVE app at a pinned instant: **197/197 identical**, 41 distinct UTC offsets exercised. Then the same suite runs **inside workerd** against digests from that proven run: all 197 charts and all 3 protocols exact. The chain closes — Vercel == Node == workerd — which retires ranked risk #1 (ICU divergence). Bundle 647 KiB / 185 KiB gzipped, no `nodejs_compat`.
+> - **Also landed:** `X-Astryx-AsOf` on the app's `/api/chart` (temporary, parity only, live).
+> - **NEXT:** step 5 (compliance envelope), then 6 (tiered shaping), then 7 (HTTP layer) — stopped here deliberately for SHA's look. The worker repo is local-only; it has no GitHub remote yet.
+> - **Still not started:** steps 5–12. No wallet, no Coinbase account, nothing for SHA to do yet.
 
 > Parent docs (read in this order): `ASTRYX_POSITIONING_ROADMAP_v1.md` (§3 Phase 1, §4 marketing lane) → `PHASE1_WORKER_PORT_SCOPE.md` (the full technical scope, still accurate) → `ASTRYX_CALIBRATION_STANDARD_v0.md` §8 (the machine contract, live at myastryx.com/standard) → this file.
-> Verified 2026-09-12: no commit since the scoping docs (9c8f9ab, 20c32c5) touches x402, the Worker, MCP, or the Bazaar. No `astryx-core-worker` directory exists. The lane is open.
+> Verified 2026-09-12 (before work began): no commit since the scoping docs (9c8f9ab, 20c32c5) touched x402, the Worker, MCP, or the Bazaar. The lane was open; steps 1–4 have since been built. See the progress block above.
 
 ---
 
