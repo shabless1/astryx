@@ -166,7 +166,7 @@ export default function DashboardScreen({
               <button
                 onClick={() => setInterruptedSession(null)}
                 className="kowalski-button rounded-full px-3.5 py-1.5 text-[11.5px]"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.75)' }}
+                style={{ background: 'rgba(255,255,255,0.36)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.88)' }}
               >
                 Start fresh
               </button>
@@ -178,7 +178,7 @@ export default function DashboardScreen({
         <div className="mb-4 animate-fade-in-up">
           <div className="text-[10px] uppercase tracking-[0.3em] text-meta mb-1">{dateLabel}</div>
           <h1 className="font-cinzel text-[24px] sm:text-[30px] leading-tight text-white">
-            Daily Check-In{firstName ? <span className="text-white/45 text-[18px] sm:text-[22px]"> · {firstName}</span> : null}
+            Daily Check-In{firstName ? <span className="text-white/70 text-[18px] sm:text-[22px]"> · {firstName}</span> : null}
           </h1>
         </div>
 
@@ -208,9 +208,9 @@ export default function DashboardScreen({
                   onClick={() => setTab(t.key)}
                   className="kowalski-button shrink-0 rounded-full px-4 py-2 text-[12.5px] tracking-[0.03em] whitespace-nowrap transition relative"
                   style={{
-                    background: on ? hexToRgba(accentColor, 0.9) : 'rgba(255,255,255,0.04)',
-                    border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.12)'}`,
-                    color: on ? '#020208' : 'rgba(255,255,255,0.7)',
+                    background: on ? hexToRgba(accentColor, 0.9) : 'rgba(255,255,255,0.34)',
+                    border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.42)'}`,
+                    color: on ? '#020208' : 'rgba(255,255,255,0.88)',
                     fontWeight: on ? 600 : 400,
                   }}
                 >
@@ -266,7 +266,7 @@ export default function DashboardScreen({
 
           {tab === 'deeper' && (
             <GlassCard accentColor={accentColor} opacity={0.08} title="Explore Deeper" badge="Tap to open" bodyClass="p-5 sm:p-6">
-              <p className="text-[11px] text-white/45 mb-3">Tap any box to peek inside.</p>
+              <p className="text-[11px] text-white/70 mb-3">Tap any box to peek inside.</p>
               <ExploreDeeperCards protocol={protocol} accent={accentColor} bare />
             </GlassCard>
           )}
@@ -304,7 +304,7 @@ export default function DashboardScreen({
           )}
         </div>
 
-        <p className="text-center text-[10px] tracking-[0.18em] text-white/30 mt-6">{MICRO_DISCLAIMER}</p>
+        <p className="text-center text-[10px] tracking-[0.18em] text-white/58 mt-6">{MICRO_DISCLAIMER}</p>
       </div>
     </div>
   )
@@ -345,7 +345,7 @@ function SessionLauncher({
           }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Today&apos;s Calibration →</span>
-          <span className="text-[11.5px] text-white/50 leading-snug">Tuned to your chart and today&apos;s sky</span>
+          <span className="text-[11.5px] text-white/74 leading-snug">Tuned to your chart and today&apos;s sky</span>
           <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
                 style={{ background: hexToRgba(forkColor, 0.16), border: `1px solid ${hexToRgba(forkColor, 0.4)}`, color: forkColor }}>
             {forkPlanet}-led today
@@ -356,12 +356,12 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch('#session/full-body')}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
+          style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Full Body →</span>
-          <span className="text-[11.5px] text-white/50 leading-snug">All twelve forks, ground to crown and back</span>
+          <span className="text-[11.5px] text-white/74 leading-snug">All twelve forks, ground to crown and back</span>
           <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.6)' }}>
+                style={{ background: 'rgba(255,255,255,0.36)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.82)' }}>
             12 forks · ~35 min
           </span>
         </button>
@@ -370,10 +370,10 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch('#session/marma')}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
+          style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Marma →</span>
-          <span className="text-[11.5px] text-white/50 leading-snug">Twelve forks at their named points, heel to crown to sole</span>
+          <span className="text-[11.5px] text-white/74 leading-snug">Twelve forks at their named points, heel to crown to sole</span>
           <span className="mt-auto self-start px-2.5 py-1 rounded-full text-[10.5px] tracking-[0.06em]"
                 style={{ background: 'rgba(255,0,110,0.08)', border: '1px solid rgba(255,0,110,0.28)', color: 'rgba(255,150,190,0.9)' }}>
             27 points · ~30 min
@@ -384,12 +384,12 @@ function SessionLauncher({
         <button
           onClick={() => onLaunch(`#session/chakra-${chakraInstrument}`)}
           className={tileBase}
-          style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
+          style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
         >
           <span className="text-[14px] text-white font-medium leading-snug">Chakra →</span>
-          <span className="text-[11.5px] text-white/50 leading-snug">Seven centers, crown to root and back</span>
+          <span className="text-[11.5px] text-white/74 leading-snug">Seven centers, crown to root and back</span>
           <span className="mt-auto flex rounded-full p-0.5 self-start"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+                style={{ background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             {(['solfeggio', 'planetary'] as ChakraInstrument[]).map((inst) => {
               const on = chakraInstrument === inst
               return (
@@ -404,7 +404,7 @@ function SessionLauncher({
                   className="px-2.5 py-0.5 rounded-full text-[10.5px] tracking-[0.05em] capitalize transition"
                   style={{
                     background: on ? hexToRgba(accentColor, 0.85) : 'transparent',
-                    color: on ? '#020208' : 'rgba(255,255,255,0.55)',
+                    color: on ? '#020208' : 'rgba(255,255,255,0.77)',
                     fontWeight: on ? 600 : 400,
                   }}
                 >
@@ -440,7 +440,7 @@ function CheckInTab({
         <p className="text-[14px] text-content leading-relaxed whitespace-pre-line">{CRISIS_RESOURCES_CARD}</p>
         <button onClick={() => setCrisis(false)}
                 className="kowalski-button w-full mt-6 rounded-2xl px-5 py-3 text-[13px]"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.85)' }}>
+                style={{ background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)', color: 'rgba(255,255,255,0.85)' }}>
           ← Back
         </button>
       </div>
@@ -464,8 +464,8 @@ function CheckInTab({
       </StonePanel>
 
       {/* Energy */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>Energy right now</div>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>Energy right now</div>
         <div className="flex gap-1">
           {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => {
             const on = energy === n
@@ -473,33 +473,33 @@ function CheckInTab({
               <button key={n} onClick={() => setEnergy(n)}
                 className="flex-1 py-2.5 rounded-lg text-[12px] transition"
                 style={{
-                  background: on ? hexToRgba(accentColor, 0.28) : 'rgba(255,255,255,0.05)',
-                  border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.1)'}`,
-                  color: on ? accentColor : 'rgba(255,255,255,0.5)', cursor: 'pointer', fontWeight: on ? 600 : 400,
+                  background: on ? hexToRgba(accentColor, 0.28) : 'rgba(255,255,255,0.35)',
+                  border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.4)'}`,
+                  color: on ? accentColor : 'rgba(255,255,255,0.72)', cursor: 'pointer', fontWeight: on ? 600 : 400,
                 }}>
                 {n}
               </button>
             )
           })}
         </div>
-        <div className="flex justify-between text-[9px] text-white/35 tracking-widest mt-1.5"><span>DEPLETED</span><span>CHARGED</span></div>
+        <div className="flex justify-between text-[9px] text-white/62 tracking-widest mt-1.5"><span>DEPLETED</span><span>CHARGED</span></div>
       </div>
 
       {/* What's present */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>What&apos;s present for you today?</div>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>What&apos;s present for you today?</div>
         <textarea
           value={question} onChange={(e) => setQuestion(e.target.value)} rows={3}
           placeholder="In your own words — e.g. &ldquo;wired and anxious&rdquo;, &ldquo;foggy, can&rsquo;t focus&rdquo;, &ldquo;heavy and slow&rdquo;…"
-          className="w-full px-3 py-2.5 rounded-lg text-[14px] text-white resize-none placeholder:text-white/30"
-          style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
+          className="w-full px-3 py-2.5 rounded-lg text-[14px] text-white resize-none placeholder:text-white/58"
+          style={{ background: 'rgba(15,15,26,0.65)', border: '1px solid rgba(255,255,255,0.4)' }}
         />
       </div>
 
       {/* Intention */}
-      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
-          Today&apos;s intention <span className="text-white/35 normal-case tracking-normal">· optional</span>
+      <div className="rounded-[1.4rem] p-5" style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>
+          Today&apos;s intention <span className="text-white/62 normal-case tracking-normal">· optional</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {INTENTIONS.map((it) => {
@@ -508,9 +508,9 @@ function CheckInTab({
               <button key={it.key} onClick={() => setIntention(on ? null : it.key)}
                 className="px-4 py-2 rounded-full text-[12.5px] tracking-[0.04em] transition flex items-center gap-1.5"
                 style={{
-                  background: on ? hexToRgba(accentColor, 0.22) : 'rgba(255,255,255,0.05)',
-                  border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.12)'}`,
-                  color: on ? accentColor : 'rgba(255,255,255,0.65)', cursor: 'pointer', fontWeight: on ? 600 : 400,
+                  background: on ? hexToRgba(accentColor, 0.22) : 'rgba(255,255,255,0.35)',
+                  border: `1px solid ${on ? accentColor : 'rgba(255,255,255,0.42)'}`,
+                  color: on ? accentColor : 'rgba(255,255,255,0.87)', cursor: 'pointer', fontWeight: on ? 600 : 400,
                 }}>
                 <span>{it.glyph}</span>{it.label}
               </button>
@@ -552,7 +552,7 @@ function PulseTab({
       <div className="rounded-[1.4rem] p-5"
            style={{ background: `linear-gradient(165deg, ${hexToRgba(accentColor, 0.14)} 0%, rgba(255,255,255,0.02) 62%)`, border: `1px solid ${hexToRgba(accentColor, 0.3)}`, boxShadow: `inset 0 1px 0 var(--lip), 0 24px 60px -36px ${hexToRgba(accentColor, 0.55)}` }}>
         <div className="flex items-center justify-between mb-1.5">
-          <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: hexToRgba(accentColor, 0.85) }}>Today&apos;s Headline</div>
+          <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: hexToRgba(accentColor, 0.95) }}>Today&apos;s Headline</div>
           {/* v4.0 Fix 6 — speak the rendered headline (deterministic text; the LLM is not called) */}
           <button
             onClick={() =>
@@ -563,9 +563,9 @@ function PulseTab({
             aria-label={speakingId === 'daily-headline' ? 'Stop reading aloud' : 'Read today’s headline aloud'}
             className="kowalski-button text-[11px] px-2 py-0.5 rounded-full"
             style={{
-              background: speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.25) : 'rgba(255,255,255,0.05)',
-              border: `1px solid ${speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.5) : 'rgba(255,255,255,0.12)'}`,
-              color: 'rgba(255,255,255,0.7)',
+              background: speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.25) : 'rgba(255,255,255,0.35)',
+              border: `1px solid ${speakingId === 'daily-headline' ? hexToRgba(accentColor, 0.5) : 'rgba(255,255,255,0.42)'}`,
+              color: 'rgba(255,255,255,0.88)',
             }}
           >
             {speakingId === 'daily-headline' ? '■ stop' : '🔊 listen'}
@@ -577,8 +577,8 @@ function PulseTab({
 
       {/* Temperature */}
       <div className="rounded-[1.2rem] p-5"
-           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-        <div className="text-[10px] uppercase tracking-[0.28em] mb-2" style={{ color: hexToRgba(tempColor, 0.9) }}>Today&apos;s Temperature</div>
+           style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.28em] mb-2" style={{ color: hexToRgba(tempColor, 0.95) }}>Today&apos;s Temperature</div>
         <div className="flex items-end gap-3 mb-4">
           <span className="font-cinzel leading-none" style={{ fontSize: 48, color: tempColor, textShadow: `0 0 28px ${hexToRgba(tempColor, 0.55)}` }}>{today.temperature}</span>
         </div>
@@ -588,8 +588,8 @@ function PulseTab({
             const c = TEMP_COLOR[t]
             return (
               <div key={t} className="flex-1 text-center">
-                <div className="h-1.5 rounded-full mb-1.5 transition-all" style={{ background: active ? c : 'rgba(255,255,255,0.08)', boxShadow: active ? `0 0 12px ${hexToRgba(c, 0.7)}` : 'none' }} />
-                <span className="text-[10px] uppercase tracking-[0.18em]" style={{ color: active ? c : 'rgba(255,255,255,0.35)', fontWeight: active ? 600 : 400 }}>{t}</span>
+                <div className="h-1.5 rounded-full mb-1.5 transition-all" style={{ background: active ? c : 'rgba(255,255,255,0.38)', boxShadow: active ? `0 0 12px ${hexToRgba(c, 0.7)}` : 'none' }} />
+                <span className="text-[10px] uppercase tracking-[0.18em]" style={{ color: active ? c : 'rgba(255,255,255,0.65)', fontWeight: active ? 600 : 400 }}>{t}</span>
               </div>
             )
           })}
@@ -598,8 +598,8 @@ function PulseTab({
       </div>
 
       {/* Today's transits vs natal */}
-      <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.85) }}>
+      <div className="rounded-[1.2rem] p-5" style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+        <div className="text-[10px] uppercase tracking-[0.24em] mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>
           Today&apos;s Transits · live sky to your natal chart
         </div>
         {transits.length ? (
@@ -614,16 +614,16 @@ function PulseTab({
                 <div key={i} className="border-b border-white/5 last:border-b-0 pb-2.5 last:pb-0">
                   <div className="text-[13px] text-white/90">
                     {t.transitingPlanet} {t.aspect} {t.natalPlanet}
-                    {t.lifeEvent ? <span style={{ color: hexToRgba(accentColor, 0.9) }}> · {t.lifeEvent.label}</span> : null}
+                    {t.lifeEvent ? <span style={{ color: hexToRgba(accentColor, 0.95) }}> · {t.lifeEvent.label}</span> : null}
                   </div>
-                  {interp?.effect && <div className="text-[12px] text-white/55 leading-snug mt-0.5">{interp.effect}</div>}
-                  {interp?.intervention && <div className="text-[12px] text-white/45 italic leading-snug mt-0.5">Support: {interp.intervention}</div>}
+                  {interp?.effect && <div className="text-[12px] text-white/78 leading-snug mt-0.5">{interp.effect}</div>}
+                  {interp?.intervention && <div className="text-[12px] text-white/70 italic leading-snug mt-0.5">Support: {interp.intervention}</div>}
                 </div>
               )
             })}
           </div>
         ) : (
-          <p className="text-[12.5px] text-white/45 italic">No strong transits to your chart today: a quiet sky. A grounding session still tunes the field.</p>
+          <p className="text-[12.5px] text-white/70 italic">No strong transits to your chart today: a quiet sky. A grounding session still tunes the field.</p>
         )}
       </div>
 
@@ -634,7 +634,7 @@ function PulseTab({
           <div className="shrink-0 flex flex-col items-center justify-center rounded-2xl"
                style={{ width: 60, height: 60, background: hexToRgba(fork.color || accentColor, 0.16), border: `1px solid ${hexToRgba(fork.color || accentColor, 0.4)}` }}>
             <span className="font-cinzel text-[14px]" style={{ color: fork.color || accentColor }}>{fork.hz}</span>
-            <span className="text-[8px] uppercase tracking-[0.2em] text-white/50">Hz</span>
+            <span className="text-[8px] uppercase tracking-[0.2em] text-white/74">Hz</span>
           </div>
           <div className="min-w-0">
             <div className="text-[10px] uppercase tracking-[0.24em] mb-1" style={{ color: hexToRgba(fork.color || accentColor, 0.9) }}>Suggested Fork</div>
@@ -654,7 +654,7 @@ function PulseTab({
       {onRunFullBody && (
         <button onClick={onRunFullBody}
           className="kowalski-button w-full text-center text-[12.5px] py-1.5 transition-colors"
-          style={{ color: 'rgba(255,255,255,0.55)' }}>
+          style={{ color: 'rgba(255,255,255,0.77)' }}>
           or run a Full Body or Chakra Recalibration →
         </button>
       )}
@@ -667,9 +667,9 @@ function ChartFallback({
 }: { accentColor: string; glyph: string; label: string; hint: string }) {
   return (
     <div className="w-full text-center py-12 rounded-xl" style={{ background: hexToRgba(accentColor, 0.04), border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
-      <div className="text-3xl mb-3" style={{ color: hexToRgba(accentColor, 0.5) }}>{glyph}</div>
-      <div className="text-[13px] text-white/55 mb-1">{label}</div>
-      <div className="text-[11px] text-white/35">{hint}</div>
+      <div className="text-3xl mb-3" style={{ color: hexToRgba(accentColor, 0.95) }}>{glyph}</div>
+      <div className="text-[13px] text-white/78 mb-1">{label}</div>
+      <div className="text-[11px] text-white/62">{hint}</div>
     </div>
   )
 }

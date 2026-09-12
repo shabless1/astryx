@@ -115,10 +115,10 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[9px] uppercase tracking-[0.25em]" style={{ color: hexToRgba(accentColor, 0.85) }}>
+        <span className="text-[9px] uppercase tracking-[0.25em]" style={{ color: hexToRgba(accentColor, 0.95) }}>
           {hideForkDot ? 'The body' : 'Where to hold the fork'}
         </span>
-        <div className="inline-flex p-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <div className="inline-flex p-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.34)', border: '1px solid rgba(255,255,255,0.4)' }}>
           {(['anterior', 'posterior'] as BodyView[]).map((v) => (
             <button
               key={v}
@@ -126,7 +126,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
               className="px-3 py-0.5 rounded-full text-[9px] uppercase tracking-[0.2em] transition"
               style={{
                 background: view === v ? hexToRgba(accentColor, 0.2) : 'transparent',
-                color: view === v ? accentColor : 'rgba(255,255,255,0.5)',
+                color: view === v ? accentColor : 'rgba(255,255,255,0.72)',
               }}
             >
               {v === 'anterior' ? 'Front' : 'Back'}
@@ -178,12 +178,12 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             <div className="flex items-center gap-1.5 text-[11px]">
               <span style={{ color: MARMA_COLOR[marmaLead.application] }}>✧</span>
               <span className="text-content-sm">
-                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Marma · </span>
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/70">Marma · </span>
                 {marmaLead.sanskrit} · {marmaLead.plainLocation.replace(/\.$/, '').toLowerCase()}
               </span>
             </div>
           )}
-          <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/40">
+          <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/66">
             <span><span style={{ color: accentColor }}>◉</span> Chakra placement · same for every body</span>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             <div className="flex items-center gap-1.5 text-[11px]">
               <span style={{ color: accentColor }}>◉</span>
               <span className="text-content-sm">
-                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/70">
                   {place ? 'Placement · ' : 'Traditional · '}
                 </span>
                 {prettyRegion(trad.region)}{trad.mode === 'sweep' ? ' · off-body sweep' : ''}
@@ -205,7 +205,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             <div className="flex items-center gap-1.5 text-[11px]">
               <span style={{ color: hexToRgba(accentColor, 0.95) }}>◎</span>
               <span className="text-content-sm">
-                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/70">
                   {place ? 'Placement · ' : 'Natal · '}{natal.sign ?? ''}{natal.sign ? ' · ' : ''}
                 </span>
                 {prettyRegion(natal.region)}{natal.mode === 'sweep' ? ' · off-body sweep' : ''}
@@ -216,7 +216,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             <div className="flex items-center gap-1.5 text-[11px]">
               <span style={{ color: MARMA_COLOR[marmaLead.application] }}>✧</span>
               <span className="text-content-sm">
-                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Marma · </span>
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/70">Marma · </span>
                 {marmaLead.sanskrit}
                 {marmaLead.application === 'fieldOnly'
                   ? ' · never touched, six-inch field sweep'
@@ -225,7 +225,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
               </span>
             </div>
           )}
-          <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/40">
+          <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/66">
             {place
               ? <span>{PLACE_BASIS_NOTE[governs ?? 'none']}</span>
               : <>
@@ -327,7 +327,7 @@ function TechniqueExpander({ accentColor }: { accentColor: string }) {
       <button
         onClick={() => setOpen((o) => !o)}
         className="w-full flex items-center justify-between text-[10px] uppercase tracking-[0.2em]"
-        style={{ color: hexToRgba(accentColor, 0.8), background: 'none', border: 'none', cursor: 'pointer' }}
+        style={{ color: hexToRgba(accentColor, 0.95), background: 'none', border: 'none', cursor: 'pointer' }}
       >
         <span>How to use this fork</span>
         <span style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 300ms' }}>↓</span>

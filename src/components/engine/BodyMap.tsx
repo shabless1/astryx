@@ -250,7 +250,7 @@ export default function BodyMap({ chart, accentColor }: BodyMapProps) {
       <div
         className="relative p-2 rounded-[2rem] overflow-hidden"
         style={{
-          background: 'rgba(255,255,255,0.02)',
+          background: 'rgba(255,255,255,0.32)',
           border: '1px solid rgba(94,224,255,0.10)',
           boxShadow:
             'inset 0 1px 0 var(--lip), 0 24px 60px -28px rgba(58,140,255,0.35)',
@@ -261,7 +261,7 @@ export default function BodyMap({ chart, accentColor }: BodyMapProps) {
           style={{
             background:
               'radial-gradient(ellipse at 50% 35%, rgba(58,140,255,0.10) 0%, rgba(2,2,8,0.95) 55%, #020208 100%)',
-            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.10)',
+            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4)',
           }}
         >
           {/* Stardust */}
@@ -489,7 +489,7 @@ function ViewToggle({
     <div
       className="relative inline-flex p-1 rounded-full"
       style={{
-        background: 'rgba(255,255,255,0.04)',
+        background: 'rgba(255,255,255,0.34)',
         border: '1px solid var(--hair-warm)',
       }}
     >
@@ -511,7 +511,7 @@ function ViewToggle({
           onClick={() => setView(v)}
           className="relative px-5 py-1.5 text-[10px] uppercase tracking-[0.25em] font-medium kowalski-button rounded-full"
           style={{
-            color: view === v ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.6)',
+            color: view === v ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.82)',
             background: 'transparent',
             border: 'none',
             transition: 'color 400ms cubic-bezier(0.32,0.72,0,1)',
@@ -677,7 +677,7 @@ function DetailPanel({
     <div
       className="mt-4 p-1.5 rounded-[2rem] animate-slide-in-up"
       style={{
-        background: 'rgba(255,255,255,0.03)',
+        background: 'rgba(255,255,255,0.33)',
         border: `1px solid ${hexToRgba(color, 0.3)}`,
         boxShadow: `0 0 36px -12px ${color}`,
       }}
@@ -686,15 +686,15 @@ function DetailPanel({
         className="relative p-5 rounded-[calc(2rem-0.375rem)] overflow-hidden"
         style={{
           background: 'rgba(2,2,8,0.85)',
-          boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.10)',
+          boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4)',
         }}
       >
         <button
           onClick={onClose}
           className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-[14px] kowalski-button"
           style={{
-            background: 'rgba(255,255,255,0.06)',
-            color: 'rgba(255,255,255,0.7)',
+            background: 'rgba(255,255,255,0.36)',
+            color: 'rgba(255,255,255,0.88)',
             border: 'none',
             cursor: 'pointer',
           }}
@@ -709,20 +709,20 @@ function DetailPanel({
                 className="inline-block w-2 h-2 rounded-full"
                 style={{ background: detail.chakra.color, boxShadow: `0 0 10px ${detail.chakra.color}` }}
               />
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-white/78">
                 Chakra · {detail.chakra.sanskrit}
               </span>
             </div>
             <div className="text-[22px] font-cinzel tracking-wide text-white/95 mb-3">
               {detail.chakra.name}
             </div>
-            <div className="flex gap-4 text-[12px] text-white/75">
+            <div className="flex gap-4 text-[12px] text-white/89">
               <span>
-                <span className="text-white/40">Hz</span>{' '}
+                <span className="text-white/66">Hz</span>{' '}
                 <span style={{ color: detail.chakra.color }}>{detail.chakra.hz}</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="text-white/40">Color</span>{' '}
+                <span className="text-white/66">Color</span>{' '}
                 <span
                   className="inline-block w-2.5 h-2.5 rounded-full"
                   style={{ background: detail.chakra.color, boxShadow: `0 0 8px ${detail.chakra.color}` }}
@@ -743,14 +743,14 @@ function DetailPanel({
             >
               <span className="text-[13px]">{tonePlaying ? '❚❚' : '▶'}</span>
               <span className="text-[11px] uppercase tracking-[0.2em]">{tonePlaying ? 'Playing' : 'Play tone'}</span>
-              <span className="text-[10px] text-white/55">{detail.chakra.hz} Hz</span>
+              <span className="text-[10px] text-white/78">{detail.chakra.hz} Hz</span>
             </button>
           </div>
         )}
 
         {!isChakra && detail.region && (
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/55 mb-1">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-white/78 mb-1">
               Active Body Region
             </div>
             <div className="text-[20px] font-cinzel tracking-wide text-white/95 mb-3">
@@ -779,7 +779,7 @@ function DetailPanel({
                         <div className="text-[13px] text-white/90">
                           {p.planet} in {p.sign}
                         </div>
-                        <div className="text-[10px] text-white/45">
+                        <div className="text-[10px] text-white/70">
                           House {p.house ?? '—'}
                         </div>
                       </div>
@@ -804,7 +804,7 @@ function DetailPanel({
                           <span className="text-[12px]">{playing ? '❚❚' : '▶'}</span>
                           <div className="text-right leading-tight">
                             <div className="text-[13px] font-cinzel">{hzStr} Hz</div>
-                            <div className="text-[8px] uppercase tracking-[0.22em] text-white/55">
+                            <div className="text-[8px] uppercase tracking-[0.22em] text-white/78">
                               {playing ? 'Playing' : 'Play fork'}
                             </div>
                           </div>
@@ -833,7 +833,7 @@ function SexToggle({
     <div
       className="relative inline-flex p-1 rounded-full"
       style={{
-        background: 'rgba(255,255,255,0.04)',
+        background: 'rgba(255,255,255,0.34)',
         border: '1px solid var(--hair-warm)',
       }}
     >
@@ -855,7 +855,7 @@ function SexToggle({
           onClick={() => setSex(s)}
           className="relative px-3.5 py-1.5 text-[12px] kowalski-button rounded-full font-cinzel"
           style={{
-            color: sex === s ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.55)',
+            color: sex === s ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.77)',
             background: 'transparent',
             border: 'none',
             transition: 'color 400ms cubic-bezier(0.32,0.72,0,1)',
@@ -883,7 +883,7 @@ function ViewModeSelector({
     <div
       className="inline-flex p-1 rounded-full"
       style={{
-        background: 'rgba(255,255,255,0.04)',
+        background: 'rgba(255,255,255,0.34)',
         border: '1px solid var(--hair-warm)',
       }}
     >
@@ -900,7 +900,7 @@ function ViewModeSelector({
                 ? `linear-gradient(135deg, ${hexToRgba(accent, 0.25)} 0%, ${hexToRgba(accent, 0.10)} 100%)`
                 : 'transparent',
               border: 'none',
-              color: active ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.55)',
+              color: active ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.77)',
               boxShadow: active ? `0 0 12px -2px ${hexToRgba(accent, 0.55)}` : 'none',
               transition: 'all 350ms cubic-bezier(0.32,0.72,0,1)',
             }}

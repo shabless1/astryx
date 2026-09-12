@@ -15,6 +15,8 @@
  */
 
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   allBodySites, siteById, siteForMarma, siteForChakra, photoForSite, sitesWithoutPhoto,
 } from '../src/lib/bodySites'
@@ -88,11 +90,29 @@ describe('photographs', () => {
 
 describe('THE GATE — discipline must agree before a picture is shown', () => {
   it('withholds a contact photograph from a step resolved to a sweep', () => {
-    // knee_front ships a contact picture; a person the engine has tightened
-    // gets the map alone rather than a picture of a stem pressed to a knee.
-    expect(photoForSite('knee_front', 'weighted')).not.toBeNull()
+    // shin ships a contact picture; a person the engine has tightened gets the
+    // map alone rather than a picture of a stem pressed to a leg.
+    expect(photoForSite('shin', 'weighted')).not.toBeNull()
+    expect(photoForSite('shin', 'field')).toBeNull()
+    expect(photoForSite('shin', 'fieldOnly')).toBeNull()
+  })
+
+  it('the knee shows NO picture — the one we had was a leg, not a kneecap', () => {
+    // SHA, 2026-09-12: "the shin/leg is NOT the knee." In janu_anterior.jpg the
+    // fork contacts below the kneecap and the light runs down the shin, so it
+    // read as a leg placement under a card headed "Janu: the centre of each
+    // kneecap". Withdrawn rather than kept: a wrong placement is worse than no
+    // placement. This stays red until a real kneecap frame exists.
+    expect(photoForSite('knee_front', 'weighted')).toBeNull()
     expect(photoForSite('knee_front', 'field')).toBeNull()
-    expect(photoForSite('knee_front', 'fieldOnly')).toBeNull()
+    expect(sitesWithoutPhoto().map((s) => s.id)).toContain('knee_front')
+    // The withdrawal is on the record, with the shot that would replace it.
+    const photos = JSON.parse(
+      readFileSync(join(process.cwd(), 'src/data/placementPhotos.json'), 'utf-8'),
+    )
+    expect(photos._withdrawn?.knee_front?.why).toMatch(/NOT the knee|not the knee/i)
+    expect(photos._withdrawn?.knee_front?.needed?.length).toBeGreaterThan(40)
+    expect(photos.photos.knee_front).toBeUndefined()
   })
 
   it('withholds a field photograph from a contact step', () => {

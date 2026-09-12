@@ -227,34 +227,59 @@ export default function CosmicBackground({
       {/* Deep space base — pure #020208 per hologram pivot */}
       <div className="absolute inset-0" style={{ background: '#020208' }} />
 
-      {/* Background video — clipped to a HUD lower-third readout strip
-          (not full-bleed) per handoff doc. hue-rotate retained. */}
-      <video
-        className="absolute w-full object-cover"
-        style={{
-          left: 0,
-          right: 0,
-          bottom: '8%',
-          height: '20%',
-          opacity: screen === 'session' ? 0.18 : 0.10,
-          transition: 'opacity 1.5s ease, filter 2s ease',
-          filter: `hue-rotate(${atm.hueRot}deg) saturate(1.4)`,
-          clipPath: 'inset(0 8% round 8px)',
-        }}
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source src="/videos/ASTRYX_BACKGROUND_VIDEO.mp4" type="video/mp4" />
-        <source src="/videos/background_video_2.mp4" type="video/mp4" />
-      </video>
+      {/* ── Background video — the HUD lower-third readout strip ────────────
+          SHA, 2026-09-12: "why do i still have this red background?"
+          Here it was, and it survived every chrome fix because it is not a
+          colour in the palette at all — it is the VIDEO'S OWN colour.
 
-      {/* Top horizon glow — single cyan band, replaces all purple nebulae */}
+          The strip used to be rotated by a per-planet `hueRot`, which happened
+          to carry it away from its native hue. When the planet table was
+          disconnected, hueRot became 0 and the raw footage showed through —
+          warm and red — and `saturate(1.4)` then amplified it. It sits at
+          bottom 8%, 20% tall, which is exactly where the red glow was.
+
+          The footage is now stripped of its own colour entirely and tinted by
+          the room, so it can never contribute a hue the palette did not choose.
+          A red here is now impossible rather than merely unlikely. */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute"
         style={{
-          background: 'linear-gradient(180deg, rgba(94,224,255,0.10) 0%, transparent 240px)',
+          left: 0, right: 0, bottom: '8%', height: '20%',
+          clipPath: 'inset(0 8% round 8px)',
+          opacity: screen === 'session' ? 0.18 : 0.10,
+          transition: 'opacity 1.5s ease',
+        }}
+      >
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            // grayscale FIRST: the footage keeps its movement and its light,
+            // and loses every hue it was contributing.
+            filter: 'grayscale(1) contrast(1.06) brightness(1.02)',
+          }}
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/videos/ASTRYX_BACKGROUND_VIDEO.mp4" type="video/mp4" />
+          <source src="/videos/background_video_2.mp4" type="video/mp4" />
+        </video>
+        {/* The room's own colour, laid over the grey footage. `screen` adds the
+            hue to the luminance already there, so the strip reads as lit in the
+            room's colour instead of carrying a colour of its own. */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-colors duration-1000"
+          style={{ background: `rgba(${atm.atmosRgb},0.55)`, mixBlendMode: 'screen' }}
+        />
+      </div>
+
+      {/* Top horizon glow. Was a hard-coded cyan band — another fixed hue
+          fighting whatever room the session had resolved. It follows the room. */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-colors duration-1000"
+        style={{
+          background: `linear-gradient(180deg, rgba(${atm.atmosRgb},0.12) 0%, transparent 240px)`,
         }}
       />
 
@@ -263,8 +288,8 @@ export default function CosmicBackground({
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: [
-            'linear-gradient(rgba(94,224,255,0.04) 1px, transparent 1px)',
-            'linear-gradient(90deg, rgba(94,224,255,0.04) 1px, transparent 1px)',
+            `linear-gradient(rgba(${atm.atmosRgb},0.05) 1px, transparent 1px)`,
+            `linear-gradient(90deg, rgba(${atm.atmosRgb},0.05) 1px, transparent 1px)`,
           ].join(', '),
           backgroundSize: '64px 64px',
         }}

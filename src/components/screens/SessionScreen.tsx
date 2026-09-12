@@ -739,7 +739,7 @@ export default function SessionScreen({
             user follows guided phases, not a clock. Internal timing still drives
             audio/breath/phase progression; it is simply never shown. */}
         <div className="pointer-events-auto min-w-0" style={topPanelStyle}>
-          <div className="text-[10px] tracking-[0.3em] text-white/55 mb-0.5">RESONANCE CHAMBER</div>
+          <div className="text-[10px] tracking-[0.3em] text-white/78 mb-0.5">RESONANCE CHAMBER</div>
           <div className="font-cinzel text-[15px] truncate" style={{ color: accentColor, lineHeight: 1.1 }}>
             {sessionTime > 0 ? `Now · ${nowLabel}` : 'The chamber is open — press play'}
           </div>
@@ -775,7 +775,7 @@ export default function SessionScreen({
               beside the centered toggle; redundant on smaller screens (the same
               info is in the bottom bar). */}
           <div className="hidden lg:block pointer-events-auto" style={{ ...topPanelStyle, border: `1px solid rgba(${rgb},0.3)` }}>
-            <div className="text-[9px] tracking-[0.3em] text-white/55 uppercase">
+            <div className="text-[9px] tracking-[0.3em] text-white/78 uppercase">
               {isPractitionerSession && activeClient ? `Client · ${activeClient.name}` : 'Chamber Session'}
             </div>
             <div className="text-[11px] tracking-[0.15em] text-white/87 mt-0.5">
@@ -786,7 +786,7 @@ export default function SessionScreen({
           <button
             onClick={onExit}
             className="pointer-events-auto flex-shrink-0 font-rajdhani text-[11px] tracking-[0.2em] uppercase transition-colors hover:text-white"
-            style={{ ...topPanelStyle, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}
+            style={{ ...topPanelStyle, color: 'rgba(255,255,255,0.87)', cursor: 'pointer' }}
           >
             <span className="sm:hidden">Exit</span>
             <span className="hidden sm:inline">Leave the Chamber</span>
@@ -814,7 +814,7 @@ export default function SessionScreen({
                 key={i}
                 className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
                 style={{
-                  color: i <= stepIdx ? accentColor : 'rgba(255,255,255,0.25)',
+                  color: i <= stepIdx ? accentColor : 'rgba(255,255,255,0.55)',
                   fontWeight: (s.role === 'signalFork' || s.role === 'primaryReturn') ? 700 : 400,
                 }}
                 title={`${s.phaseLabel} · ${s.planet}`}
@@ -837,7 +837,7 @@ export default function SessionScreen({
               <div
                 key={k}
                 className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
-                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.25)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
+                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.55)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
               >
                 {m.label}
               </div>
@@ -859,7 +859,7 @@ export default function SessionScreen({
               <div
                 key={k}
                 className="text-[8px] tracking-widest uppercase font-rajdhani transition-colors"
-                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.25)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
+                style={{ color: m.test(stepIdx) ? accentColor : (sequenceSteps.findIndex((_, i) => m.test(i)) <= stepIdx ? hexToRgba(accentColor, 0.55) : 'rgba(255,255,255,0.55)'), fontWeight: m.test(stepIdx) ? 700 : 400 }}
               >
                 {m.label}
               </div>
@@ -1037,15 +1037,15 @@ export default function SessionScreen({
               disabled={stepIdx === 0}
               className="px-3 py-2 rounded-lg font-rajdhani text-[11px] tracking-[0.2em] uppercase transition disabled:opacity-30"
               style={{
-                background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)',
-                color: 'rgba(255,255,255,0.65)', cursor: stepIdx === 0 ? 'not-allowed' : 'pointer',
+                background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)',
+                color: 'rgba(255,255,255,0.87)', cursor: stepIdx === 0 ? 'not-allowed' : 'pointer',
               }}
             >
               ←
             </button>
 
             <div className="flex-1 text-center">
-              <div className="text-[10px] text-white/55 tracking-widest">
+              <div className="text-[10px] text-white/78 tracking-widest">
                 {stepTitle(current).toUpperCase()} · {cue.toUpperCase()}
               </div>
               {pinned !== null ? (
@@ -1057,7 +1057,7 @@ export default function SessionScreen({
                   ▸ Resume the flow
                 </button>
               ) : (
-                <div className="text-[10px] text-white/35 tracking-widest mt-0.5">
+                <div className="text-[10px] text-white/62 tracking-widest mt-0.5">
                   Phase {stepIdx + 1} of {sequenceSteps.length}
                 </div>
               )}
@@ -1109,7 +1109,7 @@ export default function SessionScreen({
             </div>
           )}
 
-          <div className="text-[9px] text-white/35 text-center tracking-widest italic">
+          <div className="text-[9px] text-white/62 text-center tracking-widest italic">
             {MICRO_DISCLAIMER}
           </div>
         </div>
@@ -1223,7 +1223,7 @@ function SequenceStepCard({
   return (
     <StepCard badge={ROLE_BADGE[step.role] ?? 'FORK'} title={cardTitle} accentColor={accentColor}>
       {/* Every phase declares what it is doing (Fix 5 — fixed architecture). */}
-      <p className="text-[11px] text-white/45 italic mb-3">{step.phaseLabel} — {step.purpose}.</p>
+      <p className="text-[11px] text-white/70 italic mb-3">{step.phaseLabel} — {step.purpose}.</p>
 
       {fork ? (
         <>
@@ -1235,7 +1235,7 @@ function SequenceStepCard({
               <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
               <div className="px-3 py-2.5">
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
-              <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
+              <div className="text-[11.5px] text-white/78 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
               <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} place={place} />
               </div>
@@ -1246,7 +1246,7 @@ function SequenceStepCard({
             <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>{fork.hz} Hz</span>
             {/* v4.5.1 — planetary chakra: the physical fork's name so the client picks the right one */}
             {forkDisplayName && <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>· {forkDisplayName} fork</span>}
-            <span className="text-[12px] text-white/65">{fork.note} · {fork.chakra}</span>
+            <span className="text-[12px] text-white/85">{fork.note} · {fork.chakra}</span>
             <span className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
                   style={{ background: hexToRgba(accentColor, 0.18), color: accentColor }}>
               HOLD {holdLabel}
@@ -1256,25 +1256,25 @@ function SequenceStepCard({
           <p className="text-[13px] text-white/85 leading-relaxed mb-2">
             The music has shifted to this fork&apos;s planet — its frequency lives in the
             key and notes you&apos;re hearing. Strike, and let your fork ring with it.
-            <span className="block mt-1 text-[12px] text-white/55 italic">{cue}</span>
+            <span className="block mt-1 text-[12px] text-white/78 italic">{cue}</span>
           </p>
           <FieldRow label="APPLICATION" value={app.line} accentColor={accentColor} />
-          {app.note && (<p className="text-[11px] text-white/45 italic mt-1">{app.note}</p>)}
-          <p className="text-[11px] text-white/45 italic mt-3">
+          {app.note && (<p className="text-[11px] text-white/70 italic mt-1">{app.note}</p>)}
+          <p className="text-[11px] text-white/70 italic mt-3">
             ♫ Music support — the Chamber is carrying the {step.planet} signal while you apply the fork.
           </p>
 
           {/* Which set do you have? (guidance keys to the owned set) */}
           <div className="flex items-center gap-2 mt-3">
-            <span className="text-[10px] tracking-[0.2em] text-white/40 uppercase">Your set:</span>
+            <span className="text-[10px] tracking-[0.2em] text-white/66 uppercase">Your set:</span>
             {(['unweighted', 'weighted'] as const).map((t) => (
               <button key={t}
                 onClick={() => onSetForkSetType(t)}
                 className="px-2.5 py-1 rounded-full text-[10px] tracking-[0.15em] uppercase"
                 style={{
-                  background: forkSetType === t ? hexToRgba(accentColor, 0.2) : 'rgba(255,255,255,0.04)',
-                  border: `1px solid ${forkSetType === t ? hexToRgba(accentColor, 0.5) : 'rgba(255,255,255,0.12)'}`,
-                  color: forkSetType === t ? accentColor : 'rgba(255,255,255,0.5)',
+                  background: forkSetType === t ? hexToRgba(accentColor, 0.2) : 'rgba(255,255,255,0.34)',
+                  border: `1px solid ${forkSetType === t ? hexToRgba(accentColor, 0.5) : 'rgba(255,255,255,0.42)'}`,
+                  color: forkSetType === t ? accentColor : 'rgba(255,255,255,0.72)',
                   cursor: 'pointer',
                 }}>
                 {t === 'unweighted' ? 'Aluminum · field' : 'Steel · weighted'}
@@ -1284,13 +1284,13 @@ function SequenceStepCard({
 
           {isPractitionerMode && (
             <details className="mt-3">
-              <summary className="cursor-pointer text-[10px] tracking-widest text-white/55 hover:text-white/87">
+              <summary className="cursor-pointer text-[10px] tracking-widest text-white/78 hover:text-white/87">
                 PRACTITIONER DETAIL
               </summary>
               <div className="mt-2 space-y-1.5">
                 <FieldRow label="NERVE ACTIVATION" value={fork.nervePlexus} accentColor={accentColor} />
                 <FieldRow label="ANS EFFECT" value={fork.ANSEffect} accentColor={accentColor} />
-                <p className="text-[12px] text-white/65 italic leading-relaxed">{fork.clinicalNote}</p>
+                <p className="text-[12px] text-white/85 italic leading-relaxed">{fork.clinicalNote}</p>
               </div>
             </details>
           )}
@@ -1307,7 +1307,7 @@ function SequenceStepCard({
               <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
               <div className="px-3 py-2.5">
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
-              <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
+              <div className="text-[11.5px] text-white/78 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
               <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} place={place} />
               </div>
@@ -1325,7 +1325,7 @@ function SequenceStepCard({
           <p className="text-[13px] text-white/85 leading-relaxed mb-2">
             The tone also plays from the chamber — sound your own fork here if you
             hold one, or simply receive.
-            <span className="block mt-1 text-[12px] text-white/55 italic">{cue}</span>
+            <span className="block mt-1 text-[12px] text-white/78 italic">{cue}</span>
           </p>
         </>
       ) : (
@@ -1333,7 +1333,7 @@ function SequenceStepCard({
         <>
           <div className="flex items-baseline gap-3 mb-4 flex-wrap">
             <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>136.10 Hz</span>
-            <span className="text-[12px] text-white/65">Earth Om · grounding</span>
+            <span className="text-[12px] text-white/85">Earth Om · grounding</span>
             <span className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
                   style={{ background: hexToRgba(accentColor, 0.18), color: accentColor }}>
               HOLD {holdLabel}
@@ -1342,17 +1342,17 @@ function SequenceStepCard({
           <p className="text-[13px] text-white/85 leading-relaxed mb-2">
             The Earth tone plays from the chamber. Let it settle the field — soften the
             jaw and shoulders, feel the weight of the body. Nothing to strike here.
-            <span className="block mt-1 text-[12px] text-white/55 italic">{cue}</span>
+            <span className="block mt-1 text-[12px] text-white/78 italic">{cue}</span>
           </p>
         </>
       )}
 
       {/* Breath runs through the whole session — the corrective rhythm */}
       <div className="mt-4 pt-3 border-t border-white/8">
-        <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: hexToRgba(accentColor, 0.8) }}>
+        <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: hexToRgba(accentColor, 0.95) }}>
           Breath · {breathName}
         </span>
-        <p className="text-[11px] text-white/55 leading-relaxed mt-0.5">{breathGuidance}</p>
+        <p className="text-[11px] text-white/78 leading-relaxed mt-0.5">{breathGuidance}</p>
       </div>
     </StepCard>
   )
@@ -1364,8 +1364,8 @@ function PaceButton({ label, onClick }: { label: string; onClick: () => void }) 
       onClick={onClick}
       className="px-3 py-1.5 rounded-lg font-rajdhani text-[10px] tracking-[0.18em] uppercase"
       style={{
-        background: 'rgba(255,255,255,0.05)', border: '1px solid var(--hair-warm)',
-        color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
+        background: 'rgba(255,255,255,0.35)', border: '1px solid var(--hair-warm)',
+        color: 'rgba(255,255,255,0.88)', cursor: 'pointer',
       }}
     >
       {label}
@@ -1445,7 +1445,7 @@ function StepSpace({
         {scent && <FieldRow label="SCENT" value={`${scent} — diffuser or candle`} accentColor={accentColor} />}
         <FieldRow label="LIGHTING" value="Warm filter or single candle in the planet's color tone" accentColor={accentColor} />
       </div>
-      <p className="text-[12px] text-white/65 italic mt-4">
+      <p className="text-[12px] text-white/85 italic mt-4">
         When the space is set, tap Next.
       </p>
     </StepCard>
@@ -1463,11 +1463,11 @@ function StepTea({
   return (
     <StepCard badge="STEP 2 · PREPARE TEA" title={botanical?.sacredBotanical ?? 'Herbal Infusion'} accentColor={accentColor}>
       {botanical?.latinName && (
-        <p className="text-[12px] italic text-white/55 mb-3">{botanical.latinName}</p>
+        <p className="text-[12px] italic text-white/78 mb-3">{botanical.latinName}</p>
       )}
       {ingredients && ingredients.length > 0 && (
         <div className="mb-3">
-          <div className="text-[10px] tracking-widest text-white/55 mb-1.5">BLEND</div>
+          <div className="text-[10px] tracking-widest text-white/78 mb-1.5">BLEND</div>
           <div className="flex flex-wrap gap-1.5">
             {ingredients.slice(0, 6).map((ing) => (
               <span key={ing} className="px-2 py-1 rounded text-[11px] text-white/87"
@@ -1486,7 +1486,7 @@ function StepTea({
         </p>
       </div>
       {botanical?.safetyNote && (
-        <p className="text-[10px] text-white/55 italic mt-3">{botanical.safetyNote}</p>
+        <p className="text-[10px] text-white/78 italic mt-3">{botanical.safetyNote}</p>
       )}
       {flagged.length > 0 && (
         <p className="text-[9px] text-red-300/65 italic mt-2">⚠ Content flagged for review: {flagged.join(', ')}</p>
@@ -1503,7 +1503,7 @@ function StepCrystal({
   if (!crystal) {
     return (
       <StepCard badge="STEP 3 · CRYSTAL ACTIVATION" title="Crystal Placement" accentColor={accentColor}>
-        <p className="text-[13px] text-white/65 italic">No featured crystal for this protocol — the tone carries it alone. Move on when you are ready.</p>
+        <p className="text-[13px] text-white/85 italic">No featured crystal for this protocol — the tone carries it alone. Move on when you are ready.</p>
       </StepCard>
     )
   }
@@ -1525,7 +1525,7 @@ function StepCrystal({
         <>
           <FieldRow label="PLACEMENT" value={cd.bodyPlacement} accentColor={accentColor} />
           {cd.placementNote && <FieldRow label="NOTE" value={cd.placementNote} accentColor={accentColor} />}
-          {cd.safetyNote && <p className="text-[10px] text-white/55 italic mt-2">{cd.safetyNote}</p>}
+          {cd.safetyNote && <p className="text-[10px] text-white/78 italic mt-2">{cd.safetyNote}</p>}
         </>
       )}
     </StepCard>
@@ -1561,7 +1561,7 @@ function StepFork({
         <span className="font-cinzel text-[20px]" style={{ color: accentColor }}>
           {fork.hz} Hz
         </span>
-        <span className="text-[12px] text-white/65">{fork.note} · {fork.chakra}</span>
+        <span className="text-[12px] text-white/85">{fork.note} · {fork.chakra}</span>
         <span
           className="px-2 py-0.5 rounded text-[9px] font-bold tracking-widest"
           style={{ background: vagusBadge.bg, color: vagusBadge.fg }}
@@ -1580,10 +1580,10 @@ function StepFork({
           <FieldRow label="NERVE ACTIVATION" value={fork.nervePlexus} accentColor={accentColor} />
           <FieldRow label="ANS EFFECT" value={fork.ANSEffect} accentColor={accentColor} />
           <details className="mt-3">
-            <summary className="cursor-pointer text-[10px] tracking-widest text-white/55 hover:text-white/87">
+            <summary className="cursor-pointer text-[10px] tracking-widest text-white/78 hover:text-white/87">
               PRACTITIONER GUIDANCE
             </summary>
-            <p className="text-[12px] text-white/65 italic mt-1.5 leading-relaxed">{fork.clinicalNote}</p>
+            <p className="text-[12px] text-white/85 italic mt-1.5 leading-relaxed">{fork.clinicalNote}</p>
           </details>
         </>
       )}
@@ -1638,7 +1638,7 @@ function StepBreath({
 
   return (
     <StepCard badge="STEP 9 · BREATH + GEOMETRY" title={pattern.name} accentColor={accentColor}>
-      <p className="text-[12px] text-white/65 italic mb-4">
+      <p className="text-[12px] text-white/85 italic mb-4">
         {element} element · {dominantPlanet} resonance · {geometryName}
       </p>
       <p className="text-[13px] text-white/87 leading-relaxed mb-5">{pattern.guidance}</p>
@@ -1656,7 +1656,7 @@ function StepBreath({
             boxShadow: `0 0 40px ${hexToRgba(accentColor, 0.5)}`,
           }}
         />
-        <div className="text-[10px] tracking-[0.3em] text-white/55 mb-1">{phase.label.toUpperCase()}</div>
+        <div className="text-[10px] tracking-[0.3em] text-white/78 mb-1">{phase.label.toUpperCase()}</div>
         <div className="font-cinzel text-[48px]" style={{ color: accentColor, lineHeight: 1 }}>
           {countdown}
         </div>
@@ -1718,7 +1718,7 @@ function BreathPacer({
           boxShadow: `0 0 40px ${hexToRgba(accentColor, 0.5)}`,
         }}
       />
-      <div className="text-[10px] tracking-[0.3em] text-white/55 mb-1">{phase.label.toUpperCase()}</div>
+      <div className="text-[10px] tracking-[0.3em] text-white/78 mb-1">{phase.label.toUpperCase()}</div>
       <div className="font-cinzel text-[44px]" style={{ color: accentColor, lineHeight: 1 }}>{countdown}</div>
     </div>
   )
@@ -1734,11 +1734,11 @@ function BreathworkCard({
 }) {
   return (
     <StepCard badge="BREATH" title={title} accentColor={accentColor}>
-      <p className="text-[12px] text-white/60 italic mb-4">{subtitle} · {pattern.name}</p>
+      <p className="text-[12px] text-white/82 italic mb-4">{subtitle} · {pattern.name}</p>
       <div className="mb-3">
         <BreathPacer pattern={pattern} accentColor={accentColor} />
       </div>
-      <p className="text-[12px] text-white/70 leading-relaxed text-center">{pattern.guidance}</p>
+      <p className="text-[12px] text-white/87 leading-relaxed text-center">{pattern.guidance}</p>
     </StepCard>
   )
 }
@@ -1770,7 +1770,7 @@ function StepClose({
           <p className="text-[13px] text-white/87 leading-relaxed">
             The Earth tone carries you home. If you have your <span className="font-cinzel" style={{ color: accentColor }}>{dominantPlanet} fork</span>, strike it gently alongside to bridge back.
           </p>
-          <p className="text-[11px] text-white/65 italic mt-1">
+          <p className="text-[11px] text-white/85 italic mt-1">
             This is the bridge back to ordinary awareness. Let it settle for a breath or two.
           </p>
         </div>
@@ -1781,7 +1781,7 @@ function StepClose({
         mind, the emotional field. There is no rush to leave.
       </p>
 
-      <p className="text-[11px] text-white/65 italic text-center mt-4">
+      <p className="text-[11px] text-white/85 italic text-center mt-4">
         When ready, tap <span style={{ color: accentColor }}>Complete Session ✓</span> below —
         you&apos;ll be guided to a short check-in.
       </p>
@@ -1807,13 +1807,13 @@ function ChakraEarthClose({
 }) {
   return (
     <StepCard badge="CLOSE · EARTH GROUNDING" title="Earth grounding — completion" accentColor={accentColor}>
-      <p className="text-[11px] text-white/45 italic mb-3">{phaseLabel} — the centers are lit; let the body settle and integrate.</p>
+      <p className="text-[11px] text-white/70 italic mb-3">{phaseLabel} — the centers are lit; let the body settle and integrate.</p>
 
       {/* SHA — the session ENDS on the Earth Day fork (194.18 Hz), the grounding close. */}
       <div className="flex items-baseline gap-3 mb-4 flex-wrap">
         <span className="font-cinzel text-[22px]" style={{ color: accentColor }}>194.18 Hz</span>
         <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>· Earth Day fork</span>
-        <span className="text-[12px] text-white/65">the grounding close</span>
+        <span className="text-[12px] text-white/85">the grounding close</span>
       </div>
 
       {/* Body grid LEADS the close (SHA v4.5) — the whole body; the Earth Day fork grounds. */}
@@ -1823,11 +1823,11 @@ function ChakraEarthClose({
 
       {/* Relaxing 4-7-8 breath — extended exhale to down-regulate before you rise. */}
       <div className="flex flex-col items-center mb-3">
-        <div className="text-[10px] tracking-[0.22em] uppercase mb-2" style={{ color: hexToRgba(accentColor, 0.85) }}>
+        <div className="text-[10px] tracking-[0.22em] uppercase mb-2" style={{ color: hexToRgba(accentColor, 0.95) }}>
           Grounding breath · {pattern.name}
         </div>
         <BreathPacer pattern={pattern} accentColor={accentColor} />
-        <p className="text-[12px] text-white/70 leading-relaxed text-center mt-2">{pattern.guidance}</p>
+        <p className="text-[12px] text-white/87 leading-relaxed text-center mt-2">{pattern.guidance}</p>
       </div>
 
       <p className="text-[13px] text-white/85 leading-relaxed mb-2">
@@ -1837,7 +1837,7 @@ function ChakraEarthClose({
 
       {/* Earth information — COLLAPSED by default (SHA v4.5), expandable. */}
       <details className="mt-3 rounded-xl overflow-hidden" style={{ background: hexToRgba(accentColor, 0.06), border: `1px solid ${hexToRgba(accentColor, 0.2)}` }}>
-        <summary className="cursor-pointer list-none px-3 py-2 text-[10px] uppercase tracking-[0.2em]" style={{ color: hexToRgba(accentColor, 0.9) }}>
+        <summary className="cursor-pointer list-none px-3 py-2 text-[10px] uppercase tracking-[0.2em]" style={{ color: hexToRgba(accentColor, 0.95) }}>
           Earth · why we ground →
         </summary>
         <div className="px-3 pb-3 pt-1">
@@ -1850,7 +1850,7 @@ function ChakraEarthClose({
         </div>
       </details>
 
-      <p className="text-[11px] text-white/65 italic text-center mt-4">
+      <p className="text-[11px] text-white/85 italic text-center mt-4">
         When ready, tap <span style={{ color: accentColor }}>Complete Session ✓</span> below —
         you&apos;ll be guided to a short check-in.
       </p>
@@ -1865,7 +1865,7 @@ function FieldRow({
 }: { label: string; value: string; accentColor: string; highlight?: boolean }) {
   return (
     <div className="mb-2.5">
-      <div className="text-[9px] tracking-[0.25em] text-white/55 mb-0.5">{label}</div>
+      <div className="text-[9px] tracking-[0.25em] text-white/78 mb-0.5">{label}</div>
       <div
         className={`text-[13px] leading-snug ${highlight ? 'text-white' : 'text-white/87'}`}
         style={highlight ? { color: accentColor } : {}}

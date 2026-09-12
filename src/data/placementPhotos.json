@@ -62,11 +62,6 @@
       "discipline": "contact",
       "alt": "A fork on the front of the thigh, the quadriceps and its nerve pathways lit beneath the skin."
     },
-    "knee_front": {
-      "file": "janu_anterior.jpg",
-      "discipline": "contact",
-      "alt": "Looking down at her own legs, a woman rests the stem of a tuning fork on the front of her own knee, gold light branching up the thigh and down the shin."
-    },
     "heel": {
       "file": "parshni.jpg",
       "discipline": "contact",
@@ -135,5 +130,15 @@
   },
   "_gaps": "26 of 27 sites. Every site any session lands on as a STATION now carries a photograph — SHA delivered the final twelve on 2026-09-12. The one remaining is crown_back (Shivarandhra, just behind the top of the head), which is never a station; it can still surface as an alternate card, and there it shows the body map alone.",
   "_wave2": "Wave 2 (SHA, 2026-09-12) — anatomical cutaways rather than first-person photographs. They teach something wave 1 could not: not just where the fork goes, but what it is reaching. Shankha was re-shot after the first version showed stem contact at the temple; it is a FIELD site, so the picture had to show the gap. It now does — and the discipline stamp above means that class of error can no longer reach a screen.",
-  "_wave3": "Wave 3 (SHA, 2026-09-12) — the twelve that closed the register: sole, lower belly, lower back, navel, tail bone, hip, calf, shin, palm, shoulder blade, elbow, forearm. The three field shots (lower belly, tail bone, navel) each show an unmistakable gap and the two field-ONLY subjects are fully clothed, per SHA's standing ruling that the reproductive region and the coccyx are swept and never touched."
+  "_wave3": "Wave 3 (SHA, 2026-09-12) — the twelve that closed the register: sole, lower belly, lower back, navel, tail bone, hip, calf, shin, palm, shoulder blade, elbow, forearm. The three field shots (lower belly, tail bone, navel) each show an unmistakable gap and the two field-ONLY subjects are fully clothed, per SHA's standing ruling that the reproductive region and the coccyx are swept and never touched.",
+  "_withdrawn": {
+    "knee_front": {
+      "file": "janu_anterior.jpg",
+      "discipline": "contact",
+      "alt": "Looking down at her own legs, a woman rests the stem of a tuning fork on the front of her own knee, gold light branching up the thigh and down the shin.",
+      "why": "SHA, 2026-09-12: \"the shin/leg is NOT the knee.\" In janu_anterior.jpg the fork stem contacts below the kneecap and the light runs down the shin, so it reads as a leg placement, not the centre of the kneecap that Janu names. The register's own rule is that a wrong placement is worse than no placement, so knee_front now shows NO photograph until a real kneecap frame exists. The file stays in public/images/placements and is unused.",
+      "needed": "Looking down at one's own bent knee, the stem of a fork resting flat on the CENTRE OF THE KNEECAP itself — the patella clearly the point of contact, light blooming at the kneecap rather than travelling the shin. Contact discipline, anterior view."
+    }
+  },
+  "_note": " | A site with no entry here renders NO picture. Never point a site at a photograph of a neighbouring place to fill a gap — see _withdrawn."
 }

@@ -181,7 +181,7 @@ export default function ResultsScreen({
             Astryx answers WHY / WHERE-ELSE. Reflex prompt only when we have one. */}
         {showSummary && (
           <div className="mb-6 -mt-2">
-            <div className="text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">Curious? Ask Astryx</div>
+            <div className="text-[10px] uppercase tracking-[0.25em] text-white/62 mb-2">Curious? Ask Astryx</div>
             <AskAstryxNudge
               accentColor={accentColor}
               onAsk={askTeacher}
@@ -222,7 +222,7 @@ export default function ResultsScreen({
             onClick={() => setExploreOpen((o) => !o)}
             className="group w-full mt-8 mb-2 flex items-center justify-between pl-5 pr-2 py-3 rounded-2xl kowalski-button"
             style={{
-              background: 'rgba(255,255,255,0.04)',
+              background: 'rgba(255,255,255,0.34)',
               border: `1px solid ${hexAlpha(accentColor, 0.22)}`,
               transition: 'all 500ms cubic-bezier(0.32,0.72,0,1)',
             }}
@@ -264,7 +264,7 @@ export default function ResultsScreen({
             style={{
               background:
                 'radial-gradient(ellipse at 0% 0%, rgba(94,224,255,0.06) 0%, rgba(2,2,8,0.92) 55%, rgba(2,2,8,0.96) 100%)',
-              boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.12)',
+              boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.42)',
             }}
           >
             {/* Aurora wash */}
@@ -280,7 +280,7 @@ export default function ResultsScreen({
               {/* Eyebrow tag — proper pill, not faint caption */}
               <div className="inline-flex items-center gap-2 mb-5 px-3 py-1 rounded-full"
                    style={{
-                     background: 'rgba(255,255,255,0.04)',
+                     background: 'rgba(255,255,255,0.34)',
                      border: `1px solid ${hexAlpha(accentColor, 0.28)}`,
                    }}>
                 <span
@@ -348,7 +348,7 @@ export default function ResultsScreen({
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
               <SectionLabel>Today&apos;s Cosmic Weather</SectionLabel>
-              <span className="text-[10px] text-white/30 tracking-widest">
+              <span className="text-[10px] text-white/58 tracking-widest">
                 {d.activeTransits.length > 5
                   ? `TOP 5 OF ${d.activeTransits.length}`
                   : `${d.activeTransits.length} ACTIVE`}
@@ -376,7 +376,7 @@ export default function ResultsScreen({
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
               <SectionLabel>{DISPLAY.signalRouting}</SectionLabel>
-              <span className="text-[10px] text-white/30 tracking-widest">
+              <span className="text-[10px] text-white/58 tracking-widest">
                 {d.symptomRouting.length} ROUTED
               </span>
             </div>
@@ -395,7 +395,7 @@ export default function ResultsScreen({
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
               <SectionLabel>Your Mineral Foundation</SectionLabel>
-              <span className="text-[10px] text-white/30 tracking-widest">CELL SALTS · BIOCHEMIC</span>
+              <span className="text-[10px] text-white/58 tracking-widest">CELL SALTS · BIOCHEMIC</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -419,7 +419,7 @@ export default function ResultsScreen({
             {/* Gestation deficiencies — Bonacci's rule */}
             {d.cellSaltPrescription.gestationDeficiencies?.length > 0 && (
               <GlassCard title="Innate Baseline Deficiencies" badge="3 signs" className="mt-3" bodyClass="p-5">
-                <p className="text-[12px] text-white/50 italic mb-4">
+                <p className="text-[12px] text-white/74 italic mb-4">
                   Per Carey/Bonacci&apos;s gestation rule — human gestation is 9 months, so the 3 zodiac
                   signs immediately after your Sun sign represent the 3 minerals you are innately
                   under-resourced in from birth.
@@ -429,11 +429,11 @@ export default function ResultsScreen({
                     <div
                       key={i}
                       className="p-3 rounded-lg border border-white/10"
-                      style={{ background: salt.color ? `${salt.color}10` : 'rgba(255,255,255,0.03)' }}
+                      style={{ background: salt.color ? `${salt.color}10` : 'rgba(255,255,255,0.33)' }}
                     >
-                      <div className="text-[10px] tracking-widest text-white/40 mb-1">{salt.sign}</div>
+                      <div className="text-[10px] tracking-widest text-white/66 mb-1">{salt.sign}</div>
                       <div className="font-cinzel text-[14px] text-white mb-0.5">{salt.saltShort}</div>
-                      <div className="text-[11px] text-white/50 italic">{salt.epithet}</div>
+                      <div className="text-[11px] text-white/74 italic">{salt.epithet}</div>
                     </div>
                   ))}
                 </div>
@@ -449,7 +449,7 @@ export default function ResultsScreen({
           <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <div className="flex items-baseline justify-between mb-3 px-1">
               <SectionLabel>Your 6-Sense Calibration Plan</SectionLabel>
-              <span className="text-[10px] text-white/30 tracking-widest">
+              <span className="text-[10px] text-white/58 tracking-widest">
                 {prescriptions.length} PROTOCOL{prescriptions.length > 1 ? 'S' : ''}
               </span>
             </div>
@@ -476,7 +476,7 @@ export default function ResultsScreen({
             onClick={() => setShowChart(!showChart)}
             className="group w-full flex items-center justify-between pl-5 pr-2 py-2 rounded-full kowalski-button"
             style={{
-              background: 'rgba(255,255,255,0.04)',
+              background: 'rgba(255,255,255,0.34)',
               border: `1px solid ${hexAlpha(accentColor, 0.18)}`,
               transition: 'all 600ms cubic-bezier(0.32,0.72,0,1)',
             }}
@@ -519,11 +519,11 @@ export default function ResultsScreen({
                     />
                     <div className="mb-4">
                       <div className="text-[11px] tracking-[0.2em] mb-2" style={{ color: accentColor }}>A — Assessment</div>
-                      <p className="text-[13px] text-white/75 leading-relaxed italic">{protocol.soap.assessment}</p>
+                      <p className="text-[13px] text-white/89 leading-relaxed italic">{protocol.soap.assessment}</p>
                     </div>
                     <div>
                       <div className="text-[11px] tracking-[0.2em] mb-2" style={{ color: accentColor }}>P — Plan</div>
-                      <p className="text-[13px] text-white/65 leading-relaxed">{protocol.soap.plan}</p>
+                      <p className="text-[13px] text-white/85 leading-relaxed">{protocol.soap.plan}</p>
                     </div>
                   </div>
                 }
@@ -615,7 +615,7 @@ function TransitCard({
           <div className="text-[11px] font-semibold tracking-[0.2em] uppercase" style={{ color: '#F59E0B' }}>
             ⚠ {lifeEvent.label}
           </div>
-          <p className="text-[12px] text-white/75 leading-relaxed mt-1">{lifeEvent.description}</p>
+          <p className="text-[12px] text-white/89 leading-relaxed mt-1">{lifeEvent.description}</p>
         </div>
       )}
       {/* H.0.4 — the WHOLE card opens this transit's protocol (not just a link) */}
@@ -635,13 +635,13 @@ function TransitCard({
         <div className="flex-1 min-w-0">
           <div className="text-[13px] font-semibold text-white leading-snug">
             Transiting <span style={{ color: planetColor }}>{transit.transitingPlanet}</span>
-            {transit.transitingRetrograde && <span className="text-white/40 text-[11px] ml-1">℞</span>}
+            {transit.transitingRetrograde && <span className="text-white/66 text-[11px] ml-1">℞</span>}
             {' '}
-            <span className="text-white/50">{transit.aspect}</span>
+            <span className="text-white/74">{transit.aspect}</span>
             {' '}
             natal <span className="text-white/90">{transit.natalPlanet}</span>
           </div>
-          <div className="text-[11px] text-white/40 mt-0.5">
+          <div className="text-[11px] text-white/66 mt-0.5">
             {transit.transitingSign} → {transit.natalSign} · {orbLabel} · {daysLabel}
             {transit.applying ? ' · applying' : ' · separating'}
           </div>
@@ -651,7 +651,7 @@ function TransitCard({
           role="button"
           aria-label="Toggle details"
           onClick={(e) => { e.stopPropagation(); onToggle() }}
-          className="text-lg text-white/30 flex-shrink-0 transition-transform px-2 py-1"
+          className="text-lg text-white/58 flex-shrink-0 transition-transform px-2 py-1"
           style={{ transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)', cursor: 'pointer' }}
         >
           +
@@ -663,24 +663,24 @@ function TransitCard({
           <div className="h-px bg-white/5 mb-4" />
           {transit.interpretation.effect && (
             <div className="mb-3">
-              <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">WHERE IT LANDS IN THE BODY</div>
-              <p className="text-[13px] text-white/75 leading-relaxed">{transit.interpretation.effect}</p>
+              <div className="text-[10px] tracking-[0.2em] text-white/66 mb-1">WHERE IT LANDS IN THE BODY</div>
+              <p className="text-[13px] text-white/89 leading-relaxed">{transit.interpretation.effect}</p>
             </div>
           )}
           {transit.interpretation.intervention && (
             <div className="mb-3">
               <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>THE RESPONSE</div>
-              <p className="text-[13px] text-white/70 leading-relaxed">{transit.interpretation.intervention}</p>
+              <p className="text-[13px] text-white/87 leading-relaxed">{transit.interpretation.intervention}</p>
             </div>
           )}
           {transit.interpretation.duration && (
-            <div className="text-[11px] text-white/40 italic mb-3">
+            <div className="text-[11px] text-white/66 italic mb-3">
               Duration of this transit window: {transit.interpretation.duration}
             </div>
           )}
 
           {/* Directive I.2 — informational + a fork suggestion (no audio) */}
-          <div className="text-[12px] text-white/55 leading-relaxed mb-4">
+          <div className="text-[12px] text-white/78 leading-relaxed mb-4">
             <span style={{ color: planetColor }}>♪</span> Strike your{' '}
             <span style={{ color: planetColor }}>{transit.transitingPlanet} fork</span> on your own for
             ~5 minutes (up to 10 to go deeper).
@@ -732,16 +732,16 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
         {symptom.rootCause.headline}
       </p>
       {symptom.matchedSubtypeDescription && (
-        <p className="text-[12px] text-white/55 italic mb-3">
+        <p className="text-[12px] text-white/78 italic mb-3">
           Subtype: {symptom.matchedSubtypeDescription}
         </p>
       )}
 
       <div className="mb-3">
-        <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1.5">WHERE THE CHART CARRIES IT</div>
+        <div className="text-[10px] tracking-[0.2em] text-white/66 mb-1.5">WHERE THE CHART CARRIES IT</div>
         <ul className="space-y-1">
           {symptom.evidence.map((e, i) => (
-            <li key={i} className="text-[12px] text-white/65 flex gap-2 leading-relaxed">
+            <li key={i} className="text-[12px] text-white/85 flex gap-2 leading-relaxed">
               <span style={{ color: planetColor }}>·</span>
               <span>{e}</span>
             </li>
@@ -751,34 +751,34 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
 
       {symptom.rootCause.bodyLayer && (
         <div className="mb-3">
-          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">HOW IT MOVES IN THE BODY</div>
-          <p className="text-[13px] text-white/75 leading-relaxed">{symptom.rootCause.bodyLayer}</p>
+          <div className="text-[10px] tracking-[0.2em] text-white/66 mb-1">HOW IT MOVES IN THE BODY</div>
+          <p className="text-[13px] text-white/89 leading-relaxed">{symptom.rootCause.bodyLayer}</p>
         </div>
       )}
       {symptom.rootCause.actionLayer && (
         <div className="mb-3">
           <div className="text-[10px] tracking-[0.2em] mb-1" style={{ color: planetColor }}>THE PRACTICE</div>
-          <p className="text-[13px] text-white/70 leading-relaxed">{symptom.rootCause.actionLayer}</p>
+          <p className="text-[13px] text-white/87 leading-relaxed">{symptom.rootCause.actionLayer}</p>
         </div>
       )}
 
       {symptom.recommendedCellSalt?.saltName && (
         <div className="mt-4 p-3 rounded-lg border border-white/10 bg-white/3">
-          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">THE MINERAL REFERENCE</div>
+          <div className="text-[10px] tracking-[0.2em] text-white/66 mb-1">THE MINERAL REFERENCE</div>
           <div className="flex items-baseline gap-2 flex-wrap">
             <span className="font-cinzel text-[14px] text-white">{symptom.recommendedCellSalt.saltShort}</span>
-            <span className="text-[11px] text-white/40 italic">{symptom.recommendedCellSalt.epithet}</span>
+            <span className="text-[11px] text-white/66 italic">{symptom.recommendedCellSalt.epithet}</span>
           </div>
           {/* v3 — show the keynote FACET that matches the routed symptom
               (emotional vs physical), never a blind physical default. */}
           {(symptom.recommendedCellSalt.displaySignal ?? symptom.recommendedCellSalt.plainLanguageSignal) && (
-            <p className="text-[12px] text-white/55 mt-1 italic">
+            <p className="text-[12px] text-white/78 mt-1 italic">
               {symptom.recommendedCellSalt.displaySignal ?? symptom.recommendedCellSalt.plainLanguageSignal}
             </p>
           )}
           {/* v3 — one-line "why this salt" turns a correct pairing from random → intentional */}
           {symptom.recommendedCellSalt.matchReason && (
-            <p className="text-[11px] text-white/45 mt-1.5 leading-snug">{symptom.recommendedCellSalt.matchReason}</p>
+            <p className="text-[11px] text-white/70 mt-1.5 leading-snug">{symptom.recommendedCellSalt.matchReason}</p>
           )}
           {/* v3 — honest domain-overlap score; weak fits are labeled "loose match" */}
           {typeof symptom.recommendedCellSalt.matchScore === 'number' && (
@@ -805,7 +805,7 @@ function SymptomCard({ symptom }: { symptom: SymptomRouting }) {
             style={{ width: `${symptom.activationScore}%`, background: planetColor }}
           />
         </div>
-        <span className="text-[10px] text-white/40 tracking-widest">{symptom.activationScore}% MATCH</span>
+        <span className="text-[10px] text-white/66 tracking-widest">{symptom.activationScore}% MATCH</span>
       </div>
     </GlassCard>
   )
@@ -827,20 +827,20 @@ function CellSaltCard({
   return (
     <GlassCard accentColor={color} opacity={highlight ? 0.20 : 0.08} title={label} bodyClass="p-5">
       <div className="font-cinzel text-[18px] text-white mb-0.5">{salt.saltName}</div>
-      <div className="text-[11px] text-white/50 mb-2">{salt.saltShort} · {salt.sign} · {salt.epithet}</div>
+      <div className="text-[11px] text-white/74 mb-2">{salt.saltShort} · {salt.sign} · {salt.epithet}</div>
       {salt.plainLanguageSignal && (
-        <p className="text-[12px] text-white/65 leading-relaxed italic mb-3">{salt.plainLanguageSignal}</p>
+        <p className="text-[12px] text-white/85 leading-relaxed italic mb-3">{salt.plainLanguageSignal}</p>
       )}
       {salt.foodSources && salt.foodSources.length > 0 && (
         <div className="mb-2">
-          <div className="text-[10px] tracking-[0.2em] text-white/40 mb-1">FOOD SOURCES</div>
-          <div className="text-[12px] text-white/60">{salt.foodSources.slice(0, 5).join(' · ')}</div>
+          <div className="text-[10px] tracking-[0.2em] text-white/66 mb-1">FOOD SOURCES</div>
+          <div className="text-[12px] text-white/82">{salt.foodSources.slice(0, 5).join(' · ')}</div>
         </div>
       )}
       {/* SHA — no dosages anywhere. The cell salt is a mineral-foundation
           reference (what it is, what it supports, food sources), not a dose. */}
       {salt.affirmation && (
-        <div className="mt-3 p-2 rounded border-l-2 italic text-[12px] text-white/65" style={{ borderColor: color, background: `${color}08` }}>
+        <div className="mt-3 p-2 rounded border-l-2 italic text-[12px] text-white/85" style={{ borderColor: color, background: `${color}08` }}>
           &ldquo;{salt.affirmation}&rdquo;
         </div>
       )}
@@ -886,13 +886,13 @@ function PrescriptionCard({
           {rx.signature.planet[0]}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-[10px] tracking-[0.25em] text-white/40 mb-1">{sourceLabel}</div>
+          <div className="text-[10px] tracking-[0.25em] text-white/66 mb-1">{sourceLabel}</div>
           <div className="font-cinzel text-[18px] text-white mb-1">{rx.prescription.headline}</div>
-          <div className="text-[12px] text-white/50 mb-2 leading-snug">{rx.signature.triggerLabel}</div>
-          <p className="text-[13px] text-white/70 leading-relaxed">{rx.prescription.summary}</p>
+          <div className="text-[12px] text-white/74 mb-2 leading-snug">{rx.signature.triggerLabel}</div>
+          <p className="text-[13px] text-white/87 leading-relaxed">{rx.prescription.summary}</p>
         </div>
         <div
-          className="text-lg text-white/30 flex-shrink-0 transition-transform"
+          className="text-lg text-white/58 flex-shrink-0 transition-transform"
           style={{ transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)' }}
         >
           +
@@ -962,17 +962,17 @@ function PrescriptionCard({
             {rx.mineral?.saltName && (
               <BundleRow label="CELL SALT" color={color}>
                 <span className="font-cinzel text-white">{rx.mineral.saltShort}</span>
-                <span className="text-white/40"> · </span>
-                <span className="text-white/60">{rx.mineral.sign}</span>
-                <span className="text-white/40"> · </span>
-                <span className="text-white/55 italic">{rx.mineral.epithet}</span>
+                <span className="text-white/66"> · </span>
+                <span className="text-white/82">{rx.mineral.sign}</span>
+                <span className="text-white/66"> · </span>
+                <span className="text-white/78 italic">{rx.mineral.epithet}</span>
               </BundleRow>
             )}
             {rx.botanical?.sacredBotanical && (
               <BundleRow label="SACRED BOTANICAL" color={color}>
                 <span className="font-cinzel text-white">{rx.botanical.sacredBotanical}</span>
-                <span className="text-white/40"> · </span>
-                <span className="text-white/55 italic">{rx.botanical.latinName}</span>
+                <span className="text-white/66"> · </span>
+                <span className="text-white/78 italic">{rx.botanical.latinName}</span>
               </BundleRow>
             )}
             {rx.crystal?.featuredCrystal && (
@@ -980,8 +980,8 @@ function PrescriptionCard({
                 <span className="font-cinzel text-white">{rx.crystal.featuredCrystal}</span>
                 {rx.crystal.featuredCrystalData?.bodyPlacement && (
                   <>
-                    <span className="text-white/40"> · placement: </span>
-                    <span className="text-white/65">{rx.crystal.featuredCrystalData.bodyPlacement}</span>
+                    <span className="text-white/66"> · placement: </span>
+                    <span className="text-white/85">{rx.crystal.featuredCrystalData.bodyPlacement}</span>
                   </>
                 )}
                 {rx.crystal.featuredCrystal === 'Malachite' && (
@@ -994,18 +994,18 @@ function PrescriptionCard({
             {rx.fork && mode === 'practitioner' && (
               <BundleRow label="TUNING FORK" color={color}>
                 <span className="font-cinzel text-white">{rx.fork.planet}</span>
-                <span className="text-white/40"> · </span>
-                <span className="text-white/65 font-mono-jb">{rx.fork.hz} Hz</span>
+                <span className="text-white/66"> · </span>
+                <span className="text-white/85 font-mono-jb">{rx.fork.hz} Hz</span>
                 {rx.fork.note && (
                   <>
-                    <span className="text-white/40"> · note </span>
-                    <span className="text-white/65">{rx.fork.note}</span>
+                    <span className="text-white/66"> · note </span>
+                    <span className="text-white/85">{rx.fork.note}</span>
                   </>
                 )}
                 {rx.fork.boneApplicationPoint && (
                   <>
-                    <span className="text-white/40"> · apply at </span>
-                    <span className="text-white/65">{rx.fork.boneApplicationPoint}</span>
+                    <span className="text-white/66"> · apply at </span>
+                    <span className="text-white/85">{rx.fork.boneApplicationPoint}</span>
                   </>
                 )}
               </BundleRow>
@@ -1018,7 +1018,7 @@ function PrescriptionCard({
               <div className="text-[10px] tracking-[0.25em] mb-2" style={{ color }}>
                 INTEGRATION — HOW TO WEAVE THE SIX SENSES
               </div>
-              <p className="text-[13px] text-white/75 leading-relaxed">{rx.integrationNote}</p>
+              <p className="text-[13px] text-white/89 leading-relaxed">{rx.integrationNote}</p>
             </div>
           )}
 
@@ -1026,7 +1026,7 @@ function PrescriptionCard({
           {rx.safetyNotes && rx.safetyNotes.length > 0 && (
             <div className="mt-3 space-y-1">
               {rx.safetyNotes.map((note, i) => (
-                <p key={i} className={`text-[11px] leading-relaxed ${note.startsWith('⚠') ? 'text-red-300 font-semibold' : 'text-white/40 italic'}`}>
+                <p key={i} className={`text-[11px] leading-relaxed ${note.startsWith('⚠') ? 'text-red-300 font-semibold' : 'text-white/66 italic'}`}>
                   {note}
                 </p>
               ))}
@@ -1036,7 +1036,7 @@ function PrescriptionCard({
           {/* Directive I.2 — no preview audio on Results. The sound for this
               prescription plays in the chamber, where it can be controlled. */}
           {rx.signature.source === 'dominant' && (
-            <div className="mt-4 flex items-center gap-2 text-[11px] text-white/45 italic">
+            <div className="mt-4 flex items-center gap-2 text-[11px] text-white/70 italic">
               <span style={{ color }}>♫</span>
               Hear this calibration in your Chamber, the only room where the tones play.
             </div>
@@ -1060,10 +1060,10 @@ function SenseTile({
   clair?: string
 }) {
   return (
-    <div className="p-3 rounded-lg border border-white/10" style={{ background: 'rgba(255,255,255,0.025)' }}>
+    <div className="p-3 rounded-lg border border-white/10" style={{ background: 'rgba(255,255,255,0.33)' }}>
       <div className="flex items-center gap-2 mb-1.5">
         <span style={{ color, fontSize: 16 }}>{icon}</span>
-        <span className="text-[10px] tracking-[0.25em] text-white/45">{label}</span>
+        <span className="text-[10px] tracking-[0.25em] text-white/70">{label}</span>
       </div>
       <div className="text-[13px] text-white/85 font-medium mb-1">{primary}</div>
       {clair && (
@@ -1080,7 +1080,7 @@ function SenseTile({
           ))}
         </div>
       )}
-      {detail && <p className="text-[11px] text-white/55 leading-relaxed">{detail}</p>}
+      {detail && <p className="text-[11px] text-white/78 leading-relaxed">{detail}</p>}
     </div>
   )
 }
@@ -1095,7 +1095,7 @@ function BundleRow({
 }) {
   return (
     <div className="flex items-baseline gap-3 py-1.5 border-b border-white/5 last:border-b-0">
-      <div className="text-[10px] tracking-[0.2em] text-white/40 shrink-0" style={{ minWidth: 130 }}>
+      <div className="text-[10px] tracking-[0.2em] text-white/66 shrink-0" style={{ minWidth: 130 }}>
         {label}
       </div>
       <div className="text-[13px] flex-1 leading-snug">{children}</div>
@@ -1286,12 +1286,12 @@ function CalibrationToday({
           className="relative p-6 sm:p-8 rounded-[calc(2rem-0.375rem)] overflow-hidden"
           style={{
             background: 'radial-gradient(ellipse at 0% 0%, rgba(94,224,255,0.06) 0%, rgba(2,2,8,0.93) 55%, rgba(2,2,8,0.96) 100%)',
-            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.10)',
+            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4)',
           }}
         >
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full"
-               style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${hexAlpha(planetColor, 0.30)}` }}>
+               style={{ background: 'rgba(255,255,255,0.34)', border: `1px solid ${hexAlpha(planetColor, 0.30)}` }}>
             <span className="inline-block w-1.5 h-1.5 rounded-full animate-cosmic-pulse"
                   style={{ background: planetColor, boxShadow: `0 0 8px ${planetColor}` }} />
             <span className="text-[10px] uppercase tracking-[0.25em] font-medium"
@@ -1332,7 +1332,7 @@ function CalibrationToday({
 
           {/* The five plain-language actions */}
           <div className="rounded-2xl px-4 sm:px-5 py-1.5 mb-5"
-               style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+               style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
             <ActionRow label="Sound" accent={planetColor}>
               {soundLabel}
               {mode === 'practitioner' && rx?.fiveSenses.sound?.hz
@@ -1361,7 +1361,7 @@ function CalibrationToday({
           <button
             onClick={() => onAskTeacher()}
             className="kowalski-button w-full mt-1 flex items-center justify-between rounded-2xl px-4 py-3 text-left"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
+            style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}
           >
             <span className="flex items-center gap-2.5">
               <span className="inline-block w-1.5 h-1.5 rounded-full"
@@ -1371,7 +1371,7 @@ function CalibrationToday({
                 <span className="block text-[13px] text-content">Ask Astryx why the sky sounds this way for you today</span>
               </span>
             </span>
-            <span className="text-[12px] text-white/50 shrink-0">→</span>
+            <span className="text-[12px] text-white/74 shrink-0">→</span>
           </button>
         </div>
       </div>
@@ -1409,7 +1409,7 @@ function PrepareSession({
     <div className="mt-8 mb-3 animate-fade-in-up">
       <div className="flex items-baseline justify-between mb-3 px-1">
         <SectionLabel>Prepare your Chamber</SectionLabel>
-        <span className="text-[10px] text-white/30 tracking-widest">IF YOU CAN</span>
+        <span className="text-[10px] text-white/58 tracking-widest">IF YOU CAN</span>
       </div>
       <div
         className="rounded-[1.75rem] p-5 sm:p-6"
@@ -1531,13 +1531,13 @@ function ChamberCTA({
           className="relative p-5 sm:p-7 rounded-[calc(2rem-0.375rem)] overflow-hidden"
           style={{
             background: 'radial-gradient(ellipse at 50% 0%, rgba(94,224,255,0.06) 0%, rgba(2,2,8,0.94) 60%)',
-            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.10)',
+            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4)',
           }}
         >
           {/* Eyebrow + chamber name */}
           <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full"
                style={{
-                 background: 'rgba(255,255,255,0.04)',
+                 background: 'rgba(255,255,255,0.34)',
                  border: `1px solid ${hexAlpha(chamberAccent, 0.32)}`,
                }}>
             <span
@@ -1608,7 +1608,7 @@ function ChamberCTA({
 
           {mode === 'practitioner' && (
             <div className="mt-3 px-3 py-2 rounded-lg"
-                 style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
+                 style={{ background: 'rgba(255,255,255,0.33)', border: '1px solid var(--hair-warm)', boxShadow: 'inset 0 1px 0 var(--lip)' }}>
               <p className="text-[10px] uppercase tracking-[0.22em] text-label mb-1">Practitioner trace</p>
               <p className="text-[11px] text-meta">
                 {dna.technicalSignature} · <span className="font-mono-jb">{dna.signature}</span>
@@ -1655,20 +1655,20 @@ function ChamberCTA({
                     style={{
                       background: active
                         ? `linear-gradient(135deg, ${hexAlpha(chamberAccent, 0.25)} 0%, ${hexAlpha(chamberAccent, 0.08)} 100%)`
-                        : 'rgba(255,255,255,0.04)',
-                      border: `1px solid ${active ? hexAlpha(chamberAccent, 0.55) : 'rgba(255,255,255,0.10)'}`,
+                        : 'rgba(255,255,255,0.34)',
+                      border: `1px solid ${active ? hexAlpha(chamberAccent, 0.55) : 'rgba(255,255,255,0.4)'}`,
                       boxShadow: active ? `0 0 16px -4px ${hexAlpha(chamberAccent, 0.55)}` : 'none',
                       transition: 'all 350ms cubic-bezier(0.32,0.72,0,1)',
                     }}
                   >
                     <span
                       className="text-[10px] uppercase tracking-[0.22em] font-medium"
-                      style={{ color: active ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.6)' }}
+                      style={{ color: active ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.82)' }}
                     >
                       {shortLabel}
                     </span>
                     <span className="font-mono-jb text-[14px]"
-                          style={{ color: active ? chamberAccent : 'rgba(255,255,255,0.75)' }}>
+                          style={{ color: active ? chamberAccent : 'rgba(255,255,255,0.88)' }}>
                       {mins} min
                     </span>
                   </button>
@@ -1727,7 +1727,7 @@ function SOAPSection({ label, items, accentColor }: { label: string; items: stri
     <div className="mb-4">
       <div className="text-[11px] tracking-[0.2em] mb-2" style={{ color: accentColor }}>{label}</div>
       {items.map((item, i) => (
-        <p key={i} className="text-[13px] text-white/65 leading-relaxed pl-1">• {item}</p>
+        <p key={i} className="text-[13px] text-white/85 leading-relaxed pl-1">• {item}</p>
       ))}
     </div>
   )
@@ -1799,7 +1799,7 @@ function TransitProtocolModal({
           className="relative p-6 sm:p-8 rounded-[calc(2rem-0.375rem)] overflow-hidden"
           style={{
             background: 'radial-gradient(ellipse at 50% 0%, rgba(94,224,255,0.06) 0%, rgba(2,2,8,0.96) 60%)',
-            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.10)',
+            boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4)',
           }}
         >
           {/* Close button */}
@@ -1807,9 +1807,9 @@ function TransitProtocolModal({
             onClick={onClose}
             className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-[16px] kowalski-button"
             style={{
-              background: 'rgba(255,255,255,0.06)',
+              background: 'rgba(255,255,255,0.36)',
               border: '1px solid var(--hair-warm)',
-              color: 'rgba(255,255,255,0.7)',
+              color: 'rgba(255,255,255,0.88)',
             }}
             aria-label="Close"
           >
@@ -1820,7 +1820,7 @@ function TransitProtocolModal({
           <div className="mb-6 pr-12">
             <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full"
                  style={{
-                   background: 'rgba(255,255,255,0.04)',
+                   background: 'rgba(255,255,255,0.34)',
                    border: `1px solid ${hexAlpha(planetColor, 0.32)}`,
                  }}>
               <span
