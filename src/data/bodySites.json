@@ -3,33 +3,357 @@
   "_discipline": "Every site carries the discipline the body itself demands: contact (stem may rest), field (tines float clear), fieldOnly (never touched, swept only). The engine may TIGHTEN this per person and never loosens it. A contact photograph may never appear on a step that resolved to a sweep — that gate is mechanical, not a judgement call.",
   "_order": "Listed crown to sole by the anchor y each site already carried, so the register reads as the body reads.",
   "sites": [
-    { "id": "crown",            "name": "Crown of the head",        "short": "Crown",         "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.025 }, "marma": "adhipati",             "paired": false },
-    { "id": "crown_back",       "name": "Back of the crown",        "short": "Back of crown", "view": "posterior", "discipline": "field",     "anchor": { "x": 0.50, "y": 0.038 }, "marma": "shivarandhra",         "paired": false },
-    { "id": "temple",           "name": "Temple",                   "short": "Temple",        "view": "anterior",  "discipline": "field",     "anchor": { "x": 0.50, "y": 0.095 }, "marma": "shankha",              "paired": true  },
-    { "id": "brow",             "name": "Centre of the brow",       "short": "Brow",          "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.100 }, "marma": "sthapani",             "paired": false },
-    { "id": "skull_base",       "name": "Base of the skull",        "short": "Skull base",    "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.140 }, "marma": "krikatika",            "paired": true  },
-    { "id": "throat_front",     "name": "Front of the throat",      "short": "Throat",        "view": "anterior",  "discipline": "field",     "anchor": { "x": 0.50, "y": 0.165 }, "marma": "kantha",               "paired": false },
-    { "id": "shoulder_ridge",   "name": "Ridge of the shoulder",    "short": "Shoulder",      "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.205 }, "marma": "urdhva_skandha",       "paired": true  },
-    { "id": "upper_breastbone", "name": "Upper breastbone",         "short": "Breastbone",    "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.215 }, "marma": "jatru",                "paired": false },
-    { "id": "chest_centre",     "name": "Centre of the chest",      "short": "Chest",         "view": "anterior",  "discipline": "field",     "anchor": { "x": 0.50, "y": 0.290 }, "marma": "hridayam",             "paired": false },
-    { "id": "shoulder_blade",   "name": "Under the shoulder blade", "short": "Shoulder blade","view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.320 }, "marma": "bruhati",              "paired": true  },
-    { "id": "rib_margin_right", "name": "Right rib margin",         "short": "Right ribs",    "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.355 }, "marma": "yakrut",               "paired": false },
-    { "id": "solar_plexus",     "name": "Solar plexus",             "short": "Solar plexus",  "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.370 }, "marma": "surya",                "paired": false },
-    { "id": "navel",            "name": "Navel",                    "short": "Navel",         "view": "anterior",  "discipline": "field",     "anchor": { "x": 0.50, "y": 0.420 }, "marma": "nabhi",                "paired": false },
-    { "id": "elbow",            "name": "Point of the elbow",       "short": "Elbow",         "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.440 }, "marma": "kurpara",              "paired": true  },
-    { "id": "lower_back",       "name": "Small of the back",        "short": "Lower back",    "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.445 }, "marma": "kukundara",            "paired": true  },
-    { "id": "lower_belly",      "name": "Lower belly",              "short": "Lower belly",   "view": "anterior",  "discipline": "fieldOnly", "anchor": { "x": 0.50, "y": 0.455 }, "marma": "basti",                "paired": false },
-    { "id": "forearm",          "name": "Inner forearm",            "short": "Forearm",       "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.460 }, "marma": "bahu_indrabasta",      "paired": true  },
-    { "id": "sacrum",           "name": "Sacrum",                   "short": "Sacrum",        "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.465 }, "marma": "kati",                 "paired": false },
-    { "id": "tailbone",         "name": "Tail bone",                "short": "Tail bone",     "view": "posterior", "discipline": "fieldOnly", "anchor": { "x": 0.50, "y": 0.490 }, "marma": "trik",                 "paired": false },
-    { "id": "hip",              "name": "Hip",                      "short": "Hip",           "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.500 }, "marma": null,                   "paired": true  },
-    { "id": "palm",             "name": "Centre of the palm",       "short": "Palm",          "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.640 }, "marma": "tala_hrida",           "paired": true  },
-    { "id": "thigh_front",      "name": "Front of the thigh",       "short": "Thigh",         "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.640 }, "marma": "sakthi_urvi_anterior", "paired": true  },
-    { "id": "knee_front",       "name": "Front of the knee",        "short": "Knee",          "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.750 }, "marma": "janu_anterior",        "paired": true  },
-    { "id": "shin",             "name": "Shin",                     "short": "Shin",          "view": "anterior",  "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.820 }, "marma": null,                   "paired": true  },
-    { "id": "calf",             "name": "Fullest part of the calf", "short": "Calf",          "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.850 }, "marma": "indrabasta_posterior", "paired": true  },
-    { "id": "heel",             "name": "Back of the heel",         "short": "Heel",          "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.935 }, "marma": "parshni",              "paired": true  },
-    { "id": "sole",             "name": "Sole of the foot",         "short": "Sole",          "view": "posterior", "discipline": "contact",   "anchor": { "x": 0.50, "y": 0.955 }, "marma": "pada_madhya",          "paired": true  }
+    {
+      "id": "crown",
+      "name": "Crown of the head",
+      "short": "Crown",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.025
+      },
+      "marma": "adhipati",
+      "paired": false
+    },
+    {
+      "id": "crown_back",
+      "name": "Back of the crown",
+      "short": "Back of crown",
+      "view": "posterior",
+      "discipline": "field",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.038
+      },
+      "marma": "shivarandhra",
+      "paired": false
+    },
+    {
+      "id": "temple",
+      "name": "Temple",
+      "short": "Temple",
+      "view": "anterior",
+      "discipline": "field",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.095
+      },
+      "marma": "shankha",
+      "paired": true
+    },
+    {
+      "id": "brow",
+      "name": "Centre of the brow",
+      "short": "Brow",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.1
+      },
+      "marma": "sthapani",
+      "paired": false
+    },
+    {
+      "id": "skull_base",
+      "name": "Base of the skull",
+      "short": "Skull base",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.14
+      },
+      "marma": "krikatika",
+      "paired": true
+    },
+    {
+      "id": "throat_front",
+      "name": "Front of the throat",
+      "short": "Throat",
+      "view": "anterior",
+      "discipline": "field",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.165
+      },
+      "marma": "kantha",
+      "paired": false
+    },
+    {
+      "id": "shoulder_ridge",
+      "name": "Ridge of the shoulder",
+      "short": "Shoulder",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.205
+      },
+      "marma": "urdhva_skandha",
+      "paired": true
+    },
+    {
+      "id": "upper_breastbone",
+      "name": "Upper breastbone",
+      "short": "Breastbone",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.215
+      },
+      "marma": "jatru",
+      "paired": false
+    },
+    {
+      "id": "chest_centre",
+      "name": "Centre of the chest",
+      "short": "Chest",
+      "view": "anterior",
+      "discipline": "field",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.29
+      },
+      "marma": "hridayam",
+      "paired": false
+    },
+    {
+      "id": "shoulder_blade",
+      "name": "Under the shoulder blade",
+      "short": "Shoulder blade",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.32
+      },
+      "marma": "bruhati",
+      "paired": true
+    },
+    {
+      "id": "rib_margin_right",
+      "name": "Right rib margin",
+      "short": "Right ribs",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.355
+      },
+      "marma": "yakrut",
+      "paired": false
+    },
+    {
+      "id": "solar_plexus",
+      "name": "Solar plexus",
+      "short": "Solar plexus",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.37
+      },
+      "marma": "surya",
+      "paired": false
+    },
+    {
+      "id": "navel",
+      "name": "Navel",
+      "short": "Navel",
+      "view": "anterior",
+      "discipline": "field",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42
+      },
+      "marma": "nabhi",
+      "paired": false
+    },
+    {
+      "id": "elbow",
+      "name": "Point of the elbow",
+      "short": "Elbow",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.44
+      },
+      "marma": "kurpara",
+      "paired": true
+    },
+    {
+      "id": "lower_back",
+      "name": "Small of the back",
+      "short": "Lower back",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.445
+      },
+      "marma": "kukundara",
+      "paired": true
+    },
+    {
+      "id": "lower_belly",
+      "name": "Lower belly",
+      "short": "Lower belly",
+      "view": "anterior",
+      "discipline": "fieldOnly",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.455
+      },
+      "marma": "basti",
+      "paired": false
+    },
+    {
+      "id": "forearm",
+      "name": "Inner forearm",
+      "short": "Forearm",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46
+      },
+      "marma": "bahu_indrabasta",
+      "paired": true
+    },
+    {
+      "id": "sacrum",
+      "name": "Sacrum",
+      "short": "Sacrum",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.465
+      },
+      "marma": "kati",
+      "paired": false
+    },
+    {
+      "id": "tailbone",
+      "name": "Tail bone",
+      "short": "Tail bone",
+      "view": "posterior",
+      "discipline": "fieldOnly",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.49
+      },
+      "marma": "trik",
+      "paired": false
+    },
+    {
+      "id": "hip",
+      "name": "Hip",
+      "short": "Hip",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "marma": null,
+      "paired": true
+    },
+    {
+      "id": "palm",
+      "name": "Centre of the palm",
+      "short": "Palm",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.64
+      },
+      "marma": "tala_hrida",
+      "paired": true
+    },
+    {
+      "id": "thigh_front",
+      "name": "Front of the thigh",
+      "short": "Thigh",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.64
+      },
+      "marma": "sakthi_urvi_anterior",
+      "paired": true
+    },
+    {
+      "id": "knee_front",
+      "name": "Front of the knee",
+      "short": "Knee",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.75
+      },
+      "marma": "janu_anterior",
+      "paired": true
+    },
+    {
+      "id": "shin",
+      "name": "Shin",
+      "short": "Shin",
+      "view": "anterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.82
+      },
+      "marma": null,
+      "paired": true
+    },
+    {
+      "id": "calf",
+      "name": "Fullest part of the calf",
+      "short": "Calf",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.85
+      },
+      "marma": "indrabasta_posterior",
+      "paired": true
+    },
+    {
+      "id": "heel",
+      "name": "Back of the heel",
+      "short": "Heel",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.935
+      },
+      "marma": "parshni",
+      "paired": true
+    },
+    {
+      "id": "sole",
+      "name": "Sole of the foot",
+      "short": "Sole",
+      "view": "posterior",
+      "discipline": "contact",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.955
+      },
+      "marma": "pada_madhya",
+      "paired": true
+    }
   ],
   "marmaToSite": {
     "adhipati": "crown",
@@ -69,5 +393,55 @@
     "Solar Plexus": "solar_plexus",
     "Sacral": "lower_belly",
     "Root": "tailbone"
+  },
+  "_regionNote": "THE ONE-PLACE RULE (SHA, 2026-09-12): a session step has ONE place. The card names it, the body map marks it, and the only picture shown is a picture of that place. regionToSite maps a body-map region to the site that IS that place. A region absent from this map has no site, and a step there shows NO photograph — never a neighbouring one. See regionUnmapped for why each omission is deliberate.",
+  "regionToSite": {
+    "arms": "forearm",
+    "calves": "calf",
+    "chest": "chest_centre",
+    "feet": "sole",
+    "forehead": "brow",
+    "hands": "palm",
+    "head": "crown",
+    "heart": "chest_centre",
+    "hips": "hip",
+    "intestines": "navel",
+    "kidneys": "lower_back",
+    "knees": "knee_front",
+    "liver": "rib_margin_right",
+    "lower_abdomen": "lower_belly",
+    "lower_back": "lower_back",
+    "lumbar": "lower_back",
+    "lungs": "chest_centre",
+    "neck": "skull_base",
+    "pelvis": "hip",
+    "root": "tailbone",
+    "sacral": "sacrum",
+    "shoulders": "shoulder_ridge",
+    "solar_plexus": "solar_plexus",
+    "stomach": "solar_plexus",
+    "thighs": "thigh_front",
+    "throat": "throat_front",
+    "upper_abdomen": "solar_plexus",
+    "upper_back": "shoulder_blade",
+    "upper_spine": "shoulder_blade"
+  },
+  "regionUnmapped": {
+    "ankles": "no ankle site; the heel is a different place",
+    "bones": "systemic",
+    "circulation": "systemic",
+    "digestive_field": "a field, not a site",
+    "elimination_field": "a field, not a site",
+    "fluid_field": "a field, not a site",
+    "jaw": "no jaw site is photographed; the temple is a different place",
+    "joints": "systemic",
+    "lymph": "systemic",
+    "muscles": "systemic",
+    "nervous_pathways": "systemic",
+    "reproductive_field": "a field, not a site — and it is swept, never touched",
+    "sciatic_pathway": "a pathway, not a site",
+    "skin": "systemic",
+    "spine": "the whole spine is not one site",
+    "subtle_body": "systemic"
   }
 }

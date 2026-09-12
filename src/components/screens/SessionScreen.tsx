@@ -54,7 +54,7 @@ import { useAppStore } from '@/lib/store'
 import { getDurationPreset } from '@/lib/chamber/durationPresets'
 import { generateChamberDNA, type ChamberDNA } from '@/lib/chamber/ChamberDNAEngine'
 import { buildForkSequence, buildFullSpectrumSequence, buildFullBodySequence, buildChakraSequence, buildMarmaSequence, CHAKRA_CENTERS, FULL_BODY_LADDER, FULL_SPECTRUM_SWEEP, sequenceStepAt, forkSequenceDisplay, type SequenceStep } from '@/lib/chamber/forkRite'
-import { siteById, type BodySite } from '@/lib/bodySites'
+import { siteById, governingPlace, type BodySite } from '@/lib/bodySites'
 
 // v4.3 — ONE canonical DNA for the Full Body ladder: seed 0 → identical track
 // selections for every user, every run (the ladder is chart-independent). Only
@@ -889,6 +889,7 @@ export default function SessionScreen({
                 accentColor={stepAccent}
                 bodyMapType={intakeData.bodyMapType ?? 'female'}
                 chakraMode={!!chakraCenterName}
+                chakraCenter={chakraCenterName}
                 forkDisplayName={chakraForkName}
                 placement={(() => {
                   // v4.5.1 — a CHAKRA center places at the chakra's OWN fixed
@@ -1168,7 +1169,7 @@ function applicationFor(
 function SequenceStepCard({
   step, cue, forkSetType, onSetForkSetType, isPractitionerMode,
   breathName, breathGuidance, accentColor, bodyMapType, placement,
-  reflexPoints, onAskAstryx, chakraMode = false, forkDisplayName,
+  reflexPoints, onAskAstryx, chakraMode = false, forkDisplayName, chakraCenter,
 }: {
   step: SequenceStep
   cue: string
@@ -1186,8 +1187,25 @@ function SequenceStepCard({
   chakraMode?: boolean
   /** v4.5.1 — planetary chakra option: the physical fork's name, shown next to the Hz. */
   forkDisplayName?: string
+  /** The chakra centre, when this is a chakra step — resolves the step's place. */
+  chakraCenter?: string | null
 }) {
   const fork = step.fork
+  // ── THE ONE-PLACE RULE (SHA, 2026-09-12) ────────────────────────────────
+  // "i session, pictures match the body map. if it says shoulder, then only
+  //  shoulder pictures should apply."
+  //
+  // This step has ONE place, and this is it. `primaryRegions[0]` is always set
+  // from the same source as `primaryLabel` (BodyPlacementEngine ranks symptom →
+  // sign field → planet field and assigns both together), so the place resolved
+  // here is by construction the place the card's own headline names. A marma or
+  // register step has already been narrowed upstream to a single point, and
+  // that point is then the place.
+  const place = useMemo(() => governingPlace({
+    chakraCenter: chakraMode ? chakraCenter ?? null : null,
+    marmaPointId: placement.marma?.points?.length === 1 ? placement.marma.points[0].id : null,
+    natalRegion: placement.primaryRegions?.[0] ?? null,
+  }), [chakraMode, chakraCenter, placement])
   // v4.5.1 — chakra steps apply at the chakra's location (from the placement label
   // "Crown · top of the head" → "the top of the head"), not the fork's bone point.
   const chakraPoint = chakraMode ? placement.primaryLabel.split('·').pop()?.trim() : undefined
@@ -1211,7 +1229,7 @@ function SequenceStepCard({
         <>
           {/* Body Map LEADS the fork step — WHERE to hold + the active zone. */}
           <div className="mb-4">
-            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
+            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} place={place} />
             <div className="mt-2 rounded-xl overflow-hidden"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
               <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
@@ -1219,7 +1237,7 @@ function SequenceStepCard({
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
-              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
+              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} place={place} />
               </div>
             </div>
           </div>
@@ -1283,7 +1301,7 @@ function SequenceStepCard({
            Ground text, never a duplicate of the grounding card. */
         <>
           <div className="mb-4">
-            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} />
+            <ChamberBodyMap placement={placement} bodyMapType={bodyMapType} accentColor={accentColor} reflexPoints={reflexPoints} onAskAstryx={onAskAstryx} chakraMode={chakraMode} place={place} />
             <div className="mt-2 rounded-xl overflow-hidden"
                  style={{ background: hexToRgba(accentColor, 0.1), border: `1px solid ${hexToRgba(accentColor, 0.3)}` }}>
               <TitleStrip title={placement.primaryLabel} badge="Placement" accentColor={accentColor} />
@@ -1291,7 +1309,7 @@ function SequenceStepCard({
               <div className="text-[13px] text-white/90 leading-snug">{placement.how}</div>
               <div className="text-[11.5px] text-white/55 italic leading-relaxed mt-1.5">{placement.why}</div>
               {/* Marma — the named doorway inside the zone (SHA ruling 2026-09-10). */}
-              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
+              <MarmaPanel marma={placement.marma} accentColor={accentColor} isPractitionerMode={isPractitionerMode} place={place} />
               </div>
             </div>
           </div>

@@ -18,12 +18,16 @@ import { resolveBodyMapAsset, fallbackBodyMapAsset, type BodyMapType, type BodyV
 import type { ForkPlacement, PlacementAnchor } from '@/lib/BodyPlacementEngine'
 import type { ReflexPoint } from '@/lib/ReflexEngine'
 import type { MarmaPlacement } from '@/lib/MarmaEngine'
+import { pointIsAtPlace, type GoverningPlace } from '@/lib/bodySites'
 import { PLANET_COLORS } from '@/lib/engineClient'
 
 interface ChamberBodyMapProps {
   placement: ForkPlacement
   bodyMapType: BodyMapType
   accentColor: string
+  /** THE ONE PLACE this step is at. When given, the map names THAT address and
+   *  nothing else — see the one-place rule below. */
+  place?: GoverningPlace | null
   /** J.3 — Full-Spectrum breath bookend: render the body only, no orbs. */
   hideForkDot?: boolean
   /** Directive S · A1.3 — LOCAL (where it hurts) + REFLEX + planet-anatomy points
@@ -45,18 +49,57 @@ const ORB_STYLE = {
   natal:       { halo: 52, ring: 26 },
 }
 
+// One line saying WHY this place is this place, so a single address never reads
+// as the app having quietly dropped the others.
+const PLACE_BASIS_NOTE: Record<string, string> = {
+  natal:       'Natal Calibration · placed from your chart',
+  traditional: 'Traditional placement · the same for every body',
+  register:    'Traditional territory · the same for every body',
+  marma:       'The named point · the same on every body',
+  chakra:      'Chakra placement · the same for every body',
+  none:        '',
+}
+
 const prettyRegion = (r: string) => {
   const s = r.replace(/_/g, ' ')
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hideForkDot = false, reflexPoints, onAskAstryx, chakraMode = false }: ChamberBodyMapProps) {
+export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hideForkDot = false, reflexPoints, onAskAstryx, chakraMode = false, place = null }: ChamberBodyMapProps) {
   const trad = placement.traditionalPlacement
   const natal = placement.natalPlacement
   // SHA ruling 2026-06-28 — the map carries the two placements and nothing
   // else. So this is ONE marker, not a cloud: the leading marma for this fork.
-  const marmaLead: MarmaPlacement | null = placement.marma?.points?.[0] ?? null
-  const showNatal = !natal.sameAsTraditional
+  // ── THE ONE-PLACE RULE (SHA, 2026-09-12) ────────────────────────────────
+  // "you should not be seeing all the different systems as options. what i
+  //  meant last time by options, is selecting the option by SESSION."
+  //
+  // The map used to caption three parallel addresses at once — Traditional,
+  // Natal and Marma — each naming a DIFFERENT part of the body, with no
+  // indication which one this session is actually working. On a Mercury step
+  // that read: Traditional chest, Natal chest/breasts/stomach, Marma neck.
+  // Three answers to one question.
+  //
+  // The SESSION decides. `place.basis` says which system it chose, and the map
+  // now names that one address. The others are not deleted from the model —
+  // they are simply not offered as competing options mid-session.
+  const governs = place?.basis ?? null
+  const marmaGoverns = governs === 'marma' || governs === 'chakra'
+  // The leading marma marker only shows when it IS this step's place. A point
+  // somewhere else is an alternate and belongs in the panel, not on the map.
+  const marmaCandidate: MarmaPlacement | null = placement.marma?.points?.[0] ?? null
+  const marmaLead: MarmaPlacement | null =
+    !place ? marmaCandidate
+    : marmaGoverns ? marmaCandidate
+    : (marmaCandidate && pointIsAtPlace(marmaCandidate.id, place) ? marmaCandidate : null)
+  // With a resolved place, ONE orb marks it: the natal orb when the session is a
+  // Natal Calibration, the traditional orb otherwise. Without one, keep the old
+  // dual-orb behaviour so nothing else in the app changes shape.
+  const natalGoverns = governs === 'natal'
+  const showNatal = place
+    ? (natalGoverns && !natal.sameAsTraditional)
+    : !natal.sameAsTraditional
+  const showTraditional = place ? !natalGoverns : true
   const showReflex = !hideForkDot && !!reflexPoints && reflexPoints.length > 0
 
   // Default to the TRADITIONAL placement's view; reset when the planet changes.
@@ -110,7 +153,7 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
 
         {/* K.2 / N.1 — both placement orbs always render (one when sameAsTraditional).
             Breathwork bookends pass hideForkDot → body only, no orbs. */}
-        {!hideForkDot && <Orb p={trad} kind="traditional" color={accentColor} />}
+        {!hideForkDot && showTraditional && <Orb p={trad} kind="traditional" color={accentColor} />}
         {!hideForkDot && showNatal && <Orb p={natal} kind="natal" color={accentColor} />}
 
         {/* The named marma doorway — one marker, on its own side of the body. */}
@@ -147,18 +190,24 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
       )}
       {!hideForkDot && !chakraMode && (
         <div className="mt-2 space-y-1">
-          <div className="flex items-center gap-1.5 text-[11px]">
-            <span style={{ color: accentColor }}>◉</span>
-            <span className="text-content-sm">
-              <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Traditional · </span>
-              {prettyRegion(trad.region)}{trad.mode === 'sweep' ? ' · off-body sweep' : ''}
-            </span>
-          </div>
+          {showTraditional && (
+            <div className="flex items-center gap-1.5 text-[11px]">
+              <span style={{ color: accentColor }}>◉</span>
+              <span className="text-content-sm">
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">
+                  {place ? 'Placement · ' : 'Traditional · '}
+                </span>
+                {prettyRegion(trad.region)}{trad.mode === 'sweep' ? ' · off-body sweep' : ''}
+              </span>
+            </div>
+          )}
           {showNatal && (
             <div className="flex items-center gap-1.5 text-[11px]">
               <span style={{ color: hexToRgba(accentColor, 0.95) }}>◎</span>
               <span className="text-content-sm">
-                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">Natal · {natal.sign ?? ''} · </span>
+                <span className="uppercase tracking-[0.18em] text-[9px] text-white/45">
+                  {place ? 'Placement · ' : 'Natal · '}{natal.sign ?? ''}{natal.sign ? ' · ' : ''}
+                </span>
                 {prettyRegion(natal.region)}{natal.mode === 'sweep' ? ' · off-body sweep' : ''}
               </span>
             </div>
@@ -177,8 +226,12 @@ export default function ChamberBodyMap({ placement, bodyMapType, accentColor, hi
             </div>
           )}
           <div className="flex items-center gap-3 pt-0.5 text-[8px] uppercase tracking-[0.18em] text-white/40">
-            <span><span style={{ color: accentColor }}>◉</span> Traditional placement</span>
-            {showNatal && <span><span style={{ color: accentColor }}>◎</span> Natal placement</span>}
+            {place
+              ? <span>{PLACE_BASIS_NOTE[governs ?? 'none']}</span>
+              : <>
+                  <span><span style={{ color: accentColor }}>◉</span> Traditional placement</span>
+                  {showNatal && <span><span style={{ color: accentColor }}>◎</span> Natal placement</span>}
+                </>}
           </div>
 
           {/* SHA — "where else does it ease?" reflex reasoning lives behind Astryx. */}

@@ -18,7 +18,7 @@
  */
 
 import { hexToRgba } from '@/lib/utils'
-import { photoForMarma } from '@/lib/bodySites'
+import { photoForMarma, pointIsAtPlace, siteForMarma, type GoverningPlace } from '@/lib/bodySites'
 import type { MarmaLayer, MarmaPlacement, MarmaApplication } from '@/lib/MarmaEngine'
 
 /**
@@ -57,14 +57,23 @@ const BASIS_LABEL: Record<string, string> = {
 }
 
 function MarmaCard({
-  point, accentColor, isPractitionerMode,
-}: { point: MarmaPlacement; accentColor: string; isPractitionerMode: boolean }) {
+  point, accentColor, isPractitionerMode, place,
+}: { point: MarmaPlacement; accentColor: string; isPractitionerMode: boolean; place?: GoverningPlace | null }) {
   const app = APP_STYLE[point.application]
   const neverTouched = point.application === 'fieldOnly'
+  // ── THE ONE-PLACE RULE (SHA, 2026-09-12) ──────────────────────────────
+  // "if it says shoulder, then only shoulder pictures should apply."
+  // A step has ONE place. A point that sits somewhere else is a real
+  // alternate and still worth naming — but it may not ILLUSTRATE a step it
+  // is not part of. This is what was putting neck photographs under a card
+  // headed "Chest / Breasts / Stomach": every picture was right for its own
+  // point and wrong for the step, and nothing compared the two.
+  const atPlace = place ? pointIsAtPlace(point.id, place) : true
   // RESOLVED application, not the site's default — if this person's engine
   // tightened a contact point to a sweep, the contact photograph disappears
   // rather than contradict the instruction printed beside it.
-  const photo = photoForMarma(point.id, point.application)
+  const photo = atPlace ? photoForMarma(point.id, point.application) : null
+  const elsewhere = !atPlace ? siteForMarma(point.id) : null
 
   return (
     <div
@@ -97,6 +106,14 @@ function MarmaCard({
 
       <div className="flex items-baseline gap-2 flex-wrap mb-1">
         <span className="text-[8.5px] tracking-[0.2em] text-white/40">{ROLE_LABEL[point.role] ?? 'POINT'}</span>
+        {elsewhere && (
+          <span
+            className="text-[8px] tracking-[0.16em] px-1.5 py-[2px] rounded-full uppercase"
+            style={{ color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.18)' }}
+          >
+            Alternate &middot; {elsewhere.short}
+          </span>
+        )}
         <span className="font-cinzel text-[15px]" style={{ color: accentColor }}>{point.sanskrit}</span>
         {point.alsoKnownAs && (
           <span className="text-[10.5px] text-white/40 italic">also {point.alsoKnownAs}</span>
@@ -166,16 +183,26 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default function MarmaPanel({
-  marma, accentColor, isPractitionerMode = false, compact = false,
+  marma, accentColor, isPractitionerMode = false, compact = false, place = null,
 }: {
   marma: MarmaLayer | null | undefined
   accentColor: string
   isPractitionerMode?: boolean
   /** compact renders the leading point only — for tight session cards. */
   compact?: boolean
+  /** The step's ONE place. Points at it may show a picture; points elsewhere
+   *  are named as alternates without one. Omit and every point illustrates
+   *  (correct only where the caller has already narrowed to one point). */
+  place?: GoverningPlace | null
 }) {
   if (!marma || !marma.points.length) return null
-  const points = compact ? marma.points.slice(0, 1) : marma.points
+  // Points AT the step's place lead; alternates follow, so the panel reads in
+  // the same order the body does — here first, elsewhere after.
+  const ordered = place
+    ? [...marma.points].sort((a, b) =>
+        Number(pointIsAtPlace(b.id, place)) - Number(pointIsAtPlace(a.id, place)))
+    : marma.points
+  const points = compact ? ordered.slice(0, 1) : ordered
 
   return (
     <div className="mt-3">
@@ -189,7 +216,7 @@ export default function MarmaPanel({
       </div>
 
       {points.map((p) => (
-        <MarmaCard key={p.id} point={p} accentColor={accentColor} isPractitionerMode={isPractitionerMode} />
+        <MarmaCard key={p.id} point={p} accentColor={accentColor} isPractitionerMode={isPractitionerMode} place={place} />
       ))}
 
       {!compact && (

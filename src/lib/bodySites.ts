@@ -60,6 +60,7 @@ export interface PlacementPhoto {
 const SITES: BodySite[] = (register as any).sites
 const MARMA_TO_SITE: Record<string, string> = (register as any).marmaToSite
 const CHAKRA_TO_SITE: Record<string, string> = (register as any).chakraToSite
+const REGION_TO_SITE: Record<string, string> = (register as any).regionToSite
 const PHOTOS: Record<string, PlacementPhoto> = (photoFile as any).photos
 
 const BY_ID = new Map<string, BodySite>(SITES.map((s) => [s.id, s]))
@@ -118,4 +119,96 @@ export function photoForMarma(
 /** Which sites still have no photograph — used by the coverage test. */
 export function sitesWithoutPhoto(): BodySite[] {
   return SITES.filter((s) => !PHOTOS[s.id])
+}
+
+// ─── THE ONE-PLACE RULE ──────────────────────────────────────────────────────
+// SHA, 2026-09-12:
+//
+//   "if you are in the natal calibration, the only pictures that should be shown
+//    are pictures that match the body map. if it says shoulder, then only
+//    shoulder pictures should apply, if it says knee, only pictures that match
+//    the knee should apply."
+//
+// She is right and it is simple: **a session step has ONE place.** The card names
+// it, the body map marks it, and the only picture shown is a picture of that
+// place.
+//
+// What was going wrong: a Natal Calibration step took its HEADLINE from the
+// planet's natal body zone (Mercury in Cancer → "Chest / Breasts / Stomach") and
+// its PICTURES from `resolveMarmaLayer(planet)`, which returns the fork's own
+// four marma points — primary, secondary, chakra doorway, counterweight — at
+// four unrelated sites. So the card said chest and showed Krikatika and Vidhuram,
+// which are neck points. Every picture was correct FOR ITS OWN POINT and wrong
+// for the step. Nothing compared the two.
+
+/** The site a body-map region IS. Unmapped regions (systemic fields, the whole
+ *  spine, a jaw with no photographed site) return null, and a step there shows
+ *  NO photograph rather than a neighbouring one. */
+export function siteForRegion(region: string | null | undefined): BodySite | null {
+  return siteById(region ? REGION_TO_SITE[region.trim().toLowerCase()] : null)
+}
+
+/** What kind of session decided this step's place — used only for the reason
+ *  string, so a step can always say WHY its place is its place. */
+export type PlaceBasis = 'chakra' | 'marma' | 'register' | 'natal' | 'traditional' | 'none'
+
+export interface GoverningPlace {
+  site: BodySite | null
+  basis: PlaceBasis
+  /** The region token the place was resolved from, for diagnostics. */
+  region: string | null
+}
+
+/**
+ * THE GOVERNING PLACE of a step — the single site every picture on that step
+ * must depict. Resolution order matches how the session itself decides:
+ *
+ *   chakra session   → the centre's own fixed anatomical point
+ *   marma session    → the step's named point
+ *   register step    → the site the ladder rung owns (Full Body / Full Spectrum)
+ *   natal calibration→ the NATAL region, because that is what the card names
+ *   otherwise        → the traditional region
+ *
+ * Returns a null site when the place has no photographed site. That is a
+ * correct answer, not a failure: the body map still shows where it is.
+ */
+export function governingPlace(input: {
+  chakraCenter?: string | null
+  marmaPointId?: string | null
+  registerSiteId?: string | null
+  natalRegion?: string | null
+  traditionalRegion?: string | null
+}): GoverningPlace {
+  if (input.chakraCenter) {
+    return { site: siteForChakra(input.chakraCenter), basis: 'chakra', region: null }
+  }
+  if (input.marmaPointId) {
+    return { site: siteForMarma(input.marmaPointId), basis: 'marma', region: null }
+  }
+  if (input.registerSiteId) {
+    return { site: siteById(input.registerSiteId), basis: 'register', region: null }
+  }
+  if (input.natalRegion) {
+    return { site: siteForRegion(input.natalRegion), basis: 'natal', region: input.natalRegion }
+  }
+  if (input.traditionalRegion) {
+    return { site: siteForRegion(input.traditionalRegion), basis: 'traditional', region: input.traditionalRegion }
+  }
+  return { site: null, basis: 'none', region: null }
+}
+
+/**
+ * Does this marma point sit at the step's governing place? Only points that do
+ * may show a photograph. A point somewhere else is a real alternate and still
+ * worth naming — it just cannot illustrate a step it is not part of.
+ */
+export function pointIsAtPlace(
+  marmaId: string | null | undefined,
+  place: GoverningPlace | BodySite | null,
+): boolean {
+  const siteId = place && 'site' in (place as GoverningPlace)
+    ? (place as GoverningPlace).site?.id
+    : (place as BodySite | null)?.id
+  if (!siteId) return false
+  return siteForMarma(marmaId)?.id === siteId
 }
