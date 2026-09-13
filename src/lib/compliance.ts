@@ -365,7 +365,17 @@ export function containsBannedPhrase(text: string): boolean {
 export const CLINICAL_CONDITION_TERMS: ReadonlyArray<RegExp> = [
   /\b(?:hypertension|arrhythmia|fibromyalgia|endometriosis|GERD|PMDD|COPD)\b/i,
   /\b(?:depression|anxiety) disorder\b/i,
-  /\b(?:cancer|diabetes|osteoporosis|hypothyroidism|hyperthyroidism)\b/i,
+  /\b(?:diabetes|osteoporosis|hypothyroidism|hyperthyroidism)\b/i,
+  // "Cancer" is a zodiac sign a great deal more often than it is a disease in
+  // this corpus — "Sun, Moon, or Rising in Cancer", "Calc Fluor (Cancer)",
+  // "Moon rules Cancer". A case-insensitive /cancer/ flagged eleven such lines
+  // across the data files and would have refused an honest calibration for
+  // anyone born under it. Astrological use is always capitalised, so:
+  //   · lowercase "cancer" is the disease, always;
+  //   · capitalised "Cancer" is the disease only in disease company.
+  /\bcancer\b/,
+  /\bCancer\b(?=[\s\S]{0,60}?\b(?:risk|prevent(?:ion|s|ing)?|treat(?:ment|s|ing)?|cure[sd]?|tumou?rs?|screening|survivors?|patients?|remission|malignan\w*|chemo\w*|oncolog\w*)\b)/,
+  /\b(?:risk|prevent(?:ion|s|ing)?|treat(?:ment|s|ing)?|cure[sd]?|tumou?rs?|screening|survivors?|remission|malignan\w*|chemo\w*|oncolog\w*)\b[\s\S]{0,60}?\bCancer\b/,
   /\b\w+ (?:disease|syndrome|disorder)\b/i,
   /\bICD[- ]?(?:9|10|11)?\b/i,
 ]
