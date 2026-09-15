@@ -287,7 +287,7 @@ describe('SECURITY — the THIRD door: everything the spread carried out raw', (
           rootCause: 'r', activationScore: 7, evidence: ['e'],
           matchedRootCauseKey: 'NEVER SHIPPED', matchedSignature: 'NEVER SHIPPED',
           matchedSubtype: 'NEVER SHIPPED',
-          recommendedCellSalt: { saltShort: 'Kali Phos', epithet: 'x', dosing: 'NEVER SHIPPED' },
+          recommendedCellSalt: { saltShort: 'Kali Phos', epithet: 'x', traditionalPreparation: 'NEVER SHIPPED' },
         },
       ],
     } as never) as any

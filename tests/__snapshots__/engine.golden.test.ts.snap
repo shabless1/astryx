@@ -198,7 +198,6 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
         {
           "affirmation": "My nervous system is whole and bright. My mind is the clear temple of intelligence. I rest, I think clearly, I am armed and prepared.",
           "color": "#FF6B35",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
           "epithet": "The Brain Cell Salt",
           "foodSources": [
             "raw cucumber",
@@ -217,11 +216,11 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
           "saltName": "Kali Phosphoricum",
           "saltShort": "Kali Phos",
           "sign": "Aries",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
         },
         {
           "affirmation": "I am the winged bull — grounded in earth, soaring in spirit. My liver is clear, my body releases what it does not need, my blood is the elixir of life.",
           "color": "#C19A6B",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors",
           "epithet": "The Liver Salt",
           "foodSources": [
             "radishes",
@@ -240,11 +239,11 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
           "saltName": "Natrum Sulphuricum",
           "saltShort": "Nat Sulph",
           "sign": "Taurus",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors",
         },
         {
           "affirmation": "My breath is clear, my words are clean, my lungs are open. The fibrin of my blood weaves perfectly through every tissue. I speak the truth that needs to be spoken.",
           "color": "#FFEB6B",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors. Alternate with Ferr Phos every 30 min during acute fever.",
           "epithet": "The Fibrin Builder",
           "foodSources": [
             "green beans",
@@ -263,12 +262,12 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
           "saltName": "Kali Muriaticum",
           "saltShort": "Kali Mur",
           "sign": "Gemini",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors. Alternate with Ferr Phos every 30 min during acute fever.",
         },
       ],
       "primarySalt": {
         "affirmation": "My heart beats in perfect rhythm. My nerves are relaxed and my muscles flow with ease. I am the heart of the zodiac — radiant, rhythmic, and at rest in motion.",
         "color": "#FFB700",
-        "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
         "epithet": "The Anti-Spasm Salt",
         "foodSources": [
           "whole grains (especially barley, oats)",
@@ -288,11 +287,11 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
         "saltName": "Magnesia Phosphorica",
         "saltShort": "Mag Phos",
         "sign": "Leo",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
       },
       "sunSignSalt": {
         "affirmation": "I am the magnetic one. My blood drinks oxygen freely, my body heals quickly, my hands carry healing magnetism. I am the fish that swims in the pure sea — fluid, oxygenated, alive.",
         "color": "#4A90E2",
-        "dosing": "Traditionally taken as 4 tablets under the tongue. For acute episodes — fever, injury, inflammation — take every 30 minutes for first 2 hours, then 3x daily until resolved. Note: Ferr Phos is NOT an iron tonic in the conventional sense — its action is nutritional and gentle, easily assimilated.",
         "epithet": "The Magnetic Mineral",
         "foodSources": [
           "spinach",
@@ -311,6 +310,7 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
         "saltName": "Ferrum Phosphoricum",
         "saltShort": "Ferr Phos",
         "sign": "Pisces",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute episodes — fever, injury, inflammation — take every 30 minutes for first 2 hours, then 3x daily until resolved. Note: Ferr Phos is NOT an iron tonic in the conventional sense — its action is nutritional and gentle, easily assimilated.",
       },
     },
     "dominantPlanet": "Uranus",
@@ -370,7 +370,6 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
           "affirmation": "My nervous system is whole and bright. My mind is the clear temple of intelligence. I rest, I think clearly, I am armed and prepared.",
           "color": "#FF6B35",
           "displaySignal": "Traditionally associated with anxiety, nervous dread, and worry-driven sleeplessness — the nerve salt for a mind that won’t settle.",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
           "epithet": "The Brain Cell Salt",
           "foodSources": [
             "raw cucumber",
@@ -392,6 +391,7 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
           "saltName": "Kali Phosphoricum",
           "saltShort": "Kali Phos",
           "sign": "Aries",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
         },
         "reportedSymptom": "restlessness",
         "rootCause": {
@@ -1167,7 +1167,6 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
       "mineral": {
         "affirmation": "My tissues hold their proper tone. My body is the elastic temple of my soul. I am held safely — my home is within me, and I am secure.",
         "color": "#E8E4D9",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
         "epithet": "The Tissue Tone Builder",
         "foodSources": [
           "egg yolks (organic, pastured)",
@@ -1186,6 +1185,7 @@ exports[`runEngine — determinism golden files > fixture A — restless Aries-s
         "saltName": "Calcarea Fluorica",
         "saltShort": "Calc Fluor",
         "sign": "Cancer",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
       },
       "prescription": {
         "duration": "20–30 minute session",
@@ -1930,7 +1930,6 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         {
           "affirmation": "I am the archer — my aim is true, my arrow is silica-tipped, my vision pierces the distance. My body's internal surgeon does its work perfectly. I am strong, sharp, and clear.",
           "color": "#9D4EDD",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Caution: do NOT use Silica if surgical implants, pins, or pacemakers are present — Silica's discharge action can theoretically work to expel foreign objects from tissue.",
           "epithet": "The Internal Surgeon",
           "foodSources": [
             "whole oats",
@@ -1950,11 +1949,11 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
           "saltName": "Silicea",
           "saltShort": "Silica",
           "sign": "Sagittarius",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Caution: do NOT use Silica if surgical implants, pins, or pacemakers are present — Silica's discharge action can theoretically work to expel foreign objects from tissue.",
         },
         {
           "affirmation": "I am the white stone — the foundation of my own temple. My bones are strong, my structure is sound, I build what I envision. The Great Work commences in the Goat.",
           "color": "#36454F",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
           "epithet": "The Builder / The White Stone",
           "foodSources": [
             "whole grains (especially oats, rye)",
@@ -1973,11 +1972,11 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
           "saltName": "Calcarea Phosphorica",
           "saltShort": "Calc Phos",
           "sign": "Capricorn",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
         },
         {
           "affirmation": "I am the Water Bearer. The waters within me flow in perfect balance — every cell receives its share, no part is parched, no part is flooded. I judge with clarity, I love with all my fluid being.",
           "color": "#5DADE2",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Can be used even when on a salt-free diet — biochemic Nat Mur is fundamentally different from table salt in the way the body receives it.",
           "epithet": "The Water Bearer's Salt",
           "foodSources": [
             "sea vegetables (kelp, dulse, nori)",
@@ -1995,12 +1994,12 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
           "saltName": "Natrum Muriaticum",
           "saltShort": "Nat Mur",
           "sign": "Aquarius",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Can be used even when on a salt-free diet — biochemic Nat Mur is fundamentally different from table salt in the way the body receives it.",
         },
       ],
       "primarySalt": {
         "affirmation": "My heart beats in perfect rhythm. My nerves are relaxed and my muscles flow with ease. I am the heart of the zodiac — radiant, rhythmic, and at rest in motion.",
         "color": "#FFB700",
-        "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
         "epithet": "The Anti-Spasm Salt",
         "foodSources": [
           "whole grains (especially barley, oats)",
@@ -2020,11 +2019,11 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "saltName": "Magnesia Phosphorica",
         "saltShort": "Mag Phos",
         "sign": "Leo",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
       },
       "sunSignSalt": {
         "affirmation": "I transmute the lower into the higher. My wounds become my wisdom. I am the White Eagle, risen from the scorpion. My blood is pure, my body is renewed.",
         "color": "#8B0000",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food.",
         "epithet": "The Wound Healer",
         "foodSources": [
           "radishes",
@@ -2043,6 +2042,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "saltName": "Calcarea Sulphurica",
         "saltShort": "Calc Sulph",
         "sign": "Scorpio",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food.",
       },
     },
     "dominantPlanet": "Saturn",
@@ -2102,7 +2102,6 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
           "affirmation": "I am the white stone — the foundation of my own temple. My bones are strong, my structure is sound, I build what I envision. The Great Work commences in the Goat.",
           "color": "#36454F",
           "displaySignal": "Traditionally associated with being exhausted to the foundation — the builder salt for depletion and slow recovery.",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
           "epithet": "The Builder / The White Stone",
           "foodSources": [
             "whole grains (especially oats, rye)",
@@ -2124,6 +2123,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
           "saltName": "Calcarea Phosphorica",
           "saltShort": "Calc Phos",
           "sign": "Capricorn",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
         },
         "reportedSymptom": "fatigue",
         "rootCause": {
@@ -2807,7 +2807,6 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
       "mineral": {
         "affirmation": "I am the white stone — the foundation of my own temple. My bones are strong, my structure is sound, I build what I envision. The Great Work commences in the Goat.",
         "color": "#36454F",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
         "epithet": "The Builder / The White Stone",
         "foodSources": [
           "whole grains (especially oats, rye)",
@@ -2826,6 +2825,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "saltName": "Calcarea Phosphorica",
         "saltShort": "Calc Phos",
         "sign": "Capricorn",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
       },
       "prescription": {
         "duration": "20–30 minute session",
@@ -2956,7 +2956,6 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
       "mineral": {
         "affirmation": "My heart beats in perfect rhythm. My nerves are relaxed and my muscles flow with ease. I am the heart of the zodiac — radiant, rhythmic, and at rest in motion.",
         "color": "#FFB700",
-        "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
         "epithet": "The Anti-Spasm Salt",
         "foodSources": [
           "whole grains (especially barley, oats)",
@@ -2976,6 +2975,7 @@ exports[`runEngine — determinism golden files > fixture B — heavy/fatigued S
         "saltName": "Magnesia Phosphorica",
         "saltShort": "Mag Phos",
         "sign": "Leo",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
       },
       "prescription": {
         "duration": "20–30 minute session",
@@ -3710,7 +3710,6 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         {
           "affirmation": "My heart beats in perfect rhythm. My nerves are relaxed and my muscles flow with ease. I am the heart of the zodiac — radiant, rhythmic, and at rest in motion.",
           "color": "#FFB700",
-          "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
           "epithet": "The Anti-Spasm Salt",
           "foodSources": [
             "whole grains (especially barley, oats)",
@@ -3730,11 +3729,11 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
           "saltName": "Magnesia Phosphorica",
           "saltShort": "Mag Phos",
           "sign": "Leo",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
         },
         {
           "affirmation": "My skin is clear, my breath gives oxygen to every cell. My discrimination serves me — I analyze with love, not criticism. I am the pure sea from which life is made.",
           "color": "#7FB069",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Best taken away from sulfur-rich meals so absorption isn't competed against.",
           "epithet": "The Oil Maker",
           "foodSources": [
             "chicory",
@@ -3753,11 +3752,11 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
           "saltName": "Kali Sulphuricum",
           "saltShort": "Kali Sulph",
           "sign": "Virgo",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Best taken away from sulfur-rich meals so absorption isn't competed against.",
         },
         {
           "affirmation": "I am perfectly balanced — acid and alkaline, giving and receiving, self and other. My brain chemistry holds harmony. I see clearly, judge fairly, love freely.",
           "color": "#FF85A1",
-          "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food. For acid reflux, take 15 min before meals.",
           "epithet": "The pH Balancer",
           "foodSources": [
             "wheat",
@@ -3776,12 +3775,12 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
           "saltName": "Natrum Phosphoricum",
           "saltShort": "Nat Phos",
           "sign": "Libra",
+          "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food. For acid reflux, take 15 min before meals.",
         },
       ],
       "primarySalt": {
         "affirmation": "My tissues hold their proper tone. My body is the elastic temple of my soul. I am held safely — my home is within me, and I am secure.",
         "color": "#E8E4D9",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
         "epithet": "The Tissue Tone Builder",
         "foodSources": [
           "egg yolks (organic, pastured)",
@@ -3800,11 +3799,11 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         "saltName": "Calcarea Fluorica",
         "saltShort": "Calc Fluor",
         "sign": "Cancer",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
       },
       "sunSignSalt": {
         "affirmation": "My tissues hold their proper tone. My body is the elastic temple of my soul. I am held safely — my home is within me, and I am secure.",
         "color": "#E8E4D9",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
         "epithet": "The Tissue Tone Builder",
         "foodSources": [
           "egg yolks (organic, pastured)",
@@ -3823,6 +3822,7 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         "saltName": "Calcarea Fluorica",
         "saltShort": "Calc Fluor",
         "sign": "Cancer",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
       },
     },
     "dominantPlanet": "Moon",
@@ -4383,7 +4383,6 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
       "mineral": {
         "affirmation": "My tissues hold their proper tone. My body is the elastic temple of my soul. I am held safely — my home is within me, and I am secure.",
         "color": "#E8E4D9",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
         "epithet": "The Tissue Tone Builder",
         "foodSources": [
           "egg yolks (organic, pastured)",
@@ -4402,6 +4401,7 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         "saltName": "Calcarea Fluorica",
         "saltShort": "Calc Fluor",
         "sign": "Cancer",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
       },
       "prescription": {
         "duration": "20–30 minute session",
@@ -4530,7 +4530,6 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
       "mineral": {
         "affirmation": "I am the white stone — the foundation of my own temple. My bones are strong, my structure is sound, I build what I envision. The Great Work commences in the Goat.",
         "color": "#36454F",
-        "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
         "epithet": "The Builder / The White Stone",
         "foodSources": [
           "whole grains (especially oats, rye)",
@@ -4549,6 +4548,7 @@ exports[`runEngine — determinism golden files > fixture C — solar chart (unk
         "saltName": "Calcarea Phosphorica",
         "saltShort": "Calc Phos",
         "sign": "Capricorn",
+        "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
       },
       "prescription": {
         "duration": "20–30 minute session",

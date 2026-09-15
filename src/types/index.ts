@@ -221,7 +221,14 @@ export interface CellSaltPrescription {
   epithet: string          // "The Brain Cell Salt"
   plainLanguageSignal?: string
   foodSources?: string[]
-  dosing?: string
+  /**
+   * How the salt is traditionally taken. Named for what it is — a traditional
+   * usage reference — and deliberately NOT "dosing": Astryx does not prescribe,
+   * and a field name is the first thing a licensee reading this API sees.
+   * The compliance rule that bars explicit dosing keeps its own vocabulary;
+   * a rule has to be able to name the thing it forbids.
+   */
+  traditionalPreparation?: string
   affirmation?: string
   reason?: string          // why this salt for this user (used in gestation deficiencies)
   color?: string

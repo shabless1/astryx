@@ -10,7 +10,7 @@
  * Sections top to bottom:
  *   1. Header — name + today's date + settings icon
  *   2. Today's Cosmic Weather — top 3 active transits from the engine
- *   3. Daily Cell Salt — sun-sign salt with dosing reminder + affirmation
+ *   3. Daily Cell Salt — sun-sign salt with traditional-usage reference + affirmation
  *   4. Morning Intention — single deterministic affirmation, fresh daily
  *   5. Quick Symptom Check-In — 10 chips that route to engine immediately
  *   6. Begin Evening Session — full-width session entry
@@ -255,7 +255,7 @@ export default function HomeScreen({
                   <p className="text-[14px] text-content italic mb-5 max-w-[60ch]">
                     {sunSalt.cellSalt?.epithet}
                   </p>
-                  {/* Dosing — inset hairline panel */}
+                  {/* Traditional usage — inset hairline panel */}
                   <div
                     className="p-4 rounded-2xl"
                     style={{
@@ -267,7 +267,7 @@ export default function HomeScreen({
                       Traditional Usage Reference
                     </div>
                     <p className="text-[14px] text-content leading-relaxed">
-                      {sunSalt.dosing ?? 'Traditionally taken as 4 tablets under the tongue, 3× daily.'}
+                      {sunSalt.traditionalPreparation ?? 'Traditionally taken as 4 tablets under the tongue, 3× daily.'}
                     </p>
                     <p className="text-[10px] text-white/35 italic mt-1.5">
                       Traditional educational reference · not medical advice · consult a licensed provider.

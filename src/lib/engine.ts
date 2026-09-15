@@ -242,7 +242,7 @@ function shapeCellSaltPrescription(
     epithet:             saltEntry.cellSalt?.epithet     ?? '',
     plainLanguageSignal: saltEntry.plainLanguageSignal,
     foodSources:         saltEntry.foodSources,
-    dosing:              saltEntry.dosing,
+    traditionalPreparation: saltEntry.traditionalPreparation,
     affirmation:         saltEntry.esoteric?.affirmation,
     color:               saltEntry.color,
     reason,

@@ -76,7 +76,7 @@
       },
       "foodSources": ["raw cucumber", "celery", "tomatoes", "spinach", "lettuce", "olives", "walnuts", "almonds", "asparagus", "watercress"],
       "homeopathicPotency": "6X",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors (mint, coffee, citrus)",
       "color": "#FF6B35",
       "kitEligible": true,
       "kitProduct": "Aries Nerve Tonic Blend — Kali Phos foods + adaptogens"
@@ -135,7 +135,7 @@
       },
       "foodSources": ["radishes", "cauliflower", "spinach", "onions", "celery", "cucumber", "strawberries", "apples", "cranberries", "beets"],
       "homeopathicPotency": "6X",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors",
       "color": "#C19A6B",
       "kitEligible": true,
       "kitProduct": "Taurus Liver Cleanse Tea — Nat Sulph foods + dandelion + burdock"
@@ -194,7 +194,7 @@
       },
       "foodSources": ["green beans", "asparagus", "carrots", "celery", "spinach", "tomatoes", "blueberries", "peaches", "plums", "rye bread"],
       "homeopathicPotency": "6X",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors. Alternate with Ferr Phos every 30 min during acute fever.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, 30 minutes away from food/drink/strong flavors. Alternate with Ferr Phos every 30 min during acute fever.",
       "color": "#FFEB6B",
       "kitEligible": true,
       "kitProduct": "Gemini Clear Breath Tea — Kali Mur foods + mullein + thyme"
@@ -253,7 +253,7 @@
       },
       "foodSources": ["egg yolks (organic, pastured)", "watercress", "kale", "spinach", "cabbage", "rye bread", "oats", "seafood (high quality)", "yogurt", "cheese"],
       "homeopathicPotency": "6X or 12X (12X for chronic tissue work)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. IMPORTANT: Calcium Fluoride is NOT the same as Sodium Fluoride (the water-fluoridation chemical). Biochemic Calc Fluor is naturally sourced and safe.",
       "color": "#E8E4D9",
       "kitEligible": true,
       "kitProduct": "Cancer Tissue Tone Blend — Calc Fluor foods + horsetail + nettle"
@@ -313,7 +313,7 @@
       },
       "foodSources": ["whole grains (especially barley, oats)", "almonds", "walnuts", "lemons", "figs", "apples", "coconut", "blue plums", "asparagus", "spinach", "dark leafy greens"],
       "homeopathicPotency": "6X (acute: take every 15-30 min until relief)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute cramping, dissolve in HOT water and sip slowly — heat amplifies the action. Apply heat externally to the spasming area.",
       "color": "#FFB700",
       "kitEligible": true,
       "kitProduct": "Leo Anti-Spasm Blend — Mag Phos foods + cramp bark + ginger"
@@ -372,7 +372,7 @@
       },
       "foodSources": ["chicory", "endive", "lettuce", "carrots", "almonds", "oats", "rye", "lemons", "figs", "raw cucumber"],
       "homeopathicPotency": "6X",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Best taken away from sulfur-rich meals so absorption isn't competed against.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Best taken away from sulfur-rich meals so absorption isn't competed against.",
       "color": "#7FB069",
       "kitEligible": true,
       "kitProduct": "Virgo Skin Balance Blend — Kali Sulph foods + burdock + calendula"
@@ -432,7 +432,7 @@
       },
       "foodSources": ["wheat", "strawberries", "apples", "raisins", "figs", "almonds", "asparagus", "spinach", "carrots", "cabbage"],
       "homeopathicPotency": "6X",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food. For acid reflux, take 15 min before meals.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food. For acid reflux, take 15 min before meals.",
       "color": "#FF85A1",
       "kitEligible": true,
       "kitProduct": "Libra pH Balance Blend — Nat Phos foods + dandelion + slippery elm"
@@ -493,7 +493,7 @@
       },
       "foodSources": ["radishes", "asparagus", "cauliflower", "leeks", "onions", "garlic", "figs", "prunes", "tomatoes", "watercress"],
       "homeopathicPotency": "6X or 12X (12X for chronic skin work)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily, away from food.",
       "safetyNote": "Carey lists malachite as a Scorpio gem. In Astryx the rule is absolute: malachite gets a red warning badge everywhere. Raw malachite contains toxic copper carbonate dust. Only polished and sealed malachite is safe for body contact, and never for elixirs or ingestion.",
       "color": "#8B0000",
       "kitEligible": true,
@@ -554,7 +554,7 @@
       },
       "foodSources": ["whole oats", "barley", "millet", "horsetail (herbal)", "strawberries", "figs", "apples", "leafy greens", "cucumber skin", "bell pepper", "asparagus"],
       "homeopathicPotency": "6X or 12X (long-acting; deep action)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Caution: do NOT use Silica if surgical implants, pins, or pacemakers are present — Silica's discharge action can theoretically work to expel foreign objects from tissue.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Caution: do NOT use Silica if surgical implants, pins, or pacemakers are present — Silica's discharge action can theoretically work to expel foreign objects from tissue.",
       "color": "#9D4EDD",
       "kitEligible": true,
       "kitProduct": "Sagittarius Connective Tonic — Silica foods + horsetail + bamboo"
@@ -615,7 +615,7 @@
       },
       "foodSources": ["whole grains (especially oats, rye)", "almonds", "broccoli", "kale", "spinach", "watercress", "dairy (high quality, organic)", "egg yolks", "bone broth", "sesame seeds"],
       "homeopathicPotency": "6X (general tonic — can be taken long-term as foundational support)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Calc Phos is the most versatile cell salt — acts as intercurrent remedy to assist any other salt's action.",
       "color": "#36454F",
       "kitEligible": true,
       "kitProduct": "Capricorn Foundation Blend — Calc Phos foods + horsetail + nettle"
@@ -677,7 +677,7 @@
       },
       "foodSources": ["sea vegetables (kelp, dulse, nori)", "celery", "raw spinach", "cucumber", "cabbage", "radishes", "lentils", "strawberries", "oysters (mineral-rich)"],
       "homeopathicPotency": "6X or 12X (12X for emotional/grief work)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue, 3x daily. Can be used even when on a salt-free diet — biochemic Nat Mur is fundamentally different from table salt in the way the body receives it.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue, 3x daily. Can be used even when on a salt-free diet — biochemic Nat Mur is fundamentally different from table salt in the way the body receives it.",
       "color": "#5DADE2",
       "kitEligible": true,
       "kitProduct": "Aquarius Water Balance Blend — Nat Mur foods + nettle + oat straw"
@@ -739,7 +739,7 @@
       },
       "foodSources": ["spinach", "kale", "lentils", "beets", "raisins", "dried apricots", "pumpkin seeds", "lean grass-fed beef (occasional)", "blackstrap molasses", "almonds"],
       "homeopathicPotency": "6X (acute: every 30 min) or 12X (chronic)",
-      "dosing": "Traditionally taken as 4 tablets under the tongue. For acute episodes — fever, injury, inflammation — take every 30 minutes for first 2 hours, then 3x daily until resolved. Note: Ferr Phos is NOT an iron tonic in the conventional sense — its action is nutritional and gentle, easily assimilated.",
+      "traditionalPreparation": "Traditionally taken as 4 tablets under the tongue. For acute episodes — fever, injury, inflammation — take every 30 minutes for first 2 hours, then 3x daily until resolved. Note: Ferr Phos is NOT an iron tonic in the conventional sense — its action is nutritional and gentle, easily assimilated.",
       "color": "#4A90E2",
       "kitEligible": true,
       "kitProduct": "Pisces First Aid Blend — Ferr Phos foods + nettle + yellow dock"
