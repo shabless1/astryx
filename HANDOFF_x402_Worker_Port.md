@@ -1,3 +1,8 @@
+> ## ⚠️ THIS FILE IS NO LONGER THE RUNNING HEAD
+> **Resume from [`HANDOFF_x402_RESUME.md`](./HANDOFF_x402_RESUME.md)** (written 2026-09-15).
+> Keep this one for the original technical scope and the plain-English x402
+> explainer in §1 — both still accurate. The progress blocks below are history.
+
 # ASTRYX — Handoff: the x402 door · Worker port · MCP · Bazaar (Roadmap Phase 1.2–1.6)
 ### For a dedicated Claude Code session. Written 2026-09-12. Status: **IN PROGRESS — steps 1–4 done, parity proven, stopped for review before the HTTP layer.**
 
