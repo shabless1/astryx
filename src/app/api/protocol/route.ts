@@ -26,7 +26,15 @@ import { getSession } from '@/lib/auth'
 import { runEngine } from '@/lib/engine'
 import { enforceRateLimit, clientIdentity } from '@/lib/rateLimit'
 import { sessionHasConsent } from '@/lib/consent'
-import { shapeSacredLayerForClient, shapePrescriptionsForClient, sacredTierFor } from '@/lib/sacredShape'
+import {
+  shapeSacredLayerForClient,
+  shapePrescriptionsForClient,
+  shapePolarityResultsForClient,
+  shapeDominantPolarityForClient,
+  shapeActivePlanetsForClient,
+  shapeDiagnosticForClient,
+  sacredTierFor,
+} from '@/lib/sacredShape'
 import type { IntakeData, ProtocolOutput } from '@/types'
 
 interface ProtocolRequestBody {
@@ -94,6 +102,30 @@ export async function POST(req: NextRequest) {
       prescriptions: shapePrescriptionsForClient(
         protocol.prescriptions, tier,
       ) as unknown as ProtocolOutput['prescriptions'],
+      // The THIRD door, found 2026-09-13 while building the Worker's tiered
+      // shaping. The spread above is the whole point: every field NOT named
+      // here has always gone out raw. That included the remedyPolarity
+      // corrective rows, the per-state score maps, the tri-source ranking
+      // weights and the medicalAstrology routing keys.
+      //
+      // The scores, the weights and the routing keys stop here outright —
+      // nothing client-side ever read them. The corrective row is trimmed to
+      // exactly what the screens render, slice lengths included, because the
+      // client is a renderer of that row and cannot be starved of it. That is a
+      // reduction, not a closure; sacredShape.ts says so at length, and the
+      // real fix is the app consuming the Worker.
+      polarityResults: shapePolarityResultsForClient(
+        protocol.polarityResults,
+      ) as unknown as ProtocolOutput['polarityResults'],
+      dominantPolarity: shapeDominantPolarityForClient(
+        protocol.dominantPolarity,
+      ) as unknown as ProtocolOutput['dominantPolarity'],
+      activePlanets: shapeActivePlanetsForClient(
+        protocol.activePlanets,
+      ) as unknown as ProtocolOutput['activePlanets'],
+      diagnostic: shapeDiagnosticForClient(
+        protocol.diagnostic,
+      ) as unknown as ProtocolOutput['diagnostic'],
     }
 
     return NextResponse.json({ success: true, protocol: clientProtocol })

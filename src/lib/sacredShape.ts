@@ -177,3 +177,177 @@ export function shapePrescriptionsForClient(
 export function sacredTierFor(serverTier: string | undefined, authenticated: boolean): SacredTier {
   return authenticated && serverTier === 'practitioner' ? 'practitioner' : 'basic'
 }
+
+// ════════════════════════════════════════════════════════════════════════════
+// THE THIRD DOOR — everything that is NOT sacredLayer or prescriptions
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Found 2026-09-13 while building the Worker's tiered shaping. The route
+// returns `{ ...protocol, sacredLayer: shaped, prescriptions: shaped }`, so the
+// two doors above are closed and every other field of the protocol has always
+// gone out raw. To any signed-in caller that meant:
+//
+//   · `polarityResults[].protocol` — the whole remedyPolarity corrective row.
+//     PHASE1_WORKER_PORT_SCOPE §7 ranks that file crown jewel #1: "dumping it
+//     reproduces the intelligence layer."
+//   · `scores` — the per-state weights, i.e. the ranking model in numbers.
+//   · `activePlanets[]` raw weights — the tri-source ranking model.
+//   · `symptomRouting[].matched*` — literal medicalAstrology lookup keys.
+//
+// WHAT THIS FIXES, AND WHAT IT HONESTLY DOES NOT.
+//
+// The scores, the weights and the routing keys are gone outright: nothing
+// client-side reads any of them, so they were pure exposure and they now stop
+// at the server.
+//
+// The corrective row is a harder problem, and it is worth being exact about it
+// rather than claiming a win. The app's own client is a RENDERER of that row —
+// ResultsScreen prints the direction, the regulator, the herbs, the scents, the
+// palette and the avoid-list; ChamberDNAEngine reads the breath and the palette;
+// ScaleEngine reads the scale override; forkRite composes the session from the
+// regulators. Those fields cannot be withheld from a client that exists to
+// display them. What CAN be done, and is done below, is to send exactly what
+// the screens render — including their slice lengths, since every one of them
+// already truncates — plus drop the two fields nothing reads at all. The UI is
+// byte-identical; the payload loses the tail of every list.
+//
+// That is a reduction, not a closure. The real fix is architectural and it is
+// already on the roadmap: when the app consumes the Worker (Phase 1.2 step 12)
+// the composition happens server-side and the row stops travelling at all.
+// This function is the interim, and the comment is here so nobody later
+// mistakes it for the end of the job.
+
+/**
+ * How much of each list the screens actually show. `null` = ship it whole,
+ * because something genuinely iterates all of it.
+ *
+ * The numbers are not taste — they are read off the call sites:
+ * ResultsScreen slices corrective_direction to 3, avoid to 4, herbs to 4,
+ * scents to 3, color_palette to 3. `regulator_planets` stays whole because
+ * forkRite filters the full list when it picks a counterweight.
+ */
+const PROTOCOL_DISPLAY_CAPS: Record<string, number | null> = {
+  regulator_planets:    null,
+  corrective_direction: 3,
+  avoid:                4,
+  herbs:                4,
+  scents:               3,
+  color_palette:        3,
+  sound_character:      null,
+  support_style:        null,
+  breath:               null,
+  scale_override:       null,
+}
+// Absent from the map, therefore never shipped: `indicators` and
+// `visual_motion`. Nothing client-side reads either.
+
+function shapeCorrectiveProtocol(p: unknown): Record<string, unknown> | null {
+  if (!p || typeof p !== 'object') return null
+  const src = p as Record<string, unknown>
+  const out: Record<string, unknown> = {}
+  for (const [key, cap] of Object.entries(PROTOCOL_DISPLAY_CAPS)) {
+    const v = src[key]
+    if (v === undefined) continue
+    out[key] = cap !== null && Array.isArray(v) ? v.slice(0, cap) : v
+  }
+  return out
+}
+
+/**
+ * The per-planet polarity results.
+ *
+ * `scores` never ships — four numbers per planet is the ranking model, and no
+ * screen has ever read them. The numeric `confidence` goes too: the band is
+ * what the UI prints, and the one place that shows the raw number reads it off
+ * `dominantPolarity`, which keeps it below.
+ */
+export function shapePolarityResultsForClient(results: unknown): unknown {
+  if (!Array.isArray(results)) return results
+  return results.map((r) => {
+    if (!r || typeof r !== 'object') return r
+    const src = r as Record<string, unknown>
+    return {
+      planet:          src.planet,
+      dominant_state:  src.dominant_state,
+      secondary_state: src.secondary_state,
+      confidence_band: src.confidence_band,
+      overridden:      src.overridden,
+      symptomDriven:   src.symptomDriven,
+      resourced:       src.resourced,
+      reasoning:       src.reasoning,
+      protocol:        shapeCorrectiveProtocol(src.protocol),
+    }
+  })
+}
+
+/**
+ * The dominant planet's result. Same shaping, and it keeps the numeric
+ * `confidence` because the practitioner DNA panel prints it.
+ */
+export function shapeDominantPolarityForClient(p: unknown): unknown {
+  if (!p || typeof p !== 'object') return p
+  const src = p as Record<string, unknown>
+  const [shaped] = shapePolarityResultsForClient([src]) as Record<string, unknown>[]
+  return { ...shaped, confidence: src.confidence }
+}
+
+/**
+ * The tri-source ranked planets.
+ *
+ * Nothing client-side reads this array at all, let alone its four score
+ * columns — so what ships is the readable part and the model stays home.
+ */
+export function shapeActivePlanetsForClient(list: unknown): unknown {
+  if (!Array.isArray(list)) return list
+  return list.map((a) => {
+    if (!a || typeof a !== 'object') return a
+    const src = a as Record<string, unknown>
+    return {
+      planet:              src.planet,
+      urgency:             src.urgency,
+      transitDescription:  src.transitDescription,
+      calibrationWindow:   src.calibrationWindow,
+    }
+  })
+}
+
+/** The cell-salt display projection the symptom cards render. */
+function shapeRoutedSalt(s: unknown): Record<string, unknown> | null {
+  if (!s || typeof s !== 'object') return null
+  const src = s as Record<string, unknown>
+  return pick(src, [
+    'saltName', 'saltShort', 'epithet', 'plainLanguageSignal',
+    'displaySignal', 'matchReason', 'matchScore', 'looseMatch',
+  ])
+}
+
+/**
+ * The diagnostic layer.
+ *
+ * Only `symptomRouting` needed changing: its `matchedRootCauseKey`,
+ * `matchedSignature` and `matchedSubtype` are the medicalAstrology index's own
+ * lookup keys — the shape of thing that turns a paid API into a copy of the
+ * index — and no screen reads any of the three. The human-readable
+ * `matchedSubtypeDescription` stays, because that is what a person is shown.
+ */
+export function shapeDiagnosticForClient(d: unknown): unknown {
+  if (!d || typeof d !== 'object') return d
+  const src = d as Record<string, unknown>
+  if (!Array.isArray(src.symptomRouting)) return src
+  return {
+    ...src,
+    symptomRouting: src.symptomRouting.map((s) => {
+      if (!s || typeof s !== 'object') return s
+      const r = s as Record<string, unknown>
+      return {
+        reportedSymptom:           r.reportedSymptom,
+        primaryPlanet:             r.primaryPlanet,
+        matchedSubtypeDescription: r.matchedSubtypeDescription,
+        rootCause:                 r.rootCause,
+        activationScore:           r.activationScore,
+        evidence:                  r.evidence,
+        recommendedCellSalt:       shapeRoutedSalt(r.recommendedCellSalt),
+      }
+    }),
+  }
+}

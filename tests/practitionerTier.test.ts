@@ -11,7 +11,15 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { sacredTierFor, shapeSacredLayerForClient, shapePrescriptionsForClient } from '@/lib/sacredShape'
+import {
+  sacredTierFor,
+  shapeSacredLayerForClient,
+  shapePrescriptionsForClient,
+  shapePolarityResultsForClient,
+  shapeDominantPolarityForClient,
+  shapeActivePlanetsForClient,
+  shapeDiagnosticForClient,
+} from '@/lib/sacredShape'
 import { isPractitionerTier } from '@/lib/tierGate'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -171,5 +179,138 @@ describe('SECURITY — the SECOND door: prescriptions[] carried an unshaped copy
     const ROUTE = readFileSync(join(process.cwd(), 'src', 'app', 'api', 'protocol', 'route.ts'), 'utf8')
     expect(ROUTE).toMatch(/shapeSacredLayerForClient\(/)
     expect(ROUTE).toMatch(/shapePrescriptionsForClient\(/)
+  })
+})
+
+// ════════════════════════════════════════════════════════════════════════════
+describe('SECURITY — the THIRD door: everything the spread carried out raw', () => {
+  // Found 2026-09-13 while building the Worker's tiered shaping. The route
+  // returns `{ ...protocol, sacredLayer: shaped, prescriptions: shaped }`, so
+  // every field NOT named there went out untouched to any signed-in caller.
+
+  const POLARITY = [
+    {
+      planet: 'Saturn',
+      dominant_state: 'excess',
+      secondary_state: 'blocked',
+      confidence: 87,
+      confidence_band: 'high',
+      overridden: false,
+      symptomDriven: true,
+      resourced: false,
+      reasoning: ['a reason'],
+      scores: { excess: 9, deficiency: 1, blocked: 4, balanced: 0 },
+      protocol: {
+        regulator_planets: ['Venus', 'Moon'],
+        corrective_direction: ['soften', 'warm', 'open', 'FIFTH', 'SIXTH'],
+        avoid: ['a', 'b', 'c', 'd', 'FIFTH'],
+        herbs: ['h1', 'h2', 'h3', 'h4', 'FIFTH'],
+        scents: ['s1', 's2', 's3', 'FOURTH'],
+        color_palette: ['#1', '#2', '#3', 'FOURTH'],
+        sound_character: 'warm',
+        support_style: 'soften',
+        breath: 'long_exhale',
+        scale_override: 'lydian',
+        indicators: ['NEVER SHIPPED'],
+        visual_motion: 'NEVER SHIPPED',
+      },
+    },
+  ] as never
+
+  it('the per-state score map never leaves — that is the ranking model', () => {
+    const blob = JSON.stringify(shapePolarityResultsForClient(POLARITY))
+    expect(blob).not.toContain('scores')
+    expect(blob).not.toContain('"deficiency":1')
+  })
+
+  it('the numeric confidence leaves only on the dominant result', () => {
+    const many = shapePolarityResultsForClient(POLARITY) as any[]
+    expect(many[0].confidence).toBeUndefined()
+    expect(many[0].confidence_band).toBe('high')
+    // The practitioner DNA panel prints the number, and reads it from here.
+    expect((shapeDominantPolarityForClient(POLARITY[0]) as any).confidence).toBe(87)
+  })
+
+  it('drops the corrective-row fields nothing renders', () => {
+    const blob = JSON.stringify(shapePolarityResultsForClient(POLARITY))
+    expect(blob).not.toContain('NEVER SHIPPED')
+    expect(blob).not.toContain('indicators')
+    expect(blob).not.toContain('visual_motion')
+  })
+
+  it('trims every list to what the screens actually show', () => {
+    const [r] = shapePolarityResultsForClient(POLARITY) as any[]
+    expect(r.protocol.corrective_direction).toHaveLength(3)
+    expect(r.protocol.avoid).toHaveLength(4)
+    expect(r.protocol.herbs).toHaveLength(4)
+    expect(r.protocol.scents).toHaveLength(3)
+    expect(r.protocol.color_palette).toHaveLength(3)
+    expect(JSON.stringify(r)).not.toContain('FIFTH')
+    expect(JSON.stringify(r)).not.toContain('FOURTH')
+  })
+
+  it('keeps what the app genuinely needs to render and to compose', () => {
+    const [r] = shapePolarityResultsForClient(POLARITY) as any[]
+    // forkRite filters the whole regulator list when it picks a counterweight.
+    expect(r.protocol.regulator_planets).toEqual(['Venus', 'Moon'])
+    // ChamberDNAEngine, ScaleEngine, ResultsScreen.
+    expect(r.protocol.breath).toBe('long_exhale')
+    expect(r.protocol.scale_override).toBe('lydian')
+    expect(r.protocol.support_style).toBe('soften')
+    expect(r.protocol.sound_character).toBe('warm')
+    // The composer reads these three off every result.
+    expect(r.planet).toBe('Saturn')
+    expect(r.dominant_state).toBe('excess')
+    expect(r.resourced).toBe(false)
+  })
+
+  it('the tri-source ranking weights never leave', () => {
+    const shaped = shapeActivePlanetsForClient([
+      { planet: 'Mars', urgency: 'high', transitDescription: 'd', calibrationWindow: 'w',
+        score: 9.1, natalWeight: 3.2, transitPressure: 4.4, symptomScore: 1.5 },
+    ] as never) as any[]
+    expect(shaped[0].planet).toBe('Mars')
+    expect(shaped[0].urgency).toBe('high')
+    const blob = JSON.stringify(shaped)
+    for (const k of ['score', 'natalWeight', 'transitPressure', 'symptomScore']) {
+      expect(blob).not.toContain(k)
+    }
+  })
+
+  it('the medicalAstrology routing keys never leave', () => {
+    const shaped = shapeDiagnosticForClient({
+      dominantPlanet: 'Saturn',
+      symptomRouting: [
+        {
+          reportedSymptom: 'tension', primaryPlanet: 'Saturn',
+          matchedSubtypeDescription: 'a readable description',
+          rootCause: 'r', activationScore: 7, evidence: ['e'],
+          matchedRootCauseKey: 'NEVER SHIPPED', matchedSignature: 'NEVER SHIPPED',
+          matchedSubtype: 'NEVER SHIPPED',
+          recommendedCellSalt: { saltShort: 'Kali Phos', epithet: 'x', dosing: 'NEVER SHIPPED' },
+        },
+      ],
+    } as never) as any
+    const blob = JSON.stringify(shaped)
+    expect(blob).not.toContain('NEVER SHIPPED')
+    // What a person is shown survives.
+    expect(shaped.symptomRouting[0].matchedSubtypeDescription).toBe('a readable description')
+    expect(shaped.symptomRouting[0].recommendedCellSalt.saltShort).toBe('Kali Phos')
+    expect(shaped.dominantPlanet).toBe('Saturn')
+  })
+
+  it('passes odd input through without inventing structure', () => {
+    expect(shapePolarityResultsForClient(undefined)).toBeUndefined()
+    expect(shapeActivePlanetsForClient(null)).toBeNull()
+    expect(shapeDiagnosticForClient(undefined)).toBeUndefined()
+    expect(shapeDominantPolarityForClient(undefined)).toBeUndefined()
+  })
+
+  it('the route shapes ALL FOUR doors — a fifth copy must come through here too', () => {
+    const ROUTE = readFileSync(join(process.cwd(), 'src', 'app', 'api', 'protocol', 'route.ts'), 'utf8')
+    expect(ROUTE).toMatch(/shapePolarityResultsForClient\(/)
+    expect(ROUTE).toMatch(/shapeDominantPolarityForClient\(/)
+    expect(ROUTE).toMatch(/shapeActivePlanetsForClient\(/)
+    expect(ROUTE).toMatch(/shapeDiagnosticForClient\(/)
   })
 })
