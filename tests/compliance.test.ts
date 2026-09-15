@@ -71,3 +71,55 @@ describe('clinical-claim lint — the sign is not the disease', () => {
     expect(lintClinicalClaims('avoid in kidney disease').length).toBeGreaterThan(0)
   })
 })
+
+// ─── "cannot", not just "can't" ──────────────────────────────────────
+//
+// Found by mistyping a probe against the live API on 2026-09-15: `can'?t`
+// matches "cant" and "can't" and misses "cannot". "I cannot breathe" was not a
+// crisis. Five phrases had the same hole.
+//
+// It matters more since the machine channel opened. A person types the way they
+// speak and mostly says "can't"; an AGENT relaying that person writes prose —
+// "the user reports they cannot breathe" — and agents are who this API exists
+// for. These tests hold both registers, and the door in front of the paywall is
+// only as good as what it recognises.
+
+import { detectCrisis } from '@/lib/compliance'
+
+describe('crisis detection reads prose, not just contractions', () => {
+  const mustDetect: Array<[string, string]> = [
+    ['I cannot breathe', 'medical'],
+    ['I can not breathe', 'medical'],
+    ["I can't breathe", 'medical'],
+    ['I cant breathe', 'medical'],
+    ['I can’t breathe', 'medical'],           // typographic apostrophe
+    ['I cannot cope with any of this', 'mh-acute'],
+    ["I can't cope", 'mh-acute'],
+    ['he is hurting me', 'dv'],
+    ["he's hurting me", 'dv'],
+    ['she is hurting me', 'dv'],
+    ['The user reports they cannot breathe and have chest pain.', 'medical'],
+  ]
+
+  for (const [text, category] of mustDetect) {
+    it(`detects: "${text}"`, () => {
+      const d = detectCrisis(text)
+      expect(d.isCrisis, text).toBe(true)
+      expect(d.categories).toContain(category)
+    })
+  }
+
+  const mustNotDetect = [
+    'I feel restless and my mind races at night',
+    'I cannot settle into a routine',        // "cannot" alone is not a crisis
+    'my energy is low and I want to build a better rhythm',
+    'he is helping me with the practice',
+    '',
+  ]
+
+  for (const text of mustNotDetect) {
+    it(`leaves alone: "${text || '(empty)'}"`, () => {
+      expect(detectCrisis(text).isCrisis, text).toBe(false)
+    })
+  }
+})

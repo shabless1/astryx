@@ -258,11 +258,31 @@ export const ATTESTATION_VERSIONS = {
 
 // ─── CRISIS KEYWORD DETECTION ───────────────────────────────────────
 
+/**
+ * "cannot", not just "can't".
+ *
+ * Found 2026-09-15 by mistyping a probe against the live API. `can'?t` matches
+ * "cant" and "can't" and misses "cannot" and "can not" — so "I cannot breathe"
+ * was not a crisis. Five phrases had the same hole: cannot breathe, can not
+ * breathe, cannot cope, "he is hurting me", "she is hurting me".
+ *
+ * It matters more now than it did last week, and the reason is the whole point
+ * of this lane. A person types the way they speak, and most people say "can't".
+ * An AGENT relaying that person writes prose — "the user reports they cannot
+ * breathe" — and agents are exactly who this API is being built for. The
+ * machine channel made a narrow pattern into a real gap.
+ *
+ * `CANT` accepts every form: can't, cant, cannot, can not, can’t with the
+ * typographic apostrophe an operating system silently substitutes.
+ */
+const CANT = String.raw`(?:can(?:'|’)?t|can\s?not|cannot)`
+const IS = String.raw`(?:'s|’s|\s+is)`
+
 const CRISIS_PATTERNS: ReadonlyArray<{ category: string; pattern: RegExp }> = [
   { category: 'self-harm',  pattern: /\b(suicide|suicidal|kill myself|end it all|want to die|self.?harm|cutting myself)\b/i },
-  { category: 'medical',    pattern: /\b(can'?t breathe|chest pain|stroke|severe bleeding|overdose|overdosed|unconscious)\b/i },
-  { category: 'mh-acute',   pattern: /\b(psychosis|hallucinating|hearing voices telling me|breaking down|can'?t cope)\b/i },
-  { category: 'dv',         pattern: /\b(he'?s hurting me|she'?s hurting me|being abused|scared of (my )?partner)\b/i },
+  { category: 'medical',    pattern: new RegExp(String.raw`\b(${CANT}\s+breathe|chest pain|stroke|severe bleeding|overdose|overdosed|unconscious)\b`, 'i') },
+  { category: 'mh-acute',   pattern: new RegExp(String.raw`\b(psychosis|hallucinating|hearing voices telling me|breaking down|${CANT}\s+cope)\b`, 'i') },
+  { category: 'dv',         pattern: new RegExp(String.raw`\b(he${IS}\s+hurting me|she${IS}\s+hurting me|being abused|scared of (my )?partner)\b`, 'i') },
 ]
 
 export interface CrisisDetection {
